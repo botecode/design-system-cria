@@ -3,7 +3,7 @@ import { Typography } from '../Typography';
 import { Button } from '../Button';
 import { Card, CardHeader, CardContent } from '../Card';
 import { Checkbox } from './Checkbox';
-import { Check, WarningCircle, Info } from 'phosphor-react';
+// import { Check, WarningCircle, Info } from 'phosphor-react';
 
 export const CheckboxDemo: React.FC = () => {
   const [basicChecked, setBasicChecked] = useState(false);
@@ -299,7 +299,7 @@ export const CheckboxDemo: React.FC = () => {
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             <div>
-              <Typography variant="h4" style={{ marginBottom: '16px' }}>
+              <Typography variant="h3" style={{ marginBottom: '16px' }}>
                 Account Settings
               </Typography>
               
@@ -328,7 +328,7 @@ export const CheckboxDemo: React.FC = () => {
             </div>
             
             <div style={{ borderTop: '1px solid var(--cria-gray-200)', paddingTop: '20px' }}>
-              <Typography variant="h4" style={{ marginBottom: '16px' }}>
+              <Typography variant="h3" style={{ marginBottom: '16px' }}>
                 Legal Agreements
               </Typography>
               

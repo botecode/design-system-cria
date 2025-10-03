@@ -142,7 +142,7 @@ export const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(({
   ].filter(Boolean).join(' ');
 
   // Determine the state for styling
-  const state = errorMessage ? 'error' : warningMessage ? 'warning' : 'default';
+  // const state = errorMessage ? 'error' : warningMessage ? 'warning' : 'default';
 
   return (
     <div className={checkboxClasses} style={style} {...props}>
@@ -186,7 +186,6 @@ export const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(({
           <label htmlFor={id || (label ? `${name || 'checkbox'}-input` : undefined)} className={labelClasses}>
             <Typography 
               variant="body" 
-              size={size === 'sm' ? 'sm' : size === 'lg' ? 'md' : 'sm'}
               color={disabled ? 'secondary' : 'content'}
             >
               {label}
@@ -200,7 +199,7 @@ export const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(({
       {helperText && !errorMessage && !warningMessage && (
         <Typography 
           variant="caption" 
-          color="default" 
+          color="secondary" 
           className="cria-checkbox__helper-text"
           id={`${id || name || 'checkbox'}-helper`}
         >

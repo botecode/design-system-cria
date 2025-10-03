@@ -174,7 +174,6 @@ export const Switch = forwardRef<SwitchRef, SwitchProps>(({
           <label htmlFor={id || (label ? `${name || 'switch'}-input` : undefined)} className={labelClasses}>
             <Typography 
               variant="body" 
-              size={size === 'sm' ? 'sm' : size === 'lg' ? 'md' : 'sm'}
               color={disabled ? 'secondary' : 'content'}
             >
               {label}
@@ -188,7 +187,7 @@ export const Switch = forwardRef<SwitchRef, SwitchProps>(({
       {helperText && !errorMessage && !warningMessage && (
         <Typography 
           variant="caption" 
-          color="default" 
+          color="secondary" 
           className="cria-switch__helper-text"
           id={`${id || name || 'switch'}-helper`}
         >

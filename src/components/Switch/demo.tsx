@@ -3,7 +3,7 @@ import { Typography } from '../Typography';
 import { Button } from '../Button';
 import { Card, CardHeader, CardContent } from '../Card';
 import { Switch } from './Switch';
-import { Bell, Shield, Moon, Wifi, Lock, Eye } from 'phosphor-react';
+// import { Bell, Shield, Moon, Lock, Eye } from 'phosphor-react';
 
 export const SwitchDemo: React.FC = () => {
   const [basicSwitch, setBasicSwitch] = useState(false);
@@ -253,7 +253,7 @@ export const SwitchDemo: React.FC = () => {
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             <div>
-              <Typography variant="h4" style={{ marginBottom: '16px' }}>
+              <Typography variant="h3" style={{ marginBottom: '16px' }}>
                 Notification Settings
               </Typography>
               
@@ -275,7 +275,7 @@ export const SwitchDemo: React.FC = () => {
             </div>
             
             <div style={{ borderTop: '1px solid var(--cria-gray-200)', paddingTop: '20px' }}>
-              <Typography variant="h4" style={{ marginBottom: '16px' }}>
+              <Typography variant="h3" style={{ marginBottom: '16px' }}>
                 Appearance
               </Typography>
               
@@ -290,7 +290,7 @@ export const SwitchDemo: React.FC = () => {
             </div>
             
             <div style={{ borderTop: '1px solid var(--cria-gray-200)', paddingTop: '20px' }}>
-              <Typography variant="h4" style={{ marginBottom: '16px' }}>
+              <Typography variant="h3" style={{ marginBottom: '16px' }}>
                 Connectivity
               </Typography>
               
