@@ -1,6 +1,6 @@
 // Simple JavaScript wrapper to avoid TypeScript parsing issues
 // Only export components that have been converted to JavaScript
-export { Button } from './components/Button/Button.jsx';
+export { Button } from './components/Button/Button.tsx';
 
 // Placeholder exports for other components (to be implemented as needed)
 // export { Input } from './components/Input/Input.jsx';
