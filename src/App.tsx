@@ -186,6 +186,28 @@ const App: React.FC = () => {
             CRIA_UI
           </Typography>
           
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <Typography variant="body" color="secondary">
+              CRIA_UI Design System
+            </Typography>
+          </div>
+        </div>
+      </nav>
+
+      {/* Component Tabs Navigation */}
+      <div style={{
+        backgroundColor: 'var(--cria-white)',
+        borderBottom: '1px solid var(--cria-gray-200)',
+        padding: '0 24px',
+        position: 'sticky',
+        top: '64px',
+        zIndex: 99
+      }}>
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto',
+          padding: '16px 0'
+        }}>
           <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '4px' }}>
             {navigationItems.map((item) => (
               <Button
@@ -199,8 +221,7 @@ const App: React.FC = () => {
             ))}
           </div>
         </div>
-      </nav>
-
+      </div>
 
       {/* Main Content */}
       <main>
