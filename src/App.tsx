@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Typography, Button, Navigation } from './index';
-import { House, TextAa, Palette, Mouse, PencilSimple, CheckSquare, ToggleLeft, Bell, ChatCircle, Info, Square, Tag, Tabs, List, CaretDown, Article, CaretUpDown } from 'phosphor-react';
+import { House, TextAa, Palette, Mouse, PencilSimple, CheckSquare, ToggleLeft, Bell, ChatCircle, Info, Square, Tag, Tabs, List, CaretDown, Article } from 'phosphor-react';
 import TypographyDemo from './components/Typography/demo';
 import ButtonDemo from './components/Button/demo';
 import CardDemo from './components/Card/demo';
@@ -57,7 +57,7 @@ const App: React.FC = () => {
     { id: 'navigation', label: 'Navigation', href: '#navigation', icon: <List size={20} /> },
     { id: 'accordion', label: 'Accordion', href: '#accordion', icon: <CaretDown size={20} /> },
     { id: 'text', label: 'Text', href: '#text', icon: <Article size={20} /> },
-    { id: 'dropdown', label: 'Dropdown', href: '#dropdown', icon: <CaretUpDown size={20} /> }
+    { id: 'dropdown', label: 'Dropdown', href: '#dropdown', icon: <CaretDown size={20} /> }
   ];
 
   const handleSectionChange = (section: DemoSection) => {
