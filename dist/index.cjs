@@ -599,71 +599,71 @@ var ButtonDemo = () => {
     /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("section", { style: { marginBottom: "32px" }, children: [
       /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Variantes" }),
       /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { variant: "primary", children: "Prim\xE1rio" }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { variant: "secondary", children: "Secund\xE1rio" }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { variant: "outline", children: "Contorno" }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { variant: "ghost", children: "Fantasma" }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { variant: "danger", children: "Perigo" })
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { variant: "primary", children: "Prim\xE1rio" }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { variant: "secondary", children: "Secund\xE1rio" }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { variant: "outline", children: "Contorno" }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { variant: "ghost", children: "Fantasma" }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { variant: "danger", children: "Perigo" })
       ] })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("section", { style: { marginBottom: "32px" }, children: [
       /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Tamanhos" }),
       /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { style: { display: "flex", gap: "12px", alignItems: "center", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { size: "sm", children: "Pequeno" }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { size: "md", children: "M\xE9dio" }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { size: "lg", children: "Grande" })
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { size: "sm", children: "Pequeno" }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { size: "md", children: "M\xE9dio" }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { size: "lg", children: "Grande" })
       ] })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("section", { style: { marginBottom: "32px" }, children: [
       /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Estados" }),
       /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { children: "Normal" }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { loading: true, children: "Carregando" }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { disabled: true, children: "Desabilitado" }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { loading, onClick: handleLoadingClick, children: "Clique para Carregar" })
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { children: "Normal" }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { loading: true, children: "Carregando" }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { disabled: true, children: "Desabilitado" }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { loading, onClick: handleLoadingClick, children: "Clique para Carregar" })
       ] })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("section", { style: { marginBottom: "32px" }, children: [
       /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Com \xCDcones" }),
       /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { leftIcon: "\u2190", children: "Voltar" }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { rightIcon: "\u2192", children: "Pr\xF3ximo" }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { leftIcon: "\u2605", rightIcon: "\u2605", children: "Estrela" }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { leftIcon: "\u{1F4E7}", children: "Email" })
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { leftIcon: "\u2190", children: "Voltar" }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { rightIcon: "\u2192", children: "Pr\xF3ximo" }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { leftIcon: "\u2605", rightIcon: "\u2605", children: "Estrela" }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { leftIcon: "\u{1F4E7}", children: "Email" })
       ] })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("section", { style: { marginBottom: "32px" }, children: [
       /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Largura Completa" }),
       /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { style: { display: "flex", flexDirection: "column", gap: "12px" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { fullWidth: true, children: "Bot\xE3o de Largura Completa" }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { variant: "outline", fullWidth: true, children: "Contorno de Largura Completa" })
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { fullWidth: true, children: "Bot\xE3o de Largura Completa" }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { variant: "outline", fullWidth: true, children: "Contorno de Largura Completa" })
       ] })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("section", { style: { marginBottom: "32px" }, children: [
       /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Efeitos de Hover" }),
       /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("p", { style: { fontFamily: "var(--cria-font-family)", color: "#6B7280", marginBottom: "16px", fontSize: "14px" }, children: "Passe o mouse sobre os bot\xF5es para ver os efeitos de hover" }),
       /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { variant: "primary", children: "Prim\xE1rio" }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { variant: "secondary", children: "Secund\xE1rio" }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { variant: "outline", children: "Contorno" }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { variant: "ghost", children: "Fantasma" }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { variant: "danger", children: "Perigo" })
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { variant: "primary", children: "Prim\xE1rio" }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { variant: "secondary", children: "Secund\xE1rio" }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { variant: "outline", children: "Contorno" }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { variant: "ghost", children: "Fantasma" }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { variant: "danger", children: "Perigo" })
       ] })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("section", { style: { marginBottom: "32px" }, children: [
       /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Exemplos Interativos" }),
       /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { onClick: () => alert("Prim\xE1rio clicado!"), children: "Clique em Mim" }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { variant: "secondary", onClick: () => console.log("Secund\xE1rio clicado!"), children: "Log no Console" }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { variant: "outline", onClick: () => window.open("https://example.com", "_blank"), children: "Link Externo" })
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { onClick: () => alert("Prim\xE1rio clicado!"), children: "Clique em Mim" }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { variant: "secondary", onClick: () => console.log("Secund\xE1rio clicado!"), children: "Log no Console" }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { variant: "outline", onClick: () => window.open("https://example.com", "_blank"), children: "Link Externo" })
       ] })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("section", { style: { marginBottom: "32px" }, children: [
       /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Acessibilidade" }),
       /* @__PURE__ */ (0, import_jsx_runtime4.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { "aria-label": "Fechar di\xE1logo", children: "\xD7" }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { "aria-describedby": "help-text", children: "Ajuda" }),
-        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button_default, { disabled: true, "aria-label": "Esta a\xE7\xE3o n\xE3o est\xE1 dispon\xEDvel", children: "Indispon\xEDvel" })
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { "aria-label": "Fechar di\xE1logo", children: "\xD7" }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { "aria-describedby": "help-text", children: "Ajuda" }),
+        /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(Button, { disabled: true, "aria-label": "Esta a\xE7\xE3o n\xE3o est\xE1 dispon\xEDvel", children: "Indispon\xEDvel" })
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime4.jsx)("p", { id: "help-text", style: { fontSize: "14px", color: "#6B7280", marginTop: "8px" }, children: "Este bot\xE3o fornece informa\xE7\xF5es de ajuda adicionais." })
     ] })
@@ -893,7 +893,7 @@ var CardDemo = () => {
           ] }),
           /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(CardFooter, { children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center" }, children: [
             /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Typography_default, { variant: "h3", weight: "bold", children: "R$ 99,99" }),
-            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Button_default, { size: "sm", children: "Adicionar ao Carrinho" })
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Button, { size: "sm", children: "Adicionar ao Carrinho" })
           ] }) })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(Card_default, { variant: "outlined", children: [
@@ -919,8 +919,8 @@ var CardDemo = () => {
             /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Typography_default, { variant: "body", style: { marginBottom: "16px" }, children: "Apaixonado por construir grandes experi\xEAncias de usu\xE1rio e resolver problemas complexos." })
           ] }),
           /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(CardFooter, { children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: { display: "flex", gap: "8px" }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Button_default, { variant: "outline", size: "sm", children: "Mensagem" }),
-            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Button_default, { size: "sm", children: "Seguir" })
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Button, { variant: "outline", size: "sm", children: "Mensagem" }),
+            /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Button, { size: "sm", children: "Seguir" })
           ] }) })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Card_default, { variant: "filled", children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(CardContent, { children: [
@@ -939,17 +939,17 @@ var CardDemo = () => {
           /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: { display: "flex", flexDirection: "column", gap: "12px" }, children: [
             /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center" }, children: [
               /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Typography_default, { variant: "body", children: "Notifica\xE7\xF5es por Email" }),
-              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Button_default, { variant: "outline", size: "sm", children: "Alternar" })
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Button, { variant: "outline", size: "sm", children: "Alternar" })
             ] }),
             /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center" }, children: [
               /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Typography_default, { variant: "body", children: "Modo Escuro" }),
-              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Button_default, { variant: "outline", size: "sm", children: "Alternar" })
+              /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Button, { variant: "outline", size: "sm", children: "Alternar" })
             ] })
           ] })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(CardFooter, { children: /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)("div", { style: { display: "flex", gap: "8px", justifyContent: "flex-end" }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Button_default, { variant: "ghost", size: "sm", children: "Cancelar" }),
-          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Button_default, { size: "sm", children: "Salvar Altera\xE7\xF5es" })
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Button, { variant: "ghost", size: "sm", children: "Cancelar" }),
+          /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(Button, { size: "sm", children: "Salvar Altera\xE7\xF5es" })
         ] }) })
       ] })
     ] })

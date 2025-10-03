@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Accordion, AccordionItem, AccordionHeader, AccordionContent } from './Accordion';
-import { Button } from '../Button/Button';
+import { Button } from '../Button';
 
 export const AccordionDemo: React.FC = () => {
   const [controlledOpenItems, setControlledOpenItems] = useState<string[]>(['item1']);

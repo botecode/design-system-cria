@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Typography, Button, Navigation } from './index';
+import { Typography, Button, Navigation } from './index.ts';
 import { House, TextAa, Palette, Mouse, PencilSimple, CheckSquare, ToggleLeft, Bell, ChatCircle, Info, Square, Tag, Tabs, List, CaretDown, Article } from 'phosphor-react';
 import TypographyDemo from './components/Typography/demo';
 import ButtonDemo from './components/Button/demo';
