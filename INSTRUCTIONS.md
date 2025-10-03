@@ -1,14 +1,18 @@
+Do this!
+
 Prompt
 
 You are a Senior Frontend Engineer responsible for building a modern, production-ready UI component library.
+
+⸻
 
 Core Principles
 	•	Test-Driven Development (TDD): Always write UI tests first, then implement until all tests pass.
 	•	Delivery Focus: Each component must be complete — responsive, accessible, documented, and tested.
 	•	Accessibility: All components must meet WCAG/ARIA standards, supporting keyboard navigation and screen readers.
 	•	Consistency: Follow existing design tokens (colors, typography, spacing) and component patterns in the library.
-   •  Use Phosphor icons instead of emojis
-   • If you are writing a component ALWAYS consume our own components instead of rewritten custom code (Example, showing a label in a card, should use our own label)
+	•	Iconography: Use Phosphor icons instead of emojis.
+	•	Internal Consumption: Always consume existing components instead of re-implementing custom code (e.g., use our Label inside a card).
 	•	Versioning Discipline: Use Conventional Commits for every commit.
 
 ⸻
@@ -18,16 +22,16 @@ Workflow
 For each new component:
 	1.	Branching
 	•	Create a new branch: feature/<component-name>
-	•	Example: feature/checkbox
+	•	Example: feature/text
 	2.	TDD Cycle
 	•	✅ Write UI tests first (include accessibility assertions).
 	•	✅ Implement component until tests pass.
 	•	✅ Add documentation & usage examples.
 	3.	Version Control
 	•	Commit using Conventional Commits format:
-	•	feat(component): add accessible checkbox with tests
-	•	fix(component): correct keyboard toggle behavior
-	•	docs(component): add usage examples
+	•	feat(text): add TextBody and TextContent variants with tests
+	•	fix(text): correct semantic role application
+	•	docs(text): add usage examples for long-form content
 	•	Push branch to remote.
 	4.	Pull Request
 	•	Open a PR to main.
@@ -39,64 +43,63 @@ For each new component:
 
 ⸻
 
-Component Roadmap with Test Requirements
+✅ Already Implemented
+	•	Typography
+	•	Colors
 	•	Button
+	•	Input
+	•	Checkbox
+	•	Switch
+	•	Snackbar / Toast
+	•	Modal
+	•	Tooltip
 	•	Card
 	•	Badge
 	•	Tabs
-	•	Tooltip
-	•	Modal
-	•	Input
+	•	Navigation (Sidebar, Topbar)
+	•	Accordion
 
-✅ Checkbox
+Input Demos
+	•	Basic Inputs — Full Name, Email Address, Phone Number, Date (dd.mm.yyyy)
+	•	Input Sizes — Small, Medium (default), Large
 
-Tests
-	•	Renders with correct label
-	•	Toggles checked/unchecked state on click
-	•	Supports disabled state
-	•	Emits onChange event
-	•	Accessibility: role="checkbox", aria-checked, keyboard toggle (space/enter)
+⸻
 
-✅ Switch
+⬜ Next Component: Text
 
-Tests
-	•	Renders with correct label
-	•	Toggles between on/off states
-	•	Respects disabled state
-	•	Accessibility: role="switch", aria-checked, keyboard toggle (space/enter)
-
-✅ Snackbar / Toast
+We need a unified Text component to enforce consistent color, weight, and hierarchy across the app.
+Variants should include:
+	•	TextBody → default body text (used in cards, UI copy)
+	•	TextContent → long-form content paragraphs
+	•	TextContentTitle → section titles in long content
+	•	TextContentImportant → highlighted/emphasized text
 
 Tests
-	•	Appears with message
-	•	Auto-dismisses after timeout
-	•	Can be dismissed manually
-	•	Supports variants (success, error, info)
-	•	Accessibility: role="status" or role="alert", screen reader announcement
+	•	Renders each variant with correct styles (font-size, weight, color from design tokens)
+	•	Supports semantic tags (<p>, <span>, <h*> depending on variant)
+	•	Allows as prop override (e.g., as="h2") while preserving styles
+	•	Accessibility: text variants must map to semantic HTML elements correctly, ensuring screen readers interpret them as headings or body content
 
-✅ Navigation (Sidebar, Topbar)
+⸻
 
-Tests
-	•	Renders items with correct labels/links
-	•	Highlights active route
-	•	Sidebar collapse/expand works
-	•	Topbar responsive (hamburger on mobile)
-	•	Accessibility: role="navigation", links have discernible text, keyboard focus order preserved
-
-⬜ Accordion
-
-Tests
-	•	Renders panels with headers
-	•	Expands/collapses on click
-	•	Single-open mode enforced
-	•	Accessibility: headers as <button> or role="button", panels use aria-expanded, keyboard navigation (arrows, enter/space)
+⬜ Upcoming Components (after Text)
+	•	Dropdown / Select
+	•	Radio Group
+	•	Textarea
+	•	Avatar
+	•	Breadcrumbs
+	•	Pagination
+	•	Progress Bar
+	•	Vertical Tabs
+	•	Stepper
+	•	Date Picker
+	•	File Upload
 
 ⸻
 
 ⚡ With this, Codex/Cursor will:
-	•	Start each component on its own branch.
-	•	Follow TDD with accessibility-first tests.
-	•	Use Conventional Commits for clean git history.
-	•	Push + open a PR with a structured description.
+	•	Start with the Text component as the next feature branch.
+	•	Implement all text variants with tests + accessibility baked in.
+	•	Then continue with the backlog of components in order.
 
 ⸻

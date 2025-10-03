@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Typography, Button, Navigation } from './index';
-import { House, TextAa, Palette, Mouse, PencilSimple, CheckSquare, ToggleLeft, Bell, ChatCircle, Info, Square, Tag, Tabs, List } from 'phosphor-react';
+import { House, TextAa, Palette, Mouse, PencilSimple, CheckSquare, ToggleLeft, Bell, ChatCircle, Info, Square, Tag, Tabs, List, CaretDown, Article } from 'phosphor-react';
 import TypographyDemo from './components/Typography/demo';
 import ButtonDemo from './components/Button/demo';
 import CardDemo from './components/Card/demo';
@@ -14,11 +14,13 @@ import { SwitchDemo } from './components/Switch/demo';
 import { SnackbarDemo } from './components/Snackbar/demo';
 import { NavigationDemo } from './components/Navigation/demo';
 import { ColorsDemo } from './components/Colors/demo';
+import { AccordionDemo } from './components/Accordion/demo';
+import { TextDemo } from './components/Text/demo';
 
 // Import Cartograph font
 import './fonts.css';
 
-type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs' | 'navigation';
+type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs' | 'navigation' | 'accordion' | 'text';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<DemoSection>('overview');
@@ -51,7 +53,9 @@ const App: React.FC = () => {
     { id: 'card', label: 'Card', href: '#card', icon: <Square size={20} /> },
     { id: 'badge', label: 'Badge', href: '#badge', icon: <Tag size={20} /> },
     { id: 'tabs', label: 'Tabs', href: '#tabs', icon: <Tabs size={20} /> },
-    { id: 'navigation', label: 'Navigation', href: '#navigation', icon: <List size={20} /> }
+    { id: 'navigation', label: 'Navigation', href: '#navigation', icon: <List size={20} /> },
+    { id: 'accordion', label: 'Accordion', href: '#accordion', icon: <CaretDown size={20} /> },
+    { id: 'text', label: 'Text', href: '#text', icon: <Article size={20} /> }
   ];
 
   const handleSectionChange = (section: DemoSection) => {
@@ -152,6 +156,12 @@ const App: React.FC = () => {
                   <Button variant="outline" size="sm" onClick={() => setActiveSection('tabs')}>
                     Tabs
                   </Button>
+                  <Button variant="outline" size="sm" onClick={() => setActiveSection('accordion')}>
+                    Accordion
+                  </Button>
+                  <Button variant="outline" size="sm" onClick={() => setActiveSection('text')}>
+                    Text
+                  </Button>
                 </div>
               </div>
             </div>
@@ -183,6 +193,10 @@ const App: React.FC = () => {
         return <TabsDemo />;
       case 'navigation':
         return <NavigationDemo />;
+      case 'accordion':
+        return <AccordionDemo />;
+      case 'text':
+        return <TextDemo />;
       default:
         return <TypographyDemo />;
     }

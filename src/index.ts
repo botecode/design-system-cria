@@ -21,6 +21,7 @@ export * from './components/Switch';
 export * from './components/Snackbar';
 export * from './components/Navigation';
 export * from './components/Accordion';
+export * from './components/Text';
 
 // Main exports
 export { default as Typography } from './components/Typography';
