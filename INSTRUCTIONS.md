@@ -48,6 +48,7 @@ No Next.js, Remix, or other frameworks — we need to ship React components that
    - [x] Modal
    - [x] Input
    - [x] Checkbox
+   - [x] Switch
 
 6. **Theming**
    - Export tokens as **CSS variables** (prefix `--cria-`).
