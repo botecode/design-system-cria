@@ -46,7 +46,7 @@ Component Roadmap with Test Requirements
 	•	Modal
 	•	Input
 
-⬜ Checkbox
+✅ Checkbox
 
 Tests
 	•	Renders with correct label
@@ -55,7 +55,7 @@ Tests
 	•	Emits onChange event
 	•	Accessibility: role="checkbox", aria-checked, keyboard toggle (space/enter)
 
-⬜ Switch
+✅ Switch
 
 Tests
 	•	Renders with correct label
