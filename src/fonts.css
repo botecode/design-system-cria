@@ -639,6 +639,17 @@ body {
   align-items: center;
   justify-content: center;
   line-height: 1;
+  color: inherit;
+}
+
+/* Icon colors for colored badge variants */
+.cria-badge--primary .cria-badge__icon,
+.cria-badge--secondary .cria-badge__icon,
+.cria-badge--success .cria-badge__icon,
+.cria-badge--warning .cria-badge__icon,
+.cria-badge--error .cria-badge__icon,
+.cria-badge--info .cria-badge__icon {
+  color: var(--cria-white);
 }
 
 .cria-badge__icon--left {

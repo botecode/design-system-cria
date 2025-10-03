@@ -141,7 +141,7 @@ export const Badge: React.FC<BadgeProps> = ({
       {...restProps}
     >
       {leftIcon && !dot && (
-        <span className="cria-badge__icon cria-badge__icon--left">
+        <span className="cria-badge__icon cria-badge__icon--left" aria-hidden="true">
           {leftIcon}
         </span>
       )}
@@ -153,7 +153,7 @@ export const Badge: React.FC<BadgeProps> = ({
       )}
       
       {rightIcon && !dot && (
-        <span className="cria-badge__icon cria-badge__icon--right">
+        <span className="cria-badge__icon cria-badge__icon--right" aria-hidden="true">
           {rightIcon}
         </span>
       )}
