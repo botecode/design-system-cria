@@ -235,15 +235,16 @@ const App: React.FC = () => {
           
           {/* Main Content */}
           <main style={{ 
-            marginLeft: isMobile ? '0' : (sidebarCollapsed ? '64px' : '256px'),
+            position: 'fixed',
+            top: '0',
+            left: isMobile ? '0' : (sidebarCollapsed ? '64px' : '256px'),
+            right: '0',
             height: '100vh',
             overflowY: 'auto',
-            transition: 'margin-left 0.3s ease',
+            transition: 'left 0.3s ease',
             padding: '16px',
             paddingTop: isMobile ? '60px' : '16px',
             boxSizing: 'border-box',
-            width: isMobile ? '100%' : `calc(100% - ${sidebarCollapsed ? '64px' : '256px'})`,
-            position: 'relative',
             zIndex: 1
           }}>
             <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
