@@ -2421,6 +2421,7 @@ body {
   flex-direction: column;
   height: 100vh;
   font-family: var(--cria-font-family);
+  position: relative;
 }
 
 .cria-navigation--sidebar-only {
@@ -2497,6 +2498,7 @@ body {
   flex: 1;
   padding: var(--cria-spacing-2) 0;
   overflow-y: auto;
+  max-height: calc(100vh - 64px); /* Account for header height */
 }
 
 .cria-sidebar__items {

@@ -234,10 +234,12 @@ const App: React.FC = () => {
       {/* Main Content */}
       <main style={{ 
         marginLeft: isMobile ? '0' : (sidebarCollapsed ? '64px' : '256px'),
-        minHeight: '100vh',
+        height: '100vh',
+        overflowY: 'auto',
         transition: 'margin-left 0.3s ease',
         padding: '24px',
-        paddingTop: isMobile ? '60px' : '24px'
+        paddingTop: isMobile ? '60px' : '24px',
+        boxSizing: 'border-box'
       }}>
         {renderContent()}
       </main>
