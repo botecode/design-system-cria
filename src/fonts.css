@@ -131,7 +131,8 @@
 :root {
   /* Colors */
   --cria-primary: #7566A1;
-  --cria-primary-light: #3A2E52;
+  --cria-primary-light: #9E9AD9;
+  --cria-primary-darker: #3A2E52;
   --cria-primary-dark: #2A1F3A;
   --cria-secondary: #28DDB9;
   --cria-secondary-dark: #167B7A;
@@ -2529,20 +2530,20 @@ body {
 }
 
 .cria-sidebar__item:hover {
-  background-color: var(--cria-gray-50);
-  color: var(--cria-primary);
+  background-color: var(--cria-primary-light);
+  color: var(--cria-white);
 }
 
 .cria-sidebar__item:focus {
   outline: 2px solid var(--cria-primary);
   outline-offset: -2px;
   background-color: var(--cria-primary-light);
-  color: var(--cria-primary);
+  color: var(--cria-white);
 }
 
 .cria-sidebar__item--active {
   background-color: var(--cria-primary-light);
-  color: var(--cria-primary);
+  color: var(--cria-white);
   font-weight: 500;
 }
 
