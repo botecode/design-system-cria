@@ -201,7 +201,7 @@ const App: React.FC = () => {
       case 'accordion':
         return <AccordionDemo />;
       case 'text':
-        return <TextDemo />;
+        return <div>Text Demo - Temporarily disabled for debugging</div>;
       case 'dropdown':
         return <DropdownDemo />;
       default:

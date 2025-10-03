@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography } from '../Typography';
-import { TextBody, TextContent, TextContentTitle, TextContentImportant } from './Text';
+import { TextBody, TextContent, TextContentTitle, TextContentImportant } from './test-import';
 import { Card } from '../Card';
 
 export const TextDemo: React.FC = () => {
