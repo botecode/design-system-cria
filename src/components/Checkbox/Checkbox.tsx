@@ -177,9 +177,9 @@ export const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(({
         <div className="cria-checkbox__checkmark">
           {indeterminate ? (
             <div className="cria-checkbox__indeterminate" />
-          ) : (
+          ) : checked ? (
             <Check size={size === 'sm' ? 12 : size === 'lg' ? 20 : 16} />
-          )}
+          ) : null}
         </div>
         
         {label && (
