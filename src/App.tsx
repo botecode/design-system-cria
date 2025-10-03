@@ -188,68 +188,70 @@ const App: React.FC = () => {
     }
   };
 
-  return (
-    <div style={{ minHeight: '100vh', backgroundColor: 'var(--cria-background)' }}>
-      {/* Mobile Toggle Button */}
-      {isMobile && (
-        <button
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          style={{
-            position: 'fixed',
-            top: '16px',
-            left: '16px',
-            zIndex: 1001,
-            background: 'var(--cria-white)',
-            border: '1px solid var(--cria-gray-200)',
-            borderRadius: 'var(--cria-radius-sm)',
-            padding: '8px',
-            cursor: 'pointer',
-            boxShadow: 'var(--cria-shadow-sm)'
-          }}
-          aria-label="Toggle menu"
-        >
-          <List size={20} />
-        </button>
-      )}
+      return (
+        <div style={{ minHeight: '100vh', backgroundColor: 'var(--cria-background)', position: 'relative' }}>
+          {/* Mobile Toggle Button */}
+          {isMobile && (
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              style={{
+                position: 'fixed',
+                top: '16px',
+                left: '16px',
+                zIndex: 1001,
+                background: 'var(--cria-white)',
+                border: '1px solid var(--cria-gray-200)',
+                borderRadius: 'var(--cria-radius-sm)',
+                padding: '8px',
+                cursor: 'pointer',
+                boxShadow: 'var(--cria-shadow-sm)'
+              }}
+              aria-label="Toggle menu"
+            >
+              <List size={20} />
+            </button>
+          )}
 
-      <Navigation
-        sidebar={{
-          items: sidebarItems.map(item => ({
-            ...item,
-            onClick: (e) => {
-              e.preventDefault();
-              handleSectionChange(item.id as DemoSection);
-              if (isMobile) {
-                setMobileMenuOpen(false);
-              }
-            }
-          })),
-          activeRoute: `#${activeSection}`,
-          collapsed: isMobile ? !mobileMenuOpen : sidebarCollapsed,
-          onToggle: isMobile ? setMobileMenuOpen : setSidebarCollapsed,
-          showToggle: !isMobile
-        }}
-        variant="sidebar-only"
-        style={{ height: '100vh' }}
-      />
-      
-      {/* Main Content */}
-      <main style={{ 
-        marginLeft: isMobile ? '0' : (sidebarCollapsed ? '64px' : '256px'),
-        height: '100vh',
-        overflowY: 'auto',
-        transition: 'margin-left 0.3s ease',
-        padding: '16px',
-        paddingTop: isMobile ? '60px' : '16px',
-        boxSizing: 'border-box',
-        width: isMobile ? '100%' : `calc(100% - ${sidebarCollapsed ? '64px' : '256px'})`
-      }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          {renderContent()}
+          <Navigation
+            sidebar={{
+              items: sidebarItems.map(item => ({
+                ...item,
+                onClick: (e) => {
+                  e.preventDefault();
+                  handleSectionChange(item.id as DemoSection);
+                  if (isMobile) {
+                    setMobileMenuOpen(false);
+                  }
+                }
+              })),
+              activeRoute: `#${activeSection}`,
+              collapsed: isMobile ? !mobileMenuOpen : sidebarCollapsed,
+              onToggle: isMobile ? setMobileMenuOpen : setSidebarCollapsed,
+              showToggle: !isMobile
+            }}
+            variant="sidebar-only"
+            style={{ height: '100vh' }}
+          />
+          
+          {/* Main Content */}
+          <main style={{ 
+            marginLeft: isMobile ? '0' : (sidebarCollapsed ? '64px' : '256px'),
+            height: '100vh',
+            overflowY: 'auto',
+            transition: 'margin-left 0.3s ease',
+            padding: '16px',
+            paddingTop: isMobile ? '60px' : '16px',
+            boxSizing: 'border-box',
+            width: isMobile ? '100%' : `calc(100% - ${sidebarCollapsed ? '64px' : '256px'})`,
+            position: 'relative',
+            zIndex: 1
+          }}>
+            <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+              {renderContent()}
+            </div>
+          </main>
         </div>
-      </main>
-    </div>
-  );
+      );
 };
 
 export default App;
