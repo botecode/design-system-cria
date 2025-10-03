@@ -1,6 +1,7 @@
 import React from 'react';
 import Badge from './Badge';
 import Typography from '../Typography/Typography';
+import { Check, Warning, X, Star, Rocket, ThumbsUp } from 'phosphor-react';
 
 /**
  * Badge component demo
@@ -119,28 +120,20 @@ export const BadgeDemo: React.FC = () => {
         <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
           <Badge 
             variant="success" 
-            leftIcon={
-              <span style={{ fontSize: '12px' }}>✓</span>
-            }
+            leftIcon={<Check size={12} />}
           >
             Completed
           </Badge>
           <Badge 
             variant="warning" 
-            rightIcon={
-              <span style={{ fontSize: '12px' }}>!</span>
-            }
+            rightIcon={<Warning size={12} />}
           >
             Warning
           </Badge>
           <Badge 
             variant="error" 
-            leftIcon={
-              <span style={{ fontSize: '12px' }}>×</span>
-            }
-            rightIcon={
-              <span style={{ fontSize: '12px' }}>×</span>
-            }
+            leftIcon={<X size={12} />}
+            rightIcon={<X size={12} />}
           >
             Error
           </Badge>

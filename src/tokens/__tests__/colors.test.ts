@@ -37,8 +37,8 @@ describe('Color Tokens', () => {
   describe('Semantic Colors', () => {
     it('should have correct semantic colors', () => {
       expect(colors.success).toBe('#10B981');
-      expect(colors.warning).toBe('#F59E0B');
-      expect(colors.error).toBe('#EF4444');
+      expect(colors.warning).toBe('#D97706'); // Darker orange for better contrast
+      expect(colors.error).toBe('#DC2626'); // Darker red for better contrast
       expect(colors.info).toBe('#3B82F6');
     });
   });

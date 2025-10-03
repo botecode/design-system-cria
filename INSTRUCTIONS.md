@@ -43,7 +43,7 @@ No Next.js, Remix, or other frameworks — we need to ship React components that
    - [x] Button
    - [x] Card
    - [x] Badge
-   - [ ] Tabs ← **this is the next component to implement**
+   - [x] Tabs
 
 6. **Theming**
    - Export tokens as **CSS variables** (prefix `--cria-`).

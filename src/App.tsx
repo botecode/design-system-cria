@@ -4,12 +4,13 @@ import TypographyDemo from './components/Typography/demo';
 import ButtonDemo from './components/Button/demo';
 import CardDemo from './components/Card/demo';
 import BadgeDemo from './components/Badge/demo';
+import TabsDemo from './components/Tabs/demo';
 import { ColorsDemo } from './components/Colors/demo';
 
 // Import Cartograph font
 import './fonts.css';
 
-type DemoSection = 'overview' | 'typography' | 'button' | 'card' | 'badge' | 'colors';
+type DemoSection = 'overview' | 'typography' | 'button' | 'card' | 'badge' | 'tabs' | 'colors';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<DemoSection>('overview');
@@ -20,6 +21,7 @@ const App: React.FC = () => {
     { id: 'button' as DemoSection, label: 'Button' },
     { id: 'card' as DemoSection, label: 'Card' },
     { id: 'badge' as DemoSection, label: 'Badge' },
+    { id: 'tabs' as DemoSection, label: 'Tabs' },
     { id: 'colors' as DemoSection, label: 'Colors' },
   ];
 
@@ -33,6 +35,8 @@ const App: React.FC = () => {
         return <CardDemo />;
       case 'badge':
         return <BadgeDemo />;
+      case 'tabs':
+        return <TabsDemo />;
       case 'colors':
         return <ColorsDemo />;
       default:
@@ -103,23 +107,26 @@ const App: React.FC = () => {
               includes comprehensive examples and documentation.
             </Typography>
 
-            <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-              <Button variant="primary" onClick={() => setActiveSection('typography')}>
-                Explore Typography
-              </Button>
-              <Button variant="outline" onClick={() => setActiveSection('button')}>
-                View Buttons
-              </Button>
-              <Button variant="outline" onClick={() => setActiveSection('card')}>
-                See Cards
-              </Button>
-              <Button variant="outline" onClick={() => setActiveSection('badge')}>
-                View Badges
-              </Button>
-              <Button variant="outline" onClick={() => setActiveSection('colors')}>
-                View Colors
-              </Button>
-            </div>
+                <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                  <Button variant="primary" onClick={() => setActiveSection('typography')}>
+                    Explore Typography
+                  </Button>
+                  <Button variant="outline" onClick={() => setActiveSection('button')}>
+                    View Buttons
+                  </Button>
+                  <Button variant="outline" onClick={() => setActiveSection('card')}>
+                    See Cards
+                  </Button>
+                  <Button variant="outline" onClick={() => setActiveSection('badge')}>
+                    View Badges
+                  </Button>
+                  <Button variant="outline" onClick={() => setActiveSection('tabs')}>
+                    View Tabs
+                  </Button>
+                  <Button variant="outline" onClick={() => setActiveSection('colors')}>
+                    View Colors
+                  </Button>
+                </div>
           </div>
         );
     }

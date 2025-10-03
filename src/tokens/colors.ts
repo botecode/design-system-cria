@@ -37,8 +37,8 @@ export const colors = {
   
   // Semantic Colors
   success: '#10B981',
-  warning: '#F59E0B',
-  error: '#EF4444',
+  warning: '#D97706', // Darker orange for better contrast
+  error: '#DC2626', // Darker red for better contrast
   info: '#3B82F6',
   
   // Text Colors
