@@ -23,6 +23,19 @@ type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | '
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<DemoSection>('overview');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Check if we're on mobile
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const sidebarItems = [
     { id: 'overview', label: 'Overview', href: '#overview', icon: <House size={20} /> },
@@ -175,6 +188,28 @@ const App: React.FC = () => {
 
   return (
     <div style={{ minHeight: '100vh', backgroundColor: 'var(--cria-background)' }}>
+      {/* Mobile Toggle Button */}
+      {isMobile && (
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          style={{
+            position: 'fixed',
+            top: '16px',
+            left: '16px',
+            zIndex: 1001,
+            background: 'var(--cria-white)',
+            border: '1px solid var(--cria-gray-200)',
+            borderRadius: 'var(--cria-radius-sm)',
+            padding: '8px',
+            cursor: 'pointer',
+            boxShadow: 'var(--cria-shadow-sm)'
+          }}
+          aria-label="Toggle menu"
+        >
+          <List size={20} />
+        </button>
+      )}
+
       <Navigation
         sidebar={{
           items: sidebarItems.map(item => ({
@@ -182,12 +217,15 @@ const App: React.FC = () => {
             onClick: (e) => {
               e.preventDefault();
               handleSectionChange(item.id as DemoSection);
+              if (isMobile) {
+                setMobileMenuOpen(false);
+              }
             }
           })),
           activeRoute: `#${activeSection}`,
-          collapsed: sidebarCollapsed,
-          onToggle: setSidebarCollapsed,
-          showToggle: true
+          collapsed: isMobile ? !mobileMenuOpen : sidebarCollapsed,
+          onToggle: isMobile ? setMobileMenuOpen : setSidebarCollapsed,
+          showToggle: !isMobile
         }}
         variant="sidebar-only"
         style={{ height: '100vh' }}
@@ -195,13 +233,13 @@ const App: React.FC = () => {
       
       {/* Main Content */}
       <main style={{ 
-        marginLeft: sidebarCollapsed ? '64px' : '256px',
+        marginLeft: isMobile ? '0' : (sidebarCollapsed ? '64px' : '256px'),
         minHeight: '100vh',
-        transition: 'margin-left 0.3s ease'
+        transition: 'margin-left 0.3s ease',
+        padding: '24px',
+        paddingTop: isMobile ? '60px' : '24px'
       }}>
-        <div style={{ padding: '24px' }}>
-          {renderContent()}
-        </div>
+        {renderContent()}
       </main>
     </div>
   );

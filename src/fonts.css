@@ -2444,7 +2444,10 @@ body {
   background: var(--cria-white);
   border-right: 1px solid var(--cria-gray-200);
   transition: all 0.3s ease;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
   z-index: 100;
 }
 
@@ -2459,11 +2462,6 @@ body {
 }
 
 .cria-sidebar--mobile {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  z-index: 1000;
   transform: translateX(-100%);
   transition: transform 0.3s ease;
 }
@@ -2861,11 +2859,6 @@ body {
   }
 
   .cria-sidebar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    z-index: 1000;
     transform: translateX(-100%);
     transition: transform 0.3s ease;
   }
