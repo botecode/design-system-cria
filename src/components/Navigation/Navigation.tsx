@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
+import { House, Folder, CheckSquare, Users, ChatCircle, Gear, Question, ArrowLeft, ArrowRight, List } from 'phosphor-react';
 import { Typography } from '../Typography';
 import { Button } from '../Button';
 
@@ -32,6 +33,11 @@ export interface NavigationItem {
    * Badge or count to display
    */
   badge?: React.ReactNode;
+  
+  /**
+   * Click handler for the navigation item
+   */
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
 export interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -184,7 +190,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             aria-label="Toggle sidebar"
             className="cria-sidebar__toggle"
           >
-            {collapsed ? '→' : '←'}
+            {collapsed ? <ArrowRight size={16} /> : <ArrowLeft size={16} />}
           </Button>
         </div>
       )}
@@ -203,6 +209,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                 data-nav-item={index}
                 tabIndex={item.disabled ? -1 : 0}
                 onKeyDown={(e) => handleKeyDown(e, index)}
+                onClick={item.onClick}
                 aria-current={activeRoute === item.href ? 'page' : undefined}
                 aria-disabled={item.disabled}
               >
@@ -333,6 +340,7 @@ const Topbar: React.FC<TopbarProps> = ({
                   data-nav-item={index}
                   tabIndex={item.disabled ? -1 : 0}
                   onKeyDown={(e) => handleKeyDown(e, index)}
+                  onClick={item.onClick}
                   aria-current={activeRoute === item.href ? 'page' : undefined}
                   aria-disabled={item.disabled}
                 >
@@ -356,16 +364,16 @@ const Topbar: React.FC<TopbarProps> = ({
         </div>
 
         {isMobile && (
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleMobileMenuToggle}
-            aria-label="Toggle menu"
-            aria-expanded={mobileMenuOpen}
-            className="cria-topbar__mobile-toggle"
-          >
-            ☰
-          </Button>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={handleMobileMenuToggle}
+          aria-label="Toggle menu"
+          aria-expanded={mobileMenuOpen}
+          className="cria-topbar__mobile-toggle"
+        >
+          <List size={16} />
+        </Button>
         )}
       </div>
 
@@ -381,6 +389,7 @@ const Topbar: React.FC<TopbarProps> = ({
                     activeRoute === item.href && 'cria-topbar__mobile-item--active',
                     item.disabled && 'cria-topbar__mobile-item--disabled',
                   ].filter(Boolean).join(' ')}
+                  onClick={item.onClick}
                   aria-current={activeRoute === item.href ? 'page' : undefined}
                   aria-disabled={item.disabled}
                 >

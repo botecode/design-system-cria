@@ -7,6 +7,8 @@ Core Principles
 	•	Delivery Focus: Each component must be complete — responsive, accessible, documented, and tested.
 	•	Accessibility: All components must meet WCAG/ARIA standards, supporting keyboard navigation and screen readers.
 	•	Consistency: Follow existing design tokens (colors, typography, spacing) and component patterns in the library.
+   •  Use Phosphor icons instead of emojis
+   • If you are writing a component ALWAYS consume our own components instead of rewritten custom code (Example, showing a label in a card, should use our own label)
 	•	Versioning Discipline: Use Conventional Commits for every commit.
 
 ⸻

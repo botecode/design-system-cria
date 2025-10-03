@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { House, Folder } from 'phosphor-react';
 import { Navigation, Sidebar, Topbar } from '../Navigation';
 
 describe('Navigation - TDD Tests', () => {
@@ -93,15 +94,20 @@ describe('Navigation - TDD Tests', () => {
 
       it('shows only icons when collapsed', () => {
         const itemsWithIcons = [
-          { id: 'home', label: 'Home', href: '/home', icon: '🏠' },
-          { id: 'about', label: 'About', href: '/about', icon: 'ℹ️' }
+          { id: 'home', label: 'Home', href: '/home', icon: <House size={20} /> },
+          { id: 'about', label: 'About', href: '/about', icon: <Folder size={20} /> }
         ];
 
         render(<Sidebar items={itemsWithIcons} collapsed />);
 
-        // Icons should be visible
-        expect(screen.getByText('🏠')).toBeInTheDocument();
-        expect(screen.getByText('ℹ️')).toBeInTheDocument();
+        // Icons should be visible (check for SVG elements in the links)
+        const links = screen.getAllByRole('link');
+        expect(links).toHaveLength(2);
+        
+        const homeIcon = links[0].querySelector('svg');
+        const aboutIcon = links[1].querySelector('svg');
+        expect(homeIcon).toBeInTheDocument();
+        expect(aboutIcon).toBeInTheDocument();
 
         // Labels should be hidden or not visible
         expect(screen.queryByText('Home')).not.toBeInTheDocument();

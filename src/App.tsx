@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Typography, Button } from './index';
+import { Typography, Button, Navigation } from './index';
+import { House, TextAa, Palette, Mouse, PencilSimple, CheckSquare, ToggleLeft, Bell, ChatCircle, Info, Square, Tag, Tabs, List } from 'phosphor-react';
 import TypographyDemo from './components/Typography/demo';
 import ButtonDemo from './components/Button/demo';
 import CardDemo from './components/Card/demo';
@@ -21,23 +22,28 @@ type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | '
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<DemoSection>('overview');
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
-  const navigationItems = [
-    { id: 'overview' as DemoSection, label: 'Overview' },
-    { id: 'typography' as DemoSection, label: 'Typography' },
-    { id: 'colors' as DemoSection, label: 'Colors' },
-    { id: 'button' as DemoSection, label: 'Button' },
-    { id: 'input' as DemoSection, label: 'Input' },
-    { id: 'checkbox' as DemoSection, label: 'Checkbox' },
-    { id: 'switch' as DemoSection, label: 'Switch' },
-    { id: 'snackbar' as DemoSection, label: 'Snackbar' },
-    { id: 'modal' as DemoSection, label: 'Modal' },
-    { id: 'tooltip' as DemoSection, label: 'Tooltip' },
-    { id: 'card' as DemoSection, label: 'Card' },
-    { id: 'badge' as DemoSection, label: 'Badge' },
-    { id: 'tabs' as DemoSection, label: 'Tabs' },
-    { id: 'navigation' as DemoSection, label: 'Navigation' }
+  const sidebarItems = [
+    { id: 'overview', label: 'Overview', href: '#overview', icon: <House size={20} /> },
+    { id: 'typography', label: 'Typography', href: '#typography', icon: <TextAa size={20} /> },
+    { id: 'colors', label: 'Colors', href: '#colors', icon: <Palette size={20} /> },
+    { id: 'button', label: 'Button', href: '#button', icon: <Mouse size={20} /> },
+    { id: 'input', label: 'Input', href: '#input', icon: <PencilSimple size={20} /> },
+    { id: 'checkbox', label: 'Checkbox', href: '#checkbox', icon: <CheckSquare size={20} /> },
+    { id: 'switch', label: 'Switch', href: '#switch', icon: <ToggleLeft size={20} /> },
+    { id: 'snackbar', label: 'Snackbar', href: '#snackbar', icon: <Bell size={20} /> },
+    { id: 'modal', label: 'Modal', href: '#modal', icon: <ChatCircle size={20} /> },
+    { id: 'tooltip', label: 'Tooltip', href: '#tooltip', icon: <Info size={20} /> },
+    { id: 'card', label: 'Card', href: '#card', icon: <Square size={20} /> },
+    { id: 'badge', label: 'Badge', href: '#badge', icon: <Tag size={20} /> },
+    { id: 'tabs', label: 'Tabs', href: '#tabs', icon: <Tabs size={20} /> },
+    { id: 'navigation', label: 'Navigation', href: '#navigation', icon: <List size={20} /> }
   ];
+
+  const handleSectionChange = (section: DemoSection) => {
+    setActiveSection(section);
+  };
 
   const renderContent = () => {
     switch (activeSection) {
@@ -169,67 +175,33 @@ const App: React.FC = () => {
 
   return (
     <div style={{ minHeight: '100vh', backgroundColor: 'var(--cria-background)' }}>
-      {/* Navigation */}
-      <nav style={{ 
-        backgroundColor: 'var(--cria-white)', 
-        borderBottom: '1px solid var(--cria-gray-200)',
-        padding: '0 24px',
-        position: 'sticky',
-        top: 0,
-        zIndex: 100
-      }}>
-        <div style={{ 
-          display: 'flex', 
-          alignItems: 'center', 
-          justifyContent: 'space-between',
-          maxWidth: '1200px',
-          margin: '0 auto',
-          height: '64px'
-        }}>
-          <Typography variant="h3" weight="bold" color="primary">
-            CRIA_UI
-          </Typography>
-          
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <Typography variant="body" color="secondary">
-              CRIA_UI Design System
-            </Typography>
-          </div>
-        </div>
-      </nav>
-
-      {/* Component Tabs Navigation */}
-      <div style={{
-        backgroundColor: 'var(--cria-white)',
-        borderBottom: '1px solid var(--cria-gray-200)',
-        padding: '0 24px',
-        position: 'sticky',
-        top: '64px',
-        zIndex: 99
-      }}>
-        <div style={{
-          maxWidth: '1200px',
-          margin: '0 auto',
-          padding: '16px 0'
-        }}>
-          <div style={{ display: 'flex', gap: '8px', overflowX: 'auto', paddingBottom: '4px' }}>
-            {navigationItems.map((item) => (
-              <Button
-                key={item.id}
-                variant={activeSection === item.id ? 'primary' : 'ghost'}
-                size="sm"
-                onClick={() => setActiveSection(item.id)}
-              >
-                {item.label}
-              </Button>
-            ))}
-          </div>
-        </div>
-      </div>
-
+      <Navigation
+        sidebar={{
+          items: sidebarItems.map(item => ({
+            ...item,
+            onClick: (e) => {
+              e.preventDefault();
+              handleSectionChange(item.id as DemoSection);
+            }
+          })),
+          activeRoute: `#${activeSection}`,
+          collapsed: sidebarCollapsed,
+          onToggle: setSidebarCollapsed,
+          showToggle: true
+        }}
+        variant="sidebar-only"
+        style={{ height: '100vh' }}
+      />
+      
       {/* Main Content */}
-      <main>
-        {renderContent()}
+      <main style={{ 
+        marginLeft: sidebarCollapsed ? '64px' : '256px',
+        minHeight: '100vh',
+        transition: 'margin-left 0.3s ease'
+      }}>
+        <div style={{ padding: '24px' }}>
+          {renderContent()}
+        </div>
       </main>
     </div>
   );

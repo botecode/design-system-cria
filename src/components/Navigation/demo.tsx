@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ChartBar, Folder, CheckSquare, Users, ChatCircle, Gear, Question } from 'phosphor-react';
 import { Typography } from '../Typography';
 import { Button } from '../Button';
 import { Card, CardHeader, CardContent } from '../Card';
@@ -10,13 +11,13 @@ export const NavigationDemo: React.FC = () => {
   const [activeRoute, setActiveRoute] = useState('/dashboard');
 
   const sidebarItems = [
-    { id: 'dashboard', label: 'Dashboard', href: '/dashboard', icon: '📊' },
-    { id: 'projects', label: 'Projects', href: '/projects', icon: '📁' },
-    { id: 'tasks', label: 'Tasks', href: '/tasks', icon: '✅', badge: '3' },
-    { id: 'team', label: 'Team', href: '/team', icon: '👥' },
-    { id: 'messages', label: 'Messages', href: '/messages', icon: '💬', badge: '12' },
-    { id: 'settings', label: 'Settings', href: '/settings', icon: '⚙️' },
-    { id: 'help', label: 'Help', href: '/help', icon: '❓' },
+    { id: 'dashboard', label: 'Dashboard', href: '/dashboard', icon: <ChartBar size={20} /> },
+    { id: 'projects', label: 'Projects', href: '/projects', icon: <Folder size={20} /> },
+    { id: 'tasks', label: 'Tasks', href: '/tasks', icon: <CheckSquare size={20} />, badge: '3' },
+    { id: 'team', label: 'Team', href: '/team', icon: <Users size={20} /> },
+    { id: 'messages', label: 'Messages', href: '/messages', icon: <ChatCircle size={20} />, badge: '12' },
+    { id: 'settings', label: 'Settings', href: '/settings', icon: <Gear size={20} /> },
+    { id: 'help', label: 'Help', href: '/help', icon: <Question size={20} /> },
   ];
 
   const topbarItems = [
