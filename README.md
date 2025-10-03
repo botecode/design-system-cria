@@ -18,6 +18,9 @@ The goal is to provide **consistent, production-ready UI components** that integ
 ### Typography
 - Font: **Cartograph CF** (already included in project)
 - Type Scale:
+  - **Title 1** — 32px, bold, uppercase, primary color
+  - **Title 2** — 24px, bold, uppercase, primary color
+  - **Title 3** — 20px, bold, uppercase, primary color
   - **Display** — 48px, bold
   - **H1** — 32px, semi-bold
   - **H2** — 24px, semi-bold
@@ -36,6 +39,12 @@ The goal is to provide **consistent, production-ready UI components** that integ
 - **sm**: subtle elevation for small elements  
 - **md**: standard depth for cards  
 - **lg**: prominent elevation for modals/overlays  
+
+### Icons
+- **Phosphor Icons**: Professional, scalable vector icons
+- Consistent design language across all components
+- Accessible and customizable
+- Examples: `House`, `User`, `ChatCircle`, `Bell`, `Check`, `Warning`, `X`
 
 ---
 
@@ -57,8 +66,26 @@ INSTRUCTIONS.md
 - Provide a **consistent design layer** for CR_IA.  
 - Encode **brand identity** directly into reusable tokens and components.  
 - Keep implementation **simple, accessible, and lightweight**.  
-- Ensure components look and feel **modern, cohesive, and aligned** with [CRIA’s marketing site](https://www.cria.pro/).  
+- Ensure components look and feel **modern, cohesive, and aligned** with [CRIA's marketing site](https://www.cria.pro/).  
 - Deliver **React components** that can be imported into a **Rails app frontend** (via Webpacker, esbuild, or importmap).  
+
+## 🎯 Current Status
+
+**✅ Core Foundation Complete**
+- All design tokens implemented (colors, typography, spacing, radii, shadows)
+- Professional icon system with Phosphor Icons
+- Comprehensive CSS variable system
+- Full accessibility support
+
+**✅ Components Implemented (5/12)**
+- Typography with title variants
+- Button with all variants and states
+- Card with multiple styles
+- Badge with icons, counts, and interactions
+- Tabs with full keyboard navigation
+
+**🔄 Next Components**
+- Tooltip, Modal, Input, Checkbox, Switch, Snackbar, Navigation, Accordion
 
 ---
 
@@ -74,8 +101,8 @@ INSTRUCTIONS.md
 ### Components
 - [x] Button
 - [x] Card
-- [ ] Badge
-- [ ] Tabs
+- [x] Badge
+- [x] Tabs
 - [ ] Tooltip
 - [ ] Modal
 - [ ] Input
@@ -93,15 +120,19 @@ INSTRUCTIONS.md
 ```tsx
 import { Typography } from 'cria-ui';
 
-// Basic usage
-<Typography variant="h1" color="primary">
-  Welcome to CRIA
-</Typography>
+// Title variants (uppercase, primary color)
+<Typography variant="title1">Page Title</Typography>
+<Typography variant="title2">Section Title</Typography>
+<Typography variant="title3">Subsection Title</Typography>
+
+// Standard variants
+<Typography variant="h1">Heading 1</Typography>
+<Typography variant="body">Body text</Typography>
 
 // With custom styling
 <Typography 
   variant="body" 
-  color="secondary" 
+  color="content" 
   weight="medium"
   align="center"
 >
@@ -149,6 +180,59 @@ import { Card, CardHeader, CardContent, CardFooter } from 'cria-ui';
     <Button size="sm">Action</Button>
   </CardFooter>
 </Card>
+```
+
+### Badge
+```tsx
+import { Badge } from 'cria-ui';
+
+// Different variants and styles
+<Badge variant="primary">Primary</Badge>
+<Badge variant="success" badgeStyle="soft">Active</Badge>
+<Badge variant="error" badgeStyle="outline">Error</Badge>
+
+// With icons and counts
+<Badge leftIcon={<Check size={12} />}>Completed</Badge>
+<Badge variant="error" maxCount={99}>150</Badge>
+
+// Interactive badges
+<Badge interactive onClick={handleClick}>Clickable</Badge>
+```
+
+### Tabs
+```tsx
+import { Tabs } from 'cria-ui';
+import { House, User, Bell } from 'phosphor-react';
+
+const tabItems = [
+  {
+    id: 'home',
+    label: 'Home',
+    icon: <House size={16} />,
+    content: <div>Home content</div>
+  },
+  {
+    id: 'profile',
+    label: 'Profile',
+    icon: <User size={16} />,
+    content: <div>Profile content</div>
+  },
+  {
+    id: 'notifications',
+    label: 'Notifications',
+    icon: <Bell size={16} />,
+    badge: <Badge variant="error" size="sm">3</Badge>,
+    content: <div>Notifications content</div>
+  }
+];
+
+// Basic usage
+<Tabs items={tabItems} />
+
+// With different variants and orientations
+<Tabs items={tabItems} variant="pills" size="lg" />
+<Tabs items={tabItems} orientation="vertical" />
+<Tabs items={tabItems} fullWidth />
 ```
 
 ### Design Tokens
