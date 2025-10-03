@@ -5,12 +5,15 @@ import ButtonDemo from './components/Button/demo';
 import CardDemo from './components/Card/demo';
 import BadgeDemo from './components/Badge/demo';
 import TabsDemo from './components/Tabs/demo';
+import TooltipDemo from './components/Tooltip/demo';
+import ModalDemo from './components/Modal/demo';
+import InputDemo from './components/Input/demo';
 import { ColorsDemo } from './components/Colors/demo';
 
 // Import Cartograph font
 import './fonts.css';
 
-type DemoSection = 'overview' | 'typography' | 'button' | 'card' | 'badge' | 'tabs' | 'colors';
+type DemoSection = 'overview' | 'typography' | 'button' | 'card' | 'badge' | 'tabs' | 'tooltip' | 'modal' | 'input' | 'colors';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<DemoSection>('overview');
@@ -22,6 +25,9 @@ const App: React.FC = () => {
     { id: 'card' as DemoSection, label: 'Card' },
     { id: 'badge' as DemoSection, label: 'Badge' },
     { id: 'tabs' as DemoSection, label: 'Tabs' },
+    { id: 'tooltip' as DemoSection, label: 'Tooltip' },
+    { id: 'modal' as DemoSection, label: 'Modal' },
+    { id: 'input' as DemoSection, label: 'Input' },
     { id: 'colors' as DemoSection, label: 'Colors' },
   ];
 
@@ -37,6 +43,12 @@ const App: React.FC = () => {
         return <BadgeDemo />;
       case 'tabs':
         return <TabsDemo />;
+      case 'tooltip':
+        return <TooltipDemo />;
+      case 'modal':
+        return <ModalDemo />;
+      case 'input':
+        return <InputDemo />;
       case 'colors':
         return <ColorsDemo />;
       default:
@@ -122,6 +134,15 @@ const App: React.FC = () => {
                   </Button>
                   <Button variant="outline" onClick={() => setActiveSection('tabs')}>
                     View Tabs
+                  </Button>
+                  <Button variant="outline" onClick={() => setActiveSection('tooltip')}>
+                    View Tooltips
+                  </Button>
+                  <Button variant="outline" onClick={() => setActiveSection('modal')}>
+                    View Modals
+                  </Button>
+                  <Button variant="outline" onClick={() => setActiveSection('input')}>
+                    View Inputs
                   </Button>
                   <Button variant="outline" onClick={() => setActiveSection('colors')}>
                     View Colors

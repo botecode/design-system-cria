@@ -44,6 +44,9 @@ No Next.js, Remix, or other frameworks — we need to ship React components that
    - [x] Card
    - [x] Badge
    - [x] Tabs
+   - [x] Tooltip
+   - [x] Modal
+   - [x] Input
 
 6. **Theming**
    - Export tokens as **CSS variables** (prefix `--cria-`).
@@ -71,6 +74,7 @@ No Next.js, Remix, or other frameworks — we need to ship React components that
 3. Implement **Typography first** (tokens + component).  
 4. Then implement **Button** and **Card**.  
 5. Next task: implement **Badge**.  
+- Update **CHANGELOG.md** after each new component
 6. Update `README.md` with a checklist of tokens + components.  
 7. Document props inline with TypeScript and JSDoc.  
 8. Ensure the library **compiles and runs** after each new component.  

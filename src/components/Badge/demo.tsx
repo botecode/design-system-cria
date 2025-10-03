@@ -1,7 +1,7 @@
 import React from 'react';
 import Badge from './Badge';
 import Typography from '../Typography/Typography';
-import { Check, Warning, X, Star, Rocket, ThumbsUp } from 'phosphor-react';
+import { Check, WarningCircle, X, Star, Rocket, ThumbsUp } from 'phosphor-react';
 
 /**
  * Badge component demo
@@ -126,7 +126,7 @@ export const BadgeDemo: React.FC = () => {
           </Badge>
           <Badge 
             variant="warning" 
-            rightIcon={<Warning size={12} />}
+            rightIcon={<WarningCircle size={12} />}
           >
             Warning
           </Badge>
