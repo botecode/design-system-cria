@@ -77,15 +77,26 @@ INSTRUCTIONS.md
 - Comprehensive CSS variable system
 - Full accessibility support
 
-**✅ Components Implemented (5/12)**
+**✅ Components Implemented (8/12)**
 - Typography with title variants
 - Button with all variants and states
 - Card with multiple styles
 - Badge with icons, counts, and interactions
 - Tabs with full keyboard navigation
+- Tooltip with positioning and accessibility
+- Modal with flexible layouts and animations
+- Input with validation and interactive features
 
 **🔄 Next Components**
-- Tooltip, Modal, Input, Checkbox, Switch, Snackbar, Navigation, Accordion
+- Checkbox, Switch, Snackbar, Navigation, Accordion
+
+**🔧 Recent Improvements**
+- Fixed tooltip positioning with React Portal for proper viewport-relative positioning
+- Improved badge readability with white text and icons on colored backgrounds
+- Enhanced modal text contrast for better accessibility
+- Fixed input styling with purple borders and improved contrast
+- Added comprehensive accessibility features across all components
+- Resolved CSS variable issues for consistent theming
 
 ---
 
@@ -103,9 +114,9 @@ INSTRUCTIONS.md
 - [x] Card
 - [x] Badge
 - [x] Tabs
-- [ ] Tooltip
-- [ ] Modal
-- [ ] Input
+- [x] Tooltip
+- [x] Modal
+- [x] Input
 - [ ] Checkbox
 - [ ] Switch
 - [ ] Snackbar / Toast
@@ -233,6 +244,119 @@ const tabItems = [
 <Tabs items={tabItems} variant="pills" size="lg" />
 <Tabs items={tabItems} orientation="vertical" />
 <Tabs items={tabItems} fullWidth />
+```
+
+### Tooltip
+```tsx
+import { Tooltip } from 'cria-ui';
+
+// Basic tooltip
+<Tooltip content="This is a helpful tooltip">
+  <Button>Hover me</Button>
+</Tooltip>
+
+// With different variants and positions
+<Tooltip 
+  content="Warning message" 
+  variant="warning" 
+  position="top"
+  arrow
+>
+  <Badge variant="warning">Warning</Badge>
+</Tooltip>
+
+// Interactive tooltip
+<Tooltip 
+  content="Click to interact" 
+  interactive 
+  delay={500}
+>
+  <Button variant="outline">Interactive</Button>
+</Tooltip>
+```
+
+### Modal
+```tsx
+import { Modal } from 'cria-ui';
+
+const [isOpen, setIsOpen] = useState(false);
+
+// Basic modal
+<Modal
+  isOpen={isOpen}
+  onClose={() => setIsOpen(false)}
+  title="Confirm Action"
+  size="md"
+>
+  <Typography variant="body">
+    Are you sure you want to proceed?
+  </Typography>
+  <div style={{ display: 'flex', gap: '12px', marginTop: '24px' }}>
+    <Button variant="primary" onClick={() => setIsOpen(false)}>
+      Confirm
+    </Button>
+    <Button variant="outline" onClick={() => setIsOpen(false)}>
+      Cancel
+    </Button>
+  </div>
+</Modal>
+
+// Large modal with custom layout
+<Modal
+  isOpen={isOpen}
+  onClose={() => setIsOpen(false)}
+  title="Settings"
+  size="lg"
+  showCloseButton
+>
+  <div style={{ padding: '24px' }}>
+    <Typography variant="h3" style={{ marginBottom: '16px' }}>
+      Application Settings
+    </Typography>
+    {/* Modal content */}
+  </div>
+</Modal>
+```
+
+### Input
+```tsx
+import { Input } from 'cria-ui';
+import { User, Lock, Eye } from 'phosphor-react';
+
+// Basic input
+<Input
+  label="Email"
+  placeholder="Enter your email"
+  type="email"
+  required
+/>
+
+// Input with validation
+<Input
+  label="Password"
+  type="password"
+  placeholder="Enter password"
+  leftIcon={<Lock size={20} />}
+  showPasswordToggle
+  errorMessage="Password must be at least 8 characters"
+  state="error"
+/>
+
+// Input with helper text and character count
+<Input
+  label="Bio"
+  placeholder="Tell us about yourself"
+  multiline
+  rows={4}
+  maxLength={500}
+  showCharacterCount
+  helperText="This will be displayed on your profile"
+/>
+
+// Input with different variants
+<Input variant="filled" label="Filled Input" />
+<Input variant="outlined" label="Outlined Input" />
+<Input variant="underlined" label="Underlined Input" />
 ```
 
 ### Design Tokens
