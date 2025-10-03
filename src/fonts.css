@@ -2527,6 +2527,7 @@ body {
   transition: all 0.2s ease;
   position: relative;
   min-height: 48px;
+  background-color: transparent;
 }
 
 .cria-sidebar__item:hover {
@@ -2537,13 +2538,13 @@ body {
 .cria-sidebar__item:focus {
   outline: 2px solid var(--cria-primary);
   outline-offset: -2px;
-  background-color: var(--cria-primary-light);
-  color: var(--cria-white);
+  background-color: var(--cria-gray-50);
+  color: var(--cria-primary);
 }
 
 .cria-sidebar__item--active {
-  background-color: var(--cria-primary-light);
-  color: var(--cria-white);
+  background-color: var(--cria-gray-50);
+  color: var(--cria-primary);
   font-weight: 500;
 }
 
@@ -2879,8 +2880,8 @@ body {
   }
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
+/* Dark mode support - disabled for now to maintain light theme */
+/* @media (prefers-color-scheme: dark) {
   .cria-sidebar,
   .cria-topbar {
     background: var(--cria-gray-800);
@@ -2917,7 +2918,7 @@ body {
     color: var(--cria-primary-light);
     background-color: var(--cria-gray-700);
   }
-}
+} */
 
 /* ========================================
    SWITCH COMPONENT STYLES
