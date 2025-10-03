@@ -1,8 +1,8 @@
-export { TextBody, TextContent, TextContentTitle, TextContentImportant } from './Text.tsx';
-export { default } from './Text.tsx';
+export { TextBody, TextContent, TextContentTitle, TextContentImportant } from './Text';
+export { default } from './Text';
 export type { 
   TextBodyProps, 
   TextContentProps, 
   TextContentTitleProps, 
   TextContentImportantProps 
-} from './Text.tsx';
+} from './Text';

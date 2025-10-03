@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Typography } from '../Typography';
 import { Dropdown, DropdownOption } from './Dropdown';
-import { Card } from '../Card';
+import { Card, CardHeader, CardContent } from '../Card';
 import { Button } from '../Button';
 import { User, MapPin, Calendar, Tag, Globe, Heart, Star, Rocket } from 'phosphor-react';
 
@@ -70,7 +70,7 @@ export const DropdownDemo: React.FC = () => {
         </Typography>
         
         <Card style={{ marginBottom: '16px' }}>
-          <Card.CardContent>
+          <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <Dropdown
                 options={sizes}
@@ -86,26 +86,9 @@ export const DropdownDemo: React.FC = () => {
                 </Typography>
               </div>
             </div>
-          </Card.CardContent>
+          </CardContent>
         </Card>
 
-        <div style={{ backgroundColor: '#f8f9fa', padding: '16px', borderRadius: '8px', marginBottom: '16px' }}>
-          <Typography variant="bodySmall" style={{ fontFamily: 'monospace', marginBottom: '8px' }}>
-            Usage:
-          </Typography>
-          <pre style={{ margin: 0, fontSize: '14px', fontFamily: 'monospace' }}>
-{`<Dropdown
-  options={[
-    { value: 'sm', label: 'Small' },
-    { value: 'md', label: 'Medium' },
-    { value: 'lg', label: 'Large' }
-  ]}
-  placeholder="Select a size"
-  label="Size"
-  onChange={(value) => setSelectedSize(value)}
-/>`}
-          </pre>
-        </div>
       </div>
 
       {/* Dropdown with Icons */}
@@ -118,7 +101,7 @@ export const DropdownDemo: React.FC = () => {
         </Typography>
         
         <Card style={{ marginBottom: '16px' }}>
-          <Card.CardContent>
+          <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <Dropdown
                 options={countries}
@@ -134,24 +117,9 @@ export const DropdownDemo: React.FC = () => {
                 </Typography>
               </div>
             </div>
-          </Card.CardContent>
+          </CardContent>
         </Card>
 
-        <div style={{ backgroundColor: '#f8f9fa', padding: '16px', borderRadius: '8px', marginBottom: '16px' }}>
-          <Typography variant="bodySmall" style={{ fontFamily: 'monospace', marginBottom: '8px' }}>
-            Usage:
-          </Typography>
-          <pre style={{ margin: 0, fontSize: '14px', fontFamily: 'monospace' }}>
-{`<Dropdown
-  options={[
-    { value: 'us', label: 'United States', icon: <Globe size={16} /> },
-    { value: 'ca', label: 'Canada', icon: <Globe size={16} /> }
-  ]}
-  placeholder="Select your country"
-  label="Country"
-/>`}
-          </pre>
-        </div>
       </div>
 
       {/* Multiple Selection */}
@@ -164,7 +132,7 @@ export const DropdownDemo: React.FC = () => {
         </Typography>
         
         <Card style={{ marginBottom: '16px' }}>
-          <Card.CardContent>
+          <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <Dropdown
                 options={skills}
@@ -181,23 +149,9 @@ export const DropdownDemo: React.FC = () => {
                 </Typography>
               </div>
             </div>
-          </Card.CardContent>
+          </CardContent>
         </Card>
 
-        <div style={{ backgroundColor: '#f8f9fa', padding: '16px', borderRadius: '8px', marginBottom: '16px' }}>
-          <Typography variant="bodySmall" style={{ fontFamily: 'monospace', marginBottom: '8px' }}>
-            Usage:
-          </Typography>
-          <pre style={{ margin: 0, fontSize: '14px', fontFamily: 'monospace' }}>
-{`<Dropdown
-  options={skills}
-  placeholder="Select your skills"
-  label="Skills"
-  multiple
-  onChange={(value) => setSelectedSkills(value)}
-/>`}
-          </pre>
-        </div>
       </div>
 
       {/* Searchable Dropdown */}
@@ -210,7 +164,7 @@ export const DropdownDemo: React.FC = () => {
         </Typography>
         
         <Card style={{ marginBottom: '16px' }}>
-          <Card.CardContent>
+          <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <Dropdown
                 options={countries}
@@ -219,22 +173,9 @@ export const DropdownDemo: React.FC = () => {
                 searchable
               />
             </div>
-          </Card.CardContent>
+          </CardContent>
         </Card>
 
-        <div style={{ backgroundColor: '#f8f9fa', padding: '16px', borderRadius: '8px', marginBottom: '16px' }}>
-          <Typography variant="bodySmall" style={{ fontFamily: 'monospace', marginBottom: '8px' }}>
-            Usage:
-          </Typography>
-          <pre style={{ margin: 0, fontSize: '14px', fontFamily: 'monospace' }}>
-{`<Dropdown
-  options={countries}
-  placeholder="Search and select a country"
-  label="Country (Searchable)"
-  searchable
-/>`}
-          </pre>
-        </div>
       </div>
 
       {/* Different Sizes */}
@@ -247,7 +188,7 @@ export const DropdownDemo: React.FC = () => {
         </Typography>
         
         <Card style={{ marginBottom: '16px' }}>
-          <Card.CardContent>
+          <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <Dropdown
                 options={sizes}
@@ -270,19 +211,9 @@ export const DropdownDemo: React.FC = () => {
                 size="lg"
               />
             </div>
-          </Card.CardContent>
+          </CardContent>
         </Card>
 
-        <div style={{ backgroundColor: '#f8f9fa', padding: '16px', borderRadius: '8px', marginBottom: '16px' }}>
-          <Typography variant="bodySmall" style={{ fontFamily: 'monospace', marginBottom: '8px' }}>
-            Usage:
-          </Typography>
-          <pre style={{ margin: 0, fontSize: '14px', fontFamily: 'monospace' }}>
-{`<Dropdown size="sm" options={options} />
-<Dropdown size="md" options={options} />
-<Dropdown size="lg" options={options} />`}
-          </pre>
-        </div>
       </div>
 
       {/* Different Variants */}
@@ -295,7 +226,7 @@ export const DropdownDemo: React.FC = () => {
         </Typography>
         
         <Card style={{ marginBottom: '16px' }}>
-          <Card.CardContent>
+          <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <Dropdown
                 options={sizes}
@@ -318,19 +249,9 @@ export const DropdownDemo: React.FC = () => {
                 variant="outlined"
               />
             </div>
-          </Card.CardContent>
+          </CardContent>
         </Card>
 
-        <div style={{ backgroundColor: '#f8f9fa', padding: '16px', borderRadius: '8px', marginBottom: '16px' }}>
-          <Typography variant="bodySmall" style={{ fontFamily: 'monospace', marginBottom: '8px' }}>
-            Usage:
-          </Typography>
-          <pre style={{ margin: 0, fontSize: '14px', fontFamily: 'monospace' }}>
-{`<Dropdown variant="default" options={options} />
-<Dropdown variant="filled" options={options} />
-<Dropdown variant="outlined" options={options} />`}
-          </pre>
-        </div>
       </div>
 
       {/* States */}
@@ -343,7 +264,7 @@ export const DropdownDemo: React.FC = () => {
         </Typography>
         
         <Card style={{ marginBottom: '16px' }}>
-          <Card.CardContent>
+          <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <Dropdown
                 options={sizes}
@@ -379,21 +300,9 @@ export const DropdownDemo: React.FC = () => {
                 helperText="Choose the size that best fits your needs"
               />
             </div>
-          </Card.CardContent>
+          </CardContent>
         </Card>
 
-        <div style={{ backgroundColor: '#f8f9fa', padding: '16px', borderRadius: '8px', marginBottom: '16px' }}>
-          <Typography variant="bodySmall" style={{ fontFamily: 'monospace', marginBottom: '8px' }}>
-            Usage:
-          </Typography>
-          <pre style={{ margin: 0, fontSize: '14px', fontFamily: 'monospace' }}>
-{`<Dropdown options={options} />
-<Dropdown options={options} disabled />
-<Dropdown options={options} loading />
-<Dropdown options={options} errorMessage="Error message" />
-<Dropdown options={options} helperText="Helper text" />`}
-          </pre>
-        </div>
       </div>
 
       {/* Form Integration */}
@@ -406,7 +315,7 @@ export const DropdownDemo: React.FC = () => {
         </Typography>
         
         <Card style={{ marginBottom: '16px' }}>
-          <Card.CardContent>
+          <CardContent>
             <form style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <Dropdown
                 options={countries}
@@ -428,29 +337,9 @@ export const DropdownDemo: React.FC = () => {
                 Submit Form
               </Button>
             </form>
-          </Card.CardContent>
+          </CardContent>
         </Card>
 
-        <div style={{ backgroundColor: '#f8f9fa', padding: '16px', borderRadius: '8px', marginBottom: '16px' }}>
-          <Typography variant="bodySmall" style={{ fontFamily: 'monospace', marginBottom: '8px' }}>
-            Usage:
-          </Typography>
-          <pre style={{ margin: 0, fontSize: '14px', fontFamily: 'monospace' }}>
-{`<form>
-  <Dropdown
-    options={countries}
-    name="country"
-    required
-  />
-  <Dropdown
-    options={skills}
-    name="skills"
-    multiple
-  />
-  <Button type="submit">Submit</Button>
-</form>`}
-          </pre>
-        </div>
       </div>
 
       {/* Accessibility Features */}
@@ -459,7 +348,7 @@ export const DropdownDemo: React.FC = () => {
           Accessibility Features
         </Typography>
         <Card>
-          <Card.CardContent>
+          <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <Typography variant="body">
                 • <strong>Keyboard Navigation:</strong> Full keyboard support with Arrow keys, Enter, Space, Escape, Home, and End
@@ -480,7 +369,7 @@ export const DropdownDemo: React.FC = () => {
                 • <strong>Multiple Selection:</strong> Clear indication of selected items and selection count
               </Typography>
             </div>
-          </Card.CardContent>
+          </CardContent>
         </Card>
       </div>
     </div>

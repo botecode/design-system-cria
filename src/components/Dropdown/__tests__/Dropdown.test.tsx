@@ -571,4 +571,232 @@ describe('Dropdown Component', () => {
       expect(screen.queryByText('Choose an option')).not.toBeInTheDocument();
     });
   });
+
+  describe('Dropdown Opening Behavior', () => {
+    it('opens dropdown when trigger is clicked', async () => {
+      const user = userEvent.setup();
+      render(<Dropdown options={mockOptions} />);
+      
+      const trigger = screen.getByRole('combobox');
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+      
+      await user.click(trigger);
+      
+      expect(screen.getByRole('listbox')).toBeInTheDocument();
+      expect(trigger).toHaveAttribute('aria-expanded', 'true');
+    });
+
+    it('closes dropdown when trigger is clicked again', async () => {
+      const user = userEvent.setup();
+      render(<Dropdown options={mockOptions} />);
+      
+      const trigger = screen.getByRole('combobox');
+      
+      // Open dropdown
+      await user.click(trigger);
+      expect(screen.getByRole('listbox')).toBeInTheDocument();
+      
+      // Close dropdown
+      await user.click(trigger);
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+      expect(trigger).toHaveAttribute('aria-expanded', 'false');
+    });
+
+    it('closes dropdown when clicking outside', async () => {
+      const user = userEvent.setup();
+      render(
+        <div>
+          <Dropdown options={mockOptions} />
+          <button>Outside button</button>
+        </div>
+      );
+      
+      const trigger = screen.getByRole('combobox');
+      const outsideButton = screen.getByText('Outside button');
+      
+      // Open dropdown
+      await user.click(trigger);
+      expect(screen.getByRole('listbox')).toBeInTheDocument();
+      
+      // Click outside
+      await user.click(outsideButton);
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+    });
+
+    it('closes dropdown when pressing Escape key', async () => {
+      const user = userEvent.setup();
+      render(<Dropdown options={mockOptions} />);
+      
+      const trigger = screen.getByRole('combobox');
+      
+      // Open dropdown
+      await user.click(trigger);
+      expect(screen.getByRole('listbox')).toBeInTheDocument();
+      
+      // Press Escape
+      await user.keyboard('{Escape}');
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+    });
+
+    it('shows all options when dropdown opens', async () => {
+      const user = userEvent.setup();
+      render(<Dropdown options={mockOptions} />);
+      
+      const trigger = screen.getByRole('combobox');
+      await user.click(trigger);
+      
+      expect(screen.getByRole('option', { name: 'Option 1' })).toBeInTheDocument();
+      expect(screen.getByRole('option', { name: 'Option 2' })).toBeInTheDocument();
+      expect(screen.getByRole('option', { name: 'Option 3' })).toBeInTheDocument();
+    });
+
+    it('focuses first option when dropdown opens', async () => {
+      const user = userEvent.setup();
+      render(<Dropdown options={mockOptions} />);
+      
+      const trigger = screen.getByRole('combobox');
+      await user.click(trigger);
+      
+      const firstOption = screen.getByRole('option', { name: 'Option 1' });
+      expect(firstOption).toHaveClass('cria-dropdown-option--focused');
+    });
+
+    it('opens searchable dropdown with search input', async () => {
+      const user = userEvent.setup();
+      render(<Dropdown options={mockOptions} searchable />);
+      
+      const trigger = screen.getByRole('combobox');
+      await user.click(trigger);
+      
+      const searchInput = screen.getByRole('textbox');
+      expect(searchInput).toBeInTheDocument();
+      expect(searchInput).toHaveAttribute('placeholder', 'Search options...');
+    });
+
+    it('focuses search input when searchable dropdown opens', async () => {
+      const user = userEvent.setup();
+      render(<Dropdown options={mockOptions} searchable />);
+      
+      const trigger = screen.getByRole('combobox');
+      await user.click(trigger);
+      
+      const searchInput = screen.getByRole('textbox');
+      expect(searchInput).toHaveFocus();
+    });
+
+    it('does not open when disabled', async () => {
+      const user = userEvent.setup();
+      render(<Dropdown options={mockOptions} disabled />);
+      
+      const trigger = screen.getByRole('combobox');
+      expect(trigger).toHaveAttribute('aria-disabled', 'true');
+      
+      await user.click(trigger);
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+    });
+
+    it('does not open when loading', async () => {
+      const user = userEvent.setup();
+      render(<Dropdown options={mockOptions} loading />);
+      
+      const trigger = screen.getByRole('combobox');
+      await user.click(trigger);
+      expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+    });
+
+    it('maintains focus on trigger when dropdown opens', async () => {
+      const user = userEvent.setup();
+      render(<Dropdown options={mockOptions} />);
+      
+      const trigger = screen.getByRole('combobox');
+      await user.click(trigger);
+      
+      expect(trigger).toHaveFocus();
+    });
+
+    it('opens dropdown with keyboard navigation (Enter key)', async () => {
+      const user = userEvent.setup();
+      render(<Dropdown options={mockOptions} />);
+      
+      const trigger = screen.getByRole('combobox');
+      trigger.focus();
+      
+      await user.keyboard('{Enter}');
+      expect(screen.getByRole('listbox')).toBeInTheDocument();
+    });
+
+    it('opens dropdown with keyboard navigation (Space key)', async () => {
+      const user = userEvent.setup();
+      render(<Dropdown options={mockOptions} />);
+      
+      const trigger = screen.getByRole('combobox');
+      trigger.focus();
+      
+      await user.keyboard(' ');
+      expect(screen.getByRole('listbox')).toBeInTheDocument();
+    });
+
+    it('opens dropdown with keyboard navigation (ArrowDown key)', async () => {
+      const user = userEvent.setup();
+      render(<Dropdown options={mockOptions} />);
+      
+      const trigger = screen.getByRole('combobox');
+      trigger.focus();
+      
+      await user.keyboard('{ArrowDown}');
+      expect(screen.getByRole('listbox')).toBeInTheDocument();
+    });
+
+    it('navigates options with ArrowUp key when dropdown is open', async () => {
+      const user = userEvent.setup();
+      render(<Dropdown options={mockOptions} />);
+      
+      const trigger = screen.getByRole('combobox');
+      
+      // First open the dropdown
+      await user.click(trigger);
+      expect(screen.getByRole('listbox')).toBeInTheDocument();
+      
+      // Then use ArrowUp to navigate (should focus last option)
+      await user.keyboard('{ArrowUp}');
+      const lastOption = screen.getByRole('option', { name: 'Option 3' });
+      expect(lastOption).toHaveClass('cria-dropdown-option--focused');
+    });
+
+    it('shows correct aria attributes when opened', async () => {
+      const user = userEvent.setup();
+      render(<Dropdown options={mockOptions} />);
+      
+      const trigger = screen.getByRole('combobox');
+      await user.click(trigger);
+      
+      const listbox = screen.getByRole('listbox');
+      expect(trigger).toHaveAttribute('aria-expanded', 'true');
+      expect(trigger).toHaveAttribute('aria-haspopup', 'listbox');
+      expect(listbox).toHaveAttribute('aria-labelledby');
+    });
+
+    it('handles multiple dropdowns independently', async () => {
+      const user = userEvent.setup();
+      render(
+        <div>
+          <Dropdown options={mockOptions} placeholder="First dropdown" />
+          <Dropdown options={mockOptions} placeholder="Second dropdown" />
+        </div>
+      );
+      
+      const triggers = screen.getAllByRole('combobox');
+      const firstTrigger = triggers[0];
+      const secondTrigger = triggers[1];
+      
+      // Open first dropdown
+      await user.click(firstTrigger);
+      expect(screen.getByRole('listbox')).toBeInTheDocument();
+      
+      // Open second dropdown (should close first)
+      await user.click(secondTrigger);
+      const listboxes = screen.getAllByRole('listbox');
+      expect(listboxes).toHaveLength(1);
+    });
+  });
 });

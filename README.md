@@ -121,6 +121,7 @@ INSTRUCTIONS.md
 - [ ] Switch
 - [ ] Snackbar / Toast
 - [ ] Navigation (Sidebar, Topbar)
+- [ ] Text
 - [ ] Accordion
 
 ---

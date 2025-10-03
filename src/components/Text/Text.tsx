@@ -186,9 +186,4 @@ export const TextContentImportant: React.FC<TextContentImportantProps> = ({
 };
 
 // Default export for convenience
-export default {
-  TextBody,
-  TextContent,
-  TextContentTitle,
-  TextContentImportant,
-};
+export default TextBody;

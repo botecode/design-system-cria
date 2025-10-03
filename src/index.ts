@@ -23,6 +23,7 @@ export * from './components/Navigation';
 export * from './components/Accordion';
 export * from './components/Text';
 export * from './components/Dropdown';
+export * from './components/RadioGroup';
 
 // Main exports
 export { default as Typography } from './components/Typography';
@@ -36,3 +37,4 @@ export { default as Input } from './components/Input';
 export { default as Accordion } from './components/Accordion';
 export { default as Text } from './components/Text';
 export { default as Dropdown } from './components/Dropdown';
+export { default as RadioGroup } from './components/RadioGroup';

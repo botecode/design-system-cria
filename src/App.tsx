@@ -17,11 +17,12 @@ import { ColorsDemo } from './components/Colors/demo';
 import { AccordionDemo } from './components/Accordion/demo';
 import { TextDemo } from './components/Text/demo';
 import { DropdownDemo } from './components/Dropdown/demo';
+import { RadioGroupDemo } from './components/RadioGroup/demo';
 
 // Import Cartograph font
 import './fonts.css';
 
-type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown';
+type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<DemoSection>('overview');
@@ -57,7 +58,8 @@ const App: React.FC = () => {
     { id: 'navigation', label: 'Navigation', href: '#navigation', icon: <List size={20} /> },
     { id: 'accordion', label: 'Accordion', href: '#accordion', icon: <CaretDown size={20} /> },
     { id: 'text', label: 'Text', href: '#text', icon: <Article size={20} /> },
-    { id: 'dropdown', label: 'Dropdown', href: '#dropdown', icon: <CaretDown size={20} /> }
+    { id: 'dropdown', label: 'Dropdown', href: '#dropdown', icon: <CaretDown size={20} /> },
+    { id: 'radio-group', label: 'Radio Group', href: '#radio-group', icon: <CheckSquare size={20} /> }
   ];
 
   const handleSectionChange = (section: DemoSection) => {
@@ -200,10 +202,12 @@ const App: React.FC = () => {
         return <NavigationDemo />;
       case 'accordion':
         return <AccordionDemo />;
-      case 'text':
-        return <div>Text Demo - Temporarily disabled for debugging</div>;
+        case 'text':
+          return <TextDemo />;
       case 'dropdown':
         return <DropdownDemo />;
+      case 'radio-group':
+        return <RadioGroupDemo />;
       default:
         return <TypographyDemo />;
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography } from '../Typography';
-import { TextBody, TextContent, TextContentTitle, TextContentImportant } from './test-import';
+import { TextBody, TextContent, TextContentTitle, TextContentImportant } from './index';
 import { Card } from '../Card';
 
 export const TextDemo: React.FC = () => {
@@ -35,16 +35,6 @@ export const TextDemo: React.FC = () => {
           </Card.CardContent>
         </Card>
 
-        <div style={{ backgroundColor: '#f8f9fa', padding: '16px', borderRadius: '8px', marginBottom: '16px' }}>
-          <Typography variant="bodySmall" style={{ fontFamily: 'monospace', marginBottom: '8px' }}>
-            Usage:
-          </Typography>
-          <pre style={{ margin: 0, fontSize: '14px', fontFamily: 'monospace' }}>
-{`<TextBody>Default body text</TextBody>
-<TextBody as="p">Body text as paragraph</TextBody>
-<TextBody as="label">Body text as label</TextBody>`}
-          </pre>
-        </div>
       </div>
 
       {/* TextContent Examples */}
@@ -78,18 +68,6 @@ export const TextDemo: React.FC = () => {
           </Card.CardContent>
         </Card>
 
-        <div style={{ backgroundColor: '#f8f9fa', padding: '16px', borderRadius: '8px', marginBottom: '16px' }}>
-          <Typography variant="bodySmall" style={{ fontFamily: 'monospace', marginBottom: '8px' }}>
-            Usage:
-          </Typography>
-          <pre style={{ margin: 0, fontSize: '14px', fontFamily: 'monospace' }}>
-{`<TextContent>
-  Long-form content paragraph with relaxed line height
-  for better readability.
-</TextContent>
-<TextContent as="div">Content as div element</TextContent>`}
-          </pre>
-        </div>
       </div>
 
       {/* TextContentTitle Examples */}
@@ -117,16 +95,6 @@ export const TextDemo: React.FC = () => {
           </Card.CardContent>
         </Card>
 
-        <div style={{ backgroundColor: '#f8f9fa', padding: '16px', borderRadius: '8px', marginBottom: '16px' }}>
-          <Typography variant="bodySmall" style={{ fontFamily: 'monospace', marginBottom: '8px' }}>
-            Usage:
-          </Typography>
-          <pre style={{ margin: 0, fontSize: '14px', fontFamily: 'monospace' }}>
-{`<TextContentTitle>Section Title</TextContentTitle>
-<TextContentTitle as="h2">Title as h2</TextContentTitle>
-<TextContentTitle as="h4">Title as h4</TextContentTitle>`}
-          </pre>
-        </div>
       </div>
 
       {/* TextContentImportant Examples */}
@@ -157,16 +125,6 @@ export const TextDemo: React.FC = () => {
           </Card.CardContent>
         </Card>
 
-        <div style={{ backgroundColor: '#f8f9fa', padding: '16px', borderRadius: '8px', marginBottom: '16px' }}>
-          <Typography variant="bodySmall" style={{ fontFamily: 'monospace', marginBottom: '8px' }}>
-            Usage:
-          </Typography>
-          <pre style={{ margin: 0, fontSize: '14px', fontFamily: 'monospace' }}>
-{`<TextContentImportant>Important text</TextContentImportant>
-<TextContentImportant as="strong">Important as strong</TextContentImportant>
-<TextContentImportant as="em">Important as emphasis</TextContentImportant>`}
-          </pre>
-        </div>
       </div>
 
       {/* Real-world Example */}

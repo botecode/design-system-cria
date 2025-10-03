@@ -30,7 +30,7 @@ For each new component:
 	2.	TDD Cycle
 	•	✅ Write UI tests first (include accessibility assertions).
 	•	✅ Implement component until tests pass.
-	•	✅ Add documentation & usage examples.
+	•	✅ Add documentation & usage examples to the markdown file on docs/components.
 	3.	Validation (Chrome MCP)
 	•	Run the demo in Chrome.
 	•	Confirm the component renders correctly.
@@ -67,6 +67,8 @@ For each new component:
 	•	Tabs
 	•	Navigation (Sidebar, Topbar)
 	•	Accordion
+	•	Text
+	•	Dropdown / Select
 
 Input Demos
 	•	Basic Inputs — Full Name, Email Address, Phone Number, Date (dd.mm.yyyy)
@@ -74,27 +76,31 @@ Input Demos
 
 ⸻
 
-⬜ Next Component: Text
+✅ Text
 
-We need a unified Text component to enforce consistent color, weight, and hierarchy across the app.
+✅ Dropdown / Select
 
-Variants should include:
-	•	TextBody → default body text (used in cards, UI copy)
-	•	TextContent → long-form content paragraphs
-	•	TextContentTitle → section titles in long content
-	•	TextContentImportant → highlighted/emphasized text
+⬜ Next Component: Radio Group
+
+We need a Radio Group component for single-selection from multiple options.
+
+Features should include:
+	•	Radio Group container with proper fieldset/legend structure
+	•	Individual Radio components with labels
+	•	Support for disabled, required, and error states
+	•	Keyboard navigation (Arrow keys to navigate, Space/Enter to select)
+	•	Proper ARIA attributes and screen reader support
 
 Tests
-	•	Renders each variant with correct styles (font-size, weight, color from design tokens)
-	•	Supports semantic tags (<p>, <span>, <h*> depending on variant)
-	•	Allows as prop override (e.g., as="h2") while preserving styles
-	•	Accessibility: text variants must map to semantic HTML elements correctly, ensuring screen readers interpret them as headings or body content
+	•	Renders radio group with proper fieldset/legend structure
+	•	Allows single selection from multiple options
+	•	Supports keyboard navigation (Arrow keys, Space, Enter)
+	•	Handles disabled and error states correctly
+	•	Accessibility: proper ARIA attributes, screen reader announcements
 
 ⸻
 
-⬜ Upcoming Components (after Text)
-	•	Dropdown / Select
-	•	Radio Group
+⬜ Upcoming Components (after Radio Group)
 	•	Textarea
 	•	Avatar
 	•	Breadcrumbs

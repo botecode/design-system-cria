@@ -2835,12 +2835,7 @@ var TextContentImportant = ({
   };
   return /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Element, { className: classes, style: styles, ...props, children });
 };
-var Text_default = {
-  TextBody,
-  TextContent,
-  TextContentTitle,
-  TextContentImportant
-};
+var Text_default = TextBody;
 
 // src/components/Dropdown/Dropdown.tsx
 var import_react11 = require("react");
