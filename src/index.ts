@@ -22,6 +22,7 @@ export * from './components/Snackbar';
 export * from './components/Navigation';
 export * from './components/Accordion';
 export * from './components/Text';
+export * from './components/Dropdown';
 
 // Main exports
 export { default as Typography } from './components/Typography';
@@ -33,3 +34,5 @@ export { default as Tooltip } from './components/Tooltip';
 export { default as Modal } from './components/Modal';
 export { default as Input } from './components/Input';
 export { default as Accordion } from './components/Accordion';
+export { default as Text } from './components/Text';
+export { default as Dropdown } from './components/Dropdown';

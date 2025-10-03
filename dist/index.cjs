@@ -30,6 +30,10 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/index.ts
 var index_exports = {};
 __export(index_exports, {
+  Accordion: () => Accordion_default,
+  AccordionContent: () => AccordionContent,
+  AccordionHeader: () => AccordionHeader,
+  AccordionItem: () => AccordionItem,
   Badge: () => Badge_default,
   Button: () => Button_default,
   ButtonDemo: () => ButtonDemo,
@@ -39,6 +43,8 @@ __export(index_exports, {
   CardFooter: () => CardFooter,
   CardHeader: () => CardHeader,
   Checkbox: () => Checkbox,
+  Dropdown: () => Dropdown_default,
+  DropdownItem: () => DropdownItem,
   Input: () => Input,
   Modal: () => Modal,
   Navigation: () => Navigation,
@@ -46,6 +52,11 @@ __export(index_exports, {
   Snackbar: () => Snackbar,
   Switch: () => Switch,
   Tabs: () => Tabs,
+  Text: () => Text_default,
+  TextBody: () => TextBody,
+  TextContent: () => TextContent,
+  TextContentImportant: () => TextContentImportant,
+  TextContentTitle: () => TextContentTitle,
   Tooltip: () => Tooltip,
   Topbar: () => Topbar,
   Typography: () => Typography_default,
@@ -2453,8 +2464,820 @@ var Navigation = ({
     topbar && (variant === "topbar-only" || variant === "both") && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Topbar, { ...topbar })
   ] });
 };
+
+// src/components/Accordion/Accordion.tsx
+var import_react10 = require("react");
+var import_jsx_runtime16 = require("react/jsx-runtime");
+var AccordionContext = (0, import_react10.createContext)(null);
+var Accordion = ({
+  variant = "default",
+  size = "md",
+  allowMultiple = true,
+  defaultOpenItems = [],
+  openItems,
+  onChange,
+  children,
+  className = "",
+  style,
+  ...props
+}) => {
+  const [internalOpenItems, setInternalOpenItems] = (0, import_react10.useState)(defaultOpenItems);
+  const accordionRef = (0, import_react10.useRef)(null);
+  const isControlled = openItems !== void 0;
+  const currentOpenItems = isControlled ? openItems : internalOpenItems;
+  const handleItemToggle = (0, import_react10.useCallback)((itemId) => {
+    const newOpenItems = currentOpenItems.includes(itemId) ? currentOpenItems.filter((id) => id !== itemId) : allowMultiple ? [...currentOpenItems, itemId] : [itemId];
+    if (!isControlled) {
+      setInternalOpenItems(newOpenItems);
+    }
+    onChange?.(newOpenItems);
+  }, [currentOpenItems, allowMultiple, isControlled, onChange]);
+  const handleKeyDown = (0, import_react10.useCallback)((event) => {
+    if (!accordionRef.current) return;
+    const headers = Array.from(
+      accordionRef.current.querySelectorAll('[role="button"]')
+    );
+    const currentIndex = headers.indexOf(event.target);
+    if (currentIndex === -1) return;
+    switch (event.key) {
+      case "ArrowDown":
+        event.preventDefault();
+        const nextIndex = (currentIndex + 1) % headers.length;
+        headers[nextIndex]?.focus();
+        break;
+      case "ArrowUp":
+        event.preventDefault();
+        const prevIndex = currentIndex === 0 ? headers.length - 1 : currentIndex - 1;
+        headers[prevIndex]?.focus();
+        break;
+    }
+  }, []);
+  const classes = [
+    "cria-accordion",
+    `cria-accordion--${variant}`,
+    `cria-accordion--${size}`,
+    className
+  ].filter(Boolean).join(" ");
+  const accordionStyles = {
+    ...getVariantStyles3(variant),
+    ...getSizeStyles3(size),
+    ...style
+  };
+  const contextValue = {
+    openItems: currentOpenItems,
+    allowMultiple,
+    onToggle: handleItemToggle,
+    size
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(AccordionContext.Provider, { value: contextValue, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(
+    "div",
+    {
+      ref: accordionRef,
+      className: classes,
+      style: accordionStyles,
+      onKeyDown: handleKeyDown,
+      ...props,
+      children
+    }
+  ) });
+};
+function getVariantStyles3(variant) {
+  switch (variant) {
+    case "default":
+      return {
+        backgroundColor: "transparent"
+      };
+    case "bordered":
+      return {
+        backgroundColor: colors.backgroundLight,
+        border: `1px solid ${colors.border.light}`,
+        borderRadius: radii.md,
+        overflow: "hidden"
+      };
+    default:
+      return {};
+  }
+}
+function getSizeStyles3(size) {
+  switch (size) {
+    case "sm":
+      return {
+        fontSize: "14px"
+      };
+    case "md":
+      return {
+        fontSize: "16px"
+      };
+    case "lg":
+      return {
+        fontSize: "18px"
+      };
+    default:
+      return {};
+  }
+}
+var AccordionItem = ({
+  id,
+  children,
+  className = "",
+  style,
+  ...props
+}) => {
+  const context = (0, import_react10.useContext)(AccordionContext);
+  if (!context) {
+    throw new Error("AccordionItem must be used within an Accordion");
+  }
+  const { openItems } = context;
+  const isOpen = openItems.includes(id);
+  const classes = [
+    "cria-accordion-item",
+    isOpen && "cria-accordion-item--open",
+    className
+  ].filter(Boolean).join(" ");
+  const itemStyles = {
+    borderBottom: `1px solid ${colors.border.light}`,
+    ...style
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(AccordionItemContext.Provider, { value: id, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(
+    "div",
+    {
+      className: classes,
+      style: itemStyles,
+      ...props,
+      children
+    }
+  ) });
+};
+var AccordionHeader = ({
+  children,
+  className = "",
+  style,
+  onClick,
+  ...props
+}) => {
+  const context = (0, import_react10.useContext)(AccordionContext);
+  if (!context) {
+    throw new Error("AccordionHeader must be used within an Accordion");
+  }
+  const { onToggle, size } = context;
+  const itemId = (0, import_react10.useContext)(AccordionItemContext);
+  if (!itemId) {
+    throw new Error("AccordionHeader must be used within an AccordionItem");
+  }
+  const isOpen = context.openItems.includes(itemId);
+  const handleClick = (0, import_react10.useCallback)((event) => {
+    onClick?.(event);
+    onToggle(itemId);
+  }, [onClick, itemId, onToggle]);
+  const handleKeyDown = (0, import_react10.useCallback)((event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      onToggle(itemId);
+    }
+  }, [itemId, onToggle]);
+  const classes = [
+    "cria-accordion-header",
+    `cria-accordion-header--${size}`,
+    className
+  ].filter(Boolean).join(" ");
+  const headerStyles = {
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    padding: getHeaderPadding(size),
+    backgroundColor: "transparent",
+    border: "none",
+    cursor: "pointer",
+    fontFamily: "var(--cria-font-family)",
+    fontWeight: 500,
+    color: colors.text.primary,
+    textAlign: "left",
+    transition: "all 0.2s ease-in-out",
+    ...style
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(
+    "button",
+    {
+      id: `${itemId}-header`,
+      className: classes,
+      style: headerStyles,
+      onClick: handleClick,
+      onKeyDown: handleKeyDown,
+      "aria-expanded": isOpen,
+      "aria-controls": `${itemId}-content`,
+      role: "button",
+      ...props,
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { children }),
+        /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(
+          "span",
+          {
+            style: {
+              transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+              transition: "transform 0.2s ease-in-out",
+              fontSize: "14px"
+            },
+            "aria-hidden": "true",
+            children: "\u25BC"
+          }
+        )
+      ]
+    }
+  );
+};
+var AccordionItemContext = (0, import_react10.createContext)(null);
+var AccordionContent = ({
+  children,
+  className = "",
+  style,
+  ...props
+}) => {
+  const context = (0, import_react10.useContext)(AccordionContext);
+  if (!context) {
+    throw new Error("AccordionContent must be used within an Accordion");
+  }
+  const itemId = (0, import_react10.useContext)(AccordionItemContext);
+  if (!itemId) {
+    throw new Error("AccordionContent must be used within an AccordionItem");
+  }
+  const isOpen = context.openItems.includes(itemId);
+  const classes = [
+    "cria-accordion-content",
+    className
+  ].filter(Boolean).join(" ");
+  const contentStyles = {
+    display: isOpen ? "block" : "none",
+    ...style
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(
+    "div",
+    {
+      id: `${itemId}-content`,
+      className: classes,
+      style: contentStyles,
+      "aria-labelledby": `${itemId}-header`,
+      role: "region",
+      ...props,
+      children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { style: { padding: getContentPadding() }, children })
+    }
+  );
+};
+function getHeaderPadding(size) {
+  switch (size) {
+    case "sm":
+      return `${spacing[2]} ${spacing[3]}`;
+    case "md":
+      return `${spacing[3]} ${spacing[4]}`;
+    case "lg":
+      return `${spacing[4]} ${spacing[5]}`;
+    default:
+      return `${spacing[3]} ${spacing[4]}`;
+  }
+}
+function getContentPadding() {
+  return `${spacing[2]} ${spacing[4]} ${spacing[4]} ${spacing[4]}`;
+}
+var Accordion_default = Accordion;
+
+// src/components/Text/Text.tsx
+var import_jsx_runtime17 = require("react/jsx-runtime");
+var TextBody = ({
+  as = "span",
+  children,
+  className = "",
+  ...props
+}) => {
+  const Element = as;
+  const classes = [
+    "cria-text",
+    "cria-text--body",
+    className
+  ].filter(Boolean).join(" ");
+  const styles = {
+    fontFamily: typography.fontFamily.primary,
+    fontSize: typography.fontSize.body,
+    fontWeight: typography.fontWeight.regular,
+    lineHeight: typography.lineHeight.normal,
+    color: "#374151",
+    // Default dark gray
+    margin: 0
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Element, { className: classes, style: styles, ...props, children });
+};
+var TextContent = ({
+  as = "p",
+  children,
+  className = "",
+  ...props
+}) => {
+  const Element = as;
+  const classes = [
+    "cria-text",
+    "cria-text--content",
+    className
+  ].filter(Boolean).join(" ");
+  const styles = {
+    fontFamily: typography.fontFamily.primary,
+    fontSize: typography.fontSize.body,
+    fontWeight: typography.fontWeight.regular,
+    lineHeight: typography.lineHeight.relaxed,
+    // More readable for long content
+    color: "#374151",
+    // Default dark gray
+    margin: 0
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Element, { className: classes, style: styles, ...props, children });
+};
+var TextContentTitle = ({
+  as = "h3",
+  children,
+  className = "",
+  ...props
+}) => {
+  const Element = as;
+  const classes = [
+    "cria-text",
+    "cria-text--content-title",
+    className
+  ].filter(Boolean).join(" ");
+  const styles = {
+    fontFamily: typography.fontFamily.primary,
+    fontSize: typography.fontSize.h3,
+    fontWeight: typography.fontWeight.semiBold,
+    lineHeight: typography.lineHeight.normal,
+    color: "#374151",
+    // Default dark gray
+    margin: 0
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Element, { className: classes, style: styles, ...props, children });
+};
+var TextContentImportant = ({
+  as = "span",
+  children,
+  className = "",
+  ...props
+}) => {
+  const Element = as;
+  const classes = [
+    "cria-text",
+    "cria-text--content-important",
+    className
+  ].filter(Boolean).join(" ");
+  const styles = {
+    fontFamily: typography.fontFamily.primary,
+    fontSize: typography.fontSize.body,
+    fontWeight: typography.fontWeight.medium,
+    lineHeight: typography.lineHeight.normal,
+    color: "#374151",
+    // Default dark gray
+    margin: 0
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Element, { className: classes, style: styles, ...props, children });
+};
+var Text_default = {
+  TextBody,
+  TextContent,
+  TextContentTitle,
+  TextContentImportant
+};
+
+// src/components/Dropdown/Dropdown.tsx
+var import_react11 = require("react");
+var import_phosphor_react6 = require("phosphor-react");
+var import_jsx_runtime18 = require("react/jsx-runtime");
+var Dropdown = (0, import_react11.forwardRef)(({
+  options,
+  value,
+  defaultValue,
+  placeholder = "Select an option",
+  label,
+  size = "md",
+  variant = "default",
+  disabled = false,
+  required = false,
+  multiple = false,
+  searchable = false,
+  loading = false,
+  helperText,
+  errorMessage,
+  className = "",
+  style,
+  onChange,
+  onOpen,
+  onClose,
+  ...props
+}, ref) => {
+  const [isOpen, setIsOpen] = (0, import_react11.useState)(false);
+  const [searchTerm, setSearchTerm] = (0, import_react11.useState)("");
+  const [focusedIndex, setFocusedIndex] = (0, import_react11.useState)(-1);
+  const [selectedValues, setSelectedValues] = (0, import_react11.useState)(() => {
+    const initialValue = value || defaultValue;
+    return Array.isArray(initialValue) ? initialValue : initialValue ? [initialValue] : [];
+  });
+  const triggerRef = (0, import_react11.useRef)(null);
+  const listboxRef = (0, import_react11.useRef)(null);
+  const searchInputRef = (0, import_react11.useRef)(null);
+  (0, import_react11.useEffect)(() => {
+    if (value !== void 0) {
+      setSelectedValues(Array.isArray(value) ? value : value ? [value] : []);
+    }
+  }, [value]);
+  (0, import_react11.useImperativeHandle)(ref, () => ({
+    focus: () => triggerRef.current?.focus(),
+    blur: () => triggerRef.current?.blur(),
+    open: () => setIsOpen(true),
+    close: () => setIsOpen(false)
+  }));
+  const filteredOptions = options.filter(
+    (option) => option.label.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+  const getDisplayText = () => {
+    if (multiple) {
+      if (selectedValues.length === 0) return placeholder;
+      if (selectedValues.length === 1) {
+        const option2 = options.find((opt) => opt.value === selectedValues[0]);
+        return option2?.label || placeholder;
+      }
+      if (selectedValues.length === 2) {
+        const selectedOptions = options.filter((opt) => selectedValues.includes(opt.value));
+        return selectedOptions.map((opt) => opt.label).join(", ");
+      }
+      return `${selectedValues.length} selected`;
+    }
+    if (selectedValues.length === 0) return placeholder;
+    const option = options.find((opt) => opt.value === selectedValues[0]);
+    return option?.label || placeholder;
+  };
+  const handleOptionSelect = (0, import_react11.useCallback)((option) => {
+    if (option.disabled) return;
+    let newSelectedValues;
+    if (multiple) {
+      if (selectedValues.includes(option.value)) {
+        newSelectedValues = selectedValues.filter((val) => val !== option.value);
+      } else {
+        newSelectedValues = [...selectedValues, option.value];
+      }
+    } else {
+      newSelectedValues = [option.value];
+      setIsOpen(false);
+    }
+    setSelectedValues(newSelectedValues);
+    const selectedOptions = options.filter((opt) => newSelectedValues.includes(opt.value));
+    onChange?.(
+      multiple ? newSelectedValues : newSelectedValues[0] || "",
+      multiple ? selectedOptions : selectedOptions[0]
+    );
+  }, [selectedValues, multiple, options, onChange]);
+  const handleTriggerClick = (0, import_react11.useCallback)(() => {
+    if (disabled || loading) return;
+    setIsOpen(!isOpen);
+    if (!isOpen) {
+      onOpen?.();
+      setSearchTerm("");
+      setFocusedIndex(0);
+    } else {
+      onClose?.();
+      setSearchTerm("");
+      setFocusedIndex(-1);
+    }
+  }, [disabled, loading, isOpen, onOpen, onClose]);
+  const handleKeyDown = (0, import_react11.useCallback)((event) => {
+    if (disabled || loading) return;
+    switch (event.key) {
+      case "Enter":
+      case " ":
+        event.preventDefault();
+        if (!isOpen) {
+          setIsOpen(true);
+          onOpen?.();
+        } else if (focusedIndex >= 0 && filteredOptions[focusedIndex]) {
+          handleOptionSelect(filteredOptions[focusedIndex]);
+        }
+        break;
+      case "Escape":
+        event.preventDefault();
+        setIsOpen(false);
+        setSearchTerm("");
+        onClose?.();
+        break;
+      case "ArrowDown":
+        event.preventDefault();
+        if (!isOpen) {
+          setIsOpen(true);
+          onOpen?.();
+          setFocusedIndex(0);
+        } else {
+          setFocusedIndex(
+            (prev) => prev < filteredOptions.length - 1 ? prev + 1 : 0
+          );
+        }
+        break;
+      case "ArrowUp":
+        event.preventDefault();
+        if (isOpen) {
+          setFocusedIndex(
+            (prev) => prev > 0 ? prev - 1 : filteredOptions.length - 1
+          );
+        }
+        break;
+      case "Home":
+        event.preventDefault();
+        if (isOpen) {
+          setFocusedIndex(0);
+        }
+        break;
+      case "End":
+        event.preventDefault();
+        if (isOpen) {
+          setFocusedIndex(filteredOptions.length - 1);
+        }
+        break;
+    }
+  }, [disabled, loading, isOpen, focusedIndex, filteredOptions, onOpen, onClose, handleOptionSelect]);
+  (0, import_react11.useEffect)(() => {
+    const handleClickOutside = (event) => {
+      if (isOpen && triggerRef.current && listboxRef.current && !triggerRef.current.contains(event.target) && !listboxRef.current.contains(event.target)) {
+        setIsOpen(false);
+        setSearchTerm("");
+        onClose?.();
+      }
+    };
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () => document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [isOpen, onClose]);
+  (0, import_react11.useEffect)(() => {
+    if (isOpen && searchable && searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, [isOpen, searchable]);
+  const containerClasses = [
+    "cria-dropdown",
+    `cria-dropdown--${size}`,
+    `cria-dropdown--${variant}`,
+    disabled && "cria-dropdown--disabled",
+    loading && "cria-dropdown--loading",
+    isOpen && "cria-dropdown--open",
+    errorMessage && "cria-dropdown--error",
+    className
+  ].filter(Boolean).join(" ");
+  const triggerClasses = [
+    "cria-dropdown-trigger",
+    `cria-dropdown--${size}`,
+    `cria-dropdown--${variant}`,
+    `cria-dropdown-trigger--${size}`,
+    `cria-dropdown-trigger--${variant}`,
+    disabled && "cria-dropdown-trigger--disabled",
+    loading && "cria-dropdown--loading",
+    loading && "cria-dropdown-trigger--loading",
+    isOpen && "cria-dropdown-trigger--open",
+    errorMessage && "cria-dropdown-trigger--error"
+  ].filter(Boolean).join(" ");
+  const getTriggerStyles = () => {
+    const baseStyles = {
+      width: "100%",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      padding: getTriggerPadding(size),
+      backgroundColor: variant === "filled" ? colors.gray[100] : colors.backgroundLight,
+      border: `1px solid ${errorMessage ? colors.error : isOpen ? colors.primary : colors.border.medium}`,
+      borderRadius: radii.md,
+      fontFamily: typography.fontFamily.primary,
+      fontSize: typography.fontSize[size === "sm" ? "bodySmall" : size === "lg" ? "h3" : "body"],
+      color: colors.text.primary,
+      cursor: disabled || loading ? "not-allowed" : "pointer",
+      transition: "all 0.2s ease-in-out",
+      outline: "none"
+    };
+    if (disabled || loading) {
+      baseStyles.opacity = 0.6;
+    }
+    return baseStyles;
+  };
+  const getListboxStyles = () => ({
+    position: "absolute",
+    top: "100%",
+    left: 0,
+    right: 0,
+    zIndex: 1e3,
+    backgroundColor: colors.backgroundLight,
+    border: `1px solid ${colors.border.medium}`,
+    borderRadius: radii.md,
+    boxShadow: shadows.lg,
+    maxHeight: "200px",
+    overflowY: "auto",
+    marginTop: spacing[1]
+  });
+  const getOptionStyles = (option, index) => ({
+    padding: getOptionPadding(size),
+    cursor: option.disabled ? "not-allowed" : "pointer",
+    backgroundColor: index === focusedIndex ? colors.gray[100] : "transparent",
+    color: option.disabled ? colors.text.disabled : colors.text.primary,
+    opacity: option.disabled ? 0.6 : 1,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    transition: "background-color 0.15s ease-in-out"
+  });
+  const getOptionClasses = (option, index) => {
+    const classes = [
+      "cria-dropdown-option",
+      index === focusedIndex && "cria-dropdown-option--focused",
+      option.disabled && "cria-dropdown-option--disabled"
+    ].filter(Boolean);
+    return classes.join(" ");
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: containerClasses, style, ...props, children: [
+    label && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("label", { className: "cria-dropdown__label", children: /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(Typography, { variant: "body", weight: "medium", color: "primary", children: [
+      label,
+      required && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { style: { color: colors.error }, children: " *" })
+    ] }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(
+      "button",
+      {
+        ref: triggerRef,
+        type: "button",
+        role: "combobox",
+        className: triggerClasses,
+        style: getTriggerStyles(),
+        onClick: handleTriggerClick,
+        onKeyDown: handleKeyDown,
+        disabled: disabled || loading,
+        "aria-expanded": isOpen,
+        "aria-haspopup": "listbox",
+        "aria-required": required,
+        "aria-invalid": !!errorMessage,
+        "aria-disabled": disabled || loading,
+        "aria-describedby": helperText || errorMessage ? `${label || "dropdown"}-helper` : void 0,
+        id: label ? `${label.toLowerCase().replace(/\s+/g, "-")}-dropdown` : void 0,
+        name: props.name,
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { style: {
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+            flex: 1,
+            textAlign: "left"
+          }, children: getDisplayText() }),
+          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
+            import_phosphor_react6.CaretDown,
+            {
+              size: 16,
+              style: {
+                transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                transition: "transform 0.2s ease-in-out",
+                flexShrink: 0,
+                marginLeft: spacing[2]
+              }
+            }
+          )
+        ]
+      }
+    ),
+    isOpen && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(
+      "div",
+      {
+        ref: listboxRef,
+        role: "listbox",
+        className: "cria-dropdown-listbox",
+        style: getListboxStyles(),
+        "aria-labelledby": triggerRef.current?.id,
+        children: [
+          searchable && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { style: { padding: spacing[2], borderBottom: `1px solid ${colors.border.light}` }, children: /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { style: { position: "relative" }, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
+              import_phosphor_react6.MagnifyingGlass,
+              {
+                size: 16,
+                style: {
+                  position: "absolute",
+                  left: spacing[2],
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  color: colors.text.secondary
+                }
+              }
+            ),
+            /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
+              "input",
+              {
+                ref: searchInputRef,
+                type: "text",
+                value: searchTerm,
+                onChange: (e) => setSearchTerm(e.target.value),
+                placeholder: "Search options...",
+                role: "textbox",
+                "aria-label": "Search options",
+                style: {
+                  width: "100%",
+                  padding: `${spacing[2]} ${spacing[2]} ${spacing[2]} ${spacing[8]}`,
+                  border: `1px solid ${colors.border.medium}`,
+                  borderRadius: radii.sm,
+                  fontSize: typography.fontSize.bodySmall,
+                  fontFamily: typography.fontFamily.primary,
+                  outline: "none"
+                }
+              }
+            )
+          ] }) }),
+          filteredOptions.length > 0 ? filteredOptions.map((option, index) => /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(
+            "div",
+            {
+              role: "option",
+              className: getOptionClasses(option, index),
+              style: getOptionStyles(option, index),
+              onClick: () => handleOptionSelect(option),
+              "aria-selected": selectedValues.includes(option.value),
+              children: [
+                /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { style: { display: "flex", alignItems: "center", flex: 1 }, children: [
+                  option.icon && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { style: { marginRight: spacing[2] }, children: option.icon }),
+                  /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { style: { fontSize: typography.fontSize[size === "sm" ? "bodySmall" : "body"] }, children: option.label }),
+                    option.description && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { style: {
+                      fontSize: typography.fontSize.caption,
+                      color: colors.text.secondary,
+                      marginTop: spacing[1]
+                    }, children: option.description })
+                  ] })
+                ] }),
+                selectedValues.includes(option.value) && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(import_phosphor_react6.Check, { size: 16, style: { color: colors.primary, flexShrink: 0 } })
+              ]
+            },
+            option.value
+          )) : /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { style: {
+            padding: spacing[4],
+            textAlign: "center",
+            color: colors.text.secondary,
+            fontSize: typography.fontSize.bodySmall
+          }, children: "No options found" })
+        ]
+      }
+    ),
+    (helperText || errorMessage) && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
+      "div",
+      {
+        id: `${label || "dropdown"}-helper`,
+        className: "cria-dropdown__messages",
+        style: { marginTop: spacing[1] },
+        children: errorMessage ? /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Typography, { variant: "bodySmall", color: "error", children: errorMessage }) : /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Typography, { variant: "bodySmall", color: "secondary", children: helperText })
+      }
+    )
+  ] });
+});
+Dropdown.displayName = "Dropdown";
+function getTriggerPadding(size) {
+  switch (size) {
+    case "sm":
+      return `${spacing[2]} ${spacing[3]}`;
+    case "md":
+      return `${spacing[3]} ${spacing[4]}`;
+    case "lg":
+      return `${spacing[4]} ${spacing[5]}`;
+    default:
+      return `${spacing[3]} ${spacing[4]}`;
+  }
+}
+function getOptionPadding(size) {
+  switch (size) {
+    case "sm":
+      return `${spacing[2]} ${spacing[3]}`;
+    case "md":
+      return `${spacing[3]} ${spacing[4]}`;
+    case "lg":
+      return `${spacing[4]} ${spacing[5]}`;
+    default:
+      return `${spacing[3]} ${spacing[4]}`;
+  }
+}
+var DropdownItem = ({
+  value,
+  label,
+  disabled = false,
+  icon,
+  description,
+  children
+}) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { style: { display: "flex", alignItems: "center", flex: 1 }, children: [
+    icon && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { style: { marginRight: spacing[2] }, children: icon }),
+    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { children: children || /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(import_jsx_runtime18.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { children: label }),
+      description && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { style: {
+        fontSize: typography.fontSize.caption,
+        color: colors.text.secondary,
+        marginTop: spacing[1]
+      }, children: description })
+    ] }) })
+  ] });
+};
+var Dropdown_default = Dropdown;
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
+  Accordion,
+  AccordionContent,
+  AccordionHeader,
+  AccordionItem,
   Badge,
   Button,
   ButtonDemo,
@@ -2464,6 +3287,8 @@ var Navigation = ({
   CardFooter,
   CardHeader,
   Checkbox,
+  Dropdown,
+  DropdownItem,
   Input,
   Modal,
   Navigation,
@@ -2471,6 +3296,11 @@ var Navigation = ({
   Snackbar,
   Switch,
   Tabs,
+  Text,
+  TextBody,
+  TextContent,
+  TextContentImportant,
+  TextContentTitle,
   Tooltip,
   Topbar,
   Typography,
