@@ -110,8 +110,6 @@ export const Tooltip: React.FC<TooltipProps> = ({
     
     const triggerRect = triggerRef.current.getBoundingClientRect();
     const tooltipRect = tooltipRef.current.getBoundingClientRect();
-    const scrollX = window.pageXOffset || document.documentElement.scrollLeft;
-    const scrollY = window.pageYOffset || document.documentElement.scrollTop;
     
     let top = 0;
     let left = 0;
@@ -184,8 +182,8 @@ export const Tooltip: React.FC<TooltipProps> = ({
     }
     
     setTooltipPosition({
-      top: top + scrollY,
-      left: left + scrollX,
+      top: top,
+      left: left,
     });
   }, [position]);
   
