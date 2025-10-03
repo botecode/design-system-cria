@@ -62,25 +62,27 @@ const App: React.FC = () => {
     switch (activeSection) {
       case 'overview':
         return (
-          <div style={{ padding: '24px', maxWidth: '1200px', margin: '0 auto' }}>
-            <Typography variant="title1" weight="bold" style={{ marginBottom: '32px' }}>
-              Welcome to CRIA_UI
-            </Typography>
-            <Typography variant="body" style={{ marginBottom: '32px' }}>
-              A comprehensive React + TypeScript design system built specifically for CR_IA applications.
-              This system provides consistent, accessible, and beautiful components that can be easily
-              integrated into your Rails frontend.
-            </Typography>
+          <div style={{ padding: '0' }}>
+            <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+              <Typography variant="title1" weight="bold" style={{ marginBottom: '16px' }}>
+                Welcome to CRIA_UI
+              </Typography>
+              <Typography variant="body" style={{ marginBottom: '0', maxWidth: '600px', margin: '0 auto 32px auto' }}>
+                A comprehensive React + TypeScript design system built specifically for CR_IA applications.
+                This system provides consistent, accessible, and beautiful components that can be easily
+                integrated into your Rails frontend.
+              </Typography>
+            </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px', marginBottom: '32px' }}>
-              <div style={{ padding: '24px', backgroundColor: 'var(--cria-white)', borderRadius: 'var(--cria-radius-md)', border: '1px solid var(--cria-gray-200)' }}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: '12px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
+              <div style={{ padding: '20px', backgroundColor: 'var(--cria-white)', borderRadius: 'var(--cria-radius-md)', border: '1px solid var(--cria-gray-200)' }}>
+                <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
                   🎨 Foundation
                 </Typography>
-                <Typography variant="body" style={{ marginBottom: '16px' }}>
+                <Typography variant="body" style={{ marginBottom: '12px', fontSize: '14px' }}>
                   Core design elements including typography, colors, and basic components.
                 </Typography>
-                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                   <Button variant="outline" size="sm" onClick={() => setActiveSection('typography')}>
                     Typography
                   </Button>
@@ -93,14 +95,14 @@ const App: React.FC = () => {
                 </div>
               </div>
 
-              <div style={{ padding: '24px', backgroundColor: 'var(--cria-white)', borderRadius: 'var(--cria-radius-md)', border: '1px solid var(--cria-gray-200)' }}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: '12px' }}>
+              <div style={{ padding: '20px', backgroundColor: 'var(--cria-white)', borderRadius: 'var(--cria-radius-md)', border: '1px solid var(--cria-gray-200)' }}>
+                <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
                   📝 Form Controls
                 </Typography>
-                <Typography variant="body" style={{ marginBottom: '16px' }}>
+                <Typography variant="body" style={{ marginBottom: '12px', fontSize: '14px' }}>
                   Interactive form elements for user input and data collection.
                 </Typography>
-                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                   <Button variant="outline" size="sm" onClick={() => setActiveSection('input')}>
                     Input
                   </Button>
@@ -113,14 +115,14 @@ const App: React.FC = () => {
                 </div>
               </div>
 
-              <div style={{ padding: '24px', backgroundColor: 'var(--cria-white)', borderRadius: 'var(--cria-radius-md)', border: '1px solid var(--cria-gray-200)' }}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: '12px' }}>
+              <div style={{ padding: '20px', backgroundColor: 'var(--cria-white)', borderRadius: 'var(--cria-radius-md)', border: '1px solid var(--cria-gray-200)' }}>
+                <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
                   💬 Feedback
                 </Typography>
-                <Typography variant="body" style={{ marginBottom: '16px' }}>
+                <Typography variant="body" style={{ marginBottom: '12px', fontSize: '14px' }}>
                   Components for providing feedback, notifications, and user guidance.
                 </Typography>
-                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                   <Button variant="outline" size="sm" onClick={() => setActiveSection('snackbar')}>
                     Snackbar
                   </Button>
@@ -133,14 +135,14 @@ const App: React.FC = () => {
                 </div>
               </div>
 
-              <div style={{ padding: '24px', backgroundColor: 'var(--cria-white)', borderRadius: 'var(--cria-radius-md)', border: '1px solid var(--cria-gray-200)' }}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: '12px' }}>
+              <div style={{ padding: '20px', backgroundColor: 'var(--cria-white)', borderRadius: 'var(--cria-radius-md)', border: '1px solid var(--cria-gray-200)' }}>
+                <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
                   📐 Layout
                 </Typography>
-                <Typography variant="body" style={{ marginBottom: '16px' }}>
+                <Typography variant="body" style={{ marginBottom: '12px', fontSize: '14px' }}>
                   Structural components for organizing and presenting content.
                 </Typography>
-                <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+                <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                   <Button variant="outline" size="sm" onClick={() => setActiveSection('card')}>
                     Card
                   </Button>
@@ -237,11 +239,14 @@ const App: React.FC = () => {
         height: '100vh',
         overflowY: 'auto',
         transition: 'margin-left 0.3s ease',
-        padding: '24px',
-        paddingTop: isMobile ? '60px' : '24px',
-        boxSizing: 'border-box'
+        padding: '16px',
+        paddingTop: isMobile ? '60px' : '16px',
+        boxSizing: 'border-box',
+        width: isMobile ? '100%' : `calc(100% - ${sidebarCollapsed ? '64px' : '256px'})`
       }}>
-        {renderContent()}
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          {renderContent()}
+        </div>
       </main>
     </div>
   );
