@@ -20,6 +20,7 @@ export * from './components/Checkbox';
 export * from './components/Switch';
 export * from './components/Snackbar';
 export * from './components/Navigation';
+export * from './components/Accordion';
 
 // Main exports
 export { default as Typography } from './components/Typography';
@@ -30,3 +31,4 @@ export { default as Tabs } from './components/Tabs';
 export { default as Tooltip } from './components/Tooltip';
 export { default as Modal } from './components/Modal';
 export { default as Input } from './components/Input';
+export { default as Accordion } from './components/Accordion';
