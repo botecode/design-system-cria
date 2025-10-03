@@ -625,9 +625,12 @@ body {
 
 /* Disabled Badge Styles */
 .cria-badge--disabled {
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: not-allowed;
   pointer-events: none;
+  background-color: var(--cria-gray-200) !important;
+  color: var(--cria-gray-600) !important;
+  border-color: var(--cria-gray-300) !important;
 }
 
 /* Badge Icon Styles */

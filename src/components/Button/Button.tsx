@@ -143,7 +143,7 @@ function getVariantStyles(variant: ButtonProps['variant']): React.CSSProperties 
     case 'outline':
       return {
         backgroundColor: 'transparent',
-        color: colors.white,
+        color: colors.primary,
         border: `1px solid ${colors.primary}`,
       };
     case 'ghost':

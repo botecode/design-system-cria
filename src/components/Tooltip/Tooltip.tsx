@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { createPortal } from 'react-dom';
 
 export interface TooltipProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   /**
@@ -301,12 +302,12 @@ export const Tooltip: React.FC<TooltipProps> = ({
   return (
     <>
       {triggerElement}
-      {visible && (
+      {visible && createPortal(
         <div
           ref={tooltipRef}
           className={tooltipClasses}
           style={{
-            position: 'absolute',
+            position: 'fixed',
             top: tooltipPosition.top,
             left: tooltipPosition.left,
             zIndex: 9999,
@@ -321,7 +322,8 @@ export const Tooltip: React.FC<TooltipProps> = ({
           {arrow && (
             <div className="cria-tooltip__arrow" />
           )}
-        </div>
+        </div>,
+        document.body
       )}
     </>
   );

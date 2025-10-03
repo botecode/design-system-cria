@@ -51,10 +51,10 @@ export const ColorsDemo: React.FC = () => {
         <Typography variant="body" weight="medium" color="primary">
           {name}
         </Typography>
-        <Typography variant="bodySmall" color="secondary" style={{ marginTop: '4px' }}>
+        <Typography variant="bodySmall" style={{ marginTop: '4px' }}>
           {value}
         </Typography>
-        <Typography variant="caption" color="secondary" style={{ marginTop: '2px' }}>
+        <Typography variant="caption" style={{ marginTop: '2px' }}>
           {description}
         </Typography>
       </div>

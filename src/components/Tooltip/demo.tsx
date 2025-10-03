@@ -291,7 +291,7 @@ export const TooltipDemo: React.FC = () => {
           </Tooltip>
           
           <Tooltip content="This badge has a tooltip">
-            <Badge variant="primary">Badge with tooltip</Badge>
+            <Badge variant="default">Badge with tooltip</Badge>
           </Tooltip>
           
           <Tooltip content="This card has a tooltip">
