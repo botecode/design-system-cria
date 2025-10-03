@@ -16,6 +16,7 @@ export * from './components/Tabs';
 export * from './components/Tooltip';
 export * from './components/Modal';
 export * from './components/Input';
+export * from './components/Checkbox';
 
 // Main exports
 export { default as Typography } from './components/Typography';
@@ -26,3 +27,4 @@ export { default as Tabs } from './components/Tabs';
 export { default as Tooltip } from './components/Tooltip';
 export { default as Modal } from './components/Modal';
 export { default as Input } from './components/Input';
+export { default as Checkbox } from './components/Checkbox';

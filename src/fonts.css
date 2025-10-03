@@ -1822,3 +1822,329 @@ body {
 .cria-input:focus {
   animation: input-focus-in 0.2s ease-in-out;
 }
+
+/* ========================================
+   CHECKBOX COMPONENT STYLES
+   ======================================== */
+
+/* Base Checkbox */
+.cria-checkbox {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--cria-spacing-1);
+  font-family: var(--cria-font-family);
+  position: relative;
+}
+
+.cria-checkbox__container {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--cria-spacing-2);
+  cursor: pointer;
+}
+
+/* Checkbox Input (Hidden) */
+.cria-checkbox__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+/* Checkbox Visual Element */
+.cria-checkbox__checkmark {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 2px solid var(--cria-gray-300);
+  background-color: var(--cria-white);
+  border-radius: var(--cria-radius-sm);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+/* Checkbox Sizes */
+.cria-checkbox--sm .cria-checkbox__checkmark {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+}
+
+.cria-checkbox--md .cria-checkbox__checkmark {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--cria-radius-sm);
+}
+
+.cria-checkbox--lg .cria-checkbox__checkmark {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--cria-radius-sm);
+}
+
+/* Checkbox Variants */
+.cria-checkbox--default .cria-checkbox__checkmark {
+  background-color: var(--cria-white);
+  border-color: var(--cria-gray-300);
+}
+
+.cria-checkbox--filled .cria-checkbox__checkmark {
+  background-color: var(--cria-gray-100);
+  border-color: var(--cria-gray-300);
+}
+
+.cria-checkbox--outlined .cria-checkbox__checkmark {
+  background-color: transparent;
+  border-color: var(--cria-gray-400);
+  border-width: 2px;
+}
+
+/* Checkbox Colors */
+.cria-checkbox--primary .cria-checkbox__checkmark {
+  border-color: var(--cria-primary);
+}
+
+.cria-checkbox--secondary .cria-checkbox__checkmark {
+  border-color: var(--cria-secondary);
+}
+
+.cria-checkbox--success .cria-checkbox__checkmark {
+  border-color: var(--cria-success);
+}
+
+.cria-checkbox--warning .cria-checkbox__checkmark {
+  border-color: var(--cria-warning);
+}
+
+.cria-checkbox--error .cria-checkbox__checkmark {
+  border-color: var(--cria-error);
+}
+
+/* Checked State */
+.cria-checkbox--checked .cria-checkbox__checkmark {
+  background-color: var(--cria-primary);
+  border-color: var(--cria-primary);
+  color: var(--cria-white);
+}
+
+.cria-checkbox--checked.cria-checkbox--secondary .cria-checkbox__checkmark {
+  background-color: var(--cria-secondary);
+  border-color: var(--cria-secondary);
+}
+
+.cria-checkbox--checked.cria-checkbox--success .cria-checkbox__checkmark {
+  background-color: var(--cria-success);
+  border-color: var(--cria-success);
+}
+
+.cria-checkbox--checked.cria-checkbox--warning .cria-checkbox__checkmark {
+  background-color: var(--cria-warning);
+  border-color: var(--cria-warning);
+}
+
+.cria-checkbox--checked.cria-checkbox--error .cria-checkbox__checkmark {
+  background-color: var(--cria-error);
+  border-color: var(--cria-error);
+}
+
+/* Indeterminate State */
+.cria-checkbox--indeterminate .cria-checkbox__checkmark {
+  background-color: var(--cria-primary);
+  border-color: var(--cria-primary);
+}
+
+.cria-checkbox--indeterminate.cria-checkbox--secondary .cria-checkbox__checkmark {
+  background-color: var(--cria-secondary);
+  border-color: var(--cria-secondary);
+}
+
+.cria-checkbox--indeterminate.cria-checkbox--success .cria-checkbox__checkmark {
+  background-color: var(--cria-success);
+  border-color: var(--cria-success);
+}
+
+.cria-checkbox--indeterminate.cria-checkbox--warning .cria-checkbox__checkmark {
+  background-color: var(--cria-warning);
+  border-color: var(--cria-warning);
+}
+
+.cria-checkbox--indeterminate.cria-checkbox--error .cria-checkbox__checkmark {
+  background-color: var(--cria-error);
+  border-color: var(--cria-error);
+}
+
+.cria-checkbox__indeterminate {
+  width: 8px;
+  height: 2px;
+  background-color: var(--cria-white);
+  border-radius: 1px;
+}
+
+/* Hover State */
+.cria-checkbox:not(.cria-checkbox--disabled):not(.cria-checkbox--readonly) .cria-checkbox__checkmark:hover {
+  border-color: var(--cria-primary);
+  box-shadow: 0 0 0 2px rgba(117, 102, 161, 0.1);
+}
+
+.cria-checkbox:not(.cria-checkbox--disabled):not(.cria-checkbox--readonly).cria-checkbox--secondary .cria-checkbox__checkmark:hover {
+  border-color: var(--cria-secondary);
+  box-shadow: 0 0 0 2px rgba(40, 221, 185, 0.1);
+}
+
+.cria-checkbox:not(.cria-checkbox--disabled):not(.cria-checkbox--readonly).cria-checkbox--success .cria-checkbox__checkmark:hover {
+  border-color: var(--cria-success);
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.1);
+}
+
+.cria-checkbox:not(.cria-checkbox--disabled):not(.cria-checkbox--readonly).cria-checkbox--warning .cria-checkbox__checkmark:hover {
+  border-color: var(--cria-warning);
+  box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.1);
+}
+
+.cria-checkbox:not(.cria-checkbox--disabled):not(.cria-checkbox--readonly).cria-checkbox--error .cria-checkbox__checkmark:hover {
+  border-color: var(--cria-error);
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.1);
+}
+
+/* Focus State */
+.cria-checkbox__input:focus + .cria-checkbox__checkmark {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+
+.cria-checkbox__input:focus + .cria-checkbox__checkmark {
+  box-shadow: 0 0 0 3px rgba(117, 102, 161, 0.1);
+}
+
+/* Disabled State */
+.cria-checkbox--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.cria-checkbox--disabled .cria-checkbox__container {
+  cursor: not-allowed;
+}
+
+.cria-checkbox--disabled .cria-checkbox__checkmark {
+  background-color: var(--cria-gray-100);
+  border-color: var(--cria-gray-300);
+  cursor: not-allowed;
+}
+
+.cria-checkbox--disabled .cria-checkbox__label {
+  cursor: not-allowed;
+  color: var(--cria-gray-500);
+}
+
+/* Read-only State */
+.cria-checkbox--readonly .cria-checkbox__checkmark {
+  background-color: var(--cria-gray-50);
+  border-color: var(--cria-gray-200);
+  cursor: default;
+}
+
+.cria-checkbox--readonly .cria-checkbox__label {
+  cursor: default;
+}
+
+/* Error State */
+.cria-checkbox--error .cria-checkbox__checkmark {
+  border-color: var(--cria-error);
+}
+
+.cria-checkbox--error .cria-checkbox__checkmark:hover {
+  border-color: var(--cria-error);
+  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.1);
+}
+
+/* Warning State */
+.cria-checkbox--warning .cria-checkbox__checkmark {
+  border-color: var(--cria-warning);
+}
+
+.cria-checkbox--warning .cria-checkbox__checkmark:hover {
+  border-color: var(--cria-warning);
+  box-shadow: 0 0 0 2px rgba(217, 119, 6, 0.1);
+}
+
+/* Label Styles */
+.cria-checkbox__label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.cria-checkbox__label--disabled {
+  cursor: not-allowed;
+  color: var(--cria-gray-500);
+}
+
+.cria-checkbox__label--readonly {
+  cursor: default;
+}
+
+/* Required Indicator */
+.cria-checkbox__required {
+  color: var(--cria-error);
+  margin-left: 2px;
+}
+
+/* Helper Text and Messages */
+.cria-checkbox__helper-text,
+.cria-checkbox__error-message,
+.cria-checkbox__warning-message {
+  margin-top: var(--cria-spacing-1);
+  margin-left: 0;
+}
+
+.cria-checkbox__error-message {
+  color: var(--cria-error);
+}
+
+.cria-checkbox__warning-message {
+  color: var(--cria-warning);
+}
+
+/* Animation for checkmark */
+@keyframes checkmark-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.cria-checkbox--checked .cria-checkbox__checkmark svg,
+.cria-checkbox--indeterminate .cria-checkbox__indeterminate {
+  animation: checkmark-in 0.2s ease-in-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cria-checkbox--lg .cria-checkbox__checkmark {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .cria-checkbox--md .cria-checkbox__checkmark {
+    width: 18px;
+    height: 18px;
+  }
+  
+  .cria-checkbox--sm .cria-checkbox__checkmark {
+    width: 14px;
+    height: 14px;
+  }
+}

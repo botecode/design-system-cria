@@ -8,12 +8,13 @@ import TabsDemo from './components/Tabs/demo';
 import TooltipDemo from './components/Tooltip/demo';
 import ModalDemo from './components/Modal/demo';
 import InputDemo from './components/Input/demo';
+import { CheckboxDemo } from './components/Checkbox/demo';
 import { ColorsDemo } from './components/Colors/demo';
 
 // Import Cartograph font
 import './fonts.css';
 
-type DemoSection = 'overview' | 'typography' | 'button' | 'card' | 'badge' | 'tabs' | 'tooltip' | 'modal' | 'input' | 'colors';
+type DemoSection = 'overview' | 'typography' | 'button' | 'card' | 'badge' | 'tabs' | 'tooltip' | 'modal' | 'input' | 'checkbox' | 'colors';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<DemoSection>('overview');
@@ -28,6 +29,7 @@ const App: React.FC = () => {
     { id: 'tooltip' as DemoSection, label: 'Tooltip' },
     { id: 'modal' as DemoSection, label: 'Modal' },
     { id: 'input' as DemoSection, label: 'Input' },
+    { id: 'checkbox' as DemoSection, label: 'Checkbox' },
     { id: 'colors' as DemoSection, label: 'Colors' },
   ];
 
@@ -49,6 +51,8 @@ const App: React.FC = () => {
         return <ModalDemo />;
       case 'input':
         return <InputDemo />;
+      case 'checkbox':
+        return <CheckboxDemo />;
       case 'colors':
         return <ColorsDemo />;
       default:
