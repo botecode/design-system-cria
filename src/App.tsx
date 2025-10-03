@@ -11,12 +11,13 @@ import InputDemo from './components/Input/demo';
 import { CheckboxDemo } from './components/Checkbox/demo';
 import { SwitchDemo } from './components/Switch/demo';
 import { SnackbarDemo } from './components/Snackbar/demo';
+import { NavigationDemo } from './components/Navigation/demo';
 import { ColorsDemo } from './components/Colors/demo';
 
 // Import Cartograph font
 import './fonts.css';
 
-type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs';
+type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs' | 'navigation';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<DemoSection>('overview');
@@ -34,7 +35,8 @@ const App: React.FC = () => {
     { id: 'tooltip' as DemoSection, label: 'Tooltip' },
     { id: 'card' as DemoSection, label: 'Card' },
     { id: 'badge' as DemoSection, label: 'Badge' },
-    { id: 'tabs' as DemoSection, label: 'Tabs' }
+    { id: 'tabs' as DemoSection, label: 'Tabs' },
+    { id: 'navigation' as DemoSection, label: 'Navigation' }
   ];
 
   const renderContent = () => {
@@ -158,6 +160,8 @@ const App: React.FC = () => {
         return <BadgeDemo />;
       case 'tabs':
         return <TabsDemo />;
+      case 'navigation':
+        return <NavigationDemo />;
       default:
         return <TypographyDemo />;
     }

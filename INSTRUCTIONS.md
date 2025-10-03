@@ -72,7 +72,7 @@ Tests
 	•	Supports variants (success, error, info)
 	•	Accessibility: role="status" or role="alert", screen reader announcement
 
-⬜ Navigation (Sidebar, Topbar)
+✅ Navigation (Sidebar, Topbar)
 
 Tests
 	•	Renders items with correct labels/links
