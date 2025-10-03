@@ -3,12 +3,13 @@ import { Typography, Button, Card, CardHeader, CardContent } from './index';
 import TypographyDemo from './components/Typography/demo';
 import ButtonDemo from './components/Button/demo';
 import CardDemo from './components/Card/demo';
+import BadgeDemo from './components/Badge/demo';
 import { ColorsDemo } from './components/Colors/demo';
 
 // Import Cartograph font
 import './fonts.css';
 
-type DemoSection = 'overview' | 'typography' | 'button' | 'card' | 'colors';
+type DemoSection = 'overview' | 'typography' | 'button' | 'card' | 'badge' | 'colors';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<DemoSection>('overview');
@@ -18,6 +19,7 @@ const App: React.FC = () => {
     { id: 'typography' as DemoSection, label: 'Typography' },
     { id: 'button' as DemoSection, label: 'Button' },
     { id: 'card' as DemoSection, label: 'Card' },
+    { id: 'badge' as DemoSection, label: 'Badge' },
     { id: 'colors' as DemoSection, label: 'Colors' },
   ];
 
@@ -29,6 +31,8 @@ const App: React.FC = () => {
         return <ButtonDemo />;
       case 'card':
         return <CardDemo />;
+      case 'badge':
+        return <BadgeDemo />;
       case 'colors':
         return <ColorsDemo />;
       default:
@@ -108,6 +112,9 @@ const App: React.FC = () => {
               </Button>
               <Button variant="outline" onClick={() => setActiveSection('card')}>
                 See Cards
+              </Button>
+              <Button variant="outline" onClick={() => setActiveSection('badge')}>
+                View Badges
               </Button>
               <Button variant="outline" onClick={() => setActiveSection('colors')}>
                 View Colors

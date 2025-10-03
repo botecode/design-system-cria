@@ -31,7 +31,8 @@ export declare const colors: {
     readonly error: "#EF4444";
     readonly info: "#3B82F6";
     readonly text: {
-        readonly primary: "#3A2E52";
+        readonly primary: "#374151";
+        readonly content: "#3A2E52";
         readonly secondary: "#6B7280";
         readonly disabled: "#9CA3AF";
         readonly inverse: "#FFFFFF";

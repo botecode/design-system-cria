@@ -13,7 +13,7 @@ export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
     /**
      * Text color variant
      */
-    color?: 'primary' | 'primaryLight' | 'secondary' | 'secondaryDark' | 'disabled' | 'inverse' | 'success' | 'warning' | 'error' | 'info';
+    color?: 'primary' | 'primaryLight' | 'content' | 'secondary' | 'secondaryDark' | 'disabled' | 'inverse' | 'success' | 'warning' | 'error' | 'info';
     /**
      * Font weight
      */
