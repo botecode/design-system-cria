@@ -61,7 +61,7 @@ export interface CheckboxRef {
 }
 
 export const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(({
-  checked = false,
+  checked,
   indeterminate = false,
   disabled = false,
   required = false,
@@ -111,6 +111,17 @@ export const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(({
     onClick?.(event);
   }, [disabled, readOnly, onClick]);
 
+  // Handle keyboard events
+  const handleKeyDown = useCallback((event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (disabled || readOnly) return;
+    
+    if (event.key === ' ' || event.key === 'Enter') {
+      event.preventDefault();
+      const newChecked = !checked;
+      onChange?.(newChecked, event as any);
+    }
+  }, [disabled, readOnly, checked, onChange]);
+
   // Build CSS classes
   const checkboxClasses = [
     'cria-checkbox',
@@ -153,7 +164,7 @@ export const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(({
           id={id || (label ? `${name || 'checkbox'}-input` : undefined)}
           name={name}
           value={value}
-          checked={checked}
+          {...(checked !== undefined ? { checked } : {})}
           disabled={disabled}
           readOnly={readOnly}
           required={required}
@@ -162,6 +173,7 @@ export const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(({
           onClick={handleClick}
           onFocus={onFocus}
           onBlur={onBlur}
+          onKeyDown={handleKeyDown}
           aria-describedby={
             [
               helperText && `${id || name || 'checkbox'}-helper`,
@@ -170,14 +182,15 @@ export const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(({
             ].filter(Boolean).join(' ') || undefined
           }
           aria-invalid={!!errorMessage}
-          aria-checked={indeterminate ? 'mixed' : checked}
+          aria-checked={indeterminate ? 'mixed' : checked || false}
+          aria-label={label}
           {...inputProps}
         />
         
         <div className="cria-checkbox__checkmark">
           {indeterminate ? (
             <div className="cria-checkbox__indeterminate" />
-          ) : checked ? (
+          ) : (checked === true) ? (
             <Check size={size === 'sm' ? 12 : size === 'lg' ? 20 : 16} />
           ) : null}
         </div>
