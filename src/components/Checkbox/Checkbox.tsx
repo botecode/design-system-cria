@@ -187,7 +187,7 @@ export const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(({
             <Typography 
               variant="body" 
               size={size === 'sm' ? 'sm' : size === 'lg' ? 'md' : 'sm'}
-              color={disabled ? 'secondary' : 'default'}
+              color={disabled ? 'secondary' : 'content'}
             >
               {label}
               {required && <span className="cria-checkbox__required" aria-label="required"> *</span>}
@@ -200,7 +200,7 @@ export const Checkbox = forwardRef<CheckboxRef, CheckboxProps>(({
       {helperText && !errorMessage && !warningMessage && (
         <Typography 
           variant="caption" 
-          color="secondary" 
+          color="default" 
           className="cria-checkbox__helper-text"
           id={`${id || name || 'checkbox'}-helper`}
         >

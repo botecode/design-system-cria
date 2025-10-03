@@ -1863,7 +1863,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  border: 2px solid var(--cria-gray-300);
+  border: 2px solid var(--cria-gray-400);
   background-color: var(--cria-white);
   border-radius: var(--cria-radius-sm);
   transition: all 0.2s ease-in-out;
@@ -1892,17 +1892,17 @@ body {
 /* Checkbox Variants */
 .cria-checkbox--default .cria-checkbox__checkmark {
   background-color: var(--cria-white);
-  border-color: var(--cria-gray-300);
+  border-color: var(--cria-gray-400);
 }
 
 .cria-checkbox--filled .cria-checkbox__checkmark {
   background-color: var(--cria-gray-100);
-  border-color: var(--cria-gray-300);
+  border-color: var(--cria-gray-400);
 }
 
 .cria-checkbox--outlined .cria-checkbox__checkmark {
   background-color: transparent;
-  border-color: var(--cria-gray-400);
+  border-color: var(--cria-gray-500);
   border-width: 2px;
 }
 
@@ -2035,13 +2035,13 @@ body {
 
 .cria-checkbox--disabled .cria-checkbox__checkmark {
   background-color: var(--cria-gray-100);
-  border-color: var(--cria-gray-300);
+  border-color: var(--cria-gray-400);
   cursor: not-allowed;
 }
 
 .cria-checkbox--disabled .cria-checkbox__label {
   cursor: not-allowed;
-  color: var(--cria-gray-500);
+  color: var(--cria-gray-600);
 }
 
 /* Read-only State */
