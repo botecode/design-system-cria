@@ -58,7 +58,7 @@ export interface SwitchRef {
 }
 
 export const Switch = forwardRef<SwitchRef, SwitchProps>(({
-  checked = false,
+  checked,
   disabled = false,
   required = false,
   readOnly = false,
@@ -107,6 +107,17 @@ export const Switch = forwardRef<SwitchRef, SwitchProps>(({
     onClick?.(event);
   }, [disabled, readOnly, onClick]);
 
+  // Handle keyboard events
+  const handleKeyDown = useCallback((event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (disabled || readOnly) return;
+    
+    if (event.key === ' ' || event.key === 'Enter') {
+      event.preventDefault();
+      const newChecked = !checked;
+      onChange?.(newChecked, event as any);
+    }
+  }, [disabled, readOnly, checked, onChange]);
+
   // Build CSS classes
   const switchClasses = [
     'cria-switch',
@@ -146,7 +157,7 @@ export const Switch = forwardRef<SwitchRef, SwitchProps>(({
           id={id || (label ? `${name || 'switch'}-input` : undefined)}
           name={name}
           value={value}
-          checked={checked}
+          {...(checked !== undefined ? { checked } : {})}
           disabled={disabled}
           readOnly={readOnly}
           required={required}
@@ -155,6 +166,7 @@ export const Switch = forwardRef<SwitchRef, SwitchProps>(({
           onClick={handleClick}
           onFocus={onFocus}
           onBlur={onBlur}
+          onKeyDown={handleKeyDown}
           aria-describedby={
             [
               helperText && `${id || name || 'switch'}-helper`,
@@ -163,6 +175,8 @@ export const Switch = forwardRef<SwitchRef, SwitchProps>(({
             ].filter(Boolean).join(' ') || undefined
           }
           aria-invalid={!!errorMessage}
+          aria-checked={checked || false}
+          aria-label={label}
           {...inputProps}
         />
         
