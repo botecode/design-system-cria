@@ -9,12 +9,13 @@ import TooltipDemo from './components/Tooltip/demo';
 import ModalDemo from './components/Modal/demo';
 import InputDemo from './components/Input/demo';
 import { CheckboxDemo } from './components/Checkbox/demo';
+import { SwitchDemo } from './components/Switch/demo';
 import { ColorsDemo } from './components/Colors/demo';
 
 // Import Cartograph font
 import './fonts.css';
 
-type DemoSection = 'overview' | 'typography' | 'button' | 'card' | 'badge' | 'tabs' | 'tooltip' | 'modal' | 'input' | 'checkbox' | 'colors';
+type DemoSection = 'overview' | 'typography' | 'button' | 'card' | 'badge' | 'tabs' | 'tooltip' | 'modal' | 'input' | 'checkbox' | 'switch' | 'colors';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<DemoSection>('overview');
@@ -30,6 +31,7 @@ const App: React.FC = () => {
     { id: 'modal' as DemoSection, label: 'Modal' },
     { id: 'input' as DemoSection, label: 'Input' },
     { id: 'checkbox' as DemoSection, label: 'Checkbox' },
+    { id: 'switch' as DemoSection, label: 'Switch' },
     { id: 'colors' as DemoSection, label: 'Colors' },
   ];
 
@@ -53,6 +55,8 @@ const App: React.FC = () => {
         return <InputDemo />;
       case 'checkbox':
         return <CheckboxDemo />;
+      case 'switch':
+        return <SwitchDemo />;
       case 'colors':
         return <ColorsDemo />;
       default:

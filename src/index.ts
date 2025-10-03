@@ -17,6 +17,7 @@ export * from './components/Tooltip';
 export * from './components/Modal';
 export * from './components/Input';
 export * from './components/Checkbox';
+export * from './components/Switch';
 
 // Main exports
 export { default as Typography } from './components/Typography';
