@@ -63,7 +63,7 @@ Tests
 	•	Respects disabled state
 	•	Accessibility: role="switch", aria-checked, keyboard toggle (space/enter)
 
-⬜ Snackbar / Toast
+✅ Snackbar / Toast
 
 Tests
 	•	Appears with message

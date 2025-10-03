@@ -18,6 +18,7 @@ export * from './components/Modal';
 export * from './components/Input';
 export * from './components/Checkbox';
 export * from './components/Switch';
+export * from './components/Snackbar';
 
 // Main exports
 export { default as Typography } from './components/Typography';
