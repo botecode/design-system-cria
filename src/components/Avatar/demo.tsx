@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Typography } from '../Typography';
 import { Avatar } from './index';
 import { Card, CardContent, CardHeader, CardFooter } from '../Card';
-import { User, UserCircle, UserMinus, UserPlus, CheckCircle, XCircle } from 'phosphor-react';
+import { User, UserCircle, UserMinus, UserPlus, CheckCircle, X } from 'phosphor-react';
 
 export const AvatarDemo: React.FC = () => {
   const [selectedAvatar, setSelectedAvatar] = useState<string | null>(null);
@@ -323,7 +323,7 @@ export const AvatarDemo: React.FC = () => {
               </Typography>
               <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
                 <Avatar icon={<CheckCircle size={20} />} size="lg" />
-                <Avatar icon={<XCircle size={20} />} size="lg" />
+                <Avatar icon={<X size={20} />} size="lg" />
                 <Avatar icon={<UserCircle size={20} />} size="lg" />
                 <Avatar icon={<UserPlus size={20} />} size="lg" />
               </div>
