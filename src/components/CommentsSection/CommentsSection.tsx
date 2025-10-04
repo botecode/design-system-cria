@@ -185,8 +185,8 @@ export const CommentsSection: React.FC<CommentsSectionProps> = ({
           ) : (
             <>
               <div className="cria-comment__content" style={{
-                backgroundColor: depth > 0 ? colors.background.secondary : colors.primary,
-                color: depth > 0 ? colors.text.primary : colors.white,
+                backgroundColor: depth > 0 ? colors.primaryDarker : colors.primary,
+                color: depth > 0 ? colors.white : colors.white,
                 padding: '12px 16px',
                 borderRadius: 16,
                 position: 'relative',
@@ -196,7 +196,7 @@ export const CommentsSection: React.FC<CommentsSectionProps> = ({
                 <Typography 
                   variant="body2" 
                   style={{ 
-                    color: depth > 0 ? colors.text.primary : colors.white, 
+                    color: depth > 0 ? colors.white : colors.white, 
                     whiteSpace: 'pre-wrap',
                     margin: 0
                   }}
@@ -212,7 +212,7 @@ export const CommentsSection: React.FC<CommentsSectionProps> = ({
                   height: 0,
                   borderLeft: '6px solid transparent',
                   borderRight: '6px solid transparent',
-                  borderBottom: `6px solid ${depth > 0 ? colors.background.secondary : colors.primary}`
+                  borderBottom: `6px solid ${depth > 0 ? colors.primaryDarker : colors.primary}`
                 }} />
               </div>
 

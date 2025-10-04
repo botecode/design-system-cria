@@ -102,7 +102,7 @@
 .cria-comment[style*="align-items: flex-end"] .cria-comment__content::after {
   left: auto;
   right: 20px;
-  border-bottom-color: var(--cria-background-secondary);
+  border-bottom-color: var(--cria-primary-darker);
 }
 
 /* Hover effects for interactive elements */
