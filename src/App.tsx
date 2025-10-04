@@ -26,11 +26,12 @@ import { ProgressBarDemo } from './components/ProgressBar/demo';
 import { VerticalTabsDemo } from './components/VerticalTabs/demo';
 import { StepperDemo } from './components/Stepper/demo';
 import { DatePickerDemo } from './components/DatePicker/demo';
+import { FileUploadDemo } from './components/FileUpload/demo';
 
 // Import Cartograph font
 import './fonts.css';
 
-type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'textarea' | 'avatar' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group' | 'breadcrumbs' | 'pagination' | 'progress-bar' | 'vertical-tabs' | 'stepper' | 'date-picker';
+type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'textarea' | 'avatar' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group' | 'breadcrumbs' | 'pagination' | 'progress-bar' | 'vertical-tabs' | 'stepper' | 'date-picker' | 'file-upload';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<DemoSection>('overview');
@@ -41,7 +42,7 @@ const App: React.FC = () => {
   // Initialize active section from URL hash
   React.useEffect(() => {
     const hash = window.location.hash.slice(1); // Remove the # symbol
-    const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'stepper', 'date-picker'];
+    const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'stepper', 'date-picker', 'file-upload'];
     
     if (hash && validSections.includes(hash as DemoSection)) {
       setActiveSection(hash as DemoSection);
@@ -52,7 +53,7 @@ const App: React.FC = () => {
   React.useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.slice(1);
-      const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'stepper', 'date-picker'];
+      const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'stepper', 'date-picker', 'file-upload'];
       
       if (hash && validSections.includes(hash as DemoSection)) {
         setActiveSection(hash as DemoSection);
@@ -101,6 +102,7 @@ const App: React.FC = () => {
         { id: 'switch', label: 'Switch', href: '#switch', icon: <ToggleLeft size={20} /> },
         { id: 'radio-group', label: 'Radio Group', href: '#radio-group', icon: <CheckSquare size={20} /> },
         { id: 'dropdown', label: 'Dropdown', href: '#dropdown', icon: <CaretDown size={20} /> }
+        ,{ id: 'file-upload', label: 'File Upload', href: '#file-upload', icon: <CaretDown size={20} /> }
       ]
     },
     { 
@@ -298,6 +300,8 @@ const App: React.FC = () => {
         return <StepperDemo />;
       case 'date-picker':
         return <DatePickerDemo />;
+      case 'file-upload':
+        return <FileUploadDemo />;
       default:
         return <TypographyDemo />;
     }

@@ -68,10 +68,10 @@ Input Demos
 
 ⸻
 
-🚀 Next Component to Implement: Date Picker
+🚀 Next Component to Implement: File Upload
 
-**Implement the Date Picker immediately**:  
-	•	Create the Date Picker component in the design system.  
+**Implement the File Upload immediately**:  
+	•	Create the File Upload component in the design system.  
 	•	Add tests for all described behaviors.  
 	•	Integrate a demo page into the App.  
 	•	Add an entry to the App sidebar.  
@@ -80,21 +80,20 @@ Input Demos
 	•	Update this file accordingly.  
 
 Features required:  
-	•	Select a date from a calendar popup  
-	•	Support for different date formats (dd.mm.yyyy, mm/dd/yyyy, ISO)  
-	•	Month navigation (previous/next)  
-	•	Keyboard navigation support (arrows, enter, escape to close)  
-	•	Range selection (start and end dates)  
-	•	Disabled dates (past/future constraints)  
-	•	Accessible role="dialog" with ARIA labels for days and navigation  
+	•	Click to select and drag-and-drop files  
+	•	Support multiple and single selection  
+	•	Accept filter (extensions/MIME)  
+	•	Max size validation with error reporting  
+	•	Keyboard accessible dropzone (Enter/Space)  
+	•	List of selected files with remove action  
+	•	ARIA labeling and helper/description association  
 
 Tests required:  
-	•	Renders input and opens calendar popup on click  
-	•	Supports selecting a single date  
-	•	Supports selecting a range (start → end)  
-	•	Keyboard navigation through days works correctly  
-	•	Disabled dates cannot be selected  
-	•	Accessibility: ARIA attributes correctly applied for screen readers  
+	•	Renders label and description  
+	•	Emits onFilesChange on input change  
+	•	Handles drag-and-drop  
+	•	Honors max size and invokes onError  
+	•	Accessibility: roles, labels, keyboard activation  
 
 ⸻
 

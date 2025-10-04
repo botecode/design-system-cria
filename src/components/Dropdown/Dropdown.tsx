@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback, forwardRef, useImperativeHandle } from 'react';
 import { colors, spacing, radii, shadows, typography } from '../../tokens';
 import { Typography } from '../Typography';
+import { CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { CaretDown, MagnifyingGlass, Check, X } from 'phosphor-react';
 
 export interface DropdownOption {
@@ -512,16 +513,10 @@ export const Dropdown = forwardRef<DropdownRef, DropdownProps>(({
                     <span style={{ marginRight: spacing[2] }}>{option.icon}</span>
                   )}
                   <div>
-                    <div style={{ fontSize: typography.fontSize[size === 'sm' ? 'bodySmall' : 'body'] }}>
-                      {option.label}
-                    </div>
+                    <CriaTextBody1 as="span">{option.label}</CriaTextBody1>
                     {option.description && (
-                      <div style={{ 
-                        fontSize: typography.fontSize.caption, 
-                        color: colors.text.secondary,
-                        marginTop: spacing[1]
-                      }}>
-                        {option.description}
+                      <div style={{ marginTop: spacing[1] }}>
+                        <CriaTextBody2 as="span">{option.description}</CriaTextBody2>
                       </div>
                     )}
                   </div>

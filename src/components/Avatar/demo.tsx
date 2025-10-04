@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Typography } from '../Typography';
-import { Avatar } from './index';
+import { Avatar, AvatarUpload } from './index';
 import { Card, CardContent, CardHeader, CardFooter } from '../Card';
 import { User, UserCircle, UserMinus, UserPlus, CheckCircle, X } from 'phosphor-react';
 
@@ -406,6 +406,19 @@ export const AvatarDemo: React.FC = () => {
                 ))}
               </div>
             </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Avatar Upload */}
+      <Card style={{ marginBottom: '32px' }}>
+        <CardHeader>
+          <Typography variant="h3">Avatar Upload</Typography>
+        </CardHeader>
+        <CardContent>
+          <div style={{ display: 'flex', gap: '24px', alignItems: 'center', flexWrap: 'wrap' }}>
+            <AvatarUpload size="lg" label="Upload profile image" />
+            <AvatarUpload size="md" label="Upload avatar" />
           </div>
         </CardContent>
       </Card>
