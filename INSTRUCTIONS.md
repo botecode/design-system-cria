@@ -74,6 +74,7 @@ For each new component:
 	•	Avatar
 	•	Breadcrumbs
 	•	Pagination
+	•	Progress Bar
 
 Input Demos
 	•	Basic Inputs — Full Name, Email Address, Phone Number, Date (dd.mm.yyyy)
@@ -81,28 +82,28 @@ Input Demos
 
 ⸻
 
-⬜ Next Component: Progress Bar
+⬜ Next Component: Vertical Tabs
 
-We need a **Progress Bar component** to display completion percentage for tasks or flows.
+We need a **Vertical Tabs component** for organizing content in a vertical layout.
 
 Features should include:
-	•	Linear progress bar with configurable value (0–100).
-	•	Optional labels (e.g., % completed).
-	•	Support for determinate (fixed value) and indeterminate (loading).
-	•	Color variants (success, warning, error, default).
-	•	Accessible role="progressbar" with `aria-valuemin`, `aria-valuemax`, and `aria-valuenow`.
+	•	Vertical tab navigation with content panels
+	•	Support for active/inactive states
+	•	Keyboard navigation (Arrow keys, Tab, Enter)
+	•	Accessible ARIA attributes and screen reader support
+	•	Customizable tab styling and spacing
+	•	Support for icons and labels
 
 Tests
-	•	Renders progress bar with correct width based on value.
-	•	Supports determinate vs. indeterminate state.
-	•	Displays label when provided.
-	•	Handles color variants correctly.
-	•	Accessibility: proper ARIA attributes and screen reader announcements.
+	•	Renders vertical tabs with proper structure
+	•	Supports tab selection and content switching
+	•	Handles keyboard navigation correctly
+	•	Displays active/inactive states properly
+	•	Accessibility: proper ARIA attributes and screen reader announcements
 
 ⸻
 
-⬜ Upcoming Components (after Progress Bar)
-	•	Vertical Tabs
+⬜ Upcoming Components (after Vertical Tabs)
 	•	Stepper
 	•	Date Picker
 	•	File Upload
@@ -112,6 +113,8 @@ Tests
 	•	Shimmer Eskeletton
 	•	Pricing page
 	•	Card selector (with multi-select and single-select)
+	•	Row of cards (with different titles and option to select how many cards we show before pagination)
+
 
 ⸻
 
