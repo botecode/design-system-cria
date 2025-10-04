@@ -1,0 +1,301 @@
+.cria-page-loading-progress {
+  position: fixed;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  height: 4px;
+  background-color: var(--cria-background-primary);
+  border: none;
+  outline: none;
+  overflow: hidden;
+}
+
+.cria-page-loading-progress--top {
+  top: 0;
+}
+
+.cria-page-loading-progress--bottom {
+  bottom: 0;
+}
+
+/* Size variants */
+.cria-page-loading-progress--sm {
+  height: 2px;
+}
+
+.cria-page-loading-progress--md {
+  height: 4px;
+}
+
+.cria-page-loading-progress--lg {
+  height: 6px;
+}
+
+/* Thickness variants */
+.cria-page-loading-progress--thin {
+  height: 2px;
+}
+
+.cria-page-loading-progress--normal {
+  height: 4px;
+}
+
+.cria-page-loading-progress--thick {
+  height: 6px;
+}
+
+/* Color variants */
+.cria-page-loading-progress--primary {
+  background-color: var(--cria-background-primary);
+}
+
+.cria-page-loading-progress--primary > div {
+  background-color: var(--cria-primary);
+}
+
+.cria-page-loading-progress--secondary {
+  background-color: var(--cria-background-primary);
+}
+
+.cria-page-loading-progress--secondary > div {
+  background-color: var(--cria-secondary);
+}
+
+.cria-page-loading-progress--success {
+  background-color: var(--cria-background-primary);
+}
+
+.cria-page-loading-progress--success > div {
+  background-color: var(--cria-success);
+}
+
+.cria-page-loading-progress--warning {
+  background-color: var(--cria-background-primary);
+}
+
+.cria-page-loading-progress--warning > div {
+  background-color: var(--cria-warning);
+}
+
+.cria-page-loading-progress--error {
+  background-color: var(--cria-background-primary);
+}
+
+.cria-page-loading-progress--error > div {
+  background-color: var(--cria-error);
+}
+
+/* Animation states */
+.cria-page-loading-progress--animated > div {
+  background: linear-gradient(90deg, transparent, var(--cria-primary), transparent);
+  background-size: 200% 100%;
+  animation: cria-progress-shimmer 1.5s infinite;
+}
+
+.cria-page-loading-progress--animated.cria-page-loading-progress--secondary > div {
+  background: linear-gradient(90deg, transparent, var(--cria-secondary), transparent);
+}
+
+.cria-page-loading-progress--animated.cria-page-loading-progress--success > div {
+  background: linear-gradient(90deg, transparent, var(--cria-success), transparent);
+}
+
+.cria-page-loading-progress--animated.cria-page-loading-progress--warning > div {
+  background: linear-gradient(90deg, transparent, var(--cria-warning), transparent);
+}
+
+.cria-page-loading-progress--animated.cria-page-loading-progress--error > div {
+  background: linear-gradient(90deg, transparent, var(--cria-error), transparent);
+}
+
+/* Smooth transitions */
+.cria-page-loading-progress--smooth > div {
+  transition: width 300ms ease-out;
+}
+
+/* Indeterminate state */
+.cria-page-loading-progress--indeterminate > div {
+  width: 100% !important;
+  background: linear-gradient(90deg, transparent, var(--cria-primary), transparent);
+  background-size: 200% 100%;
+  animation: cria-progress-indeterminate 2s infinite;
+}
+
+.cria-page-loading-progress--indeterminate.cria-page-loading-progress--secondary > div {
+  background: linear-gradient(90deg, transparent, var(--cria-secondary), transparent);
+}
+
+.cria-page-loading-progress--indeterminate.cria-page-loading-progress--success > div {
+  background: linear-gradient(90deg, transparent, var(--cria-success), transparent);
+}
+
+.cria-page-loading-progress--indeterminate.cria-page-loading-progress--warning > div {
+  background: linear-gradient(90deg, transparent, var(--cria-warning), transparent);
+}
+
+.cria-page-loading-progress--indeterminate.cria-page-loading-progress--error > div {
+  background: linear-gradient(90deg, transparent, var(--cria-error), transparent);
+}
+
+/* Delayed appearance */
+.cria-page-loading-progress--delayed {
+  opacity: 0;
+  transition: opacity 200ms ease-in-out;
+}
+
+.cria-page-loading-progress--delayed.cria-page-loading-progress--visible {
+  opacity: 1;
+}
+
+/* Keyframe animations */
+@keyframes cria-progress-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes cria-progress-indeterminate {
+  0% {
+    background-position: -200% 0;
+  }
+  50% {
+    background-position: 0% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Progress bar inner element */
+.cria-page-loading-progress > div {
+  height: 100%;
+  width: 0%;
+  background-color: var(--cria-primary);
+  transition: width 300ms ease-out;
+}
+
+/* Label styling */
+.cria-page-loading-progress .cria-progress-label {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: var(--cria-spacing-xs) var(--cria-spacing-sm);
+  background-color: var(--cria-background-secondary);
+  color: var(--cria-text-primary);
+  font-size: var(--cria-typography-size-caption);
+  font-weight: var(--cria-typography-weight-medium);
+  border-radius: 4px;
+  box-shadow: 0 2px 8px var(--cria-border-light);
+  white-space: nowrap;
+  z-index: 10000;
+}
+
+.cria-page-loading-progress--top .cria-progress-label {
+  top: 100%;
+  margin-top: var(--cria-spacing-xs);
+}
+
+.cria-page-loading-progress--bottom .cria-progress-label {
+  bottom: 100%;
+  margin-bottom: var(--cria-spacing-xs);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .cria-page-loading-progress {
+    height: 3px;
+  }
+
+  .cria-page-loading-progress--sm {
+    height: 2px;
+  }
+
+  .cria-page-loading-progress--lg {
+    height: 4px;
+  }
+
+  .cria-page-loading-progress--thin {
+    height: 1px;
+  }
+
+  .cria-page-loading-progress--thick {
+    height: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cria-page-loading-progress {
+    height: 2px;
+  }
+
+  .cria-page-loading-progress--sm {
+    height: 1px;
+  }
+
+  .cria-page-loading-progress--lg {
+    height: 3px;
+  }
+
+  .cria-page-loading-progress--thin {
+    height: 1px;
+  }
+
+  .cria-page-loading-progress--thick {
+    height: 3px;
+  }
+}
+
+/* Dark mode support (when implemented) */
+@media (prefers-color-scheme: dark) {
+  .cria-page-loading-progress {
+    background-color: var(--cria-background-dark, #1f2937);
+  }
+
+  .cria-page-loading-progress .cria-progress-label {
+    background-color: var(--cria-background-dark-secondary, #111827);
+    color: var(--cria-text-dark, #f9fafb);
+  }
+}
+
+/* Accessibility improvements */
+.cria-page-loading-progress:focus {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .cria-page-loading-progress--animated > div,
+  .cria-page-loading-progress--indeterminate > div {
+    animation: none;
+  }
+
+  .cria-page-loading-progress--smooth > div {
+    transition: none;
+  }
+
+  .cria-page-loading-progress--delayed {
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .cria-page-loading-progress {
+    border: 1px solid var(--cria-border-medium);
+  }
+
+  .cria-page-loading-progress > div {
+    border: 1px solid var(--cria-primary);
+  }
+}
+
+/* Print styles */
+@media print {
+  .cria-page-loading-progress {
+    display: none;
+  }
+}

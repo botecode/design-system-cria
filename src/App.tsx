@@ -34,11 +34,12 @@ import CommentsSectionDemo from './components/CommentsSection/demo';
 import SliderDemo from './components/Slider/demo';
 import ShimmerSkeletonDemo from './components/ShimmerSkeleton/demo';
 import PricingPageDemo from './components/PricingPage/demo';
+import PageLoadingProgressDemo from './components/PageLoadingProgress/demo';
 
 // Import Cartograph font
 import './fonts.css';
 
-type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'textarea' | 'avatar' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group' | 'breadcrumbs' | 'pagination' | 'progress-bar' | 'vertical-tabs' | 'stepper' | 'date-picker' | 'file-upload' | 'chat' | 'pie-chart' | 'comments-section' | 'slider' | 'shimmer-skeleton' | 'pricing-page';
+type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'textarea' | 'avatar' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group' | 'breadcrumbs' | 'pagination' | 'progress-bar' | 'vertical-tabs' | 'stepper' | 'date-picker' | 'file-upload' | 'chat' | 'pie-chart' | 'comments-section' | 'slider' | 'shimmer-skeleton' | 'pricing-page' | 'page-loading-progress';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<DemoSection>('overview');
@@ -49,7 +50,7 @@ const App: React.FC = () => {
   // Initialize active section from URL hash
   React.useEffect(() => {
     const hash = window.location.hash.slice(1); // Remove the # symbol
-    const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'stepper', 'date-picker', 'file-upload', 'chat', 'pie-chart', 'comments-section', 'slider', 'shimmer-skeleton', 'pricing-page'];
+    const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'stepper', 'date-picker', 'file-upload', 'chat', 'pie-chart', 'comments-section', 'slider', 'shimmer-skeleton', 'pricing-page', 'page-loading-progress'];
     
     if (hash && validSections.includes(hash as DemoSection)) {
       setActiveSection(hash as DemoSection);
@@ -115,6 +116,7 @@ const App: React.FC = () => {
         ,{ id: 'slider', label: 'Slider', href: '#slider', icon: <List size={20} /> }
         ,{ id: 'shimmer-skeleton', label: 'Shimmer Skeleton', href: '#shimmer-skeleton', icon: <List size={20} /> }
         ,{ id: 'pricing-page', label: 'Pricing Page', href: '#pricing-page', icon: <List size={20} /> }
+        ,{ id: 'page-loading-progress', label: 'Page Loading Progress', href: '#page-loading-progress', icon: <List size={20} /> }
       ]
     },
     { 
@@ -311,6 +313,8 @@ const App: React.FC = () => {
         return <ShimmerSkeletonDemo />;
       case 'pricing-page':
         return <PricingPageDemo />;
+      case 'page-loading-progress':
+        return <PageLoadingProgressDemo />;
       default:
         return <TypographyDemo />;
     }
