@@ -60,6 +60,7 @@ __export(index_exports, {
   TextContent: () => TextContent,
   TextContentImportant: () => TextContentImportant,
   TextContentTitle: () => TextContentTitle,
+  Textarea: () => Textarea,
   Tooltip: () => Tooltip,
   Topbar: () => Topbar,
   Typography: () => Typography,
@@ -3641,10 +3642,224 @@ var TextContentImportant = ({
   return /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Element, { className: classes, style: styles, ...props, children });
 };
 
-// src/components/Tooltip/Tooltip.tsx
+// src/components/Textarea/Textarea.tsx
 var import_react14 = __toESM(require("react"), 1);
-var import_react_dom2 = require("react-dom");
+var import_phosphor_react7 = require("phosphor-react");
 var import_jsx_runtime20 = require("react/jsx-runtime");
+var Textarea = (0, import_react14.forwardRef)(({
+  label,
+  placeholder,
+  size = "md",
+  variant = "default",
+  state = "default",
+  disabled = false,
+  required = false,
+  readOnly = false,
+  showCharacterCount = false,
+  maxLength,
+  helperText,
+  errorMessage,
+  successMessage,
+  warningMessage,
+  autoResize = false,
+  resize = "vertical",
+  className = "",
+  style,
+  onChange,
+  onFocus,
+  onBlur,
+  value,
+  defaultValue,
+  rows = 4,
+  cols,
+  ...props
+}, ref) => {
+  const textareaRef = (0, import_react14.useRef)(null);
+  const [isFocused, setIsFocused] = import_react14.default.useState(false);
+  (0, import_react14.useImperativeHandle)(ref, () => ({
+    focus: () => textareaRef.current?.focus(),
+    blur: () => textareaRef.current?.blur(),
+    select: () => textareaRef.current?.select(),
+    getValue: () => textareaRef.current?.value || "",
+    setValue: (newValue) => {
+      if (textareaRef.current) {
+        textareaRef.current.value = newValue;
+        if (autoResize) {
+          adjustHeight();
+        }
+      }
+    }
+  }));
+  const adjustHeight = (0, import_react14.useCallback)(() => {
+    if (textareaRef.current && autoResize) {
+      const textarea = textareaRef.current;
+      textarea.style.height = "auto";
+      textarea.style.height = `${textarea.scrollHeight}px`;
+    }
+  }, [autoResize]);
+  const handleChange = (0, import_react14.useCallback)((event) => {
+    if (autoResize) {
+      adjustHeight();
+    }
+    onChange?.(event);
+  }, [onChange, autoResize, adjustHeight]);
+  const handleFocus = (0, import_react14.useCallback)((event) => {
+    setIsFocused(true);
+    onFocus?.(event);
+  }, [onFocus]);
+  const handleBlur = (0, import_react14.useCallback)((event) => {
+    setIsFocused(false);
+    onBlur?.(event);
+  }, [onBlur]);
+  (0, import_react14.useEffect)(() => {
+    if (autoResize) {
+      adjustHeight();
+    }
+  }, [value, autoResize, adjustHeight]);
+  const currentState = errorMessage ? "error" : successMessage ? "success" : warningMessage ? "warning" : state;
+  const textareaId = import_react14.default.useId();
+  const labelId = `${textareaId}-label`;
+  const helperId = `${textareaId}-helper`;
+  const errorId = `${textareaId}-error`;
+  const successId = `${textareaId}-success`;
+  const warningId = `${textareaId}-warning`;
+  const countId = `${textareaId}-count`;
+  const containerClasses = [
+    "cria-textarea-container",
+    `cria-textarea-container--${size}`,
+    `cria-textarea-container--${variant}`,
+    `cria-textarea-container--${currentState}`,
+    disabled && "cria-textarea-container--disabled",
+    readOnly && "cria-textarea-container--readonly",
+    isFocused && "cria-textarea-container--focused",
+    autoResize && "cria-textarea-container--auto-resize",
+    className
+  ].filter(Boolean).join(" ");
+  const textareaClasses = [
+    "cria-textarea",
+    `cria-textarea--${size}`,
+    `cria-textarea--${variant}`,
+    `cria-textarea--${currentState}`,
+    disabled && "cria-textarea--disabled",
+    readOnly && "cria-textarea--readonly",
+    isFocused && "cria-textarea--focused",
+    autoResize && "cria-textarea--auto-resize"
+  ].filter(Boolean).join(" ");
+  const currentValue = value !== void 0 ? value : textareaRef.current?.value || "";
+  const characterCount = String(currentValue).length;
+  const describedBy = [
+    helperText && !errorMessage && !successMessage && !warningMessage ? helperId : null,
+    errorMessage ? errorId : null,
+    successMessage ? successId : null,
+    warningMessage ? warningId : null,
+    showCharacterCount && maxLength ? countId : null
+  ].filter(Boolean).join(" ") || void 0;
+  return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: containerClasses, style, children: [
+    label && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("label", { htmlFor: textareaId, id: labelId, className: "cria-textarea__label", children: /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(Typography, { variant: "body", weight: "medium", color: "primary", children: [
+      label,
+      required && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "cria-textarea__required", "aria-label": "required", children: " *" })
+    ] }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
+      "textarea",
+      {
+        ref: textareaRef,
+        id: textareaId,
+        className: textareaClasses,
+        placeholder,
+        disabled,
+        readOnly,
+        required,
+        maxLength,
+        value,
+        defaultValue,
+        onChange: handleChange,
+        onFocus: handleFocus,
+        onBlur: handleBlur,
+        rows,
+        cols,
+        style: {
+          resize: autoResize ? "none" : resize
+        },
+        "aria-describedby": describedBy,
+        "aria-required": required,
+        "aria-invalid": currentState === "error",
+        ...props
+      }
+    ),
+    (helperText || errorMessage || successMessage || warningMessage || showCharacterCount) && /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "cria-textarea__messages", children: [
+      helperText && !errorMessage && !successMessage && !warningMessage && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
+        Typography,
+        {
+          variant: "body",
+          color: "secondary",
+          className: "cria-textarea__helper-text",
+          id: helperId,
+          children: helperText
+        }
+      ),
+      errorMessage && /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(
+        Typography,
+        {
+          variant: "body",
+          color: "error",
+          className: "cria-textarea__error-message",
+          id: errorId,
+          role: "alert",
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(import_phosphor_react7.WarningCircle, { size: 14, style: { marginRight: "4px" } }),
+            errorMessage
+          ]
+        }
+      ),
+      successMessage && /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(
+        Typography,
+        {
+          variant: "body",
+          color: "success",
+          className: "cria-textarea__success-message",
+          id: successId,
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(import_phosphor_react7.Check, { size: 14, style: { marginRight: "4px" } }),
+            successMessage
+          ]
+        }
+      ),
+      warningMessage && /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(
+        Typography,
+        {
+          variant: "body",
+          color: "warning",
+          className: "cria-textarea__warning-message",
+          id: warningId,
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(import_phosphor_react7.WarningCircle, { size: 14, style: { marginRight: "4px" } }),
+            warningMessage
+          ]
+        }
+      ),
+      showCharacterCount && maxLength && /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(
+        Typography,
+        {
+          variant: "body",
+          color: "secondary",
+          className: "cria-textarea__character-count",
+          id: countId,
+          children: [
+            characterCount,
+            "/",
+            maxLength
+          ]
+        }
+      )
+    ] })
+  ] });
+});
+Textarea.displayName = "Textarea";
+
+// src/components/Tooltip/Tooltip.tsx
+var import_react15 = __toESM(require("react"), 1);
+var import_react_dom2 = require("react-dom");
+var import_jsx_runtime21 = require("react/jsx-runtime");
 var Tooltip = ({
   content,
   children,
@@ -3662,15 +3877,15 @@ var Tooltip = ({
   onVisibilityChange,
   ...props
 }) => {
-  const [isVisible, setIsVisible] = (0, import_react14.useState)(false);
-  const [tooltipPosition, setTooltipPosition] = (0, import_react14.useState)({ top: 0, left: 0 });
-  const triggerRef = (0, import_react14.useRef)(null);
-  const tooltipRef = (0, import_react14.useRef)(null);
-  const showTimeoutRef = (0, import_react14.useRef)();
-  const hideTimeoutRef = (0, import_react14.useRef)();
+  const [isVisible, setIsVisible] = (0, import_react15.useState)(false);
+  const [tooltipPosition, setTooltipPosition] = (0, import_react15.useState)({ top: 0, left: 0 });
+  const triggerRef = (0, import_react15.useRef)(null);
+  const tooltipRef = (0, import_react15.useRef)(null);
+  const showTimeoutRef = (0, import_react15.useRef)();
+  const hideTimeoutRef = (0, import_react15.useRef)();
   const isControlled = controlledVisible !== void 0;
   const visible = isControlled ? controlledVisible : isVisible;
-  const calculatePosition = (0, import_react14.useCallback)(() => {
+  const calculatePosition = (0, import_react15.useCallback)(() => {
     if (!triggerRef.current || !tooltipRef.current) return;
     const triggerRect = triggerRef.current.getBoundingClientRect();
     const tooltipRect = tooltipRef.current.getBoundingClientRect();
@@ -3743,7 +3958,7 @@ var Tooltip = ({
       left
     });
   }, [position]);
-  const showTooltip = (0, import_react14.useCallback)(() => {
+  const showTooltip = (0, import_react15.useCallback)(() => {
     if (disabled || isControlled) return;
     if (showTimeoutRef.current) {
       clearTimeout(showTimeoutRef.current);
@@ -3753,7 +3968,7 @@ var Tooltip = ({
       onVisibilityChange?.(true);
     }, delay);
   }, [disabled, isControlled, delay, onVisibilityChange]);
-  const hideTooltip = (0, import_react14.useCallback)(() => {
+  const hideTooltip = (0, import_react15.useCallback)(() => {
     if (disabled || isControlled) return;
     if (showTimeoutRef.current) {
       clearTimeout(showTimeoutRef.current);
@@ -3763,28 +3978,28 @@ var Tooltip = ({
       onVisibilityChange?.(false);
     }, hideDelay);
   }, [disabled, isControlled, hideDelay, onVisibilityChange]);
-  const handleMouseEnter = (0, import_react14.useCallback)(() => {
+  const handleMouseEnter = (0, import_react15.useCallback)(() => {
     if (disabled) return;
     showTooltip();
   }, [disabled, showTooltip]);
-  const handleMouseLeave = (0, import_react14.useCallback)(() => {
+  const handleMouseLeave = (0, import_react15.useCallback)(() => {
     if (disabled) return;
     hideTooltip();
   }, [disabled, hideTooltip]);
-  const handleFocus = (0, import_react14.useCallback)(() => {
+  const handleFocus = (0, import_react15.useCallback)(() => {
     if (disabled) return;
     showTooltip();
   }, [disabled, showTooltip]);
-  const handleBlur = (0, import_react14.useCallback)(() => {
+  const handleBlur = (0, import_react15.useCallback)(() => {
     if (disabled) return;
     hideTooltip();
   }, [disabled, hideTooltip]);
-  (0, import_react14.useEffect)(() => {
+  (0, import_react15.useEffect)(() => {
     if (visible) {
       calculatePosition();
     }
   }, [visible, calculatePosition]);
-  (0, import_react14.useEffect)(() => {
+  (0, import_react15.useEffect)(() => {
     if (!visible) return;
     const updatePosition = () => calculatePosition();
     window.addEventListener("scroll", updatePosition, true);
@@ -3794,13 +4009,13 @@ var Tooltip = ({
       window.removeEventListener("resize", updatePosition);
     };
   }, [visible, calculatePosition]);
-  (0, import_react14.useEffect)(() => {
+  (0, import_react15.useEffect)(() => {
     return () => {
       if (showTimeoutRef.current) clearTimeout(showTimeoutRef.current);
       if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
     };
   }, []);
-  const triggerElement = import_react14.default.cloneElement(children, {
+  const triggerElement = import_react15.default.cloneElement(children, {
     ref: (el) => {
       triggerRef.current = el;
       const childRef = children.ref;
@@ -3827,10 +4042,10 @@ var Tooltip = ({
     visible ? "cria-tooltip--visible" : null,
     className
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(import_jsx_runtime20.Fragment, { children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(import_jsx_runtime21.Fragment, { children: [
     triggerElement,
     visible && (0, import_react_dom2.createPortal)(
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(
         "div",
         {
           ref: tooltipRef,
@@ -3845,8 +4060,8 @@ var Tooltip = ({
           role: "tooltip",
           ...props,
           children: [
-            /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "cria-tooltip__content", children: content }),
-            arrow && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "cria-tooltip__arrow" })
+            /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "cria-tooltip__content", children: content }),
+            arrow && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "cria-tooltip__arrow" })
           ]
         }
       ),
@@ -3886,6 +4101,7 @@ var Tooltip = ({
   TextContent,
   TextContentImportant,
   TextContentTitle,
+  Textarea,
   Tooltip,
   Topbar,
   Typography,

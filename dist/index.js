@@ -3566,10 +3566,224 @@ var TextContentImportant = ({
   return /* @__PURE__ */ jsx19(Element, { className: classes, style: styles, ...props, children });
 };
 
+// src/components/Textarea/Textarea.tsx
+import React15, { forwardRef as forwardRef6, useRef as useRef12, useImperativeHandle as useImperativeHandle6, useCallback as useCallback12, useEffect as useEffect8 } from "react";
+import { Check as Check4, WarningCircle as WarningCircle2 } from "phosphor-react";
+import { jsx as jsx20, jsxs as jsxs17 } from "react/jsx-runtime";
+var Textarea = forwardRef6(({
+  label,
+  placeholder,
+  size = "md",
+  variant = "default",
+  state = "default",
+  disabled = false,
+  required = false,
+  readOnly = false,
+  showCharacterCount = false,
+  maxLength,
+  helperText,
+  errorMessage,
+  successMessage,
+  warningMessage,
+  autoResize = false,
+  resize = "vertical",
+  className = "",
+  style,
+  onChange,
+  onFocus,
+  onBlur,
+  value,
+  defaultValue,
+  rows = 4,
+  cols,
+  ...props
+}, ref) => {
+  const textareaRef = useRef12(null);
+  const [isFocused, setIsFocused] = React15.useState(false);
+  useImperativeHandle6(ref, () => ({
+    focus: () => textareaRef.current?.focus(),
+    blur: () => textareaRef.current?.blur(),
+    select: () => textareaRef.current?.select(),
+    getValue: () => textareaRef.current?.value || "",
+    setValue: (newValue) => {
+      if (textareaRef.current) {
+        textareaRef.current.value = newValue;
+        if (autoResize) {
+          adjustHeight();
+        }
+      }
+    }
+  }));
+  const adjustHeight = useCallback12(() => {
+    if (textareaRef.current && autoResize) {
+      const textarea = textareaRef.current;
+      textarea.style.height = "auto";
+      textarea.style.height = `${textarea.scrollHeight}px`;
+    }
+  }, [autoResize]);
+  const handleChange = useCallback12((event) => {
+    if (autoResize) {
+      adjustHeight();
+    }
+    onChange?.(event);
+  }, [onChange, autoResize, adjustHeight]);
+  const handleFocus = useCallback12((event) => {
+    setIsFocused(true);
+    onFocus?.(event);
+  }, [onFocus]);
+  const handleBlur = useCallback12((event) => {
+    setIsFocused(false);
+    onBlur?.(event);
+  }, [onBlur]);
+  useEffect8(() => {
+    if (autoResize) {
+      adjustHeight();
+    }
+  }, [value, autoResize, adjustHeight]);
+  const currentState = errorMessage ? "error" : successMessage ? "success" : warningMessage ? "warning" : state;
+  const textareaId = React15.useId();
+  const labelId = `${textareaId}-label`;
+  const helperId = `${textareaId}-helper`;
+  const errorId = `${textareaId}-error`;
+  const successId = `${textareaId}-success`;
+  const warningId = `${textareaId}-warning`;
+  const countId = `${textareaId}-count`;
+  const containerClasses = [
+    "cria-textarea-container",
+    `cria-textarea-container--${size}`,
+    `cria-textarea-container--${variant}`,
+    `cria-textarea-container--${currentState}`,
+    disabled && "cria-textarea-container--disabled",
+    readOnly && "cria-textarea-container--readonly",
+    isFocused && "cria-textarea-container--focused",
+    autoResize && "cria-textarea-container--auto-resize",
+    className
+  ].filter(Boolean).join(" ");
+  const textareaClasses = [
+    "cria-textarea",
+    `cria-textarea--${size}`,
+    `cria-textarea--${variant}`,
+    `cria-textarea--${currentState}`,
+    disabled && "cria-textarea--disabled",
+    readOnly && "cria-textarea--readonly",
+    isFocused && "cria-textarea--focused",
+    autoResize && "cria-textarea--auto-resize"
+  ].filter(Boolean).join(" ");
+  const currentValue = value !== void 0 ? value : textareaRef.current?.value || "";
+  const characterCount = String(currentValue).length;
+  const describedBy = [
+    helperText && !errorMessage && !successMessage && !warningMessage ? helperId : null,
+    errorMessage ? errorId : null,
+    successMessage ? successId : null,
+    warningMessage ? warningId : null,
+    showCharacterCount && maxLength ? countId : null
+  ].filter(Boolean).join(" ") || void 0;
+  return /* @__PURE__ */ jsxs17("div", { className: containerClasses, style, children: [
+    label && /* @__PURE__ */ jsx20("label", { htmlFor: textareaId, id: labelId, className: "cria-textarea__label", children: /* @__PURE__ */ jsxs17(Typography, { variant: "body", weight: "medium", color: "primary", children: [
+      label,
+      required && /* @__PURE__ */ jsx20("span", { className: "cria-textarea__required", "aria-label": "required", children: " *" })
+    ] }) }),
+    /* @__PURE__ */ jsx20(
+      "textarea",
+      {
+        ref: textareaRef,
+        id: textareaId,
+        className: textareaClasses,
+        placeholder,
+        disabled,
+        readOnly,
+        required,
+        maxLength,
+        value,
+        defaultValue,
+        onChange: handleChange,
+        onFocus: handleFocus,
+        onBlur: handleBlur,
+        rows,
+        cols,
+        style: {
+          resize: autoResize ? "none" : resize
+        },
+        "aria-describedby": describedBy,
+        "aria-required": required,
+        "aria-invalid": currentState === "error",
+        ...props
+      }
+    ),
+    (helperText || errorMessage || successMessage || warningMessage || showCharacterCount) && /* @__PURE__ */ jsxs17("div", { className: "cria-textarea__messages", children: [
+      helperText && !errorMessage && !successMessage && !warningMessage && /* @__PURE__ */ jsx20(
+        Typography,
+        {
+          variant: "body",
+          color: "secondary",
+          className: "cria-textarea__helper-text",
+          id: helperId,
+          children: helperText
+        }
+      ),
+      errorMessage && /* @__PURE__ */ jsxs17(
+        Typography,
+        {
+          variant: "body",
+          color: "error",
+          className: "cria-textarea__error-message",
+          id: errorId,
+          role: "alert",
+          children: [
+            /* @__PURE__ */ jsx20(WarningCircle2, { size: 14, style: { marginRight: "4px" } }),
+            errorMessage
+          ]
+        }
+      ),
+      successMessage && /* @__PURE__ */ jsxs17(
+        Typography,
+        {
+          variant: "body",
+          color: "success",
+          className: "cria-textarea__success-message",
+          id: successId,
+          children: [
+            /* @__PURE__ */ jsx20(Check4, { size: 14, style: { marginRight: "4px" } }),
+            successMessage
+          ]
+        }
+      ),
+      warningMessage && /* @__PURE__ */ jsxs17(
+        Typography,
+        {
+          variant: "body",
+          color: "warning",
+          className: "cria-textarea__warning-message",
+          id: warningId,
+          children: [
+            /* @__PURE__ */ jsx20(WarningCircle2, { size: 14, style: { marginRight: "4px" } }),
+            warningMessage
+          ]
+        }
+      ),
+      showCharacterCount && maxLength && /* @__PURE__ */ jsxs17(
+        Typography,
+        {
+          variant: "body",
+          color: "secondary",
+          className: "cria-textarea__character-count",
+          id: countId,
+          children: [
+            characterCount,
+            "/",
+            maxLength
+          ]
+        }
+      )
+    ] })
+  ] });
+});
+Textarea.displayName = "Textarea";
+
 // src/components/Tooltip/Tooltip.tsx
-import React15, { useState as useState8, useRef as useRef12, useEffect as useEffect8, useCallback as useCallback12 } from "react";
+import React16, { useState as useState8, useRef as useRef13, useEffect as useEffect9, useCallback as useCallback13 } from "react";
 import { createPortal as createPortal2 } from "react-dom";
-import { Fragment as Fragment3, jsx as jsx20, jsxs as jsxs17 } from "react/jsx-runtime";
+import { Fragment as Fragment3, jsx as jsx21, jsxs as jsxs18 } from "react/jsx-runtime";
 var Tooltip = ({
   content,
   children,
@@ -3589,13 +3803,13 @@ var Tooltip = ({
 }) => {
   const [isVisible, setIsVisible] = useState8(false);
   const [tooltipPosition, setTooltipPosition] = useState8({ top: 0, left: 0 });
-  const triggerRef = useRef12(null);
-  const tooltipRef = useRef12(null);
-  const showTimeoutRef = useRef12();
-  const hideTimeoutRef = useRef12();
+  const triggerRef = useRef13(null);
+  const tooltipRef = useRef13(null);
+  const showTimeoutRef = useRef13();
+  const hideTimeoutRef = useRef13();
   const isControlled = controlledVisible !== void 0;
   const visible = isControlled ? controlledVisible : isVisible;
-  const calculatePosition = useCallback12(() => {
+  const calculatePosition = useCallback13(() => {
     if (!triggerRef.current || !tooltipRef.current) return;
     const triggerRect = triggerRef.current.getBoundingClientRect();
     const tooltipRect = tooltipRef.current.getBoundingClientRect();
@@ -3668,7 +3882,7 @@ var Tooltip = ({
       left
     });
   }, [position]);
-  const showTooltip = useCallback12(() => {
+  const showTooltip = useCallback13(() => {
     if (disabled || isControlled) return;
     if (showTimeoutRef.current) {
       clearTimeout(showTimeoutRef.current);
@@ -3678,7 +3892,7 @@ var Tooltip = ({
       onVisibilityChange?.(true);
     }, delay);
   }, [disabled, isControlled, delay, onVisibilityChange]);
-  const hideTooltip = useCallback12(() => {
+  const hideTooltip = useCallback13(() => {
     if (disabled || isControlled) return;
     if (showTimeoutRef.current) {
       clearTimeout(showTimeoutRef.current);
@@ -3688,28 +3902,28 @@ var Tooltip = ({
       onVisibilityChange?.(false);
     }, hideDelay);
   }, [disabled, isControlled, hideDelay, onVisibilityChange]);
-  const handleMouseEnter = useCallback12(() => {
+  const handleMouseEnter = useCallback13(() => {
     if (disabled) return;
     showTooltip();
   }, [disabled, showTooltip]);
-  const handleMouseLeave = useCallback12(() => {
+  const handleMouseLeave = useCallback13(() => {
     if (disabled) return;
     hideTooltip();
   }, [disabled, hideTooltip]);
-  const handleFocus = useCallback12(() => {
+  const handleFocus = useCallback13(() => {
     if (disabled) return;
     showTooltip();
   }, [disabled, showTooltip]);
-  const handleBlur = useCallback12(() => {
+  const handleBlur = useCallback13(() => {
     if (disabled) return;
     hideTooltip();
   }, [disabled, hideTooltip]);
-  useEffect8(() => {
+  useEffect9(() => {
     if (visible) {
       calculatePosition();
     }
   }, [visible, calculatePosition]);
-  useEffect8(() => {
+  useEffect9(() => {
     if (!visible) return;
     const updatePosition = () => calculatePosition();
     window.addEventListener("scroll", updatePosition, true);
@@ -3719,13 +3933,13 @@ var Tooltip = ({
       window.removeEventListener("resize", updatePosition);
     };
   }, [visible, calculatePosition]);
-  useEffect8(() => {
+  useEffect9(() => {
     return () => {
       if (showTimeoutRef.current) clearTimeout(showTimeoutRef.current);
       if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
     };
   }, []);
-  const triggerElement = React15.cloneElement(children, {
+  const triggerElement = React16.cloneElement(children, {
     ref: (el) => {
       triggerRef.current = el;
       const childRef = children.ref;
@@ -3752,10 +3966,10 @@ var Tooltip = ({
     visible ? "cria-tooltip--visible" : null,
     className
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ jsxs17(Fragment3, { children: [
+  return /* @__PURE__ */ jsxs18(Fragment3, { children: [
     triggerElement,
     visible && createPortal2(
-      /* @__PURE__ */ jsxs17(
+      /* @__PURE__ */ jsxs18(
         "div",
         {
           ref: tooltipRef,
@@ -3770,8 +3984,8 @@ var Tooltip = ({
           role: "tooltip",
           ...props,
           children: [
-            /* @__PURE__ */ jsx20("div", { className: "cria-tooltip__content", children: content }),
-            arrow && /* @__PURE__ */ jsx20("div", { className: "cria-tooltip__arrow" })
+            /* @__PURE__ */ jsx21("div", { className: "cria-tooltip__content", children: content }),
+            arrow && /* @__PURE__ */ jsx21("div", { className: "cria-tooltip__arrow" })
           ]
         }
       ),
@@ -3810,6 +4024,7 @@ export {
   TextContent,
   TextContentImportant,
   TextContentTitle,
+  Textarea,
   Tooltip,
   Topbar,
   Typography,

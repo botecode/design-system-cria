@@ -1825,6 +1825,299 @@ body {
 }
 
 /* ========================================
+   TEXTAREA COMPONENT STYLES
+   ======================================== */
+
+/* Textarea Container */
+.cria-textarea-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Textarea Label */
+.cria-textarea__label {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.cria-textarea__required {
+  color: var(--cria-error);
+}
+
+/* Base Textarea */
+.cria-textarea {
+  width: 100%;
+  font-family: var(--cria-font-family);
+  font-size: var(--cria-font-size-body);
+  line-height: 1.5;
+  border-radius: var(--cria-radius-md);
+  transition: all 0.2s ease-in-out;
+  outline: none;
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Textarea Sizes */
+.cria-textarea--sm {
+  padding: 6px 10px;
+  font-size: 14px;
+  min-height: 60px;
+}
+
+.cria-textarea--md {
+  padding: 10px 14px;
+  font-size: 16px;
+  min-height: 80px;
+}
+
+.cria-textarea--lg {
+  padding: 14px 18px;
+  font-size: 18px;
+  min-height: 100px;
+}
+
+/* Textarea Variants */
+.cria-textarea--default {
+  background-color: var(--cria-white);
+  border: 1px solid var(--cria-gray-300);
+  color: var(--cria-gray-900);
+}
+
+.cria-textarea--default:focus {
+  border-color: var(--cria-primary);
+  box-shadow: 0 0 0 3px rgba(117, 102, 161, 0.1);
+}
+
+.cria-textarea--filled {
+  background-color: var(--cria-gray-50);
+  border: 1px solid var(--cria-gray-200);
+  color: var(--cria-gray-900);
+}
+
+.cria-textarea--filled:focus {
+  background-color: var(--cria-white);
+  border-color: var(--cria-primary);
+  box-shadow: 0 0 0 3px rgba(117, 102, 161, 0.1);
+}
+
+.cria-textarea--outlined {
+  background-color: transparent;
+  border: 2px solid var(--cria-gray-300);
+  color: var(--cria-gray-900);
+}
+
+.cria-textarea--outlined:focus {
+  border-color: var(--cria-primary);
+  box-shadow: 0 0 0 3px rgba(117, 102, 161, 0.1);
+}
+
+.cria-textarea--underlined {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid var(--cria-gray-300);
+  border-radius: 0;
+  color: var(--cria-gray-900);
+}
+
+.cria-textarea--underlined:focus {
+  border-bottom-color: var(--cria-primary);
+  box-shadow: none;
+}
+
+/* Textarea States */
+.cria-textarea--success {
+  border-color: var(--cria-success);
+}
+
+.cria-textarea--success:focus {
+  border-color: var(--cria-success);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.cria-textarea--warning {
+  border-color: var(--cria-warning);
+}
+
+.cria-textarea--warning:focus {
+  border-color: var(--cria-warning);
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
+}
+
+.cria-textarea--error {
+  border-color: var(--cria-error);
+}
+
+.cria-textarea--error:focus {
+  border-color: var(--cria-error);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+/* Disabled and Read-only States */
+.cria-textarea--disabled {
+  background-color: var(--cria-gray-100);
+  border-color: var(--cria-gray-200);
+  color: var(--cria-gray-500);
+  cursor: not-allowed;
+  resize: none;
+}
+
+.cria-textarea--readonly {
+  background-color: var(--cria-gray-50);
+  border-color: var(--cria-gray-200);
+  cursor: default;
+  resize: none;
+}
+
+/* Focused State */
+.cria-textarea--focused {
+  /* Focus styles are handled by variants above */
+}
+
+/* Auto-resize */
+.cria-textarea--auto-resize {
+  resize: none !important;
+  overflow: hidden;
+}
+
+/* Textarea Messages */
+.cria-textarea__messages {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.cria-textarea__helper-text {
+  color: var(--cria-gray-600);
+}
+
+.cria-textarea__error-message {
+  color: var(--cria-error);
+  display: flex;
+  align-items: center;
+}
+
+.cria-textarea__success-message {
+  color: var(--cria-success);
+  display: flex;
+  align-items: center;
+}
+
+.cria-textarea__warning-message {
+  color: var(--cria-warning);
+  display: flex;
+  align-items: center;
+}
+
+.cria-textarea__character-count {
+  color: var(--cria-gray-500);
+  text-align: right;
+  font-size: var(--cria-font-size-body-small);
+}
+
+/* Container States */
+.cria-textarea-container--disabled .cria-textarea__label {
+  color: var(--cria-gray-500);
+}
+
+.cria-textarea-container--focused .cria-textarea {
+  /* Focus styles handled by textarea--focused class */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cria-textarea--sm {
+    padding: 6px 10px;
+    font-size: 14px;
+    min-height: 60px;
+  }
+  
+  .cria-textarea--md {
+    padding: 10px 14px;
+    font-size: 16px;
+    min-height: 80px;
+  }
+  
+  .cria-textarea--lg {
+    padding: 14px 18px;
+    font-size: 18px;
+    min-height: 100px;
+  }
+}
+
+/* Focus styles for accessibility */
+.cria-textarea:focus-visible {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+
+/* Animation for smooth transitions */
+@keyframes textarea-focus-in {
+  from {
+    box-shadow: 0 0 0 0 rgba(117, 102, 161, 0.1);
+  }
+  to {
+    box-shadow: 0 0 0 3px rgba(117, 102, 161, 0.1);
+  }
+}
+
+.cria-textarea:focus {
+  animation: textarea-focus-in 0.2s ease-in-out;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .cria-textarea--default {
+    background-color: var(--cria-gray-800);
+    border-color: var(--cria-gray-600);
+    color: var(--cria-gray-100);
+  }
+
+  .cria-textarea--filled {
+    background-color: var(--cria-gray-700);
+    border-color: var(--cria-gray-600);
+    color: var(--cria-gray-100);
+  }
+
+  .cria-textarea--outlined {
+    background-color: transparent;
+    border-color: var(--cria-gray-600);
+    color: var(--cria-gray-100);
+  }
+
+  .cria-textarea--underlined {
+    border-bottom-color: var(--cria-gray-600);
+    color: var(--cria-gray-100);
+  }
+
+  .cria-textarea--disabled {
+    background-color: var(--cria-gray-700);
+    border-color: var(--cria-gray-600);
+    color: var(--cria-gray-400);
+  }
+
+  .cria-textarea--readonly {
+    background-color: var(--cria-gray-700);
+    border-color: var(--cria-gray-600);
+    color: var(--cria-gray-300);
+  }
+
+  .cria-textarea-container--disabled .cria-textarea__label {
+    color: var(--cria-gray-400);
+  }
+
+  .cria-textarea__helper-text {
+    color: var(--cria-gray-400);
+  }
+
+  .cria-textarea__character-count {
+    color: var(--cria-gray-400);
+  }
+}
+
+/* ========================================
    CHECKBOX COMPONENT STYLES
    ======================================== */
 

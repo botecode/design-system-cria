@@ -1361,6 +1361,104 @@ interface TextContentImportantProps extends BaseTextProps {
  */
 declare const TextContentImportant: React__default.FC<TextContentImportantProps>;
 
+interface TextareaProps extends Omit<React__default.TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> {
+    /**
+     * Textarea label
+     */
+    label?: string;
+    /**
+     * Textarea placeholder
+     */
+    placeholder?: string;
+    /**
+     * Textarea size
+     */
+    size?: 'sm' | 'md' | 'lg';
+    /**
+     * Textarea variant
+     */
+    variant?: 'default' | 'filled' | 'outlined' | 'underlined';
+    /**
+     * Textarea state
+     */
+    state?: 'default' | 'success' | 'warning' | 'error';
+    /**
+     * Whether the textarea is disabled
+     */
+    disabled?: boolean;
+    /**
+     * Whether the textarea is required
+     */
+    required?: boolean;
+    /**
+     * Whether the textarea is read-only
+     */
+    readOnly?: boolean;
+    /**
+     * Whether to show character count
+     */
+    showCharacterCount?: boolean;
+    /**
+     * Maximum character count
+     */
+    maxLength?: number;
+    /**
+     * Helper text
+     */
+    helperText?: string;
+    /**
+     * Error message
+     */
+    errorMessage?: string;
+    /**
+     * Success message
+     */
+    successMessage?: string;
+    /**
+     * Warning message
+     */
+    warningMessage?: string;
+    /**
+     * Whether to enable auto-resize
+     */
+    autoResize?: boolean;
+    /**
+     * Resize behavior
+     */
+    resize?: 'none' | 'both' | 'horizontal' | 'vertical';
+    /**
+     * Custom class name for the textarea container
+     */
+    className?: string;
+    /**
+     * Custom styles for the textarea container
+     */
+    style?: React__default.CSSProperties;
+    /**
+     * Callback fired when the textarea value changes
+     */
+    onChange?: (event: React__default.ChangeEvent<HTMLTextAreaElement>) => void;
+    /**
+     * Callback fired when the textarea is focused
+     */
+    onFocus?: (event: React__default.FocusEvent<HTMLTextAreaElement>) => void;
+    /**
+     * Callback fired when the textarea is blurred
+     */
+    onBlur?: (event: React__default.FocusEvent<HTMLTextAreaElement>) => void;
+}
+interface TextareaRef {
+    focus: () => void;
+    blur: () => void;
+    select: () => void;
+    getValue: () => string;
+    setValue: (value: string) => void;
+}
+/**
+ * Textarea component for multi-line text input with various states and features
+ */
+declare const Textarea: React__default.ForwardRefExoticComponent<TextareaProps & React__default.RefAttributes<TextareaRef>>;
+
 interface TooltipProps extends Omit<React__default.HTMLAttributes<HTMLDivElement>, 'children' | 'content'> {
     /**
      * The content to display in the tooltip
@@ -1475,4 +1573,4 @@ declare const Typography: React__default.FC<TypographyProps>;
  */
 declare const TypographyDemo: React__default.FC;
 
-export { Accordion, AccordionContent, type AccordionContentProps, AccordionHeader, type AccordionHeaderProps, AccordionItem, type AccordionItemProps, type AccordionProps, Badge, type BadgeProps, type BorderColor, Button, ButtonDemo, type ButtonProps, Card, CardContent, type CardContentProps, CardDemo, CardFooter, type CardFooterProps, CardHeader, type CardHeaderProps, type CardProps, Checkbox, type CheckboxProps, type CheckboxRef, type ColorToken, Dropdown, DropdownItem, type DropdownItemProps, type DropdownOption, type DropdownProps, type DropdownRef, type FontWeight, type GrayScale, Input, type InputProps, type InputRef, type LetterSpacing, type LineHeight, Modal, type ModalProps, Navigation, type NavigationItem, type NavigationProps, Sidebar$1 as NavigationSidebar, type NavigationSidebarProps, RadioGroup, RadioGroupItem, type RadioGroupItemProps, RadioGroupLabel, type RadioGroupLabelProps, type RadioGroupProps, type RadiusToken, type ShadowToken, Sidebar, type SidebarItem, type SidebarProps, Snackbar, type SnackbarAction, type SnackbarPosition, type SnackbarProps, type SnackbarRef, type SnackbarVariant, type SpacingToken, Switch, type SwitchProps, type SwitchRef, type TabItem, Tabs, type TabsProps, TextBody, type TextBodyProps, type TextColor, TextContent, TextContentImportant, type TextContentImportantProps, type TextContentProps, TextContentTitle, type TextContentTitleProps, Tooltip, type TooltipProps, Topbar, type TopbarProps, Typography, TypographyDemo, type TypographyProps, type TypographyVariant, colors, cssVariables, radii, shadows, spacing, typography };
+export { Accordion, AccordionContent, type AccordionContentProps, AccordionHeader, type AccordionHeaderProps, AccordionItem, type AccordionItemProps, type AccordionProps, Badge, type BadgeProps, type BorderColor, Button, ButtonDemo, type ButtonProps, Card, CardContent, type CardContentProps, CardDemo, CardFooter, type CardFooterProps, CardHeader, type CardHeaderProps, type CardProps, Checkbox, type CheckboxProps, type CheckboxRef, type ColorToken, Dropdown, DropdownItem, type DropdownItemProps, type DropdownOption, type DropdownProps, type DropdownRef, type FontWeight, type GrayScale, Input, type InputProps, type InputRef, type LetterSpacing, type LineHeight, Modal, type ModalProps, Navigation, type NavigationItem, type NavigationProps, Sidebar$1 as NavigationSidebar, type NavigationSidebarProps, RadioGroup, RadioGroupItem, type RadioGroupItemProps, RadioGroupLabel, type RadioGroupLabelProps, type RadioGroupProps, type RadiusToken, type ShadowToken, Sidebar, type SidebarItem, type SidebarProps, Snackbar, type SnackbarAction, type SnackbarPosition, type SnackbarProps, type SnackbarRef, type SnackbarVariant, type SpacingToken, Switch, type SwitchProps, type SwitchRef, type TabItem, Tabs, type TabsProps, TextBody, type TextBodyProps, type TextColor, TextContent, TextContentImportant, type TextContentImportantProps, type TextContentProps, TextContentTitle, type TextContentTitleProps, Textarea, type TextareaProps, type TextareaRef, Tooltip, type TooltipProps, Topbar, type TopbarProps, Typography, TypographyDemo, type TypographyProps, type TypographyVariant, colors, cssVariables, radii, shadows, spacing, typography };

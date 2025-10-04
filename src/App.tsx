@@ -9,6 +9,7 @@ import TabsDemo from './components/Tabs/demo';
 import TooltipDemo from './components/Tooltip/demo';
 import ModalDemo from './components/Modal/demo';
 import InputDemo from './components/Input/demo';
+import { TextareaDemo } from './components/Textarea/demo';
 import { CheckboxDemo } from './components/Checkbox/demo';
 import { SwitchDemo } from './components/Switch/demo';
 import { SnackbarDemo } from './components/Snackbar/demo';
@@ -22,7 +23,7 @@ import { RadioGroupDemo } from './components/RadioGroup/demo';
 // Import Cartograph font
 import './fonts.css';
 
-type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group';
+type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'textarea' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<DemoSection>('overview');
@@ -86,6 +87,7 @@ const App: React.FC = () => {
       subitems: [
         { id: 'button', label: 'Button', href: '#button', icon: <Mouse size={20} /> },
         { id: 'input', label: 'Input', href: '#input', icon: <PencilSimple size={20} /> },
+        { id: 'textarea', label: 'Textarea', href: '#textarea', icon: <TextAa size={20} /> },
         { id: 'checkbox', label: 'Checkbox', href: '#checkbox', icon: <CheckSquare size={20} /> },
         { id: 'switch', label: 'Switch', href: '#switch', icon: <ToggleLeft size={20} /> },
         { id: 'radio-group', label: 'Radio Group', href: '#radio-group', icon: <CheckSquare size={20} /> },
@@ -239,6 +241,8 @@ const App: React.FC = () => {
         return <ButtonDemo />;
       case 'input':
         return <InputDemo />;
+      case 'textarea':
+        return <TextareaDemo />;
       case 'checkbox':
         return <CheckboxDemo />;
       case 'switch':
