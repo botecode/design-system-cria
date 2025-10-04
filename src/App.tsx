@@ -29,6 +29,7 @@ import { DatePickerDemo } from './components/DatePicker/demo';
 import { FileUploadDemo } from './components/FileUpload/demo';
 import { ChatDemo } from './components/Chat/demo';
 import PieChartDemo from './components/PieChart/demo';
+import LineChartDemo from './components/LineChart/demo';
 
 // Import Cartograph font
 import './fonts.css';
@@ -123,7 +124,7 @@ const App: React.FC = () => {
         { id: 'progress-bar', label: 'Progress Bar', href: '#progress-bar', icon: <List size={20} /> },
         { id: 'stepper', label: 'Stepper', href: '#stepper', icon: <List size={20} /> },
         { id: 'date-picker', label: 'Date Picker', href: '#date-picker', icon: <List size={20} /> },
-        { id: 'pie-chart', label: 'Pie Chart', href: '#pie-chart', icon: <List size={20} /> }
+        { id: 'pie-chart', label: 'Charts', href: '#pie-chart', icon: <List size={20} /> }
       ]
     },
     { 
@@ -287,7 +288,13 @@ const App: React.FC = () => {
       case 'chat':
         return <ChatDemo />;
       case 'pie-chart':
-        return <PieChartDemo />;
+        return (
+          <div>
+            <PieChartDemo />
+            <div style={{ height: 24 }} />
+            <LineChartDemo />
+          </div>
+        );
       default:
         return <TypographyDemo />;
     }
