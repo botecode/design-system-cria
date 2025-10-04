@@ -1,0 +1,15 @@
+/* ===== FILE UPLOAD ===== */
+.cria-file-upload { display: flex; flex-direction: column; gap: 8px; font-family: var(--cria-font-family); }
+.cria-file-upload__label { display: block; }
+.cria-file-upload__input { display: none; }
+.cria-file-upload__dropzone { border: 1px dashed var(--cria-border-medium); border-radius: var(--cria-radius-md); background: var(--cria-white); padding: 16px; cursor: pointer; transition: background-color .2s ease, border-color .2s ease; }
+.cria-file-upload__dropzone:hover { background: var(--cria-gray-50); border-color: var(--cria-primary); }
+.cria-file-upload--disabled .cria-file-upload__dropzone { cursor: not-allowed; opacity: .6; }
+.cria-file-upload__dropzone-inner { display: flex; flex-direction: column; gap: 4px; align-items: center; }
+.cria-file-upload__list { list-style: none; padding: 0; margin: 8px 0 0 0; display: flex; flex-direction: column; gap: 6px; }
+.cria-file-upload__item { display: flex; align-items: center; gap: 8px; padding: 8px 12px; background: var(--cria-gray-50); border: 1px solid var(--cria-gray-200); border-radius: var(--cria-radius-sm); }
+.cria-file-upload__filename { flex: 1; color: var(--cria-gray-800); }
+.cria-file-upload__filesize { color: var(--cria-gray-600); font-size: var(--cria-font-size-caption); }
+.cria-file-upload__remove { background: none; border: none; color: var(--cria-error); cursor: pointer; font-size: 16px; padding: 4px; border-radius: var(--cria-radius-sm); }
+.cria-file-upload__remove:hover { background: rgba(239, 68, 68, 0.08); }
+

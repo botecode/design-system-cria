@@ -1,0 +1,254 @@
+/* ===== BADGE COMPONENT STYLES ===== */
+
+/* Base Badge Styles */
+.cria-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-family: var(--cria-font-family);
+  font-weight: var(--cria-font-weight-medium);
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: var(--cria-radius-full);
+  transition: all 0.2s ease-in-out;
+  user-select: none;
+}
+
+/* Badge Sizes */
+.cria-badge--sm {
+  padding: 2px 6px;
+  font-size: 10px;
+  min-height: 16px;
+}
+
+.cria-badge--md {
+  padding: 4px 8px;
+  font-size: 12px;
+  min-height: 20px;
+}
+
+.cria-badge--lg {
+  padding: 6px 12px;
+  font-size: 14px;
+  min-height: 24px;
+}
+
+/* Badge Dot Variant */
+.cria-badge--dot {
+  padding: 0;
+  width: 8px;
+  height: 8px;
+  min-height: 8px;
+  border-radius: 50%;
+}
+
+.cria-badge--dot.cria-badge--sm {
+  width: 6px;
+  height: 6px;
+  min-height: 6px;
+}
+
+.cria-badge--dot.cria-badge--lg {
+  width: 10px;
+  height: 10px;
+  min-height: 10px;
+}
+
+/* Badge Variants - Solid Style */
+.cria-badge--default {
+  background-color: var(--cria-gray-100);
+  color: var(--cria-gray-700);
+  border: 1px solid var(--cria-gray-200);
+}
+
+.cria-badge--primary {
+  background-color: var(--cria-primary);
+  color: var(--cria-white);
+  border: 1px solid var(--cria-primary);
+}
+
+.cria-badge--secondary {
+  background-color: var(--cria-secondary);
+  color: var(--cria-white);
+  border: 1px solid var(--cria-secondary);
+}
+
+.cria-badge--success {
+  background-color: var(--cria-success);
+  color: var(--cria-white);
+  border: 1px solid var(--cria-success);
+}
+
+.cria-badge--warning {
+  background-color: var(--cria-warning);
+  color: var(--cria-white);
+  border: 1px solid var(--cria-warning);
+}
+
+.cria-badge--error {
+  background-color: var(--cria-error);
+  color: var(--cria-white);
+  border: 1px solid var(--cria-error);
+}
+
+.cria-badge--info {
+  background-color: var(--cria-info);
+  color: var(--cria-white);
+  border: 1px solid var(--cria-info);
+}
+
+/* Badge Variants - Outline Style */
+.cria-badge--outline.cria-badge--default {
+  background-color: transparent;
+  color: var(--cria-gray-700);
+  border: 1px solid var(--cria-gray-300);
+}
+
+.cria-badge--outline.cria-badge--primary {
+  background-color: transparent;
+  color: var(--cria-primary);
+  border: 1px solid var(--cria-primary);
+}
+
+.cria-badge--outline.cria-badge--secondary {
+  background-color: transparent;
+  color: var(--cria-secondary);
+  border: 1px solid var(--cria-secondary);
+}
+
+.cria-badge--outline.cria-badge--success {
+  background-color: transparent;
+  color: var(--cria-success);
+  border: 1px solid var(--cria-success);
+}
+
+.cria-badge--outline.cria-badge--warning {
+  background-color: transparent;
+  color: var(--cria-warning);
+  border: 1px solid var(--cria-warning);
+}
+
+.cria-badge--outline.cria-badge--error {
+  background-color: transparent;
+  color: var(--cria-error);
+  border: 1px solid var(--cria-error);
+}
+
+.cria-badge--outline.cria-badge--info {
+  background-color: transparent;
+  color: var(--cria-info);
+  border: 1px solid var(--cria-info);
+}
+
+/* Badge Variants - Soft Style */
+.cria-badge--soft.cria-badge--default {
+  background-color: var(--cria-gray-50);
+  color: var(--cria-gray-700);
+  border: 1px solid var(--cria-gray-100);
+}
+
+.cria-badge--soft.cria-badge--primary {
+  background-color: rgba(117, 102, 161, 0.1);
+  color: var(--cria-primary);
+  border: 1px solid rgba(117, 102, 161, 0.2);
+}
+
+.cria-badge--soft.cria-badge--secondary {
+  background-color: rgba(40, 221, 185, 0.1);
+  color: var(--cria-secondary-dark);
+  border: 1px solid rgba(40, 221, 185, 0.2);
+}
+
+.cria-badge--soft.cria-badge--success {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--cria-success);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.cria-badge--soft.cria-badge--warning {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: var(--cria-warning);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.cria-badge--soft.cria-badge--error {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--cria-error);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.cria-badge--soft.cria-badge--info {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: var(--cria-info);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+/* Interactive Badge Styles */
+.cria-badge--interactive {
+  cursor: pointer;
+}
+
+.cria-badge--interactive:hover:not(.cria-badge--disabled) {
+  transform: translateY(-1px);
+  box-shadow: var(--cria-shadow-sm);
+}
+
+.cria-badge--interactive:active:not(.cria-badge--disabled) {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.cria-badge--interactive:focus-visible {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+
+/* Disabled Badge Styles */
+.cria-badge--disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+  background-color: var(--cria-gray-200) !important;
+  color: var(--cria-gray-600) !important;
+  border-color: var(--cria-gray-300) !important;
+}
+
+/* Badge Icon Styles */
+.cria-badge__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  color: inherit;
+}
+
+/* Icon colors for colored badge variants */
+.cria-badge--primary .cria-badge__icon,
+.cria-badge--secondary .cria-badge__icon,
+.cria-badge--success .cria-badge__icon,
+.cria-badge--warning .cria-badge__icon,
+.cria-badge--error .cria-badge__icon,
+.cria-badge--info .cria-badge__icon {
+  color: var(--cria-white);
+}
+
+.cria-badge__icon--left {
+  margin-right: 2px;
+}
+
+.cria-badge__icon--right {
+  margin-left: 2px;
+}
+
+/* Badge Content Styles */
+.cria-badge__content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+

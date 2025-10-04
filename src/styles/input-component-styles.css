@@ -1,0 +1,505 @@
+/* ===== INPUT COMPONENT STYLES ===== */
+
+/* Input Container */
+.cria-input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+/* Input Label */
+.cria-input__label {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.cria-input__required {
+  color: var(--cria-error);
+}
+
+/* Input Wrapper */
+.cria-input__wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Base Input */
+.cria-input {
+  width: 100%;
+  border: 1px solid var(--cria-primary);
+  border-radius: var(--cria-radius-md);
+  background-color: var(--cria-white);
+  color: var(--cria-gray-900);
+  font-family: var(--cria-font-family);
+  font-size: var(--cria-font-size-body);
+  font-weight: var(--cria-font-weight-regular);
+  line-height: 1.5;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+  padding: 12px 16px;
+}
+.cria-textarea {
+  width: 100%;
+  border: 1px solid var(--cria-primary);
+  border-radius: var(--cria-radius-md);
+  background-color: var(--cria-white);
+  color: var(--cria-gray-900);
+  font-family: var(--cria-font-family);
+  font-size: var(--cria-font-size-body);
+  line-height: 1.5;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+  padding: 12px 16px;
+}
+
+.cria-textarea:focus {
+  border-color: var(--cria-primary);
+  box-shadow: 0 0 0 3px rgba(117, 102, 161, 0.1);
+}
+
+.cria-input::placeholder {
+  color: var(--cria-gray-400);
+}
+
+.cria-input:focus {
+  border-color: var(--cria-primary);
+  box-shadow: 0 0 0 3px rgba(117, 102, 161, 0.1);
+}
+
+.cria-input:disabled {
+  background-color: var(--cria-gray-100);
+  color: var(--cria-gray-500);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.cria-input:disabled::placeholder {
+  color: var(--cria-gray-400);
+}
+
+.cria-input:read-only {
+  background-color: var(--cria-gray-50);
+  cursor: default;
+}
+
+.cria-input:read-only:focus {
+  border-color: var(--cria-gray-300);
+  box-shadow: none;
+}
+
+/* Input Sizes */
+.cria-input--sm {
+  padding: 8px 12px;
+  font-size: var(--cria-font-size-body-small);
+  border-radius: var(--cria-radius-sm);
+}
+
+.cria-input--md {
+  padding: 12px 16px;
+  font-size: var(--cria-font-size-body);
+  border-radius: var(--cria-radius-md);
+}
+
+.cria-input--lg {
+  padding: 16px 20px;
+  font-size: var(--cria-font-size-h3);
+  border-radius: var(--cria-radius-lg);
+}
+
+/* Input Variants */
+.cria-input--default {
+  background-color: var(--cria-white);
+  border: 1px solid var(--cria-primary);
+}
+
+.cria-input--filled {
+  background-color: var(--cria-gray-100);
+  border: 1px solid transparent;
+}
+
+.cria-input--filled:focus {
+  background-color: var(--cria-white);
+  border-color: var(--cria-primary);
+}
+
+.cria-input--outlined {
+  background-color: transparent;
+  border: 2px solid var(--cria-gray-300);
+}
+
+.cria-input--outlined:focus {
+  border-color: var(--cria-primary);
+}
+
+.cria-input--underlined {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid var(--cria-gray-300);
+  border-radius: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.cria-input--underlined:focus {
+  border-bottom-color: var(--cria-primary);
+  box-shadow: none;
+}
+
+/* Input States */
+.cria-input--success {
+  border-color: var(--cria-success);
+}
+
+.cria-input--success:focus {
+  border-color: var(--cria-success);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.cria-input--warning {
+  border-color: var(--cria-warning);
+}
+
+.cria-input--warning:focus {
+  border-color: var(--cria-warning);
+  box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
+}
+
+.cria-input--error {
+  border-color: var(--cria-error);
+}
+
+.cria-input--error:focus {
+  border-color: var(--cria-error);
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+/* Input with Icons */
+.cria-input-container--with-left-icon .cria-input {
+  padding-left: 48px;
+}
+
+.cria-input-container--with-right-icon .cria-input {
+  padding-right: 48px;
+}
+
+.cria-input__left-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--cria-gray-500);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cria-input__right-icons {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 1;
+}
+
+.cria-input__right-icon {
+  color: var(--cria-gray-500);
+  pointer-events: none;
+}
+
+.cria-input__clear-button,
+.cria-input__password-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--cria-gray-500);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--cria-radius-sm);
+  transition: all 0.2s ease-in-out;
+}
+
+.cria-input__clear-button:hover,
+.cria-input__password-toggle:hover {
+  color: var(--cria-gray-700);
+  background-color: var(--cria-gray-100);
+}
+
+.cria-input__clear-button:focus-visible,
+.cria-input__password-toggle:focus-visible {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+
+/* Input Messages */
+.cria-input__messages {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.cria-input__helper-text {
+  color: var(--cria-gray-600);
+}
+
+.cria-input__error-message {
+  color: var(--cria-error);
+  display: flex;
+  align-items: center;
+}
+
+.cria-input__success-message {
+  color: var(--cria-success);
+  display: flex;
+  align-items: center;
+}
+
+.cria-input__warning-message {
+  color: var(--cria-warning);
+  display: flex;
+  align-items: center;
+}
+
+.cria-input__character-count {
+  color: var(--cria-gray-500);
+  text-align: right;
+  font-size: var(--cria-font-size-body-small);
+}
+
+/* Container States */
+.cria-input-container--disabled .cria-input__label {
+  color: var(--cria-gray-500);
+}
+
+.cria-input-container--disabled .cria-input__left-icon,
+.cria-input-container--disabled .cria-input__right-icon {
+  color: var(--cria-gray-400);
+}
+
+.cria-input-container--focused .cria-input__left-icon {
+  color: var(--cria-primary);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cria-input--sm {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+  
+  .cria-input--md {
+    padding: 10px 14px;
+    font-size: 16px;
+  }
+  
+  .cria-input--lg {
+    padding: 14px 18px;
+    font-size: 18px;
+  }
+  
+  .cria-input-container--with-left-icon .cria-input {
+    padding-left: 44px;
+  }
+  
+  .cria-input-container--with-right-icon .cria-input {
+    padding-right: 44px;
+  }
+  
+  .cria-input__left-icon {
+    left: 14px;
+  }
+  
+  .cria-input__right-icons {
+    right: 14px;
+  }
+}
+
+/* Focus styles for accessibility */
+.cria-input:focus-visible {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+
+/* Custom styles for specific input types */
+.cria-input[type="search"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.cria-input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.cria-input[type="number"]::-webkit-outer-spin-button,
+.cria-input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.cria-input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Animation for smooth transitions */
+@keyframes input-focus-in {
+  from {
+    box-shadow: 0 0 0 0 rgba(117, 102, 161, 0.1);
+  }
+  to {
+    box-shadow: 0 0 0 3px rgba(117, 102, 161, 0.1);
+  }
+}
+
+.cria-input:focus {
+  animation: input-focus-in 0.2s ease-in-out;
+}
+
+/* ========================================
+   CHECKBOX COMPONENT STYLES
+   ======================================== */
+
+/* Base Checkbox */
+.cria-checkbox {
+  display: inline-flex;
+  flex-direction: column;
+  gap: var(--cria-spacing-1);
+  font-family: var(--cria-font-family);
+  position: relative;
+}
+
+.cria-checkbox__container {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--cria-spacing-2);
+  cursor: pointer;
+  position: relative;
+}
+
+/* Checkbox Input (Hidden) */
+.cria-checkbox__input {
+  position: absolute;
+  opacity: 0;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  z-index: 2;
+  top: 0;
+  left: 0;
+}
+
+/* Checkbox Visual Element */
+.cria-checkbox__checkmark {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 2px solid var(--cria-gray-400);
+  background-color: var(--cria-white);
+  border-radius: var(--cria-radius-sm);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+/* Checkbox Sizes */
+.cria-checkbox--sm .cria-checkbox__checkmark {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+}
+
+.cria-checkbox--md .cria-checkbox__checkmark {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--cria-radius-sm);
+}
+
+.cria-checkbox--lg .cria-checkbox__checkmark {
+  width: 24px;
+  height: 24px;
+  border-radius: var(--cria-radius-sm);
+}
+
+/* Checkbox Variants */
+.cria-checkbox--default .cria-checkbox__checkmark {
+  background-color: var(--cria-white);
+  border-color: var(--cria-gray-400);
+}
+
+.cria-checkbox--filled .cria-checkbox__checkmark {
+  background-color: var(--cria-gray-100);
+  border-color: var(--cria-gray-400);
+}
+
+.cria-checkbox--outlined .cria-checkbox__checkmark {
+  background-color: transparent;
+  border-color: var(--cria-gray-500);
+  border-width: 2px;
+}
+
+/* Checkbox Colors */
+.cria-checkbox--primary .cria-checkbox__checkmark {
+  border-color: var(--cria-primary);
+}
+
+.cria-checkbox--secondary .cria-checkbox__checkmark {
+  border-color: var(--cria-secondary);
+}
+
+.cria-checkbox--success .cria-checkbox__checkmark {
+  border-color: var(--cria-success);
+}
+
+.cria-checkbox--warning .cria-checkbox__checkmark {
+  border-color: var(--cria-warning);
+}
+
+.cria-checkbox--error .cria-checkbox__checkmark {
+  border-color: var(--cria-error);
+}
+
+/* Checked State */
+.cria-checkbox--checked .cria-checkbox__checkmark {
+  background-color: var(--cria-primary);
+  border-color: var(--cria-primary);
+  color: var(--cria-white);
+}
+
+.cria-checkbox--checked.cria-checkbox--secondary .cria-checkbox__checkmark {
+  background-color: var(--cria-secondary);
+  border-color: var(--cria-secondary);
+}
+
+.cria-checkbox--checked.cria-checkbox--success .cria-checkbox__checkmark {
+  background-color: var(--cria-success);
+  border-color: var(--cria-success);
+}
+
+.cria-checkbox--checked.cria-checkbox--warning .cria-checkbox__checkmark {
+  background-color: var(--cria-warning);
+  border-color: var(--cria-warning);
+}
+
+.cria-checkbox--checked.cria-checkbox--error .cria-checkbox__checkmark {
+  background-color: var(--cria-error);
+  border-color: var(--cria-error);
+}
+
+/* Indeterminate State */
+.cria-checkbox--indeterminate .cria-checkbox__checkmark {
+  background-color: var(--cria-primary);
+  border-color: var(--cria-primary);
+}

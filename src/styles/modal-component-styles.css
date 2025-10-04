@@ -1,0 +1,249 @@
+/* ===== MODAL COMPONENT STYLES ===== */
+
+/* Modal Overlay */
+.cria-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  padding: 16px;
+}
+
+.cria-modal-overlay--visible {
+  opacity: 1;
+}
+
+/* Modal Container */
+.cria-modal {
+  background-color: var(--cria-white);
+  border-radius: var(--cria-radius-lg);
+  box-shadow: var(--cria-shadow-xl);
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+  overflow: hidden;
+}
+
+.cria-modal--visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Modal Sizes */
+.cria-modal--sm {
+  width: 400px;
+  max-width: 90vw;
+}
+
+.cria-modal--md {
+  width: 500px;
+  max-width: 90vw;
+}
+
+.cria-modal--lg {
+  width: 700px;
+  max-width: 90vw;
+}
+
+.cria-modal--xl {
+  width: 900px;
+  max-width: 90vw;
+}
+
+.cria-modal--full {
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  border-radius: 0;
+  margin: 0;
+}
+
+/* Modal Centering */
+.cria-modal--centered {
+  align-self: center;
+}
+
+/* Modal Header */
+.cria-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 24px 0 24px;
+  border-bottom: 1px solid var(--cria-gray-200);
+  margin-bottom: 24px;
+  flex-shrink: 0;
+}
+
+.cria-modal__title {
+  margin: 0;
+  color: var(--cria-gray-900);
+  flex: 1;
+}
+
+.cria-modal__close-button {
+  margin-left: 16px;
+  flex-shrink: 0;
+  color: var(--cria-gray-500);
+  transition: color 0.2s ease-in-out;
+}
+
+.cria-modal__close-button:hover {
+  color: var(--cria-gray-700);
+}
+
+/* Modal Content */
+.cria-modal__content {
+  padding: 0 24px;
+  flex: 1;
+  overflow-y: auto;
+  color: var(--cria-gray-900);
+}
+
+.cria-modal--scrollable .cria-modal__content {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+.cria-modal--full .cria-modal__content {
+  max-height: none;
+  overflow-y: auto;
+}
+
+/* Modal Footer */
+.cria-modal__footer {
+  padding: 24px;
+  border-top: 1px solid var(--cria-gray-200);
+  margin-top: 24px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* Modal without Header */
+.cria-modal:not(.cria-modal--header) .cria-modal__content {
+  padding-top: 24px;
+}
+
+/* Modal without Footer */
+.cria-modal:not(.cria-modal--footer) .cria-modal__content {
+  padding-bottom: 24px;
+}
+
+/* Modal without Header and Footer */
+.cria-modal:not(.cria-modal--header):not(.cria-modal--footer) .cria-modal__content {
+  padding: 24px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cria-modal-overlay {
+    padding: 8px;
+  }
+  
+  .cria-modal--sm,
+  .cria-modal--md,
+  .cria-modal--lg,
+  .cria-modal--xl {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+  }
+  
+  .cria-modal__header {
+    padding: 16px 16px 0 16px;
+    margin-bottom: 16px;
+  }
+  
+  .cria-modal__content {
+    padding: 0 16px;
+  }
+  
+  .cria-modal__footer {
+    padding: 16px;
+    margin-top: 16px;
+  }
+  
+  .cria-modal:not(.cria-modal--header) .cria-modal__content {
+    padding-top: 16px;
+  }
+  
+  .cria-modal:not(.cria-modal--footer) .cria-modal__content {
+    padding-bottom: 16px;
+  }
+  
+  .cria-modal:not(.cria-modal--header):not(.cria-modal--footer) .cria-modal__content {
+    padding: 16px;
+  }
+}
+
+/* Animation for smooth appearance */
+@keyframes modal-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes modal-fade-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+.cria-modal--visible {
+  animation: modal-fade-in 0.2s ease-in-out;
+}
+
+.cria-modal:not(.cria-modal--visible) {
+  animation: modal-fade-out 0.2s ease-in-out;
+}
+
+/* Focus styles for accessibility */
+.cria-modal__close-button:focus-visible {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+
+/* Custom scrollbar for modal content */
+.cria-modal__content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.cria-modal__content::-webkit-scrollbar-track {
+  background: var(--cria-gray-100);
+  border-radius: 3px;
+}
+
+.cria-modal__content::-webkit-scrollbar-thumb {
+  background: var(--cria-gray-300);
+  border-radius: 3px;
+}
+
+.cria-modal__content::-webkit-scrollbar-thumb:hover {
+  background: var(--cria-gray-400);
+}
+
