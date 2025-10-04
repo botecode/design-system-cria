@@ -2178,6 +2178,22 @@ body {
 .cria-avatar-upload__button { background: transparent; border: none; padding: 0; cursor: pointer; }
 .cria-avatar-upload__button:focus-visible { outline: 2px solid var(--cria-primary); outline-offset: 4px; border-radius: 50%; }
 
+/* ===== CHAT COMPONENT ===== */
+.cria-chat { display: flex; flex-direction: column; height: 100%; gap: 8px; font-family: var(--cria-font-family); }
+.cria-chat__log { flex: 1; overflow-y: auto; background: var(--cria-white); border: 1px solid var(--cria-border-light); border-radius: var(--cria-radius-md); padding: 12px; }
+.cria-chat__group { display: flex; flex-direction: column; gap: 4px; margin: 6px 0; }
+.cria-chat__group--me { align-items: flex-end; }
+.cria-chat__group--them { align-items: flex-start; }
+.cria-chat__bubble { max-width: 70%; padding: 8px 10px; border-radius: 12px; display: inline-flex; flex-direction: column; gap: 4px; }
+.cria-chat__group--me .cria-chat__bubble { background: var(--cria-primary); color: var(--cria-white); border-bottom-right-radius: 4px; }
+.cria-chat__group--them .cria-chat__bubble { background: var(--cria-gray-100); color: var(--cria-gray-900); border-bottom-left-radius: 4px; }
+.cria-chat__bubble--typing { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 32px; }
+.cria-chat__composer { display: flex; align-items: center; gap: 8px; }
+.cria-chat__attach { background: transparent; border: 1px solid var(--cria-border-medium); border-radius: var(--cria-radius-sm); padding: 6px; cursor: pointer; }
+.cria-chat__attach:disabled { opacity: .6; cursor: not-allowed; }
+.cria-chat__textarea { flex: 1; resize: none; border: 1px solid var(--cria-primary); border-radius: var(--cria-radius-md); padding: 10px 12px; font-family: var(--cria-font-family); font-size: var(--cria-font-size-body); outline: none; }
+.cria-chat__textarea:focus { box-shadow: 0 0 0 3px rgba(117,102,161,.1); }
+
 .cria-checkbox--indeterminate.cria-checkbox--secondary .cria-checkbox__checkmark {
   background-color: var(--cria-secondary);
   border-color: var(--cria-secondary);
