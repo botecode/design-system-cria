@@ -74,7 +74,6 @@ For each new component:
 	•	Avatar
 	•	Breadcrumbs
 	•	Pagination
-	•	Pagination
 
 Input Demos
 	•	Basic Inputs — Full Name, Email Address, Phone Number, Date (dd.mm.yyyy)
@@ -110,6 +109,9 @@ Tests
 	•	Chat
 	•	PieChart
 	•	LineChart
+	•	Shimmer Eskeletton
+	•	Pricing page
+	•	Card selector (with multi-select and single-select)
 
 ⸻
 
