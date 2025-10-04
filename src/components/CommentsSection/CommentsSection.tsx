@@ -122,67 +122,67 @@ export const CommentsSection: React.FC<CommentsSectionProps> = ({
       <div
         key={comment.id}
         className="cria-comment"
-        style={{
-          marginLeft: depth * 20,
-          marginBottom: 16,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: depth > 0 ? 'flex-end' : 'flex-start'
-        }}
+      style={{
+        marginLeft: depth * 20,
+        marginBottom: depth > 0 ? 8 : 16,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: depth > 0 ? 'flex-end' : 'flex-start'
+      }}
       >
-        <div className="cria-comment__bubble" style={{ 
-          display: 'flex', 
-          flexDirection: 'column',
-          maxWidth: '70%',
-          minWidth: '200px'
-        }}>
-          <div className="cria-comment__header" style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: 8, 
-            marginBottom: 8,
-            padding: '0 4px'
+        {isEditing ? (
+          <div className="cria-comment__edit" style={{
+            backgroundColor: colors.background.primary,
+            border: `1px solid ${colors.border.medium}`,
+            borderRadius: 12,
+            padding: 12,
+            width: '100%'
           }}>
-            <Avatar 
-              src={comment.avatar} 
-              name={comment.author} 
-              size="sm"
-              style={{ flexShrink: 0 }}
+            <Textarea
+              value={editingContent}
+              onChange={(e) => setEditingContent(e.target.value)}
+              placeholder="Edit your comment..."
+              maxLength={maxLength}
+              style={{ marginBottom: 8, border: 'none', backgroundColor: 'transparent' }}
             />
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <Typography variant="body2" weight="bold" style={{ color: colors.text.primary, marginBottom: 2 }}>
-                {comment.author}
-              </Typography>
-              <Typography variant="caption" style={{ color: colors.text.secondary }}>
-                {formatTimestamp(comment.timestamp)}
-              </Typography>
+            <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+              <Button size="sm" onClick={handleSaveEdit} disabled={!editingContent.trim()}>
+                Save
+              </Button>
+              <Button size="sm" variant="secondary" onClick={handleCancelEdit}>
+                Cancel
+              </Button>
             </div>
           </div>
-
-          {isEditing ? (
-            <div className="cria-comment__edit" style={{
-              backgroundColor: colors.background.primary,
-              border: `1px solid ${colors.border.medium}`,
-              borderRadius: 12,
-              padding: 12
+        ) : (
+          <div className="cria-comment__bubble" style={{ 
+            display: 'flex', 
+            flexDirection: 'column',
+            maxWidth: '70%',
+            minWidth: '200px'
+          }}>
+            <div className="cria-comment__header" style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 8,
+              marginBottom: 8,
+              padding: '0 4px'
             }}>
-              <Textarea
-                value={editingContent}
-                onChange={(e) => setEditingContent(e.target.value)}
-                placeholder="Edit your comment..."
-                maxLength={maxLength}
-                style={{ marginBottom: 8, border: 'none', backgroundColor: 'transparent' }}
+              <Avatar
+                src={comment.avatar} 
+                name={comment.author} 
+                size="sm"
+                style={{ flexShrink: 0 }}
               />
-              <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
-                <Button size="sm" onClick={handleSaveEdit} disabled={!editingContent.trim()}>
-                  Save
-                </Button>
-                <Button size="sm" variant="secondary" onClick={handleCancelEdit}>
-                  Cancel
-                </Button>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <Typography variant="body2" weight="bold" style={{ color: colors.text.primary, marginBottom: 2 }}>
+                  {comment.author}
+                </Typography>
+                <Typography variant="caption" style={{ color: colors.text.secondary }}>
+                  {formatTimestamp(comment.timestamp)}
+                </Typography>
               </div>
             </div>
-          ) : (
             <>
               <div className="cria-comment__content" style={{
                 backgroundColor: depth > 0 ? colors.primaryDarker : colors.primary,
@@ -203,17 +203,19 @@ export const CommentsSection: React.FC<CommentsSectionProps> = ({
                 >
                   {comment.content}
                 </Typography>
-                {/* Speech bubble tail */}
-                <div style={{
-                  position: 'absolute',
-                  top: -6,
-                  left: depth > 0 ? 20 : 20,
-                  width: 0,
-                  height: 0,
-                  borderLeft: '6px solid transparent',
-                  borderRight: '6px solid transparent',
-                  borderBottom: `6px solid ${depth > 0 ? colors.primaryDarker : colors.primary}`
-                }} />
+                {/* Speech bubble tail - only for main comments */}
+                {depth === 0 && (
+                  <div style={{
+                    position: 'absolute',
+                    top: -6,
+                    left: 20,
+                    width: 0,
+                    height: 0,
+                    borderLeft: '6px solid transparent',
+                    borderRight: '6px solid transparent',
+                    borderBottom: `6px solid ${colors.primary}`
+                  }} />
+                )}
               </div>
 
               <div className="cria-comment__actions" style={{ 
@@ -255,7 +257,6 @@ export const CommentsSection: React.FC<CommentsSectionProps> = ({
                 )}
               </div>
             </>
-          )}
 
           {isReplying && (
             <div className="cria-comment__reply" style={{ 
@@ -289,7 +290,8 @@ export const CommentsSection: React.FC<CommentsSectionProps> = ({
               </div>
             </div>
           )}
-        </div>
+          </div>
+        )}
 
         {comment.replies.map(reply => renderComment(reply, depth + 1))}
       </div>
