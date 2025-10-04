@@ -152,74 +152,52 @@ const App: React.FC = () => {
         return (
           <div style={{ padding: '0' }}>
             <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-              <Typography variant="title1" weight="bold" style={{ marginBottom: '16px' }}>
+              <Typography variant="title1" weight="bold" style={{ marginBottom: '8px' }}>
+                CRIA_UI Design System
+              </Typography>
+              <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
                 Welcome to CRIA_UI
               </Typography>
-              <Typography variant="body" style={{ marginBottom: '0', maxWidth: '600px', margin: '0 auto 32px auto' }}>
-                A comprehensive React + TypeScript design system built specifically for CR_IA applications.
-                This system provides consistent, accessible, and beautiful components that can be easily
-                integrated into your Rails frontend.
+              <Typography variant="h4" weight="medium" style={{ marginBottom: '24px' }}>
+                Getting Started
               </Typography>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
               <div style={{ padding: '20px', backgroundColor: 'var(--cria-white)', borderRadius: 'var(--cria-radius-md)', border: '1px solid var(--cria-gray-200)' }}>
                 <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
-                  🎨 Foundation
+                  🎨 Design Tokens
                 </Typography>
                 <Typography variant="body" style={{ marginBottom: '12px', fontSize: '14px' }}>
-                  Core design elements including typography, colors, and basic components.
+                  Consistent colors, typography, spacing, and elevation.
                 </Typography>
                 <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
-                  <Button variant="outline" size="sm" onClick={() => setActiveSection('typography')}>
-                    Typography
-                  </Button>
-                  <Button variant="outline" size="sm" onClick={() => setActiveSection('colors')}>
-                    Colors
-                  </Button>
-                  <Button variant="outline" size="sm" onClick={() => setActiveSection('button')}>
-                    Button
-                  </Button>
+                  <Button variant="outline" size="sm" onClick={() => setActiveSection('typography')}>Explore Typography</Button>
                 </div>
               </div>
 
               <div style={{ padding: '20px', backgroundColor: 'var(--cria-white)', borderRadius: 'var(--cria-radius-md)', border: '1px solid var(--cria-gray-200)' }}>
                 <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
-                  📝 Form Controls
+                  🧩 Components
                 </Typography>
                 <Typography variant="body" style={{ marginBottom: '12px', fontSize: '14px' }}>
-                  Interactive form elements for user input and data collection.
+                  Production-ready React components.
                 </Typography>
                 <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
-                  <Button variant="outline" size="sm" onClick={() => setActiveSection('input')}>
-                    Input
-                  </Button>
-                  <Button variant="outline" size="sm" onClick={() => setActiveSection('checkbox')}>
-                    Checkbox
-                  </Button>
-                  <Button variant="outline" size="sm" onClick={() => setActiveSection('switch')}>
-                    Switch
-                  </Button>
+                  <Button variant="outline" size="sm" onClick={() => setActiveSection('button')}>View Buttons</Button>
+                  <Button variant="outline" size="sm" onClick={() => setActiveSection('card')}>See Cards</Button>
                 </div>
               </div>
 
               <div style={{ padding: '20px', backgroundColor: 'var(--cria-white)', borderRadius: 'var(--cria-radius-md)', border: '1px solid var(--cria-gray-200)' }}>
                 <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
-                  💬 Feedback
+                  ♿ Accessible
                 </Typography>
                 <Typography variant="body" style={{ marginBottom: '12px', fontSize: '14px' }}>
-                  Components for providing feedback, notifications, and user guidance.
+                  Built with accessibility in mind.
                 </Typography>
                 <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
-                  <Button variant="outline" size="sm" onClick={() => setActiveSection('snackbar')}>
-                    Snackbar
-                  </Button>
-                  <Button variant="outline" size="sm" onClick={() => setActiveSection('modal')}>
-                    Modal
-                  </Button>
-                  <Button variant="outline" size="sm" onClick={() => setActiveSection('tooltip')}>
-                    Tooltip
-                  </Button>
+                  <Button variant="outline" size="sm" onClick={() => setActiveSection('colors')}>View Colors</Button>
                 </div>
               </div>
 
@@ -232,7 +210,7 @@ const App: React.FC = () => {
                 </Typography>
                 <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                   <Button variant="outline" size="sm" onClick={() => setActiveSection('card')}>
-                    Card
+                    Open Card
                   </Button>
                   <Button variant="outline" size="sm" onClick={() => setActiveSection('badge')}>
                     Badge
@@ -393,6 +371,9 @@ const App: React.FC = () => {
           }}>
             <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
               {renderContent()}
+              <div style={{ marginTop: '32px', textAlign: 'center', color: 'var(--cria-text-secondary)' }}>
+                Built with ❤️ for CR_IA applications
+              </div>
             </div>
           </main>
         </div>

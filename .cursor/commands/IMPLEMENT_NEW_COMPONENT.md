@@ -114,7 +114,8 @@ Required Tests
 ⬜ Upcoming Components
   • Comments Section
   • PieChart  
-  • LineChart  
+  • LineChart and Line Graphics (Change the Piechart entry in the sidebar to "Charts" and include it there)
+  • Slider - Component
   • Shimmer Skeleton - Foundation
   • Pricing page ("Web" new tab sectoin on sidebar)
   • Page loading progress (top of the page) - Foundation  

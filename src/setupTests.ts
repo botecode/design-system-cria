@@ -1,4 +1,11 @@
 import '@testing-library/jest-dom';
+// Provide vi alias for tests that reference Vitest globals
+// @ts-ignore
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+;(global as any).vi = {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  fn: (impl?: any) => jest.fn(impl),
+};
 
 // Mock CSS modules
 Object.defineProperty(window, 'matchMedia', {
