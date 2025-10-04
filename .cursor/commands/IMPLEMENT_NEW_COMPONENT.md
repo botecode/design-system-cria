@@ -86,6 +86,7 @@ git push origin main
   • File Upload
   • Comments Section
   • Slider
+  • Shimmer Skeleton
 
 Input Demos  
   • Basic Inputs — Full Name, Email Address, Phone Number, Date (dd.mm.yyyy)  
@@ -93,26 +94,26 @@ Input Demos
 
 ⸻
 
-🚀 Next Component to Implement: Shimmer Skeleton
+🚀 Next Component to Implement: Pricing Page
 
-**Implement the Shimmer Skeleton component immediately**, using **design tokens** and DS primitives.  
+**Implement the Pricing Page component immediately**, using **design tokens** and DS primitives.  
 Include a **demo page** and **sidebar entry**. Validate with **Chrome MCP**. Commit on a **feature branch** and **merge into main** per Git rules above. Update this file afterward.
 
 Required Features
-  • Animated shimmer effect for loading states  
-  • Multiple skeleton shapes (text, avatar, card, button)  
+  • Multiple pricing tiers with different features  
+  • Toggle between monthly/yearly pricing  
+  • Call-to-action buttons for each tier  
   • Token-based colors, typography, and spacing  
-  • A11y: proper loading indicators and screen reader support  
+  • A11y: proper pricing structure and screen reader support  
 
 Required Tests
-  • Renders with correct shimmer animation  
-  • Different skeleton shapes display properly  
-  • A11y: loading state announced to screen readers
+  • Renders with correct pricing tiers  
+  • Toggle functionality works properly  
+  • A11y: pricing information announced to screen readers
 
 ⸻
 
 ⬜ Upcoming Components
-  • Pricing page ("Web" new tab sectoin on sidebar)
   • Page loading progress (top of the page) - Foundation  
   • Card selector ("Admin" - with multi-select and single-select)  
   • Row of cards - ("Web" new tab section on sidebar) (with configurable per-page before pagination)  

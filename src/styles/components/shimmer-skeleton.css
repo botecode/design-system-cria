@@ -1,0 +1,153 @@
+.cria-shimmer-skeleton {
+  background-color: var(--cria-gray-200);
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.cria-shimmer-skeleton__shimmer {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, var(--cria-gray-100), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+.cria-shimmer-skeleton__line {
+  background-color: var(--cria-gray-200);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Variants */
+.cria-shimmer-skeleton--text {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cria-shimmer-skeleton--avatar {
+  border-radius: 50%;
+}
+
+.cria-shimmer-skeleton--card {
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cria-shimmer-skeleton--button {
+  border-radius: 6px;
+}
+
+.cria-shimmer-skeleton--circle {
+  border-radius: 50%;
+}
+
+.cria-shimmer-skeleton--rectangle {
+  border-radius: 4px;
+}
+
+/* Sizes */
+.cria-shimmer-skeleton--sm {
+  width: 16px;
+  height: 16px;
+}
+
+.cria-shimmer-skeleton--md {
+  width: 24px;
+  height: 24px;
+}
+
+.cria-shimmer-skeleton--lg {
+  width: 40px;
+  height: 40px;
+}
+
+/* Animation states */
+.cria-shimmer-skeleton--no-animation .cria-shimmer-skeleton__shimmer {
+  display: none;
+}
+
+/* Shimmer animation keyframes */
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* Accessibility improvements */
+.cria-shimmer-skeleton[role="status"] {
+  /* Ensure screen readers announce loading state */
+  position: relative;
+}
+
+.cria-shimmer-skeleton[role="status"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  pointer-events: none;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .cria-shimmer-skeleton--card {
+    padding: 12px;
+    gap: 8px;
+  }
+  
+  .cria-shimmer-skeleton--text {
+    gap: 6px;
+  }
+}
+
+/* Dark mode support (when implemented) */
+@media (prefers-color-scheme: dark) {
+  .cria-shimmer-skeleton {
+    background-color: var(--cria-gray-700, #374151);
+  }
+  
+  .cria-shimmer-skeleton__shimmer {
+    background: linear-gradient(90deg, transparent, var(--cria-gray-600, #4B5563), transparent);
+  }
+  
+  .cria-shimmer-skeleton__line {
+    background-color: var(--cria-gray-700, #374151);
+  }
+}
+
+/* Performance optimizations */
+.cria-shimmer-skeleton {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.cria-shimmer-skeleton__shimmer {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .cria-shimmer-skeleton__shimmer {
+    animation: none;
+  }
+  
+  .cria-shimmer-skeleton {
+    background-color: var(--cria-gray-300, #D1D5DB);
+  }
+}

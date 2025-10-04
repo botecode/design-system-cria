@@ -39,3 +39,4 @@ export * from './components/PieChart';
 export * from './components/LineChart';
 export * from './components/CommentsSection';
 export * from './components/Slider';
+export * from './components/ShimmerSkeleton';
