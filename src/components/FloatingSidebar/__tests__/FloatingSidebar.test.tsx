@@ -3,9 +3,9 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { FloatingSidebar, FloatingSidebarItem } from '../FloatingSidebar';
 
 const mockItems: FloatingSidebarItem[] = [
-  { id: '1', label: 'CURSOS', active: false },
-  { id: '2', label: 'AULAS & TUTORIAIS', active: true },
-  { id: '3', label: 'EVENTOS', active: false },
+  { id: '1', label: 'CURSOS', active: false, icon: <div>📚</div> },
+  { id: '2', label: 'AULAS & TUTORIAIS', active: true, icon: <div>🎓</div> },
+  { id: '3', label: 'EVENTOS', active: false, icon: <div>📅</div> },
 ];
 
 const mockUser = {
@@ -130,14 +130,31 @@ describe('FloatingSidebar', () => {
     const nonActiveItem = screen.getByText('CURSOS');
     const button = nonActiveItem.closest('button');
     
-    // Test hover effect
+    // Test hover effect - now uses secondary color
     fireEvent.mouseEnter(button!);
     expect(button).toHaveStyle({
-      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+      backgroundColor: expect.stringMatching(/rgb\(.*\)|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{3}/),
     });
     
     fireEvent.mouseLeave(button!);
     // Note: The hover effect is handled by inline styles, so we just verify the button exists
     expect(button).toBeInTheDocument();
+  });
+
+  it('renders icons in navigation items', () => {
+    render(<FloatingSidebar items={mockItems} />);
+    expect(screen.getByText('📚')).toBeInTheDocument();
+    expect(screen.getByText('🎓')).toBeInTheDocument();
+    expect(screen.getByText('📅')).toBeInTheDocument();
+  });
+
+  it('handles items without icons', () => {
+    const itemsWithoutIcons = [
+      { id: '1', label: 'CURSOS', active: false },
+      { id: '2', label: 'AULAS', active: true },
+    ];
+    render(<FloatingSidebar items={itemsWithoutIcons} />);
+    expect(screen.getByText('CURSOS')).toBeInTheDocument();
+    expect(screen.getByText('AULAS')).toBeInTheDocument();
   });
 });

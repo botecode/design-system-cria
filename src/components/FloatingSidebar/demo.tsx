@@ -3,17 +3,18 @@ import { FloatingSidebar, FloatingSidebarItem } from './FloatingSidebar';
 import { Typography } from '../Typography';
 import { Card, CardContent, CardHeader } from '../Card';
 import { spacing } from '../../tokens';
+import { BookOpen, GraduationCap, Calendar, FileText, Wrench, ChatCircle } from 'phosphor-react';
 
 export const FloatingSidebarDemo: React.FC = () => {
   const [activeItem, setActiveItem] = useState('cursos');
 
   const sidebarItems: FloatingSidebarItem[] = [
-    { id: 'cursos', label: 'CURSOS', active: activeItem === 'cursos' },
-    { id: 'aulas', label: 'AULAS & TUTORIAIS', active: activeItem === 'aulas' },
-    { id: 'eventos', label: 'EVENTOS', active: activeItem === 'eventos' },
-    { id: 'prompts', label: 'CATÁLOGO DE PROMPTS', active: activeItem === 'prompts' },
-    { id: 'ferramentas', label: 'CAIXA DE FERRAMENTAS', active: activeItem === 'ferramentas' },
-    { id: 'discord', label: 'COMUNIDADE NO DISCORD', active: activeItem === 'discord' },
+    { id: 'cursos', label: 'CURSOS', active: activeItem === 'cursos', icon: <BookOpen size={20} /> },
+    { id: 'aulas', label: 'AULAS & TUTORIAIS', active: activeItem === 'aulas', icon: <GraduationCap size={20} /> },
+    { id: 'eventos', label: 'EVENTOS', active: activeItem === 'eventos', icon: <Calendar size={20} /> },
+    { id: 'prompts', label: 'CATÁLOGO DE PROMPTS', active: activeItem === 'prompts', icon: <FileText size={20} /> },
+    { id: 'ferramentas', label: 'CAIXA DE FERRAMENTAS', active: activeItem === 'ferramentas', icon: <Wrench size={20} /> },
+    { id: 'discord', label: 'COMUNIDADE NO DISCORD', active: activeItem === 'discord', icon: <ChatCircle size={20} /> },
   ];
 
   const handleItemClick = (itemId: string) => {

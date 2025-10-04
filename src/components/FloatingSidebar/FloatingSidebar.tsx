@@ -3,7 +3,7 @@ import { Typography } from '../Typography';
 import { Button } from '../Button';
 import { Avatar } from '../Avatar';
 import { colors, spacing } from '../../tokens';
-import { Gear, User } from 'phosphor-react';
+import { Gear, User, BookOpen, GraduationCap, Calendar, FileText, Wrench, ChatCircle } from 'phosphor-react';
 
 export interface FloatingSidebarItem {
   id: string;
@@ -11,6 +11,7 @@ export interface FloatingSidebarItem {
   href?: string;
   onClick?: () => void;
   active?: boolean;
+  icon?: React.ReactNode;
 }
 
 export interface FloatingSidebarProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -49,7 +50,6 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
         left: spacing.lg,
         top: spacing.lg,
         width: 280,
-        minHeight: 'calc(100vh - 2rem)',
         backgroundColor: colors.primary,
         borderRadius: spacing.lg,
         padding: spacing.lg,
@@ -72,12 +72,13 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
           src={emblemImage}
           alt="CRIA Emblem"
           style={{
-            width: 80,
-            height: 80,
+            width: 120,
+            height: 120,
             objectFit: 'contain',
             position: 'relative',
-            top: -20, // Overlap the top of the sidebar
+            top: -30, // Overlap the top of the sidebar
             zIndex: 1,
+            filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1))',
           }}
         />
       </div>
@@ -86,7 +87,7 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
       <div style={{
         textAlign: 'center',
         marginBottom: spacing.xl,
-        marginTop: -16, // Adjust for emblem overlap (using fixed value)
+        marginTop: -24, // Adjust for larger emblem overlap
       }}>
         <Typography
           variant="title1"
@@ -103,7 +104,6 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
 
       {/* Navigation Items */}
       <div style={{
-        flex: 1,
         display: 'flex',
         flexDirection: 'column',
         gap: spacing.sm,
@@ -125,10 +125,13 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
               fontSize: '14px',
               fontWeight: '500',
               transition: 'all 0.2s ease',
+              display: 'flex',
+              alignItems: 'center',
+              gap: spacing.sm,
             }}
             onMouseEnter={(e) => {
               if (!item.active) {
-                e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+                e.currentTarget.style.backgroundColor = colors.secondary;
               }
             }}
             onMouseLeave={(e) => {
@@ -137,6 +140,11 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
               }
             }}
           >
+            {item.icon && (
+              <span style={{ display: 'flex', alignItems: 'center' }}>
+                {item.icon}
+              </span>
+            )}
             {item.label}
           </Button>
         ))}
@@ -145,7 +153,7 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
       {/* User Profile Section */}
       {user && (
         <div style={{
-          marginTop: 'auto',
+          marginTop: spacing.lg,
           paddingTop: spacing.lg,
           borderTop: `1px solid rgba(255, 255, 255, 0.2)`,
           display: 'flex',
