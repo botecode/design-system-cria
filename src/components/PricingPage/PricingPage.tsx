@@ -102,8 +102,8 @@ export const PricingPage: React.FC<PricingPageProps> = ({
           style={{ 
             marginBottom: spacing.md,
             color: colors.text.primary,
-            fontSize: typography.sizes['3xl'],
-            lineHeight: typography.lineHeights.tight,
+            fontSize: typography.fontSize.display,
+            lineHeight: typography.lineHeight.tight,
           }}
         >
           {title}
@@ -229,8 +229,8 @@ export const PricingPage: React.FC<PricingPageProps> = ({
                       color: colors.white,
                       padding: `${spacing.xs} ${spacing.md}`,
                       borderRadius: '20px',
-                      fontSize: typography.sizes.sm,
-                      fontWeight: typography.weights.semiBold,
+                      fontSize: typography.fontSize.bodySmall,
+                      fontWeight: typography.fontWeight.semiBold,
                     }}
                   >
                     Most Popular
@@ -265,8 +265,8 @@ export const PricingPage: React.FC<PricingPageProps> = ({
                     weight="bold" 
                     style={{ 
                       color: colors.primary,
-                      fontSize: typography.sizes['4xl'],
-                      lineHeight: typography.lineHeights.tight,
+            fontSize: typography.fontSize.display,
+            lineHeight: typography.lineHeight.tight,
                       marginBottom: spacing.xs,
                     }}
                   >
@@ -287,7 +287,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({
                     variant="caption" 
                     style={{ 
                       color: colors.success,
-                      fontWeight: typography.weights.medium,
+                      fontWeight: typography.fontWeight.medium,
                     }}
                   >
                     Save {savings.percentage}% (${savings.savings}/year)
@@ -342,8 +342,8 @@ export const PricingPage: React.FC<PricingPageProps> = ({
                 style={{
                   width: '100%',
                   padding: `${spacing.md} ${spacing.lg}`,
-                  fontSize: typography.sizes.base,
-                  fontWeight: typography.weights.semiBold,
+                    fontSize: typography.fontSize.body,
+                    fontWeight: typography.fontWeight.semiBold,
                 }}
               >
                 {tier.ctaText}
