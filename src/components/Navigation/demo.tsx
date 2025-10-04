@@ -122,6 +122,69 @@ export const NavigationDemo: React.FC = () => {
                   </Typography>
                 </div>
               </div>
+
+              {/* Themed variations */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '16px' }}>
+                <div style={{ 
+                  border: '1px solid var(--cria-gray-200)', 
+                  borderRadius: 'var(--cria-radius-md)',
+                  overflow: 'hidden',
+                  height: '300px',
+                  position: 'relative'
+                }}>
+                  <Sidebar
+                    items={sidebarItems}
+                    activeRoute={activeRoute}
+                    collapsed={false}
+                    onToggle={() => {}}
+                    theme="primary"
+                    title="Primary Sidebar"
+                    style={{ 
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      height: '100%',
+                      zIndex: 1
+                    }}
+                  />
+                  <div style={{ 
+                    marginLeft: '256px',
+                    padding: '16px',
+                    height: '100%',
+                    backgroundColor: 'var(--cria-gray-50)'
+                  }} />
+                </div>
+
+                <div style={{ 
+                  border: '1px solid var(--cria-gray-200)', 
+                  borderRadius: 'var(--cria-radius-md)',
+                  overflow: 'hidden',
+                  height: '300px',
+                  position: 'relative'
+                }}>
+                  <Sidebar
+                    items={sidebarItems}
+                    activeRoute={activeRoute}
+                    collapsed={false}
+                    onToggle={() => {}}
+                    theme="secondary"
+                    title="Secondary Sidebar"
+                    style={{ 
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      height: '100%',
+                      zIndex: 1
+                    }}
+                  />
+                  <div style={{ 
+                    marginLeft: '256px',
+                    padding: '16px',
+                    height: '100%',
+                    backgroundColor: 'var(--cria-gray-50)'
+                  }} />
+                </div>
+              </div>
             </div>
           </CardContent>
         </Card>

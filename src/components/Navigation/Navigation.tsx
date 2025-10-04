@@ -122,6 +122,11 @@ export interface NavigationSidebarProps extends React.HTMLAttributes<HTMLDivElem
    * URL for the title link (optional)
    */
   titleHref?: string;
+  
+  /**
+   * Visual theme for the sidebar
+   */
+  theme?: 'default' | 'primary' | 'secondary';
 }
 
 export interface TopbarProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -183,6 +188,7 @@ const Sidebar: React.FC<NavigationSidebarProps> = ({
   titleHref,
   className,
   style,
+  theme = 'default',
   ...props
 }) => {
   const [isMobile, setIsMobile] = useState(false);
@@ -244,6 +250,7 @@ const Sidebar: React.FC<NavigationSidebarProps> = ({
     collapsed && 'cria-sidebar--collapsed',
     !collapsed && 'cria-sidebar--expanded',
     isMobile && 'cria-sidebar--mobile',
+    theme !== 'default' && `cria-sidebar--${theme}`,
     className,
   ].filter(Boolean).join(' ');
 
