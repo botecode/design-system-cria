@@ -1,0 +1,329 @@
+.cria-pricing-page {
+  padding: var(--cria-spacing-xl);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cria-pricing-page__header {
+  text-align: center;
+  margin-bottom: var(--cria-spacing-xl);
+}
+
+.cria-pricing-page__title {
+  margin-bottom: var(--cria-spacing-md);
+  color: var(--cria-text-primary);
+  font-size: var(--cria-typography-size-3xl);
+  font-weight: var(--cria-typography-weight-bold);
+  line-height: var(--cria-typography-line-height-tight);
+}
+
+.cria-pricing-page__subtitle {
+  color: var(--cria-text-secondary);
+  margin-bottom: var(--cria-spacing-xl);
+}
+
+.cria-pricing-page__billing-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cria-spacing-md);
+  margin-bottom: var(--cria-spacing-xl);
+}
+
+.cria-pricing-page__billing-option {
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.cria-pricing-page__billing-option--active {
+  color: var(--cria-primary);
+  font-weight: var(--cria-typography-weight-semiBold);
+}
+
+.cria-pricing-page__billing-option--inactive {
+  color: var(--cria-text-secondary);
+}
+
+.cria-pricing-page__toggle-button {
+  min-width: 60px;
+  height: 32px;
+  border-radius: 16px;
+  position: relative;
+  border: 1px solid var(--cria-primary);
+  background-color: var(--cria-background-primary);
+  transition: background-color 0.3s ease;
+}
+
+.cria-pricing-page__toggle-button--yearly {
+  background-color: var(--cria-primary);
+}
+
+.cria-pricing-page__toggle-slider {
+  position: absolute;
+  top: 2px;
+  width: 28px;
+  height: 28px;
+  background-color: var(--cria-primary);
+  border-radius: 50%;
+  transition: left 0.3s ease, background-color 0.3s ease;
+}
+
+.cria-pricing-page__toggle-slider--yearly {
+  left: 30px;
+  background-color: var(--cria-white);
+}
+
+.cria-pricing-page__toggle-slider--monthly {
+  left: 2px;
+}
+
+.cria-pricing-page__savings-badge {
+  margin-left: var(--cria-spacing-sm);
+}
+
+.cria-pricing-page__tiers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--cria-spacing-lg);
+  align-items: stretch;
+}
+
+.cria-pricing-page__tier {
+  position: relative;
+  padding: var(--cria-spacing-xl);
+  text-align: center;
+  border: 1px solid var(--cria-border-medium);
+  border-radius: 16px;
+  background-color: var(--cria-background-primary);
+  box-shadow: 0 4px 16px var(--cria-border-light);
+  transition: all 0.3s ease;
+}
+
+.cria-pricing-page__tier--popular {
+  border: 2px solid var(--cria-primary);
+  box-shadow: 0 8px 32px rgba(117, 102, 161, 0.2);
+  transform: scale(1.05);
+}
+
+.cria-pricing-page__popular-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--cria-primary);
+  color: var(--cria-white);
+  padding: var(--cria-spacing-xs) var(--cria-spacing-md);
+  border-radius: 20px;
+  font-size: var(--cria-typography-size-sm);
+  font-weight: var(--cria-typography-weight-semiBold);
+}
+
+.cria-pricing-page__tier-header {
+  margin-bottom: var(--cria-spacing-lg);
+}
+
+.cria-pricing-page__tier-name {
+  margin-bottom: var(--cria-spacing-sm);
+  color: var(--cria-text-primary);
+  font-weight: var(--cria-typography-weight-semiBold);
+}
+
+.cria-pricing-page__tier-description {
+  color: var(--cria-text-secondary);
+  margin-bottom: var(--cria-spacing-lg);
+}
+
+.cria-pricing-page__price-container {
+  margin-bottom: var(--cria-spacing-md);
+}
+
+.cria-pricing-page__price {
+  color: var(--cria-primary);
+  font-size: var(--cria-typography-size-4xl);
+  font-weight: var(--cria-typography-weight-bold);
+  line-height: var(--cria-typography-line-height-tight);
+  margin-bottom: var(--cria-spacing-xs);
+}
+
+.cria-pricing-page__price-period {
+  color: var(--cria-text-secondary);
+}
+
+.cria-pricing-page__savings {
+  color: var(--cria-success);
+  font-weight: var(--cria-typography-weight-medium);
+  font-size: var(--cria-typography-size-caption);
+}
+
+.cria-pricing-page__features {
+  margin-bottom: var(--cria-spacing-xl);
+}
+
+.cria-pricing-page__features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.cria-pricing-page__feature {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--cria-spacing-sm);
+  color: var(--cria-text-primary);
+}
+
+.cria-pricing-page__feature-icon {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--cria-success);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: var(--cria-spacing-sm);
+  flex-shrink: 0;
+}
+
+.cria-pricing-page__feature-icon-check {
+  color: var(--cria-white);
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.cria-pricing-page__feature-text {
+  color: var(--cria-text-primary);
+}
+
+.cria-pricing-page__cta {
+  width: 100%;
+  padding: var(--cria-spacing-md) var(--cria-spacing-lg);
+  font-size: var(--cria-typography-size-base);
+  font-weight: var(--cria-typography-weight-semiBold);
+}
+
+.cria-pricing-page__footer {
+  text-align: center;
+  margin-top: var(--cria-spacing-xl);
+  padding: var(--cria-spacing-lg);
+  background-color: var(--cria-background-secondary);
+  border-radius: 12px;
+}
+
+.cria-pricing-page__footer-text {
+  color: var(--cria-text-secondary);
+  margin-bottom: var(--cria-spacing-sm);
+}
+
+.cria-pricing-page__footer-disclaimer {
+  color: var(--cria-text-tertiary);
+  font-size: var(--cria-typography-size-caption);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .cria-pricing-page {
+    padding: var(--cria-spacing-lg);
+  }
+
+  .cria-pricing-page__tiers {
+    grid-template-columns: 1fr;
+    gap: var(--cria-spacing-md);
+  }
+
+  .cria-pricing-page__tier {
+    padding: var(--cria-spacing-lg);
+  }
+
+  .cria-pricing-page__tier--popular {
+    transform: none;
+  }
+
+  .cria-pricing-page__billing-toggle {
+    flex-direction: column;
+    gap: var(--cria-spacing-sm);
+  }
+
+  .cria-pricing-page__title {
+    font-size: var(--cria-typography-size-2xl);
+  }
+
+  .cria-pricing-page__price {
+    font-size: var(--cria-typography-size-3xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .cria-pricing-page {
+    padding: var(--cria-spacing-md);
+  }
+
+  .cria-pricing-page__tier {
+    padding: var(--cria-spacing-md);
+  }
+
+  .cria-pricing-page__title {
+    font-size: var(--cria-typography-size-xl);
+  }
+
+  .cria-pricing-page__price {
+    font-size: var(--cria-typography-size-2xl);
+  }
+}
+
+/* Dark mode support (when implemented) */
+@media (prefers-color-scheme: dark) {
+  .cria-pricing-page__tier {
+    background-color: var(--cria-background-dark, #1f2937);
+    border-color: var(--cria-border-dark, #374151);
+  }
+
+  .cria-pricing-page__tier--popular {
+    border-color: var(--cria-primary);
+    box-shadow: 0 8px 32px rgba(117, 102, 161, 0.3);
+  }
+
+  .cria-pricing-page__footer {
+    background-color: var(--cria-background-dark-secondary, #111827);
+  }
+}
+
+/* Accessibility improvements */
+.cria-pricing-page__billing-option:focus {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.cria-pricing-page__tier:focus-within {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+
+/* Animation for tier selection */
+.cria-pricing-page__tier:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px var(--cria-border-light);
+}
+
+.cria-pricing-page__tier--popular:hover {
+  transform: scale(1.05) translateY(-4px);
+  box-shadow: 0 12px 40px rgba(117, 102, 161, 0.25);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .cria-pricing-page__toggle-slider,
+  .cria-pricing-page__tier,
+  .cria-pricing-page__billing-option {
+    transition: none;
+  }
+
+  .cria-pricing-page__tier:hover {
+    transform: none;
+  }
+
+  .cria-pricing-page__tier--popular:hover {
+    transform: scale(1.05);
+  }
+}
