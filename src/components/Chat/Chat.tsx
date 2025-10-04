@@ -253,16 +253,16 @@ export const Chat: React.FC<ChatProps> = ({
               gap: 12
             }}>
               <div>
-                <Typography variant="body" weight="semiBold" style={{ marginBottom: 4 }}>
+                <Typography variant="body" weight="semiBold" style={{ marginBottom: 4, color: 'var(--cria-gray-900)' }}>
                   {attachment.title}
                 </Typography>
                 {attachment.description && (
-                  <Typography variant="caption" color="secondary">
+                  <Typography variant="caption" style={{ color: 'var(--cria-gray-700)', marginBottom: 4, display: 'block' }}>
                     {attachment.description}
                   </Typography>
                 )}
                 {attachment.duration && (
-                  <Typography variant="caption" color="secondary" style={{ marginTop: 4, display: 'block' }}>
+                  <Typography variant="caption" style={{ color: 'var(--cria-gray-600)', marginTop: 4, display: 'block' }}>
                     Duração: {attachment.duration}
                   </Typography>
                 )}
