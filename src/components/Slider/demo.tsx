@@ -143,14 +143,14 @@ export const SliderDemo: React.FC = () => {
             textAlign: 'center',
             transition: 'all 0.3s ease',
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
-            borderColor: textSliderValue >= 7 ? '#28a745' : textSliderValue <= 3 ? '#dc3545' : '#6c757d'
+            borderColor: textSliderValue >= 7 ? 'var(--cria-primary)' : textSliderValue <= 3 ? 'var(--cria-secondary)' : '#6c757d'
           }}>
             <Typography 
               variant="h2" 
               weight="bold" 
               style={{ 
                 marginBottom: '8px',
-                color: textSliderValue >= 7 ? '#28a745' : textSliderValue <= 3 ? '#dc3545' : '#495057'
+                color: textSliderValue >= 7 ? 'var(--cria-primary)' : textSliderValue <= 3 ? 'var(--cria-secondary)' : '#495057'
               }}
             >
               {getTextForValue(textSliderValue).text}
@@ -164,14 +164,6 @@ export const SliderDemo: React.FC = () => {
             >
               {getTextForValue(textSliderValue).description}
             </Typography>
-            <div style={{ 
-              marginTop: '12px',
-              fontSize: '14px',
-              color: '#868e96',
-              fontWeight: '500'
-            }}>
-              Value: {textSliderValue}/10
-            </div>
           </div>
         </Card>
 
