@@ -20,11 +20,12 @@ import { AccordionDemo } from './components/Accordion/demo';
 import { TextDemo } from './components/Text/demo';
 import { DropdownDemo } from './components/Dropdown/demo';
 import { RadioGroupDemo } from './components/RadioGroup/demo';
+import { BreadcrumbsDemo } from './components/Breadcrumbs/demo';
 
 // Import Cartograph font
 import './fonts.css';
 
-type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'textarea' | 'avatar' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group';
+type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'textarea' | 'avatar' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group' | 'breadcrumbs';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<DemoSection>('overview');
@@ -35,7 +36,7 @@ const App: React.FC = () => {
   // Initialize active section from URL hash
   React.useEffect(() => {
     const hash = window.location.hash.slice(1); // Remove the # symbol
-    const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group'];
+    const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs'];
     
     if (hash && validSections.includes(hash as DemoSection)) {
       setActiveSection(hash as DemoSection);
@@ -46,7 +47,7 @@ const App: React.FC = () => {
   React.useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.slice(1);
-      const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group'];
+      const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs'];
       
       if (hash && validSections.includes(hash as DemoSection)) {
         setActiveSection(hash as DemoSection);
@@ -104,7 +105,8 @@ const App: React.FC = () => {
         { id: 'card', label: 'Card', href: '#card', icon: <Square size={20} /> },
         { id: 'tabs', label: 'Tabs', href: '#tabs', icon: <Tabs size={20} /> },
         { id: 'accordion', label: 'Accordion', href: '#accordion', icon: <CaretDown size={20} /> },
-        { id: 'navigation', label: 'Navigation', href: '#navigation', icon: <List size={20} /> }
+        { id: 'navigation', label: 'Navigation', href: '#navigation', icon: <List size={20} /> },
+        { id: 'breadcrumbs', label: 'Breadcrumbs', href: '#breadcrumbs', icon: <CaretDown size={20} /> }
       ]
     },
     { 
@@ -273,6 +275,8 @@ const App: React.FC = () => {
         return <DropdownDemo />;
       case 'radio-group':
         return <RadioGroupDemo />;
+      case 'breadcrumbs':
+        return <BreadcrumbsDemo />;
       default:
         return <TypographyDemo />;
     }
