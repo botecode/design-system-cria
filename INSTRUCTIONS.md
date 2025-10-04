@@ -14,10 +14,15 @@ Core Principles
 	•	Internal Consumption: Always consume existing components instead of re-implementing custom code (e.g., use our Label inside a Card).
 	•	Versioning Discipline: Use Conventional Commits for every commit.
 	•	Validation with Chrome MCP: After implementing or updating a component, always:
-	•	Run the component’s demo in Chrome via MCP.
-	•	Verify it renders correctly in the browser.
-	•	Check console logs for warnings or errors.
-	•	Confirm accessibility features are intact.
+		- Run the component’s demo in Chrome via MCP.
+		- Verify it renders correctly in the browser.
+		- Check console logs for warnings or errors.
+		- Confirm accessibility features are intact.
+	•	Instruction Discipline: After completing a component, update this file:
+		- Mark the component as ✅ under Already Implemented
+		- Move it out of "Next Component"
+		- Promote the next Upcoming item to "Next Component"
+		- Carry its feature + test boilerplate forward
 
 ⸻
 
@@ -25,30 +30,30 @@ Workflow
 
 For each new component:
 	1.	Branching
-	•	Create a new branch: feature/<component-name>
-	•	Example: feature/text
+		•	Create a new branch: feature/<component-name>
+		•	Example: feature/text
 	2.	TDD Cycle
-	•	✅ Write UI tests first (include accessibility assertions).
-	•	✅ Implement component until tests pass.
-	•	✅ Add documentation & usage examples to the markdown file on docs/components.
+		•	✅ Write UI tests first (include accessibility assertions).
+		•	✅ Implement component until tests pass.
+		•	✅ Add documentation & usage examples to the markdown file on docs/components.
 	3.	Validation (Chrome MCP)
-	•	Run the demo in Chrome.
-	•	Confirm the component renders correctly.
-	•	Inspect console logs for warnings/errors.
-	•	Verify keyboard navigation + accessibility.
+		•	Run the demo in Chrome.
+		•	Confirm the component renders correctly.
+		•	Inspect console logs for warnings/errors.
+		•	Verify keyboard navigation + accessibility.
 	4.	Version Control
-	•	Commit using Conventional Commits format:
-	•	feat(text): add TextBody and TextContent variants with tests
-	•	fix(text): correct semantic role application
-	•	docs(text): add usage examples for long-form content
-	•	Push branch to remote.
+		•	Commit using Conventional Commits format:
+			- feat(text): add TextBody and TextContent variants with tests
+			- fix(text): correct semantic role application
+			- docs(text): add usage examples for long-form content
+		•	Push branch to remote.
 	5.	Pull Request
-	•	Open a PR to main.
-	•	PR description must include:
-	•	Implemented component
-	•	Tests covered
-	•	Accessibility features
-	•	Screenshots (if visual changes)
+		•	Open a PR to main.
+		•	PR description must include:
+			- Implemented component
+			- Tests covered
+			- Accessibility features
+			- Screenshots (if visual changes)
 
 ⸻
 
@@ -69,6 +74,10 @@ For each new component:
 	•	Accordion
 	•	Text
 	•	Dropdown / Select
+	•	Radio Group
+	•	Textarea
+	•	Avatar
+	•	Breadcrumbs
 
 Input Demos
 	•	Basic Inputs — Full Name, Email Address, Phone Number, Date (dd.mm.yyyy)
@@ -76,39 +85,26 @@ Input Demos
 
 ⸻
 
-✅ Text
+⬜ Next Component: Pagination
 
-✅ Dropdown / Select
-
-✅ Radio Group
-
-✅ Textarea
-
-⬜ Next Component: Avatar
-
-We need a Radio Group component for single-selection from multiple options.
+We need a **Pagination component** for navigating through paged content.
 
 Features should include:
-	•	Radio Group container with proper fieldset/legend structure
-	•	Individual Radio components with labels
-	•	Support for disabled, required, and error states
-	•	Keyboard navigation (Arrow keys to navigate, Space/Enter to select)
-	•	Proper ARIA attributes and screen reader support
+	•	Previous / Next buttons
+	•	Numbered page buttons with active state
+	•	Ellipsis for long ranges
+	•	Configurable page size
+	•	Accessible labels (aria-label, keyboard navigation)
 
 Tests
-	•	Renders radio group with proper fieldset/legend structure
-	•	Allows single selection from multiple options
-	•	Supports keyboard navigation (Arrow keys, Space, Enter)
-	•	Handles disabled and error states correctly
-	•	Accessibility: proper ARIA attributes, screen reader announcements
+	•	Renders page numbers with correct active page
+	•	Supports navigation with click + keyboard
+	•	Handles edge cases (first/last page disabled)
+	•	Accessibility: announces current page to screen readers
 
 ⸻
 
-⬜ Upcoming Components (after Radio Group)
-	•	Textarea
-	•	Avatar
-	•	Breadcrumbs
-	•	Pagination
+⬜ Upcoming Components (after Pagination)
 	•	Progress Bar
 	•	Vertical Tabs
 	•	Stepper
@@ -121,9 +117,10 @@ Tests
 ⸻
 
 ⚡ With this, Codex/Cursor will:
-	•	Start with the Text component as the next feature branch.
-	•	Implement all text variants with tests + accessibility baked in.
+	•	Start with the Next Component listed in this file.
+	•	Mark components as ✅ once completed and move the next item forward.
+	•	Implement with tests + accessibility baked in.
 	•	Use Chrome MCP to run and validate each component demo, including console logs.
-	•	Then continue with the backlog of components in order.
+	•	Continue through the backlog in order.
 
 ⸻
