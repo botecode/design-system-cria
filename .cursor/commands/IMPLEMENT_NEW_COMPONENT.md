@@ -91,30 +91,26 @@ Input Demos
 
 ⸻
 
-🚀 Next Component to Implement: PieChart
+🚀 Next Component to Implement: Comments Section
 
-**Implement the PieChart component immediately**, using **design tokens** and DS primitives.  
+**Implement the Comments Section immediately**, using **design tokens** and DS primitives.  
 Include a **demo page** and **sidebar entry**. Validate with **Chrome MCP**. Commit on a **feature branch** and **merge into main** per Git rules above. Update this file afterward.
 
 Required Features
-  • Render a responsive pie chart  
-  • Legend with labels and values  
-  • Hover/selection highlighting  
-  • Token-based colors and typography  
-  • A11y: labelled chart, focusable segments with aria-labels  
+  • Threaded comments with author, timestamp, and actions (reply, edit, delete)  
+  • Composer with multiline input, Enter to send (Shift+Enter newline)  
+  • Token-based styles, avatars, and nesting guides  
+  • A11y: roles/labels, keyboard navigation among comments, focus retention  
 
 Required Tests
-  • Renders chart with correct slices  
-  • Hover/selection updates aria and styles  
-  • Legend matches data  
-  • A11y: roles/labels present; keyboard focus works
+  • Renders initial thread and timestamps  
+  • Adding a comment appends and clears composer  
+  • Keyboard behavior: Enter sends; Shift+Enter inserts newline  
+  • A11y: roles/labels present; focus management validated
 
 ⸻
 
 ⬜ Upcoming Components
-  • Comments Section
-  • PieChart  
-  • LineChart and Line Graphics (Change the Piechart entry in the sidebar to "Charts" and include it there)
   • Slider - Component
   • Shimmer Skeleton - Foundation
   • Pricing page ("Web" new tab sectoin on sidebar)
