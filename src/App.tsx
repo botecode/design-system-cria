@@ -36,11 +36,12 @@ import ShimmerSkeletonDemo from './components/ShimmerSkeleton/demo';
 import PricingPageDemo from './components/PricingPage/demo';
 import PageLoadingProgressDemo from './components/PageLoadingProgress/demo';
 import CardSelectorDemo from './components/CardSelector/demo';
+import FloatingSidebarDemo from './components/FloatingSidebar/demo';
 
 // Import Cartograph font
 import './fonts.css';
 
-type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'textarea' | 'avatar' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group' | 'breadcrumbs' | 'pagination' | 'progress-bar' | 'vertical-tabs' | 'stepper' | 'date-picker' | 'file-upload' | 'chat' | 'pie-chart' | 'comments-section' | 'slider' | 'shimmer-skeleton' | 'pricing-page' | 'page-loading-progress' | 'card-selector';
+type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'textarea' | 'avatar' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group' | 'breadcrumbs' | 'pagination' | 'progress-bar' | 'vertical-tabs' | 'stepper' | 'date-picker' | 'file-upload' | 'chat' | 'pie-chart' | 'comments-section' | 'slider' | 'shimmer-skeleton' | 'pricing-page' | 'page-loading-progress' | 'card-selector' | 'floating-sidebar';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<DemoSection>('overview');
@@ -51,7 +52,7 @@ const App: React.FC = () => {
   // Initialize active section from URL hash
   React.useEffect(() => {
     const hash = window.location.hash.slice(1); // Remove the # symbol
-    const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'stepper', 'date-picker', 'file-upload', 'chat', 'pie-chart', 'comments-section', 'slider', 'shimmer-skeleton', 'pricing-page', 'page-loading-progress', 'card-selector'];
+    const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'stepper', 'date-picker', 'file-upload', 'chat', 'pie-chart', 'comments-section', 'slider', 'shimmer-skeleton', 'pricing-page', 'page-loading-progress', 'card-selector', 'floating-sidebar'];
     
     if (hash && validSections.includes(hash as DemoSection)) {
       setActiveSection(hash as DemoSection);
@@ -119,6 +120,7 @@ const App: React.FC = () => {
         ,{ id: 'pricing-page', label: 'Pricing Page', href: '#pricing-page', icon: <List size={20} /> }
         ,{ id: 'page-loading-progress', label: 'Page Loading Progress', href: '#page-loading-progress', icon: <List size={20} /> }
         ,{ id: 'card-selector', label: 'Card Selector', href: '#card-selector', icon: <List size={20} /> }
+        ,{ id: 'floating-sidebar', label: 'Floating Sidebar', href: '#floating-sidebar', icon: <Layout size={20} /> }
       ]
     },
     { 
@@ -319,6 +321,8 @@ const App: React.FC = () => {
         return <PageLoadingProgressDemo />;
       case 'card-selector':
         return <CardSelectorDemo />;
+      case 'floating-sidebar':
+        return <FloatingSidebarDemo />;
       default:
         return <TypographyDemo />;
     }
@@ -355,7 +359,7 @@ const App: React.FC = () => {
 
           <Navigation
             sidebar={{
-              title: 'CRIA.lab',
+              title: 'CR_IA.UI',
               titleHref: '#overview',
               items: sidebarItems.map(item => ({
                 ...item,
