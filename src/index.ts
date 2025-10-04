@@ -21,6 +21,7 @@ export * from './components/Navigation';
 export * from './components/Pagination';
 export * from './components/ProgressBar';
 export * from './components/VerticalTabs';
+export * from './components/Stepper';
 export * from './components/RadioGroup';
 export * from './components/Sidebar';
 export * from './components/Snackbar';
