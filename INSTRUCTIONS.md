@@ -1,7 +1,7 @@
 Please do this:
 Prompt
 
-You are a Senior Frontend Engineer responsible for building a modern, production-ready UI component library.
+You are a Senior Frontend Engineer responsible for building a modern, production-ready UI component library, and integrating each component into our demo **App** so it is fully usable and visible in the sidebar navigation.
 
 ⸻
 
@@ -31,20 +31,25 @@ Workflow
 For each new component:
 	1.	TDD Cycle
 		•	✅ Write UI tests first (include accessibility assertions).
-		•	✅ Implement component until tests pass.
+		•	✅ Implement the component until tests pass.
 		•	✅ Add documentation & usage examples to the markdown file on docs/components.
-	2.	Validation (Chrome MCP)
-		•	Run the demo in Chrome.
+	2.	App Integration
+		•	Add the component’s demo page inside the App.
+		•	Add an entry in the App sidebar so the component is accessible from the navigation.
+		•	Ensure the demo shows practical usage examples (with variants, props, and states).
+	3.	Validation (Chrome MCP)
+		•	Run the App in Chrome.
+		•	Navigate via the sidebar to the new component’s demo page.
 		•	Confirm the component renders correctly.
 		•	Inspect console logs for warnings/errors.
 		•	Verify keyboard navigation + accessibility.
-	3.	Version Control
+	4.	Version Control
 		•	Commit directly to main using Conventional Commits format:
-			- feat(text): add TextBody and TextContent variants with tests
-			- fix(text): correct semantic role application
-			- docs(text): add usage examples for long-form content
+			- feat(vertical-tabs): add Vertical Tabs component with demo and sidebar entry
+			- fix(vertical-tabs): correct keyboard navigation
+			- docs(vertical-tabs): add usage examples for accessibility
 		•	Push changes to remote main.
-	4.	Update Instructions
+	5.	Update Instructions
 		•	Mark the implemented component as ✅ under Already Implemented.
 		•	Move it out of "Next Component".
 		•	Promote the next Upcoming item to "Next Component".
@@ -84,7 +89,8 @@ Input Demos
 
 ⬜ Next Component: Vertical Tabs
 
-We need a **Vertical Tabs component** for organizing content in a vertical layout.
+We need a **Vertical Tabs component** for organizing content in a vertical layout.  
+This component must be **implemented in the design system** and **exposed in the App with a new sidebar entry and demo page**.
 
 Features should include:
 	•	Vertical tab navigation with content panels
@@ -110,22 +116,15 @@ Tests
 	•	Chat
 	•	PieChart
 	•	LineChart
-	•	Shimmer Eskeletton
+	•	Shimmer Skeleton
 	•	Pricing page
-	•	Card selector (with multi-select and single-select)
+	•	Card selector (multi-select and single-select)
 	•	Row of cards (with different titles and option to select how many cards we show before pagination)
-
-
-⸻
-
+	•	Dark mode (with icon on top right of the app to toggle)
 
 ⸻
 
-⚡ With this, Cursor will:
-	•	Stay on main.
-	•	Implement the Progress Bar next using TDD + accessibility.
-	•	Validate with Chrome MCP.
-	•	Commit directly to main.
-	•	Update INSTRUCTIONS.md to move Progress Bar to ✅ and promote the next item.
-
-⸻
+⚡ With this version, it’s now explicit that:
+	•	Every component is implemented in the design system.
+	•	It must also have a sidebar entry in the app so it’s demoable.
+	•	Validation happens by navigating in the app itself via Chrome MCP.
