@@ -23,11 +23,12 @@ import { RadioGroupDemo } from './components/RadioGroup/demo';
 import { BreadcrumbsDemo } from './components/Breadcrumbs/demo';
 import { PaginationDemo } from './components/Pagination/demo';
 import { ProgressBarDemo } from './components/ProgressBar/demo';
+import { VerticalTabsDemo } from './components/VerticalTabs/demo';
 
 // Import Cartograph font
 import './fonts.css';
 
-type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'textarea' | 'avatar' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group' | 'breadcrumbs' | 'pagination' | 'progress-bar';
+type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'textarea' | 'avatar' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group' | 'breadcrumbs' | 'pagination' | 'progress-bar' | 'vertical-tabs';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<DemoSection>('overview');
@@ -38,7 +39,7 @@ const App: React.FC = () => {
   // Initialize active section from URL hash
   React.useEffect(() => {
     const hash = window.location.hash.slice(1); // Remove the # symbol
-    const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar'];
+    const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs'];
     
     if (hash && validSections.includes(hash as DemoSection)) {
       setActiveSection(hash as DemoSection);
@@ -49,7 +50,7 @@ const App: React.FC = () => {
   React.useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.slice(1);
-      const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar'];
+      const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs'];
       
       if (hash && validSections.includes(hash as DemoSection)) {
         setActiveSection(hash as DemoSection);
@@ -107,6 +108,7 @@ const App: React.FC = () => {
       subitems: [
         { id: 'card', label: 'Card', href: '#card', icon: <Square size={20} /> },
         { id: 'tabs', label: 'Tabs', href: '#tabs', icon: <Tabs size={20} /> },
+        { id: 'vertical-tabs', label: 'Vertical Tabs', href: '#vertical-tabs', icon: <Tabs size={20} /> },
         { id: 'accordion', label: 'Accordion', href: '#accordion', icon: <CaretDown size={20} /> },
         { id: 'navigation', label: 'Navigation', href: '#navigation', icon: <List size={20} /> },
         { id: 'breadcrumbs', label: 'Breadcrumbs', href: '#breadcrumbs', icon: <CaretDown size={20} /> },
@@ -287,6 +289,8 @@ const App: React.FC = () => {
         return <PaginationDemo />;
       case 'progress-bar':
         return <ProgressBarDemo />;
+      case 'vertical-tabs':
+        return <VerticalTabsDemo />;
       default:
         return <TypographyDemo />;
     }

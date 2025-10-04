@@ -671,6 +671,84 @@ body {
 }
 
 /* ===== TABS COMPONENT STYLES ===== */
+/* VerticalTabs component (standalone minimal styles) */
+.cria-vertical-tabs {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: var(--cria-spacing-4);
+}
+
+.cria-vertical-tabs__list {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--cria-gray-200);
+  padding: var(--cria-spacing-2) 0;
+  gap: 0;
+}
+
+.cria-vertical-tabs__tab {
+  display: flex;
+  align-items: center;
+  gap: var(--cria-spacing-2);
+  padding: var(--cria-spacing-3) var(--cria-spacing-4);
+  background: transparent;
+  border: none;
+  color: var(--cria-gray-700);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.cria-vertical-tabs__tab:hover {
+  background-color: var(--cria-gray-50);
+  color: var(--cria-primary);
+}
+
+.cria-vertical-tabs__tab--active {
+  color: var(--cria-primary);
+  background-color: var(--cria-gray-50);
+  position: relative;
+}
+
+.cria-vertical-tabs__tab--active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--cria-primary);
+}
+
+.cria-vertical-tabs__tab--disabled {
+  color: var(--cria-gray-400);
+  cursor: not-allowed;
+}
+
+.cria-vertical-tabs__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cria-vertical-tabs__panel {
+  padding: var(--cria-spacing-4);
+}
+
+@media (max-width: 768px) {
+  .cria-vertical-tabs {
+    grid-template-columns: 1fr;
+  }
+  .cria-vertical-tabs__list {
+    border-right: none;
+    border-bottom: 1px solid var(--cria-gray-200);
+    flex-direction: row;
+    overflow-x: auto;
+  }
+  .cria-vertical-tabs__tab {
+    flex: 0 0 auto;
+  }
+}
 
 /* Base Tabs Container */
 .cria-tabs {
