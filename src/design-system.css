@@ -1,3 +1,22 @@
+/* ===== DATE PICKER ===== */
+.cria-date-picker { position: relative; display: inline-flex; flex-direction: column; gap: 6px; }
+.cria-date-picker__label { font-family: var(--cria-font-family); font-weight: 600; color: var(--cria-gray-700); }
+.cria-date-picker__input { width: 100%; border: 1px solid var(--cria-primary); border-radius: var(--cria-radius-md); padding: 10px 12px; font-family: var(--cria-font-family); }
+.cria-date-picker__input:focus { outline: 2px solid var(--cria-primary); outline-offset: 2px; }
+.cria-calendar { position: absolute; top: 100%; left: 0; margin-top: 6px; background: var(--cria-white); border: 1px solid var(--cria-gray-200); border-radius: var(--cria-radius-md); box-shadow: var(--cria-shadow-lg); z-index: 10; padding: 8px; min-width: 260px; }
+.cria-calendar__header { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.cria-calendar__nav { background: transparent; border: 1px solid var(--cria-gray-300); border-radius: var(--cria-radius-sm); padding: 2px 8px; cursor: pointer; }
+.cria-calendar__month { font-weight: 600; }
+.cria-calendar__weekdays { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin-bottom: 4px; }
+.cria-calendar__weekday { text-align: center; font-size: var(--cria-font-size-caption); color: var(--cria-gray-500); }
+.cria-calendar__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.cria-calendar__day { padding: 6px 0; text-align: center; border: 1px solid transparent; border-radius: var(--cria-radius-sm); background: var(--cria-white); cursor: pointer; }
+.cria-calendar__day:hover { background: var(--cria-gray-50); }
+.cria-calendar__day--outside { color: var(--cria-gray-400); }
+.cria-calendar__day--disabled { color: var(--cria-gray-400); cursor: not-allowed; }
+.cria-calendar__day--today { border-color: var(--cria-primary); }
+.cria-calendar__day--start, .cria-calendar__day--end { background: var(--cria-primary); color: var(--cria-white); }
+.cria-calendar__day--in-range { background: var(--cria-primary-50); }
 /* ===== STEPPER COMPONENT STYLES ===== */
 .cria-stepper {
   display: flex;
