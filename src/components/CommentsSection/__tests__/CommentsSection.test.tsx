@@ -7,14 +7,14 @@ const mockComments: Comment[] = [
   {
     id: '1',
     author: 'John Doe',
-    avatar: 'https://via.placeholder.com/32',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face',
     content: 'This is a great idea!',
     timestamp: new Date('2024-01-15T10:30:00Z'),
     replies: [
       {
         id: '2',
         author: 'Jane Smith',
-        avatar: 'https://via.placeholder.com/32',
+        avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=32&h=32&fit=crop&crop=face',
         content: 'I agree completely.',
         timestamp: new Date('2024-01-15T11:00:00Z'),
         replies: []

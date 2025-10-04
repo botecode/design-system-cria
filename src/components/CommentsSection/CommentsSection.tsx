@@ -123,109 +123,173 @@ export const CommentsSection: React.FC<CommentsSectionProps> = ({
         key={comment.id}
         className="cria-comment"
         style={{
-          marginLeft: depth * 16,
-          borderLeft: depth > 0 ? `2px solid ${colors.border.light}` : 'none',
-          paddingLeft: depth > 0 ? 12 : 0,
-          marginBottom: 16
+          marginLeft: depth * 20,
+          marginBottom: 16,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: depth > 0 ? 'flex-end' : 'flex-start'
         }}
       >
-        <div className="cria-comment__header" style={{ display: 'flex', alignItems: 'center', gap: spacing[2], marginBottom: spacing[2] }}>
-          <Avatar src={comment.avatar} name={comment.author} size="sm" />
-          <div>
-            <Typography variant="body2" weight="semiBold" style={{ color: colors.text.primary }}>
-              {comment.author}
-            </Typography>
-            <Typography variant="caption" style={{ color: colors.text.secondary }}>
-              {formatTimestamp(comment.timestamp)}
-            </Typography>
-          </div>
-        </div>
-
-        {isEditing ? (
-          <div className="cria-comment__edit">
-            <Textarea
-              value={editingContent}
-              onChange={(e) => setEditingContent(e.target.value)}
-              placeholder="Edit your comment..."
-              maxLength={maxLength}
-              style={{ marginBottom: spacing[2] }}
+        <div className="cria-comment__bubble" style={{ 
+          display: 'flex', 
+          flexDirection: 'column',
+          maxWidth: '70%',
+          minWidth: '200px'
+        }}>
+          <div className="cria-comment__header" style={{ 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: 8, 
+            marginBottom: 8,
+            padding: '0 4px'
+          }}>
+            <Avatar 
+              src={comment.avatar} 
+              name={comment.author} 
+              size="sm"
+              style={{ flexShrink: 0 }}
             />
-            <div style={{ display: 'flex', gap: spacing[2] }}>
-              <Button size="sm" onClick={handleSaveEdit} disabled={!editingContent.trim()}>
-                Save
-              </Button>
-              <Button size="sm" variant="secondary" onClick={handleCancelEdit}>
-                Cancel
-              </Button>
-            </div>
-          </div>
-        ) : (
-          <>
-            <div className="cria-comment__content" style={{ marginBottom: spacing[2] }}>
-              <Typography variant="body2" style={{ color: colors.text.primary, whiteSpace: 'pre-wrap' }}>
-                {comment.content}
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <Typography variant="body2" weight="bold" style={{ color: colors.text.primary, marginBottom: 2 }}>
+                {comment.author}
+              </Typography>
+              <Typography variant="caption" style={{ color: colors.text.secondary }}>
+                {formatTimestamp(comment.timestamp)}
               </Typography>
             </div>
-
-            <div className="cria-comment__actions" style={{ display: 'flex', gap: spacing[2] }}>
-              <Button
-                size="sm"
-                variant="ghost"
-                onClick={() => setReplyingTo(comment.id)}
-                aria-label={`Reply to ${comment.author}`}
-              >
-                Reply
-              </Button>
-              {onEditComment && (
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() => handleEdit(comment)}
-                  aria-label={`Edit comment by ${comment.author}`}
-                >
-                  Edit
-                </Button>
-              )}
-              {onDeleteComment && (
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() => handleDelete(comment.id)}
-                  aria-label={`Delete comment by ${comment.author}`}
-                  style={{ color: colors.error }}
-                >
-                  Delete
-                </Button>
-              )}
-            </div>
-          </>
-        )}
-
-        {isReplying && (
-          <div className="cria-comment__reply" style={{ marginTop: spacing[3], padding: spacing[3], backgroundColor: colors.background.secondary, borderRadius: spacing[2] }}>
-            <Typography variant="body2" weight="semiBold" style={{ marginBottom: spacing[2] }}>
-              Reply to {comment.author}
-            </Typography>
-            <Textarea
-              ref={replyTextareaRef}
-              value={replyContent}
-              onChange={(e) => setReplyContent(e.target.value)}
-              onKeyDown={handleReplyKeyDown}
-              placeholder="Write your reply..."
-              maxLength={maxLength}
-              style={{ marginBottom: spacing[2] }}
-              aria-label={`Reply to ${comment.author}`}
-            />
-            <div style={{ display: 'flex', gap: spacing[2] }}>
-              <Button size="sm" onClick={handleSendReply} disabled={!replyContent.trim()}>
-                Send Reply
-              </Button>
-              <Button size="sm" variant="secondary" onClick={() => { setReplyingTo(null); setReplyContent(''); }}>
-                Cancel
-              </Button>
-            </div>
           </div>
-        )}
+
+          {isEditing ? (
+            <div className="cria-comment__edit" style={{
+              backgroundColor: colors.background.primary,
+              border: `1px solid ${colors.border.medium}`,
+              borderRadius: 12,
+              padding: 12
+            }}>
+              <Textarea
+                value={editingContent}
+                onChange={(e) => setEditingContent(e.target.value)}
+                placeholder="Edit your comment..."
+                maxLength={maxLength}
+                style={{ marginBottom: 8, border: 'none', backgroundColor: 'transparent' }}
+              />
+              <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+                <Button size="sm" onClick={handleSaveEdit} disabled={!editingContent.trim()}>
+                  Save
+                </Button>
+                <Button size="sm" variant="secondary" onClick={handleCancelEdit}>
+                  Cancel
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <>
+              <div className="cria-comment__content" style={{
+                backgroundColor: depth > 0 ? colors.background.secondary : colors.primary,
+                color: depth > 0 ? colors.text.primary : colors.white,
+                padding: '12px 16px',
+                borderRadius: 16,
+                position: 'relative',
+                marginBottom: 8,
+                wordWrap: 'break-word'
+              }}>
+                <Typography 
+                  variant="body2" 
+                  style={{ 
+                    color: depth > 0 ? colors.text.primary : colors.white, 
+                    whiteSpace: 'pre-wrap',
+                    margin: 0
+                  }}
+                >
+                  {comment.content}
+                </Typography>
+                {/* Speech bubble tail */}
+                <div style={{
+                  position: 'absolute',
+                  top: -6,
+                  left: depth > 0 ? 20 : 20,
+                  width: 0,
+                  height: 0,
+                  borderLeft: '6px solid transparent',
+                  borderRight: '6px solid transparent',
+                  borderBottom: `6px solid ${depth > 0 ? colors.background.secondary : colors.primary}`
+                }} />
+              </div>
+
+              <div className="cria-comment__actions" style={{ 
+                display: 'flex', 
+                gap: 8, 
+                padding: '0 4px',
+                justifyContent: 'flex-end'
+              }}>
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => setReplyingTo(comment.id)}
+                  aria-label={`Reply to ${comment.author}`}
+                  style={{ fontSize: '12px', padding: '4px 8px' }}
+                >
+                  Reply
+                </Button>
+                {onEditComment && (
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => handleEdit(comment)}
+                    aria-label={`Edit comment by ${comment.author}`}
+                    style={{ fontSize: '12px', padding: '4px 8px' }}
+                  >
+                    Edit
+                  </Button>
+                )}
+                {onDeleteComment && (
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => handleDelete(comment.id)}
+                    aria-label={`Delete comment by ${comment.author}`}
+                    style={{ color: colors.error, fontSize: '12px', padding: '4px 8px' }}
+                  >
+                    Delete
+                  </Button>
+                )}
+              </div>
+            </>
+          )}
+
+          {isReplying && (
+            <div className="cria-comment__reply" style={{ 
+              marginTop: 12, 
+              padding: 12, 
+              backgroundColor: colors.background.primary, 
+              borderRadius: 12,
+              border: `1px solid ${colors.border.light}`,
+              maxWidth: '100%'
+            }}>
+              <Typography variant="body2" weight="semiBold" style={{ marginBottom: 8, color: colors.text.primary }}>
+                Reply to {comment.author}
+              </Typography>
+              <Textarea
+                ref={replyTextareaRef}
+                value={replyContent}
+                onChange={(e) => setReplyContent(e.target.value)}
+                onKeyDown={handleReplyKeyDown}
+                placeholder="Write your reply..."
+                maxLength={maxLength}
+                style={{ marginBottom: 8, border: 'none', backgroundColor: 'transparent' }}
+                aria-label={`Reply to ${comment.author}`}
+              />
+              <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+                <Button size="sm" onClick={handleSendReply} disabled={!replyContent.trim()}>
+                  Send Reply
+                </Button>
+                <Button size="sm" variant="secondary" onClick={() => { setReplyingTo(null); setReplyContent(''); }}>
+                  Cancel
+                </Button>
+              </div>
+            </div>
+          )}
+        </div>
 
         {comment.replies.map(reply => renderComment(reply, depth + 1))}
       </div>
