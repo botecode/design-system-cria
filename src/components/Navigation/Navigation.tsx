@@ -323,7 +323,17 @@ const Sidebar: React.FC<NavigationSidebarProps> = ({
                     ].filter(Boolean).join(' ')}
                     data-nav-item={index}
                     tabIndex={item.disabled ? -1 : 0}
-                    onKeyDown={(e) => handleKeyDown(e, index)}
+                    role="button"
+                    aria-expanded={isExpanded}
+                    onClick={() => handleSubitemToggle(item.id)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        handleSubitemToggle(item.id);
+                        return;
+                      }
+                      handleKeyDown(e, index);
+                    }}
                   >
                     {item.icon && (
                       <span className="cria-sidebar__icon" aria-hidden="true">
@@ -335,14 +345,12 @@ const Sidebar: React.FC<NavigationSidebarProps> = ({
                         <span className="cria-sidebar__label">
                           {item.label}
                         </span>
-                        <button
+                        <span
                           className="cria-sidebar__subitem-toggle"
-                          onClick={() => handleSubitemToggle(item.id)}
-                          aria-expanded={isExpanded}
-                          aria-label={`Toggle ${item.label} submenu`}
+                          aria-hidden="true"
                         >
                           {isExpanded ? <CaretDown size={16} /> : <CaretRight size={16} />}
-                        </button>
+                        </span>
                       </>
                     )}
                     {item.badge && (
