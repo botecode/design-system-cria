@@ -89,6 +89,8 @@ export interface DropdownProps extends Omit<React.HTMLAttributes<HTMLDivElement>
    * Callback fired when dropdown closes
    */
   onClose?: () => void;
+  /** Name attribute for form integration (applied to trigger) */
+  name?: string;
 }
 
 export interface DropdownRef {
@@ -133,6 +135,7 @@ export const Dropdown = forwardRef<DropdownRef, DropdownProps>(({
   onChange,
   onOpen,
   onClose,
+  name,
   ...props
 }, ref) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -419,6 +422,7 @@ export const Dropdown = forwardRef<DropdownRef, DropdownProps>(({
         ref={triggerRef}
         type="button"
         role="combobox"
+        name={name}
         className={triggerClasses}
         style={getTriggerStyles()}
         onClick={handleTriggerClick}

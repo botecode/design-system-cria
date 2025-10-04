@@ -35,3 +35,4 @@ export * from './components/Typography';
 export * from './components/FileUpload';
 export * from './components/Chat';
 export * from './components/TextTokens';
+export * from './components/PieChart';

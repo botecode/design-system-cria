@@ -7,7 +7,7 @@
 export const colors = {
   // Primary Colors
   primary: '#7566A1',
-  primaryLight: '#9E9AD9',
+  primaryLight: '#3A2E52',
   primaryDarker: '#3A2E52',
   primaryDark: '#2A1F3A',
   
@@ -45,7 +45,7 @@ export const colors = {
   // Text Colors
   text: {
     primary: '#374151', // Dark gray for default text
-    content: '#3A2E52', // Primary Darker for content text
+    content: '#3A2E52', // Content should match primaryLight
     secondary: '#6B7280',
     disabled: '#9CA3AF',
     inverse: '#FFFFFF',
