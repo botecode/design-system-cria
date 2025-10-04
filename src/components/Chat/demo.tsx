@@ -39,8 +39,8 @@ export const ChatDemo: React.FC = () => {
       attachments: [{
         id: 'att2',
         type: 'course',
-        thumbnail: 'https://via.placeholder.com/400x225/7566A1/FFFFFF?text=Course+Preview',
-        title: 'Design System Course',
+        thumbnail: '/src/assets/LORA.png',
+        title: 'LORA Course',
         description: 'Learn how to build amazing design systems with modern tools and best practices',
         duration: '2h 30min',
         actionText: 'Ver Curso'
@@ -61,8 +61,8 @@ export const ChatDemo: React.FC = () => {
       attachments: [{
         id: 'att3',
         type: 'lesson',
-        thumbnail: 'https://via.placeholder.com/400x225/28DDB9/FFFFFF?text=Lesson+Preview',
-        title: 'Component Architecture',
+        thumbnail: '/src/assets/LORA.png',
+        title: 'LORA Lesson',
         description: 'Learn how to structure your components for scalability',
         duration: '15min',
         actionText: 'Ver Aula'
