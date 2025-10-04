@@ -21,7 +21,7 @@ describe('Chat', () => {
     const textarea = screen.getByLabelText('Message composer');
     fireEvent.change(textarea, { target: { value: 'New message' } });
     fireEvent.keyDown(textarea, { key: 'Enter' });
-    expect(onSend).toHaveBeenCalledWith('New message');
+    expect(onSend).toHaveBeenCalledWith('New message', undefined);
   });
 
   it('Shift+Enter adds newline', () => {

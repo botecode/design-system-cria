@@ -1,18 +1,32 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Button } from '../Button';
 import { Typography } from '../Typography';
-import { PaperPlaneRight, Paperclip, DotsThree } from 'phosphor-react';
+import { Card } from '../Card';
+import { PaperPlaneRight, Paperclip, DotsThree, Play, Image, FileText, ArrowBendUpLeft } from 'phosphor-react';
 
 export interface ChatMessage {
   id: string;
   author: 'me' | 'them';
   text: string;
   timestamp: Date;
+  replyTo?: string; // ID of the message being replied to
+  attachments?: ChatAttachment[];
+}
+
+export interface ChatAttachment {
+  id: string;
+  type: 'image' | 'video' | 'card' | 'file';
+  url?: string;
+  title?: string;
+  description?: string;
+  thumbnail?: string;
+  size?: string;
+  duration?: string; // for videos
 }
 
 export interface ChatProps extends React.HTMLAttributes<HTMLDivElement> {
   messages?: ChatMessage[];
-  onSend?: (text: string) => void;
+  onSend?: (text: string, replyTo?: string) => void;
   typing?: boolean;
   placeholder?: string;
   disabled?: boolean;
@@ -35,6 +49,7 @@ export const Chat: React.FC<ChatProps> = ({
   ...props
 }) => {
   const [text, setText] = useState('');
+  const [replyingTo, setReplyingTo] = useState<ChatMessage | null>(null);
   const logRef = useRef<HTMLDivElement>(null);
   const [revealMsgId, setRevealMsgId] = useState<string | null>(null);
   const [revealIndex, setRevealIndex] = useState(0);
@@ -76,14 +91,116 @@ export const Chat: React.FC<ChatProps> = ({
 
   const handleSend = useCallback(() => {
     if (!text.trim() || disabled) return;
-    onSend?.(text.trim());
+    onSend?.(text.trim(), replyingTo?.id);
     setText('');
-  }, [text, onSend, disabled]);
+    setReplyingTo(null);
+  }, [text, onSend, disabled, replyingTo]);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSend();
+    }
+  };
+
+  const handleReply = (message: ChatMessage) => {
+    setReplyingTo(message);
+  };
+
+  const cancelReply = () => {
+    setReplyingTo(null);
+  };
+
+  const findMessageById = (id: string) => {
+    return messages.find(msg => msg.id === id);
+  };
+
+  const renderAttachment = (attachment: ChatAttachment) => {
+    switch (attachment.type) {
+      case 'image':
+        return (
+          <div style={{ marginTop: 8, borderRadius: 8, overflow: 'hidden' }}>
+            <img 
+              src={attachment.url} 
+              alt={attachment.title || 'Image'} 
+              style={{ maxWidth: '100%', height: 'auto', display: 'block' }}
+            />
+          </div>
+        );
+      case 'video':
+        return (
+          <div style={{ marginTop: 8, borderRadius: 8, overflow: 'hidden', position: 'relative' }}>
+            <video 
+              src={attachment.url} 
+              controls 
+              style={{ maxWidth: '100%', height: 'auto', display: 'block' }}
+            />
+            {attachment.duration && (
+              <div style={{
+                position: 'absolute',
+                bottom: 8,
+                right: 8,
+                background: 'rgba(0,0,0,0.7)',
+                color: 'white',
+                padding: '2px 6px',
+                borderRadius: 4,
+                fontSize: '12px'
+              }}>
+                {attachment.duration}
+              </div>
+            )}
+          </div>
+        );
+      case 'card':
+        return (
+          <div style={{ marginTop: 8 }}>
+            <Card style={{ padding: 12, maxWidth: 280 }}>
+              {attachment.thumbnail && (
+                <img 
+                  src={attachment.thumbnail} 
+                  alt={attachment.title || 'Card'} 
+                  style={{ width: '100%', height: 120, objectFit: 'cover', borderRadius: 4, marginBottom: 8 }}
+                />
+              )}
+              {attachment.title && (
+                <Typography variant="body" weight="semiBold" style={{ marginBottom: 4 }}>
+                  {attachment.title}
+                </Typography>
+              )}
+              {attachment.description && (
+                <Typography variant="caption" color="secondary">
+                  {attachment.description}
+                </Typography>
+              )}
+            </Card>
+          </div>
+        );
+      case 'file':
+        return (
+          <div style={{ 
+            marginTop: 8, 
+            padding: 8, 
+            background: 'rgba(0,0,0,0.05)', 
+            borderRadius: 6, 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: 8 
+          }}>
+            <FileText size={20} />
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <Typography variant="body" weight="semiBold" style={{ marginBottom: 2 }}>
+                {attachment.title || 'File'}
+              </Typography>
+              {attachment.size && (
+                <Typography variant="caption" color="secondary">
+                  {attachment.size}
+                </Typography>
+              )}
+            </div>
+          </div>
+        );
+      default:
+        return null;
     }
   };
 
@@ -111,18 +228,83 @@ export const Chat: React.FC<ChatProps> = ({
       >
         {grouped.map(group => (
           <div key={group.key} className={["cria-chat__group", group.author === 'me' ? 'cria-chat__group--me' : 'cria-chat__group--them'].join(' ')}>
-            {group.items.map(item => (
-              <div key={item.id} className="cria-chat__bubble" aria-label={`${group.author === 'me' ? 'Me' : 'Them'} said ${item.text}`}>
-                <Typography variant="body" color={group.author === 'me' ? 'inverse' : 'content'}>
-                  {revealThem && group.author === 'them' && item.id === revealMsgId
-                    ? item.text.slice(0, Math.max(0, revealIndex))
-                    : item.text}
-                </Typography>
-                <Typography variant="caption" color={group.author === 'me' ? 'inverse' : 'secondary'}>
-                  {item.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-                </Typography>
-              </div>
-            ))}
+            {group.items.map(item => {
+              const repliedMessage = item.replyTo ? findMessageById(item.replyTo) : null;
+              return (
+                <div key={item.id} className="cria-chat__bubble" aria-label={`${group.author === 'me' ? 'Me' : 'Them'} said ${item.text}`}>
+                  {/* Reply indicator */}
+                  {repliedMessage && (
+                    <div style={{
+                      marginBottom: 8,
+                      padding: 8,
+                      background: 'rgba(0,0,0,0.05)',
+                      borderRadius: 6,
+                      borderLeft: '3px solid var(--cria-primary)',
+                      fontSize: '12px',
+                      color: 'var(--cria-gray-600)'
+                    }}>
+                      <div style={{ fontWeight: 500, marginBottom: 2 }}>
+                        Replying to {repliedMessage.author === 'me' ? 'you' : 'them'}
+                      </div>
+                      <div style={{ 
+                        overflow: 'hidden', 
+                        textOverflow: 'ellipsis', 
+                        whiteSpace: 'nowrap',
+                        maxWidth: '200px'
+                      }}>
+                        {repliedMessage.text}
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* Message text */}
+                  <Typography variant="body" color={group.author === 'me' ? 'inverse' : 'content'}>
+                    {revealThem && group.author === 'them' && item.id === revealMsgId
+                      ? item.text.slice(0, Math.max(0, revealIndex))
+                      : item.text}
+                  </Typography>
+                  
+                  {/* Attachments */}
+                  {item.attachments && item.attachments.map(attachment => (
+                    <div key={attachment.id}>
+                      {renderAttachment(attachment)}
+                    </div>
+                  ))}
+                  
+                  {/* Message footer with timestamp and reply button */}
+                  <div style={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'space-between',
+                    marginTop: 4,
+                    gap: 8
+                  }}>
+                    <Typography variant="caption" color={group.author === 'me' ? 'inverse' : 'secondary'}>
+                      {item.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    </Typography>
+                    <button
+                      onClick={() => handleReply(item)}
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        color: group.author === 'me' ? 'rgba(255,255,255,0.7)' : 'var(--cria-gray-500)',
+                        cursor: 'pointer',
+                        padding: 2,
+                        borderRadius: 4,
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: 4,
+                        fontSize: '12px'
+                      }}
+                      title="Reply to this message"
+                    >
+                      <ArrowBendUpLeft size={12} />
+                      Reply
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         ))}
         {typing && (
@@ -134,10 +316,55 @@ export const Chat: React.FC<ChatProps> = ({
         )}
       </div>
 
+      {/* Reply indicator */}
+      {replyingTo && (
+        <div style={{
+          padding: 8,
+          background: 'rgba(117, 102, 161, 0.1)',
+          borderRadius: 6,
+          border: '1px solid var(--cria-primary)',
+          marginBottom: 8,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 8
+        }}>
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <div style={{ fontSize: '12px', fontWeight: 500, color: 'var(--cria-primary)', marginBottom: 2 }}>
+              Replying to {replyingTo.author === 'me' ? 'your message' : 'their message'}
+            </div>
+            <div style={{ 
+              fontSize: '12px', 
+              color: 'var(--cria-gray-600)',
+              overflow: 'hidden', 
+              textOverflow: 'ellipsis', 
+              whiteSpace: 'nowrap'
+            }}>
+              {replyingTo.text}
+            </div>
+          </div>
+          <button
+            onClick={cancelReply}
+            style={{
+              background: 'none',
+              border: 'none',
+              color: 'var(--cria-gray-500)',
+              cursor: 'pointer',
+              padding: 4,
+              borderRadius: 4,
+              fontSize: '12px'
+            }}
+            title="Cancel reply"
+          >
+            ✕
+          </button>
+        </div>
+      )}
+
       <div className="cria-chat__composer">
         <textarea
           className="cria-chat__textarea"
-          placeholder={placeholder}
+          placeholder={replyingTo ? `Reply to ${replyingTo.author === 'me' ? 'your message' : 'their message'}...` : placeholder}
           value={text}
           onChange={(e) => setText(e.target.value)}
           onKeyDown={handleKeyDown}

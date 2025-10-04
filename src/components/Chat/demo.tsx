@@ -11,26 +11,87 @@ export const ChatDemo: React.FC = () => {
   ]);
   const [typing, setTyping] = useState(false);
   const [sidebarMessages, setSidebarMessages] = useState<ChatMessage[]>([
-    { id: 's1', author: 'them', text: 'This is the sidebar chat.', timestamp: new Date() },
+    { 
+      id: 's1', 
+      author: 'them', 
+      text: 'Check out this awesome design system!', 
+      timestamp: new Date(),
+      attachments: [{
+        id: 'att1',
+        type: 'card',
+        title: 'CRIA Design System',
+        description: 'A comprehensive design system with beautiful components',
+        thumbnail: 'https://via.placeholder.com/280x120/7566A1/FFFFFF?text=CRIA+Design+System'
+      }]
+    },
+    { 
+      id: 's2', 
+      author: 'me', 
+      text: 'This looks amazing! Can you share more details?', 
+      timestamp: new Date(),
+      replyTo: 's1'
+    },
+    { 
+      id: 's3', 
+      author: 'them', 
+      text: 'Sure! Here\'s a video walkthrough:', 
+      timestamp: new Date(),
+      attachments: [{
+        id: 'att2',
+        type: 'video',
+        url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
+        title: 'Design System Demo',
+        duration: '2:30'
+      }]
+    },
+    { 
+      id: 's4', 
+      author: 'me', 
+      text: 'Perfect! This is exactly what I was looking for.', 
+      timestamp: new Date(),
+      replyTo: 's3'
+    },
   ]);
   const [sidebarTyping, setSidebarTyping] = useState(false);
 
-  const handleSend = (text: string) => {
-    const next = { id: String(Date.now()), author: 'me' as const, text, timestamp: new Date() };
+  const handleSend = (text: string, replyTo?: string) => {
+    const next = { 
+      id: String(Date.now()), 
+      author: 'me' as const, 
+      text, 
+      timestamp: new Date(),
+      replyTo
+    };
     setMessages((m) => [...m, next]);
     setTyping(true);
     setTimeout(() => {
-      setMessages((m) => [...m, { id: String(Date.now()+1), author: 'them', text: 'Got it!', timestamp: new Date() }]);
+      setMessages((m) => [...m, { 
+        id: String(Date.now()+1), 
+        author: 'them', 
+        text: 'Got it!', 
+        timestamp: new Date() 
+      }]);
       setTyping(false);
     }, 800);
   };
 
-  const handleSidebarSend = (text: string) => {
-    const next = { id: String(Date.now()), author: 'me' as const, text, timestamp: new Date() };
+  const handleSidebarSend = (text: string, replyTo?: string) => {
+    const next = { 
+      id: String(Date.now()), 
+      author: 'me' as const, 
+      text, 
+      timestamp: new Date(),
+      replyTo
+    };
     setSidebarMessages((m) => [...m, next]);
     setSidebarTyping(true);
     setTimeout(() => {
-      setSidebarMessages((m) => [...m, { id: String(Date.now()+1), author: 'them', text: 'Copy that.', timestamp: new Date() }]);
+      setSidebarMessages((m) => [...m, { 
+        id: String(Date.now()+1), 
+        author: 'them', 
+        text: 'Got it! Thanks for the reply.', 
+        timestamp: new Date() 
+      }]);
       setSidebarTyping(false);
     }, 700);
   };
@@ -52,7 +113,7 @@ export const ChatDemo: React.FC = () => {
 
       {/* Sidebar Chat Layout */}
       <div style={{ display: 'flex', gap: 16, marginTop: 24 }}>
-        {/* Sticky left sidebar with primary background */}
+        {/* Sticky left sidebar with gradient background */}
         <div
           style={{
             position: 'sticky',
@@ -60,15 +121,42 @@ export const ChatDemo: React.FC = () => {
             alignSelf: 'flex-start',
             width: 340,
             minHeight: '70vh',
-            background: 'var(--cria-primary)',
+            background: '#2A1F3A', // primaryDark
             borderRadius: 12,
             padding: 12,
+            position: 'relative',
+            overflow: 'hidden',
           }}
         >
-          <div style={{ margin: '0 8px 8px 8px' }}>
+          {/* Gradient overlay */}
+          <div style={{
+            position: 'absolute',
+            bottom: 0,
+            left: '-20%',
+            right: 0,
+            top: '-10%',
+            height: '500px',
+            width: '500px',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle farthest-side, rgba(117, 102, 161, 0.15), rgba(255, 255, 255, 0))',
+            pointerEvents: 'none',
+          }} />
+          <div style={{
+            position: 'absolute',
+            bottom: 0,
+            right: '-20%',
+            top: '-10%',
+            height: '500px',
+            width: '500px',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle farthest-side, rgba(117, 102, 161, 0.15), rgba(255, 255, 255, 0))',
+            pointerEvents: 'none',
+          }} />
+          
+          <div style={{ margin: '0 8px 8px 8px', position: 'relative', zIndex: 1 }}>
             <Typography variant="h3" color="inverse" weight="semiBold">Sidebar Chat</Typography>
           </div>
-          <div style={{ height: 'calc(70vh - 40px)' }}>
+          <div style={{ height: 'calc(70vh - 40px)', position: 'relative', zIndex: 1 }}>
             <Chat className="cria-chat--sidebar" messages={sidebarMessages} onSend={handleSidebarSend} typing={sidebarTyping} revealThem />
           </div>
         </div>
