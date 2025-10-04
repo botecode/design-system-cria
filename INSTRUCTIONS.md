@@ -29,31 +29,26 @@ Core Principles
 Workflow
 
 For each new component:
-	1.	Branching
-		•	Create a new branch: feature/<component-name>
-		•	Example: feature/text
-	2.	TDD Cycle
+	1.	TDD Cycle
 		•	✅ Write UI tests first (include accessibility assertions).
 		•	✅ Implement component until tests pass.
 		•	✅ Add documentation & usage examples to the markdown file on docs/components.
-	3.	Validation (Chrome MCP)
+	2.	Validation (Chrome MCP)
 		•	Run the demo in Chrome.
 		•	Confirm the component renders correctly.
 		•	Inspect console logs for warnings/errors.
 		•	Verify keyboard navigation + accessibility.
-	4.	Version Control
-		•	Commit using Conventional Commits format:
+	3.	Version Control
+		•	Commit directly to main using Conventional Commits format:
 			- feat(text): add TextBody and TextContent variants with tests
 			- fix(text): correct semantic role application
 			- docs(text): add usage examples for long-form content
-		•	Push branch to remote.
-	5.	Pull Request
-		•	Open a PR to main.
-		•	PR description must include:
-			- Implemented component
-			- Tests covered
-			- Accessibility features
-			- Screenshots (if visual changes)
+		•	Push changes to remote main.
+	4.	Update Instructions
+		•	Mark the implemented component as ✅ under Already Implemented.
+		•	Move it out of "Next Component".
+		•	Promote the next Upcoming item to "Next Component".
+		•	Carry its feature + test boilerplate forward.
 
 ⸻
 
@@ -78,6 +73,7 @@ For each new component:
 	•	Textarea
 	•	Avatar
 	•	Breadcrumbs
+	•	Pagination
 
 Input Demos
 	•	Basic Inputs — Full Name, Email Address, Phone Number, Date (dd.mm.yyyy)
@@ -85,27 +81,27 @@ Input Demos
 
 ⸻
 
-⬜ Next Component: Pagination
+⬜ Next Component: Progress Bar
 
-We need a **Pagination component** for navigating through paged content.
+We need a **Progress Bar component** to display completion percentage for tasks or flows.
 
 Features should include:
-	•	Previous / Next buttons
-	•	Numbered page buttons with active state
-	•	Ellipsis for long ranges
-	•	Configurable page size
-	•	Accessible labels (aria-label, keyboard navigation)
+	•	Linear progress bar with configurable value (0–100).
+	•	Optional labels (e.g., % completed).
+	•	Support for determinate (fixed value) and indeterminate (loading).
+	•	Color variants (success, warning, error, default).
+	•	Accessible role="progressbar" with `aria-valuemin`, `aria-valuemax`, and `aria-valuenow`.
 
 Tests
-	•	Renders page numbers with correct active page
-	•	Supports navigation with click + keyboard
-	•	Handles edge cases (first/last page disabled)
-	•	Accessibility: announces current page to screen readers
+	•	Renders progress bar with correct width based on value.
+	•	Supports determinate vs. indeterminate state.
+	•	Displays label when provided.
+	•	Handles color variants correctly.
+	•	Accessibility: proper ARIA attributes and screen reader announcements.
 
 ⸻
 
-⬜ Upcoming Components (after Pagination)
-	•	Progress Bar
+⬜ Upcoming Components (after Progress Bar)
 	•	Vertical Tabs
 	•	Stepper
 	•	Date Picker
@@ -116,11 +112,14 @@ Tests
 
 ⸻
 
-⚡ With this, Codex/Cursor will:
-	•	Start with the Next Component listed in this file.
-	•	Mark components as ✅ once completed and move the next item forward.
-	•	Implement with tests + accessibility baked in.
-	•	Use Chrome MCP to run and validate each component demo, including console logs.
-	•	Continue through the backlog in order.
+
+⸻
+
+⚡ With this, Cursor will:
+	•	Stay on main.
+	•	Implement the Progress Bar next using TDD + accessibility.
+	•	Validate with Chrome MCP.
+	•	Commit directly to main.
+	•	Update INSTRUCTIONS.md to move Progress Bar to ✅ and promote the next item.
 
 ⸻
