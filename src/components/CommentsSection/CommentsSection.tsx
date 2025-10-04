@@ -123,10 +123,10 @@ export const CommentsSection: React.FC<CommentsSectionProps> = ({
         key={comment.id}
         className="cria-comment"
         style={{
-          marginLeft: depth * spacing[4],
+          marginLeft: depth * 16,
           borderLeft: depth > 0 ? `2px solid ${colors.border.light}` : 'none',
-          paddingLeft: depth > 0 ? spacing[3] : 0,
-          marginBottom: spacing[4]
+          paddingLeft: depth > 0 ? 12 : 0,
+          marginBottom: 16
         }}
       >
         <div className="cria-comment__header" style={{ display: 'flex', alignItems: 'center', gap: spacing[2], marginBottom: spacing[2] }}>

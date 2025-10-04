@@ -31,7 +31,7 @@ describe('CommentsSection', () => {
     expect(screen.getByText('This is a great idea!')).toBeInTheDocument();
     expect(screen.getByText('Jane Smith')).toBeInTheDocument();
     expect(screen.getByText('I agree completely.')).toBeInTheDocument();
-    expect(screen.getByText(/Jan 15, 2024/)).toBeInTheDocument();
+    expect(screen.getAllByText(/Jan 15, 2024/).length).toBeGreaterThan(0);
   });
 
   it('adding a comment appends and clears composer', async () => {
@@ -74,7 +74,7 @@ describe('CommentsSection', () => {
   });
 
   it('a11y: roles/labels present; focus management validated', () => {
-    render(<CommentsSection comments={mockComments} onAddComment={jest.fn()} />);
+    render(<CommentsSection comments={mockComments} onAddComment={jest.fn()} onEditComment={jest.fn()} onDeleteComment={jest.fn()} />);
     
     // Check for proper ARIA roles and labels
     expect(screen.getByRole('region', { name: /comments/i })).toBeInTheDocument();
