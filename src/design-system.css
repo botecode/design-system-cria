@@ -2588,8 +2588,8 @@ body {
 }
 
 .cria-sidebar__item:hover {
-  background-color: var(--cria-primary-light);
-  color: var(--cria-white);
+  background-color: var(--cria-gray-50);
+  color: var(--cria-primary);
 }
 
 .cria-sidebar__item:focus {

@@ -267,14 +267,26 @@ const Sidebar: React.FC<NavigationSidebarProps> = ({
           <div className="cria-sidebar__title-section">
             {titleHref ? (
               <a href={titleHref} className="cria-sidebar__title-link">
+                {theme !== 'default' ? (
+                  <Typography variant="h3" weight="bold">
+                    {title}
+                  </Typography>
+                ) : (
+                  <Typography variant="h3" weight="bold" color="primary">
+                    {title}
+                  </Typography>
+                )}
+              </a>
+            ) : (
+              theme !== 'default' ? (
+                <Typography variant="h3" weight="bold">
+                  {title}
+                </Typography>
+              ) : (
                 <Typography variant="h3" weight="bold" color="primary">
                   {title}
                 </Typography>
-              </a>
-            ) : (
-              <Typography variant="h3" weight="bold" color="primary">
-                {title}
-              </Typography>
+              )
             )}
           </div>
         )}
