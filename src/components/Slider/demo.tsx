@@ -9,6 +9,7 @@ export const SliderDemo: React.FC = () => {
   const [stepValue, setStepValue] = useState(25);
   const [colorValue, setColorValue] = useState(60);
   const [zeroToTenValue, setZeroToTenValue] = useState(5);
+  const [textSliderValue, setTextSliderValue] = useState(5);
 
   const marks = [
     { value: 0, label: '0' },
@@ -32,6 +33,38 @@ export const SliderDemo: React.FC = () => {
     { value: 8, label: '8' },
     { value: 10, label: '10' }
   ];
+
+  const textSliderMarks = [
+    { value: 0, label: '0' },
+    { value: 1, label: '1' },
+    { value: 2, label: '2' },
+    { value: 3, label: '3' },
+    { value: 4, label: '4' },
+    { value: 5, label: '5' },
+    { value: 6, label: '6' },
+    { value: 7, label: '7' },
+    { value: 8, label: '8' },
+    { value: 9, label: '9' },
+    { value: 10, label: '10' }
+  ];
+
+  const getTextForValue = (value: number) => {
+    const texts = [
+      { value: 0, text: "Not at all", description: "This doesn't apply to me" },
+      { value: 1, text: "Very little", description: "Rarely applicable" },
+      { value: 2, text: "A little", description: "Sometimes applicable" },
+      { value: 3, text: "Somewhat", description: "Moderately applicable" },
+      { value: 4, text: "Moderately", description: "Fairly applicable" },
+      { value: 5, text: "Neutral", description: "Neither agree nor disagree" },
+      { value: 6, text: "Quite a bit", description: "Often applicable" },
+      { value: 7, text: "A lot", description: "Very applicable" },
+      { value: 8, text: "Very much", description: "Almost always applicable" },
+      { value: 9, text: "Extremely", description: "Almost always true" },
+      { value: 10, text: "Completely", description: "Always applies to me" }
+    ];
+    
+    return texts.find(item => item.value === value) || texts[5];
+  };
 
   return (
     <div style={{ padding: '24px', maxWidth: '800px' }}>
@@ -77,6 +110,68 @@ export const SliderDemo: React.FC = () => {
               marks={zeroToTenMarks}
               showLabels={true}
             />
+          </div>
+        </Card>
+
+        {/* Interactive Text Slider */}
+        <Card style={{ padding: '24px' }}>
+          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+            Interactive Text Slider
+          </Typography>
+          <Typography variant="body2" style={{ marginBottom: '16px', color: '#666' }}>
+            How much does this apply to you?
+          </Typography>
+          
+          <div style={{ marginBottom: '24px' }}>
+            <Slider
+              min={0}
+              max={10}
+              value={textSliderValue}
+              onChange={setTextSliderValue}
+              marks={textSliderMarks}
+              showLabels={true}
+              color="primary"
+            />
+          </div>
+
+          {/* Text Display Container */}
+          <div style={{
+            backgroundColor: '#f8f9fa',
+            border: '2px solid #e9ecef',
+            borderRadius: '12px',
+            padding: '20px',
+            textAlign: 'center',
+            transition: 'all 0.3s ease',
+            boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+            borderColor: textSliderValue >= 7 ? '#28a745' : textSliderValue <= 3 ? '#dc3545' : '#6c757d'
+          }}>
+            <Typography 
+              variant="h2" 
+              weight="bold" 
+              style={{ 
+                marginBottom: '8px',
+                color: textSliderValue >= 7 ? '#28a745' : textSliderValue <= 3 ? '#dc3545' : '#495057'
+              }}
+            >
+              {getTextForValue(textSliderValue).text}
+            </Typography>
+            <Typography 
+              variant="body1" 
+              style={{ 
+                color: '#6c757d',
+                fontStyle: 'italic'
+              }}
+            >
+              {getTextForValue(textSliderValue).description}
+            </Typography>
+            <div style={{ 
+              marginTop: '12px',
+              fontSize: '14px',
+              color: '#868e96',
+              fontWeight: '500'
+            }}>
+              Value: {textSliderValue}/10
+            </div>
           </div>
         </Card>
 
