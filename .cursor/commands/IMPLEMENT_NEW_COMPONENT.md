@@ -117,6 +117,8 @@ Required Tests
 ⬜ Upcoming Components
   • Card selector ("Admin" - with multi-select and single-select)  
   • Row of cards - ("Web" new tab section on sidebar) (with configurable per-page before pagination)  
+  • Subscription Management (Web)
+  • User cards group
   • Dark mode - foundation (with top-right toggle)
 
 ⸻

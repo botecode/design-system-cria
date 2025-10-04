@@ -83,26 +83,30 @@
 
 .cria-pricing-page__tiers {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--cria-spacing-lg);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--cria-spacing-md);
   align-items: stretch;
+  max-width: 100%;
 }
 
 .cria-pricing-page__tier {
   position: relative;
-  padding: var(--cria-spacing-xl);
+  padding: var(--cria-spacing-lg);
   text-align: center;
   border: 1px solid var(--cria-border-medium);
-  border-radius: 16px;
+  border-radius: 12px;
   background-color: var(--cria-background-primary);
-  box-shadow: 0 4px 16px var(--cria-border-light);
-  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px var(--cria-border-light);
+  transition: all 0.2s ease;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
 }
 
 .cria-pricing-page__tier--popular {
   border: 2px solid var(--cria-primary);
-  box-shadow: 0 8px 32px rgba(117, 102, 161, 0.2);
-  transform: scale(1.05);
+  box-shadow: 0 4px 20px rgba(117, 102, 161, 0.15);
+  transform: scale(1.02);
 }
 
 .cria-pricing-page__popular-badge {
@@ -221,18 +225,28 @@
 }
 
 /* Responsive design */
+@media (max-width: 1024px) {
+  .cria-pricing-page__tiers {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--cria-spacing-sm);
+  }
+}
+
 @media (max-width: 768px) {
   .cria-pricing-page {
-    padding: var(--cria-spacing-lg);
+    padding: var(--cria-spacing-md);
   }
 
   .cria-pricing-page__tiers {
     grid-template-columns: 1fr;
     gap: var(--cria-spacing-md);
+    max-width: 400px;
+    margin: 0 auto;
   }
 
   .cria-pricing-page__tier {
-    padding: var(--cria-spacing-lg);
+    padding: var(--cria-spacing-md);
+    min-height: auto;
   }
 
   .cria-pricing-page__tier--popular {
@@ -249,17 +263,22 @@
   }
 
   .cria-pricing-page__price {
-    font-size: var(--cria-typography-size-3xl);
+    font-size: var(--cria-typography-size-2xl);
   }
 }
 
 @media (max-width: 480px) {
   .cria-pricing-page {
-    padding: var(--cria-spacing-md);
+    padding: var(--cria-spacing-sm);
+  }
+
+  .cria-pricing-page__tiers {
+    max-width: 100%;
+    margin: 0;
   }
 
   .cria-pricing-page__tier {
-    padding: var(--cria-spacing-md);
+    padding: var(--cria-spacing-sm);
   }
 
   .cria-pricing-page__title {
@@ -267,7 +286,7 @@
   }
 
   .cria-pricing-page__price {
-    font-size: var(--cria-typography-size-2xl);
+    font-size: var(--cria-typography-size-xl);
   }
 }
 

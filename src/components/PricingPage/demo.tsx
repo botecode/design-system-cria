@@ -14,7 +14,7 @@ export const PricingPageDemo: React.FC = () => {
     {
       id: 'starter',
       name: 'Starter',
-      description: 'Perfect for individuals and small projects',
+      description: 'Perfect for individuals',
       monthlyPrice: 9,
       yearlyPrice: 90,
       features: [
@@ -30,7 +30,7 @@ export const PricingPageDemo: React.FC = () => {
     {
       id: 'professional',
       name: 'Professional',
-      description: 'Best for growing teams and businesses',
+      description: 'Best for growing teams',
       monthlyPrice: 29,
       yearlyPrice: 290,
       features: [
@@ -41,6 +41,7 @@ export const PricingPageDemo: React.FC = () => {
         'Team collaboration',
         'Custom integrations',
         'API access',
+        'Advanced security',
       ],
       ctaText: 'Start Free Trial',
       popular: true,
@@ -48,7 +49,7 @@ export const PricingPageDemo: React.FC = () => {
     {
       id: 'enterprise',
       name: 'Enterprise',
-      description: 'For large organizations with advanced needs',
+      description: 'For large organizations',
       monthlyPrice: 99,
       yearlyPrice: 990,
       features: [
@@ -56,10 +57,10 @@ export const PricingPageDemo: React.FC = () => {
         'Unlimited storage',
         '24/7 phone support',
         'Custom reporting',
-        'Advanced security',
         'SSO integration',
         'Dedicated account manager',
         'Custom training',
+        'White-label options',
       ],
       ctaText: 'Contact Sales',
       popular: false,

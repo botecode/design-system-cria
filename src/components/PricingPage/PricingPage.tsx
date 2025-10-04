@@ -192,9 +192,10 @@ export const PricingPage: React.FC<PricingPageProps> = ({
       {/* Pricing Tiers */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-        gap: spacing.lg,
+        gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+        gap: spacing.md,
         alignItems: 'stretch',
+        maxWidth: '100%',
       }}>
         {tiers.map((tier) => {
           const price = billingPeriod === 'monthly' ? tier.monthlyPrice : tier.yearlyPrice;
@@ -205,14 +206,17 @@ export const PricingPage: React.FC<PricingPageProps> = ({
               key={tier.id}
               style={{
                 position: 'relative',
-                padding: spacing.xl,
+                padding: spacing.lg,
                 textAlign: 'center',
                 border: tier.popular ? `2px solid ${colors.primary}` : `1px solid ${colors.border.medium}`,
-                borderRadius: '16px',
-                backgroundColor: tier.popular ? colors.background.primary : colors.background.primary,
-                boxShadow: tier.popular ? `0 8px 32px ${colors.primary}20` : `0 4px 16px ${colors.border.light}`,
-                transform: tier.popular ? 'scale(1.05)' : 'scale(1)',
-                transition: 'all 0.3s ease',
+                borderRadius: '12px',
+                backgroundColor: colors.background.primary,
+                boxShadow: tier.popular ? `0 4px 20px ${colors.primary}15` : `0 2px 8px ${colors.border.light}`,
+                transform: tier.popular ? 'scale(1.02)' : 'scale(1)',
+                transition: 'all 0.2s ease',
+                minHeight: '400px',
+                display: 'flex',
+                flexDirection: 'column',
               }}
             >
               {tier.popular && (
@@ -238,13 +242,14 @@ export const PricingPage: React.FC<PricingPageProps> = ({
                 </div>
               )}
 
-              <div style={{ marginBottom: spacing.lg }}>
+              <div style={{ marginBottom: spacing.lg, flex: '0 0 auto' }}>
                 <Typography 
                   variant="h3" 
                   weight="semiBold" 
                   style={{ 
-                    marginBottom: spacing.sm,
+                    marginBottom: spacing.xs,
                     color: colors.text.primary,
+                    fontSize: typography.fontSize.h3,
                   }}
                 >
                   {tier.name}
@@ -253,20 +258,21 @@ export const PricingPage: React.FC<PricingPageProps> = ({
                   variant="body" 
                   style={{ 
                     color: colors.text.secondary,
-                    marginBottom: spacing.lg,
+                    marginBottom: spacing.md,
+                    fontSize: typography.fontSize.bodySmall,
                   }}
                 >
                   {tier.description}
                 </Typography>
 
-                <div style={{ marginBottom: spacing.md }}>
+                <div style={{ marginBottom: spacing.sm }}>
                   <Typography 
                     variant="h1" 
                     weight="bold" 
                     style={{ 
                       color: colors.primary,
-            fontSize: typography.fontSize.display,
-            lineHeight: typography.lineHeight.tight,
+                      fontSize: typography.fontSize.h1,
+                      lineHeight: typography.lineHeight.tight,
                       marginBottom: spacing.xs,
                     }}
                   >
@@ -276,6 +282,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({
                     variant="body" 
                     style={{ 
                       color: colors.text.secondary,
+                      fontSize: typography.fontSize.bodySmall,
                     }}
                   >
                     /{billingPeriod === 'monthly' ? 'month' : 'year'}
@@ -290,32 +297,32 @@ export const PricingPage: React.FC<PricingPageProps> = ({
                       fontWeight: typography.fontWeight.medium,
                     }}
                   >
-                    Save {savings.percentage}% (${savings.savings}/year)
+                    Save {savings.percentage}%
                   </Typography>
                 )}
               </div>
 
-              <div style={{ marginBottom: spacing.xl }}>
+              <div style={{ marginBottom: spacing.lg, flex: '1 1 auto', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <ul style={{
                   listStyle: 'none',
                   padding: 0,
                   margin: 0,
                   textAlign: 'left',
                 }}>
-                  {tier.features.map((feature, index) => (
+                  {tier.features.slice(0, 5).map((feature, index) => (
                     <li
                       key={index}
                       style={{
                         display: 'flex',
                         alignItems: 'center',
-                        marginBottom: spacing.sm,
+                        marginBottom: spacing.xs,
                         color: colors.text.primary,
                       }}
                     >
                       <div
                         style={{
-                          width: '20px',
-                          height: '20px',
+                          width: '16px',
+                          height: '16px',
                           borderRadius: '50%',
                           backgroundColor: colors.success,
                           display: 'flex',
@@ -325,25 +332,33 @@ export const PricingPage: React.FC<PricingPageProps> = ({
                           flexShrink: 0,
                         }}
                       >
-                        <span style={{ color: colors.white, fontSize: '12px', fontWeight: 'bold' }}>✓</span>
+                        <span style={{ color: colors.white, fontSize: '10px', fontWeight: 'bold' }}>✓</span>
                       </div>
-                      <Typography variant="body2" style={{ color: colors.text.primary }}>
+                      <Typography variant="body2" style={{ color: colors.text.primary, fontSize: typography.fontSize.bodySmall }}>
                         {feature}
                       </Typography>
                     </li>
                   ))}
+                  {tier.features.length > 5 && (
+                    <li style={{ marginTop: spacing.xs }}>
+                      <Typography variant="caption" style={{ color: colors.text.secondary, fontStyle: 'italic' }}>
+                        +{tier.features.length - 5} more features
+                      </Typography>
+                    </li>
+                  )}
                 </ul>
               </div>
 
               <Button
                 variant={tier.ctaVariant || (tier.popular ? 'primary' : 'outline')}
-                size="lg"
+                size="md"
                 onClick={() => handleTierSelect(tier)}
                 style={{
                   width: '100%',
-                  padding: `${spacing.md} ${spacing.lg}`,
-                    fontSize: typography.fontSize.body,
-                    fontWeight: typography.fontWeight.semiBold,
+                  padding: `${spacing.sm} ${spacing.md}`,
+                  fontSize: typography.fontSize.bodySmall,
+                  fontWeight: typography.fontWeight.semiBold,
+                  flex: '0 0 auto',
                 }}
               >
                 {tier.ctaText}
