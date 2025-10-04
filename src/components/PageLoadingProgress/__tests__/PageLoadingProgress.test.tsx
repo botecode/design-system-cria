@@ -172,7 +172,8 @@ describe('PageLoadingProgress', () => {
     render(<PageLoadingProgress progress={50} smooth duration={500} />);
     
     const progressBar = screen.getByRole('progressbar');
-    expect(progressBar).toHaveStyle({ transitionDuration: '500ms' });
+    const innerDiv = progressBar.querySelector('div');
+    expect(innerDiv).toHaveStyle({ transition: 'width 500ms ease-out' });
   });
 
   it('renders with custom delay', () => {
