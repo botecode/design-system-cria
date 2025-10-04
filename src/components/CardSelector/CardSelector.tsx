@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from '../Card';
 import { Checkbox } from '../Checkbox';
-import { RadioGroup } from '../RadioGroup';
 import { Typography } from '../Typography';
 import { colors, spacing, typography } from '../../tokens';
 
@@ -76,12 +75,8 @@ export const CardSelector: React.FC<CardSelectorProps> = ({
   style,
   ...props
 }) => {
-  const [internalSelectedValues, setInternalSelectedValues] = useState<string[]>(selectedValues);
-
-  // Sync internal state with external selectedValues prop
-  useEffect(() => {
-    setInternalSelectedValues(selectedValues);
-  }, [selectedValues]);
+  // Use selectedValues directly instead of internal state to avoid sync issues
+  const currentSelectedValues = selectedValues;
 
   const handleSelectionChange = (value: string, checked: boolean) => {
     let newSelectedValues: string[];
@@ -91,7 +86,7 @@ export const CardSelector: React.FC<CardSelectorProps> = ({
     } else {
       if (checked) {
         // Add to selection
-        newSelectedValues = [...internalSelectedValues, value];
+        newSelectedValues = [...currentSelectedValues, value];
         
         // Check max selections limit
         if (maxSelections && newSelectedValues.length > maxSelections) {
@@ -99,7 +94,7 @@ export const CardSelector: React.FC<CardSelectorProps> = ({
         }
       } else {
         // Remove from selection
-        newSelectedValues = internalSelectedValues.filter(v => v !== value);
+        newSelectedValues = currentSelectedValues.filter(v => v !== value);
         
         // Check min selections limit
         if (minSelections && newSelectedValues.length < minSelections) {
@@ -108,7 +103,6 @@ export const CardSelector: React.FC<CardSelectorProps> = ({
       }
     }
 
-    setInternalSelectedValues(newSelectedValues);
     onChange?.(newSelectedValues);
   };
 
@@ -116,16 +110,13 @@ export const CardSelector: React.FC<CardSelectorProps> = ({
     if (disabled || loading || card.disabled) return;
     
     onCardClick?.(card);
-    
-    // Toggle selection on card click
-    const isSelected = internalSelectedValues.includes(card.value);
-    handleSelectionChange(card.value, !isSelected);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent, card: CardItem) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
-      handleCardClick(card);
+      const isSelected = currentSelectedValues.includes(card.value);
+      handleSelectionChange(card.value, !isSelected);
     }
   };
 
@@ -177,10 +168,14 @@ export const CardSelector: React.FC<CardSelectorProps> = ({
               aria-label={card.title}
             />
           ) : (
-            <Checkbox
+            <input
+              type="checkbox"
+              name={name}
+              value={card.value}
               checked={isSelected}
-              onChange={(checked) => handleSelectionChange(card.value, checked)}
+              onChange={(e) => handleSelectionChange(card.value, e.target.checked)}
               disabled={disabled || loading || card.disabled}
+              style={{ margin: 0 }}
               aria-label={card.title}
             />
           )}
@@ -357,7 +352,7 @@ export const CardSelector: React.FC<CardSelectorProps> = ({
       {/* Cards container */}
       <div className="cria-card-selector__cards">
         {cards.map((card) => {
-          const isSelected = internalSelectedValues.includes(card.value);
+          const isSelected = currentSelectedValues.includes(card.value);
           const isDisabled = disabled || loading || card.disabled;
 
           return (
