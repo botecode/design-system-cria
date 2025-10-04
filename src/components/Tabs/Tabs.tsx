@@ -64,9 +64,9 @@ export interface TabsProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'o
   size?: 'sm' | 'md' | 'lg';
   
   /**
-   * Tab orientation
+   * Tab orientation (horizontal only for tabs)
    */
-  orientation?: 'horizontal' | 'vertical';
+  orientation?: 'horizontal';
   
   /**
    * Whether tabs are full width
@@ -138,12 +138,10 @@ export const Tabs: React.FC<TabsProps> = ({
     
     switch (event.key) {
       case 'ArrowRight':
-      case 'ArrowDown':
         event.preventDefault();
         nextIndex = (currentIndex + 1) % tabIds.length;
         break;
       case 'ArrowLeft':
-      case 'ArrowUp':
         event.preventDefault();
         nextIndex = (currentIndex - 1 + tabIds.length) % tabIds.length;
         break;
@@ -166,7 +164,7 @@ export const Tabs: React.FC<TabsProps> = ({
     
     // Find next enabled tab
     while (items[nextIndex]?.disabled && nextIndex !== currentIndex) {
-      if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+      if (event.key === 'ArrowRight') {
         nextIndex = (nextIndex + 1) % tabIds.length;
       } else {
         nextIndex = (nextIndex - 1 + tabIds.length) % tabIds.length;

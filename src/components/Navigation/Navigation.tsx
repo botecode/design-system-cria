@@ -40,7 +40,7 @@ export interface NavigationItem {
   onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
-export interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface NavigationSidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Array of navigation items
    */
@@ -103,7 +103,7 @@ export interface NavigationProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Sidebar configuration
    */
-  sidebar?: SidebarProps;
+  sidebar?: NavigationSidebarProps;
   
   /**
    * Topbar configuration
@@ -116,7 +116,7 @@ export interface NavigationProps extends React.HTMLAttributes<HTMLDivElement> {
   variant?: 'sidebar-only' | 'topbar-only' | 'both';
 }
 
-const Sidebar: React.FC<SidebarProps> = ({
+const Sidebar: React.FC<NavigationSidebarProps> = ({
   items,
   activeRoute,
   collapsed = false,

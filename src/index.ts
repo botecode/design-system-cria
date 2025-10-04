@@ -24,6 +24,7 @@ export * from './components/Tooltip';
 export * from './components/Typography';
 export * from './components/Dropdown';
 export * from './components/RadioGroup';
+export * from './components/Sidebar';
 
 // Default exports for backward compatibility
 export { default as Typography } from './components/Typography';
@@ -38,3 +39,4 @@ export { default as Accordion } from './components/Accordion';
 export { default as Text } from './components/Text';
 export { default as Dropdown } from './components/Dropdown';
 export { default as RadioGroup } from './components/RadioGroup';
+export { default as Sidebar } from './components/Sidebar';

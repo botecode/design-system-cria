@@ -732,7 +732,7 @@ interface NavigationItem {
      */
     onClick?: (event: React__default.MouseEvent<HTMLAnchorElement>) => void;
 }
-interface SidebarProps extends React__default.HTMLAttributes<HTMLDivElement> {
+interface NavigationSidebarProps extends React__default.HTMLAttributes<HTMLDivElement> {
     /**
      * Array of navigation items
      */
@@ -784,7 +784,7 @@ interface NavigationProps extends React__default.HTMLAttributes<HTMLDivElement> 
     /**
      * Sidebar configuration
      */
-    sidebar?: SidebarProps;
+    sidebar?: NavigationSidebarProps;
     /**
      * Topbar configuration
      */
@@ -794,7 +794,6 @@ interface NavigationProps extends React__default.HTMLAttributes<HTMLDivElement> 
      */
     variant?: 'sidebar-only' | 'topbar-only' | 'both';
 }
-declare const Sidebar: React__default.FC<SidebarProps>;
 declare const Topbar: React__default.FC<TopbarProps>;
 declare const Navigation: React__default.FC<NavigationProps>;
 
@@ -946,9 +945,9 @@ interface TabsProps extends Omit<React__default.HTMLAttributes<HTMLDivElement>, 
      */
     size?: 'sm' | 'md' | 'lg';
     /**
-     * Tab orientation
+     * Tab orientation (horizontal only for tabs)
      */
-    orientation?: 'horizontal' | 'vertical';
+    orientation?: 'horizontal';
     /**
      * Whether tabs are full width
      */
@@ -1288,4 +1287,93 @@ interface RadioGroupProps {
 }
 declare const RadioGroup: React__default.FC<RadioGroupProps>;
 
-export { Accordion, AccordionContent, type AccordionContentProps, AccordionHeader, type AccordionHeaderProps, AccordionItem, type AccordionItemProps, type AccordionProps, Badge, type BadgeProps, type BorderColor, Button, ButtonDemo, type ButtonProps, Card, CardContent, type CardContentProps, CardDemo, CardFooter, type CardFooterProps, CardHeader, type CardHeaderProps, type CardProps, Checkbox, type CheckboxProps, type CheckboxRef, type ColorToken, Dropdown, DropdownItem, type DropdownItemProps, type DropdownOption, type DropdownProps, type DropdownRef, type FontWeight, type GrayScale, Input, type InputProps, type InputRef, type LetterSpacing, type LineHeight, Modal, type ModalProps, Navigation, type NavigationItem, type NavigationProps, RadioGroup, type RadioGroupProps, type RadioOption, type RadiusToken, type ShadowToken, Sidebar, type SidebarProps, Snackbar, type SnackbarAction, type SnackbarPosition, type SnackbarProps, type SnackbarRef, type SnackbarVariant, type SpacingToken, Switch, type SwitchProps, type SwitchRef, type TabItem, Tabs, type TabsProps, TextBody as Text, TextBody, type TextBodyProps, type TextColor, TextContent, TextContentImportant, type TextContentImportantProps, type TextContentProps, TextContentTitle, type TextContentTitleProps, Tooltip, type TooltipProps, Topbar, type TopbarProps, Typography, TypographyDemo, type TypographyProps, type TypographyVariant, colors, cssVariables, radii, shadows, spacing, typography };
+interface SidebarItem {
+    /**
+     * Unique identifier for the sidebar item
+     */
+    id: string;
+    /**
+     * Label to display in the sidebar item
+     */
+    label: React__default.ReactNode;
+    /**
+     * Content to display when item is active (optional)
+     */
+    content?: React__default.ReactNode;
+    /**
+     * Whether the item is disabled
+     */
+    disabled?: boolean;
+    /**
+     * Icon to display in the sidebar item
+     */
+    icon?: React__default.ReactNode;
+    /**
+     * Badge or count to display in the sidebar item
+     */
+    badge?: React__default.ReactNode;
+    /**
+     * Nested items for sub-navigation
+     */
+    children?: SidebarItem[];
+    /**
+     * Whether the item is expanded (for items with children)
+     */
+    expanded?: boolean;
+}
+interface SidebarProps extends Omit<React__default.HTMLAttributes<HTMLDivElement>, 'onChange'> {
+    /**
+     * Array of sidebar items
+     */
+    items: SidebarItem[];
+    /**
+     * Currently active item ID
+     */
+    activeItem?: string;
+    /**
+     * Default active item ID (uncontrolled)
+     */
+    defaultActiveItem?: string;
+    /**
+     * Callback when active item changes
+     */
+    onChange?: (activeItem: string) => void;
+    /**
+     * Sidebar variant
+     */
+    variant?: 'default' | 'compact' | 'minimal';
+    /**
+     * Sidebar size
+     */
+    size?: 'sm' | 'md' | 'lg';
+    /**
+     * Whether to show item content
+     */
+    showContent?: boolean;
+    /**
+     * Whether the sidebar is collapsible
+     */
+    collapsible?: boolean;
+    /**
+     * Whether the sidebar is collapsed
+     */
+    collapsed?: boolean;
+    /**
+     * Callback when collapse state changes
+     */
+    onCollapseChange?: (collapsed: boolean) => void;
+    /**
+     * Custom class name for the sidebar container
+     */
+    className?: string;
+    /**
+     * Custom styles for the sidebar container
+     */
+    style?: React__default.CSSProperties;
+}
+/**
+ * Sidebar component for navigation and content organization
+ */
+declare const Sidebar: React__default.FC<SidebarProps>;
+
+export { Accordion, AccordionContent, type AccordionContentProps, AccordionHeader, type AccordionHeaderProps, AccordionItem, type AccordionItemProps, type AccordionProps, Badge, type BadgeProps, type BorderColor, Button, ButtonDemo, type ButtonProps, Card, CardContent, type CardContentProps, CardDemo, CardFooter, type CardFooterProps, CardHeader, type CardHeaderProps, type CardProps, Checkbox, type CheckboxProps, type CheckboxRef, type ColorToken, Dropdown, DropdownItem, type DropdownItemProps, type DropdownOption, type DropdownProps, type DropdownRef, type FontWeight, type GrayScale, Input, type InputProps, type InputRef, type LetterSpacing, type LineHeight, Modal, type ModalProps, Navigation, type NavigationItem, type NavigationProps, type NavigationSidebarProps, RadioGroup, type RadioGroupProps, type RadioOption, type RadiusToken, type ShadowToken, Sidebar, type SidebarItem, type SidebarProps, Snackbar, type SnackbarAction, type SnackbarPosition, type SnackbarProps, type SnackbarRef, type SnackbarVariant, type SpacingToken, Switch, type SwitchProps, type SwitchRef, type TabItem, Tabs, type TabsProps, TextBody as Text, TextBody, type TextBodyProps, type TextColor, TextContent, TextContentImportant, type TextContentImportantProps, type TextContentProps, TextContentTitle, type TextContentTitleProps, Tooltip, type TooltipProps, Topbar, type TopbarProps, Typography, TypographyDemo, type TypographyProps, type TypographyVariant, colors, cssVariables, radii, shadows, spacing, typography };

@@ -1,2 +1,2 @@
 export { Navigation, Sidebar, Topbar } from './Navigation';
-export type { NavigationProps, SidebarProps, TopbarProps, NavigationItem } from './Navigation';
+export type { NavigationProps, NavigationSidebarProps, TopbarProps, NavigationItem } from './Navigation';

@@ -131,14 +131,25 @@ Badge component for status indicators, counts, and labels.
 - Count display
 - Dot variant
 
-### [Tabs](./Tabs.md)
+### [Tabs](./tabs.md)
 Tab component for organizing content into sections.
 
 **Key Features:**
-- 3 variants (default, pills, underline)
-- Icon support
+- 4 variants (default, pills, underline, cards)
+- Icon and badge support
 - Disabled tabs
 - Full width option
+- Horizontal content organization
+
+### [Sidebar](./sidebar.md)
+Sidebar component for navigation and content organization.
+
+**Key Features:**
+- 3 variants (default, compact, minimal)
+- Nested items support
+- Collapsible sidebar
+- Icon and badge support
+- Vertical navigation optimized
 
 ### [Navigation](./Navigation.md)
 Navigation component for site navigation.
@@ -176,7 +187,8 @@ Specialized text components for different content types.
 - [Switch](./Switch.md)
 - [Dropdown](./Dropdown.md)
 - [Radio Group](./radio-group.md)
-- [Tabs](./Tabs.md)
+- [Tabs](./tabs.md)
+- [Sidebar](./sidebar.md)
 - [Accordion](./Accordion.md)
 
 ### Feedback Components

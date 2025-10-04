@@ -49,7 +49,7 @@ __export(index_exports, {
   Modal: () => Modal,
   Navigation: () => Navigation,
   RadioGroup: () => RadioGroup,
-  Sidebar: () => Sidebar,
+  Sidebar: () => Sidebar2,
   Snackbar: () => Snackbar,
   Switch: () => Switch,
   Tabs: () => Tabs,
@@ -2406,12 +2406,10 @@ var Tabs = ({
     let nextIndex = currentIndex;
     switch (event.key) {
       case "ArrowRight":
-      case "ArrowDown":
         event.preventDefault();
         nextIndex = (currentIndex + 1) % tabIds.length;
         break;
       case "ArrowLeft":
-      case "ArrowUp":
         event.preventDefault();
         nextIndex = (currentIndex - 1 + tabIds.length) % tabIds.length;
         break;
@@ -2432,7 +2430,7 @@ var Tabs = ({
         return;
     }
     while (items[nextIndex]?.disabled && nextIndex !== currentIndex) {
-      if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+      if (event.key === "ArrowRight") {
         nextIndex = (nextIndex + 1) % tabIds.length;
       } else {
         nextIndex = (nextIndex - 1 + tabIds.length) % tabIds.length;
@@ -3464,6 +3462,188 @@ var RadioGroup = ({
     ),
     error && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { id: errorId, className: "cria-radio-group__error", role: "alert", children: error })
   ] });
+};
+
+// src/components/Sidebar/Sidebar.tsx
+var import_react14 = require("react");
+var import_jsx_runtime20 = require("react/jsx-runtime");
+var Sidebar2 = ({
+  items,
+  activeItem: controlledActiveItem,
+  defaultActiveItem,
+  onChange,
+  variant = "default",
+  size = "md",
+  showContent = true,
+  collapsible = false,
+  collapsed: controlledCollapsed,
+  onCollapseChange,
+  className = "",
+  style,
+  ...props
+}) => {
+  const [internalActiveItem, setInternalActiveItem] = (0, import_react14.useState)(
+    defaultActiveItem || items[0]?.id || ""
+  );
+  const [internalCollapsed, setInternalCollapsed] = (0, import_react14.useState)(false);
+  const isControlled = controlledActiveItem !== void 0;
+  const activeItem = isControlled ? controlledActiveItem : internalActiveItem;
+  const isCollapseControlled = controlledCollapsed !== void 0;
+  const collapsed = isCollapseControlled ? controlledCollapsed : internalCollapsed;
+  const itemRefs = (0, import_react14.useRef)({});
+  const sidebarRef = (0, import_react14.useRef)(null);
+  const handleItemChange = (0, import_react14.useCallback)((itemId) => {
+    if (isControlled) {
+      onChange?.(itemId);
+    } else {
+      setInternalActiveItem(itemId);
+      onChange?.(itemId);
+    }
+  }, [isControlled, onChange]);
+  const handleCollapseToggle = (0, import_react14.useCallback)(() => {
+    if (isCollapseControlled) {
+      onCollapseChange?.(!collapsed);
+    } else {
+      setInternalCollapsed(!collapsed);
+      onCollapseChange?.(!collapsed);
+    }
+  }, [isCollapseControlled, collapsed, onCollapseChange]);
+  const handleKeyDown = (0, import_react14.useCallback)((event, itemId) => {
+    const flatItems = items.flatMap(
+      (item) => item.children ? [item, ...item.children] : [item]
+    );
+    const itemIds = flatItems.map((item) => item.id);
+    const currentIndex = itemIds.indexOf(itemId);
+    let nextIndex = currentIndex;
+    switch (event.key) {
+      case "ArrowDown":
+        event.preventDefault();
+        nextIndex = (currentIndex + 1) % itemIds.length;
+        break;
+      case "ArrowUp":
+        event.preventDefault();
+        nextIndex = (currentIndex - 1 + itemIds.length) % itemIds.length;
+        break;
+      case "Home":
+        event.preventDefault();
+        nextIndex = 0;
+        break;
+      case "End":
+        event.preventDefault();
+        nextIndex = itemIds.length - 1;
+        break;
+      case "Enter":
+      case " ":
+        event.preventDefault();
+        handleItemChange(itemId);
+        return;
+      default:
+        return;
+    }
+    while (flatItems[nextIndex]?.disabled && nextIndex !== currentIndex) {
+      if (event.key === "ArrowDown") {
+        nextIndex = (nextIndex + 1) % itemIds.length;
+      } else {
+        nextIndex = (nextIndex - 1 + itemIds.length) % itemIds.length;
+      }
+    }
+    const nextItemId = itemIds[nextIndex];
+    if (nextItemId) {
+      handleItemChange(nextItemId);
+      itemRefs.current[nextItemId]?.focus();
+    }
+  }, [items, handleItemChange]);
+  (0, import_react14.useEffect)(() => {
+    if (activeItem && itemRefs.current[activeItem]) {
+      itemRefs.current[activeItem]?.focus();
+    }
+  }, [activeItem]);
+  const containerClasses = [
+    "cria-sidebar",
+    `cria-sidebar--${variant}`,
+    `cria-sidebar--${size}`,
+    collapsed ? "cria-sidebar--collapsed" : null,
+    collapsible ? "cria-sidebar--collapsible" : null,
+    className
+  ].filter(Boolean).join(" ");
+  const contentClasses = [
+    "cria-sidebar__content",
+    `cria-sidebar__content--${variant}`,
+    `cria-sidebar__content--${size}`
+  ].filter(Boolean).join(" ");
+  const activeItemData = items.find((item) => item.id === activeItem) || items.flatMap((item) => item.children || []).find((item) => item.id === activeItem);
+  const renderSidebarItem = (item, level = 0) => {
+    const isActive = item.id === activeItem;
+    const isDisabled = item.disabled;
+    const hasChildren = item.children && item.children.length > 0;
+    const itemClasses = [
+      "cria-sidebar__item",
+      `cria-sidebar__item--${variant}`,
+      `cria-sidebar__item--${size}`,
+      `cria-sidebar__item--level-${level}`,
+      isActive ? "cria-sidebar__item--active" : null,
+      isDisabled ? "cria-sidebar__item--disabled" : null,
+      hasChildren ? "cria-sidebar__item--has-children" : null
+    ].filter(Boolean).join(" ");
+    return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "cria-sidebar__item-wrapper", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(
+        "button",
+        {
+          ref: (el) => {
+            itemRefs.current[item.id] = el;
+          },
+          className: itemClasses,
+          role: "menuitem",
+          "aria-selected": isActive,
+          "aria-disabled": isDisabled,
+          "aria-expanded": hasChildren ? item.expanded ? "true" : "false" : void 0,
+          tabIndex: isActive ? 0 : -1,
+          disabled: isDisabled,
+          onClick: () => !isDisabled && handleItemChange(item.id),
+          onKeyDown: (e) => !isDisabled && handleKeyDown(e, item.id),
+          children: [
+            item.icon && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "cria-sidebar__item-icon", children: item.icon }),
+            !collapsed && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "cria-sidebar__item-label", children: item.label }),
+            !collapsed && item.badge && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "cria-sidebar__item-badge", children: item.badge }),
+            hasChildren && !collapsed && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "cria-sidebar__item-arrow", children: item.expanded ? "\u25BC" : "\u25B6" })
+          ]
+        }
+      ),
+      hasChildren && !collapsed && item.expanded && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "cria-sidebar__submenu", children: item.children?.map((child) => renderSidebarItem(child, level + 1)) })
+    ] }, item.id);
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(
+    "div",
+    {
+      ref: sidebarRef,
+      className: containerClasses,
+      style,
+      role: "navigation",
+      "aria-label": "Sidebar navigation",
+      ...props,
+      children: [
+        collapsible && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
+          "button",
+          {
+            className: "cria-sidebar__toggle",
+            onClick: handleCollapseToggle,
+            "aria-label": collapsed ? "Expand sidebar" : "Collapse sidebar",
+            children: collapsed ? "\u25B6" : "\u25C0"
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "cria-sidebar__items", role: "menu", children: items.map((item) => renderSidebarItem(item)) }),
+        showContent && activeItemData?.content && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
+          "div",
+          {
+            className: contentClasses,
+            role: "main",
+            "aria-labelledby": `cria-sidebar-item-${activeItemData.id}`,
+            children: activeItemData.content
+          }
+        )
+      ]
+    }
+  );
 };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
