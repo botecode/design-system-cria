@@ -12,11 +12,39 @@ export const NavigationDemo: React.FC = () => {
 
   const sidebarItems = [
     { id: 'dashboard', label: 'Dashboard', href: '/dashboard', icon: <ChartBar size={20} /> },
-    { id: 'projects', label: 'Projects', href: '/projects', icon: <Folder size={20} /> },
+    { 
+      id: 'projects', 
+      label: 'Projects', 
+      icon: <Folder size={20} />,
+      defaultExpanded: true,
+      subitems: [
+        { id: 'active-projects', label: 'Active Projects', href: '/projects/active', icon: <CheckSquare size={16} /> },
+        { id: 'completed-projects', label: 'Completed', href: '/projects/completed', icon: <CheckSquare size={16} /> },
+        { id: 'archived-projects', label: 'Archived', href: '/projects/archived', icon: <Folder size={16} /> }
+      ]
+    },
     { id: 'tasks', label: 'Tasks', href: '/tasks', icon: <CheckSquare size={20} />, badge: '3' },
-    { id: 'team', label: 'Team', href: '/team', icon: <Users size={20} /> },
+    { 
+      id: 'team', 
+      label: 'Team', 
+      icon: <Users size={20} />,
+      subitems: [
+        { id: 'team-members', label: 'Members', href: '/team/members', icon: <Users size={16} /> },
+        { id: 'team-roles', label: 'Roles & Permissions', href: '/team/roles', icon: <Gear size={16} /> },
+        { id: 'team-reports', label: 'Reports', href: '/team/reports', icon: <ChartBar size={16} /> }
+      ]
+    },
     { id: 'messages', label: 'Messages', href: '/messages', icon: <ChatCircle size={20} />, badge: '12' },
-    { id: 'settings', label: 'Settings', href: '/settings', icon: <Gear size={20} /> },
+    { 
+      id: 'settings', 
+      label: 'Settings', 
+      icon: <Gear size={20} />,
+      subitems: [
+        { id: 'user-settings', label: 'User Preferences', href: '/settings/user', icon: <Gear size={16} /> },
+        { id: 'app-settings', label: 'Application', href: '/settings/app', icon: <Gear size={16} /> },
+        { id: 'security-settings', label: 'Security', href: '/settings/security', icon: <Gear size={16} /> }
+      ]
+    },
     { id: 'help', label: 'Help', href: '/help', icon: <Question size={20} /> },
   ];
 
@@ -40,7 +68,8 @@ export const NavigationDemo: React.FC = () => {
 
       <Typography variant="body" style={{ marginBottom: '32px' }}>
         Navigation components provide consistent and accessible navigation patterns for your application.
-        Includes sidebar navigation with collapse/expand functionality and topbar navigation with responsive mobile menu.
+        Includes sidebar navigation with collapse/expand functionality, hierarchical subitems for grouping related navigation items,
+        and topbar navigation with responsive mobile menu.
       </Typography>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px', marginBottom: '32px' }}>

@@ -1,11 +1,11 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { House, Folder, CheckSquare, Users, ChatCircle, Gear, Question, ArrowLeft, ArrowRight, List } from 'phosphor-react';
+import { House, Folder, CheckSquare, Users, ChatCircle, Gear, Question, ArrowLeft, ArrowRight, List, CaretDown, CaretRight, CaretLeft, CaretUp } from 'phosphor-react';
 import { Typography } from '../Typography';
 import { Button } from '../Button';
 
-export interface NavigationItem {
+export interface NavigationSubItem {
   /**
-   * Unique identifier for the navigation item
+   * Unique identifier for the sub-navigation item
    */
   id: string;
   
@@ -40,6 +40,53 @@ export interface NavigationItem {
   onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
 }
 
+export interface NavigationItem {
+  /**
+   * Unique identifier for the navigation item
+   */
+  id: string;
+  
+  /**
+   * Label to display in the navigation
+   */
+  label: string;
+  
+  /**
+   * URL or path for the navigation item (required if no subitems)
+   */
+  href?: string;
+  
+  /**
+   * Icon to display alongside the label
+   */
+  icon?: React.ReactNode;
+  
+  /**
+   * Whether the item is disabled
+   */
+  disabled?: boolean;
+  
+  /**
+   * Badge or count to display
+   */
+  badge?: React.ReactNode;
+  
+  /**
+   * Click handler for the navigation item
+   */
+  onClick?: (event: React.MouseEvent<HTMLAnchorElement>) => void;
+  
+  /**
+   * Array of sub-navigation items (for grouping)
+   */
+  subitems?: NavigationSubItem[];
+  
+  /**
+   * Whether the subitems are expanded by default
+   */
+  defaultExpanded?: boolean;
+}
+
 export interface NavigationSidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Array of navigation items
@@ -65,6 +112,16 @@ export interface NavigationSidebarProps extends React.HTMLAttributes<HTMLDivElem
    * Whether to show the toggle button
    */
   showToggle?: boolean;
+  
+  /**
+   * Title to display at the top of the sidebar
+   */
+  title?: string;
+  
+  /**
+   * URL for the title link (optional)
+   */
+  titleHref?: string;
 }
 
 export interface TopbarProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -122,11 +179,16 @@ const Sidebar: React.FC<NavigationSidebarProps> = ({
   collapsed = false,
   onToggle,
   showToggle = true,
+  title,
+  titleHref,
   className,
   style,
   ...props
 }) => {
   const [isMobile, setIsMobile] = useState(false);
+  const [expandedItems, setExpandedItems] = useState<Set<string>>(
+    new Set(items.filter(item => item.defaultExpanded).map(item => item.id))
+  );
 
   useEffect(() => {
     const checkMobile = () => {
@@ -141,6 +203,18 @@ const Sidebar: React.FC<NavigationSidebarProps> = ({
   const handleToggle = useCallback(() => {
     onToggle?.(!collapsed);
   }, [collapsed, onToggle]);
+
+  const handleSubitemToggle = useCallback((itemId: string) => {
+    setExpandedItems(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(itemId)) {
+        newSet.delete(itemId);
+      } else {
+        newSet.add(itemId);
+      }
+      return newSet;
+    });
+  }, []);
 
   const handleKeyDown = useCallback((event: React.KeyboardEvent, index: number) => {
     const currentIndex = index;
@@ -181,8 +255,43 @@ const Sidebar: React.FC<NavigationSidebarProps> = ({
       aria-label="Main navigation"
       {...props}
     >
-      {showToggle && (
-        <div className="cria-sidebar__header">
+      <div className="cria-sidebar__header">
+        {title && (
+          <div className="cria-sidebar__title-section">
+            {titleHref ? (
+              <a href={titleHref} className="cria-sidebar__title-link">
+                {collapsed ? (
+                  <div className="cria-sidebar__logo">
+                    <img 
+                      src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTYiIGZpbGw9InVybCgjZ3JhZGllbnQwX2xpbmVhcl8xXzEpIi8+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRpZW50MF9saW5lYXJfMV8xIiB4MT0iMCIgeTE9IjAiIHgyPSIzMiIgeTI9IjMyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiM3MzQ2QTAiLz4KPHN0b3Agb2Zmc2V0PSIwLjMiIHN0b3AtY29sb3I9IiM4QzVBRjQiLz4KPHN0b3Agb2Zmc2V0PSIwLjciIHN0b3AtY29sb3I9IiM0QjU2NjMiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjN0I0N0Y1Ii8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+" 
+                      alt="CRIA.lab" 
+                      className="cria-sidebar__logo-img"
+                    />
+                  </div>
+                ) : (
+                  <Typography variant="h3" weight="bold" color="primary">
+                    {title}
+                  </Typography>
+                )}
+              </a>
+            ) : (
+              collapsed ? (
+                <div className="cria-sidebar__logo">
+                  <img 
+                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTYiIGZpbGw9InVybCgjZ3JhZGllbnQwX2xpbmVhcl8xXzEpIi8+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRpZW50MF9saW5lYXJfMV8xIiB4MT0iMCIgeTE9IjAiIHgyPSIzMiIgeTI9IjMyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiM3MzQ2QTAiLz4KPHN0b3Agb2Zmc2V0PSIwLjMiIHN0b3AtY29sb3I9IiM4QzVBRjQiLz4KPHN0b3Agb2Zmc2V0PSIwLjciIHN0b3AtY29sb3I9IiM0QjU2NjMiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjN0I0N0Y1Ii8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+" 
+                    alt="CRIA.lab" 
+                    className="cria-sidebar__logo-img"
+                  />
+                </div>
+              ) : (
+                <Typography variant="h3" weight="bold" color="primary">
+                  {title}
+                </Typography>
+              )
+            )}
+          </div>
+        )}
+        {showToggle && (
           <Button
             variant="ghost"
             size="sm"
@@ -190,47 +299,128 @@ const Sidebar: React.FC<NavigationSidebarProps> = ({
             aria-label="Toggle sidebar"
             className="cria-sidebar__toggle"
           >
-            {collapsed ? <ArrowRight size={16} /> : <ArrowLeft size={16} />}
+            {collapsed ? <CaretRight size={16} /> : <CaretLeft size={16} />}
           </Button>
-        </div>
-      )}
+        )}
+      </div>
 
       <div className="cria-sidebar__content">
         <ul className="cria-sidebar__items" role="menubar">
-          {items.map((item, index) => (
-            <li key={item.id} className="cria-sidebar__item-wrapper">
-              <a
-                href={item.href}
-                className={[
-                  'cria-sidebar__item',
-                  activeRoute === item.href && 'cria-sidebar__item--active',
-                  item.disabled && 'cria-sidebar__item--disabled',
-                ].filter(Boolean).join(' ')}
-                data-nav-item={index}
-                tabIndex={item.disabled ? -1 : 0}
-                onKeyDown={(e) => handleKeyDown(e, index)}
-                onClick={item.onClick}
-                aria-current={activeRoute === item.href ? 'page' : undefined}
-                aria-disabled={item.disabled}
-              >
-                {item.icon && (
-                  <span className="cria-sidebar__icon" aria-hidden="true">
-                    {item.icon}
-                  </span>
+          {items.map((item, index) => {
+            const hasSubitems = item.subitems && item.subitems.length > 0;
+            const isExpanded = expandedItems.has(item.id);
+            const isActive = activeRoute === item.href || 
+              (hasSubitems && item.subitems?.some(subitem => activeRoute === subitem.href));
+
+            return (
+              <li key={item.id} className="cria-sidebar__item-wrapper">
+                {hasSubitems ? (
+                  <div
+                    className={[
+                      'cria-sidebar__item',
+                      'cria-sidebar__item--group',
+                      isActive && 'cria-sidebar__item--active',
+                      item.disabled && 'cria-sidebar__item--disabled',
+                    ].filter(Boolean).join(' ')}
+                    data-nav-item={index}
+                    tabIndex={item.disabled ? -1 : 0}
+                    onKeyDown={(e) => handleKeyDown(e, index)}
+                  >
+                    {item.icon && (
+                      <span className="cria-sidebar__icon" aria-hidden="true">
+                        {item.icon}
+                      </span>
+                    )}
+                    {!collapsed && (
+                      <>
+                        <span className="cria-sidebar__label">
+                          {item.label}
+                        </span>
+                        <button
+                          className="cria-sidebar__subitem-toggle"
+                          onClick={() => handleSubitemToggle(item.id)}
+                          aria-expanded={isExpanded}
+                          aria-label={`Toggle ${item.label} submenu`}
+                        >
+                          {isExpanded ? <CaretDown size={16} /> : <CaretRight size={16} />}
+                        </button>
+                      </>
+                    )}
+                    {item.badge && (
+                      <span className="cria-sidebar__badge" aria-hidden="true">
+                        {item.badge}
+                      </span>
+                    )}
+                  </div>
+                ) : (
+                  <a
+                    href={item.href}
+                    className={[
+                      'cria-sidebar__item',
+                      isActive && 'cria-sidebar__item--active',
+                      item.disabled && 'cria-sidebar__item--disabled',
+                    ].filter(Boolean).join(' ')}
+                    data-nav-item={index}
+                    tabIndex={item.disabled ? -1 : 0}
+                    onKeyDown={(e) => handleKeyDown(e, index)}
+                    onClick={item.onClick}
+                    aria-current={activeRoute === item.href ? 'page' : undefined}
+                    aria-disabled={item.disabled}
+                  >
+                    {item.icon && (
+                      <span className="cria-sidebar__icon" aria-hidden="true">
+                        {item.icon}
+                      </span>
+                    )}
+                    {!collapsed && (
+                      <span className="cria-sidebar__label">
+                        {item.label}
+                      </span>
+                    )}
+                    {item.badge && (
+                      <span className="cria-sidebar__badge" aria-hidden="true">
+                        {item.badge}
+                      </span>
+                    )}
+                  </a>
                 )}
-                {!collapsed && (
-                  <span className="cria-sidebar__label">
-                    {item.label}
-                  </span>
+                
+                {hasSubitems && isExpanded && !collapsed && (
+                  <ul className="cria-sidebar__subitems" role="menu">
+                    {item.subitems?.map((subitem) => (
+                      <li key={subitem.id} className="cria-sidebar__subitem-wrapper">
+                        <a
+                          href={subitem.href}
+                          className={[
+                            'cria-sidebar__subitem',
+                            activeRoute === subitem.href && 'cria-sidebar__subitem--active',
+                            subitem.disabled && 'cria-sidebar__subitem--disabled',
+                          ].filter(Boolean).join(' ')}
+                          onClick={subitem.onClick}
+                          aria-current={activeRoute === subitem.href ? 'page' : undefined}
+                          aria-disabled={subitem.disabled}
+                        >
+                          {subitem.icon && (
+                            <span className="cria-sidebar__subitem-icon" aria-hidden="true">
+                              {subitem.icon}
+                            </span>
+                          )}
+                          <span className="cria-sidebar__subitem-label">
+                            {subitem.label}
+                          </span>
+                          {subitem.badge && (
+                            <span className="cria-sidebar__subitem-badge" aria-hidden="true">
+                              {subitem.badge}
+                            </span>
+                          )}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 )}
-                {item.badge && (
-                  <span className="cria-sidebar__badge" aria-hidden="true">
-                    {item.badge}
-                  </span>
-                )}
-              </a>
-            </li>
-          ))}
+              </li>
+            );
+          })}
         </ul>
       </div>
     </nav>

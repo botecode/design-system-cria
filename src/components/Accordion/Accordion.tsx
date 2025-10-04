@@ -304,7 +304,7 @@ export const AccordionHeader: React.FC<AccordionHeaderProps> = ({
     fontWeight: 500,
     color: colors.text.primary,
     textAlign: 'left',
-    transition: 'all 0.2s ease-in-out',
+    transition: 'all 0.3s ease-in-out',
     ...style,
   };
 
@@ -324,7 +324,7 @@ export const AccordionHeader: React.FC<AccordionHeaderProps> = ({
       <span
         style={{
           transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
-          transition: 'transform 0.2s ease-in-out',
+          transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
           fontSize: '14px',
         }}
         aria-hidden="true"
@@ -365,6 +365,21 @@ export const AccordionContent: React.FC<AccordionContentProps> = ({
   }
 
   const isOpen = context.openItems.includes(itemId);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState<number>(0);
+
+  // Update height when content changes or opens/closes
+  useEffect(() => {
+    if (contentRef.current) {
+      if (isOpen) {
+        // When opening, set height to the scrollHeight for smooth expansion
+        setHeight(contentRef.current.scrollHeight);
+      } else {
+        // When closing, set height to 0 for smooth collapse
+        setHeight(0);
+      }
+    }
+  }, [isOpen, children]);
 
   const classes = [
     'cria-accordion-content',
@@ -372,7 +387,10 @@ export const AccordionContent: React.FC<AccordionContentProps> = ({
   ].filter(Boolean).join(' ');
 
   const contentStyles: React.CSSProperties = {
-    display: isOpen ? 'block' : 'none',
+    height: `${height}px`,
+    overflow: 'hidden',
+    transition: 'height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease-in-out',
+    opacity: isOpen ? 1 : 0,
     ...style,
   };
 
@@ -385,7 +403,14 @@ export const AccordionContent: React.FC<AccordionContentProps> = ({
       role="region"
       {...props}
     >
-      <div style={{ padding: getContentPadding() }}>
+      <div 
+        ref={contentRef}
+        style={{ 
+          padding: getContentPadding(),
+          transform: isOpen ? 'translateY(0)' : 'translateY(-10px)',
+          transition: 'transform 0.4s ease-in-out',
+        }}
+      >
         {children}
       </div>
     </div>

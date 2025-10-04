@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Typography, Button, Navigation } from './index.ts';
-import { House, TextAa, Palette, Mouse, PencilSimple, CheckSquare, ToggleLeft, Bell, ChatCircle, Info, Square, Tag, Tabs, List, CaretDown, Article } from 'phosphor-react';
+import { House, TextAa, Palette, Mouse, PencilSimple, CheckSquare, ToggleLeft, Bell, ChatCircle, Info, Square, Tag, Tabs, List, CaretDown, Article, Layout } from 'phosphor-react';
 import TypographyDemo from './components/Typography/demo';
 import ButtonDemo from './components/Button/demo';
 import CardDemo from './components/Card/demo';
@@ -30,6 +30,31 @@ const App: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  // Initialize active section from URL hash
+  React.useEffect(() => {
+    const hash = window.location.hash.slice(1); // Remove the # symbol
+    const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group'];
+    
+    if (hash && validSections.includes(hash as DemoSection)) {
+      setActiveSection(hash as DemoSection);
+    }
+  }, []);
+
+  // Listen for hash changes (back/forward navigation)
+  React.useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.slice(1);
+      const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group'];
+      
+      if (hash && validSections.includes(hash as DemoSection)) {
+        setActiveSection(hash as DemoSection);
+      }
+    };
+
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   // Check if we're on mobile
   React.useEffect(() => {
     const checkMobile = () => {
@@ -43,27 +68,59 @@ const App: React.FC = () => {
 
   const sidebarItems = [
     { id: 'overview', label: 'Overview', href: '#overview', icon: <House size={20} /> },
-    { id: 'typography', label: 'Typography', href: '#typography', icon: <TextAa size={20} /> },
-    { id: 'colors', label: 'Colors', href: '#colors', icon: <Palette size={20} /> },
-    { id: 'button', label: 'Button', href: '#button', icon: <Mouse size={20} /> },
-    { id: 'input', label: 'Input', href: '#input', icon: <PencilSimple size={20} /> },
-    { id: 'checkbox', label: 'Checkbox', href: '#checkbox', icon: <CheckSquare size={20} /> },
-    { id: 'switch', label: 'Switch', href: '#switch', icon: <ToggleLeft size={20} /> },
-    { id: 'snackbar', label: 'Snackbar', href: '#snackbar', icon: <Bell size={20} /> },
-    { id: 'modal', label: 'Modal', href: '#modal', icon: <ChatCircle size={20} /> },
-    { id: 'tooltip', label: 'Tooltip', href: '#tooltip', icon: <Info size={20} /> },
-    { id: 'card', label: 'Card', href: '#card', icon: <Square size={20} /> },
-    { id: 'badge', label: 'Badge', href: '#badge', icon: <Tag size={20} /> },
-    { id: 'tabs', label: 'Tabs', href: '#tabs', icon: <Tabs size={20} /> },
-    { id: 'navigation', label: 'Navigation', href: '#navigation', icon: <List size={20} /> },
-    { id: 'accordion', label: 'Accordion', href: '#accordion', icon: <CaretDown size={20} /> },
-    { id: 'text', label: 'Text', href: '#text', icon: <Article size={20} /> },
-    { id: 'dropdown', label: 'Dropdown', href: '#dropdown', icon: <CaretDown size={20} /> },
-    { id: 'radio-group', label: 'Radio Group', href: '#radio-group', icon: <CheckSquare size={20} /> }
+    { 
+      id: 'foundations', 
+      label: 'Foundations', 
+      icon: <Palette size={20} />,
+      defaultExpanded: true,
+      subitems: [
+        { id: 'typography', label: 'Typography', href: '#typography', icon: <TextAa size={20} /> },
+        { id: 'colors', label: 'Colors', href: '#colors', icon: <Palette size={20} /> }
+      ]
+    },
+    { 
+      id: 'components', 
+      label: 'Components', 
+      icon: <Square size={20} />,
+      defaultExpanded: true,
+      subitems: [
+        { id: 'button', label: 'Button', href: '#button', icon: <Mouse size={20} /> },
+        { id: 'input', label: 'Input', href: '#input', icon: <PencilSimple size={20} /> },
+        { id: 'checkbox', label: 'Checkbox', href: '#checkbox', icon: <CheckSquare size={20} /> },
+        { id: 'switch', label: 'Switch', href: '#switch', icon: <ToggleLeft size={20} /> },
+        { id: 'radio-group', label: 'Radio Group', href: '#radio-group', icon: <CheckSquare size={20} /> },
+        { id: 'dropdown', label: 'Dropdown', href: '#dropdown', icon: <CaretDown size={20} /> }
+      ]
+    },
+    { 
+      id: 'layout', 
+      label: 'Layout', 
+      icon: <Layout size={20} />,
+      subitems: [
+        { id: 'card', label: 'Card', href: '#card', icon: <Square size={20} /> },
+        { id: 'tabs', label: 'Tabs', href: '#tabs', icon: <Tabs size={20} /> },
+        { id: 'accordion', label: 'Accordion', href: '#accordion', icon: <CaretDown size={20} /> },
+        { id: 'navigation', label: 'Navigation', href: '#navigation', icon: <List size={20} /> }
+      ]
+    },
+    { 
+      id: 'feedback', 
+      label: 'Feedback', 
+      icon: <Bell size={20} />,
+      subitems: [
+        { id: 'snackbar', label: 'Snackbar', href: '#snackbar', icon: <Bell size={20} /> },
+        { id: 'modal', label: 'Modal', href: '#modal', icon: <ChatCircle size={20} /> },
+        { id: 'tooltip', label: 'Tooltip', href: '#tooltip', icon: <Info size={20} /> },
+        { id: 'badge', label: 'Badge', href: '#badge', icon: <Tag size={20} /> }
+      ]
+    },
+    { id: 'text', label: 'Text', href: '#text', icon: <Article size={20} /> }
   ];
 
   const handleSectionChange = (section: DemoSection) => {
     setActiveSection(section);
+    // Update the URL hash without triggering a page reload
+    window.history.pushState(null, '', `#${section}`);
   };
 
   const renderContent = () => {
@@ -218,7 +275,12 @@ const App: React.FC = () => {
           {/* Mobile Toggle Button */}
           {isMobile && (
             <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              onClick={() => {
+                setMobileMenuOpen(!mobileMenuOpen);
+                if (!mobileMenuOpen) {
+                  handleSectionChange('overview');
+                }
+              }}
               style={{
                 position: 'fixed',
                 top: '16px',
@@ -239,6 +301,8 @@ const App: React.FC = () => {
 
           <Navigation
             sidebar={{
+              title: 'CRIA.lab',
+              titleHref: '#overview',
               items: sidebarItems.map(item => ({
                 ...item,
                 onClick: (e) => {

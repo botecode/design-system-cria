@@ -1,11 +1,11 @@
 # Tabs Component
 
-Tab component for organizing content into sections with keyboard navigation and accessibility features.
+Tabs component for organizing content into sections with keyboard navigation and accessibility features. The Tabs component is designed for horizontal content organization and should be used for content sections rather than navigation.
 
 ## Import
 
 ```tsx
-import { Tabs, Tab, TabPanel } from '@cria/ui';
+import { Tabs } from 'design-system-cria';
 ```
 
 ## Basic Usage
@@ -13,187 +13,160 @@ import { Tabs, Tab, TabPanel } from '@cria/ui';
 ```tsx
 const [activeTab, setActiveTab] = useState('tab1');
 
-<Tabs value={activeTab} onChange={setActiveTab}>
-  <Tab value="tab1">Tab 1</Tab>
-  <Tab value="tab2">Tab 2</Tab>
-  <Tab value="tab3">Tab 3</Tab>
-</Tabs>
+const tabItems = [
+  {
+    id: 'tab1',
+    label: 'Overview',
+    content: (
+      <div style={{ padding: '24px' }}>
+        <Typography variant="h3" weight="semiBold">Overview Content</Typography>
+        <Typography variant="body">This is the overview tab content.</Typography>
+      </div>
+    ),
+  },
+  {
+    id: 'tab2',
+    label: 'Details',
+    content: (
+      <div style={{ padding: '24px' }}>
+        <Typography variant="h3" weight="semiBold">Details Content</Typography>
+        <Typography variant="body">This tab contains detailed information.</Typography>
+      </div>
+    ),
+  },
+  {
+    id: 'tab3',
+    label: 'Settings',
+    content: (
+      <div style={{ padding: '24px' }}>
+        <Typography variant="h3" weight="semiBold">Settings Content</Typography>
+        <Typography variant="body">Configure your preferences here.</Typography>
+      </div>
+    ),
+  },
+];
 
-<TabPanel value="tab1">
-  <Typography>Content for Tab 1</Typography>
-</TabPanel>
-<TabPanel value="tab2">
-  <Typography>Content for Tab 2</Typography>
-</TabPanel>
-<TabPanel value="tab3">
-  <Typography>Content for Tab 3</Typography>
-</TabPanel>
+<Tabs items={tabItems} activeTab={activeTab} onChange={setActiveTab} />
 ```
 
 ## With Icons
 
 ```tsx
-<Tabs value={activeTab} onChange={setActiveTab}>
-  <Tab value="home" icon={<Home />}>Home</Tab>
-  <Tab value="profile" icon={<User />}>Profile</Tab>
-  <Tab value="settings" icon={<Settings />}>Settings</Tab>
-</Tabs>
+const tabItemsWithIcons = [
+  {
+    id: 'home',
+    label: 'Home',
+    icon: <House size={16} />,
+    content: <div>Home content</div>,
+  },
+  {
+    id: 'profile',
+    label: 'Profile',
+    icon: <User size={16} />,
+    content: <div>Profile content</div>,
+  },
+  {
+    id: 'settings',
+    label: 'Settings',
+    icon: <Settings size={16} />,
+    content: <div>Settings content</div>,
+  },
+];
+
+<Tabs items={tabItemsWithIcons} />
+```
+
+## With Badges
+
+```tsx
+const tabItemsWithBadges = [
+  {
+    id: 'messages',
+    label: 'Messages',
+    icon: <ChatCircle size={16} />,
+    badge: <Badge variant="error" badgeStyle="solid" size="sm">3</Badge>,
+    content: <div>Messages content</div>,
+  },
+  {
+    id: 'notifications',
+    label: 'Notifications',
+    icon: <Bell size={16} />,
+    badge: <Badge variant="warning" badgeStyle="solid" size="sm">1</Badge>,
+    content: <div>Notifications content</div>,
+  },
+];
+
+<Tabs items={tabItemsWithBadges} />
 ```
 
 ## Variants
 
 ### Default
 ```tsx
-<Tabs value={activeTab} onChange={setActiveTab} variant="default">
-  <Tab value="tab1">Default Tab 1</Tab>
-  <Tab value="tab2">Default Tab 2</Tab>
-</Tabs>
+<Tabs items={tabItems} variant="default" />
 ```
 
 ### Pills
 ```tsx
-<Tabs value={activeTab} onChange={setActiveTab} variant="pills">
-  <Tab value="tab1">Pill Tab 1</Tab>
-  <Tab value="tab2">Pill Tab 2</Tab>
-</Tabs>
+<Tabs items={tabItems} variant="pills" />
 ```
 
 ### Underline
 ```tsx
-<Tabs value={activeTab} onChange={setActiveTab} variant="underline">
-  <Tab value="tab1">Underline Tab 1</Tab>
-  <Tab value="tab2">Underline Tab 2</Tab>
-</Tabs>
+<Tabs items={tabItems} variant="underline" />
+```
+
+### Cards
+```tsx
+<Tabs items={tabItems} variant="cards" />
 ```
 
 ## Sizes
 
 ### Small
 ```tsx
-<Tabs value={activeTab} onChange={setActiveTab} size="sm">
-  <Tab value="tab1">Small Tab 1</Tab>
-  <Tab value="tab2">Small Tab 2</Tab>
-</Tabs>
+<Tabs items={tabItems} size="sm" />
 ```
 
 ### Medium (Default)
 ```tsx
-<Tabs value={activeTab} onChange={setActiveTab} size="md">
-  <Tab value="tab1">Medium Tab 1</Tab>
-  <Tab value="tab2">Medium Tab 2</Tab>
-</Tabs>
+<Tabs items={tabItems} size="md" />
 ```
 
 ### Large
 ```tsx
-<Tabs value={activeTab} onChange={setActiveTab} size="lg">
-  <Tab value="tab1">Large Tab 1</Tab>
-  <Tab value="tab2">Large Tab 2</Tab>
-</Tabs>
+<Tabs items={tabItems} size="lg" />
 ```
 
 ## Full Width
 
 ```tsx
-<Tabs value={activeTab} onChange={setActiveTab} fullWidth>
-  <Tab value="tab1">Full Width Tab 1</Tab>
-  <Tab value="tab2">Full Width Tab 2</Tab>
-  <Tab value="tab3">Full Width Tab 3</Tab>
-</Tabs>
+<Tabs items={tabItems} fullWidth />
 ```
 
 ## Disabled Tabs
 
 ```tsx
-<Tabs value={activeTab} onChange={setActiveTab}>
-  <Tab value="tab1">Active Tab</Tab>
-  <Tab value="tab2" disabled>Disabled Tab</Tab>
-  <Tab value="tab3">Another Active Tab</Tab>
-</Tabs>
-```
+const tabItemsWithDisabled = [
+  {
+    id: 'enabled1',
+    label: 'Enabled Tab 1',
+    content: <div>This tab is enabled</div>,
+  },
+  {
+    id: 'disabled1',
+    label: 'Disabled Tab',
+    disabled: true,
+    content: <div>This content won't be shown</div>,
+  },
+  {
+    id: 'enabled2',
+    label: 'Enabled Tab 2',
+    content: <div>This tab is also enabled</div>,
+  },
+];
 
-## Complex Content
-
-### Settings Panel
-```tsx
-<Tabs value={activeTab} onChange={setActiveTab}>
-  <Tab value="general" icon={<Settings />}>General</Tab>
-  <Tab value="notifications" icon={<Bell />}>Notifications</Tab>
-  <Tab value="privacy" icon={<Shield />}>Privacy</Tab>
-  <Tab value="advanced" icon={<Gear />}>Advanced</Tab>
-</Tabs>
-
-<TabPanel value="general">
-  <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-    <Switch label="Dark mode" checked={darkMode} onChange={setDarkMode} />
-    <Switch label="Auto-save" checked={autoSave} onChange={setAutoSave} />
-    <Dropdown label="Language" options={languages} value={language} onChange={setLanguage} />
-  </div>
-</TabPanel>
-
-<TabPanel value="notifications">
-  <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-    <Switch label="Email notifications" checked={emailNotifications} onChange={setEmailNotifications} />
-    <Switch label="Push notifications" checked={pushNotifications} onChange={setPushNotifications} />
-    <Switch label="SMS notifications" checked={smsNotifications} onChange={setSmsNotifications} />
-  </div>
-</TabPanel>
-
-<TabPanel value="privacy">
-  <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-    <Switch label="Allow data collection" checked={allowDataCollection} onChange={setAllowDataCollection} />
-    <Switch label="Share usage statistics" checked={shareUsageStats} onChange={setShareUsageStats} />
-  </div>
-</TabPanel>
-
-<TabPanel value="advanced">
-  <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-    <Input label="API Key" type="password" value={apiKey} onChange={(e) => setApiKey(e.target.value)} />
-    <Input label="Webhook URL" value={webhookUrl} onChange={(e) => setWebhookUrl(e.target.value)} />
-  </div>
-</TabPanel>
-```
-
-### Dashboard Tabs
-```tsx
-<Tabs value={activeTab} onChange={setActiveTab} variant="pills">
-  <Tab value="overview" icon={<ChartBar />}>Overview</Tab>
-  <Tab value="analytics" icon={<TrendingUp />}>Analytics</Tab>
-  <Tab value="reports" icon={<FileText />}>Reports</Tab>
-  <Tab value="users" icon={<Users />}>Users</Tab>
-</Tabs>
-
-<TabPanel value="overview">
-  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '24px' }}>
-    <Card variant="elevated">
-      <CardContent>
-        <Typography variant="h3" color="primary">1,234</Typography>
-        <Typography variant="body" color="secondary">Total Users</Typography>
-      </CardContent>
-    </Card>
-    <Card variant="elevated">
-      <CardContent>
-        <Typography variant="h3" color="success">567</Typography>
-        <Typography variant="body" color="secondary">Active Sessions</Typography>
-      </CardContent>
-    </Card>
-  </div>
-</TabPanel>
-
-<TabPanel value="analytics">
-  <Typography variant="h4">Analytics Dashboard</Typography>
-  <Typography>Analytics content goes here...</Typography>
-</TabPanel>
-
-<TabPanel value="reports">
-  <Typography variant="h4">Reports</Typography>
-  <Typography>Reports content goes here...</Typography>
-</TabPanel>
-
-<TabPanel value="users">
-  <Typography variant="h4">User Management</Typography>
-  <Typography>User management content goes here...</Typography>
-</TabPanel>
+<Tabs items={tabItemsWithDisabled} />
 ```
 
 ## Controlled Component
@@ -207,47 +180,174 @@ const handleTabChange = (newTab) => {
   console.log(`Switched to tab: ${newTab}`);
 };
 
-<Tabs value={activeTab} onChange={handleTabChange}>
-  <Tab value="tab1">Tab 1</Tab>
-  <Tab value="tab2">Tab 2</Tab>
-  <Tab value="tab3">Tab 3</Tab>
-</Tabs>
+<Tabs 
+  items={tabItems} 
+  activeTab={activeTab} 
+  onChange={handleTabChange} 
+/>
+```
+
+## Uncontrolled Component
+
+```tsx
+<Tabs 
+  items={tabItems} 
+  defaultActiveTab="tab2" 
+  onChange={(tabId) => console.log('Tab changed:', tabId)} 
+/>
+```
+
+## Without Content Display
+
+```tsx
+<Tabs 
+  items={tabItems} 
+  showContent={false} 
+  onChange={(tabId) => handleTabChange(tabId)} 
+/>
+```
+
+## Complex Content Examples
+
+### Settings Panel
+```tsx
+const settingsTabs = [
+  {
+    id: 'general',
+    label: 'General',
+    icon: <Settings size={16} />,
+    content: (
+      <div style={{ padding: '24px' }}>
+        <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+          General Settings
+        </Typography>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <Switch label="Dark mode" checked={darkMode} onChange={setDarkMode} />
+          <Switch label="Auto-save" checked={autoSave} onChange={setAutoSave} />
+          <Dropdown 
+            label="Language" 
+            options={languages} 
+            value={language} 
+            onChange={setLanguage} 
+          />
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 'notifications',
+    label: 'Notifications',
+    icon: <Bell size={16} />,
+    content: (
+      <div style={{ padding: '24px' }}>
+        <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+          Notification Settings
+        </Typography>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <Switch 
+            label="Email notifications" 
+            checked={emailNotifications} 
+            onChange={setEmailNotifications} 
+          />
+          <Switch 
+            label="Push notifications" 
+            checked={pushNotifications} 
+            onChange={setPushNotifications} 
+          />
+          <Switch 
+            label="SMS notifications" 
+            checked={smsNotifications} 
+            onChange={setSmsNotifications} 
+          />
+        </div>
+      </div>
+    ),
+  },
+];
+
+<Tabs items={settingsTabs} />
+```
+
+### Dashboard Tabs
+```tsx
+const dashboardTabs = [
+  {
+    id: 'overview',
+    label: 'Overview',
+    icon: <BarChart3 size={16} />,
+    content: (
+      <div style={{ padding: '24px' }}>
+        <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+          Dashboard Overview
+        </Typography>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '24px' }}>
+          <Card variant="elevated">
+            <CardContent>
+              <Typography variant="h3" color="primary">1,234</Typography>
+              <Typography variant="body" color="secondary">Total Users</Typography>
+            </CardContent>
+          </Card>
+          <Card variant="elevated">
+            <CardContent>
+              <Typography variant="h3" color="success">567</Typography>
+              <Typography variant="body" color="secondary">Active Sessions</Typography>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 'analytics',
+    label: 'Analytics',
+    icon: <TrendingUp size={16} />,
+    content: (
+      <div style={{ padding: '24px' }}>
+        <Typography variant="h3" weight="semiBold">Analytics Dashboard</Typography>
+        <Typography variant="body">Analytics content goes here...</Typography>
+      </div>
+    ),
+  },
+];
+
+<Tabs items={dashboardTabs} variant="pills" />
 ```
 
 ## Keyboard Navigation
 
 The Tabs component supports full keyboard navigation:
 
-- **Tab**: Navigate between tabs
 - **Arrow Left/Right**: Navigate between tabs
 - **Home/End**: Jump to first/last tab
 - **Enter/Space**: Activate focused tab
+- **Tab**: Move focus to next focusable element
 
 ## Accessibility
 
 The Tabs component includes comprehensive accessibility features:
 
 - **ARIA Attributes**: Proper `role="tablist"`, `role="tab"`, and `role="tabpanel"`
-- **Keyboard Navigation**: Full keyboard support
+- **Keyboard Navigation**: Full keyboard support with arrow keys
 - **Screen Reader Support**: Clear announcements of tab changes
 - **Focus Management**: Proper focus handling and indicators
 - **Semantic HTML**: Uses proper HTML structure
 
-### Accessibility Example
-```tsx
-<Tabs value={activeTab} onChange={setActiveTab} aria-label="Settings sections">
-  <Tab value="general" aria-describedby="general-desc">General</Tab>
-  <Tab value="privacy" aria-describedby="privacy-desc">Privacy</Tab>
-</Tabs>
+## When to Use Tabs vs Sidebar
 
-<TabPanel value="general" id="general-desc">
-  <Typography>General settings for your account</Typography>
-</TabPanel>
+### Use Tabs for:
+- Content organization within a page
+- Horizontal content sections
+- Settings panels
+- Product information sections
+- Form wizards
 
-<TabPanel value="privacy" id="privacy-desc">
-  <Typography>Privacy settings and data controls</Typography>
-</TabPanel>
-```
+### Use Sidebar for:
+- Navigation menus
+- Vertical navigation
+- Hierarchical navigation
+- Application navigation
+
+For vertical navigation, use the [Sidebar component](./sidebar.md) instead.
 
 ## Props
 
@@ -255,29 +355,27 @@ The Tabs component includes comprehensive accessibility features:
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `value` | `string` | - | Active tab value |
-| `onChange` | `(value: string) => void` | - | Tab change handler |
-| `variant` | `'default' \| 'pills' \| 'underline'` | `'default'` | Tab variant |
+| `items` | `TabItem[]` | - | Array of tab items |
+| `activeTab` | `string` | - | Currently active tab ID (controlled) |
+| `defaultActiveTab` | `string` | - | Default active tab ID (uncontrolled) |
+| `onChange` | `(activeTab: string) => void` | - | Tab change handler |
+| `variant` | `'default' \| 'pills' \| 'underline' \| 'cards'` | `'default'` | Tab variant |
 | `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Tab size |
 | `fullWidth` | `boolean` | `false` | Whether tabs should take full width |
-| `disabled` | `boolean` | `false` | Whether all tabs are disabled |
-| `children` | `React.ReactNode` | - | Tab elements |
+| `showContent` | `boolean` | `true` | Whether to show tab content |
+| `className` | `string` | - | Custom class name |
+| `style` | `React.CSSProperties` | - | Custom styles |
 
-### Tab Props
+### TabItem Interface
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `value` | `string` | - | Tab value |
+| `id` | `string` | - | Unique identifier for the tab |
+| `label` | `React.ReactNode` | - | Label to display in the tab |
+| `content` | `React.ReactNode` | - | Content to display when tab is active |
 | `disabled` | `boolean` | `false` | Whether the tab is disabled |
-| `icon` | `React.ReactNode` | - | Icon to display |
-| `children` | `React.ReactNode` | - | Tab content |
-
-### TabPanel Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `value` | `string` | - | Tab panel value |
-| `children` | `React.ReactNode` | - | Panel content |
+| `icon` | `React.ReactNode` | - | Icon to display in the tab |
+| `badge` | `React.ReactNode` | - | Badge or count to display in the tab |
 
 ## Styling
 
@@ -298,91 +396,114 @@ The Tabs component uses design tokens for consistent styling:
 4. **Group Related Content**: Organize content logically into tabs
 5. **Test Keyboard Navigation**: Ensure all functionality works via keyboard
 6. **Consider Mobile**: Use appropriate variants for different screen sizes
+7. **Use Sidebar for Navigation**: Use the Sidebar component for vertical navigation menus
 
 ## Examples
 
 ### Product Information Tabs
 ```tsx
-<Tabs value={activeTab} onChange={setActiveTab}>
-  <Tab value="description">Description</Tab>
-  <Tab value="specifications">Specifications</Tab>
-  <Tab value="reviews">Reviews</Tab>
-  <Tab value="shipping">Shipping</Tab>
-</Tabs>
+const productTabs = [
+  {
+    id: 'description',
+    label: 'Description',
+    content: (
+      <div style={{ padding: '24px' }}>
+        <Typography variant="h4">Product Description</Typography>
+        <TextContent>
+          This is a detailed description of the product, including its features,
+          benefits, and use cases. The content is optimized for readability.
+        </TextContent>
+      </div>
+    ),
+  },
+  {
+    id: 'specifications',
+    label: 'Specifications',
+    content: (
+      <div style={{ padding: '24px' }}>
+        <Typography variant="h4">Technical Specifications</Typography>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+          <div>
+            <Typography variant="body" weight="medium">Dimensions</Typography>
+            <Typography variant="body">10" x 8" x 2"</Typography>
+          </div>
+          <div>
+            <Typography variant="body" weight="medium">Weight</Typography>
+            <Typography variant="body">2.5 lbs</Typography>
+          </div>
+        </div>
+      </div>
+    ),
+  },
+  {
+    id: 'reviews',
+    label: 'Reviews',
+    content: (
+      <div style={{ padding: '24px' }}>
+        <Typography variant="h4">Customer Reviews</Typography>
+        <Typography>Reviews content goes here...</Typography>
+      </div>
+    ),
+  },
+];
 
-<TabPanel value="description">
-  <Typography variant="h4">Product Description</Typography>
-  <TextContent>
-    This is a detailed description of the product, including its features,
-    benefits, and use cases. The content is optimized for readability.
-  </TextContent>
-</TabPanel>
-
-<TabPanel value="specifications">
-  <Typography variant="h4">Technical Specifications</Typography>
-  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-    <div>
-      <Typography variant="body" weight="medium">Dimensions</Typography>
-      <Typography variant="body">10" x 8" x 2"</Typography>
-    </div>
-    <div>
-      <Typography variant="body" weight="medium">Weight</Typography>
-      <Typography variant="body">2.5 lbs</Typography>
-    </div>
-  </div>
-</TabPanel>
-
-<TabPanel value="reviews">
-  <Typography variant="h4">Customer Reviews</Typography>
-  <Typography>Reviews content goes here...</Typography>
-</TabPanel>
-
-<TabPanel value="shipping">
-  <Typography variant="h4">Shipping Information</Typography>
-  <Typography>Shipping details go here...</Typography>
-</TabPanel>
+<Tabs items={productTabs} />
 ```
 
 ### Form Wizard
 ```tsx
-<Tabs value={activeTab} onChange={setActiveTab} variant="underline">
-  <Tab value="step1">Personal Info</Tab>
-  <Tab value="step2">Contact Details</Tab>
-  <Tab value="step3">Preferences</Tab>
-  <Tab value="step4">Review</Tab>
-</Tabs>
+const wizardTabs = [
+  {
+    id: 'step1',
+    label: 'Personal Info',
+    content: (
+      <div style={{ padding: '24px' }}>
+        <form>
+          <Input label="First Name" required />
+          <Input label="Last Name" required />
+          <Input label="Date of Birth" type="date" />
+        </form>
+      </div>
+    ),
+  },
+  {
+    id: 'step2',
+    label: 'Contact Details',
+    content: (
+      <div style={{ padding: '24px' }}>
+        <form>
+          <Input label="Email" type="email" required />
+          <Input label="Phone" type="tel" />
+          <Input label="Address" />
+        </form>
+      </div>
+    ),
+  },
+  {
+    id: 'step3',
+    label: 'Preferences',
+    content: (
+      <div style={{ padding: '24px' }}>
+        <form>
+          <Switch label="Email notifications" />
+          <Switch label="SMS notifications" />
+          <Dropdown label="Preferred language" options={languages} />
+        </form>
+      </div>
+    ),
+  },
+  {
+    id: 'step4',
+    label: 'Review',
+    content: (
+      <div style={{ padding: '24px' }}>
+        <Typography variant="h4">Review Your Information</Typography>
+        <Typography>Please review your information before submitting.</Typography>
+        <Button variant="primary">Submit</Button>
+      </div>
+    ),
+  },
+];
 
-<TabPanel value="step1">
-  <form>
-    <Input label="First Name" required />
-    <Input label="Last Name" required />
-    <Input label="Date of Birth" type="date" />
-  </form>
-</TabPanel>
-
-<TabPanel value="step2">
-  <form>
-    <Input label="Email" type="email" required />
-    <Input label="Phone" type="tel" />
-    <Input label="Address" />
-  </form>
-</TabPanel>
-
-<TabPanel value="step3">
-  <form>
-    <Switch label="Email notifications" />
-    <Switch label="SMS notifications" />
-    <Dropdown label="Preferred language" options={languages} />
-  </form>
-</TabPanel>
-
-<TabPanel value="step4">
-  <Typography variant="h4">Review Your Information</Typography>
-  <Typography>Please review your information before submitting.</Typography>
-  <Button variant="primary">Submit</Button>
-</TabPanel>
+<Tabs items={wizardTabs} variant="underline" />
 ```
-
-
-
-

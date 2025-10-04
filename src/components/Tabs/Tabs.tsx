@@ -223,7 +223,7 @@ export const Tabs: React.FC<TabsProps> = ({
         ref={tabListRef}
         className={tabListClasses}
         role="tablist"
-        aria-orientation={orientation}
+        aria-orientation={orientation as "horizontal" | "vertical"}
       >
         {items.map((item) => {
           const isActive = item.id === activeTab;

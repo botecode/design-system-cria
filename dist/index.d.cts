@@ -509,6 +509,123 @@ interface CheckboxRef {
 }
 declare const Checkbox: React__default.ForwardRefExoticComponent<CheckboxProps & React__default.RefAttributes<CheckboxRef>>;
 
+interface DropdownOption {
+    value: string;
+    label: string;
+    disabled?: boolean;
+    icon?: React__default.ReactNode;
+    description?: string;
+}
+interface DropdownProps extends Omit<React__default.HTMLAttributes<HTMLDivElement>, 'onChange'> {
+    /**
+     * Dropdown options
+     */
+    options: DropdownOption[];
+    /**
+     * Selected value(s)
+     */
+    value?: string | string[];
+    /**
+     * Default selected value(s)
+     */
+    defaultValue?: string | string[];
+    /**
+     * Placeholder text
+     */
+    placeholder?: string;
+    /**
+     * Dropdown label
+     */
+    label?: string;
+    /**
+     * Dropdown size
+     */
+    size?: 'sm' | 'md' | 'lg';
+    /**
+     * Dropdown variant
+     */
+    variant?: 'default' | 'filled' | 'outlined';
+    /**
+     * Whether the dropdown is disabled
+     */
+    disabled?: boolean;
+    /**
+     * Whether the dropdown is required
+     */
+    required?: boolean;
+    /**
+     * Whether multiple selection is allowed
+     */
+    multiple?: boolean;
+    /**
+     * Whether the dropdown is searchable
+     */
+    searchable?: boolean;
+    /**
+     * Whether the dropdown is in loading state
+     */
+    loading?: boolean;
+    /**
+     * Helper text
+     */
+    helperText?: string;
+    /**
+     * Error message
+     */
+    errorMessage?: string;
+    /**
+     * Custom class name
+     */
+    className?: string;
+    /**
+     * Custom styles
+     */
+    style?: React__default.CSSProperties;
+    /**
+     * Callback fired when selection changes
+     */
+    onChange?: (value: string | string[], option: DropdownOption | DropdownOption[]) => void;
+    /**
+     * Callback fired when dropdown opens
+     */
+    onOpen?: () => void;
+    /**
+     * Callback fired when dropdown closes
+     */
+    onClose?: () => void;
+}
+interface DropdownRef {
+    focus: () => void;
+    blur: () => void;
+    open: () => void;
+    close: () => void;
+}
+/**
+ * Dropdown component for selecting options from a list
+ *
+ * @example
+ * ```tsx
+ * <Dropdown
+ *   options={[
+ *     { value: 'option1', label: 'Option 1' },
+ *     { value: 'option2', label: 'Option 2' }
+ *   ]}
+ *   placeholder="Select an option"
+ *   onChange={(value) => console.log(value)}
+ * />
+ * ```
+ */
+declare const Dropdown: React__default.ForwardRefExoticComponent<DropdownProps & React__default.RefAttributes<DropdownRef>>;
+interface DropdownItemProps {
+    value: string;
+    label: string;
+    disabled?: boolean;
+    icon?: React__default.ReactNode;
+    description?: string;
+    children?: React__default.ReactNode;
+}
+declare const DropdownItem: React__default.FC<DropdownItemProps>;
+
 interface InputProps extends Omit<React__default.InputHTMLAttributes<HTMLInputElement>, 'size'> {
     /**
      * Input label
@@ -702,9 +819,9 @@ interface ModalProps extends Omit<React__default.HTMLAttributes<HTMLDivElement>,
  */
 declare const Modal: React__default.FC<ModalProps>;
 
-interface NavigationItem {
+interface NavigationSubItem {
     /**
-     * Unique identifier for the navigation item
+     * Unique identifier for the sub-navigation item
      */
     id: string;
     /**
@@ -732,6 +849,44 @@ interface NavigationItem {
      */
     onClick?: (event: React__default.MouseEvent<HTMLAnchorElement>) => void;
 }
+interface NavigationItem {
+    /**
+     * Unique identifier for the navigation item
+     */
+    id: string;
+    /**
+     * Label to display in the navigation
+     */
+    label: string;
+    /**
+     * URL or path for the navigation item (required if no subitems)
+     */
+    href?: string;
+    /**
+     * Icon to display alongside the label
+     */
+    icon?: React__default.ReactNode;
+    /**
+     * Whether the item is disabled
+     */
+    disabled?: boolean;
+    /**
+     * Badge or count to display
+     */
+    badge?: React__default.ReactNode;
+    /**
+     * Click handler for the navigation item
+     */
+    onClick?: (event: React__default.MouseEvent<HTMLAnchorElement>) => void;
+    /**
+     * Array of sub-navigation items (for grouping)
+     */
+    subitems?: NavigationSubItem[];
+    /**
+     * Whether the subitems are expanded by default
+     */
+    defaultExpanded?: boolean;
+}
 interface NavigationSidebarProps extends React__default.HTMLAttributes<HTMLDivElement> {
     /**
      * Array of navigation items
@@ -753,6 +908,14 @@ interface NavigationSidebarProps extends React__default.HTMLAttributes<HTMLDivEl
      * Whether to show the toggle button
      */
     showToggle?: boolean;
+    /**
+     * Title to display at the top of the sidebar
+     */
+    title?: string;
+    /**
+     * URL for the title link (optional)
+     */
+    titleHref?: string;
 }
 interface TopbarProps extends React__default.HTMLAttributes<HTMLDivElement> {
     /**
@@ -794,8 +957,173 @@ interface NavigationProps extends React__default.HTMLAttributes<HTMLDivElement> 
      */
     variant?: 'sidebar-only' | 'topbar-only' | 'both';
 }
+declare const Sidebar$1: React__default.FC<NavigationSidebarProps>;
 declare const Topbar: React__default.FC<TopbarProps>;
 declare const Navigation: React__default.FC<NavigationProps>;
+
+interface RadioGroupProps extends Omit<React__default.FieldsetHTMLAttributes<HTMLFieldSetElement>, 'onChange'> {
+    /**
+     * Name attribute for all radio buttons in the group
+     */
+    name: string;
+    /**
+     * Current selected value
+     */
+    value?: string;
+    /**
+     * Callback when selection changes
+     */
+    onChange?: (value: string) => void;
+    /**
+     * Whether the entire group is disabled
+     */
+    disabled?: boolean;
+    /**
+     * Whether selection is required
+     */
+    required?: boolean;
+    /**
+     * Size variant
+     */
+    size?: 'sm' | 'md' | 'lg';
+    /**
+     * Error message to display
+     */
+    error?: string;
+    /**
+     * Layout orientation
+     */
+    orientation?: 'horizontal' | 'vertical';
+    /**
+     * Custom aria-label for the fieldset
+     */
+    'aria-label'?: string;
+}
+interface RadioGroupLabelProps extends React__default.HTMLAttributes<HTMLLegendElement> {
+    children: React__default.ReactNode;
+    className?: string;
+    style?: React__default.CSSProperties;
+    id?: string;
+}
+interface RadioGroupItemProps extends React__default.InputHTMLAttributes<HTMLInputElement> {
+    /**
+     * Value of the radio option
+     */
+    value: string;
+    /**
+     * Label text for the radio option
+     */
+    children: React__default.ReactNode;
+    /**
+     * Whether this specific option is disabled
+     */
+    disabled?: boolean;
+    /**
+     * Custom id for the radio input
+     */
+    id?: string;
+}
+/**
+ * RadioGroup component for single selection from multiple options
+ */
+declare const RadioGroup: React__default.FC<RadioGroupProps>;
+/**
+ * RadioGroupLabel component for the fieldset legend
+ */
+declare const RadioGroupLabel: React__default.FC<RadioGroupLabelProps>;
+/**
+ * RadioGroupItem component for individual radio options
+ */
+declare const RadioGroupItem: React__default.FC<RadioGroupItemProps>;
+
+interface SidebarItem {
+    /**
+     * Unique identifier for the sidebar item
+     */
+    id: string;
+    /**
+     * Label to display in the sidebar item
+     */
+    label: React__default.ReactNode;
+    /**
+     * Content to display when item is active (optional)
+     */
+    content?: React__default.ReactNode;
+    /**
+     * Whether the item is disabled
+     */
+    disabled?: boolean;
+    /**
+     * Icon to display in the sidebar item
+     */
+    icon?: React__default.ReactNode;
+    /**
+     * Badge or count to display in the sidebar item
+     */
+    badge?: React__default.ReactNode;
+    /**
+     * Nested items for sub-navigation
+     */
+    children?: SidebarItem[];
+    /**
+     * Whether the item is expanded (for items with children)
+     */
+    expanded?: boolean;
+}
+interface SidebarProps extends Omit<React__default.HTMLAttributes<HTMLDivElement>, 'onChange'> {
+    /**
+     * Array of sidebar items
+     */
+    items: SidebarItem[];
+    /**
+     * Currently active item ID
+     */
+    activeItem?: string;
+    /**
+     * Default active item ID (uncontrolled)
+     */
+    defaultActiveItem?: string;
+    /**
+     * Callback when active item changes
+     */
+    onChange?: (activeItem: string) => void;
+    /**
+     * Sidebar variant
+     */
+    variant?: 'default' | 'compact' | 'minimal';
+    /**
+     * Sidebar size
+     */
+    size?: 'sm' | 'md' | 'lg';
+    /**
+     * Whether to show item content
+     */
+    showContent?: boolean;
+    /**
+     * Whether the sidebar is collapsible
+     */
+    collapsible?: boolean;
+    /**
+     * Whether the sidebar is collapsed
+     */
+    collapsed?: boolean;
+    /**
+     * Callback when collapse state changes
+     */
+    onCollapseChange?: (collapsed: boolean) => void;
+    /**
+     * Custom class name for the sidebar container
+     */
+    className?: string;
+    /**
+     * Custom styles for the sidebar container
+     */
+    style?: React__default.CSSProperties;
+}
+/**
+ * Sidebar component for navigation and content organization
+ */
+declare const Sidebar: React__default.FC<SidebarProps>;
 
 type SnackbarVariant = 'default' | 'success' | 'error' | 'warning' | 'info';
 type SnackbarPosition = 'top' | 'bottom' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
@@ -1147,233 +1475,4 @@ declare const Typography: React__default.FC<TypographyProps>;
  */
 declare const TypographyDemo: React__default.FC;
 
-interface DropdownOption {
-    value: string;
-    label: string;
-    disabled?: boolean;
-    icon?: React__default.ReactNode;
-    description?: string;
-}
-interface DropdownProps extends Omit<React__default.HTMLAttributes<HTMLDivElement>, 'onChange'> {
-    /**
-     * Dropdown options
-     */
-    options: DropdownOption[];
-    /**
-     * Selected value(s)
-     */
-    value?: string | string[];
-    /**
-     * Default selected value(s)
-     */
-    defaultValue?: string | string[];
-    /**
-     * Placeholder text
-     */
-    placeholder?: string;
-    /**
-     * Dropdown label
-     */
-    label?: string;
-    /**
-     * Dropdown size
-     */
-    size?: 'sm' | 'md' | 'lg';
-    /**
-     * Dropdown variant
-     */
-    variant?: 'default' | 'filled' | 'outlined';
-    /**
-     * Whether the dropdown is disabled
-     */
-    disabled?: boolean;
-    /**
-     * Whether the dropdown is required
-     */
-    required?: boolean;
-    /**
-     * Whether multiple selection is allowed
-     */
-    multiple?: boolean;
-    /**
-     * Whether the dropdown is searchable
-     */
-    searchable?: boolean;
-    /**
-     * Whether the dropdown is in loading state
-     */
-    loading?: boolean;
-    /**
-     * Helper text
-     */
-    helperText?: string;
-    /**
-     * Error message
-     */
-    errorMessage?: string;
-    /**
-     * Custom class name
-     */
-    className?: string;
-    /**
-     * Custom styles
-     */
-    style?: React__default.CSSProperties;
-    /**
-     * Callback fired when selection changes
-     */
-    onChange?: (value: string | string[], option: DropdownOption | DropdownOption[]) => void;
-    /**
-     * Callback fired when dropdown opens
-     */
-    onOpen?: () => void;
-    /**
-     * Callback fired when dropdown closes
-     */
-    onClose?: () => void;
-}
-interface DropdownRef {
-    focus: () => void;
-    blur: () => void;
-    open: () => void;
-    close: () => void;
-}
-/**
- * Dropdown component for selecting options from a list
- *
- * @example
- * ```tsx
- * <Dropdown
- *   options={[
- *     { value: 'option1', label: 'Option 1' },
- *     { value: 'option2', label: 'Option 2' }
- *   ]}
- *   placeholder="Select an option"
- *   onChange={(value) => console.log(value)}
- * />
- * ```
- */
-declare const Dropdown: React__default.ForwardRefExoticComponent<DropdownProps & React__default.RefAttributes<DropdownRef>>;
-interface DropdownItemProps {
-    value: string;
-    label: string;
-    disabled?: boolean;
-    icon?: React__default.ReactNode;
-    description?: string;
-    children?: React__default.ReactNode;
-}
-declare const DropdownItem: React__default.FC<DropdownItemProps>;
-
-interface RadioOption {
-    value: string;
-    label: string;
-    description?: string;
-    disabled?: boolean;
-}
-interface RadioGroupProps {
-    options: RadioOption[];
-    value?: string;
-    onChange?: (value: string) => void;
-    label?: string;
-    description?: string;
-    error?: string;
-    disabled?: boolean;
-    required?: boolean;
-    className?: string;
-    name?: string;
-    orientation?: 'horizontal' | 'vertical';
-    size?: 'small' | 'medium' | 'large';
-    variant?: 'default' | 'card';
-}
-declare const RadioGroup: React__default.FC<RadioGroupProps>;
-
-interface SidebarItem {
-    /**
-     * Unique identifier for the sidebar item
-     */
-    id: string;
-    /**
-     * Label to display in the sidebar item
-     */
-    label: React__default.ReactNode;
-    /**
-     * Content to display when item is active (optional)
-     */
-    content?: React__default.ReactNode;
-    /**
-     * Whether the item is disabled
-     */
-    disabled?: boolean;
-    /**
-     * Icon to display in the sidebar item
-     */
-    icon?: React__default.ReactNode;
-    /**
-     * Badge or count to display in the sidebar item
-     */
-    badge?: React__default.ReactNode;
-    /**
-     * Nested items for sub-navigation
-     */
-    children?: SidebarItem[];
-    /**
-     * Whether the item is expanded (for items with children)
-     */
-    expanded?: boolean;
-}
-interface SidebarProps extends Omit<React__default.HTMLAttributes<HTMLDivElement>, 'onChange'> {
-    /**
-     * Array of sidebar items
-     */
-    items: SidebarItem[];
-    /**
-     * Currently active item ID
-     */
-    activeItem?: string;
-    /**
-     * Default active item ID (uncontrolled)
-     */
-    defaultActiveItem?: string;
-    /**
-     * Callback when active item changes
-     */
-    onChange?: (activeItem: string) => void;
-    /**
-     * Sidebar variant
-     */
-    variant?: 'default' | 'compact' | 'minimal';
-    /**
-     * Sidebar size
-     */
-    size?: 'sm' | 'md' | 'lg';
-    /**
-     * Whether to show item content
-     */
-    showContent?: boolean;
-    /**
-     * Whether the sidebar is collapsible
-     */
-    collapsible?: boolean;
-    /**
-     * Whether the sidebar is collapsed
-     */
-    collapsed?: boolean;
-    /**
-     * Callback when collapse state changes
-     */
-    onCollapseChange?: (collapsed: boolean) => void;
-    /**
-     * Custom class name for the sidebar container
-     */
-    className?: string;
-    /**
-     * Custom styles for the sidebar container
-     */
-    style?: React__default.CSSProperties;
-}
-/**
- * Sidebar component for navigation and content organization
- */
-declare const Sidebar: React__default.FC<SidebarProps>;
-
-export { Accordion, AccordionContent, type AccordionContentProps, AccordionHeader, type AccordionHeaderProps, AccordionItem, type AccordionItemProps, type AccordionProps, Badge, type BadgeProps, type BorderColor, Button, ButtonDemo, type ButtonProps, Card, CardContent, type CardContentProps, CardDemo, CardFooter, type CardFooterProps, CardHeader, type CardHeaderProps, type CardProps, Checkbox, type CheckboxProps, type CheckboxRef, type ColorToken, Dropdown, DropdownItem, type DropdownItemProps, type DropdownOption, type DropdownProps, type DropdownRef, type FontWeight, type GrayScale, Input, type InputProps, type InputRef, type LetterSpacing, type LineHeight, Modal, type ModalProps, Navigation, type NavigationItem, type NavigationProps, type NavigationSidebarProps, RadioGroup, type RadioGroupProps, type RadioOption, type RadiusToken, type ShadowToken, Sidebar, type SidebarItem, type SidebarProps, Snackbar, type SnackbarAction, type SnackbarPosition, type SnackbarProps, type SnackbarRef, type SnackbarVariant, type SpacingToken, Switch, type SwitchProps, type SwitchRef, type TabItem, Tabs, type TabsProps, TextBody as Text, TextBody, type TextBodyProps, type TextColor, TextContent, TextContentImportant, type TextContentImportantProps, type TextContentProps, TextContentTitle, type TextContentTitleProps, Tooltip, type TooltipProps, Topbar, type TopbarProps, Typography, TypographyDemo, type TypographyProps, type TypographyVariant, colors, cssVariables, radii, shadows, spacing, typography };
+export { Accordion, AccordionContent, type AccordionContentProps, AccordionHeader, type AccordionHeaderProps, AccordionItem, type AccordionItemProps, type AccordionProps, Badge, type BadgeProps, type BorderColor, Button, ButtonDemo, type ButtonProps, Card, CardContent, type CardContentProps, CardDemo, CardFooter, type CardFooterProps, CardHeader, type CardHeaderProps, type CardProps, Checkbox, type CheckboxProps, type CheckboxRef, type ColorToken, Dropdown, DropdownItem, type DropdownItemProps, type DropdownOption, type DropdownProps, type DropdownRef, type FontWeight, type GrayScale, Input, type InputProps, type InputRef, type LetterSpacing, type LineHeight, Modal, type ModalProps, Navigation, type NavigationItem, type NavigationProps, Sidebar$1 as NavigationSidebar, type NavigationSidebarProps, RadioGroup, RadioGroupItem, type RadioGroupItemProps, RadioGroupLabel, type RadioGroupLabelProps, type RadioGroupProps, type RadiusToken, type ShadowToken, Sidebar, type SidebarItem, type SidebarProps, Snackbar, type SnackbarAction, type SnackbarPosition, type SnackbarProps, type SnackbarRef, type SnackbarVariant, type SpacingToken, Switch, type SwitchProps, type SwitchRef, type TabItem, Tabs, type TabsProps, TextBody, type TextBodyProps, type TextColor, TextContent, TextContentImportant, type TextContentImportantProps, type TextContentProps, TextContentTitle, type TextContentTitleProps, Tooltip, type TooltipProps, Topbar, type TopbarProps, Typography, TypographyDemo, type TypographyProps, type TypographyVariant, colors, cssVariables, radii, shadows, spacing, typography };

@@ -110,6 +110,7 @@ Tests
 	•	Stepper
 	•	Date Picker
 	•	File Upload
+	•	Chat
 
 ⸻
 

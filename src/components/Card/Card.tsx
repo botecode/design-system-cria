@@ -62,8 +62,8 @@ export const Card: React.FC<CardProps> = ({
     position: 'relative',
     cursor: interactive && !disabled ? 'pointer' : 'default',
     transition: 'all 0.2s ease-in-out',
-    ...getVariantStyles(variant),
-    ...getSizeStyles(size),
+    ...getVariantStyles(variant as CardProps['variant']),
+    ...getSizeStyles(size as CardProps['size']),
     ...style,
   };
 

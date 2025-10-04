@@ -30,37 +30,39 @@ var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: tru
 // src/index.ts
 var index_exports = {};
 __export(index_exports, {
-  Accordion: () => Accordion_default,
+  Accordion: () => Accordion,
   AccordionContent: () => AccordionContent,
   AccordionHeader: () => AccordionHeader,
   AccordionItem: () => AccordionItem,
-  Badge: () => Badge_default,
-  Button: () => Button_default,
+  Badge: () => Badge,
+  Button: () => Button,
   ButtonDemo: () => ButtonDemo,
-  Card: () => Card_default,
+  Card: () => Card,
   CardContent: () => CardContent,
   CardDemo: () => CardDemo,
   CardFooter: () => CardFooter,
   CardHeader: () => CardHeader,
   Checkbox: () => Checkbox,
-  Dropdown: () => Dropdown_default,
+  Dropdown: () => Dropdown,
   DropdownItem: () => DropdownItem,
   Input: () => Input,
   Modal: () => Modal,
   Navigation: () => Navigation,
+  NavigationSidebar: () => Sidebar,
   RadioGroup: () => RadioGroup,
+  RadioGroupItem: () => RadioGroupItem,
+  RadioGroupLabel: () => RadioGroupLabel,
   Sidebar: () => Sidebar2,
   Snackbar: () => Snackbar,
   Switch: () => Switch,
   Tabs: () => Tabs,
-  Text: () => Text_default,
   TextBody: () => TextBody,
   TextContent: () => TextContent,
   TextContentImportant: () => TextContentImportant,
   TextContentTitle: () => TextContentTitle,
   Tooltip: () => Tooltip,
   Topbar: () => Topbar,
-  Typography: () => Typography_default,
+  Typography: () => Typography,
   TypographyDemo: () => TypographyDemo,
   colors: () => colors,
   cssVariables: () => cssVariables,
@@ -470,7 +472,7 @@ var AccordionHeader = ({
     fontWeight: 500,
     color: colors.text.primary,
     textAlign: "left",
-    transition: "all 0.2s ease-in-out",
+    transition: "all 0.3s ease-in-out",
     ...style
   };
   return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)(
@@ -492,7 +494,7 @@ var AccordionHeader = ({
           {
             style: {
               transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-              transition: "transform 0.2s ease-in-out",
+              transition: "transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
               fontSize: "14px"
             },
             "aria-hidden": "true",
@@ -519,12 +521,26 @@ var AccordionContent = ({
     throw new Error("AccordionContent must be used within an AccordionItem");
   }
   const isOpen = context.openItems.includes(itemId);
+  const contentRef = (0, import_react.useRef)(null);
+  const [height, setHeight] = (0, import_react.useState)(0);
+  (0, import_react.useEffect)(() => {
+    if (contentRef.current) {
+      if (isOpen) {
+        setHeight(contentRef.current.scrollHeight);
+      } else {
+        setHeight(0);
+      }
+    }
+  }, [isOpen, children]);
   const classes = [
     "cria-accordion-content",
     className
   ].filter(Boolean).join(" ");
   const contentStyles = {
-    display: isOpen ? "block" : "none",
+    height: `${height}px`,
+    overflow: "hidden",
+    transition: "height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease-in-out",
+    opacity: isOpen ? 1 : 0,
     ...style
   };
   return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
@@ -536,7 +552,18 @@ var AccordionContent = ({
       "aria-labelledby": `${itemId}-header`,
       role: "region",
       ...props,
-      children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: { padding: getContentPadding() }, children })
+      children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
+        "div",
+        {
+          ref: contentRef,
+          style: {
+            padding: getContentPadding(),
+            transform: isOpen ? "translateY(0)" : "translateY(-10px)",
+            transition: "transform 0.4s ease-in-out"
+          },
+          children
+        }
+      )
     }
   );
 };
@@ -555,7 +582,6 @@ function getHeaderPadding(size) {
 function getContentPadding() {
   return `${spacing[2]} ${spacing[4]} ${spacing[4]} ${spacing[4]}`;
 }
-var Accordion_default = Accordion;
 
 // src/components/Badge/Badge.tsx
 var import_react2 = require("react");
@@ -638,7 +664,6 @@ var Badge = ({
     }
   );
 };
-var Badge_default = Badge;
 
 // src/components/Button/Button.tsx
 var import_react3 = __toESM(require("react"), 1);
@@ -780,7 +805,6 @@ function getSizeStyles2(size) {
       return {};
   }
 }
-var Button_default = Button;
 
 // src/components/Button/demo.tsx
 var import_react4 = require("react");
@@ -1111,7 +1135,6 @@ var CardFooter = ({
     }
   );
 };
-var Card_default = Card;
 
 // src/components/Card/demo.tsx
 var import_jsx_runtime7 = require("react/jsx-runtime");
@@ -1121,19 +1144,19 @@ var CardDemo = () => {
     /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("section", { style: { marginBottom: "32px" }, children: [
       /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "Variantes" }),
       /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "16px" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(Card_default, { variant: "default", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(Card, { variant: "default", children: [
           /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "h3", weight: "medium", children: "Card Padr\xE3o" }) }),
           /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "body", children: "Este \xE9 um card padr\xE3o com borda e fundo claros." }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(Card_default, { variant: "elevated", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(Card, { variant: "elevated", children: [
           /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "h3", weight: "medium", children: "Card Elevado" }) }),
           /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "body", children: "Este card tem uma sombra para profundidade e hierarquia visual." }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(Card_default, { variant: "outlined", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(Card, { variant: "outlined", children: [
           /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "h3", weight: "medium", children: "Card com Contorno" }) }),
           /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "body", children: "Este card tem uma borda proeminente e fundo transparente." }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(Card_default, { variant: "filled", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(Card, { variant: "filled", children: [
           /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "h3", weight: "medium", children: "Card Preenchido" }) }),
           /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "body", children: "Este card tem um preenchimento sutil de cor de fundo." }) })
         ] })
@@ -1142,16 +1165,16 @@ var CardDemo = () => {
     /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("section", { style: { marginBottom: "32px" }, children: [
       /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "Tamanhos" }),
       /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { display: "flex", gap: "16px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Card_default, { size: "sm", style: { width: "200px" }, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "bodySmall", children: "Card pequeno com preenchimento m\xEDnimo" }) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Card_default, { size: "md", style: { width: "250px" }, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "body", children: "Card m\xE9dio com preenchimento padr\xE3o" }) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Card_default, { size: "lg", style: { width: "300px" }, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "body", children: "Card grande com preenchimento generoso para mais conte\xFAdo" }) }) })
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Card, { size: "sm", style: { width: "200px" }, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "bodySmall", children: "Card pequeno com preenchimento m\xEDnimo" }) }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Card, { size: "md", style: { width: "250px" }, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "body", children: "Card m\xE9dio com preenchimento padr\xE3o" }) }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Card, { size: "lg", style: { width: "300px" }, children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "body", children: "Card grande com preenchimento generoso para mais conte\xFAdo" }) }) })
       ] })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("section", { style: { marginBottom: "32px" }, children: [
       /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "Cards Interativos" }),
       /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "16px" }, children: [
         /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(
-          Card_default,
+          Card,
           {
             interactive: true,
             onClick: () => alert("Card clicado!"),
@@ -1162,7 +1185,7 @@ var CardDemo = () => {
             ]
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(Card_default, { interactive: true, disabled: true, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(Card, { interactive: true, disabled: true, children: [
           /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "h3", color: "disabled", weight: "medium", children: "Card Desabilitado" }) }),
           /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "body", color: "disabled", children: "Este card est\xE1 desabilitado e n\xE3o pode ser interagido." }) })
         ] })
@@ -1171,7 +1194,7 @@ var CardDemo = () => {
     /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("section", { style: { marginBottom: "32px" }, children: [
       /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "Exemplos Complexos" }),
       /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "16px" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(Card_default, { variant: "elevated", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(Card, { variant: "elevated", children: [
           /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(CardContent, { children: [
             /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { style: {
               height: "200px",
@@ -1191,7 +1214,7 @@ var CardDemo = () => {
             /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Button, { size: "sm", children: "Adicionar ao Carrinho" })
           ] }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(Card_default, { variant: "outlined", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(Card, { variant: "outlined", children: [
           /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(CardContent, { children: [
             /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("div", { style: { display: "flex", alignItems: "center", marginBottom: "16px" }, children: [
               /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("div", { style: {
@@ -1218,7 +1241,7 @@ var CardDemo = () => {
             /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Button, { size: "sm", children: "Seguir" })
           ] }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Card_default, { variant: "filled", children: /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(CardContent, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Card, { variant: "filled", children: /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(CardContent, { children: [
           /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "h3", weight: "medium", style: { marginBottom: "8px" }, children: "Receita Total" }),
           /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "display", weight: "bold", style: { marginBottom: "8px" }, children: "R$ 12.345" }),
           /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "bodySmall", color: "success", children: "\u2197 +12,5% do m\xEAs passado" })
@@ -1227,7 +1250,7 @@ var CardDemo = () => {
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("section", { style: { marginBottom: "32px" }, children: [
       /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "Cards com A\xE7\xF5es" }),
-      /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(Card_default, { variant: "elevated", style: { maxWidth: "500px" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(Card, { variant: "elevated", style: { maxWidth: "500px" }, children: [
         /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "h3", weight: "medium", children: "Configura\xE7\xF5es" }) }),
         /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(CardContent, { children: [
           /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(Typography_default, { variant: "body", style: { marginBottom: "16px" }, children: "Gerencie suas configura\xE7\xF5es de conta e prefer\xEAncias." }),
@@ -1482,1375 +1505,11 @@ var Checkbox = (0, import_react5.forwardRef)(({
 });
 Checkbox.displayName = "Checkbox";
 
-// src/components/Input/Input.tsx
-var import_react6 = __toESM(require("react"), 1);
+// src/components/Dropdown/Dropdown.tsx
+var import_react6 = require("react");
 var import_phosphor_react2 = require("phosphor-react");
 var import_jsx_runtime10 = require("react/jsx-runtime");
-var Input = (0, import_react6.forwardRef)(({
-  label,
-  placeholder,
-  size = "md",
-  variant = "default",
-  state = "default",
-  disabled = false,
-  required = false,
-  readOnly = false,
-  showPasswordToggle = false,
-  showClearButton = false,
-  showCharacterCount = false,
-  maxLength,
-  helperText,
-  errorMessage,
-  successMessage,
-  warningMessage,
-  leftIcon,
-  rightIcon,
-  className = "",
-  style,
-  onChange,
-  onClear,
-  onFocus,
-  onBlur,
-  type = "text",
-  value,
-  defaultValue,
-  ...props
-}, ref) => {
-  const inputRef = (0, import_react6.useRef)(null);
-  const [showPassword, setShowPassword] = import_react6.default.useState(false);
-  const [isFocused, setIsFocused] = import_react6.default.useState(false);
-  (0, import_react6.useImperativeHandle)(ref, () => ({
-    focus: () => inputRef.current?.focus(),
-    blur: () => inputRef.current?.blur(),
-    select: () => inputRef.current?.select(),
-    getValue: () => inputRef.current?.value || "",
-    setValue: (newValue) => {
-      if (inputRef.current) {
-        inputRef.current.value = newValue;
-      }
-    }
-  }));
-  const handlePasswordToggle = (0, import_react6.useCallback)(() => {
-    setShowPassword(!showPassword);
-  }, [showPassword]);
-  const handleClear = (0, import_react6.useCallback)(() => {
-    if (inputRef.current) {
-      inputRef.current.value = "";
-      inputRef.current.focus();
-      onChange?.({
-        target: inputRef.current,
-        currentTarget: inputRef.current
-      });
-      onClear?.();
-    }
-  }, [onChange, onClear]);
-  const handleFocus = (0, import_react6.useCallback)((event) => {
-    setIsFocused(true);
-    onFocus?.(event);
-  }, [onFocus]);
-  const handleBlur = (0, import_react6.useCallback)((event) => {
-    setIsFocused(false);
-    onBlur?.(event);
-  }, [onBlur]);
-  const currentState = errorMessage ? "error" : successMessage ? "success" : warningMessage ? "warning" : state;
-  const inputType = type === "password" && showPassword ? "text" : type;
-  const containerClasses = [
-    "cria-input-container",
-    `cria-input-container--${size}`,
-    `cria-input-container--${variant}`,
-    `cria-input-container--${currentState}`,
-    disabled && "cria-input-container--disabled",
-    readOnly && "cria-input-container--readonly",
-    isFocused && "cria-input-container--focused",
-    leftIcon && "cria-input-container--with-left-icon",
-    (rightIcon || showPasswordToggle || showClearButton) && "cria-input-container--with-right-icon",
-    className
-  ].filter(Boolean).join(" ");
-  const inputClasses = [
-    "cria-input",
-    `cria-input--${size}`,
-    `cria-input--${variant}`,
-    `cria-input--${currentState}`,
-    disabled && "cria-input--disabled",
-    readOnly && "cria-input--readonly",
-    isFocused && "cria-input--focused"
-  ].filter(Boolean).join(" ");
-  const currentValue = value || inputRef.current?.value || "";
-  const characterCount = String(currentValue).length;
-  const shouldShowClearButton = showClearButton && currentValue && !disabled && !readOnly;
-  const shouldShowPasswordToggle = showPasswordToggle && type === "password" && !disabled && !readOnly;
-  return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: containerClasses, style, children: [
-    label && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("label", { className: "cria-input__label", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(Typography, { variant: "body", weight: "medium", color: "primary", children: [
-      label,
-      required && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("span", { className: "cria-input__required", children: " *" })
-    ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "cria-input__wrapper", children: [
-      leftIcon && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "cria-input__left-icon", children: leftIcon }),
-      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
-        "input",
-        {
-          ref: inputRef,
-          type: inputType,
-          className: inputClasses,
-          placeholder,
-          disabled,
-          readOnly,
-          required,
-          maxLength,
-          value,
-          defaultValue,
-          onChange,
-          onFocus: handleFocus,
-          onBlur: handleBlur,
-          ...props
-        }
-      ),
-      (rightIcon || shouldShowPasswordToggle || shouldShowClearButton) && /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "cria-input__right-icons", children: [
-        shouldShowClearButton && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
-          "button",
-          {
-            type: "button",
-            className: "cria-input__clear-button",
-            onClick: handleClear,
-            "aria-label": "Clear input",
-            children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(import_phosphor_react2.X, { size: 16 })
-          }
-        ),
-        shouldShowPasswordToggle && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
-          "button",
-          {
-            type: "button",
-            className: "cria-input__password-toggle",
-            onClick: handlePasswordToggle,
-            "aria-label": showPassword ? "Hide password" : "Show password",
-            children: showPassword ? /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(import_phosphor_react2.EyeSlash, { size: 16 }) : /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(import_phosphor_react2.Eye, { size: 16 })
-          }
-        ),
-        rightIcon && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { className: "cria-input__right-icon", children: rightIcon })
-      ] })
-    ] }),
-    (helperText || errorMessage || successMessage || warningMessage || showCharacterCount) && /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: "cria-input__messages", children: [
-      helperText && !errorMessage && !successMessage && !warningMessage && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Typography, { variant: "body", color: "secondary", className: "cria-input__helper-text", children: helperText }),
-      errorMessage && /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(Typography, { variant: "body", color: "error", className: "cria-input__error-message", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(import_phosphor_react2.WarningCircle, { size: 14, style: { marginRight: "4px" } }),
-        errorMessage
-      ] }),
-      successMessage && /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(Typography, { variant: "body", color: "success", className: "cria-input__success-message", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(import_phosphor_react2.Check, { size: 14, style: { marginRight: "4px" } }),
-        successMessage
-      ] }),
-      warningMessage && /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(Typography, { variant: "body", color: "warning", className: "cria-input__warning-message", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(import_phosphor_react2.WarningCircle, { size: 14, style: { marginRight: "4px" } }),
-        warningMessage
-      ] }),
-      showCharacterCount && maxLength && /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(Typography, { variant: "body", color: "secondary", className: "cria-input__character-count", children: [
-        characterCount,
-        "/",
-        maxLength
-      ] })
-    ] })
-  ] });
-});
-Input.displayName = "Input";
-
-// src/components/Modal/Modal.tsx
-var import_react7 = require("react");
-var import_phosphor_react3 = require("phosphor-react");
-var import_jsx_runtime11 = require("react/jsx-runtime");
-var Modal = ({
-  isOpen,
-  onClose,
-  title,
-  children,
-  size = "md",
-  showCloseButton = true,
-  closeOnOverlayClick = true,
-  closeOnEscape = true,
-  lockBodyScroll = true,
-  centered = true,
-  className = "",
-  style,
-  footer,
-  showHeader = true,
-  showFooter = false,
-  overlayClassName = "",
-  overlayStyle,
-  scrollable = true,
-  animationDuration = 200,
-  ...props
-}) => {
-  const modalRef = (0, import_react7.useRef)(null);
-  const previousActiveElement = (0, import_react7.useRef)(null);
-  const overlayRef = (0, import_react7.useRef)(null);
-  const handleEscapeKey = (0, import_react7.useCallback)((event) => {
-    if (event.key === "Escape" && closeOnEscape) {
-      onClose();
-    }
-  }, [closeOnEscape, onClose]);
-  const handleOverlayClick = (0, import_react7.useCallback)((event) => {
-    if (closeOnOverlayClick && event.target === overlayRef.current) {
-      onClose();
-    }
-  }, [closeOnOverlayClick, onClose]);
-  const handleFocus = (0, import_react7.useCallback)(() => {
-    if (modalRef.current) {
-      const focusableElements = modalRef.current.querySelectorAll(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-      );
-      const firstElement = focusableElements[0];
-      if (firstElement) {
-        firstElement.focus();
-      }
-    }
-  }, []);
-  const toggleBodyScroll = (0, import_react7.useCallback)((lock) => {
-    if (lock) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-  }, []);
-  (0, import_react7.useEffect)(() => {
-    if (isOpen) {
-      previousActiveElement.current = document.activeElement;
-      document.addEventListener("keydown", handleEscapeKey);
-      if (lockBodyScroll) {
-        toggleBodyScroll(true);
-      }
-      setTimeout(handleFocus, 0);
-    } else {
-      document.removeEventListener("keydown", handleEscapeKey);
-      if (lockBodyScroll) {
-        toggleBodyScroll(false);
-      }
-      if (previousActiveElement.current) {
-        previousActiveElement.current.focus();
-      }
-    }
-    return () => {
-      document.removeEventListener("keydown", handleEscapeKey);
-      if (lockBodyScroll) {
-        toggleBodyScroll(false);
-      }
-    };
-  }, [isOpen, handleEscapeKey, lockBodyScroll, handleFocus]);
-  const overlayClasses = [
-    "cria-modal-overlay",
-    isOpen ? "cria-modal-overlay--visible" : "",
-    overlayClassName
-  ].filter(Boolean).join(" ");
-  const modalClasses = [
-    "cria-modal",
-    `cria-modal--${size}`,
-    centered ? "cria-modal--centered" : "",
-    scrollable ? "cria-modal--scrollable" : "",
-    isOpen ? "cria-modal--visible" : "",
-    className
-  ].filter(Boolean).join(" ");
-  if (!isOpen) {
-    return null;
-  }
-  return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
-    "div",
-    {
-      ref: overlayRef,
-      className: overlayClasses,
-      style: {
-        animationDuration: `${animationDuration}ms`,
-        ...overlayStyle
-      },
-      onClick: handleOverlayClick,
-      role: "dialog",
-      "aria-modal": "true",
-      "aria-labelledby": title ? "modal-title" : void 0,
-      "aria-describedby": "modal-content",
-      children: /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
-        "div",
-        {
-          ref: modalRef,
-          className: modalClasses,
-          style: {
-            animationDuration: `${animationDuration}ms`,
-            ...style
-          },
-          ...props,
-          children: [
-            showHeader && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "cria-modal__header", children: [
-              title && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
-                Typography,
-                {
-                  id: "modal-title",
-                  variant: "h3",
-                  weight: "semiBold",
-                  className: "cria-modal__title",
-                  children: title
-                }
-              ),
-              showCloseButton && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
-                Button,
-                {
-                  variant: "ghost",
-                  size: "sm",
-                  onClick: onClose,
-                  className: "cria-modal__close-button",
-                  "aria-label": "Close modal",
-                  children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(import_phosphor_react3.X, { size: 20 })
-                }
-              )
-            ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
-              "div",
-              {
-                id: "modal-content",
-                className: "cria-modal__content",
-                children
-              }
-            ),
-            showFooter && footer && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "cria-modal__footer", children: footer })
-          ]
-        }
-      )
-    }
-  );
-};
-
-// src/components/Navigation/Navigation.tsx
-var import_react8 = require("react");
-var import_phosphor_react4 = require("phosphor-react");
-var import_jsx_runtime12 = require("react/jsx-runtime");
-var Sidebar = ({
-  items,
-  activeRoute,
-  collapsed = false,
-  onToggle,
-  showToggle = true,
-  className,
-  style,
-  ...props
-}) => {
-  const [isMobile, setIsMobile] = (0, import_react8.useState)(false);
-  (0, import_react8.useEffect)(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-  const handleToggle = (0, import_react8.useCallback)(() => {
-    onToggle?.(!collapsed);
-  }, [collapsed, onToggle]);
-  const handleKeyDown = (0, import_react8.useCallback)((event, index) => {
-    const currentIndex = index;
-    const nextIndex = currentIndex + 1;
-    const prevIndex = currentIndex - 1;
-    switch (event.key) {
-      case "ArrowDown":
-        event.preventDefault();
-        if (nextIndex < items.length) {
-          const nextItem = document.querySelector(`[data-nav-item="${nextIndex}"]`);
-          nextItem?.focus();
-        }
-        break;
-      case "ArrowUp":
-        event.preventDefault();
-        if (prevIndex >= 0) {
-          const prevItem = document.querySelector(`[data-nav-item="${prevIndex}"]`);
-          prevItem?.focus();
-        }
-        break;
-    }
-  }, [items.length]);
-  const sidebarClasses = [
-    "cria-sidebar",
-    collapsed && "cria-sidebar--collapsed",
-    !collapsed && "cria-sidebar--expanded",
-    isMobile && "cria-sidebar--mobile",
-    className
-  ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
-    "nav",
-    {
-      className: sidebarClasses,
-      style,
-      role: "navigation",
-      "aria-label": "Main navigation",
-      ...props,
-      children: [
-        showToggle && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "cria-sidebar__header", children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
-          Button,
-          {
-            variant: "ghost",
-            size: "sm",
-            onClick: handleToggle,
-            "aria-label": "Toggle sidebar",
-            className: "cria-sidebar__toggle",
-            children: collapsed ? /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_phosphor_react4.ArrowRight, { size: 16 }) : /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_phosphor_react4.ArrowLeft, { size: 16 })
-          }
-        ) }),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "cria-sidebar__content", children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("ul", { className: "cria-sidebar__items", role: "menubar", children: items.map((item, index) => /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("li", { className: "cria-sidebar__item-wrapper", children: /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
-          "a",
-          {
-            href: item.href,
-            className: [
-              "cria-sidebar__item",
-              activeRoute === item.href && "cria-sidebar__item--active",
-              item.disabled && "cria-sidebar__item--disabled"
-            ].filter(Boolean).join(" "),
-            "data-nav-item": index,
-            tabIndex: item.disabled ? -1 : 0,
-            onKeyDown: (e) => handleKeyDown(e, index),
-            onClick: item.onClick,
-            "aria-current": activeRoute === item.href ? "page" : void 0,
-            "aria-disabled": item.disabled,
-            children: [
-              item.icon && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { className: "cria-sidebar__icon", "aria-hidden": "true", children: item.icon }),
-              !collapsed && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { className: "cria-sidebar__label", children: item.label }),
-              item.badge && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { className: "cria-sidebar__badge", "aria-hidden": "true", children: item.badge })
-            ]
-          }
-        ) }, item.id)) }) })
-      ]
-    }
-  );
-};
-var Topbar = ({
-  items,
-  activeRoute,
-  brand,
-  brandHref,
-  showMobileMenu = false,
-  onMobileMenuToggle,
-  className,
-  style,
-  ...props
-}) => {
-  const [isMobile, setIsMobile] = (0, import_react8.useState)(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = (0, import_react8.useState)(false);
-  (0, import_react8.useEffect)(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
-  const handleMobileMenuToggle = (0, import_react8.useCallback)(() => {
-    const newState = !mobileMenuOpen;
-    setMobileMenuOpen(newState);
-    onMobileMenuToggle?.(newState);
-  }, [mobileMenuOpen, onMobileMenuToggle]);
-  const handleKeyDown = (0, import_react8.useCallback)((event, index) => {
-    const currentIndex = index;
-    const nextIndex = currentIndex + 1;
-    const prevIndex = currentIndex - 1;
-    switch (event.key) {
-      case "ArrowRight":
-        event.preventDefault();
-        if (nextIndex < items.length) {
-          const nextItem = document.querySelector(`[data-nav-item="${nextIndex}"]`);
-          nextItem?.focus();
-        }
-        break;
-      case "ArrowLeft":
-        event.preventDefault();
-        if (prevIndex >= 0) {
-          const prevItem = document.querySelector(`[data-nav-item="${prevIndex}"]`);
-          prevItem?.focus();
-        }
-        break;
-    }
-  }, [items.length]);
-  const topbarClasses = [
-    "cria-topbar",
-    isMobile && "cria-topbar--mobile",
-    className
-  ].filter(Boolean).join(" ");
-  const itemsClasses = [
-    "cria-topbar__items",
-    isMobile && !mobileMenuOpen && "cria-topbar__items--hidden"
-  ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
-    "nav",
-    {
-      className: topbarClasses,
-      style,
-      role: "navigation",
-      "aria-label": "Main navigation",
-      ...props,
-      children: [
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "cria-topbar__content", children: [
-          brand && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "cria-topbar__brand", children: brandHref ? /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("a", { href: brandHref, className: "cria-topbar__brand-link", children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Typography, { variant: "h3", weight: "bold", color: "primary", children: brand }) }) : /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Typography, { variant: "h3", weight: "bold", color: "primary", children: brand }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: itemsClasses, children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("ul", { className: "cria-topbar__items-list", role: "menubar", children: items.map((item, index) => /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("li", { className: "cria-topbar__item-wrapper", children: /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
-            "a",
-            {
-              href: item.href,
-              className: [
-                "cria-topbar__item",
-                activeRoute === item.href && "cria-topbar__item--active",
-                item.disabled && "cria-topbar__item--disabled"
-              ].filter(Boolean).join(" "),
-              "data-nav-item": index,
-              tabIndex: item.disabled ? -1 : 0,
-              onKeyDown: (e) => handleKeyDown(e, index),
-              onClick: item.onClick,
-              "aria-current": activeRoute === item.href ? "page" : void 0,
-              "aria-disabled": item.disabled,
-              children: [
-                item.icon && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { className: "cria-topbar__icon", "aria-hidden": "true", children: item.icon }),
-                /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { className: "cria-topbar__label", children: item.label }),
-                item.badge && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { className: "cria-topbar__badge", "aria-hidden": "true", children: item.badge })
-              ]
-            }
-          ) }, item.id)) }) }),
-          isMobile && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
-            Button,
-            {
-              variant: "ghost",
-              size: "sm",
-              onClick: handleMobileMenuToggle,
-              "aria-label": "Toggle menu",
-              "aria-expanded": mobileMenuOpen,
-              className: "cria-topbar__mobile-toggle",
-              children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_phosphor_react4.List, { size: 16 })
-            }
-          )
-        ] }),
-        isMobile && mobileMenuOpen && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "cria-topbar__mobile-menu", role: "menu", children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("ul", { className: "cria-topbar__mobile-items", children: items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("li", { className: "cria-topbar__mobile-item-wrapper", children: /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
-          "a",
-          {
-            href: item.href,
-            className: [
-              "cria-topbar__mobile-item",
-              activeRoute === item.href && "cria-topbar__mobile-item--active",
-              item.disabled && "cria-topbar__mobile-item--disabled"
-            ].filter(Boolean).join(" "),
-            onClick: item.onClick,
-            "aria-current": activeRoute === item.href ? "page" : void 0,
-            "aria-disabled": item.disabled,
-            children: [
-              item.icon && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { className: "cria-topbar__mobile-icon", "aria-hidden": "true", children: item.icon }),
-              /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { className: "cria-topbar__mobile-label", children: item.label }),
-              item.badge && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("span", { className: "cria-topbar__mobile-badge", "aria-hidden": "true", children: item.badge })
-            ]
-          }
-        ) }, item.id)) }) })
-      ]
-    }
-  );
-};
-var Navigation = ({
-  sidebar,
-  topbar,
-  variant = "both",
-  className,
-  style,
-  ...props
-}) => {
-  const navigationClasses = [
-    "cria-navigation",
-    `cria-navigation--${variant}`,
-    className
-  ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: navigationClasses, style, ...props, children: [
-    sidebar && (variant === "sidebar-only" || variant === "both") && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Sidebar, { ...sidebar }),
-    topbar && (variant === "topbar-only" || variant === "both") && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(Topbar, { ...topbar })
-  ] });
-};
-
-// src/components/Snackbar/Snackbar.tsx
-var React9 = __toESM(require("react"), 1);
-var import_react_dom = require("react-dom");
-var import_phosphor_react5 = require("phosphor-react");
-var import_jsx_runtime13 = require("react/jsx-runtime");
-var Snackbar = React9.forwardRef(({
-  message,
-  open,
-  title,
-  variant = "default",
-  position = "top",
-  autoHideDuration = 4e3,
-  dismissible = true,
-  action,
-  icon,
-  onClose,
-  className,
-  style,
-  ...props
-}, ref) => {
-  const [isVisible, setIsVisible] = React9.useState(open);
-  const [isAnimating, setIsAnimating] = React9.useState(false);
-  const timeoutRef = React9.useRef(null);
-  React9.useEffect(() => {
-    if (open && autoHideDuration > 0) {
-      timeoutRef.current = setTimeout(() => {
-        handleClose();
-      }, autoHideDuration);
-    }
-    return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-      }
-    };
-  }, [open, autoHideDuration]);
-  React9.useEffect(() => {
-    if (open) {
-      setIsVisible(true);
-      setIsAnimating(true);
-      setTimeout(() => setIsAnimating(false), 100);
-    } else {
-      setIsAnimating(true);
-      setTimeout(() => {
-        setIsVisible(false);
-        setIsAnimating(false);
-      }, 300);
-    }
-  }, [open]);
-  const handleClose = React9.useCallback(() => {
-    onClose?.();
-  }, [onClose]);
-  const handleBackdropClick = React9.useCallback((event) => {
-    if (dismissible && event.target === event.currentTarget) {
-      handleClose();
-    }
-  }, [dismissible, handleClose]);
-  const handleKeyDown = React9.useCallback((event) => {
-    if (event.key === "Escape" && dismissible) {
-      handleClose();
-    }
-  }, [dismissible, handleClose]);
-  React9.useImperativeHandle(ref, () => ({
-    close: handleClose
-  }), [handleClose]);
-  if (!isVisible) {
-    return null;
-  }
-  const getDefaultIcon = () => {
-    switch (variant) {
-      case "success":
-        return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(import_phosphor_react5.CheckCircle, { size: 20, "data-testid": "snackbar-icon" });
-      case "error":
-        return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(import_phosphor_react5.X, { size: 20, "data-testid": "snackbar-icon" });
-      case "warning":
-        return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(import_phosphor_react5.Info, { size: 20, "data-testid": "snackbar-icon" });
-      case "info":
-        return /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(import_phosphor_react5.Info, { size: 20, "data-testid": "snackbar-icon" });
-      default:
-        return null;
-    }
-  };
-  const displayIcon = icon || getDefaultIcon();
-  const isAlert = variant === "error" || variant === "warning";
-  const role = isAlert ? "alert" : "status";
-  const ariaLive = isAlert ? "assertive" : "polite";
-  const containerClasses = [
-    "cria-snackbar-container",
-    `cria-snackbar-container--${position}`
-  ].filter(Boolean).join(" ");
-  const snackbarClasses = [
-    "cria-snackbar",
-    `cria-snackbar--${variant}`,
-    isAnimating && open && "cria-snackbar--entering",
-    isAnimating && !open && "cria-snackbar--exiting",
-    className
-  ].filter(Boolean).join(" ");
-  const snackbarContent = /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-    "div",
-    {
-      "data-testid": "snackbar-container",
-      className: containerClasses,
-      onClick: handleBackdropClick,
-      onKeyDown: handleKeyDown,
-      tabIndex: -1,
-      children: /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(
-        "div",
-        {
-          className: snackbarClasses,
-          style,
-          role,
-          "aria-live": ariaLive,
-          ...props,
-          children: [
-            /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "cria-snackbar__content", children: [
-              displayIcon && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { className: "cria-snackbar__icon", children: displayIcon }),
-              /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "cria-snackbar__text", children: [
-                title && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography, { variant: "body", weight: "medium", className: "cria-snackbar__title", children: title }),
-                /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography, { variant: "body", className: "cria-snackbar__message", children: message })
-              ] })
-            ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "cria-snackbar__actions", children: [
-              action && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                Button,
-                {
-                  variant: "ghost",
-                  size: "sm",
-                  onClick: action.onClick,
-                  className: "cria-snackbar__action",
-                  children: action.label
-                }
-              ),
-              dismissible && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                Button,
-                {
-                  variant: "ghost",
-                  size: "sm",
-                  onClick: handleClose,
-                  className: "cria-snackbar__close",
-                  "aria-label": "Close",
-                  children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(import_phosphor_react5.X, { size: 16 })
-                }
-              )
-            ] })
-          ]
-        }
-      )
-    }
-  );
-  return (0, import_react_dom.createPortal)(snackbarContent, document.body);
-});
-Snackbar.displayName = "Snackbar";
-
-// src/components/Switch/Switch.tsx
-var import_react9 = require("react");
-var import_jsx_runtime14 = require("react/jsx-runtime");
-var Switch = (0, import_react9.forwardRef)(({
-  checked,
-  disabled = false,
-  required = false,
-  readOnly = false,
-  label,
-  helperText,
-  errorMessage,
-  warningMessage,
-  size = "md",
-  variant = "default",
-  color = "primary",
-  className = "",
-  style,
-  onChange,
-  onClick,
-  onFocus,
-  onBlur,
-  value,
-  name,
-  id,
-  inputProps = {},
-  ...props
-}, ref) => {
-  const inputRef = (0, import_react9.useRef)(null);
-  (0, import_react9.useImperativeHandle)(ref, () => ({
-    focus: () => inputRef.current?.focus(),
-    blur: () => inputRef.current?.blur(),
-    getChecked: () => inputRef.current?.checked || false,
-    setChecked: (newChecked) => {
-      if (inputRef.current) {
-        inputRef.current.checked = newChecked;
-      }
-    }
-  }));
-  const handleChange = (0, import_react9.useCallback)((event) => {
-    if (disabled || readOnly) return;
-    onChange?.(event.target.checked, event);
-  }, [disabled, readOnly, onChange]);
-  const handleClick = (0, import_react9.useCallback)((event) => {
-    if (disabled || readOnly) return;
-    onClick?.(event);
-  }, [disabled, readOnly, onClick]);
-  const handleKeyDown = (0, import_react9.useCallback)((event) => {
-    if (disabled || readOnly) return;
-    if (event.key === " " || event.key === "Enter") {
-      event.preventDefault();
-      const newChecked = !checked;
-      onChange?.(newChecked, event);
-    }
-  }, [disabled, readOnly, checked, onChange]);
-  const switchClasses = [
-    "cria-switch",
-    `cria-switch--${size}`,
-    `cria-switch--${variant}`,
-    `cria-switch--${color}`,
-    checked && "cria-switch--checked",
-    disabled && "cria-switch--disabled",
-    readOnly && "cria-switch--readonly",
-    required && "cria-switch--required",
-    errorMessage && "cria-switch--error",
-    warningMessage && "cria-switch--warning",
-    className
-  ].filter(Boolean).join(" ");
-  const inputClasses = [
-    "cria-switch__input",
-    `cria-switch__input--${size}`,
-    `cria-switch__input--${variant}`,
-    `cria-switch__input--${color}`
-  ].filter(Boolean).join(" ");
-  const labelClasses = [
-    "cria-switch__label",
-    `cria-switch__label--${size}`,
-    disabled && "cria-switch__label--disabled",
-    readOnly && "cria-switch__label--readonly"
-  ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: switchClasses, style, ...props, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: "cria-switch__container", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
-        "input",
-        {
-          ref: inputRef,
-          type: "checkbox",
-          role: "switch",
-          id: id || (label ? `${name || "switch"}-input` : void 0),
-          name,
-          value,
-          ...checked !== void 0 ? { checked } : {},
-          disabled,
-          readOnly,
-          required,
-          className: inputClasses,
-          onChange: handleChange,
-          onClick: handleClick,
-          onFocus,
-          onBlur,
-          onKeyDown: handleKeyDown,
-          "aria-describedby": [
-            helperText && `${id || name || "switch"}-helper`,
-            errorMessage && `${id || name || "switch"}-error`,
-            warningMessage && `${id || name || "switch"}-warning`
-          ].filter(Boolean).join(" ") || void 0,
-          "aria-invalid": !!errorMessage,
-          "aria-checked": checked || false,
-          "aria-label": label,
-          ...inputProps
-        }
-      ),
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { className: "cria-switch__track", children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { className: "cria-switch__thumb" }) }),
-      label && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("label", { htmlFor: id || (label ? `${name || "switch"}-input` : void 0), className: labelClasses, children: /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
-        Typography,
-        {
-          variant: "body",
-          color: disabled ? "secondary" : "content",
-          children: [
-            label,
-            required && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("span", { className: "cria-switch__required", "aria-label": "required", children: " *" })
-          ]
-        }
-      ) })
-    ] }),
-    helperText && !errorMessage && !warningMessage && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
-      Typography,
-      {
-        variant: "caption",
-        color: "secondary",
-        className: "cria-switch__helper-text",
-        id: `${id || name || "switch"}-helper`,
-        children: helperText
-      }
-    ),
-    errorMessage && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
-      Typography,
-      {
-        variant: "caption",
-        color: "error",
-        className: "cria-switch__error-message",
-        id: `${id || name || "switch"}-error`,
-        children: errorMessage
-      }
-    ),
-    warningMessage && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
-      Typography,
-      {
-        variant: "caption",
-        color: "warning",
-        className: "cria-switch__warning-message",
-        id: `${id || name || "switch"}-warning`,
-        children: warningMessage
-      }
-    )
-  ] });
-});
-Switch.displayName = "Switch";
-
-// src/components/Tabs/Tabs.tsx
-var import_react10 = require("react");
-var import_jsx_runtime15 = require("react/jsx-runtime");
-var Tabs = ({
-  items,
-  activeTab: controlledActiveTab,
-  defaultActiveTab,
-  onChange,
-  variant = "default",
-  size = "md",
-  orientation = "horizontal",
-  fullWidth = false,
-  showContent = true,
-  className = "",
-  style,
-  ...props
-}) => {
-  const [internalActiveTab, setInternalActiveTab] = (0, import_react10.useState)(
-    defaultActiveTab || items[0]?.id || ""
-  );
-  const isControlled = controlledActiveTab !== void 0;
-  const activeTab = isControlled ? controlledActiveTab : internalActiveTab;
-  const tabRefs = (0, import_react10.useRef)({});
-  const tabListRef = (0, import_react10.useRef)(null);
-  const handleTabChange = (0, import_react10.useCallback)((tabId) => {
-    if (isControlled) {
-      onChange?.(tabId);
-    } else {
-      setInternalActiveTab(tabId);
-      onChange?.(tabId);
-    }
-  }, [isControlled, onChange]);
-  const handleKeyDown = (0, import_react10.useCallback)((event, tabId) => {
-    const tabIds = items.map((item) => item.id);
-    const currentIndex = tabIds.indexOf(tabId);
-    let nextIndex = currentIndex;
-    switch (event.key) {
-      case "ArrowRight":
-        event.preventDefault();
-        nextIndex = (currentIndex + 1) % tabIds.length;
-        break;
-      case "ArrowLeft":
-        event.preventDefault();
-        nextIndex = (currentIndex - 1 + tabIds.length) % tabIds.length;
-        break;
-      case "Home":
-        event.preventDefault();
-        nextIndex = 0;
-        break;
-      case "End":
-        event.preventDefault();
-        nextIndex = tabIds.length - 1;
-        break;
-      case "Enter":
-      case " ":
-        event.preventDefault();
-        handleTabChange(tabId);
-        return;
-      default:
-        return;
-    }
-    while (items[nextIndex]?.disabled && nextIndex !== currentIndex) {
-      if (event.key === "ArrowRight") {
-        nextIndex = (nextIndex + 1) % tabIds.length;
-      } else {
-        nextIndex = (nextIndex - 1 + tabIds.length) % tabIds.length;
-      }
-    }
-    const nextTabId = tabIds[nextIndex];
-    if (nextTabId) {
-      handleTabChange(nextTabId);
-      tabRefs.current[nextTabId]?.focus();
-    }
-  }, [items, handleTabChange]);
-  (0, import_react10.useEffect)(() => {
-    if (activeTab && tabRefs.current[activeTab]) {
-      tabRefs.current[activeTab]?.focus();
-    }
-  }, [activeTab]);
-  const containerClasses = [
-    "cria-tabs",
-    `cria-tabs--${variant}`,
-    `cria-tabs--${size}`,
-    `cria-tabs--${orientation}`,
-    fullWidth ? "cria-tabs--full-width" : null,
-    className
-  ].filter(Boolean).join(" ");
-  const tabListClasses = [
-    "cria-tabs__list",
-    `cria-tabs__list--${variant}`,
-    `cria-tabs__list--${size}`,
-    `cria-tabs__list--${orientation}`,
-    fullWidth ? "cria-tabs__list--full-width" : null
-  ].filter(Boolean).join(" ");
-  const contentClasses = [
-    "cria-tabs__content",
-    `cria-tabs__content--${variant}`,
-    `cria-tabs__content--${size}`
-  ].filter(Boolean).join(" ");
-  const activeTabItem = items.find((item) => item.id === activeTab);
-  return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(
-    "div",
-    {
-      className: containerClasses,
-      style,
-      ...props,
-      children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
-          "div",
-          {
-            ref: tabListRef,
-            className: tabListClasses,
-            role: "tablist",
-            "aria-orientation": orientation,
-            children: items.map((item) => {
-              const isActive = item.id === activeTab;
-              const isDisabled = item.disabled;
-              const tabClasses = [
-                "cria-tabs__tab",
-                `cria-tabs__tab--${variant}`,
-                `cria-tabs__tab--${size}`,
-                isActive ? "cria-tabs__tab--active" : null,
-                isDisabled ? "cria-tabs__tab--disabled" : null,
-                fullWidth ? "cria-tabs__tab--full-width" : null
-              ].filter(Boolean).join(" ");
-              return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(
-                "button",
-                {
-                  ref: (el) => {
-                    tabRefs.current[item.id] = el;
-                  },
-                  className: tabClasses,
-                  role: "tab",
-                  "aria-selected": isActive,
-                  "aria-controls": `cria-tab-panel-${item.id}`,
-                  "aria-disabled": isDisabled,
-                  id: `cria-tab-${item.id}`,
-                  tabIndex: isActive ? 0 : -1,
-                  disabled: isDisabled,
-                  onClick: () => !isDisabled && handleTabChange(item.id),
-                  onKeyDown: (e) => !isDisabled && handleKeyDown(e, item.id),
-                  children: [
-                    item.icon && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "cria-tabs__tab-icon", children: item.icon }),
-                    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "cria-tabs__tab-label", children: item.label }),
-                    item.badge && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "cria-tabs__tab-badge", children: item.badge })
-                  ]
-                },
-                item.id
-              );
-            })
-          }
-        ),
-        showContent && activeTabItem && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
-          "div",
-          {
-            className: contentClasses,
-            role: "tabpanel",
-            id: `cria-tab-panel-${activeTabItem.id}`,
-            "aria-labelledby": `cria-tab-${activeTabItem.id}`,
-            children: activeTabItem.content
-          }
-        )
-      ]
-    }
-  );
-};
-
-// src/components/Text/Text.tsx
-var import_jsx_runtime16 = require("react/jsx-runtime");
-var TextBody = ({
-  as = "span",
-  children,
-  className = "",
-  ...props
-}) => {
-  const Element = as;
-  const classes = [
-    "cria-text",
-    "cria-text--body",
-    className
-  ].filter(Boolean).join(" ");
-  const styles = {
-    fontFamily: typography.fontFamily.primary,
-    fontSize: typography.fontSize.body,
-    fontWeight: typography.fontWeight.regular,
-    lineHeight: typography.lineHeight.normal,
-    color: "#374151",
-    // Default dark gray
-    margin: 0
-  };
-  return /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Element, { className: classes, style: styles, ...props, children });
-};
-var TextContent = ({
-  as = "p",
-  children,
-  className = "",
-  ...props
-}) => {
-  const Element = as;
-  const classes = [
-    "cria-text",
-    "cria-text--content",
-    className
-  ].filter(Boolean).join(" ");
-  const styles = {
-    fontFamily: typography.fontFamily.primary,
-    fontSize: typography.fontSize.body,
-    fontWeight: typography.fontWeight.regular,
-    lineHeight: typography.lineHeight.relaxed,
-    // More readable for long content
-    color: "#374151",
-    // Default dark gray
-    margin: 0
-  };
-  return /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Element, { className: classes, style: styles, ...props, children });
-};
-var TextContentTitle = ({
-  as = "h3",
-  children,
-  className = "",
-  ...props
-}) => {
-  const Element = as;
-  const classes = [
-    "cria-text",
-    "cria-text--content-title",
-    className
-  ].filter(Boolean).join(" ");
-  const styles = {
-    fontFamily: typography.fontFamily.primary,
-    fontSize: typography.fontSize.h3,
-    fontWeight: typography.fontWeight.semiBold,
-    lineHeight: typography.lineHeight.normal,
-    color: "#374151",
-    // Default dark gray
-    margin: 0
-  };
-  return /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Element, { className: classes, style: styles, ...props, children });
-};
-var TextContentImportant = ({
-  as = "span",
-  children,
-  className = "",
-  ...props
-}) => {
-  const Element = as;
-  const classes = [
-    "cria-text",
-    "cria-text--content-important",
-    className
-  ].filter(Boolean).join(" ");
-  const styles = {
-    fontFamily: typography.fontFamily.primary,
-    fontSize: typography.fontSize.body,
-    fontWeight: typography.fontWeight.medium,
-    lineHeight: typography.lineHeight.normal,
-    color: "#374151",
-    // Default dark gray
-    margin: 0
-  };
-  return /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Element, { className: classes, style: styles, ...props, children });
-};
-var Text_default = TextBody;
-
-// src/components/Tooltip/Tooltip.tsx
-var import_react11 = __toESM(require("react"), 1);
-var import_react_dom2 = require("react-dom");
-var import_jsx_runtime17 = require("react/jsx-runtime");
-var Tooltip = ({
-  content,
-  children,
-  variant = "default",
-  size = "md",
-  position = "top",
-  disabled = false,
-  delay = 0,
-  hideDelay = 0,
-  arrow = true,
-  interactive = false,
-  visible: controlledVisible,
-  className = "",
-  style,
-  onVisibilityChange,
-  ...props
-}) => {
-  const [isVisible, setIsVisible] = (0, import_react11.useState)(false);
-  const [tooltipPosition, setTooltipPosition] = (0, import_react11.useState)({ top: 0, left: 0 });
-  const triggerRef = (0, import_react11.useRef)(null);
-  const tooltipRef = (0, import_react11.useRef)(null);
-  const showTimeoutRef = (0, import_react11.useRef)();
-  const hideTimeoutRef = (0, import_react11.useRef)();
-  const isControlled = controlledVisible !== void 0;
-  const visible = isControlled ? controlledVisible : isVisible;
-  const calculatePosition = (0, import_react11.useCallback)(() => {
-    if (!triggerRef.current || !tooltipRef.current) return;
-    const triggerRect = triggerRef.current.getBoundingClientRect();
-    const tooltipRect = tooltipRef.current.getBoundingClientRect();
-    let top = 0;
-    let left = 0;
-    const triggerCenterX = triggerRect.left + triggerRect.width / 2;
-    const triggerCenterY = triggerRect.top + triggerRect.height / 2;
-    switch (position) {
-      case "top":
-        top = triggerRect.top - tooltipRect.height - 8;
-        left = triggerCenterX - tooltipRect.width / 2;
-        break;
-      case "top-start":
-        top = triggerRect.top - tooltipRect.height - 8;
-        left = triggerRect.left;
-        break;
-      case "top-end":
-        top = triggerRect.top - tooltipRect.height - 8;
-        left = triggerRect.right - tooltipRect.width;
-        break;
-      case "bottom":
-        top = triggerRect.bottom + 8;
-        left = triggerCenterX - tooltipRect.width / 2;
-        break;
-      case "bottom-start":
-        top = triggerRect.bottom + 8;
-        left = triggerRect.left;
-        break;
-      case "bottom-end":
-        top = triggerRect.bottom + 8;
-        left = triggerRect.right - tooltipRect.width;
-        break;
-      case "left":
-        top = triggerCenterY - tooltipRect.height / 2;
-        left = triggerRect.left - tooltipRect.width - 8;
-        break;
-      case "left-start":
-        top = triggerRect.top;
-        left = triggerRect.left - tooltipRect.width - 8;
-        break;
-      case "left-end":
-        top = triggerRect.bottom - tooltipRect.height;
-        left = triggerRect.left - tooltipRect.width - 8;
-        break;
-      case "right":
-        top = triggerCenterY - tooltipRect.height / 2;
-        left = triggerRect.right + 8;
-        break;
-      case "right-start":
-        top = triggerRect.top;
-        left = triggerRect.right + 8;
-        break;
-      case "right-end":
-        top = triggerRect.bottom - tooltipRect.height;
-        left = triggerRect.right + 8;
-        break;
-    }
-    const viewportWidth = window.innerWidth;
-    const viewportHeight = window.innerHeight;
-    if (left < 8) left = 8;
-    if (left + tooltipRect.width > viewportWidth - 8) {
-      left = viewportWidth - tooltipRect.width - 8;
-    }
-    if (top < 8) top = 8;
-    if (top + tooltipRect.height > viewportHeight - 8) {
-      top = viewportHeight - tooltipRect.height - 8;
-    }
-    setTooltipPosition({
-      top,
-      left
-    });
-  }, [position]);
-  const showTooltip = (0, import_react11.useCallback)(() => {
-    if (disabled || isControlled) return;
-    if (showTimeoutRef.current) {
-      clearTimeout(showTimeoutRef.current);
-    }
-    showTimeoutRef.current = setTimeout(() => {
-      setIsVisible(true);
-      onVisibilityChange?.(true);
-    }, delay);
-  }, [disabled, isControlled, delay, onVisibilityChange]);
-  const hideTooltip = (0, import_react11.useCallback)(() => {
-    if (disabled || isControlled) return;
-    if (showTimeoutRef.current) {
-      clearTimeout(showTimeoutRef.current);
-    }
-    hideTimeoutRef.current = setTimeout(() => {
-      setIsVisible(false);
-      onVisibilityChange?.(false);
-    }, hideDelay);
-  }, [disabled, isControlled, hideDelay, onVisibilityChange]);
-  const handleMouseEnter = (0, import_react11.useCallback)(() => {
-    if (disabled) return;
-    showTooltip();
-  }, [disabled, showTooltip]);
-  const handleMouseLeave = (0, import_react11.useCallback)(() => {
-    if (disabled) return;
-    hideTooltip();
-  }, [disabled, hideTooltip]);
-  const handleFocus = (0, import_react11.useCallback)(() => {
-    if (disabled) return;
-    showTooltip();
-  }, [disabled, showTooltip]);
-  const handleBlur = (0, import_react11.useCallback)(() => {
-    if (disabled) return;
-    hideTooltip();
-  }, [disabled, hideTooltip]);
-  (0, import_react11.useEffect)(() => {
-    if (visible) {
-      calculatePosition();
-    }
-  }, [visible, calculatePosition]);
-  (0, import_react11.useEffect)(() => {
-    if (!visible) return;
-    const updatePosition = () => calculatePosition();
-    window.addEventListener("scroll", updatePosition, true);
-    window.addEventListener("resize", updatePosition);
-    return () => {
-      window.removeEventListener("scroll", updatePosition, true);
-      window.removeEventListener("resize", updatePosition);
-    };
-  }, [visible, calculatePosition]);
-  (0, import_react11.useEffect)(() => {
-    return () => {
-      if (showTimeoutRef.current) clearTimeout(showTimeoutRef.current);
-      if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
-    };
-  }, []);
-  const triggerElement = import_react11.default.cloneElement(children, {
-    ref: (el) => {
-      triggerRef.current = el;
-      const childRef = children.ref;
-      if (childRef) {
-        if (typeof childRef === "function") {
-          childRef(el);
-        } else if (childRef && "current" in childRef) {
-          childRef.current = el;
-        }
-      }
-    },
-    onMouseEnter: handleMouseEnter,
-    onMouseLeave: handleMouseLeave,
-    onFocus: handleFocus,
-    onBlur: handleBlur
-  });
-  const tooltipClasses = [
-    "cria-tooltip",
-    `cria-tooltip--${variant}`,
-    `cria-tooltip--${size}`,
-    `cria-tooltip--${position}`,
-    arrow ? "cria-tooltip--arrow" : null,
-    interactive ? "cria-tooltip--interactive" : null,
-    visible ? "cria-tooltip--visible" : null,
-    className
-  ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(import_jsx_runtime17.Fragment, { children: [
-    triggerElement,
-    visible && (0, import_react_dom2.createPortal)(
-      /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(
-        "div",
-        {
-          ref: tooltipRef,
-          className: tooltipClasses,
-          style: {
-            position: "fixed",
-            top: tooltipPosition.top,
-            left: tooltipPosition.left,
-            zIndex: 9999,
-            ...style
-          },
-          role: "tooltip",
-          ...props,
-          children: [
-            /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "cria-tooltip__content", children: content }),
-            arrow && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "cria-tooltip__arrow" })
-          ]
-        }
-      ),
-      document.body
-    )
-  ] });
-};
-
-// src/components/Dropdown/Dropdown.tsx
-var import_react12 = require("react");
-var import_phosphor_react6 = require("phosphor-react");
-var import_jsx_runtime18 = require("react/jsx-runtime");
-var Dropdown = (0, import_react12.forwardRef)(({
+var Dropdown = (0, import_react6.forwardRef)(({
   options,
   value,
   defaultValue,
@@ -2872,22 +1531,22 @@ var Dropdown = (0, import_react12.forwardRef)(({
   onClose,
   ...props
 }, ref) => {
-  const [isOpen, setIsOpen] = (0, import_react12.useState)(false);
-  const [searchTerm, setSearchTerm] = (0, import_react12.useState)("");
-  const [focusedIndex, setFocusedIndex] = (0, import_react12.useState)(-1);
-  const [selectedValues, setSelectedValues] = (0, import_react12.useState)(() => {
+  const [isOpen, setIsOpen] = (0, import_react6.useState)(false);
+  const [searchTerm, setSearchTerm] = (0, import_react6.useState)("");
+  const [focusedIndex, setFocusedIndex] = (0, import_react6.useState)(-1);
+  const [selectedValues, setSelectedValues] = (0, import_react6.useState)(() => {
     const initialValue = value || defaultValue;
     return Array.isArray(initialValue) ? initialValue : initialValue ? [initialValue] : [];
   });
-  const triggerRef = (0, import_react12.useRef)(null);
-  const listboxRef = (0, import_react12.useRef)(null);
-  const searchInputRef = (0, import_react12.useRef)(null);
-  (0, import_react12.useEffect)(() => {
+  const triggerRef = (0, import_react6.useRef)(null);
+  const listboxRef = (0, import_react6.useRef)(null);
+  const searchInputRef = (0, import_react6.useRef)(null);
+  (0, import_react6.useEffect)(() => {
     if (value !== void 0) {
       setSelectedValues(Array.isArray(value) ? value : value ? [value] : []);
     }
   }, [value]);
-  (0, import_react12.useImperativeHandle)(ref, () => ({
+  (0, import_react6.useImperativeHandle)(ref, () => ({
     focus: () => triggerRef.current?.focus(),
     blur: () => triggerRef.current?.blur(),
     open: () => setIsOpen(true),
@@ -2913,7 +1572,7 @@ var Dropdown = (0, import_react12.forwardRef)(({
     const option = options.find((opt) => opt.value === selectedValues[0]);
     return option?.label || placeholder;
   };
-  const handleOptionSelect = (0, import_react12.useCallback)((option) => {
+  const handleOptionSelect = (0, import_react6.useCallback)((option) => {
     if (option.disabled) return;
     let newSelectedValues;
     if (multiple) {
@@ -2933,7 +1592,7 @@ var Dropdown = (0, import_react12.forwardRef)(({
       multiple ? selectedOptions : selectedOptions[0]
     );
   }, [selectedValues, multiple, options, onChange]);
-  const handleTriggerClick = (0, import_react12.useCallback)(() => {
+  const handleTriggerClick = (0, import_react6.useCallback)(() => {
     if (disabled || loading) return;
     setIsOpen(!isOpen);
     if (!isOpen) {
@@ -2946,7 +1605,7 @@ var Dropdown = (0, import_react12.forwardRef)(({
       setFocusedIndex(-1);
     }
   }, [disabled, loading, isOpen, onOpen, onClose]);
-  const handleKeyDown = (0, import_react12.useCallback)((event) => {
+  const handleKeyDown = (0, import_react6.useCallback)((event) => {
     if (disabled || loading) return;
     switch (event.key) {
       case "Enter":
@@ -2999,7 +1658,7 @@ var Dropdown = (0, import_react12.forwardRef)(({
         break;
     }
   }, [disabled, loading, isOpen, focusedIndex, filteredOptions, onOpen, onClose, handleOptionSelect]);
-  (0, import_react12.useEffect)(() => {
+  (0, import_react6.useEffect)(() => {
     const handleClickOutside = (event) => {
       if (isOpen && triggerRef.current && listboxRef.current && !triggerRef.current.contains(event.target) && !listboxRef.current.contains(event.target)) {
         setIsOpen(false);
@@ -3012,7 +1671,7 @@ var Dropdown = (0, import_react12.forwardRef)(({
       return () => document.removeEventListener("mousedown", handleClickOutside);
     }
   }, [isOpen, onClose]);
-  (0, import_react12.useEffect)(() => {
+  (0, import_react6.useEffect)(() => {
     if (isOpen && searchable && searchInputRef.current) {
       searchInputRef.current.focus();
     }
@@ -3094,12 +1753,12 @@ var Dropdown = (0, import_react12.forwardRef)(({
     ].filter(Boolean);
     return classes.join(" ");
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: containerClasses, style, ...props, children: [
-    label && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("label", { className: "cria-dropdown__label", children: /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(Typography, { variant: "body", weight: "medium", color: "primary", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { className: containerClasses, style, ...props, children: [
+    label && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("label", { className: "cria-dropdown__label", children: /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(Typography, { variant: "body", weight: "medium", color: "primary", children: [
       label,
-      required && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { style: { color: colors.error }, children: " *" })
+      required && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("span", { style: { color: colors.error }, children: " *" })
     ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(
+    /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(
       "button",
       {
         ref: triggerRef,
@@ -3118,15 +1777,15 @@ var Dropdown = (0, import_react12.forwardRef)(({
         "aria-describedby": helperText || errorMessage ? `${label || "dropdown"}-helper` : void 0,
         id: label ? `${label.toLowerCase().replace(/\s+/g, "-")}-dropdown` : void 0,
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { style: {
+          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("span", { style: {
             overflow: "hidden",
             textOverflow: "ellipsis",
             whiteSpace: "nowrap",
             flex: 1,
             textAlign: "left"
           }, children: getDisplayText() }),
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
-            import_phosphor_react6.CaretDown,
+          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+            import_phosphor_react2.CaretDown,
             {
               size: 16,
               style: {
@@ -3140,7 +1799,7 @@ var Dropdown = (0, import_react12.forwardRef)(({
         ]
       }
     ),
-    isOpen && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(
+    isOpen && /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(
       "div",
       {
         ref: listboxRef,
@@ -3149,9 +1808,9 @@ var Dropdown = (0, import_react12.forwardRef)(({
         style: getListboxStyles(),
         "aria-labelledby": triggerRef.current?.id,
         children: [
-          searchable && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { style: { padding: spacing[2], borderBottom: `1px solid ${colors.border.light}` }, children: /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { style: { position: "relative" }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
-              import_phosphor_react6.MagnifyingGlass,
+          searchable && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { style: { padding: spacing[2], borderBottom: `1px solid ${colors.border.light}` }, children: /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { style: { position: "relative" }, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+              import_phosphor_react2.MagnifyingGlass,
               {
                 size: 16,
                 style: {
@@ -3163,7 +1822,7 @@ var Dropdown = (0, import_react12.forwardRef)(({
                 }
               }
             ),
-            /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
+            /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
               "input",
               {
                 ref: searchInputRef,
@@ -3185,7 +1844,7 @@ var Dropdown = (0, import_react12.forwardRef)(({
               }
             )
           ] }) }),
-          filteredOptions.length > 0 ? filteredOptions.map((option, index) => /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(
+          filteredOptions.length > 0 ? filteredOptions.map((option, index) => /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(
             "div",
             {
               role: "option",
@@ -3194,22 +1853,22 @@ var Dropdown = (0, import_react12.forwardRef)(({
               onClick: () => handleOptionSelect(option),
               "aria-selected": selectedValues.includes(option.value),
               children: [
-                /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { style: { display: "flex", alignItems: "center", flex: 1 }, children: [
-                  option.icon && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { style: { marginRight: spacing[2] }, children: option.icon }),
-                  /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { style: { fontSize: typography.fontSize[size === "sm" ? "bodySmall" : "body"] }, children: option.label }),
-                    option.description && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { style: {
+                /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { style: { display: "flex", alignItems: "center", flex: 1 }, children: [
+                  option.icon && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("span", { style: { marginRight: spacing[2] }, children: option.icon }),
+                  /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { style: { fontSize: typography.fontSize[size === "sm" ? "bodySmall" : "body"] }, children: option.label }),
+                    option.description && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { style: {
                       fontSize: typography.fontSize.caption,
                       color: colors.text.secondary,
                       marginTop: spacing[1]
                     }, children: option.description })
                   ] })
                 ] }),
-                selectedValues.includes(option.value) && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(import_phosphor_react6.Check, { size: 16, style: { color: colors.primary, flexShrink: 0 } })
+                selectedValues.includes(option.value) && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(import_phosphor_react2.Check, { size: 16, style: { color: colors.primary, flexShrink: 0 } })
               ]
             },
             option.value
-          )) : /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { style: {
+          )) : /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { style: {
             padding: spacing[4],
             textAlign: "center",
             color: colors.text.secondary,
@@ -3218,13 +1877,13 @@ var Dropdown = (0, import_react12.forwardRef)(({
         ]
       }
     ),
-    (helperText || errorMessage) && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
+    (helperText || errorMessage) && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
       "div",
       {
         id: `${label || "dropdown"}-helper`,
         className: "cria-dropdown__messages",
         style: { marginTop: spacing[1] },
-        children: errorMessage ? /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Typography, { variant: "bodySmall", color: "error", children: errorMessage }) : /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Typography, { variant: "bodySmall", color: "secondary", children: helperText })
+        children: errorMessage ? /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Typography, { variant: "bodySmall", color: "error", children: errorMessage }) : /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Typography, { variant: "bodySmall", color: "secondary", children: helperText })
       }
     )
   ] });
@@ -3262,11 +1921,11 @@ var DropdownItem = ({
   description,
   children
 }) => {
-  return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { style: { display: "flex", alignItems: "center", flex: 1 }, children: [
-    icon && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { style: { marginRight: spacing[2] }, children: icon }),
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { children: children || /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(import_jsx_runtime18.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { children: label }),
-      description && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { style: {
+  return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { style: { display: "flex", alignItems: "center", flex: 1 }, children: [
+    icon && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("span", { style: { marginRight: spacing[2] }, children: icon }),
+    /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { children: children || /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(import_jsx_runtime10.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { children: label }),
+      description && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { style: {
         fontSize: typography.fontSize.caption,
         color: colors.text.secondary,
         marginTop: spacing[1]
@@ -3274,199 +1933,962 @@ var DropdownItem = ({
     ] }) })
   ] });
 };
-var Dropdown_default = Dropdown;
 
-// src/components/RadioGroup/RadioGroup.tsx
-var import_react13 = require("react");
-var import_jsx_runtime19 = require("react/jsx-runtime");
-var RadioGroup = ({
-  options,
-  value,
-  onChange,
+// src/components/Input/Input.tsx
+var import_react7 = __toESM(require("react"), 1);
+var import_phosphor_react3 = require("phosphor-react");
+var import_jsx_runtime11 = require("react/jsx-runtime");
+var Input = (0, import_react7.forwardRef)(({
   label,
-  description,
-  error,
+  placeholder,
+  size = "md",
+  variant = "default",
+  state = "default",
   disabled = false,
   required = false,
-  className,
-  name,
-  orientation = "vertical",
-  size = "medium",
-  variant = "default"
-}) => {
-  const [focusedIndex, setFocusedIndex] = (0, import_react13.useState)(-1);
-  const [internalValue, setInternalValue] = (0, import_react13.useState)(value || "");
-  const radioGroupRef = (0, import_react13.useRef)(null);
-  const radioRefs = (0, import_react13.useRef)([]);
-  (0, import_react13.useEffect)(() => {
-    if (value !== void 0) {
-      setInternalValue(value);
-    }
-  }, [value]);
-  const handleChange = (optionValue) => {
-    if (!disabled) {
-      setInternalValue(optionValue);
-      if (onChange) {
-        onChange(optionValue);
+  readOnly = false,
+  showPasswordToggle = false,
+  showClearButton = false,
+  showCharacterCount = false,
+  maxLength,
+  helperText,
+  errorMessage,
+  successMessage,
+  warningMessage,
+  leftIcon,
+  rightIcon,
+  className = "",
+  style,
+  onChange,
+  onClear,
+  onFocus,
+  onBlur,
+  type = "text",
+  value,
+  defaultValue,
+  ...props
+}, ref) => {
+  const inputRef = (0, import_react7.useRef)(null);
+  const [showPassword, setShowPassword] = import_react7.default.useState(false);
+  const [isFocused, setIsFocused] = import_react7.default.useState(false);
+  (0, import_react7.useImperativeHandle)(ref, () => ({
+    focus: () => inputRef.current?.focus(),
+    blur: () => inputRef.current?.blur(),
+    select: () => inputRef.current?.select(),
+    getValue: () => inputRef.current?.value || "",
+    setValue: (newValue) => {
+      if (inputRef.current) {
+        inputRef.current.value = newValue;
       }
     }
-  };
-  const handleKeyDown = (event) => {
-    if (disabled) return;
-    let newIndex = focusedIndex;
-    if (focusedIndex === -1) {
-      newIndex = 0;
+  }));
+  const handlePasswordToggle = (0, import_react7.useCallback)(() => {
+    setShowPassword(!showPassword);
+  }, [showPassword]);
+  const handleClear = (0, import_react7.useCallback)(() => {
+    if (inputRef.current) {
+      inputRef.current.value = "";
+      inputRef.current.focus();
+      onChange?.({
+        target: inputRef.current,
+        currentTarget: inputRef.current
+      });
+      onClear?.();
     }
+  }, [onChange, onClear]);
+  const handleFocus = (0, import_react7.useCallback)((event) => {
+    setIsFocused(true);
+    onFocus?.(event);
+  }, [onFocus]);
+  const handleBlur = (0, import_react7.useCallback)((event) => {
+    setIsFocused(false);
+    onBlur?.(event);
+  }, [onBlur]);
+  const currentState = errorMessage ? "error" : successMessage ? "success" : warningMessage ? "warning" : state;
+  const inputType = type === "password" && showPassword ? "text" : type;
+  const containerClasses = [
+    "cria-input-container",
+    `cria-input-container--${size}`,
+    `cria-input-container--${variant}`,
+    `cria-input-container--${currentState}`,
+    disabled && "cria-input-container--disabled",
+    readOnly && "cria-input-container--readonly",
+    isFocused && "cria-input-container--focused",
+    leftIcon && "cria-input-container--with-left-icon",
+    (rightIcon || showPasswordToggle || showClearButton) && "cria-input-container--with-right-icon",
+    className
+  ].filter(Boolean).join(" ");
+  const inputClasses = [
+    "cria-input",
+    `cria-input--${size}`,
+    `cria-input--${variant}`,
+    `cria-input--${currentState}`,
+    disabled && "cria-input--disabled",
+    readOnly && "cria-input--readonly",
+    isFocused && "cria-input--focused"
+  ].filter(Boolean).join(" ");
+  const currentValue = value || inputRef.current?.value || "";
+  const characterCount = String(currentValue).length;
+  const shouldShowClearButton = showClearButton && currentValue && !disabled && !readOnly;
+  const shouldShowPasswordToggle = showPasswordToggle && type === "password" && !disabled && !readOnly;
+  return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: containerClasses, style, children: [
+    label && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("label", { className: "cria-input__label", children: /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(Typography, { variant: "body", weight: "medium", color: "primary", children: [
+      label,
+      required && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("span", { className: "cria-input__required", children: " *" })
+    ] }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "cria-input__wrapper", children: [
+      leftIcon && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "cria-input__left-icon", children: leftIcon }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+        "input",
+        {
+          ref: inputRef,
+          type: inputType,
+          className: inputClasses,
+          placeholder,
+          disabled,
+          readOnly,
+          required,
+          maxLength,
+          value,
+          defaultValue,
+          onChange,
+          onFocus: handleFocus,
+          onBlur: handleBlur,
+          ...props
+        }
+      ),
+      (rightIcon || shouldShowPasswordToggle || shouldShowClearButton) && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "cria-input__right-icons", children: [
+        shouldShowClearButton && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+          "button",
+          {
+            type: "button",
+            className: "cria-input__clear-button",
+            onClick: handleClear,
+            "aria-label": "Clear input",
+            children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(import_phosphor_react3.X, { size: 16 })
+          }
+        ),
+        shouldShowPasswordToggle && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+          "button",
+          {
+            type: "button",
+            className: "cria-input__password-toggle",
+            onClick: handlePasswordToggle,
+            "aria-label": showPassword ? "Hide password" : "Show password",
+            children: showPassword ? /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(import_phosphor_react3.EyeSlash, { size: 16 }) : /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(import_phosphor_react3.Eye, { size: 16 })
+          }
+        ),
+        rightIcon && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { className: "cria-input__right-icon", children: rightIcon })
+      ] })
+    ] }),
+    (helperText || errorMessage || successMessage || warningMessage || showCharacterCount) && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { className: "cria-input__messages", children: [
+      helperText && !errorMessage && !successMessage && !warningMessage && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Typography, { variant: "body", color: "secondary", className: "cria-input__helper-text", children: helperText }),
+      errorMessage && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(Typography, { variant: "body", color: "error", className: "cria-input__error-message", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(import_phosphor_react3.WarningCircle, { size: 14, style: { marginRight: "4px" } }),
+        errorMessage
+      ] }),
+      successMessage && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(Typography, { variant: "body", color: "success", className: "cria-input__success-message", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(import_phosphor_react3.Check, { size: 14, style: { marginRight: "4px" } }),
+        successMessage
+      ] }),
+      warningMessage && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(Typography, { variant: "body", color: "warning", className: "cria-input__warning-message", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(import_phosphor_react3.WarningCircle, { size: 14, style: { marginRight: "4px" } }),
+        warningMessage
+      ] }),
+      showCharacterCount && maxLength && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(Typography, { variant: "body", color: "secondary", className: "cria-input__character-count", children: [
+        characterCount,
+        "/",
+        maxLength
+      ] })
+    ] })
+  ] });
+});
+Input.displayName = "Input";
+
+// src/components/Modal/Modal.tsx
+var import_react8 = require("react");
+var import_phosphor_react4 = require("phosphor-react");
+var import_jsx_runtime12 = require("react/jsx-runtime");
+var Modal = ({
+  isOpen,
+  onClose,
+  title,
+  children,
+  size = "md",
+  showCloseButton = true,
+  closeOnOverlayClick = true,
+  closeOnEscape = true,
+  lockBodyScroll = true,
+  centered = true,
+  className = "",
+  style,
+  footer,
+  showHeader = true,
+  showFooter = false,
+  overlayClassName = "",
+  overlayStyle,
+  scrollable = true,
+  animationDuration = 200,
+  ...props
+}) => {
+  const modalRef = (0, import_react8.useRef)(null);
+  const previousActiveElement = (0, import_react8.useRef)(null);
+  const overlayRef = (0, import_react8.useRef)(null);
+  const handleEscapeKey = (0, import_react8.useCallback)((event) => {
+    if (event.key === "Escape" && closeOnEscape) {
+      onClose();
+    }
+  }, [closeOnEscape, onClose]);
+  const handleOverlayClick = (0, import_react8.useCallback)((event) => {
+    if (closeOnOverlayClick && event.target === overlayRef.current) {
+      onClose();
+    }
+  }, [closeOnOverlayClick, onClose]);
+  const handleFocus = (0, import_react8.useCallback)(() => {
+    if (modalRef.current) {
+      const focusableElements = modalRef.current.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      const firstElement = focusableElements[0];
+      if (firstElement) {
+        firstElement.focus();
+      }
+    }
+  }, []);
+  const toggleBodyScroll = (0, import_react8.useCallback)((lock) => {
+    if (lock) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, []);
+  (0, import_react8.useEffect)(() => {
+    if (isOpen) {
+      previousActiveElement.current = document.activeElement;
+      document.addEventListener("keydown", handleEscapeKey);
+      if (lockBodyScroll) {
+        toggleBodyScroll(true);
+      }
+      setTimeout(handleFocus, 0);
+    } else {
+      document.removeEventListener("keydown", handleEscapeKey);
+      if (lockBodyScroll) {
+        toggleBodyScroll(false);
+      }
+      if (previousActiveElement.current) {
+        previousActiveElement.current.focus();
+      }
+    }
+    return () => {
+      document.removeEventListener("keydown", handleEscapeKey);
+      if (lockBodyScroll) {
+        toggleBodyScroll(false);
+      }
+    };
+  }, [isOpen, handleEscapeKey, lockBodyScroll, handleFocus]);
+  const overlayClasses = [
+    "cria-modal-overlay",
+    isOpen ? "cria-modal-overlay--visible" : "",
+    overlayClassName
+  ].filter(Boolean).join(" ");
+  const modalClasses = [
+    "cria-modal",
+    `cria-modal--${size}`,
+    centered ? "cria-modal--centered" : "",
+    scrollable ? "cria-modal--scrollable" : "",
+    isOpen ? "cria-modal--visible" : "",
+    className
+  ].filter(Boolean).join(" ");
+  if (!isOpen) {
+    return null;
+  }
+  return /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+    "div",
+    {
+      ref: overlayRef,
+      className: overlayClasses,
+      style: {
+        animationDuration: `${animationDuration}ms`,
+        ...overlayStyle
+      },
+      onClick: handleOverlayClick,
+      role: "dialog",
+      "aria-modal": "true",
+      "aria-labelledby": title ? "modal-title" : void 0,
+      "aria-describedby": "modal-content",
+      children: /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
+        "div",
+        {
+          ref: modalRef,
+          className: modalClasses,
+          style: {
+            animationDuration: `${animationDuration}ms`,
+            ...style
+          },
+          ...props,
+          children: [
+            showHeader && /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { className: "cria-modal__header", children: [
+              title && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+                Typography,
+                {
+                  id: "modal-title",
+                  variant: "h3",
+                  weight: "semiBold",
+                  className: "cria-modal__title",
+                  children: title
+                }
+              ),
+              showCloseButton && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+                Button,
+                {
+                  variant: "ghost",
+                  size: "sm",
+                  onClick: onClose,
+                  className: "cria-modal__close-button",
+                  "aria-label": "Close modal",
+                  children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_phosphor_react4.X, { size: 20 })
+                }
+              )
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+              "div",
+              {
+                id: "modal-content",
+                className: "cria-modal__content",
+                children
+              }
+            ),
+            showFooter && footer && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { className: "cria-modal__footer", children: footer })
+          ]
+        }
+      )
+    }
+  );
+};
+
+// src/components/Navigation/Navigation.tsx
+var import_react9 = require("react");
+var import_phosphor_react5 = require("phosphor-react");
+var import_jsx_runtime13 = require("react/jsx-runtime");
+var Sidebar = ({
+  items,
+  activeRoute,
+  collapsed = false,
+  onToggle,
+  showToggle = true,
+  title,
+  titleHref,
+  className,
+  style,
+  ...props
+}) => {
+  const [isMobile, setIsMobile] = (0, import_react9.useState)(false);
+  const [expandedItems, setExpandedItems] = (0, import_react9.useState)(
+    new Set(items.filter((item) => item.defaultExpanded).map((item) => item.id))
+  );
+  (0, import_react9.useEffect)(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+  const handleToggle = (0, import_react9.useCallback)(() => {
+    onToggle?.(!collapsed);
+  }, [collapsed, onToggle]);
+  const handleSubitemToggle = (0, import_react9.useCallback)((itemId) => {
+    setExpandedItems((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(itemId)) {
+        newSet.delete(itemId);
+      } else {
+        newSet.add(itemId);
+      }
+      return newSet;
+    });
+  }, []);
+  const handleKeyDown = (0, import_react9.useCallback)((event, index) => {
+    const currentIndex = index;
+    const nextIndex = currentIndex + 1;
+    const prevIndex = currentIndex - 1;
     switch (event.key) {
       case "ArrowDown":
         event.preventDefault();
-        newIndex = newIndex < options.length - 1 ? newIndex + 1 : 0;
+        if (nextIndex < items.length) {
+          const nextItem = document.querySelector(`[data-nav-item="${nextIndex}"]`);
+          nextItem?.focus();
+        }
         break;
       case "ArrowUp":
         event.preventDefault();
-        newIndex = newIndex > 0 ? newIndex - 1 : options.length - 1;
+        if (prevIndex >= 0) {
+          const prevItem = document.querySelector(`[data-nav-item="${prevIndex}"]`);
+          prevItem?.focus();
+        }
         break;
-      case "Home":
+    }
+  }, [items.length]);
+  const sidebarClasses = [
+    "cria-sidebar",
+    collapsed && "cria-sidebar--collapsed",
+    !collapsed && "cria-sidebar--expanded",
+    isMobile && "cria-sidebar--mobile",
+    className
+  ].filter(Boolean).join(" ");
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(
+    "nav",
+    {
+      className: sidebarClasses,
+      style,
+      role: "navigation",
+      "aria-label": "Main navigation",
+      ...props,
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "cria-sidebar__header", children: [
+          title && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { className: "cria-sidebar__title-section", children: titleHref ? /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("a", { href: titleHref, className: "cria-sidebar__title-link", children: collapsed ? /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { className: "cria-sidebar__logo", children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+            "img",
+            {
+              src: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTYiIGZpbGw9InVybCgjZ3JhZGllbnQwX2xpbmVhcl8xXzEpIi8+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRpZW50MF9saW5lYXJfMV8xIiB4MT0iMCIgeTE9IjAiIHgyPSIzMiIgeTI9IjMyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiM3MzQ2QTAiLz4KPHN0b3Agb2Zmc2V0PSIwLjMiIHN0b3AtY29sb3I9IiM4QzVBRjQiLz4KPHN0b3Agb2Zmc2V0PSIwLjciIHN0b3AtY29sb3I9IiM0QjU2NjMiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjN0I0N0Y1Ii8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+",
+              alt: "CRIA.lab",
+              className: "cria-sidebar__logo-img"
+            }
+          ) }) : /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography, { variant: "h3", weight: "bold", color: "primary", children: title }) }) : collapsed ? /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { className: "cria-sidebar__logo", children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+            "img",
+            {
+              src: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTYiIGZpbGw9InVybCgjZ3JhZGllbnQwX2xpbmVhcl8xXzEpIi8+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRpZW50MF9saW5lYXJfMV8xIiB4MT0iMCIgeTE9IjAiIHgyPSIzMiIgeTI9IjMyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiM3MzQ2QTAiLz4KPHN0b3Agb2Zmc2V0PSIwLjMiIHN0b3AtY29sb3I9IiM4QzVBRjQiLz4KPHN0b3Agb2Zmc2V0PSIwLjciIHN0b3AtY29sb3I9IiM0QjU2NjMiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjN0I0N0Y1Ii8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+",
+              alt: "CRIA.lab",
+              className: "cria-sidebar__logo-img"
+            }
+          ) }) : /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography, { variant: "h3", weight: "bold", color: "primary", children: title }) }),
+          showToggle && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+            Button,
+            {
+              variant: "ghost",
+              size: "sm",
+              onClick: handleToggle,
+              "aria-label": "Toggle sidebar",
+              className: "cria-sidebar__toggle",
+              children: collapsed ? /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(import_phosphor_react5.CaretRight, { size: 16 }) : /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(import_phosphor_react5.CaretLeft, { size: 16 })
+            }
+          )
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { className: "cria-sidebar__content", children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("ul", { className: "cria-sidebar__items", role: "menubar", children: items.map((item, index) => {
+          const hasSubitems = item.subitems && item.subitems.length > 0;
+          const isExpanded = expandedItems.has(item.id);
+          const isActive = activeRoute === item.href || hasSubitems && item.subitems?.some((subitem) => activeRoute === subitem.href);
+          return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("li", { className: "cria-sidebar__item-wrapper", children: [
+            hasSubitems ? /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(
+              "div",
+              {
+                className: [
+                  "cria-sidebar__item",
+                  "cria-sidebar__item--group",
+                  isActive && "cria-sidebar__item--active",
+                  item.disabled && "cria-sidebar__item--disabled"
+                ].filter(Boolean).join(" "),
+                "data-nav-item": index,
+                tabIndex: item.disabled ? -1 : 0,
+                onKeyDown: (e) => handleKeyDown(e, index),
+                children: [
+                  item.icon && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("span", { className: "cria-sidebar__icon", "aria-hidden": "true", children: item.icon }),
+                  !collapsed && /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(import_jsx_runtime13.Fragment, { children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("span", { className: "cria-sidebar__label", children: item.label }),
+                    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+                      "button",
+                      {
+                        className: "cria-sidebar__subitem-toggle",
+                        onClick: () => handleSubitemToggle(item.id),
+                        "aria-expanded": isExpanded,
+                        "aria-label": `Toggle ${item.label} submenu`,
+                        children: isExpanded ? /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(import_phosphor_react5.CaretDown, { size: 16 }) : /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(import_phosphor_react5.CaretRight, { size: 16 })
+                      }
+                    )
+                  ] }),
+                  item.badge && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("span", { className: "cria-sidebar__badge", "aria-hidden": "true", children: item.badge })
+                ]
+              }
+            ) : /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(
+              "a",
+              {
+                href: item.href,
+                className: [
+                  "cria-sidebar__item",
+                  isActive && "cria-sidebar__item--active",
+                  item.disabled && "cria-sidebar__item--disabled"
+                ].filter(Boolean).join(" "),
+                "data-nav-item": index,
+                tabIndex: item.disabled ? -1 : 0,
+                onKeyDown: (e) => handleKeyDown(e, index),
+                onClick: item.onClick,
+                "aria-current": activeRoute === item.href ? "page" : void 0,
+                "aria-disabled": item.disabled,
+                children: [
+                  item.icon && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("span", { className: "cria-sidebar__icon", "aria-hidden": "true", children: item.icon }),
+                  !collapsed && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("span", { className: "cria-sidebar__label", children: item.label }),
+                  item.badge && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("span", { className: "cria-sidebar__badge", "aria-hidden": "true", children: item.badge })
+                ]
+              }
+            ),
+            hasSubitems && isExpanded && !collapsed && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("ul", { className: "cria-sidebar__subitems", role: "menu", children: item.subitems?.map((subitem) => /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("li", { className: "cria-sidebar__subitem-wrapper", children: /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(
+              "a",
+              {
+                href: subitem.href,
+                className: [
+                  "cria-sidebar__subitem",
+                  activeRoute === subitem.href && "cria-sidebar__subitem--active",
+                  subitem.disabled && "cria-sidebar__subitem--disabled"
+                ].filter(Boolean).join(" "),
+                onClick: subitem.onClick,
+                "aria-current": activeRoute === subitem.href ? "page" : void 0,
+                "aria-disabled": subitem.disabled,
+                children: [
+                  subitem.icon && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("span", { className: "cria-sidebar__subitem-icon", "aria-hidden": "true", children: subitem.icon }),
+                  /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("span", { className: "cria-sidebar__subitem-label", children: subitem.label }),
+                  subitem.badge && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("span", { className: "cria-sidebar__subitem-badge", "aria-hidden": "true", children: subitem.badge })
+                ]
+              }
+            ) }, subitem.id)) })
+          ] }, item.id);
+        }) }) })
+      ]
+    }
+  );
+};
+var Topbar = ({
+  items,
+  activeRoute,
+  brand,
+  brandHref,
+  showMobileMenu = false,
+  onMobileMenuToggle,
+  className,
+  style,
+  ...props
+}) => {
+  const [isMobile, setIsMobile] = (0, import_react9.useState)(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = (0, import_react9.useState)(false);
+  (0, import_react9.useEffect)(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+  const handleMobileMenuToggle = (0, import_react9.useCallback)(() => {
+    const newState = !mobileMenuOpen;
+    setMobileMenuOpen(newState);
+    onMobileMenuToggle?.(newState);
+  }, [mobileMenuOpen, onMobileMenuToggle]);
+  const handleKeyDown = (0, import_react9.useCallback)((event, index) => {
+    const currentIndex = index;
+    const nextIndex = currentIndex + 1;
+    const prevIndex = currentIndex - 1;
+    switch (event.key) {
+      case "ArrowRight":
         event.preventDefault();
-        newIndex = 0;
+        if (nextIndex < items.length) {
+          const nextItem = document.querySelector(`[data-nav-item="${nextIndex}"]`);
+          nextItem?.focus();
+        }
         break;
-      case "End":
+      case "ArrowLeft":
         event.preventDefault();
-        newIndex = options.length - 1;
+        if (prevIndex >= 0) {
+          const prevItem = document.querySelector(`[data-nav-item="${prevIndex}"]`);
+          prevItem?.focus();
+        }
+        break;
+    }
+  }, [items.length]);
+  const topbarClasses = [
+    "cria-topbar",
+    isMobile && "cria-topbar--mobile",
+    className
+  ].filter(Boolean).join(" ");
+  const itemsClasses = [
+    "cria-topbar__items",
+    isMobile && !mobileMenuOpen && "cria-topbar__items--hidden"
+  ].filter(Boolean).join(" ");
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(
+    "nav",
+    {
+      className: topbarClasses,
+      style,
+      role: "navigation",
+      "aria-label": "Main navigation",
+      ...props,
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: "cria-topbar__content", children: [
+          brand && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { className: "cria-topbar__brand", children: brandHref ? /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("a", { href: brandHref, className: "cria-topbar__brand-link", children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography, { variant: "h3", weight: "bold", color: "primary", children: brand }) }) : /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography, { variant: "h3", weight: "bold", color: "primary", children: brand }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { className: itemsClasses, children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("ul", { className: "cria-topbar__items-list", role: "menubar", children: items.map((item, index) => /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("li", { className: "cria-topbar__item-wrapper", children: /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(
+            "a",
+            {
+              href: item.href,
+              className: [
+                "cria-topbar__item",
+                activeRoute === item.href && "cria-topbar__item--active",
+                item.disabled && "cria-topbar__item--disabled"
+              ].filter(Boolean).join(" "),
+              "data-nav-item": index,
+              tabIndex: item.disabled ? -1 : 0,
+              onKeyDown: (e) => handleKeyDown(e, index),
+              onClick: item.onClick,
+              "aria-current": activeRoute === item.href ? "page" : void 0,
+              "aria-disabled": item.disabled,
+              children: [
+                item.icon && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("span", { className: "cria-topbar__icon", "aria-hidden": "true", children: item.icon }),
+                /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("span", { className: "cria-topbar__label", children: item.label }),
+                item.badge && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("span", { className: "cria-topbar__badge", "aria-hidden": "true", children: item.badge })
+              ]
+            }
+          ) }, item.id)) }) }),
+          isMobile && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+            Button,
+            {
+              variant: "ghost",
+              size: "sm",
+              onClick: handleMobileMenuToggle,
+              "aria-label": "Toggle menu",
+              "aria-expanded": mobileMenuOpen,
+              className: "cria-topbar__mobile-toggle",
+              children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(import_phosphor_react5.List, { size: 16 })
+            }
+          )
+        ] }),
+        isMobile && mobileMenuOpen && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { className: "cria-topbar__mobile-menu", role: "menu", children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("ul", { className: "cria-topbar__mobile-items", children: items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("li", { className: "cria-topbar__mobile-item-wrapper", children: /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(
+          "a",
+          {
+            href: item.href,
+            className: [
+              "cria-topbar__mobile-item",
+              activeRoute === item.href && "cria-topbar__mobile-item--active",
+              item.disabled && "cria-topbar__mobile-item--disabled"
+            ].filter(Boolean).join(" "),
+            onClick: item.onClick,
+            "aria-current": activeRoute === item.href ? "page" : void 0,
+            "aria-disabled": item.disabled,
+            children: [
+              item.icon && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("span", { className: "cria-topbar__mobile-icon", "aria-hidden": "true", children: item.icon }),
+              /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("span", { className: "cria-topbar__mobile-label", children: item.label }),
+              item.badge && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("span", { className: "cria-topbar__mobile-badge", "aria-hidden": "true", children: item.badge })
+            ]
+          }
+        ) }, item.id)) }) })
+      ]
+    }
+  );
+};
+var Navigation = ({
+  sidebar,
+  topbar,
+  variant = "both",
+  className,
+  style,
+  ...props
+}) => {
+  const navigationClasses = [
+    "cria-navigation",
+    `cria-navigation--${variant}`,
+    className
+  ].filter(Boolean).join(" ");
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { className: navigationClasses, style, ...props, children: [
+    sidebar && (variant === "sidebar-only" || variant === "both") && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Sidebar, { ...sidebar }),
+    topbar && (variant === "topbar-only" || variant === "both") && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Topbar, { ...topbar })
+  ] });
+};
+
+// src/components/RadioGroup/RadioGroup.tsx
+var import_react10 = require("react");
+var import_jsx_runtime14 = require("react/jsx-runtime");
+var RadioGroupContext = (0, import_react10.createContext)(null);
+var useRadioGroup = () => {
+  const context = (0, import_react10.useContext)(RadioGroupContext);
+  if (!context) {
+    throw new Error("RadioGroup components must be used within a RadioGroup");
+  }
+  return context;
+};
+function getSizeStyles4(size) {
+  switch (size) {
+    case "sm":
+      return {
+        fontSize: typography.fontSize.bodySmall,
+        gap: spacing[2]
+      };
+    case "lg":
+      return {
+        fontSize: typography.fontSize.body,
+        gap: spacing[4]
+      };
+    case "md":
+    default:
+      return {
+        fontSize: typography.fontSize.body,
+        gap: spacing[3]
+      };
+  }
+}
+function getOrientationStyles(orientation) {
+  switch (orientation) {
+    case "horizontal":
+      return {
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        gap: spacing[4]
+      };
+    case "vertical":
+    default:
+      return {
+        display: "flex",
+        flexDirection: "column",
+        gap: spacing[2]
+      };
+  }
+}
+var RadioGroup = ({
+  name,
+  value,
+  onChange,
+  disabled = false,
+  required = false,
+  size = "md",
+  error,
+  orientation = "vertical",
+  className = "",
+  style,
+  children,
+  ...props
+}) => {
+  const fieldsetRef = (0, import_react10.useRef)(null);
+  const contextValue = {
+    name,
+    value,
+    onChange,
+    disabled,
+    required,
+    size,
+    error,
+    orientation
+  };
+  const handleKeyDown = (0, import_react10.useCallback)((event) => {
+    if (disabled) return;
+    const radios = fieldsetRef.current?.querySelectorAll('input[type="radio"]');
+    if (!radios.length) return;
+    const currentIndex = Array.from(radios).findIndex((radio) => radio === document.activeElement);
+    let nextIndex = currentIndex;
+    switch (event.key) {
+      case "ArrowDown":
+      case "ArrowRight":
+        event.preventDefault();
+        nextIndex = currentIndex < radios.length - 1 ? currentIndex + 1 : 0;
+        break;
+      case "ArrowUp":
+      case "ArrowLeft":
+        event.preventDefault();
+        nextIndex = currentIndex > 0 ? currentIndex - 1 : radios.length - 1;
         break;
       case " ":
       case "Enter":
         event.preventDefault();
-        if (newIndex >= 0 && newIndex < options.length) {
-          const option = options[newIndex];
-          if (!option.disabled) {
-            handleChange(option.value);
-          }
+        if (currentIndex >= 0) {
+          radios[currentIndex].click();
         }
-        return;
+        break;
       default:
         return;
     }
-    setFocusedIndex(newIndex);
-    radioRefs.current[newIndex]?.focus();
-  };
-  const handleFocus = (index) => {
-    setFocusedIndex(index);
-  };
-  const handleBlur = () => {
-    setFocusedIndex(-1);
-  };
-  (0, import_react13.useEffect)(() => {
-    if (focusedIndex >= 0 && radioRefs.current[focusedIndex]) {
-      radioRefs.current[focusedIndex]?.focus();
+    if (nextIndex !== currentIndex && radios[nextIndex]) {
+      radios[nextIndex].focus();
     }
-  }, [focusedIndex]);
-  const radioGroupId = `radio-group-${Math.random().toString(36).substr(2, 9)}`;
-  const labelId = label ? `${radioGroupId}-label` : void 0;
-  const descriptionId = description ? `${radioGroupId}-description` : void 0;
-  const errorId = error ? `${radioGroupId}-error` : void 0;
-  const radioGroupClasses = ["cria-radio-group", className].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: radioGroupClasses, children: [
-    label && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(
+  }, [disabled]);
+  const classes = [
+    "cria-radio-group",
+    `cria-radio-group--${size}`,
+    `cria-radio-group--${orientation}`,
+    disabled && "cria-radio-group--disabled",
+    error && "cria-radio-group--error",
+    className
+  ].filter(Boolean).join(" ");
+  const fieldsetStyles = {
+    border: "none",
+    padding: 0,
+    margin: 0,
+    ...getSizeStyles4(size),
+    ...getOrientationStyles(orientation),
+    ...style
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(RadioGroupContext.Provider, { value: contextValue, children: /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
+    "fieldset",
+    {
+      ref: fieldsetRef,
+      className: classes,
+      style: fieldsetStyles,
+      disabled,
+      "aria-required": required,
+      "aria-invalid": error ? "true" : void 0,
+      onKeyDown: handleKeyDown,
+      ...props,
+      children: [
+        children,
+        error && /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
+          "div",
+          {
+            role: "alert",
+            style: {
+              color: colors.error,
+              fontSize: typography.fontSize.caption,
+              marginTop: spacing[2],
+              display: "flex",
+              alignItems: "center",
+              gap: spacing[1]
+            },
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("span", { children: "\u26A0" }),
+              error
+            ]
+          }
+        )
+      ]
+    }
+  ) });
+};
+var RadioGroupLabel = ({
+  children,
+  className = "",
+  style,
+  id,
+  ...props
+}) => {
+  const { required, size, name } = useRadioGroup();
+  const labelId = id || `${name}-legend`;
+  const classes = [
+    "cria-radio-group-label",
+    `cria-radio-group-label--${size}`,
+    className
+  ].filter(Boolean).join(" ");
+  const labelStyles = {
+    fontFamily: typography.fontFamily.primary,
+    fontWeight: typography.fontWeight.medium,
+    color: colors.text.primary,
+    marginBottom: spacing[2],
+    display: "block",
+    ...style
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
+    "legend",
+    {
+      id: labelId,
+      className: classes,
+      style: labelStyles,
+      "aria-required": required,
+      ...props,
+      children: [
+        children,
+        required && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
+          "span",
+          {
+            style: {
+              color: colors.error,
+              marginLeft: spacing[1]
+            },
+            "aria-label": "required",
+            children: "*"
+          }
+        )
+      ]
+    }
+  );
+};
+var RadioGroupItem = ({
+  value,
+  children,
+  disabled = false,
+  id,
+  className = "",
+  style,
+  ...props
+}) => {
+  const { name, value: selectedValue, onChange, disabled: groupDisabled, size } = useRadioGroup();
+  const isDisabled = disabled || groupDisabled;
+  const isSelected = selectedValue === value;
+  const inputId = id || `${name}-${value}`;
+  const labelId = `${inputId}-label`;
+  const handleChange = (0, import_react10.useCallback)((event) => {
+    if (isDisabled) return;
+    if (onChange) {
+      onChange(value);
+    }
+  }, [isDisabled, onChange, value]);
+  const classes = [
+    "cria-radio-group-item",
+    `cria-radio-group-item--${size}`,
+    isSelected && "cria-radio-group-item--selected",
+    isDisabled && "cria-radio-group-item--disabled",
+    className
+  ].filter(Boolean).join(" ");
+  const containerStyles = {
+    display: "flex",
+    alignItems: "center",
+    gap: spacing[2],
+    cursor: isDisabled ? "not-allowed" : "pointer",
+    opacity: isDisabled ? 0.6 : 1,
+    ...style
+  };
+  const inputStyles = {
+    appearance: "none",
+    width: size === "sm" ? "16px" : size === "lg" ? "20px" : "18px",
+    height: size === "sm" ? "16px" : size === "lg" ? "20px" : "18px",
+    borderRadius: "50%",
+    border: `2px solid ${isSelected ? colors.primary : colors.border.medium}`,
+    backgroundColor: isSelected ? colors.primary : colors.backgroundLight,
+    position: "relative",
+    cursor: isDisabled ? "not-allowed" : "pointer",
+    transition: "all 0.2s ease-in-out",
+    margin: 0,
+    flexShrink: 0
+  };
+  const labelStyles = {
+    fontFamily: typography.fontFamily.primary,
+    fontSize: getSizeStyles4(size).fontSize,
+    color: isDisabled ? colors.text.disabled : colors.text.primary,
+    cursor: isDisabled ? "not-allowed" : "pointer",
+    userSelect: "none",
+    flex: 1
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: classes, style: containerStyles, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
+      "input",
+      {
+        type: "radio",
+        id: inputId,
+        name,
+        value,
+        ...onChange ? { checked: isSelected } : {},
+        onChange: handleChange,
+        disabled: isDisabled,
+        style: inputStyles,
+        "aria-labelledby": labelId,
+        ...props
+      }
+    ),
+    /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
       "label",
       {
         id: labelId,
-        className: "cria-radio-group__label",
-        htmlFor: radioGroupId,
-        children: [
-          label,
-          required && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "cria-radio-group__required", children: " *" })
-        ]
+        htmlFor: inputId,
+        style: labelStyles,
+        children
       }
-    ),
-    description && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { id: descriptionId, className: "cria-radio-group__description", children: description }),
-    /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(
-      "div",
-      {
-        ref: radioGroupRef,
-        role: "radiogroup",
-        id: radioGroupId,
-        className: [
-          "cria-radio-group__container",
-          `cria-radio-group__container--${orientation}`,
-          variant !== "default" ? `cria-radio-group--${variant}` : "",
-          disabled ? "cria-radio-group__container--disabled" : "",
-          error ? "cria-radio-group__container--error" : "",
-          className
-        ].filter(Boolean).join(" "),
-        "aria-labelledby": labelId,
-        "aria-describedby": descriptionId || errorId,
-        "aria-required": required,
-        "aria-invalid": error ? "true" : "false",
-        "aria-orientation": orientation,
-        onKeyDown: handleKeyDown,
-        tabIndex: -1,
-        children: options.map((option, index) => {
-          const optionClasses = [
-            "cria-radio-group__option",
-            `cria-radio-group__option--${size}`,
-            `cria-radio-group__option--${variant}`,
-            disabled || option.disabled ? "cria-radio-group__option--disabled" : "",
-            focusedIndex === index ? "cria-radio-group__option--focused" : "",
-            value === option.value ? "cria-radio-group__option--checked" : ""
-          ].filter(Boolean).join(" ");
-          return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(
-            "div",
-            {
-              className: optionClasses,
-              children: [
-                /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(
-                  "input",
-                  {
-                    ref: (el) => radioRefs.current[index] = el,
-                    type: "radio",
-                    id: `${radioGroupId}-${option.value}`,
-                    name: name || radioGroupId,
-                    value: option.value,
-                    checked: internalValue === option.value,
-                    disabled: disabled || option.disabled,
-                    onChange: () => handleChange(option.value),
-                    onFocus: () => handleFocus(index),
-                    onBlur: handleBlur,
-                    className: `cria-radio-group__input cria-radio--${size}`,
-                    "aria-describedby": option.description ? `${radioGroupId}-${option.value}-description` : void 0
-                  }
-                ),
-                /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(
-                  "label",
-                  {
-                    htmlFor: `${radioGroupId}-${option.value}`,
-                    className: "cria-radio-group__option-label",
-                    children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "cria-radio-group__option-indicator", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "cria-radio-group__option-dot" }) }),
-                      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("span", { className: "cria-radio-group__option-content", children: [
-                        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "cria-radio-group__option-text", children: option.label }),
-                        option.description && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(
-                          "span",
-                          {
-                            id: `${radioGroupId}-${option.value}-description`,
-                            className: "cria-radio-group__option-description",
-                            children: option.description
-                          }
-                        )
-                      ] })
-                    ]
-                  }
-                )
-              ]
-            },
-            option.value
-          );
-        })
-      }
-    ),
-    error && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { id: errorId, className: "cria-radio-group__error", role: "alert", children: error })
+    )
   ] });
 };
 
 // src/components/Sidebar/Sidebar.tsx
-var import_react14 = require("react");
-var import_jsx_runtime20 = require("react/jsx-runtime");
+var import_react11 = require("react");
+var import_jsx_runtime15 = require("react/jsx-runtime");
 var Sidebar2 = ({
   items,
   activeItem: controlledActiveItem,
@@ -3482,17 +2904,17 @@ var Sidebar2 = ({
   style,
   ...props
 }) => {
-  const [internalActiveItem, setInternalActiveItem] = (0, import_react14.useState)(
+  const [internalActiveItem, setInternalActiveItem] = (0, import_react11.useState)(
     defaultActiveItem || items[0]?.id || ""
   );
-  const [internalCollapsed, setInternalCollapsed] = (0, import_react14.useState)(false);
+  const [internalCollapsed, setInternalCollapsed] = (0, import_react11.useState)(false);
   const isControlled = controlledActiveItem !== void 0;
   const activeItem = isControlled ? controlledActiveItem : internalActiveItem;
   const isCollapseControlled = controlledCollapsed !== void 0;
   const collapsed = isCollapseControlled ? controlledCollapsed : internalCollapsed;
-  const itemRefs = (0, import_react14.useRef)({});
-  const sidebarRef = (0, import_react14.useRef)(null);
-  const handleItemChange = (0, import_react14.useCallback)((itemId) => {
+  const itemRefs = (0, import_react11.useRef)({});
+  const sidebarRef = (0, import_react11.useRef)(null);
+  const handleItemChange = (0, import_react11.useCallback)((itemId) => {
     if (isControlled) {
       onChange?.(itemId);
     } else {
@@ -3500,7 +2922,7 @@ var Sidebar2 = ({
       onChange?.(itemId);
     }
   }, [isControlled, onChange]);
-  const handleCollapseToggle = (0, import_react14.useCallback)(() => {
+  const handleCollapseToggle = (0, import_react11.useCallback)(() => {
     if (isCollapseControlled) {
       onCollapseChange?.(!collapsed);
     } else {
@@ -3508,7 +2930,7 @@ var Sidebar2 = ({
       onCollapseChange?.(!collapsed);
     }
   }, [isCollapseControlled, collapsed, onCollapseChange]);
-  const handleKeyDown = (0, import_react14.useCallback)((event, itemId) => {
+  const handleKeyDown = (0, import_react11.useCallback)((event, itemId) => {
     const flatItems = items.flatMap(
       (item) => item.children ? [item, ...item.children] : [item]
     );
@@ -3553,7 +2975,7 @@ var Sidebar2 = ({
       itemRefs.current[nextItemId]?.focus();
     }
   }, [items, handleItemChange]);
-  (0, import_react14.useEffect)(() => {
+  (0, import_react11.useEffect)(() => {
     if (activeItem && itemRefs.current[activeItem]) {
       itemRefs.current[activeItem]?.focus();
     }
@@ -3585,8 +3007,8 @@ var Sidebar2 = ({
       isDisabled ? "cria-sidebar__item--disabled" : null,
       hasChildren ? "cria-sidebar__item--has-children" : null
     ].filter(Boolean).join(" ");
-    return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "cria-sidebar__item-wrapper", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(
+    return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "cria-sidebar__item-wrapper", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(
         "button",
         {
           ref: (el) => {
@@ -3602,17 +3024,17 @@ var Sidebar2 = ({
           onClick: () => !isDisabled && handleItemChange(item.id),
           onKeyDown: (e) => !isDisabled && handleKeyDown(e, item.id),
           children: [
-            item.icon && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "cria-sidebar__item-icon", children: item.icon }),
-            !collapsed && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "cria-sidebar__item-label", children: item.label }),
-            !collapsed && item.badge && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "cria-sidebar__item-badge", children: item.badge }),
-            hasChildren && !collapsed && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "cria-sidebar__item-arrow", children: item.expanded ? "\u25BC" : "\u25B6" })
+            item.icon && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "cria-sidebar__item-icon", children: item.icon }),
+            !collapsed && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "cria-sidebar__item-label", children: item.label }),
+            !collapsed && item.badge && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "cria-sidebar__item-badge", children: item.badge }),
+            hasChildren && !collapsed && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "cria-sidebar__item-arrow", children: item.expanded ? "\u25BC" : "\u25B6" })
           ]
         }
       ),
-      hasChildren && !collapsed && item.expanded && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "cria-sidebar__submenu", children: item.children?.map((child) => renderSidebarItem(child, level + 1)) })
+      hasChildren && !collapsed && item.expanded && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "cria-sidebar__submenu", children: item.children?.map((child) => renderSidebarItem(child, level + 1)) })
     ] }, item.id);
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(
     "div",
     {
       ref: sidebarRef,
@@ -3622,7 +3044,7 @@ var Sidebar2 = ({
       "aria-label": "Sidebar navigation",
       ...props,
       children: [
-        collapsible && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
+        collapsible && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
           "button",
           {
             className: "cria-sidebar__toggle",
@@ -3631,8 +3053,8 @@ var Sidebar2 = ({
             children: collapsed ? "\u25B6" : "\u25C0"
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "cria-sidebar__items", role: "menu", children: items.map((item) => renderSidebarItem(item)) }),
-        showContent && activeItemData?.content && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "cria-sidebar__items", role: "menu", children: items.map((item) => renderSidebarItem(item)) }),
+        showContent && activeItemData?.content && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
           "div",
           {
             className: contentClasses,
@@ -3644,6 +3066,793 @@ var Sidebar2 = ({
       ]
     }
   );
+};
+
+// src/components/Snackbar/Snackbar.tsx
+var React12 = __toESM(require("react"), 1);
+var import_react_dom = require("react-dom");
+var import_phosphor_react6 = require("phosphor-react");
+var import_jsx_runtime16 = require("react/jsx-runtime");
+var Snackbar = React12.forwardRef(({
+  message,
+  open,
+  title,
+  variant = "default",
+  position = "top",
+  autoHideDuration = 4e3,
+  dismissible = true,
+  action,
+  icon,
+  onClose,
+  className,
+  style,
+  ...props
+}, ref) => {
+  const [isVisible, setIsVisible] = React12.useState(open);
+  const [isAnimating, setIsAnimating] = React12.useState(false);
+  const timeoutRef = React12.useRef(null);
+  React12.useEffect(() => {
+    if (open && autoHideDuration > 0) {
+      timeoutRef.current = setTimeout(() => {
+        handleClose();
+      }, autoHideDuration);
+    }
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, [open, autoHideDuration]);
+  React12.useEffect(() => {
+    if (open) {
+      setIsVisible(true);
+      setIsAnimating(true);
+      setTimeout(() => setIsAnimating(false), 100);
+    } else {
+      setIsAnimating(true);
+      setTimeout(() => {
+        setIsVisible(false);
+        setIsAnimating(false);
+      }, 300);
+    }
+  }, [open]);
+  const handleClose = React12.useCallback(() => {
+    onClose?.();
+  }, [onClose]);
+  const handleBackdropClick = React12.useCallback((event) => {
+    if (dismissible && event.target === event.currentTarget) {
+      handleClose();
+    }
+  }, [dismissible, handleClose]);
+  const handleKeyDown = React12.useCallback((event) => {
+    if (event.key === "Escape" && dismissible) {
+      handleClose();
+    }
+  }, [dismissible, handleClose]);
+  React12.useImperativeHandle(ref, () => ({
+    close: handleClose
+  }), [handleClose]);
+  if (!isVisible) {
+    return null;
+  }
+  const getDefaultIcon = () => {
+    switch (variant) {
+      case "success":
+        return /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(import_phosphor_react6.CheckCircle, { size: 20, "data-testid": "snackbar-icon" });
+      case "error":
+        return /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(import_phosphor_react6.X, { size: 20, "data-testid": "snackbar-icon" });
+      case "warning":
+        return /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(import_phosphor_react6.Info, { size: 20, "data-testid": "snackbar-icon" });
+      case "info":
+        return /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(import_phosphor_react6.Info, { size: 20, "data-testid": "snackbar-icon" });
+      default:
+        return null;
+    }
+  };
+  const displayIcon = icon || getDefaultIcon();
+  const isAlert = variant === "error" || variant === "warning";
+  const role = isAlert ? "alert" : "status";
+  const ariaLive = isAlert ? "assertive" : "polite";
+  const containerClasses = [
+    "cria-snackbar-container",
+    `cria-snackbar-container--${position}`
+  ].filter(Boolean).join(" ");
+  const snackbarClasses = [
+    "cria-snackbar",
+    `cria-snackbar--${variant}`,
+    isAnimating && open && "cria-snackbar--entering",
+    isAnimating && !open && "cria-snackbar--exiting",
+    className
+  ].filter(Boolean).join(" ");
+  const snackbarContent = /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(
+    "div",
+    {
+      "data-testid": "snackbar-container",
+      className: containerClasses,
+      onClick: handleBackdropClick,
+      onKeyDown: handleKeyDown,
+      tabIndex: -1,
+      children: /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(
+        "div",
+        {
+          className: snackbarClasses,
+          style,
+          role,
+          "aria-live": ariaLive,
+          ...props,
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "cria-snackbar__content", children: [
+              displayIcon && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "cria-snackbar__icon", children: displayIcon }),
+              /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "cria-snackbar__text", children: [
+                title && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Typography, { variant: "body", weight: "medium", className: "cria-snackbar__title", children: title }),
+                /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Typography, { variant: "body", className: "cria-snackbar__message", children: message })
+              ] })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "cria-snackbar__actions", children: [
+              action && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(
+                Button,
+                {
+                  variant: "ghost",
+                  size: "sm",
+                  onClick: action.onClick,
+                  className: "cria-snackbar__action",
+                  children: action.label
+                }
+              ),
+              dismissible && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(
+                Button,
+                {
+                  variant: "ghost",
+                  size: "sm",
+                  onClick: handleClose,
+                  className: "cria-snackbar__close",
+                  "aria-label": "Close",
+                  children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(import_phosphor_react6.X, { size: 16 })
+                }
+              )
+            ] })
+          ]
+        }
+      )
+    }
+  );
+  return (0, import_react_dom.createPortal)(snackbarContent, document.body);
+});
+Snackbar.displayName = "Snackbar";
+
+// src/components/Switch/Switch.tsx
+var import_react12 = require("react");
+var import_jsx_runtime17 = require("react/jsx-runtime");
+var Switch = (0, import_react12.forwardRef)(({
+  checked,
+  disabled = false,
+  required = false,
+  readOnly = false,
+  label,
+  helperText,
+  errorMessage,
+  warningMessage,
+  size = "md",
+  variant = "default",
+  color = "primary",
+  className = "",
+  style,
+  onChange,
+  onClick,
+  onFocus,
+  onBlur,
+  value,
+  name,
+  id,
+  inputProps = {},
+  ...props
+}, ref) => {
+  const inputRef = (0, import_react12.useRef)(null);
+  (0, import_react12.useImperativeHandle)(ref, () => ({
+    focus: () => inputRef.current?.focus(),
+    blur: () => inputRef.current?.blur(),
+    getChecked: () => inputRef.current?.checked || false,
+    setChecked: (newChecked) => {
+      if (inputRef.current) {
+        inputRef.current.checked = newChecked;
+      }
+    }
+  }));
+  const handleChange = (0, import_react12.useCallback)((event) => {
+    if (disabled || readOnly) return;
+    onChange?.(event.target.checked, event);
+  }, [disabled, readOnly, onChange]);
+  const handleClick = (0, import_react12.useCallback)((event) => {
+    if (disabled || readOnly) return;
+    onClick?.(event);
+  }, [disabled, readOnly, onClick]);
+  const handleKeyDown = (0, import_react12.useCallback)((event) => {
+    if (disabled || readOnly) return;
+    if (event.key === " " || event.key === "Enter") {
+      event.preventDefault();
+      const newChecked = !checked;
+      onChange?.(newChecked, event);
+    }
+  }, [disabled, readOnly, checked, onChange]);
+  const switchClasses = [
+    "cria-switch",
+    `cria-switch--${size}`,
+    `cria-switch--${variant}`,
+    `cria-switch--${color}`,
+    checked && "cria-switch--checked",
+    disabled && "cria-switch--disabled",
+    readOnly && "cria-switch--readonly",
+    required && "cria-switch--required",
+    errorMessage && "cria-switch--error",
+    warningMessage && "cria-switch--warning",
+    className
+  ].filter(Boolean).join(" ");
+  const inputClasses = [
+    "cria-switch__input",
+    `cria-switch__input--${size}`,
+    `cria-switch__input--${variant}`,
+    `cria-switch__input--${color}`
+  ].filter(Boolean).join(" ");
+  const labelClasses = [
+    "cria-switch__label",
+    `cria-switch__label--${size}`,
+    disabled && "cria-switch__label--disabled",
+    readOnly && "cria-switch__label--readonly"
+  ].filter(Boolean).join(" ");
+  return /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: switchClasses, style, ...props, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "cria-switch__container", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+        "input",
+        {
+          ref: inputRef,
+          type: "checkbox",
+          role: "switch",
+          id: id || (label ? `${name || "switch"}-input` : void 0),
+          name,
+          value,
+          ...checked !== void 0 ? { checked } : {},
+          disabled,
+          readOnly,
+          required,
+          className: inputClasses,
+          onChange: handleChange,
+          onClick: handleClick,
+          onFocus,
+          onBlur,
+          onKeyDown: handleKeyDown,
+          "aria-describedby": [
+            helperText && `${id || name || "switch"}-helper`,
+            errorMessage && `${id || name || "switch"}-error`,
+            warningMessage && `${id || name || "switch"}-warning`
+          ].filter(Boolean).join(" ") || void 0,
+          "aria-invalid": !!errorMessage,
+          "aria-checked": checked || false,
+          "aria-label": label,
+          ...inputProps
+        }
+      ),
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "cria-switch__track", children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "cria-switch__thumb" }) }),
+      label && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("label", { htmlFor: id || (label ? `${name || "switch"}-input` : void 0), className: labelClasses, children: /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(
+        Typography,
+        {
+          variant: "body",
+          color: disabled ? "secondary" : "content",
+          children: [
+            label,
+            required && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { className: "cria-switch__required", "aria-label": "required", children: " *" })
+          ]
+        }
+      ) })
+    ] }),
+    helperText && !errorMessage && !warningMessage && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+      Typography,
+      {
+        variant: "caption",
+        color: "secondary",
+        className: "cria-switch__helper-text",
+        id: `${id || name || "switch"}-helper`,
+        children: helperText
+      }
+    ),
+    errorMessage && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+      Typography,
+      {
+        variant: "caption",
+        color: "error",
+        className: "cria-switch__error-message",
+        id: `${id || name || "switch"}-error`,
+        children: errorMessage
+      }
+    ),
+    warningMessage && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+      Typography,
+      {
+        variant: "caption",
+        color: "warning",
+        className: "cria-switch__warning-message",
+        id: `${id || name || "switch"}-warning`,
+        children: warningMessage
+      }
+    )
+  ] });
+});
+Switch.displayName = "Switch";
+
+// src/components/Tabs/Tabs.tsx
+var import_react13 = require("react");
+var import_jsx_runtime18 = require("react/jsx-runtime");
+var Tabs = ({
+  items,
+  activeTab: controlledActiveTab,
+  defaultActiveTab,
+  onChange,
+  variant = "default",
+  size = "md",
+  orientation = "horizontal",
+  fullWidth = false,
+  showContent = true,
+  className = "",
+  style,
+  ...props
+}) => {
+  const [internalActiveTab, setInternalActiveTab] = (0, import_react13.useState)(
+    defaultActiveTab || items[0]?.id || ""
+  );
+  const isControlled = controlledActiveTab !== void 0;
+  const activeTab = isControlled ? controlledActiveTab : internalActiveTab;
+  const tabRefs = (0, import_react13.useRef)({});
+  const tabListRef = (0, import_react13.useRef)(null);
+  const handleTabChange = (0, import_react13.useCallback)((tabId) => {
+    if (isControlled) {
+      onChange?.(tabId);
+    } else {
+      setInternalActiveTab(tabId);
+      onChange?.(tabId);
+    }
+  }, [isControlled, onChange]);
+  const handleKeyDown = (0, import_react13.useCallback)((event, tabId) => {
+    const tabIds = items.map((item) => item.id);
+    const currentIndex = tabIds.indexOf(tabId);
+    let nextIndex = currentIndex;
+    switch (event.key) {
+      case "ArrowRight":
+        event.preventDefault();
+        nextIndex = (currentIndex + 1) % tabIds.length;
+        break;
+      case "ArrowLeft":
+        event.preventDefault();
+        nextIndex = (currentIndex - 1 + tabIds.length) % tabIds.length;
+        break;
+      case "Home":
+        event.preventDefault();
+        nextIndex = 0;
+        break;
+      case "End":
+        event.preventDefault();
+        nextIndex = tabIds.length - 1;
+        break;
+      case "Enter":
+      case " ":
+        event.preventDefault();
+        handleTabChange(tabId);
+        return;
+      default:
+        return;
+    }
+    while (items[nextIndex]?.disabled && nextIndex !== currentIndex) {
+      if (event.key === "ArrowRight") {
+        nextIndex = (nextIndex + 1) % tabIds.length;
+      } else {
+        nextIndex = (nextIndex - 1 + tabIds.length) % tabIds.length;
+      }
+    }
+    const nextTabId = tabIds[nextIndex];
+    if (nextTabId) {
+      handleTabChange(nextTabId);
+      tabRefs.current[nextTabId]?.focus();
+    }
+  }, [items, handleTabChange]);
+  (0, import_react13.useEffect)(() => {
+    if (activeTab && tabRefs.current[activeTab]) {
+      tabRefs.current[activeTab]?.focus();
+    }
+  }, [activeTab]);
+  const containerClasses = [
+    "cria-tabs",
+    `cria-tabs--${variant}`,
+    `cria-tabs--${size}`,
+    `cria-tabs--${orientation}`,
+    fullWidth ? "cria-tabs--full-width" : null,
+    className
+  ].filter(Boolean).join(" ");
+  const tabListClasses = [
+    "cria-tabs__list",
+    `cria-tabs__list--${variant}`,
+    `cria-tabs__list--${size}`,
+    `cria-tabs__list--${orientation}`,
+    fullWidth ? "cria-tabs__list--full-width" : null
+  ].filter(Boolean).join(" ");
+  const contentClasses = [
+    "cria-tabs__content",
+    `cria-tabs__content--${variant}`,
+    `cria-tabs__content--${size}`
+  ].filter(Boolean).join(" ");
+  const activeTabItem = items.find((item) => item.id === activeTab);
+  return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(
+    "div",
+    {
+      className: containerClasses,
+      style,
+      ...props,
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
+          "div",
+          {
+            ref: tabListRef,
+            className: tabListClasses,
+            role: "tablist",
+            "aria-orientation": orientation,
+            children: items.map((item) => {
+              const isActive = item.id === activeTab;
+              const isDisabled = item.disabled;
+              const tabClasses = [
+                "cria-tabs__tab",
+                `cria-tabs__tab--${variant}`,
+                `cria-tabs__tab--${size}`,
+                isActive ? "cria-tabs__tab--active" : null,
+                isDisabled ? "cria-tabs__tab--disabled" : null,
+                fullWidth ? "cria-tabs__tab--full-width" : null
+              ].filter(Boolean).join(" ");
+              return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(
+                "button",
+                {
+                  ref: (el) => {
+                    tabRefs.current[item.id] = el;
+                  },
+                  className: tabClasses,
+                  role: "tab",
+                  "aria-selected": isActive,
+                  "aria-controls": `cria-tab-panel-${item.id}`,
+                  "aria-disabled": isDisabled,
+                  id: `cria-tab-${item.id}`,
+                  tabIndex: isActive ? 0 : -1,
+                  disabled: isDisabled,
+                  onClick: () => !isDisabled && handleTabChange(item.id),
+                  onKeyDown: (e) => !isDisabled && handleKeyDown(e, item.id),
+                  children: [
+                    item.icon && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: "cria-tabs__tab-icon", children: item.icon }),
+                    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: "cria-tabs__tab-label", children: item.label }),
+                    item.badge && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: "cria-tabs__tab-badge", children: item.badge })
+                  ]
+                },
+                item.id
+              );
+            })
+          }
+        ),
+        showContent && activeTabItem && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
+          "div",
+          {
+            className: contentClasses,
+            role: "tabpanel",
+            id: `cria-tab-panel-${activeTabItem.id}`,
+            "aria-labelledby": `cria-tab-${activeTabItem.id}`,
+            children: activeTabItem.content
+          }
+        )
+      ]
+    }
+  );
+};
+
+// src/components/Text/Text.tsx
+var import_jsx_runtime19 = require("react/jsx-runtime");
+var TextBody = ({
+  as = "span",
+  children,
+  className = "",
+  ...props
+}) => {
+  const Element = as;
+  const classes = [
+    "cria-text",
+    "cria-text--body",
+    className
+  ].filter(Boolean).join(" ");
+  const styles = {
+    fontFamily: typography.fontFamily.primary,
+    fontSize: typography.fontSize.body,
+    fontWeight: typography.fontWeight.regular,
+    lineHeight: typography.lineHeight.normal,
+    color: "#374151",
+    // Default dark gray
+    margin: 0
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Element, { className: classes, style: styles, ...props, children });
+};
+var TextContent = ({
+  as = "p",
+  children,
+  className = "",
+  ...props
+}) => {
+  const Element = as;
+  const classes = [
+    "cria-text",
+    "cria-text--content",
+    className
+  ].filter(Boolean).join(" ");
+  const styles = {
+    fontFamily: typography.fontFamily.primary,
+    fontSize: typography.fontSize.body,
+    fontWeight: typography.fontWeight.regular,
+    lineHeight: typography.lineHeight.relaxed,
+    // More readable for long content
+    color: "#374151",
+    // Default dark gray
+    margin: 0
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Element, { className: classes, style: styles, ...props, children });
+};
+var TextContentTitle = ({
+  as = "h3",
+  children,
+  className = "",
+  ...props
+}) => {
+  const Element = as;
+  const classes = [
+    "cria-text",
+    "cria-text--content-title",
+    className
+  ].filter(Boolean).join(" ");
+  const styles = {
+    fontFamily: typography.fontFamily.primary,
+    fontSize: typography.fontSize.h3,
+    fontWeight: typography.fontWeight.semiBold,
+    lineHeight: typography.lineHeight.normal,
+    color: "#374151",
+    // Default dark gray
+    margin: 0
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Element, { className: classes, style: styles, ...props, children });
+};
+var TextContentImportant = ({
+  as = "span",
+  children,
+  className = "",
+  ...props
+}) => {
+  const Element = as;
+  const classes = [
+    "cria-text",
+    "cria-text--content-important",
+    className
+  ].filter(Boolean).join(" ");
+  const styles = {
+    fontFamily: typography.fontFamily.primary,
+    fontSize: typography.fontSize.body,
+    fontWeight: typography.fontWeight.medium,
+    lineHeight: typography.lineHeight.normal,
+    color: "#374151",
+    // Default dark gray
+    margin: 0
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Element, { className: classes, style: styles, ...props, children });
+};
+
+// src/components/Tooltip/Tooltip.tsx
+var import_react14 = __toESM(require("react"), 1);
+var import_react_dom2 = require("react-dom");
+var import_jsx_runtime20 = require("react/jsx-runtime");
+var Tooltip = ({
+  content,
+  children,
+  variant = "default",
+  size = "md",
+  position = "top",
+  disabled = false,
+  delay = 0,
+  hideDelay = 0,
+  arrow = true,
+  interactive = false,
+  visible: controlledVisible,
+  className = "",
+  style,
+  onVisibilityChange,
+  ...props
+}) => {
+  const [isVisible, setIsVisible] = (0, import_react14.useState)(false);
+  const [tooltipPosition, setTooltipPosition] = (0, import_react14.useState)({ top: 0, left: 0 });
+  const triggerRef = (0, import_react14.useRef)(null);
+  const tooltipRef = (0, import_react14.useRef)(null);
+  const showTimeoutRef = (0, import_react14.useRef)();
+  const hideTimeoutRef = (0, import_react14.useRef)();
+  const isControlled = controlledVisible !== void 0;
+  const visible = isControlled ? controlledVisible : isVisible;
+  const calculatePosition = (0, import_react14.useCallback)(() => {
+    if (!triggerRef.current || !tooltipRef.current) return;
+    const triggerRect = triggerRef.current.getBoundingClientRect();
+    const tooltipRect = tooltipRef.current.getBoundingClientRect();
+    let top = 0;
+    let left = 0;
+    const triggerCenterX = triggerRect.left + triggerRect.width / 2;
+    const triggerCenterY = triggerRect.top + triggerRect.height / 2;
+    switch (position) {
+      case "top":
+        top = triggerRect.top - tooltipRect.height - 8;
+        left = triggerCenterX - tooltipRect.width / 2;
+        break;
+      case "top-start":
+        top = triggerRect.top - tooltipRect.height - 8;
+        left = triggerRect.left;
+        break;
+      case "top-end":
+        top = triggerRect.top - tooltipRect.height - 8;
+        left = triggerRect.right - tooltipRect.width;
+        break;
+      case "bottom":
+        top = triggerRect.bottom + 8;
+        left = triggerCenterX - tooltipRect.width / 2;
+        break;
+      case "bottom-start":
+        top = triggerRect.bottom + 8;
+        left = triggerRect.left;
+        break;
+      case "bottom-end":
+        top = triggerRect.bottom + 8;
+        left = triggerRect.right - tooltipRect.width;
+        break;
+      case "left":
+        top = triggerCenterY - tooltipRect.height / 2;
+        left = triggerRect.left - tooltipRect.width - 8;
+        break;
+      case "left-start":
+        top = triggerRect.top;
+        left = triggerRect.left - tooltipRect.width - 8;
+        break;
+      case "left-end":
+        top = triggerRect.bottom - tooltipRect.height;
+        left = triggerRect.left - tooltipRect.width - 8;
+        break;
+      case "right":
+        top = triggerCenterY - tooltipRect.height / 2;
+        left = triggerRect.right + 8;
+        break;
+      case "right-start":
+        top = triggerRect.top;
+        left = triggerRect.right + 8;
+        break;
+      case "right-end":
+        top = triggerRect.bottom - tooltipRect.height;
+        left = triggerRect.right + 8;
+        break;
+    }
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    if (left < 8) left = 8;
+    if (left + tooltipRect.width > viewportWidth - 8) {
+      left = viewportWidth - tooltipRect.width - 8;
+    }
+    if (top < 8) top = 8;
+    if (top + tooltipRect.height > viewportHeight - 8) {
+      top = viewportHeight - tooltipRect.height - 8;
+    }
+    setTooltipPosition({
+      top,
+      left
+    });
+  }, [position]);
+  const showTooltip = (0, import_react14.useCallback)(() => {
+    if (disabled || isControlled) return;
+    if (showTimeoutRef.current) {
+      clearTimeout(showTimeoutRef.current);
+    }
+    showTimeoutRef.current = setTimeout(() => {
+      setIsVisible(true);
+      onVisibilityChange?.(true);
+    }, delay);
+  }, [disabled, isControlled, delay, onVisibilityChange]);
+  const hideTooltip = (0, import_react14.useCallback)(() => {
+    if (disabled || isControlled) return;
+    if (showTimeoutRef.current) {
+      clearTimeout(showTimeoutRef.current);
+    }
+    hideTimeoutRef.current = setTimeout(() => {
+      setIsVisible(false);
+      onVisibilityChange?.(false);
+    }, hideDelay);
+  }, [disabled, isControlled, hideDelay, onVisibilityChange]);
+  const handleMouseEnter = (0, import_react14.useCallback)(() => {
+    if (disabled) return;
+    showTooltip();
+  }, [disabled, showTooltip]);
+  const handleMouseLeave = (0, import_react14.useCallback)(() => {
+    if (disabled) return;
+    hideTooltip();
+  }, [disabled, hideTooltip]);
+  const handleFocus = (0, import_react14.useCallback)(() => {
+    if (disabled) return;
+    showTooltip();
+  }, [disabled, showTooltip]);
+  const handleBlur = (0, import_react14.useCallback)(() => {
+    if (disabled) return;
+    hideTooltip();
+  }, [disabled, hideTooltip]);
+  (0, import_react14.useEffect)(() => {
+    if (visible) {
+      calculatePosition();
+    }
+  }, [visible, calculatePosition]);
+  (0, import_react14.useEffect)(() => {
+    if (!visible) return;
+    const updatePosition = () => calculatePosition();
+    window.addEventListener("scroll", updatePosition, true);
+    window.addEventListener("resize", updatePosition);
+    return () => {
+      window.removeEventListener("scroll", updatePosition, true);
+      window.removeEventListener("resize", updatePosition);
+    };
+  }, [visible, calculatePosition]);
+  (0, import_react14.useEffect)(() => {
+    return () => {
+      if (showTimeoutRef.current) clearTimeout(showTimeoutRef.current);
+      if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
+    };
+  }, []);
+  const triggerElement = import_react14.default.cloneElement(children, {
+    ref: (el) => {
+      triggerRef.current = el;
+      const childRef = children.ref;
+      if (childRef) {
+        if (typeof childRef === "function") {
+          childRef(el);
+        } else if (childRef && "current" in childRef) {
+          childRef.current = el;
+        }
+      }
+    },
+    onMouseEnter: handleMouseEnter,
+    onMouseLeave: handleMouseLeave,
+    onFocus: handleFocus,
+    onBlur: handleBlur
+  });
+  const tooltipClasses = [
+    "cria-tooltip",
+    `cria-tooltip--${variant}`,
+    `cria-tooltip--${size}`,
+    `cria-tooltip--${position}`,
+    arrow ? "cria-tooltip--arrow" : null,
+    interactive ? "cria-tooltip--interactive" : null,
+    visible ? "cria-tooltip--visible" : null,
+    className
+  ].filter(Boolean).join(" ");
+  return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(import_jsx_runtime20.Fragment, { children: [
+    triggerElement,
+    visible && (0, import_react_dom2.createPortal)(
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(
+        "div",
+        {
+          ref: tooltipRef,
+          className: tooltipClasses,
+          style: {
+            position: "fixed",
+            top: tooltipPosition.top,
+            left: tooltipPosition.left,
+            zIndex: 9999,
+            ...style
+          },
+          role: "tooltip",
+          ...props,
+          children: [
+            /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "cria-tooltip__content", children: content }),
+            arrow && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "cria-tooltip__arrow" })
+          ]
+        }
+      ),
+      document.body
+    )
+  ] });
 };
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
@@ -3665,12 +3874,14 @@ var Sidebar2 = ({
   Input,
   Modal,
   Navigation,
+  NavigationSidebar,
   RadioGroup,
+  RadioGroupItem,
+  RadioGroupLabel,
   Sidebar,
   Snackbar,
   Switch,
   Tabs,
-  Text,
   TextBody,
   TextContent,
   TextContentImportant,

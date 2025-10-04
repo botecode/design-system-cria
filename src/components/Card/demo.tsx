@@ -1,5 +1,5 @@
 import React from 'react';
-import Card, { CardHeader, CardContent, CardFooter } from './Card';
+import { Card, CardHeader, CardContent, CardFooter } from './Card';
 import { Button } from '../Button';
 import Typography from '../Typography/Typography';
 

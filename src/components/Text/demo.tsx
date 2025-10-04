@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography } from '../Typography';
 import { TextBody, TextContent, TextContentTitle, TextContentImportant } from './index';
-import { Card } from '../Card';
+import { Card, CardContent } from '../Card';
 
 export const TextDemo: React.FC = () => {
   return (
@@ -26,13 +26,13 @@ export const TextDemo: React.FC = () => {
         </Typography>
         
         <Card style={{ marginBottom: '16px' }}>
-          <Card.CardContent>
+          <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               <TextBody>Default body text in a card</TextBody>
               <TextBody as="p">Body text rendered as paragraph</TextBody>
               <TextBody as="label">Body text as label element</TextBody>
             </div>
-          </Card.CardContent>
+          </CardContent>
         </Card>
 
       </div>
@@ -48,7 +48,7 @@ export const TextDemo: React.FC = () => {
         </Typography>
         
         <Card style={{ marginBottom: '16px' }}>
-          <Card.CardContent>
+          <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <TextContent>
                 This is a long-form content paragraph that demonstrates how the TextContent 
@@ -65,7 +65,7 @@ export const TextDemo: React.FC = () => {
                 styling and readability characteristics.
               </TextContent>
             </div>
-          </Card.CardContent>
+          </CardContent>
         </Card>
 
       </div>
@@ -81,7 +81,7 @@ export const TextDemo: React.FC = () => {
         </Typography>
         
         <Card style={{ marginBottom: '16px' }}>
-          <Card.CardContent>
+          <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <TextContentTitle>Section Title (h3)</TextContentTitle>
               <TextContent>This is the content that follows the section title.</TextContent>
@@ -92,7 +92,7 @@ export const TextDemo: React.FC = () => {
               <TextContentTitle as="h4">Title as h4</TextContentTitle>
               <TextContent>Content following an h4 title.</TextContent>
             </div>
-          </Card.CardContent>
+          </CardContent>
         </Card>
 
       </div>
@@ -107,7 +107,7 @@ export const TextDemo: React.FC = () => {
         </Typography>
         
         <Card style={{ marginBottom: '16px' }}>
-          <Card.CardContent>
+          <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <TextContent>
                 This is regular content with <TextContentImportant>important highlighted text</TextContentImportant> 
@@ -122,7 +122,7 @@ export const TextDemo: React.FC = () => {
                 <TextContentImportant>Important standalone text</TextContentImportant>
               </div>
             </div>
-          </Card.CardContent>
+          </CardContent>
         </Card>
 
       </div>
@@ -137,7 +137,7 @@ export const TextDemo: React.FC = () => {
         </Typography>
         
         <Card>
-          <Card.CardContent>
+          <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <TextContentTitle>Getting Started with CRIA_UI</TextContentTitle>
               
@@ -162,7 +162,7 @@ export const TextDemo: React.FC = () => {
                 assistive technologies.
               </TextContent>
             </div>
-          </Card.CardContent>
+          </CardContent>
         </Card>
       </div>
 
@@ -172,14 +172,14 @@ export const TextDemo: React.FC = () => {
           Accessibility Features
         </Typography>
         <Card>
-          <Card.CardContent>
+          <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               <TextBody>• <TextContentImportant>Semantic HTML:</TextContentImportant> Each variant renders appropriate HTML elements (h3, p, span)</TextBody>
               <TextBody>• <TextContentImportant>Screen reader support:</TextContentImportant> Proper heading hierarchy and content structure</TextBody>
               <TextBody>• <TextContentImportant>Flexible element override:</TextContentImportant> Use the `as` prop to change elements while preserving styles</TextBody>
               <TextBody>• <TextContentImportant>Consistent styling:</TextContentImportant> All variants use design tokens for consistent appearance</TextBody>
             </div>
-          </Card.CardContent>
+          </CardContent>
         </Card>
       </div>
     </div>

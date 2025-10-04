@@ -1,227 +1,411 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { createContext, useContext, useCallback, useRef } from 'react';
+import { colors, spacing, radii, typography } from '../../tokens';
 
-export interface RadioOption {
-  value: string;
-  label: string;
-  description?: string;
-  disabled?: boolean;
-}
-
-export interface RadioGroupProps {
-  options: RadioOption[];
+// Context for radio group state
+interface RadioGroupContextValue {
+  name: string;
   value?: string;
   onChange?: (value: string) => void;
-  label?: string;
-  description?: string;
-  error?: string;
   disabled?: boolean;
   required?: boolean;
-  className?: string;
-  name?: string;
+  size?: 'sm' | 'md' | 'lg';
+  error?: string;
   orientation?: 'horizontal' | 'vertical';
-  size?: 'small' | 'medium' | 'large';
-  variant?: 'default' | 'card';
 }
 
+const RadioGroupContext = createContext<RadioGroupContextValue | null>(null);
+
+const useRadioGroup = () => {
+  const context = useContext(RadioGroupContext);
+  if (!context) {
+    throw new Error('RadioGroup components must be used within a RadioGroup');
+  }
+  return context;
+};
+
+// RadioGroup Props
+export interface RadioGroupProps extends Omit<React.FieldsetHTMLAttributes<HTMLFieldSetElement>, 'onChange'> {
+  /**
+   * Name attribute for all radio buttons in the group
+   */
+  name: string;
+  
+  /**
+   * Current selected value
+   */
+  value?: string;
+  
+  /**
+   * Callback when selection changes
+   */
+  onChange?: (value: string) => void;
+  
+  /**
+   * Whether the entire group is disabled
+   */
+  disabled?: boolean;
+  
+  /**
+   * Whether selection is required
+   */
+  required?: boolean;
+  
+  /**
+   * Size variant
+   */
+  size?: 'sm' | 'md' | 'lg';
+  
+  /**
+   * Error message to display
+   */
+  error?: string;
+  
+  /**
+   * Layout orientation
+   */
+  orientation?: 'horizontal' | 'vertical';
+  
+  /**
+   * Custom aria-label for the fieldset
+   */
+  'aria-label'?: string;
+}
+
+// RadioGroupLabel Props
+export interface RadioGroupLabelProps extends React.HTMLAttributes<HTMLLegendElement> {
+  children: React.ReactNode;
+  className?: string;
+  style?: React.CSSProperties;
+  id?: string;
+}
+
+// RadioGroupItem Props
+export interface RadioGroupItemProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  /**
+   * Value of the radio option
+   */
+  value: string;
+  
+  /**
+   * Label text for the radio option
+   */
+  children: React.ReactNode;
+  
+  /**
+   * Whether this specific option is disabled
+   */
+  disabled?: boolean;
+  
+  /**
+   * Custom id for the radio input
+   */
+  id?: string;
+}
+
+// Helper functions
+function getSizeStyles(size: RadioGroupProps['size']): React.CSSProperties {
+  switch (size) {
+    case 'sm':
+      return {
+        fontSize: typography.fontSize.bodySmall,
+        gap: spacing[2],
+      };
+    case 'lg':
+      return {
+        fontSize: typography.fontSize.body,
+        gap: spacing[4],
+      };
+    case 'md':
+    default:
+      return {
+        fontSize: typography.fontSize.body,
+        gap: spacing[3],
+      };
+  }
+}
+
+function getOrientationStyles(orientation: RadioGroupProps['orientation']): React.CSSProperties {
+  switch (orientation) {
+    case 'horizontal':
+      return {
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        gap: spacing[4],
+      };
+    case 'vertical':
+    default:
+      return {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: spacing[2],
+      };
+  }
+}
+
+/**
+ * RadioGroup component for single selection from multiple options
+ */
 export const RadioGroup: React.FC<RadioGroupProps> = ({
-  options,
+  name,
   value,
   onChange,
-  label,
-  description,
-  error,
   disabled = false,
   required = false,
-  className,
-  name,
+  size = 'md',
+  error,
   orientation = 'vertical',
-  size = 'medium',
-  variant = 'default',
+  className = '',
+  style,
+  children,
+  ...props
 }) => {
-  const [focusedIndex, setFocusedIndex] = useState<number>(-1);
-  const [internalValue, setInternalValue] = useState<string>(value || '');
-  const radioGroupRef = useRef<HTMLDivElement>(null);
-  const radioRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const fieldsetRef = useRef<HTMLFieldSetElement>(null);
 
-  // Update internal value when external value changes
-  useEffect(() => {
-    if (value !== undefined) {
-      setInternalValue(value);
-    }
-  }, [value]);
-
-  const handleChange = (optionValue: string) => {
-    if (!disabled) {
-      setInternalValue(optionValue);
-      if (onChange) {
-        onChange(optionValue);
-      }
-    }
+  const contextValue: RadioGroupContextValue = {
+    name,
+    value,
+    onChange,
+    disabled,
+    required,
+    size,
+    error,
+    orientation,
   };
 
-  const handleKeyDown = (event: React.KeyboardEvent) => {
+  const handleKeyDown = useCallback((event: React.KeyboardEvent<HTMLFieldSetElement>) => {
     if (disabled) return;
 
-    let newIndex = focusedIndex;
+    const radios = fieldsetRef.current?.querySelectorAll('input[type="radio"]') as NodeListOf<HTMLInputElement>;
+    if (!radios.length) return;
 
-    // If no option is focused yet, start with the first one
-    if (focusedIndex === -1) {
-      newIndex = 0;
-    }
-
+    const currentIndex = Array.from(radios).findIndex(radio => radio === document.activeElement);
+    
+    let nextIndex = currentIndex;
+    
     switch (event.key) {
       case 'ArrowDown':
+      case 'ArrowRight':
         event.preventDefault();
-        newIndex = newIndex < options.length - 1 ? newIndex + 1 : 0;
+        nextIndex = currentIndex < radios.length - 1 ? currentIndex + 1 : 0;
         break;
       case 'ArrowUp':
+      case 'ArrowLeft':
         event.preventDefault();
-        newIndex = newIndex > 0 ? newIndex - 1 : options.length - 1;
-        break;
-      case 'Home':
-        event.preventDefault();
-        newIndex = 0;
-        break;
-      case 'End':
-        event.preventDefault();
-        newIndex = options.length - 1;
+        nextIndex = currentIndex > 0 ? currentIndex - 1 : radios.length - 1;
         break;
       case ' ':
       case 'Enter':
         event.preventDefault();
-        if (newIndex >= 0 && newIndex < options.length) {
-          const option = options[newIndex];
-          if (!option.disabled) {
-            handleChange(option.value);
-          }
+        if (currentIndex >= 0) {
+          radios[currentIndex].click();
         }
-        return;
+        break;
       default:
         return;
     }
-
-    setFocusedIndex(newIndex);
-    radioRefs.current[newIndex]?.focus();
-  };
-
-  const handleFocus = (index: number) => {
-    setFocusedIndex(index);
-  };
-
-  const handleBlur = () => {
-    setFocusedIndex(-1);
-  };
-
-  useEffect(() => {
-    if (focusedIndex >= 0 && radioRefs.current[focusedIndex]) {
-      radioRefs.current[focusedIndex]?.focus();
+    
+    if (nextIndex !== currentIndex && radios[nextIndex]) {
+      radios[nextIndex].focus();
     }
-  }, [focusedIndex]);
+  }, [disabled]);
 
-  const radioGroupId = `radio-group-${Math.random().toString(36).substr(2, 9)}`;
-  const labelId = label ? `${radioGroupId}-label` : undefined;
-  const descriptionId = description ? `${radioGroupId}-description` : undefined;
-  const errorId = error ? `${radioGroupId}-error` : undefined;
+  const classes = [
+    'cria-radio-group',
+    `cria-radio-group--${size}`,
+    `cria-radio-group--${orientation}`,
+    disabled && 'cria-radio-group--disabled',
+    error && 'cria-radio-group--error',
+    className,
+  ].filter(Boolean).join(' ');
 
-  const radioGroupClasses = ['cria-radio-group', className].filter(Boolean).join(' ');
-  
+  const fieldsetStyles: React.CSSProperties = {
+    border: 'none',
+    padding: 0,
+    margin: 0,
+    ...getSizeStyles(size),
+    ...getOrientationStyles(orientation),
+    ...style,
+  };
+
   return (
-    <div className={radioGroupClasses}>
-      {label && (
-        <label
-          id={labelId}
-          className="cria-radio-group__label"
-          htmlFor={radioGroupId}
-        >
-          {label}
-          {required && <span className="cria-radio-group__required"> *</span>}
-        </label>
-      )}
-      
-      {description && (
-        <div id={descriptionId} className="cria-radio-group__description">
-          {description}
-        </div>
-      )}
-
-      <div
-        ref={radioGroupRef}
-        role="radiogroup"
-        id={radioGroupId}
-        className={[
-          'cria-radio-group__container',
-          `cria-radio-group__container--${orientation}`,
-          variant !== 'default' ? `cria-radio-group--${variant}` : '',
-          disabled ? 'cria-radio-group__container--disabled' : '',
-          error ? 'cria-radio-group__container--error' : '',
-          className,
-        ].filter(Boolean).join(' ')}
-        aria-labelledby={labelId}
-        aria-describedby={descriptionId || errorId}
+    <RadioGroupContext.Provider value={contextValue}>
+      <fieldset
+        ref={fieldsetRef}
+        className={classes}
+        style={fieldsetStyles}
+        disabled={disabled}
         aria-required={required}
-        aria-invalid={error ? 'true' : 'false'}
-        aria-orientation={orientation}
+        aria-invalid={error ? 'true' : undefined}
         onKeyDown={handleKeyDown}
-        tabIndex={-1}
+        {...props}
       >
-        {options.map((option, index) => {
-          const optionClasses = [
-            'cria-radio-group__option',
-            `cria-radio-group__option--${size}`,
-            `cria-radio-group__option--${variant}`,
-            (disabled || option.disabled) ? 'cria-radio-group__option--disabled' : '',
-            focusedIndex === index ? 'cria-radio-group__option--focused' : '',
-            value === option.value ? 'cria-radio-group__option--checked' : '',
-          ].filter(Boolean).join(' ');
-          
-          return (
-            <div
-              key={option.value}
-              className={optionClasses}
-            >
-              <input
-                ref={(el) => (radioRefs.current[index] = el)}
-                type="radio"
-                id={`${radioGroupId}-${option.value}`}
-                name={name || radioGroupId}
-                value={option.value}
-                checked={internalValue === option.value}
-                disabled={disabled || option.disabled}
-                onChange={() => handleChange(option.value)}
-                onFocus={() => handleFocus(index)}
-                onBlur={handleBlur}
-                className={`cria-radio-group__input cria-radio--${size}`}
-                aria-describedby={option.description ? `${radioGroupId}-${option.value}-description` : undefined}
-              />
-              <label
-                htmlFor={`${radioGroupId}-${option.value}`}
-                className="cria-radio-group__option-label"
-              >
-                <span className="cria-radio-group__option-indicator">
-                  <span className="cria-radio-group__option-dot"></span>
-                </span>
-                <span className="cria-radio-group__option-content">
-                  <span className="cria-radio-group__option-text">{option.label}</span>
-                  {option.description && (
-                    <span
-                      id={`${radioGroupId}-${option.value}-description`}
-                      className="cria-radio-group__option-description"
-                    >
-                      {option.description}
-                    </span>
-                  )}
-                </span>
-              </label>
-            </div>
-          );
-        })}
-      </div>
+        {children}
+        {error && (
+          <div
+            role="alert"
+            style={{
+              color: colors.error,
+              fontSize: typography.fontSize.caption,
+              marginTop: spacing[2],
+              display: 'flex',
+              alignItems: 'center',
+              gap: spacing[1],
+            }}
+          >
+            <span>⚠</span>
+            {error}
+          </div>
+        )}
+      </fieldset>
+    </RadioGroupContext.Provider>
+  );
+};
 
-      {error && (
-        <div id={errorId} className="cria-radio-group__error" role="alert">
-          {error}
-        </div>
+/**
+ * RadioGroupLabel component for the fieldset legend
+ */
+export const RadioGroupLabel: React.FC<RadioGroupLabelProps> = ({
+  children,
+  className = '',
+  style,
+  id,
+  ...props
+}) => {
+  const { required, size, name } = useRadioGroup();
+  const labelId = id || `${name}-legend`;
+
+  const classes = [
+    'cria-radio-group-label',
+    `cria-radio-group-label--${size}`,
+    className,
+  ].filter(Boolean).join(' ');
+
+  const labelStyles: React.CSSProperties = {
+    fontFamily: typography.fontFamily.primary,
+    fontWeight: typography.fontWeight.medium,
+    color: colors.text.primary,
+    marginBottom: spacing[2],
+    display: 'block',
+    ...style,
+  };
+
+  return (
+    <legend
+      id={labelId}
+      className={classes}
+      style={labelStyles}
+      aria-required={required}
+      {...props}
+    >
+      {children}
+      {required && (
+        <span
+          style={{
+            color: colors.error,
+            marginLeft: spacing[1],
+          }}
+          aria-label="required"
+        >
+          *
+        </span>
       )}
+    </legend>
+  );
+};
+
+/**
+ * RadioGroupItem component for individual radio options
+ */
+export const RadioGroupItem: React.FC<RadioGroupItemProps> = ({
+  value,
+  children,
+  disabled = false,
+  id,
+  className = '',
+  style,
+  ...props
+}) => {
+  const { name, value: selectedValue, onChange, disabled: groupDisabled, size } = useRadioGroup();
+  
+  const isDisabled = disabled || groupDisabled;
+  const isSelected = selectedValue === value;
+  const inputId = id || `${name}-${value}`;
+  const labelId = `${inputId}-label`;
+
+  const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
+    if (isDisabled) return;
+    // For controlled components, call onChange
+    if (onChange) {
+      onChange(value);
+    }
+    // For uncontrolled components, let the native behavior handle it
+  }, [isDisabled, onChange, value]);
+
+  const classes = [
+    'cria-radio-group-item',
+    `cria-radio-group-item--${size}`,
+    isSelected && 'cria-radio-group-item--selected',
+    isDisabled && 'cria-radio-group-item--disabled',
+    className,
+  ].filter(Boolean).join(' ');
+
+  const containerStyles: React.CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: spacing[2],
+    cursor: isDisabled ? 'not-allowed' : 'pointer',
+    opacity: isDisabled ? 0.6 : 1,
+    ...style,
+  };
+
+  const inputStyles: React.CSSProperties = {
+    appearance: 'none',
+    width: size === 'sm' ? '16px' : size === 'lg' ? '20px' : '18px',
+    height: size === 'sm' ? '16px' : size === 'lg' ? '20px' : '18px',
+    borderRadius: '50%',
+    border: `2px solid ${isSelected ? colors.primary : colors.border.medium}`,
+    backgroundColor: isSelected ? colors.primary : colors.backgroundLight,
+    position: 'relative',
+    cursor: isDisabled ? 'not-allowed' : 'pointer',
+    transition: 'all 0.2s ease-in-out',
+    margin: 0,
+    flexShrink: 0,
+  };
+
+  const labelStyles: React.CSSProperties = {
+    fontFamily: typography.fontFamily.primary,
+    fontSize: getSizeStyles(size).fontSize,
+    color: isDisabled ? colors.text.disabled : colors.text.primary,
+    cursor: isDisabled ? 'not-allowed' : 'pointer',
+    userSelect: 'none',
+    flex: 1,
+  };
+
+  return (
+    <div className={classes} style={containerStyles}>
+      <input
+        type="radio"
+        id={inputId}
+        name={name}
+        value={value}
+        {...(onChange ? { checked: isSelected } : {})}
+        onChange={handleChange}
+        disabled={isDisabled}
+        style={inputStyles}
+        aria-labelledby={labelId}
+        {...props}
+      />
+      <label
+        id={labelId}
+        htmlFor={inputId}
+        style={labelStyles}
+      >
+        {children}
+      </label>
     </div>
   );
 };
+
+// Default export
+export default RadioGroup;
