@@ -237,7 +237,7 @@ export const Chat: React.FC<ChatProps> = ({
       case 'course':
       case 'lesson':
         return (
-          <div style={{ marginTop: 8, borderRadius: 8, overflow: 'hidden', border: '1px solid var(--cria-gray-200)' }}>
+          <div style={{ marginTop: 8, borderRadius: 8, overflow: 'hidden', border: '1px solid var(--cria-gray-200)', position: 'relative' }}>
             {attachment.thumbnail && (
               <img 
                 src={attachment.thumbnail} 
@@ -246,23 +246,27 @@ export const Chat: React.FC<ChatProps> = ({
               />
             )}
             <div style={{ 
+              position: 'absolute',
+              bottom: 0,
+              left: 0,
+              right: 0,
               padding: 16, 
-              background: 'var(--cria-white)',
+              background: 'linear-gradient(transparent, rgba(0,0,0,0.7))',
               display: 'flex',
               flexDirection: 'column',
               gap: 12
             }}>
               <div>
-                <Typography variant="body" weight="semiBold" style={{ marginBottom: 4, color: 'var(--cria-gray-900)' }}>
+                <Typography variant="body" weight="semiBold" style={{ marginBottom: 4, color: 'var(--cria-white)' }}>
                   {attachment.title}
                 </Typography>
                 {attachment.description && (
-                  <Typography variant="caption" style={{ color: 'var(--cria-gray-700)', marginBottom: 4, display: 'block' }}>
+                  <Typography variant="caption" style={{ color: 'rgba(255,255,255,0.9)', marginBottom: 4, display: 'block' }}>
                     {attachment.description}
                   </Typography>
                 )}
                 {attachment.duration && (
-                  <Typography variant="caption" style={{ color: 'var(--cria-gray-600)', marginTop: 4, display: 'block' }}>
+                  <Typography variant="caption" style={{ color: 'rgba(255,255,255,0.8)', marginTop: 4, display: 'block' }}>
                     Duração: {attachment.duration}
                   </Typography>
                 )}
