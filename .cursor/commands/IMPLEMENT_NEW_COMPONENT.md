@@ -85,6 +85,7 @@ git push origin main
   • Date Picker  
   • File Upload
   • Comments Section
+  • Slider
 
 Input Demos  
   • Basic Inputs — Full Name, Email Address, Phone Number, Date (dd.mm.yyyy)  
@@ -92,27 +93,25 @@ Input Demos
 
 ⸻
 
-🚀 Next Component to Implement: Slider
+🚀 Next Component to Implement: Shimmer Skeleton
 
-**Implement the Slider component immediately**, using **design tokens** and DS primitives.  
+**Implement the Shimmer Skeleton component immediately**, using **design tokens** and DS primitives.  
 Include a **demo page** and **sidebar entry**. Validate with **Chrome MCP**. Commit on a **feature branch** and **merge into main** per Git rules above. Update this file afterward.
 
 Required Features
-  • Range slider with min/max values and step control  
-  • Single and dual-handle (range) modes  
+  • Animated shimmer effect for loading states  
+  • Multiple skeleton shapes (text, avatar, card, button)  
   • Token-based colors, typography, and spacing  
-  • A11y: keyboard navigation, ARIA labels, focus management  
+  • A11y: proper loading indicators and screen reader support  
 
 Required Tests
-  • Renders with correct initial values  
-  • Value changes on drag and keyboard input  
-  • Range mode works with two handles  
-  • A11y: roles/labels present; keyboard focus works
+  • Renders with correct shimmer animation  
+  • Different skeleton shapes display properly  
+  • A11y: loading state announced to screen readers
 
 ⸻
 
 ⬜ Upcoming Components
-  • Shimmer Skeleton - Foundation
   • Pricing page ("Web" new tab sectoin on sidebar)
   • Page loading progress (top of the page) - Foundation  
   • Card selector ("Admin" - with multi-select and single-select)  
