@@ -3,7 +3,7 @@ import { Typography } from '../Typography';
 import { ProgressBar } from './index';
 import { Card, CardContent, CardHeader } from '../Card';
 import { Button } from '../Button';
-import { Download, Upload, Database, FileText, CheckCircle, AlertCircle, Clock } from 'phosphor-react';
+import { Download, Upload, Database, FileText, CheckCircle, WarningCircle } from 'phosphor-react';
 
 export const ProgressBarDemo: React.FC = () => {
   const [progress, setProgress] = useState(0);
@@ -423,7 +423,7 @@ export const ProgressBarDemo: React.FC = () => {
               
               <div className="usage-example">
                 <div className="usage-header">
-                  <AlertCircle size={20} />
+                  <WarningCircle size={20} />
                   <Typography variant="h4">Error Recovery</Typography>
                 </div>
                 <Typography variant="caption">
