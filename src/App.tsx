@@ -101,6 +101,7 @@ const App: React.FC = () => {
       id: 'layout', 
       label: 'Layout', 
       icon: <Layout size={20} />,
+      defaultExpanded: true,
       subitems: [
         { id: 'card', label: 'Card', href: '#card', icon: <Square size={20} /> },
         { id: 'tabs', label: 'Tabs', href: '#tabs', icon: <Tabs size={20} /> },

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Typography } from '../Typography';
 import { Breadcrumbs } from './index';
 import { Card, CardContent, CardHeader } from '../Card';
-import { House, Folder, ShoppingCart, Package, ArrowRight, ChevronRight } from 'phosphor-react';
+import { House, Folder, ShoppingCart, Package, ArrowRight, CaretRight } from 'phosphor-react';
 
 export const BreadcrumbsDemo: React.FC = () => {
   const [selectedPath, setSelectedPath] = useState<string | null>(null);
@@ -133,7 +133,7 @@ export const BreadcrumbsDemo: React.FC = () => {
               <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
                 E-commerce Navigation
               </Typography>
-              <Breadcrumbs items={ecommerceItems} separator={<ChevronRight size={14} />} />
+              <Breadcrumbs items={ecommerceItems} separator={<CaretRight size={14} />} />
             </div>
 
             {/* File system */}
@@ -190,7 +190,7 @@ export const BreadcrumbsDemo: React.FC = () => {
               <Breadcrumbs 
                 items={manyItems} 
                 maxItems={4} 
-                separator={<ChevronRight size={14} />} 
+                separator={<CaretRight size={14} />} 
               />
             </div>
           </div>
@@ -335,7 +335,7 @@ export const BreadcrumbsDemo: React.FC = () => {
                   { label: 'Order #12345', href: '/orders/12345', icon: <Package size={16} /> },
                   { label: 'Order Details' },
                 ]}
-                separator={<ChevronRight size={14} />}
+                separator={<CaretRight size={14} />}
               />
             </div>
           </div>
