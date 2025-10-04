@@ -1677,6 +1677,24 @@ body {
   outline: none;
   padding: 12px 16px;
 }
+.cria-textarea {
+  width: 100%;
+  border: 1px solid var(--cria-primary);
+  border-radius: var(--cria-radius-md);
+  background-color: var(--cria-white);
+  color: var(--cria-gray-900);
+  font-family: var(--cria-font-family);
+  font-size: var(--cria-font-size-body);
+  line-height: 1.5;
+  transition: all 0.2s ease-in-out;
+  outline: none;
+  padding: 12px 16px;
+}
+
+.cria-textarea:focus {
+  border-color: var(--cria-primary);
+  box-shadow: 0 0 0 3px rgba(117, 102, 161, 0.1);
+}
 
 .cria-input::placeholder {
   color: var(--cria-gray-400);
