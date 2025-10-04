@@ -60,6 +60,7 @@ Workflow for the Next Component
 	•	Pagination
 	•	Progress Bar
 	•	Vertical Tabs
+	•	Stepper
 
 Input Demos
 	•	Basic Inputs — Full Name, Email Address, Phone Number, Date (dd.mm.yyyy)
@@ -67,35 +68,31 @@ Input Demos
 
 ⸻
 
-🚀 Next Component to Implement: Stepper
+🚀 Next Component to Implement: Date Picker
 
-Implement a **Stepper component** in the design system and expose it in the App with:
+Implement a **Date Picker component** in the design system and expose it in the App with:
 	•	A new demo page
 	•	An entry in the App sidebar
 
 Features required:
-	•	Horizontal and vertical orientations
-	•	Step states: completed, active, pending, error, and disabled
-	•	Linear (force order) and non-linear (jump to any enabled step) modes
-	•	Optional step icons, titles, and descriptions (support long labels)
-	•	Clickable steps (when enabled) with onChange callback
-	•	Keyboard navigation (Arrow keys move focus, Enter/Space select step)
-	•	Accessible ARIA: role="tablist"/"tabpanel" mapping or role="list" with aria-current, aria-disabled; aria-orientation; aria-controls; focus ring
-	•	Responsiveness: compact layout on mobile
+	•	Single date selection with calendar popover
+	•	Keyboard navigation (arrows to move, Enter to select, Esc to close)
+	•	Localization-ready month/day labels
+	•	Min/max dates, disabled dates, and today shortcut
+	•	Input with masking/formatting (e.g., dd.mm.yyyy)
+	•	Accessibility: role="dialog", focus trap, aria-live for month changes
+	•	Responsive layout (mobile-friendly calendar)
 
 Tests required:
-	•	Renders steps with correct states and labels
-	•	Changes active step on click in non-linear mode and blocks in linear mode
-	•	Supports keyboard navigation (Arrows, Enter/Space) and focus management
-	•	Applies aria attributes (aria-current, aria-disabled, aria-orientation) correctly
-	•	Renders vertical orientation and horizontal orientation
-	•	Handles disabled and error states
-	•	Renders with icons and descriptions without layout shift
+	•	Opens/closes popover and focuses the correct day
+	•	Selects a date via click and keyboard
+	•	Honors min/max and disabled dates
+	•	Announces month changes and sets correct ARIA attributes
+	•	Formats value in the input correctly
 
 ⸻
 
 Upcoming Components
-	•	Date Picker
 	•	File Upload
 	•	Chat
 	•	PieChart
