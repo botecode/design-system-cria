@@ -37,3 +37,4 @@ export * from './components/Chat';
 export * from './components/TextTokens';
 export * from './components/PieChart';
 export * from './components/LineChart';
+export * from './components/CommentsSection';
