@@ -332,6 +332,165 @@ export const AvatarDemo: React.FC = () => {
         </CardContent>
       </Card>
 
+      {/* Stacked Avatars */}
+      <Card style={{ marginBottom: '32px' }}>
+        <CardHeader>
+          <Typography variant="h3">Stacked Avatars</Typography>
+        </CardHeader>
+        <CardContent>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+                Overlapping Avatars
+              </Typography>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <Avatar
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
+                    alt="John Doe"
+                    size="md"
+                    style={{ 
+                      border: '2px solid white',
+                      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                      zIndex: 4
+                    }}
+                  />
+                  <Avatar
+                    src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face"
+                    alt="Jane Smith"
+                    size="md"
+                    style={{ 
+                      marginLeft: '-12px',
+                      border: '2px solid white',
+                      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                      zIndex: 3
+                    }}
+                  />
+                  <Avatar
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
+                    alt="Mike Johnson"
+                    size="md"
+                    style={{ 
+                      marginLeft: '-12px',
+                      border: '2px solid white',
+                      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                      zIndex: 2
+                    }}
+                  />
+                  <Avatar
+                    initials="+5"
+                    size="md"
+                    backgroundColor="var(--cria-gray-500)"
+                    textColor="white"
+                    style={{ 
+                      marginLeft: '-12px',
+                      border: '2px solid white',
+                      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                      zIndex: 1,
+                      cursor: 'pointer'
+                    }}
+                    onClick={() => alert('5 more users')}
+                  />
+                </div>
+                <Typography variant="body2" color="secondary" style={{ marginLeft: '8px' }}>
+                  8 team members
+                </Typography>
+              </div>
+            </div>
+
+            <div>
+              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+                Different Sizes
+              </Typography>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                {/* Small stacked avatars */}
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <Avatar initials="A" size="sm" style={{ border: '2px solid white', zIndex: 3 }} />
+                  <Avatar initials="B" size="sm" style={{ marginLeft: '-8px', border: '2px solid white', zIndex: 2 }} />
+                  <Avatar initials="C" size="sm" style={{ marginLeft: '-8px', border: '2px solid white', zIndex: 1 }} />
+                </div>
+
+                {/* Medium stacked avatars */}
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <Avatar initials="D" size="md" style={{ border: '2px solid white', zIndex: 3 }} />
+                  <Avatar initials="E" size="md" style={{ marginLeft: '-12px', border: '2px solid white', zIndex: 2 }} />
+                  <Avatar initials="F" size="md" style={{ marginLeft: '-12px', border: '2px solid white', zIndex: 1 }} />
+                </div>
+
+                {/* Large stacked avatars */}
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <Avatar initials="G" size="lg" style={{ border: '2px solid white', zIndex: 3 }} />
+                  <Avatar initials="H" size="lg" style={{ marginLeft: '-16px', border: '2px solid white', zIndex: 2 }} />
+                  <Avatar initials="I" size="lg" style={{ marginLeft: '-16px', border: '2px solid white', zIndex: 1 }} />
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+                With Status Indicators
+              </Typography>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <Avatar
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
+                    alt="Online User"
+                    size="md"
+                    status="online"
+                    style={{ 
+                      border: '2px solid white',
+                      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                      zIndex: 4
+                    }}
+                  />
+                  <Avatar
+                    src="https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face"
+                    alt="Away User"
+                    size="md"
+                    status="away"
+                    style={{ 
+                      marginLeft: '-12px',
+                      border: '2px solid white',
+                      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                      zIndex: 3
+                    }}
+                  />
+                  <Avatar
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
+                    alt="Busy User"
+                    size="md"
+                    status="busy"
+                    style={{ 
+                      marginLeft: '-12px',
+                      border: '2px solid white',
+                      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                      zIndex: 2
+                    }}
+                  />
+                  <Avatar
+                    initials="+2"
+                    size="md"
+                    backgroundColor="var(--cria-gray-500)"
+                    textColor="white"
+                    style={{ 
+                      marginLeft: '-12px',
+                      border: '2px solid white',
+                      boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                      zIndex: 1,
+                      cursor: 'pointer'
+                    }}
+                    onClick={() => alert('2 more users')}
+                  />
+                </div>
+                <Typography variant="body2" color="secondary" style={{ marginLeft: '8px' }}>
+                  Active team members
+                </Typography>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Interactive Examples */}
       <Card style={{ marginBottom: '32px' }}>
         <CardHeader>
