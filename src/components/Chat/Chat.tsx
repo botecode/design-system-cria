@@ -15,13 +15,14 @@ export interface ChatMessage {
 
 export interface ChatAttachment {
   id: string;
-  type: 'image' | 'video' | 'card' | 'file';
+  type: 'image' | 'video' | 'card' | 'file' | 'course' | 'lesson';
   url?: string;
   title?: string;
   description?: string;
   thumbnail?: string;
   size?: string;
   duration?: string; // for videos
+  actionText?: string; // custom button text
 }
 
 export interface ChatProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -125,6 +126,40 @@ export const Chat: React.FC<ChatProps> = ({
               alt={attachment.title || 'Image'} 
               style={{ maxWidth: '100%', height: 'auto', display: 'block' }}
             />
+            {attachment.title && (
+              <div style={{ 
+                padding: 12, 
+                background: 'rgba(0,0,0,0.05)', 
+                borderTop: '1px solid rgba(0,0,0,0.1)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 8
+              }}>
+                <div>
+                  <Typography variant="body" weight="semiBold" style={{ marginBottom: 4 }}>
+                    {attachment.title}
+                  </Typography>
+                  {attachment.description && (
+                    <Typography variant="caption" color="secondary">
+                      {attachment.description}
+                    </Typography>
+                  )}
+                </div>
+                <Button 
+                  variant="primary" 
+                  size="sm" 
+                  onClick={() => {
+                    // Handle course/lesson view action
+                    console.log('View course/lesson:', attachment.title);
+                  }}
+                  style={{ alignSelf: 'flex-start' }}
+                >
+                  {attachment.title?.toLowerCase().includes('curso') || attachment.title?.toLowerCase().includes('course') 
+                    ? 'Ver Curso' 
+                    : 'Ver Aula'}
+                </Button>
+              </div>
+            )}
           </div>
         );
       case 'video':
@@ -196,6 +231,53 @@ export const Chat: React.FC<ChatProps> = ({
                   {attachment.size}
                 </Typography>
               )}
+            </div>
+          </div>
+        );
+      case 'course':
+      case 'lesson':
+        return (
+          <div style={{ marginTop: 8, borderRadius: 8, overflow: 'hidden', border: '1px solid var(--cria-gray-200)' }}>
+            {attachment.thumbnail && (
+              <img 
+                src={attachment.thumbnail} 
+                alt={attachment.title || 'Course/Lesson'} 
+                style={{ width: '100%', height: 200, objectFit: 'cover', display: 'block' }}
+              />
+            )}
+            <div style={{ 
+              padding: 16, 
+              background: 'var(--cria-white)',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 12
+            }}>
+              <div>
+                <Typography variant="body" weight="semiBold" style={{ marginBottom: 4 }}>
+                  {attachment.title}
+                </Typography>
+                {attachment.description && (
+                  <Typography variant="caption" color="secondary">
+                    {attachment.description}
+                  </Typography>
+                )}
+                {attachment.duration && (
+                  <Typography variant="caption" color="secondary" style={{ marginTop: 4, display: 'block' }}>
+                    Duração: {attachment.duration}
+                  </Typography>
+                )}
+              </div>
+              <Button 
+                variant="primary" 
+                size="sm" 
+                onClick={() => {
+                  // Handle course/lesson view action
+                  console.log('View course/lesson:', attachment.title);
+                }}
+                style={{ alignSelf: 'flex-start' }}
+              >
+                {attachment.actionText || (attachment.type === 'course' ? 'Ver Curso' : 'Ver Aula')}
+              </Button>
             </div>
           </div>
         );

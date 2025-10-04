@@ -34,14 +34,16 @@ export const ChatDemo: React.FC = () => {
     { 
       id: 's3', 
       author: 'them', 
-      text: 'Sure! Here\'s a video walkthrough:', 
+      text: 'Sure! Here\'s a preview of the course:', 
       timestamp: new Date(),
       attachments: [{
         id: 'att2',
-        type: 'video',
-        url: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-        title: 'Design System Demo',
-        duration: '2:30'
+        type: 'course',
+        thumbnail: 'https://via.placeholder.com/400x225/7566A1/FFFFFF?text=Course+Preview',
+        title: 'Design System Course',
+        description: 'Learn how to build amazing design systems with modern tools and best practices',
+        duration: '2h 30min',
+        actionText: 'Ver Curso'
       }]
     },
     { 
@@ -50,6 +52,21 @@ export const ChatDemo: React.FC = () => {
       text: 'Perfect! This is exactly what I was looking for.', 
       timestamp: new Date(),
       replyTo: 's3'
+    },
+    { 
+      id: 's5', 
+      author: 'them', 
+      text: 'Here\'s a specific lesson from the course:', 
+      timestamp: new Date(),
+      attachments: [{
+        id: 'att3',
+        type: 'lesson',
+        thumbnail: 'https://via.placeholder.com/400x225/28DDB9/FFFFFF?text=Lesson+Preview',
+        title: 'Component Architecture',
+        description: 'Learn how to structure your components for scalability',
+        duration: '15min',
+        actionText: 'Ver Aula'
+      }]
     },
   ]);
   const [sidebarTyping, setSidebarTyping] = useState(false);
