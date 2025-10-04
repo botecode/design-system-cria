@@ -8,6 +8,7 @@ export const SliderDemo: React.FC = () => {
   const [rangeValue, setRangeValue] = useState<[number, number]>([20, 80]);
   const [stepValue, setStepValue] = useState(25);
   const [colorValue, setColorValue] = useState(60);
+  const [zeroToTenValue, setZeroToTenValue] = useState(5);
 
   const marks = [
     { value: 0, label: '0' },
@@ -21,6 +22,15 @@ export const SliderDemo: React.FC = () => {
     { value: 0, label: 'Min' },
     { value: 50, label: 'Mid' },
     { value: 100, label: 'Max' }
+  ];
+
+  const zeroToTenMarks = [
+    { value: 0, label: '0' },
+    { value: 2, label: '2' },
+    { value: 4, label: '4' },
+    { value: 6, label: '6' },
+    { value: 8, label: '8' },
+    { value: 10, label: '10' }
   ];
 
   return (
@@ -45,6 +55,26 @@ export const SliderDemo: React.FC = () => {
               value={singleValue}
               onChange={setSingleValue}
               marks={marks}
+              showLabels={true}
+            />
+          </div>
+        </Card>
+
+        {/* Zero to Ten Slider */}
+        <Card style={{ padding: '24px' }}>
+          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+            Zero to Ten Slider
+          </Typography>
+          <div style={{ marginBottom: '16px' }}>
+            <Typography variant="body2" style={{ marginBottom: '8px' }}>
+              Value: {zeroToTenValue}
+            </Typography>
+            <Slider
+              min={0}
+              max={10}
+              value={zeroToTenValue}
+              onChange={setZeroToTenValue}
+              marks={zeroToTenMarks}
               showLabels={true}
             />
           </div>

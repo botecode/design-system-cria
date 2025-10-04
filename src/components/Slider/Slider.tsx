@@ -23,6 +23,7 @@ export interface SliderProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
   orientation?: 'horizontal' | 'vertical';
   size?: 'sm' | 'md' | 'lg';
   color?: 'primary' | 'secondary' | 'success' | 'warning' | 'error';
+  'aria-label'?: string;
 }
 
 export const Slider: React.FC<SliderProps> = ({
@@ -43,6 +44,7 @@ export const Slider: React.FC<SliderProps> = ({
   color = 'primary',
   className = '',
   style,
+  'aria-label': ariaLabel,
   ...props
 }) => {
   const [internalValue, setInternalValue] = useState<number | [number, number]>(() => {
@@ -231,7 +233,7 @@ export const Slider: React.FC<SliderProps> = ({
         aria-valuemax={max}
         aria-valuenow={value}
         aria-disabled={disabled}
-        aria-label={`Slider ${thumbIndex + 1}`}
+        aria-label={ariaLabel || `Slider ${thumbIndex + 1}`}
       >
         {showTooltip && (isDragging || activeThumb === thumbIndex) && (
           <div

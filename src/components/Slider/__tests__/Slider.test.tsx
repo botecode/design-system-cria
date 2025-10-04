@@ -26,12 +26,16 @@ describe('Slider', () => {
     await user.keyboard('{ArrowRight}');
     expect(onChange).toHaveBeenCalledWith(51);
     
+    // Reset the mock to test the next call
+    onChange.mockClear();
     await user.keyboard('{ArrowLeft}');
     expect(onChange).toHaveBeenCalledWith(50);
     
+    onChange.mockClear();
     await user.keyboard('{Home}');
     expect(onChange).toHaveBeenCalledWith(0);
     
+    onChange.mockClear();
     await user.keyboard('{End}');
     expect(onChange).toHaveBeenCalledWith(100);
   });
