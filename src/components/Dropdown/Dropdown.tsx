@@ -430,7 +430,6 @@ export const Dropdown = forwardRef<DropdownRef, DropdownProps>(({
         aria-disabled={disabled || loading}
         aria-describedby={helperText || errorMessage ? `${label || 'dropdown'}-helper` : undefined}
         id={label ? `${label.toLowerCase().replace(/\s+/g, '-')}-dropdown` : undefined}
-        name={props.name}
       >
         <span style={{ 
           overflow: 'hidden', 

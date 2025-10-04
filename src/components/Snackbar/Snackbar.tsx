@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createPortal } from 'react-dom';
-import { X, CheckCircle, Info, AlertTriangle } from 'phosphor-react';
+import { X, CheckCircle, Info, Warning } from 'phosphor-react';
 import { Typography } from '../Typography';
 import { Button } from '../Button';
 
@@ -197,7 +197,7 @@ export const Snackbar = React.forwardRef<SnackbarRef, SnackbarProps>(({
         <div className="cria-snackbar__actions">
           {action && (
             <Button
-              variant="text"
+              variant="ghost"
               size="sm"
               onClick={action.onClick}
               className="cria-snackbar__action"
@@ -208,7 +208,7 @@ export const Snackbar = React.forwardRef<SnackbarRef, SnackbarProps>(({
           
           {dismissible && (
             <Button
-              variant="text"
+              variant="ghost"
               size="sm"
               onClick={handleClose}
               className="cria-snackbar__close"

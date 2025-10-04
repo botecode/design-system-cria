@@ -3,7 +3,7 @@ import { Typography } from '../Typography';
 import { Button } from '../Button';
 import { X } from 'phosphor-react';
 
-export interface ModalProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface ModalProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   /**
    * Whether the modal is open
    */

@@ -7,25 +7,25 @@
 // Design Tokens
 export * from './tokens';
 
-// Components
-export * from './components/Typography';
+// Components - Named exports
+export * from './components/Accordion';
+export * from './components/Badge';
 export * from './components/Button';
 export * from './components/Card';
-export * from './components/Badge';
-export * from './components/Tabs';
-export * from './components/Tooltip';
-export * from './components/Modal';
-export * from './components/Input';
 export * from './components/Checkbox';
-export * from './components/Switch';
-export * from './components/Snackbar';
+export * from './components/Input';
+export * from './components/Modal';
 export * from './components/Navigation';
-export * from './components/Accordion';
+export * from './components/Snackbar';
+export * from './components/Switch';
+export * from './components/Tabs';
 export * from './components/Text';
+export * from './components/Tooltip';
+export * from './components/Typography';
 export * from './components/Dropdown';
 export * from './components/RadioGroup';
 
-// Main exports
+// Default exports for backward compatibility
 export { default as Typography } from './components/Typography';
 export { default as Button } from './components/Button';
 export { default as Card } from './components/Card';

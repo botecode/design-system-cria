@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "description": "CRIA_UI - A React + TypeScript design system for CR_IA applications",
   "type": "module",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "main": "dist/index.cjs",
+  "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --dts --format esm,cjs",
+    "build": "tsup src/index.ts --dts --format cjs,esm --out-dir dist",
     "dev": "tsup src/index.ts --watch",
     "preview": "vite preview",
     "type-check": "tsc --noEmit",

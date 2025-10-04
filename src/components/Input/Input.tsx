@@ -244,7 +244,7 @@ export const Input = forwardRef<InputRef, InputProps>(({
   
   // Get current value for character count
   const currentValue = value || inputRef.current?.value || '';
-  const characterCount = currentValue.length;
+  const characterCount = String(currentValue).length;
   
   // Determine if clear button should be shown
   const shouldShowClearButton = showClearButton && currentValue && !disabled && !readOnly;
@@ -330,14 +330,14 @@ export const Input = forwardRef<InputRef, InputProps>(({
         <div className="cria-input__messages">
           {/* Helper Text */}
           {helperText && !errorMessage && !successMessage && !warningMessage && (
-            <Typography variant="body" size="sm" color="secondary" className="cria-input__helper-text">
+            <Typography variant="body" color="secondary" className="cria-input__helper-text">
               {helperText}
             </Typography>
           )}
           
           {/* Error Message */}
           {errorMessage && (
-            <Typography variant="body" size="sm" color="error" className="cria-input__error-message">
+            <Typography variant="body" color="error" className="cria-input__error-message">
               <WarningCircle size={14} style={{ marginRight: '4px' }} />
               {errorMessage}
             </Typography>
@@ -345,7 +345,7 @@ export const Input = forwardRef<InputRef, InputProps>(({
           
           {/* Success Message */}
           {successMessage && (
-            <Typography variant="body" size="sm" color="success" className="cria-input__success-message">
+            <Typography variant="body" color="success" className="cria-input__success-message">
               <Check size={14} style={{ marginRight: '4px' }} />
               {successMessage}
             </Typography>
@@ -353,7 +353,7 @@ export const Input = forwardRef<InputRef, InputProps>(({
           
           {/* Warning Message */}
           {warningMessage && (
-            <Typography variant="body" size="sm" color="warning" className="cria-input__warning-message">
+            <Typography variant="body" color="warning" className="cria-input__warning-message">
               <WarningCircle size={14} style={{ marginRight: '4px' }} />
               {warningMessage}
             </Typography>
@@ -361,7 +361,7 @@ export const Input = forwardRef<InputRef, InputProps>(({
           
           {/* Character Count */}
           {showCharacterCount && maxLength && (
-            <Typography variant="body" size="sm" color="secondary" className="cria-input__character-count">
+            <Typography variant="body" color="secondary" className="cria-input__character-count">
               {characterCount}/{maxLength}
             </Typography>
           )}

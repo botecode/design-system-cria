@@ -11,7 +11,7 @@ interface AccordionContextType {
 
 const AccordionContext = createContext<AccordionContextType | null>(null);
 
-export interface AccordionProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface AccordionProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   /**
    * Accordion variant
    */
