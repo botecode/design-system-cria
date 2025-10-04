@@ -4,7 +4,7 @@ import { Typography } from '../Typography';
 import { Card } from '../Card';
 import { Button } from '../Button';
 import { colors, spacing } from '../../tokens';
-import { Check, Star, Zap, Shield, Users, Globe } from 'phosphor-react';
+import { Check, Star, Lightning, Shield, Users, Globe } from 'phosphor-react';
 
 export const CardSelectorDemo: React.FC = () => {
   const [singleSelection, setSingleSelection] = useState<string[]>([]);
@@ -70,7 +70,7 @@ export const CardSelectorDemo: React.FC = () => {
       title: 'Analytics',
       description: 'Track your performance with detailed analytics',
       value: 'analytics',
-      icon: <Zap size={24} color={colors.primary} />,
+      icon: <Lightning size={24} color={colors.primary} />,
     },
     {
       id: '2',
