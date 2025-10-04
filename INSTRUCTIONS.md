@@ -80,7 +80,11 @@ Input Demos
 
 ✅ Dropdown / Select
 
-⬜ Next Component: Radio Group
+✅ Radio Group
+
+✅ Textarea
+
+⬜ Next Component: Avatar
 
 We need a Radio Group component for single-selection from multiple options.
 
@@ -111,6 +115,8 @@ Tests
 	•	Date Picker
 	•	File Upload
 	•	Chat
+	•	PieChart
+	•	LineChart
 
 ⸻
 
