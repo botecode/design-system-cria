@@ -32,3 +32,4 @@ export * from './components/Text';
 export * from './components/Textarea';
 export * from './components/Tooltip';
 export * from './components/Typography';
+export * from './components/TextTokens';

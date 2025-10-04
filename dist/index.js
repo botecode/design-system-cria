@@ -785,7 +785,7 @@ var Typography = ({
     switch (color2) {
       case "primary":
         return { color: "#7566A1" };
-      // Main brand purple - ONLY for titles
+      // Main brand purple
       case "primaryLight":
         return { color: "#3A2E52" };
       // Primary light/darker

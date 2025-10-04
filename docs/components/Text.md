@@ -10,12 +10,24 @@ import { TextBody, TextContent, TextContentTitle, TextContentImportant } from '@
 
 ## Components Overview
 
-The Text component provides four specialized variants for different content contexts:
+The Text component provides four specialized variants for different content contexts, and a unified CriaText token set for app-wide typography:
 
 - **TextBody**: Default body text for UI copy and cards
 - **TextContent**: Long-form content paragraphs with optimized readability
 - **TextContentTitle**: Section titles within long-form content
 - **TextContentImportant**: Highlighted/emphasized text
+
+### CriaText Tokens
+
+Unified tokens that wrap `Typography` and map directly to design tokens:
+
+- **CriaTextBody1**: Default body text (semantic: p)
+- **CriaTextBody2**: Smaller body text (semantic: p)
+- **CriaTextBody1Inverse**: Body1 in inverse white for dark backgrounds (semantic: p)
+- **CriaTextTitle1**: Large page title (semantic: h2 by default)
+- **CriaTextTitle2**: Section title (semantic: h3 by default)
+- **CriaTextImportant**: Medium-weight emphasis (semantic: span)
+- **CriaTextAlert**: Error/danger emphasis in red (semantic: span)
 
 ## TextBody
 
@@ -180,6 +192,16 @@ Each Text component has optimized styling for its specific use case:
 - **Line Height**: Normal line height
 - **Weight**: Medium to bold
 - **Use Case**: Emphasized text, highlights
+
+### CriaText Tokens – When to use
+
+- **CriaTextTitle1**: Page headlines, top-level sections.
+- **CriaTextTitle2**: Sub-sections in pages and cards.
+- **CriaTextBody1**: Default UI copy and descriptions.
+- **CriaTextBody2**: Secondary descriptions, dense UIs.
+- **CriaTextBody1Inverse**: Text on dark surfaces or brand areas.
+- **CriaTextImportant**: Short inline emphasis without color change.
+- **CriaTextAlert**: Inline error/danger messages.
 
 ## Accessibility
 
