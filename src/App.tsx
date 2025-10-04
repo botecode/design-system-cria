@@ -110,13 +110,11 @@ const App: React.FC = () => {
       subitems: [
         { id: 'card', label: 'Card', href: '#card', icon: <Square size={20} /> },
         { id: 'tabs', label: 'Tabs', href: '#tabs', icon: <Tabs size={20} /> },
-        { id: 'vertical-tabs', label: 'Vertical Tabs', href: '#vertical-tabs', icon: <Tabs size={20} /> },
         { id: 'accordion', label: 'Accordion', href: '#accordion', icon: <CaretDown size={20} /> },
         { id: 'navigation', label: 'Navigation', href: '#navigation', icon: <List size={20} /> },
         { id: 'breadcrumbs', label: 'Breadcrumbs', href: '#breadcrumbs', icon: <CaretDown size={20} /> },
         { id: 'pagination', label: 'Pagination', href: '#pagination', icon: <List size={20} /> },
         { id: 'progress-bar', label: 'Progress Bar', href: '#progress-bar', icon: <List size={20} /> },
-        { id: 'vertical-tabs', label: 'Vertical Tabs', href: '#vertical-tabs', icon: <Tabs size={20} /> },
         { id: 'stepper', label: 'Stepper', href: '#stepper', icon: <List size={20} /> },
         { id: 'date-picker', label: 'Date Picker', href: '#date-picker', icon: <List size={20} /> }
       ]
