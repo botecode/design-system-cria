@@ -256,38 +256,18 @@ const Sidebar: React.FC<NavigationSidebarProps> = ({
       {...props}
     >
       <div className="cria-sidebar__header">
-        {title && (
+        {title && !collapsed && (
           <div className="cria-sidebar__title-section">
             {titleHref ? (
               <a href={titleHref} className="cria-sidebar__title-link">
-                {collapsed ? (
-                  <div className="cria-sidebar__logo">
-                    <img 
-                      src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTYiIGZpbGw9InVybCgjZ3JhZGllbnQwX2xpbmVhcl8xXzEpIi8+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRpZW50MF9saW5lYXJfMV8xIiB4MT0iMCIgeTE9IjAiIHgyPSIzMiIgeTI9IjMyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiM3MzQ2QTAiLz4KPHN0b3Agb2Zmc2V0PSIwLjMiIHN0b3AtY29sb3I9IiM4QzVBRjQiLz4KPHN0b3Agb2Zmc2V0PSIwLjciIHN0b3AtY29sb3I9IiM0QjU2NjMiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjN0I0N0Y1Ii8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+" 
-                      alt="CRIA.lab" 
-                      className="cria-sidebar__logo-img"
-                    />
-                  </div>
-                ) : (
-                  <Typography variant="h3" weight="bold" color="primary">
-                    {title}
-                  </Typography>
-                )}
-              </a>
-            ) : (
-              collapsed ? (
-                <div className="cria-sidebar__logo">
-                  <img 
-                    src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTYiIGZpbGw9InVybCgjZ3JhZGllbnQwX2xpbmVhcl8xXzEpIi8+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRpZW50MF9saW5lYXJfMV8xIiB4MT0iMCIgeTE9IjAiIHgyPSIzMiIgeTI9IjMyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CjxzdG9wIHN0b3AtY29sb3I9IiM3MzQ2QTAiLz4KPHN0b3Agb2Zmc2V0PSIwLjMiIHN0b3AtY29sb3I9IiM4QzVBRjQiLz4KPHN0b3Agb2Zmc2V0PSIwLjciIHN0b3AtY29sb3I9IiM0QjU2NjMiLz4KPHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjN0I0N0Y1Ii8+CjwvbGluZWFyR3JhZGllbnQ+CjwvZGVmcz4KPC9zdmc+" 
-                    alt="CRIA.lab" 
-                    className="cria-sidebar__logo-img"
-                  />
-                </div>
-              ) : (
                 <Typography variant="h3" weight="bold" color="primary">
                   {title}
                 </Typography>
-              )
+              </a>
+            ) : (
+              <Typography variant="h3" weight="bold" color="primary">
+                {title}
+              </Typography>
             )}
           </div>
         )}
