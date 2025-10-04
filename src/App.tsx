@@ -114,6 +114,7 @@ const App: React.FC = () => {
       id: 'feedback', 
       label: 'Feedback', 
       icon: <Bell size={20} />,
+      defaultExpanded: true,
       subitems: [
         { id: 'snackbar', label: 'Snackbar', href: '#snackbar', icon: <Bell size={20} /> },
         { id: 'modal', label: 'Modal', href: '#modal', icon: <ChatCircle size={20} /> },
