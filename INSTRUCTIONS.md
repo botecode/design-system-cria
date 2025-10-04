@@ -74,6 +74,7 @@ For each new component:
 	•	Avatar
 	•	Breadcrumbs
 	•	Pagination
+	•	Pagination
 
 Input Demos
 	•	Basic Inputs — Full Name, Email Address, Phone Number, Date (dd.mm.yyyy)
