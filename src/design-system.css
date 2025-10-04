@@ -2186,13 +2186,26 @@ body {
 .cria-chat__group--them { align-items: flex-start; }
 .cria-chat__bubble { max-width: 70%; padding: 8px 10px; border-radius: 12px; display: inline-flex; flex-direction: column; gap: 4px; }
 .cria-chat__group--me .cria-chat__bubble { background: var(--cria-primary); color: var(--cria-white); border-bottom-right-radius: 4px; }
-.cria-chat__group--them .cria-chat__bubble { background: var(--cria-gray-100); color: var(--cria-gray-900); border-bottom-left-radius: 4px; }
+.cria-chat__group--them .cria-chat__bubble { background: var(--cria-gray-100); color: var(--cria-gray-900); border-bottom-left-radius: 4px; border: 1px solid var(--cria-gray-200); }
+.cria-chat__group--me .cria-chat__bubble + .cria-chat__bubble { margin-top: 4px; }
+.cria-chat__group--them .cria-chat__bubble + .cria-chat__bubble { margin-top: 4px; }
 .cria-chat__bubble--typing { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 32px; }
 .cria-chat__composer { display: flex; align-items: center; gap: 8px; }
 .cria-chat__attach { background: transparent; border: 1px solid var(--cria-border-medium); border-radius: var(--cria-radius-sm); padding: 6px; cursor: pointer; }
 .cria-chat__attach:disabled { opacity: .6; cursor: not-allowed; }
 .cria-chat__textarea { flex: 1; resize: none; border: 1px solid var(--cria-primary); border-radius: var(--cria-radius-md); padding: 10px 12px; font-family: var(--cria-font-family); font-size: var(--cria-font-size-body); outline: none; }
 .cria-chat__textarea:focus { box-shadow: 0 0 0 3px rgba(117,102,161,.1); }
+
+/* Sidebar themed chat adjustments */
+.cria-chat--sidebar .cria-chat__log { background: #2A1F3A; border-color: rgba(255,255,255,0.2); }
+.cria-chat--sidebar .cria-chat__group--them .cria-chat__bubble { background: var(--cria-secondary); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.18); }
+.cria-chat--sidebar .cria-chat__group--me .cria-chat__bubble { background: #9E9AD9; color: #1E1630; }
+.cria-chat--sidebar .cria-chat__bubble .cria-typography--color-secondary { color: rgba(255,255,255,0.85) !important; }
+.cria-chat--sidebar .cria-chat__composer { background: transparent; }
+.cria-chat--sidebar .cria-chat__attach { border-color: rgba(255,255,255,0.6); color: #FFFFFF; }
+.cria-chat--sidebar .cria-chat__attach svg { color: #FFFFFF; }
+.cria-chat--sidebar .cria-chat__textarea { border-color: #FFFFFF; background: rgba(255,255,255,0.14); color: #FFFFFF; }
+.cria-chat--sidebar .cria-chat__textarea::placeholder { color: rgba(255,255,255,0.9); }
 
 .cria-checkbox--indeterminate.cria-checkbox--secondary .cria-checkbox__checkmark {
   background-color: var(--cria-secondary);

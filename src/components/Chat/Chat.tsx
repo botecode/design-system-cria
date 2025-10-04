@@ -16,6 +16,10 @@ export interface ChatProps extends React.HTMLAttributes<HTMLDivElement> {
   typing?: boolean;
   placeholder?: string;
   disabled?: boolean;
+  /** If true, newly added non-user ("them") messages reveal characters gradually */
+  revealThem?: boolean;
+  /** Milliseconds per character when revealThem is enabled (default 18ms) */
+  revealSpeedMs?: number;
 }
 
 export const Chat: React.FC<ChatProps> = ({
@@ -24,12 +28,18 @@ export const Chat: React.FC<ChatProps> = ({
   typing = false,
   placeholder = 'Type a message…',
   disabled = false,
+  revealThem = false,
+  revealSpeedMs = 18,
   className = '',
   style,
   ...props
 }) => {
   const [text, setText] = useState('');
   const logRef = useRef<HTMLDivElement>(null);
+  const [revealMsgId, setRevealMsgId] = useState<string | null>(null);
+  const [revealIndex, setRevealIndex] = useState(0);
+  const revealTimer = useRef<number | null>(null);
+  const lastRevealedId = useRef<string | null>(null);
 
   // Scroll to bottom on new messages
   useEffect(() => {
@@ -38,6 +48,31 @@ export const Chat: React.FC<ChatProps> = ({
       el.scrollTop = el.scrollHeight;
     }
   }, [messages, typing]);
+
+  // Start reveal animation for the latest "them" message
+  useEffect(() => {
+    if (!revealThem) return;
+    const last = messages[messages.length - 1];
+    if (!last || last.author !== 'them') return;
+    if (lastRevealedId.current === last.id) return;
+    lastRevealedId.current = last.id;
+    setRevealMsgId(last.id);
+    setRevealIndex(0);
+    if (revealTimer.current) window.clearInterval(revealTimer.current);
+    revealTimer.current = window.setInterval(() => {
+      setRevealIndex((i) => {
+        const next = i + 1;
+        if (next >= last.text.length) {
+          if (revealTimer.current) window.clearInterval(revealTimer.current);
+          revealTimer.current = null;
+        }
+        return next;
+      });
+    }, Math.max(5, revealSpeedMs));
+    return () => {
+      if (revealTimer.current) window.clearInterval(revealTimer.current);
+    };
+  }, [messages, revealThem, revealSpeedMs]);
 
   const handleSend = useCallback(() => {
     if (!text.trim() || disabled) return;
@@ -79,7 +114,9 @@ export const Chat: React.FC<ChatProps> = ({
             {group.items.map(item => (
               <div key={item.id} className="cria-chat__bubble" aria-label={`${group.author === 'me' ? 'Me' : 'Them'} said ${item.text}`}>
                 <Typography variant="body" color={group.author === 'me' ? 'inverse' : 'content'}>
-                  {item.text}
+                  {revealThem && group.author === 'them' && item.id === revealMsgId
+                    ? item.text.slice(0, Math.max(0, revealIndex))
+                    : item.text}
                 </Typography>
                 <Typography variant="caption" color={group.author === 'me' ? 'inverse' : 'secondary'}>
                   {item.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
@@ -98,9 +135,6 @@ export const Chat: React.FC<ChatProps> = ({
       </div>
 
       <div className="cria-chat__composer">
-        <button type="button" className="cria-chat__attach" aria-label="Add attachment" disabled={disabled}>
-          <Paperclip size={18} />
-        </button>
         <textarea
           className="cria-chat__textarea"
           placeholder={placeholder}
@@ -111,7 +145,7 @@ export const Chat: React.FC<ChatProps> = ({
           disabled={disabled}
           rows={1}
         />
-        <Button variant="primary" size="sm" onClick={handleSend} disabled={disabled || !text.trim()} aria-label="Send message">
+        <Button variant="secondary" size="sm" onClick={handleSend} disabled={disabled || !text.trim()} aria-label="Send message">
           <PaperPlaneRight size={18} />
         </Button>
       </div>
