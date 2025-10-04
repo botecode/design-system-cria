@@ -1,147 +1,42 @@
 import React from 'react';
-import { Typography } from '../Typography';
-import { CriaTextBody1, CriaTextBody2, CriaTextBody1Inverse, CriaTextTitle1, CriaTextTitle2, CriaTextImportant, CriaTextAlert } from '../TextTokens';
-import { TextBody, TextContent, TextContentTitle, TextContentImportant } from './index';
+import { 
+  CriaTextHeadline1,
+  CriaTextHeadline2,
+  CriaTextTitle1,
+  CriaTextTitle2,
+  CriaTextBody1,
+  CriaTextBody2,
+  CriaTextBody1Inverse,
+  CriaTextImportant,
+  CriaTextAlert
+} from '../TextTokens';
 import { Card, CardContent } from '../Card';
 
 export const TextDemo: React.FC = () => {
   return (
     <div style={{ padding: '0' }}>
+      {/* Overview */}
       <div style={{ marginBottom: '32px' }}>
-        <Typography variant="title1" style={{ marginBottom: '16px' }}>
-          Text Component
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '0' }}>
-          A unified Text component system for consistent typography across the application. 
-          Each variant is designed for specific use cases while maintaining semantic HTML structure.
-        </Typography>
-      </div>
-
-      {/* TextBody Examples */}
-      <div style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" style={{ marginBottom: '16px' }}>
-          TextBody
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
-          Default body text for UI copy, labels, and short content. Renders as span by default.
-        </Typography>
-        
-        <Card style={{ marginBottom: '16px' }}>
-          <CardContent>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-              <TextBody>Default body text in a card</TextBody>
-              <TextBody as="p">Body text rendered as paragraph</TextBody>
-              <TextBody as="label">Body text as label element</TextBody>
-            </div>
-          </CardContent>
-        </Card>
-
-      </div>
-
-      {/* TextContent Examples */}
-      <div style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" style={{ marginBottom: '16px' }}>
-          TextContent
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
-          Long-form content paragraphs with relaxed line height for better readability. 
-          Renders as paragraph by default.
-        </Typography>
-        
-        <Card style={{ marginBottom: '16px' }}>
-          <CardContent>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <TextContent>
-                This is a long-form content paragraph that demonstrates how the TextContent 
-                component provides better readability for extended text content. The relaxed 
-                line height makes it easier to read through multiple paragraphs.
-              </TextContent>
-              <TextContent>
-                Here's another paragraph to show how multiple TextContent components work 
-                together in a content block. The consistent styling ensures a cohesive 
-                reading experience.
-              </TextContent>
-              <TextContent as="div">
-                This TextContent is rendered as a div element while maintaining the same 
-                styling and readability characteristics.
-              </TextContent>
-            </div>
-          </CardContent>
-        </Card>
-
-      </div>
-
-      {/* TextContentTitle Examples */}
-      <div style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" style={{ marginBottom: '16px' }}>
-          TextContentTitle
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
-          Section titles for long-form content. Renders as h3 by default for proper 
-          heading hierarchy and accessibility.
-        </Typography>
-        
-        <Card style={{ marginBottom: '16px' }}>
-          <CardContent>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <TextContentTitle>Section Title (h3)</TextContentTitle>
-              <TextContent>This is the content that follows the section title.</TextContent>
-              
-              <TextContentTitle as="h2">Title as h2</TextContentTitle>
-              <TextContent>Content following an h2 title.</TextContent>
-              
-              <TextContentTitle as="h4">Title as h4</TextContentTitle>
-              <TextContent>Content following an h4 title.</TextContent>
-            </div>
-          </CardContent>
-        </Card>
-
-      </div>
-
-      {/* TextContentImportant Examples */}
-      <div style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" style={{ marginBottom: '16px' }}>
-          TextContentImportant
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
-          Highlighted and emphasized text with medium font weight. Renders as span by default.
-        </Typography>
-        
-        <Card style={{ marginBottom: '16px' }}>
-          <CardContent>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <TextContent>
-                This is regular content with <TextContentImportant>important highlighted text</TextContentImportant> 
-                that stands out from the rest of the paragraph.
-              </TextContent>
-              
-              <TextContentImportant as="strong">Important text as strong element</TextContentImportant>
-              
-              <TextContentImportant as="em">Important text as emphasis element</TextContentImportant>
-              
-              <div>
-                <TextContentImportant>Important standalone text</TextContentImportant>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
+        <CriaTextHeadline2 as="h2">CriaText Tokens</CriaTextHeadline2>
+        <CriaTextBody1>
+          Unified text tokens mapped to design tokens for consistent typography and semantics.
+        </CriaTextBody1>
       </div>
 
       {/* CriaText Tokens Demo */}
       <div style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" style={{ marginBottom: '16px' }}>
-          CriaText Tokens
-        </Typography>
+        <CriaTextHeadline2 as="h2">Tokens</CriaTextHeadline2>
         <Card style={{ marginBottom: '16px' }}>
           <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <CriaTextTitle1>Title 1 – Big page headline</CriaTextTitle1>
-              <CriaTextTitle2>Title 2 – Section headline</CriaTextTitle2>
-              <CriaTextBody1>This is the standard body text</CriaTextBody1>
-              <CriaTextBody2>This is smaller body text</CriaTextBody2>
-              <CriaTextImportant>Important inline emphasis</CriaTextImportant>
-              <CriaTextAlert>Error or alert text in red</CriaTextAlert>
+              <CriaTextHeadline1>Main page headline (Headline1)</CriaTextHeadline1>
+              <CriaTextHeadline2>Section headline (Headline2)</CriaTextHeadline2>
+              <CriaTextTitle1>Content title (Title1)</CriaTextTitle1>
+              <CriaTextTitle2>Smaller section title (Title2)</CriaTextTitle2>
+              <CriaTextBody1>This is the standard body text (Body1)</CriaTextBody1>
+              <CriaTextBody2>This is smaller body text (Body2)</CriaTextBody2>
+              <CriaTextImportant>Important inline emphasis</CriaTextImportant> with body copy.
+              <CriaTextAlert>Inline alert or error text</CriaTextAlert> adjacent to content.
             </div>
           </CardContent>
         </Card>
@@ -157,38 +52,30 @@ export const TextDemo: React.FC = () => {
 
       {/* Real-world Example */}
       <div style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" style={{ marginBottom: '16px' }}>
-          Real-world Example
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
-          Here's how the Text components work together in a typical content layout:
-        </Typography>
+        <CriaTextHeadline2 as="h2">Real-world Example</CriaTextHeadline2>
+        <CriaTextBody1>How CriaText tokens compose in a typical layout:</CriaTextBody1>
         
         <Card>
           <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <TextContentTitle>Getting Started with CRIA_UI</TextContentTitle>
+              <CriaTextTitle1>Getting Started with CRIA_UI</CriaTextTitle1>
               
-              <TextContent>
-                Welcome to the CRIA_UI design system! This comprehensive component library 
-                provides everything you need to build consistent, accessible, and beautiful 
-                user interfaces.
-              </TextContent>
+              <CriaTextBody1>
+                Welcome to the CRIA_UI design system! This comprehensive component library provides everything you need to build consistent, accessible, and beautiful user interfaces.
+              </CriaTextBody1>
               
-              <TextContentTitle as="h4">Key Features</TextContentTitle>
+              <CriaTextTitle2>Key Features</CriaTextTitle2>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <TextBody>• <TextContentImportant>Accessibility-first design</TextContentImportant> with WCAG compliance</TextBody>
-                <TextBody>• <TextContentImportant>Consistent design tokens</TextContentImportant> for colors, typography, and spacing</TextBody>
-                <TextBody>• <TextContentImportant>TypeScript support</TextContentImportant> with full type safety</TextBody>
-                <TextBody>• <TextContentImportant>Comprehensive testing</TextContentImportant> with accessibility assertions</TextBody>
+                <CriaTextBody1>• <CriaTextImportant>Accessibility-first design</CriaTextImportant> with WCAG compliance</CriaTextBody1>
+                <CriaTextBody1>• <CriaTextImportant>Consistent design tokens</CriaTextImportant> for colors, typography, and spacing</CriaTextBody1>
+                <CriaTextBody1>• <CriaTextImportant>TypeScript support</CriaTextImportant> with full type safety</CriaTextBody1>
+                <CriaTextBody1>• <CriaTextImportant>Comprehensive testing</CriaTextImportant> with accessibility assertions</CriaTextBody1>
               </div>
               
-              <TextContent>
-                Each component is built with semantic HTML structure and proper ARIA attributes 
-                to ensure the best possible experience for all users, including those using 
-                assistive technologies.
-              </TextContent>
+              <CriaTextBody1>
+                Each component is built with semantic HTML structure and proper ARIA attributes to ensure the best possible experience for all users, including those using assistive technologies.
+              </CriaTextBody1>
             </div>
           </CardContent>
         </Card>
@@ -196,16 +83,14 @@ export const TextDemo: React.FC = () => {
 
       {/* Accessibility Notes */}
       <div style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" style={{ marginBottom: '16px' }}>
-          Accessibility Features
-        </Typography>
+        <CriaTextHeadline2 as="h2">Accessibility Features</CriaTextHeadline2>
         <Card>
           <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <TextBody>• <TextContentImportant>Semantic HTML:</TextContentImportant> Each variant renders appropriate HTML elements (h3, p, span)</TextBody>
-              <TextBody>• <TextContentImportant>Screen reader support:</TextContentImportant> Proper heading hierarchy and content structure</TextBody>
-              <TextBody>• <TextContentImportant>Flexible element override:</TextContentImportant> Use the `as` prop to change elements while preserving styles</TextBody>
-              <TextBody>• <TextContentImportant>Consistent styling:</TextContentImportant> All variants use design tokens for consistent appearance</TextBody>
+              <CriaTextBody1>• <CriaTextImportant>Semantic HTML:</CriaTextImportant> Each CriaText* token renders appropriate HTML elements</CriaTextBody1>
+              <CriaTextBody1>• <CriaTextImportant>Screen reader support:</CriaTextImportant> Proper heading hierarchy and content structure</CriaTextBody1>
+              <CriaTextBody1>• <CriaTextImportant>Flexible element override:</CriaTextImportant> Use the `as` prop to change elements while preserving styles</CriaTextBody1>
+              <CriaTextBody1>• <CriaTextImportant>Consistent styling:</CriaTextImportant> All tokens use design tokens for consistent appearance</CriaTextBody1>
             </div>
           </CardContent>
         </Card>

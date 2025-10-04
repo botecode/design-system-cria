@@ -7,6 +7,38 @@ export interface CriaTextBaseProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
 }
 
+export const CriaTextHeadline1: React.FC<CriaTextBaseProps> = ({ as, children, className = '', ...props }) => {
+  const Element = (as || 'h1') as keyof JSX.IntrinsicElements;
+  return (
+    <Typography
+      as={Element}
+      variant="h1"
+      color="primary"
+      weight="bold"
+      className={className}
+      {...(props as any)}
+    >
+      {children}
+    </Typography>
+  );
+};
+
+export const CriaTextHeadline2: React.FC<CriaTextBaseProps> = ({ as, children, className = '', ...props }) => {
+  const Element = (as || 'h2') as keyof JSX.IntrinsicElements;
+  return (
+    <Typography
+      as={Element}
+      variant="h2"
+      color="primary"
+      weight="semiBold"
+      className={className}
+      {...(props as any)}
+    >
+      {children}
+    </Typography>
+  );
+};
+
 export const CriaTextBody1: React.FC<CriaTextBaseProps> = ({ as, children, className = '', ...props }) => {
   const Element = (as || 'p') as keyof JSX.IntrinsicElements;
   return (
@@ -23,7 +55,7 @@ export const CriaTextBody1: React.FC<CriaTextBaseProps> = ({ as, children, class
 };
 
 export const CriaTextBody2: React.FC<CriaTextBaseProps> = ({ as, children, className = '', ...props }) => {
-  const Element = (as || 'p') as keyof JSX.IntrinsicElements;
+  const Element = (as || 'span') as keyof JSX.IntrinsicElements;
   return (
     <Typography
       as={Element}
@@ -53,12 +85,12 @@ export const CriaTextBody1Inverse: React.FC<CriaTextBaseProps> = ({ as, children
 };
 
 export const CriaTextTitle1: React.FC<CriaTextBaseProps> = ({ as, children, className = '', ...props }) => {
-  // Defaults to h2 per requirements (even though title1 maps to h1 in Typography)
-  const Element = (as || 'h2') as keyof JSX.IntrinsicElements;
+  // Defaults to h3 per requirements
+  const Element = (as || 'h3') as keyof JSX.IntrinsicElements;
   return (
     <Typography
       as={Element}
-      variant="title1"
+      variant="title2"
       color="primary"
       weight="bold"
       className={className}
@@ -70,12 +102,12 @@ export const CriaTextTitle1: React.FC<CriaTextBaseProps> = ({ as, children, clas
 };
 
 export const CriaTextTitle2: React.FC<CriaTextBaseProps> = ({ as, children, className = '', ...props }) => {
-  // Defaults to h3 per requirements
-  const Element = (as || 'h3') as keyof JSX.IntrinsicElements;
+  // Defaults to h4 per requirements
+  const Element = (as || 'h4') as keyof JSX.IntrinsicElements;
   return (
     <Typography
       as={Element}
-      variant="title2"
+      variant="title3"
       color="primary"
       weight="semiBold"
       className={className}

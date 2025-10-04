@@ -83,7 +83,8 @@ const App: React.FC = () => {
       defaultExpanded: true,
       subitems: [
         { id: 'typography', label: 'Typography', href: '#typography', icon: <TextAa size={20} /> },
-        { id: 'colors', label: 'Colors', href: '#colors', icon: <Palette size={20} /> }
+        { id: 'colors', label: 'Colors', href: '#colors', icon: <Palette size={20} /> },
+        { id: 'text', label: 'Text', href: '#text', icon: <Article size={20} /> }
       ]
     },
     { 
@@ -130,8 +131,7 @@ const App: React.FC = () => {
         { id: 'tooltip', label: 'Tooltip', href: '#tooltip', icon: <Info size={20} /> },
         { id: 'badge', label: 'Badge', href: '#badge', icon: <Tag size={20} /> }
       ]
-    },
-    { id: 'text', label: 'Text', href: '#text', icon: <Article size={20} /> }
+    }
   ];
 
   const handleSectionChange = (section: DemoSection) => {

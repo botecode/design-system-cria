@@ -9,14 +9,14 @@ export {
   TextContentImportant 
 } from './components/Text/Text.jsx';
 
-// Tabs Component
-export { Tabs } from './components/Tabs/Tabs.jsx';
+// Tabs Component (TS build)
+export { Tabs } from './components/Tabs';
 
-// Button Component
-export { Button } from './components/Button/Button.jsx';
+// Button Component (TS build)
+export { Button } from './components/Button';
 
-// Card Components
-export { Card, CardHeader, CardContent, CardFooter } from './components/Card/Card.jsx';
+// Card Components (TS build)
+export { Card, CardHeader, CardContent, CardFooter } from './components/Card';
 
 // Typography Component (alias for Text)
 export { 

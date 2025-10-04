@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Typography } from '../Typography';
+import { CriaTextTitle1, CriaTextTitle2, CriaTextBody1 } from '../TextTokens';
 import { Textarea } from './index';
 import { Card, CardContent, CardHeader, CardFooter } from '../Card';
 
@@ -10,19 +10,16 @@ export const TextareaDemo: React.FC = () => {
 
   return (
     <div style={{ padding: '0' }}>
-      <Typography variant="h1" style={{ marginBottom: '32px' }}>
-        Textarea Component
-      </Typography>
+      <CriaTextTitle1 as="h2" style={{ marginBottom: '32px' }}>Textarea Component</CriaTextTitle1>
 
-      <Typography variant="body" style={{ marginBottom: '32px' }}>
-        The Textarea component provides a multi-line text input with various states, 
-        sizes, and features including auto-resize, character counting, and accessibility support.
-      </Typography>
+      <CriaTextBody1 style={{ marginBottom: '32px' }}>
+        The Textarea component provides a multi-line text input with various states, sizes, and features including auto-resize, character counting, and accessibility support.
+      </CriaTextBody1>
 
       {/* Basic Examples */}
       <Card style={{ marginBottom: '32px' }}>
         <CardHeader>
-          <Typography variant="h3">Basic Examples</Typography>
+          <CriaTextTitle2 as="h3">Basic Examples</CriaTextTitle2>
         </CardHeader>
         <CardContent>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -72,7 +69,7 @@ export const TextareaDemo: React.FC = () => {
       {/* Sizes */}
       <Card style={{ marginBottom: '32px' }}>
         <CardHeader>
-          <Typography variant="h3">Sizes</Typography>
+          <CriaTextTitle2 as="h3">Sizes</CriaTextTitle2>
         </CardHeader>
         <CardContent>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -109,7 +106,7 @@ export const TextareaDemo: React.FC = () => {
       {/* Variants */}
       <Card style={{ marginBottom: '32px' }}>
         <CardHeader>
-          <Typography variant="h3">Variants</Typography>
+          <CriaTextTitle2 as="h3">Variants</CriaTextTitle2>
         </CardHeader>
         <CardContent>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -155,7 +152,7 @@ export const TextareaDemo: React.FC = () => {
       {/* States */}
       <Card style={{ marginBottom: '32px' }}>
         <CardHeader>
-          <Typography variant="h3">States</Typography>
+          <CriaTextTitle2 as="h3">States</CriaTextTitle2>
         </CardHeader>
         <CardContent>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -192,7 +189,7 @@ export const TextareaDemo: React.FC = () => {
       {/* Features */}
       <Card style={{ marginBottom: '32px' }}>
         <CardHeader>
-          <Typography variant="h3">Features</Typography>
+          <CriaTextTitle2 as="h3">Features</CriaTextTitle2>
         </CardHeader>
         <CardContent>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -242,7 +239,7 @@ export const TextareaDemo: React.FC = () => {
       {/* Interactive Examples */}
       <Card style={{ marginBottom: '32px' }}>
         <CardHeader>
-          <Typography variant="h3">Interactive Examples</Typography>
+          <CriaTextTitle2 as="h3">Interactive Examples</CriaTextTitle2>
         </CardHeader>
         <CardContent>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -293,12 +290,12 @@ export const TextareaDemo: React.FC = () => {
       {/* Accessibility Note */}
       <Card>
         <CardHeader>
-          <Typography variant="h3">Accessibility Features</Typography>
+          <CriaTextTitle2 as="h3">Accessibility Features</CriaTextTitle2>
         </CardHeader>
         <CardContent>
-          <Typography variant="body">
+          <CriaTextBody1>
             The Textarea component includes comprehensive accessibility features:
-          </Typography>
+          </CriaTextBody1>
           <ul style={{ marginTop: '16px', paddingLeft: '24px' }}>
             <li><strong>ARIA attributes:</strong> Proper labeling, descriptions, and state announcements</li>
             <li><strong>Keyboard navigation:</strong> Full keyboard support including Tab, Enter, and arrow keys</li>

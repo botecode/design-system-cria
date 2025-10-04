@@ -82,6 +82,11 @@ export const Switch = forwardRef<SwitchRef, SwitchProps>(({
   ...props
 }, ref) => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const reactId = React.useId();
+  const isControlled = checked !== undefined;
+  const [uncontrolledChecked, setUncontrolledChecked] = React.useState<boolean>(!!checked);
+  const isChecked = isControlled ? !!checked : uncontrolledChecked;
+  const resolvedId = (id || `${name || 'switch'}-${reactId}`);
   
   // Expose methods to parent component
   useImperativeHandle(ref, () => ({
@@ -98,8 +103,10 @@ export const Switch = forwardRef<SwitchRef, SwitchProps>(({
   // Handle change events
   const handleChange = useCallback((event: React.ChangeEvent<HTMLInputElement>) => {
     if (disabled || readOnly) return;
-    onChange?.(event.target.checked, event);
-  }, [disabled, readOnly, onChange]);
+    const next = event.target.checked;
+    if (!isControlled) setUncontrolledChecked(next);
+    onChange?.(next, event);
+  }, [disabled, readOnly, onChange, isControlled]);
 
   // Handle click events
   const handleClick = useCallback((event: React.MouseEvent<HTMLInputElement>) => {
@@ -113,10 +120,11 @@ export const Switch = forwardRef<SwitchRef, SwitchProps>(({
     
     if (event.key === ' ' || event.key === 'Enter') {
       event.preventDefault();
-      const newChecked = !checked;
+      const newChecked = !isChecked;
+      if (!isControlled) setUncontrolledChecked(newChecked);
       onChange?.(newChecked, event as any);
     }
-  }, [disabled, readOnly, checked, onChange]);
+  }, [disabled, readOnly, isChecked, isControlled, onChange]);
 
   // Build CSS classes
   const switchClasses = [
@@ -124,7 +132,7 @@ export const Switch = forwardRef<SwitchRef, SwitchProps>(({
     `cria-switch--${size}`,
     `cria-switch--${variant}`,
     `cria-switch--${color}`,
-    checked && 'cria-switch--checked',
+    isChecked && 'cria-switch--checked',
     disabled && 'cria-switch--disabled',
     readOnly && 'cria-switch--readonly',
     required && 'cria-switch--required',
@@ -154,10 +162,10 @@ export const Switch = forwardRef<SwitchRef, SwitchProps>(({
           ref={inputRef}
           type="checkbox"
           role="switch"
-          id={id || (label ? `${name || 'switch'}-input` : undefined)}
+          id={resolvedId}
           name={name}
           value={value}
-          {...(checked !== undefined ? { checked } : {})}
+          checked={isChecked}
           disabled={disabled}
           readOnly={readOnly}
           required={required}
@@ -169,13 +177,13 @@ export const Switch = forwardRef<SwitchRef, SwitchProps>(({
           onKeyDown={handleKeyDown}
           aria-describedby={
             [
-              helperText && `${id || name || 'switch'}-helper`,
-              errorMessage && `${id || name || 'switch'}-error`,
-              warningMessage && `${id || name || 'switch'}-warning`,
+              helperText && `${resolvedId}-helper`,
+              errorMessage && `${resolvedId}-error`,
+              warningMessage && `${resolvedId}-warning`,
             ].filter(Boolean).join(' ') || undefined
           }
           aria-invalid={!!errorMessage}
-          aria-checked={checked || false}
+          aria-checked={isChecked}
           aria-label={label}
           {...inputProps}
         />
@@ -185,7 +193,7 @@ export const Switch = forwardRef<SwitchRef, SwitchProps>(({
         </div>
         
         {label && (
-          <label htmlFor={id || (label ? `${name || 'switch'}-input` : undefined)} className={labelClasses}>
+          <label htmlFor={resolvedId} className={labelClasses}>
             <Typography 
               variant="body" 
               color={disabled ? 'secondary' : 'content'}
@@ -203,7 +211,7 @@ export const Switch = forwardRef<SwitchRef, SwitchProps>(({
           variant="caption" 
           color="secondary" 
           className="cria-switch__helper-text"
-          id={`${id || name || 'switch'}-helper`}
+          id={`${resolvedId}-helper`}
         >
           {helperText}
         </Typography>
@@ -215,7 +223,7 @@ export const Switch = forwardRef<SwitchRef, SwitchProps>(({
           variant="caption" 
           color="error" 
           className="cria-switch__error-message"
-          id={`${id || name || 'switch'}-error`}
+          id={`${resolvedId}-error`}
         >
           {errorMessage}
         </Typography>
@@ -227,7 +235,7 @@ export const Switch = forwardRef<SwitchRef, SwitchProps>(({
           variant="caption" 
           color="warning" 
           className="cria-switch__warning-message"
-          id={`${id || name || 'switch'}-warning`}
+          id={`${resolvedId}-warning`}
         >
           {warningMessage}
         </Typography>
