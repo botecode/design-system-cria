@@ -84,6 +84,7 @@ git push origin main
   • Vertical Tabs  
   • Date Picker  
   • File Upload
+  • Comments Section
 
 Input Demos  
   • Basic Inputs — Full Name, Email Address, Phone Number, Date (dd.mm.yyyy)  
@@ -91,27 +92,26 @@ Input Demos
 
 ⸻
 
-🚀 Next Component to Implement: Comments Section
+🚀 Next Component to Implement: Slider
 
-**Implement the Comments Section immediately**, using **design tokens** and DS primitives.  
+**Implement the Slider component immediately**, using **design tokens** and DS primitives.  
 Include a **demo page** and **sidebar entry**. Validate with **Chrome MCP**. Commit on a **feature branch** and **merge into main** per Git rules above. Update this file afterward.
 
 Required Features
-  • Threaded comments with author, timestamp, and actions (reply, edit, delete)  
-  • Composer with multiline input, Enter to send (Shift+Enter newline)  
-  • Token-based styles, avatars, and nesting guides  
-  • A11y: roles/labels, keyboard navigation among comments, focus retention  
+  • Range slider with min/max values and step control  
+  • Single and dual-handle (range) modes  
+  • Token-based colors, typography, and spacing  
+  • A11y: keyboard navigation, ARIA labels, focus management  
 
 Required Tests
-  • Renders initial thread and timestamps  
-  • Adding a comment appends and clears composer  
-  • Keyboard behavior: Enter sends; Shift+Enter inserts newline  
-  • A11y: roles/labels present; focus management validated
+  • Renders with correct initial values  
+  • Value changes on drag and keyboard input  
+  • Range mode works with two handles  
+  • A11y: roles/labels present; keyboard focus works
 
 ⸻
 
 ⬜ Upcoming Components
-  • Slider - Component
   • Shimmer Skeleton - Foundation
   • Pricing page ("Web" new tab sectoin on sidebar)
   • Page loading progress (top of the page) - Foundation  
