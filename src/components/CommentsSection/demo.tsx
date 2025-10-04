@@ -8,30 +8,30 @@ export const CommentsSectionDemo: React.FC = () => {
     {
       id: '1',
       author: 'John Doe',
-      avatar: 'https://via.placeholder.com/32',
-      content: 'This is a great idea! I think we should definitely move forward with this approach.',
+      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face',
+      content: 'This is a great idea! I think we should definitely move forward with this approach. The design system looks really promising.',
       timestamp: new Date('2024-01-15T10:30:00Z'),
       replies: [
         {
           id: '2',
           author: 'Jane Smith',
-          avatar: 'https://via.placeholder.com/32',
-          content: 'I agree completely. This will help us scale much better.',
+          avatar: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=32&h=32&fit=crop&crop=face',
+          content: 'I agree completely. This will help us scale much better and maintain consistency across all our applications.',
           timestamp: new Date('2024-01-15T11:00:00Z'),
           replies: []
         },
         {
           id: '3',
           author: 'Mike Johnson',
-          avatar: 'https://via.placeholder.com/32',
-          content: 'What about the timeline? Do we have an estimate for implementation?',
+          avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=32&h=32&fit=crop&crop=face',
+          content: 'What about the timeline? Do we have an estimate for implementation? Also, how will this affect our current development workflow?',
           timestamp: new Date('2024-01-15T11:15:00Z'),
           replies: [
             {
               id: '4',
               author: 'John Doe',
-              avatar: 'https://via.placeholder.com/32',
-              content: 'I estimate about 2-3 weeks for the initial implementation.',
+              avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=32&h=32&fit=crop&crop=face',
+              content: 'I estimate about 2-3 weeks for the initial implementation. We can start with the core components and gradually add more.',
               timestamp: new Date('2024-01-15T11:30:00Z'),
               replies: []
             }
@@ -42,8 +42,8 @@ export const CommentsSectionDemo: React.FC = () => {
     {
       id: '5',
       author: 'Sarah Wilson',
-      avatar: 'https://via.placeholder.com/32',
-      content: 'I have some concerns about the performance implications. Can we discuss this in more detail?',
+      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=32&h=32&fit=crop&crop=face',
+      content: 'I have some concerns about the performance implications. Can we discuss this in more detail? Also, what about accessibility considerations?',
       timestamp: new Date('2024-01-15T14:20:00Z'),
       replies: []
     }
@@ -53,7 +53,7 @@ export const CommentsSectionDemo: React.FC = () => {
     const newComment: Comment = {
       id: Date.now().toString(),
       author: 'Current User',
-      avatar: 'https://via.placeholder.com/32',
+      avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=32&h=32&fit=crop&crop=face',
       content,
       timestamp: new Date(),
       replies: []
@@ -65,7 +65,7 @@ export const CommentsSectionDemo: React.FC = () => {
     const newReply: Comment = {
       id: Date.now().toString(),
       author: 'Current User',
-      avatar: 'https://via.placeholder.com/32',
+      avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=32&h=32&fit=crop&crop=face',
       content,
       timestamp: new Date(),
       replies: []
