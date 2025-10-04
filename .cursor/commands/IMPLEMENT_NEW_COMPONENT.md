@@ -88,6 +88,7 @@ git push origin main
   • Slider
   • Shimmer Skeleton
   • Pricing Page
+  • Page Loading Progress
 
 Input Demos  
   • Basic Inputs — Full Name, Email Address, Phone Number, Date (dd.mm.yyyy)  
@@ -95,27 +96,27 @@ Input Demos
 
 ⸻
 
-🚀 Next Component to Implement: Page Loading Progress
+🚀 Next Component to Implement: Card Selector
 
-**Implement the Page Loading Progress component immediately**, using **design tokens** and DS primitives.  
+**Implement the Card Selector component immediately**, using **design tokens** and DS primitives.  
 Include a **demo page** and **sidebar entry**. Validate with **Chrome MCP**. Commit on a **feature branch** and **merge into main** per Git rules above. Update this file afterward.
 
 Required Features
-  • Progress bar at the top of the page  
-  • Smooth animation and transitions  
-  • Configurable progress values (0-100%)  
+  • Multi-select and single-select modes  
+  • Card-based selection interface  
+  • Checkbox integration for multi-select  
+  • Radio button integration for single-select  
   • Token-based colors, typography, and spacing  
-  • A11y: proper progress indicators and screen reader support  
+  • A11y: proper selection indicators and screen reader support  
 
 Required Tests
-  • Renders with correct progress value  
-  • Animation works properly  
-  • A11y: progress information announced to screen readers
+  • Renders with correct selection modes  
+  • Selection functionality works properly  
+  • A11y: selection information announced to screen readers
 
 ⸻
 
 ⬜ Upcoming Components
-  • Card selector ("Admin" - with multi-select and single-select)  
   • Row of cards - ("Web" new tab section on sidebar) (with configurable per-page before pagination)  
   • Subscription Management (Web)
   • User cards group
