@@ -150,7 +150,7 @@ export const CommentsSection: React.FC<CommentsSectionProps> = ({
               style={{ flexShrink: 0 }}
             />
             <div style={{ flex: 1, minWidth: 0 }}>
-              <Typography variant="body2" weight="semiBold" style={{ color: colors.text.primary }}>
+              <Typography variant="body2" weight="bold" style={{ color: colors.text.primary, marginBottom: 2 }}>
                 {comment.author}
               </Typography>
               <Typography variant="caption" style={{ color: colors.text.secondary }}>
@@ -206,13 +206,13 @@ export const CommentsSection: React.FC<CommentsSectionProps> = ({
                 {/* Speech bubble tail */}
                 <div style={{
                   position: 'absolute',
-                  bottom: -6,
+                  top: -6,
                   left: depth > 0 ? 20 : 20,
                   width: 0,
                   height: 0,
                   borderLeft: '6px solid transparent',
                   borderRight: '6px solid transparent',
-                  borderTop: `6px solid ${depth > 0 ? colors.background.secondary : colors.primary}`
+                  borderBottom: `6px solid ${depth > 0 ? colors.background.secondary : colors.primary}`
                 }} />
               </div>
 
