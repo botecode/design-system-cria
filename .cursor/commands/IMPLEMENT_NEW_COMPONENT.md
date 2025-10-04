@@ -16,11 +16,13 @@ Core Principles
     – Add a demo page in the App.  
     – Add a **sidebar entry** in the App.  
     – Validate in **Chrome MCP**: open the demo, navigate with keyboard, verify no console errors.  
-  • Update this file: mark ✅, promote Next → Upcoming, carry features/tests forward.
+  • Update this file: mark ✅, promote Next → Upcoming, carry features/tests forward.  
+  • Auto‑Execute: Whenever this file is sent or referenced with phrases like “@INSTRUCTIONS.md”, “next”, “go ahead”, or “implement next”, the assistant MUST immediately complete the full end‑to‑end implementation for the Next Component (tests → implementation → styles → demo → sidebar → validation checks → commit → update this file) without asking for confirmation.
 
 ⸻
 
 Workflow for the Next Component
+  0) Trigger & Branch: On receiving any trigger (see Auto‑Execute above), automatically create a new feature branch `feature/<component-kebab>` and proceed through steps 1–7 without further prompts.  
   1) Tests: write accessibility + behavior tests first.  
   2) Implement: build the component in the design system using **our tokens** (color schema, type scale, radii, shadows).  
   3) Demo: create a styled demo page that shows realistic states/variants.  
@@ -113,18 +115,20 @@ Required Tests
   • Comments Section
   • PieChart  
   • LineChart  
-  • Shimmer Skeleton  
-  • Pricing page  
-  • Card selector (multi-select and single-select)  
-  • Row of cards (with configurable per-page before pagination)  
-  • Dark mode (with top-right toggle)
+  • Shimmer Skeleton - Foundation
+  • Pricing page ("Web" new tab sectoin on sidebar)
+  • Page loading progress (top of the page) - Foundation  
+  • Card selector ("Admin" - with multi-select and single-select)  
+  • Row of cards - ("Web" new tab section on sidebar) (with configurable per-page before pagination)  
+  • Dark mode - foundation (with top-right toggle)
 
 ⸻
 
 Output Policy
   • Output only succinct patch diffs or added snippets required to implement.  
   • If a file doesn’t exist, create it. Prefer TypeScript.  
-  • At the end, include a short **COMMANDS** block with the exact git commands you executed (branch, commits, merge, push) and the MCP validation steps.
+  • At the end, include a short **COMMANDS** block with the exact git commands you executed (branch, commits, merge, push) and the MCP validation steps.  
+  • Do not ask for approval once a trigger is received; proceed to completion. Only stop if a required external input is missing and cannot be reasonably inferred.
 
 
 ⸻
