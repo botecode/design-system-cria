@@ -109,6 +109,10 @@ export const CardSelector: React.FC<CardSelectorProps> = ({
   const handleCardClick = (card: CardItem) => {
     if (disabled || loading || card.disabled) return;
     
+    // Toggle selection when card is clicked
+    const isSelected = currentSelectedValues.includes(card.value);
+    handleSelectionChange(card.value, !isSelected);
+    
     onCardClick?.(card);
   };
 
@@ -163,6 +167,7 @@ export const CardSelector: React.FC<CardSelectorProps> = ({
               value={card.value}
               checked={isSelected}
               onChange={() => handleSelectionChange(card.value, true)}
+              onClick={(e) => e.stopPropagation()}
               disabled={disabled || loading || card.disabled}
               style={{ margin: 0 }}
               aria-label={card.title}
@@ -174,6 +179,7 @@ export const CardSelector: React.FC<CardSelectorProps> = ({
               value={card.value}
               checked={isSelected}
               onChange={(e) => handleSelectionChange(card.value, e.target.checked)}
+              onClick={(e) => e.stopPropagation()}
               disabled={disabled || loading || card.disabled}
               style={{ margin: 0 }}
               aria-label={card.title}
