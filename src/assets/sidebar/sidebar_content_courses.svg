@@ -1,0 +1,35 @@
+<svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="0.35" y="0.35" width="32.3" height="32.3" rx="6.65" stroke="#9993D2" stroke-width="0.7"/>
+<mask id="mask0_2019_991" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="8" y="8" width="16" height="17">
+<path d="M24 8.5H8V24.5H24V8.5Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_2019_991)">
+<path d="M23.235 12.305H22.475V13.83H20.95V14.595H19.425V15.355H20.95V17.64H20.19V18.405H20.95V19.925H21.71V14.595H22.475V21.45H21.71V24.5H24V21.45H23.235V12.305Z" fill="white"/>
+<path d="M22.475 11.545H20.95V12.305H22.475V11.545Z" fill="white"/>
+<path d="M20.9499 19.925H20.1899V20.69H20.9499V19.925Z" fill="white"/>
+<path d="M20.95 13.07H17.9V13.83H20.95V13.07Z" fill="white"/>
+<path d="M20.95 10.785H19.425V11.545H20.95V10.785Z" fill="white"/>
+<path d="M20.19 20.69H18.665V21.45H20.19V20.69Z" fill="white"/>
+<path d="M20.19 18.405H18.665V19.165H20.19V18.405Z" fill="white"/>
+<path d="M19.425 15.355H17.9V16.115H19.425V15.355Z" fill="white"/>
+<path d="M19.425 10.02H17.9V10.785H19.425V10.02Z" fill="white"/>
+<path d="M18.6649 21.45H12.5699V22.21H18.6649V21.45Z" fill="white"/>
+<path d="M18.6649 19.165H12.5699V19.925H18.6649V19.165Z" fill="white"/>
+<path d="M17.9 16.115H16.38V16.88H17.9V16.115Z" fill="white"/>
+<path d="M17.9 12.305H14.855V13.07H17.9V12.305Z" fill="white"/>
+<path d="M17.9 9.26001H16.38V10.02H17.9V9.26001Z" fill="white"/>
+<path d="M16.38 8.5H14.855V9.26H16.38V8.5Z" fill="white"/>
+<path d="M16.38 16.88H14.855V17.64H16.38V16.88Z" fill="white"/>
+<path d="M14.855 9.26001H13.33V10.02H14.855V9.26001Z" fill="white"/>
+<path d="M14.855 16.115H13.33V16.88H14.855V16.115Z" fill="white"/>
+<path d="M13.3299 10.02H11.8049V10.785H13.3299V10.02Z" fill="white"/>
+<path d="M12.5699 20.69H11.0449V21.45H12.5699V20.69Z" fill="white"/>
+<path d="M12.5699 18.405H11.0449V19.165H12.5699V18.405Z" fill="white"/>
+<path d="M13.3299 15.355H11.8049V16.115H13.3299V15.355Z" fill="white"/>
+<path d="M11.8049 10.785H10.2849V11.545H11.8049V10.785Z" fill="white"/>
+<path d="M11.0449 19.925H10.2849V20.69H11.0449V19.925Z" fill="white"/>
+<path d="M11.045 18.405V17.64H10.285V15.355H11.805V14.595H10.285V13.83H8.76001V14.595H9.52001V19.925H10.285V18.405H11.045Z" fill="white"/>
+<path d="M10.285 11.545H8.76001V12.305H10.285V11.545Z" fill="white"/>
+<path d="M8.76 12.305H8V13.83H8.76V12.305Z" fill="white"/>
+</g>
+</svg>

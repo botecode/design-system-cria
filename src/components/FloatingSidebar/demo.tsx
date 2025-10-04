@@ -3,18 +3,18 @@ import { FloatingSidebar, FloatingSidebarItem } from './FloatingSidebar';
 import { Typography } from '../Typography';
 import { Card, CardContent, CardHeader } from '../Card';
 import { spacing } from '../../tokens';
-import { BookOpen, GraduationCap, Calendar, FileText, Wrench, ChatCircle } from 'phosphor-react';
 
 export const FloatingSidebarDemo: React.FC = () => {
   const [activeItem, setActiveItem] = useState('cursos');
 
   const sidebarItems: FloatingSidebarItem[] = [
-    { id: 'cursos', label: 'CURSOS', active: activeItem === 'cursos', icon: <BookOpen size={20} /> },
-    { id: 'aulas', label: 'AULAS & TUTORIAIS', active: activeItem === 'aulas', icon: <GraduationCap size={20} /> },
-    { id: 'eventos', label: 'EVENTOS', active: activeItem === 'eventos', icon: <Calendar size={20} /> },
-    { id: 'prompts', label: 'CATÁLOGO DE PROMPTS', active: activeItem === 'prompts', icon: <FileText size={20} /> },
-    { id: 'ferramentas', label: 'CAIXA DE FERRAMENTAS', active: activeItem === 'ferramentas', icon: <Wrench size={20} /> },
-    { id: 'discord', label: 'COMUNIDADE NO DISCORD', active: activeItem === 'discord', icon: <ChatCircle size={20} /> },
+    { id: 'home', label: 'HOME', active: activeItem === 'home', icon: '/src/assets/sidebar/sidebar_home.svg' },
+    { id: 'cursos', label: 'CURSOS & TRILHAS', active: activeItem === 'cursos', icon: '/src/assets/sidebar/sidebar_courses.svg' },
+    { id: 'aulas', label: 'AULAS-TUTORIAIS', active: activeItem === 'aulas', icon: '/src/assets/sidebar/sidebar_tutorials.svg' },
+    { id: 'minhas-aulas', label: 'MINHAS AULAS', active: activeItem === 'minhas-aulas', icon: '/src/assets/sidebar/sidebar_mylessons.svg' },
+    { id: 'eventos', label: 'EVENTOS', active: activeItem === 'eventos', icon: '/src/assets/sidebar/sidebar_events.svg' },
+    { id: 'prompts', label: 'CATÁLOGO DE PROMPTS', active: activeItem === 'prompts', icon: '/src/assets/sidebar/sidebar_prompts.svg' },
+    { id: 'ferramentas', label: 'CAIXA DE FERRAMENTAS', active: activeItem === 'ferramentas', icon: '/src/assets/sidebar/sidebar_tools.svg' },
   ];
 
   const handleItemClick = (itemId: string) => {
@@ -22,9 +22,9 @@ export const FloatingSidebarDemo: React.FC = () => {
   };
 
   const user = {
-    name: 'FERNANDO FEITOSA',
-    class: 'TURMA #026',
-    avatar: 'https://via.placeholder.com/40x40/28DDB9/FFFFFF?text=FF',
+    name: 'ADMIN',
+    class: 'TURMA CR_IA',
+    avatar: 'https://via.placeholder.com/40x40/28DDB9/FFFFFF?text=A',
   };
 
   return (
@@ -40,7 +40,8 @@ export const FloatingSidebarDemo: React.FC = () => {
 
       {/* Floating Sidebar */}
       <FloatingSidebar
-        title="CRIA.lab"
+        title="CR_IA.lab"
+        subtitle="(beta)"
         items={sidebarItems.map(item => ({
           ...item,
           onClick: () => handleItemClick(item.id),

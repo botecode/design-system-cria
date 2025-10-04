@@ -3,7 +3,7 @@ import { Typography } from '../Typography';
 import { Button } from '../Button';
 import { Avatar } from '../Avatar';
 import { colors, spacing } from '../../tokens';
-import { Gear, User, BookOpen, GraduationCap, Calendar, FileText, Wrench, ChatCircle } from 'phosphor-react';
+import { Gear, User, ChartBar } from 'phosphor-react';
 
 export interface FloatingSidebarItem {
   id: string;
@@ -11,11 +11,12 @@ export interface FloatingSidebarItem {
   href?: string;
   onClick?: () => void;
   active?: boolean;
-  icon?: React.ReactNode;
+  icon?: string; // Path to SVG icon
 }
 
 export interface FloatingSidebarProps extends React.HTMLAttributes<HTMLDivElement> {
   title?: string;
+  subtitle?: string;
   items?: FloatingSidebarItem[];
   user?: {
     name: string;
@@ -28,7 +29,8 @@ export interface FloatingSidebarProps extends React.HTMLAttributes<HTMLDivElemen
 }
 
 export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
-  title = 'CRIA.lab',
+  title = 'CR_IA.lab',
+  subtitle = '(beta)',
   items = [],
   user,
   emblemImage = '/src/assets/cria_emblem.png',
@@ -51,7 +53,7 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
         top: spacing.lg,
         width: 280,
         backgroundColor: colors.primary,
-        borderRadius: spacing.lg,
+        borderRadius: spacing.xl,
         padding: spacing.lg,
         display: 'flex',
         flexDirection: 'column',
@@ -96,9 +98,23 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
             fontWeight: 'bold',
             fontSize: '24px',
             letterSpacing: '0.5px',
+            fontFamily: 'monospace',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: spacing.sm,
           }}
         >
           {title}
+          {subtitle && (
+            <span style={{
+              fontSize: '14px',
+              fontWeight: 'normal',
+              opacity: 0.8,
+            }}>
+              {subtitle}
+            </span>
+          )}
         </Typography>
       </div>
 
@@ -124,6 +140,8 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
               border: 'none',
               fontSize: '14px',
               fontWeight: '500',
+              fontFamily: 'monospace',
+              textTransform: 'uppercase',
               transition: 'all 0.2s ease',
               display: 'flex',
               alignItems: 'center',
@@ -141,9 +159,15 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
             }}
           >
             {item.icon && (
-              <span style={{ display: 'flex', alignItems: 'center' }}>
-                {item.icon}
-              </span>
+              <img
+                src={item.icon}
+                alt=""
+                style={{
+                  width: 20,
+                  height: 20,
+                  filter: 'brightness(0) invert(1)', // Make icons white
+                }}
+              />
             )}
             {item.label}
           </Button>
@@ -154,7 +178,9 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
       {user && (
         <div style={{
           marginTop: spacing.lg,
+          marginBottom: spacing.md,
           paddingTop: spacing.lg,
+          paddingBottom: spacing.sm,
           borderTop: `1px solid rgba(255, 255, 255, 0.2)`,
           display: 'flex',
           alignItems: 'center',
@@ -175,6 +201,8 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
                 color: colors.white,
                 fontWeight: '600',
                 fontSize: '14px',
+                fontFamily: 'monospace',
+                textTransform: 'uppercase',
                 marginBottom: 2,
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
@@ -189,12 +217,28 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
                 style={{
                   color: 'rgba(255, 255, 255, 0.8)',
                   fontSize: '12px',
+                  fontFamily: 'monospace',
+                  textTransform: 'uppercase',
                 }}
               >
                 {user.class}
               </Typography>
             )}
           </div>
+          <Button
+            variant="ghost"
+            size="sm"
+            style={{
+              color: colors.white,
+              padding: spacing.sm,
+              minWidth: 'auto',
+              marginRight: spacing.sm,
+            }}
+            onClick={() => console.log('Analytics clicked')}
+            aria-label="Analytics"
+          >
+            <ChartBar size={16} />
+          </Button>
           <Button
             variant="ghost"
             size="sm"
