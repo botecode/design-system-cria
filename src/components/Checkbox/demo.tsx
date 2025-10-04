@@ -3,6 +3,7 @@ import { Typography } from '../Typography';
 import { Button } from '../Button';
 import { Card, CardHeader, CardContent } from '../Card';
 import { Checkbox } from './Checkbox';
+import { colors } from '../../tokens';
 // import { Check, WarningCircle, Info } from 'phosphor-react';
 
 export const CheckboxDemo: React.FC = () => {
@@ -60,7 +61,7 @@ export const CheckboxDemo: React.FC = () => {
           <Typography variant="h3">Basic Checkboxes</Typography>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" color="secondary" style={{ marginBottom: '24px' }}>
+          <Typography variant="body" style={{ marginBottom: '24px', color: colors.gray[700] }}>
             Simple checkboxes for basic selection functionality. They provide clear visual feedback and support all standard states.
           </Typography>
           
@@ -105,7 +106,7 @@ export const CheckboxDemo: React.FC = () => {
           <Typography variant="h3">Checkbox Sizes</Typography>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" color="secondary" style={{ marginBottom: '24px' }}>
+          <Typography variant="body" style={{ marginBottom: '24px', color: colors.gray[700] }}>
             Different sizes for different contexts and design requirements.
           </Typography>
           
@@ -137,7 +138,7 @@ export const CheckboxDemo: React.FC = () => {
           <Typography variant="h3">Checkbox Variants</Typography>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" color="secondary" style={{ marginBottom: '24px' }}>
+          <Typography variant="body" style={{ marginBottom: '24px', color: colors.gray[700] }}>
             Different visual styles to match your design system.
           </Typography>
           
@@ -169,7 +170,7 @@ export const CheckboxDemo: React.FC = () => {
           <Typography variant="h3">Checkbox Colors</Typography>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" color="secondary" style={{ marginBottom: '24px' }}>
+          <Typography variant="body" style={{ marginBottom: '24px', color: colors.gray[700] }}>
             Different color themes for different types of actions and states.
           </Typography>
           
@@ -213,7 +214,7 @@ export const CheckboxDemo: React.FC = () => {
           <Typography variant="h3">Indeterminate State</Typography>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" color="secondary" style={{ marginBottom: '24px' }}>
+          <Typography variant="body" style={{ marginBottom: '24px', color: colors.gray[700] }}>
             Indeterminate state is useful for "select all" functionality or when some items in a group are selected.
           </Typography>
           
@@ -257,7 +258,7 @@ export const CheckboxDemo: React.FC = () => {
           <Typography variant="h3">Validation States</Typography>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" color="secondary" style={{ marginBottom: '24px' }}>
+          <Typography variant="body" style={{ marginBottom: '24px', color: colors.gray[700] }}>
             Checkboxes can display validation states with appropriate messaging.
           </Typography>
           
@@ -293,7 +294,7 @@ export const CheckboxDemo: React.FC = () => {
           <Typography variant="h3">Form Example</Typography>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" color="secondary" style={{ marginBottom: '24px' }}>
+          <Typography variant="body" style={{ marginBottom: '24px', color: colors.gray[700] }}>
             A complete form example showing checkboxes in a real-world scenario.
           </Typography>
           
@@ -327,7 +328,7 @@ export const CheckboxDemo: React.FC = () => {
               </div>
             </div>
             
-            <div style={{ borderTop: '1px solid var(--cria-gray-200)', paddingTop: '20px' }}>
+            <div style={{ borderTop: `1px solid ${colors.border.light}`, paddingTop: '20px' }}>
               <Typography variant="h3" style={{ marginBottom: '16px' }}>
                 Legal Agreements
               </Typography>
@@ -377,7 +378,7 @@ export const CheckboxDemo: React.FC = () => {
           <Typography variant="h3">Accessibility Features</Typography>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" color="secondary" style={{ marginBottom: '24px' }}>
+          <Typography variant="body" style={{ marginBottom: '24px', color: colors.gray[700] }}>
             Checkboxes include comprehensive accessibility features for screen readers and keyboard navigation.
           </Typography>
           

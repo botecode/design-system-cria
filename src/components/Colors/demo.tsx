@@ -3,7 +3,7 @@ import { Typography } from '../Typography/Typography';
 
 export const ColorsDemo: React.FC = () => {
   const colorPalette = [
-    { name: 'Primary', value: '#7566A1', description: 'Main brand color - ONLY for titles' },
+    { name: 'Primary', value: '#7566A1', description: 'Main brand color' },
     { name: 'Content Text', value: '#3A2E52', description: 'Primary dark for content text' },
     { name: 'Default Text', value: '#374151', description: 'Dark gray for default text' },
     { name: 'Secondary', value: '#28DDB9', description: 'Secondary brand color' },

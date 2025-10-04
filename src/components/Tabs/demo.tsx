@@ -374,24 +374,27 @@ export const TabsDemo: React.FC = () => {
         <Tabs items={tabsWithDisabled} />
       </section>
 
-      {/* Vertical Tabs */}
+      {/* Note about Vertical Navigation */}
       <section style={{ marginBottom: '48px' }}>
         <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
-          Vertical Tabs
+          Vertical Navigation
         </Typography>
         <Typography variant="body" style={{ marginBottom: '24px' }}>
-          Tabs can be oriented vertically for different layout requirements.
+          For vertical navigation and sidebar layouts, use the <strong>Sidebar</strong> component instead of vertical tabs.
+          The Sidebar component is specifically designed for navigation menus and provides better accessibility and UX for vertical layouts.
         </Typography>
-        <div style={{ display: 'flex', gap: '24px' }}>
-          <div style={{ flex: '0 0 200px' }}>
-            <Tabs items={basicTabs} orientation="vertical" />
-          </div>
-          <div style={{ flex: 1 }}>
-            <Typography variant="body">
-              Vertical tabs are useful for sidebar navigation or when you have limited horizontal space.
-              The content area can be used for additional information or actions.
-            </Typography>
-          </div>
+        <div style={{ 
+          padding: '16px', 
+          backgroundColor: '#F3F4F6', 
+          borderRadius: '8px',
+          border: '1px solid #E5E7EB'
+        }}>
+          <Typography variant="body" weight="medium" style={{ marginBottom: '8px' }}>
+            💡 Tip: Use Sidebar for navigation menus, Tabs for content organization
+          </Typography>
+          <Typography variant="bodySmall">
+            Import: <code>import { Sidebar } from 'design-system-cria';</code>
+          </Typography>
         </div>
       </section>
 
@@ -420,7 +423,7 @@ export const TabsDemo: React.FC = () => {
         <ul style={{ marginLeft: '24px', marginBottom: '16px' }}>
           <li>
             <Typography variant="body">
-              <strong>Keyboard Navigation:</strong> Use arrow keys to navigate between tabs, Home/End to jump to first/last tab
+              <strong>Keyboard Navigation:</strong> Use left/right arrow keys to navigate between tabs, Home/End to jump to first/last tab
             </Typography>
           </li>
           <li>

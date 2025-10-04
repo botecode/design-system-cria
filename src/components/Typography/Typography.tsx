@@ -101,7 +101,7 @@ export const Typography: React.FC<TypographyProps> = ({
   const getColorStyles = (color: string): React.CSSProperties => {
     switch (color) {
       case 'primary':
-        return { color: '#7566A1' }; // Main brand purple - ONLY for titles
+        return { color: '#7566A1' }; // Main brand purple
       case 'primaryLight':
         return { color: '#3A2E52' }; // Primary light/darker
       case 'content':

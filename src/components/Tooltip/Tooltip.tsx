@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 
-export interface TooltipProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
+export interface TooltipProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children' | 'content'> {
   /**
    * The content to display in the tooltip
    */
@@ -272,11 +272,15 @@ export const Tooltip: React.FC<TooltipProps> = ({
   // Clone children with event handlers
   const triggerElement = React.cloneElement(children, {
     ref: (el: HTMLElement) => {
-      triggerRef.current = el;
-      if (typeof children.ref === 'function') {
-        children.ref(el);
-      } else if (children.ref) {
-        children.ref.current = el;
+      (triggerRef as React.MutableRefObject<HTMLElement>).current = el;
+      // Handle forwarded refs properly
+      const childRef = (children as any).ref;
+      if (childRef) {
+        if (typeof childRef === 'function') {
+          childRef(el);
+        } else if (childRef && 'current' in childRef) {
+          (childRef as React.MutableRefObject<HTMLElement>).current = el;
+        }
       }
     },
     onMouseEnter: handleMouseEnter,

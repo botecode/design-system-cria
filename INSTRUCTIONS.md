@@ -1,100 +1,130 @@
-Prompt
+Please do this!
 
-You are a Senior Frontend Engineer responsible for building a modern, production-ready UI component library.
+You are a Senior Frontend Engineer responsible for building a modern, production-ready UI component library, and integrating each component into our demo **App** so it is fully usable, styled with our design tokens, and visible in the sidebar navigation.
+
+⸻
 
 Core Principles
-	•	Test-Driven Development (TDD): Always write UI tests first, then implement until all tests pass.
-	•	Delivery Focus: Each component must be complete — responsive, accessible, documented, and tested.
-	•	Accessibility: All components must meet WCAG/ARIA standards, supporting keyboard navigation and screen readers.
-	•	Consistency: Follow existing design tokens (colors, typography, spacing) and component patterns in the library.
-	•	Versioning Discipline: Use Conventional Commits for every commit.
+  • TDD first: write UI tests, then implement until all tests pass.  
+  • Every component must be responsive, accessible, documented, and tested.  
+  • Meet WCAG/ARIA: keyboard navigation, roles/labels, focus management.  
+  • Use **design tokens** for colors, typography, spacing, radii, shadows (no ad-hoc styles).  
+  • Ensure the **look & feel matches the App** (no plain HTML).  
+  • Use Phosphor icons.  
+  • Reuse DS primitives (Text, Card, Button, Badge, Input) — never reimplement raw elements.  
+  • After implementing:  
+    – Add a demo page in the App.  
+    – Add a **sidebar entry** in the App.  
+    – Validate in **Chrome MCP**: open the demo, navigate with keyboard, verify no console errors.  
+  • Update this file: mark ✅, promote Next → Upcoming, carry features/tests forward.
 
 ⸻
 
-Workflow
-
-For each new component:
-	1.	Branching
-	•	Create a new branch: feature/<component-name>
-	•	Example: feature/checkbox
-	2.	TDD Cycle
-	•	✅ Write UI tests first (include accessibility assertions).
-	•	✅ Implement component until tests pass.
-	•	✅ Add documentation & usage examples.
-	3.	Version Control
-	•	Commit using Conventional Commits format:
-	•	feat(component): add accessible checkbox with tests
-	•	fix(component): correct keyboard toggle behavior
-	•	docs(component): add usage examples
-	•	Push branch to remote.
-	4.	Pull Request
-	•	Open a PR to main.
-	•	PR description must include:
-	•	Implemented component
-	•	Tests covered
-	•	Accessibility features
-	•	Screenshots (if visual changes)
+Workflow for the Next Component
+  1) Tests: write accessibility + behavior tests first.  
+  2) Implement: build the component in the design system using **our tokens** (color schema, type scale, radii, shadows).  
+  3) Demo: create a styled demo page that shows realistic states/variants.  
+  4) Sidebar: add a navigation entry so it’s discoverable.  
+  5) Validate (Chrome MCP): open the demo, check console, test keyboard and SR.  
+  6) Version Control (branching + merge back to main): follow **Git / Branching** rules below.  
+  7) Update `INSTRUCTIONS.md`: move the component to ✅ and promote the next one.
 
 ⸻
 
-Component Roadmap with Test Requirements
-	•	Button
-	•	Card
-	•	Badge
-	•	Tabs
-	•	Tooltip
-	•	Modal
-	•	Input
+Git / Branching — MUST EXECUTE
+  • Create a feature branch named `feature/<component-kebab>` (e.g., `feature/chat`).  
+  • Make small Conventional Commits as you proceed:
+      - feat(<component>): initial tests
+      - feat(<component>): component implementation
+      - docs(<component>): add demo and usage examples
+      - fix(<component>): a11y/keyboard navigation corrections
+  • After validation passes:
+      - Merge locally into `main` (no PR): fast-forward or squash
+      - Delete the feature branch locally
+      - Push `main`
 
-✅ Checkbox
+Shell commands (example):
 
-Tests
-	•	Renders with correct label
-	•	Toggles checked/unchecked state on click
-	•	Supports disabled state
-	•	Emits onChange event
-	•	Accessibility: role="checkbox", aria-checked, keyboard toggle (space/enter)
+git checkout -b feature/
 
-✅ Switch
+…apply patches & commits…
 
-Tests
-	•	Renders with correct label
-	•	Toggles between on/off states
-	•	Respects disabled state
-	•	Accessibility: role="switch", aria-checked, keyboard toggle (space/enter)
-
-✅ Snackbar / Toast
-
-Tests
-	•	Appears with message
-	•	Auto-dismisses after timeout
-	•	Can be dismissed manually
-	•	Supports variants (success, error, info)
-	•	Accessibility: role="status" or role="alert", screen reader announcement
-
-⬜ Navigation (Sidebar, Topbar)
-
-Tests
-	•	Renders items with correct labels/links
-	•	Highlights active route
-	•	Sidebar collapse/expand works
-	•	Topbar responsive (hamburger on mobile)
-	•	Accessibility: role="navigation", links have discernible text, keyboard focus order preserved
-
-⬜ Accordion
-
-Tests
-	•	Renders panels with headers
-	•	Expands/collapses on click
-	•	Single-open mode enforced
-	•	Accessibility: headers as <button> or role="button", panels use aria-expanded, keyboard navigation (arrows, enter/space)
+git checkout main
+git merge –no-ff feature/
+git branch -d feature/
+git push origin main
 
 ⸻
 
-⚡ With this, Codex/Cursor will:
-	•	Start each component on its own branch.
-	•	Follow TDD with accessibility-first tests.
-	•	Use Conventional Commits for clean git history.
-	•	Push + open a PR with a structured description.
+✅ Already Implemented
+  • Typography  
+  • Colors  
+  • Button  
+  • Input  
+  • Checkbox  
+  • Switch  
+  • Snackbar / Toast  
+  • Modal  
+  • Tooltip  
+  • Card  
+  • Badge  
+  • Tabs  
+  • Navigation (Sidebar, Topbar)  
+  • Accordion  
+  • Text  
+  • Dropdown / Select  
+  • Radio Group  
+  • Textarea  
+  • Avatar  
+  • Breadcrumbs  
+  • Pagination  
+  • Progress Bar  
+  • Vertical Tabs  
+  • Date Picker  
+  • File Upload
+
+Input Demos  
+  • Basic Inputs — Full Name, Email Address, Phone Number, Date (dd.mm.yyyy)  
+  • Input Sizes — Small, Medium (default), Large  
+
+⸻
+
+🚀 Next Component to Implement: PieChart
+
+**Implement the PieChart component immediately**, using **design tokens** and DS primitives.  
+Include a **demo page** and **sidebar entry**. Validate with **Chrome MCP**. Commit on a **feature branch** and **merge into main** per Git rules above. Update this file afterward.
+
+Required Features
+  • Render a responsive pie chart  
+  • Legend with labels and values  
+  • Hover/selection highlighting  
+  • Token-based colors and typography  
+  • A11y: labelled chart, focusable segments with aria-labels  
+
+Required Tests
+  • Renders chart with correct slices  
+  • Hover/selection updates aria and styles  
+  • Legend matches data  
+  • A11y: roles/labels present; keyboard focus works
+
+⸻
+
+⬜ Upcoming Components
+  • Comments Section
+  • PieChart  
+  • LineChart  
+  • Shimmer Skeleton  
+  • Pricing page  
+  • Card selector (multi-select and single-select)  
+  • Row of cards (with configurable per-page before pagination)  
+  • Dark mode (with top-right toggle)
+
+⸻
+
+Output Policy
+  • Output only succinct patch diffs or added snippets required to implement.  
+  • If a file doesn’t exist, create it. Prefer TypeScript.  
+  • At the end, include a short **COMMANDS** block with the exact git commands you executed (branch, commits, merge, push) and the MCP validation steps.
+
 
 ⸻

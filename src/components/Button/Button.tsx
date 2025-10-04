@@ -46,7 +46,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
  * </Button>
  * ```
  */
-export const Button: React.FC<ButtonProps> = ({
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
   variant = 'primary',
   size = 'md',
   loading = false,
@@ -58,7 +58,7 @@ export const Button: React.FC<ButtonProps> = ({
   className = '',
   style,
   ...props
-}) => {
+}, ref) => {
   const isDisabled = disabled || loading;
 
   // Build CSS classes
@@ -94,6 +94,7 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <button
+      ref={ref}
       className={classes}
       style={buttonStyles}
       disabled={isDisabled}
@@ -123,7 +124,9 @@ export const Button: React.FC<ButtonProps> = ({
       </span>
     </button>
   );
-};
+});
+
+Button.displayName = 'Button';
 
 // Helper function to get variant-specific styles
 function getVariantStyles(variant: ButtonProps['variant']): React.CSSProperties {

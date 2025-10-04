@@ -7,25 +7,31 @@
 // Design Tokens
 export * from './tokens';
 
-// Components
-export * from './components/Typography';
+// Components - Named exports
+export * from './components/Accordion';
+export * from './components/Avatar';
+export * from './components/Badge';
 export * from './components/Button';
 export * from './components/Card';
-export * from './components/Badge';
-export * from './components/Tabs';
-export * from './components/Tooltip';
-export * from './components/Modal';
-export * from './components/Input';
 export * from './components/Checkbox';
-export * from './components/Switch';
+export * from './components/Dropdown';
+export * from './components/Input';
+export * from './components/Modal';
+export * from './components/Navigation';
+export * from './components/Pagination';
+export * from './components/ProgressBar';
+export * from './components/VerticalTabs';
+export * from './components/DatePicker';
+export * from './components/Stepper';
+export * from './components/RadioGroup';
+export * from './components/Sidebar';
 export * from './components/Snackbar';
-
-// Main exports
-export { default as Typography } from './components/Typography';
-export { default as Button } from './components/Button';
-export { default as Card } from './components/Card';
-export { default as Badge } from './components/Badge';
-export { default as Tabs } from './components/Tabs';
-export { default as Tooltip } from './components/Tooltip';
-export { default as Modal } from './components/Modal';
-export { default as Input } from './components/Input';
+export * from './components/Switch';
+export * from './components/Tabs';
+export * from './components/Text';
+export * from './components/Textarea';
+export * from './components/Tooltip';
+export * from './components/Typography';
+export * from './components/FileUpload';
+export * from './components/Chat';
+export * from './components/TextTokens';
