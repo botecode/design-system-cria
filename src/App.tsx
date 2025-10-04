@@ -35,7 +35,7 @@ const App: React.FC = () => {
   // Initialize active section from URL hash
   React.useEffect(() => {
     const hash = window.location.hash.slice(1); // Remove the # symbol
-    const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group'];
+    const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group'];
     
     if (hash && validSections.includes(hash as DemoSection)) {
       setActiveSection(hash as DemoSection);
@@ -46,7 +46,7 @@ const App: React.FC = () => {
   React.useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.slice(1);
-      const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group'];
+      const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group'];
       
       if (hash && validSections.includes(hash as DemoSection)) {
         setActiveSection(hash as DemoSection);
@@ -313,13 +313,23 @@ const App: React.FC = () => {
               titleHref: '#overview',
               items: sidebarItems.map(item => ({
                 ...item,
-                onClick: (e) => {
+                onClick: item.subitems ? undefined : (e) => {
                   e.preventDefault();
                   handleSectionChange(item.id as DemoSection);
                   if (isMobile) {
                     setMobileMenuOpen(false);
                   }
-                }
+                },
+                subitems: item.subitems?.map(subitem => ({
+                  ...subitem,
+                  onClick: (e) => {
+                    e.preventDefault();
+                    handleSectionChange(subitem.id as DemoSection);
+                    if (isMobile) {
+                      setMobileMenuOpen(false);
+                    }
+                  }
+                }))
               })),
               activeRoute: `#${activeSection}`,
               collapsed: isMobile ? !mobileMenuOpen : sidebarCollapsed,
