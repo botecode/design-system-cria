@@ -119,6 +119,8 @@ Input Demos
 
 ⬜ Upcoming Components
 🧭 Navigation & Layout
+• Drawer
+• Backgrounds (with plain, gradients, and different types of modern backgrounds with our colors that could be applied to other components - include under Layout in the sidebar)
 • Grid / Row / Column
 • Container / Section
 
