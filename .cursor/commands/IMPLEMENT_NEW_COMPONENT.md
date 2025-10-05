@@ -99,6 +99,7 @@ git push origin main
   • Container
   • Scrollbar
   • Footer
+  • Mega Menu
 
 Input Demos  
   • Basic Inputs — Full Name, Email Address, Phone Number, Date (dd.mm.yyyy)  
@@ -106,7 +107,7 @@ Input Demos
 
 ⸻
 
-🚀 Next Component to Implement: Mega Menu — expanded top navigation for marketing or dashboards
+🚀 Next Component to Implement: Carrossel - Using Embla library
 
 ⸻
 
@@ -119,8 +120,8 @@ Input Demos
 • Container / Section
 • Scrollbar (Custom Vertical Scrollbar)
 • Footer — global app/site footer
-• Mega Menu — expanded top navigation for marketing or dashboards ✅ (Next to implement)
-• Carrossel - Using Embla library
+• Mega Menu — expanded top navigation for marketing or dashboards
+• Carrossel - Using Embla library ✅ (Next to implement)
 
 📊 Data Display
 
