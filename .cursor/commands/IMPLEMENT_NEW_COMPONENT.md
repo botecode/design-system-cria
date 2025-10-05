@@ -163,13 +163,12 @@ Input Demos
   • Notification Center
   • Topbar — global navigation header
 
-🚀 Next Component to Implement: Drawer — slide-out panel component
+🚀 Next Component to Implement: Backgrounds — with plain, gradients, and different types of modern backgrounds with our colors that could be applied to other components
 
 ⸻
 
 ⬜ Upcoming Components
 🧭 Navigation & Layout
-• Backgrounds (with plain, gradients, and different types of modern backgrounds with our colors that could be applied to other components - include under Layout in the sidebar)
 • Grid / Row / Column
 • Container / Section
 
