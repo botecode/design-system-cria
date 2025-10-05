@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Typography, Button, Navigation } from './index.ts';
-import { House, TextAa, Palette, Mouse, PencilSimple, CheckSquare, ToggleLeft, Bell, ChatCircle, Info, Square, Tag, Tabs, List, CaretDown, Article, Layout, User, Robot } from 'phosphor-react';
+import { House, TextAa, Mouse, PencilSimple, CheckSquare, ToggleLeft, Bell, ChatCircle, Info, Square, Tag, Tabs, List, CaretDown, Article, Layout, User, Robot } from 'phosphor-react';
 import TypographyDemo from './components/Typography/demo';
 import ButtonDemo from './components/Button/demo';
 import CardDemo from './components/Card/demo';
@@ -118,11 +118,11 @@ const App: React.FC = () => {
     { 
       id: 'foundations', 
       label: 'Foundations', 
-      icon: <Palette size={20} />,
+      icon: <Square size={20} />,
       defaultExpanded: true,
       subitems: [
         { id: 'typography', label: 'Typography', href: '#typography', icon: <TextAa size={20} /> },
-        { id: 'colors', label: 'Colors', href: '#colors', icon: <Palette size={20} /> },
+        { id: 'colors', label: 'Colors', href: '#colors', icon: <Square size={20} /> },
         { id: 'text', label: 'Text', href: '#text', icon: <Article size={20} /> },
         { id: 'grid', label: 'Grid', href: '#grid', icon: <Layout size={20} /> }
       ]
@@ -192,7 +192,7 @@ const App: React.FC = () => {
         { id: 'divider', label: 'Divider', href: '#divider', icon: <Layout size={20} /> },
         { id: 'row-of-cards', label: 'Row of Cards', href: '#row-of-cards', icon: <Square size={20} /> },
         { id: 'statistic-metric-card', label: 'Statistic / Metric Card', href: '#statistic-metric-card', icon: <Square size={20} /> },
-        { id: 'backgrounds', label: 'Backgrounds', href: '#backgrounds', icon: <Palette size={20} /> }
+        { id: 'backgrounds', label: 'Backgrounds', href: '#backgrounds', icon: <Layout size={20} /> }
       ]
     },
     { 
@@ -476,67 +476,6 @@ const App: React.FC = () => {
             </button>
           )}
 
-          {/* Top Right Icons */}
-          <div style={{
-            position: 'fixed',
-            top: '16px',
-            right: '16px',
-            zIndex: 1001,
-            display: 'flex',
-            gap: '8px',
-            alignItems: 'center'
-          }}>
-            <button
-              style={{
-                background: 'var(--cria-white)',
-                border: '1px solid var(--cria-gray-200)',
-                borderRadius: 'var(--cria-radius-sm)',
-                padding: '8px',
-                cursor: 'pointer',
-                boxShadow: 'var(--cria-shadow-sm)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'all 0.2s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'var(--cria-gray-50)';
-                e.currentTarget.style.borderColor = 'var(--cria-gray-300)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'var(--cria-white)';
-                e.currentTarget.style.borderColor = 'var(--cria-gray-200)';
-              }}
-              aria-label="Paint palette"
-            >
-              <Palette size={20} />
-            </button>
-            <button
-              style={{
-                background: 'var(--cria-white)',
-                border: '1px solid var(--cria-gray-200)',
-                borderRadius: 'var(--cria-radius-sm)',
-                padding: '8px',
-                cursor: 'pointer',
-                boxShadow: 'var(--cria-shadow-sm)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'all 0.2s ease'
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'var(--cria-gray-50)';
-                e.currentTarget.style.borderColor = 'var(--cria-gray-300)';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'var(--cria-white)';
-                e.currentTarget.style.borderColor = 'var(--cria-gray-200)';
-              }}
-              aria-label="Robot"
-            >
-              <Robot size={20} />
-            </button>
-          </div>
 
           <Navigation
             sidebar={{
