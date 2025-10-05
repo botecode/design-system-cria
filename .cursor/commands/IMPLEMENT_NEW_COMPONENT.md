@@ -104,6 +104,7 @@ git push origin main
   • Statistic / Metric Card
   • Tag / Chip
   • Timeline / Activity Feed
+  • Stepper / Wizard
 
 Input Demos  
   • Basic Inputs — Full Name, Email Address, Phone Number, Date (dd.mm.yyyy)  
@@ -111,7 +112,7 @@ Input Demos
 
 ⸻
 
-🚀 Next Component to Implement: Stepper / Wizard — guides users through multi-step flows
+🚀 Next Component to Implement: Notification Center — stacked toasts and global alerts
 
 ⸻
 
@@ -126,7 +127,6 @@ Input Demos
 
 ✨ Interaction & Feedback
 
-• Notification Center — stacked toasts and global alerts
 
 🧱 Theming & Foundation
 
