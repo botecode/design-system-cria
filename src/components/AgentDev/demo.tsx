@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { AgentDev } from './AgentDev';
+import { AgentDev } from './index';
 import { Button } from '../Button';
 import { Typography } from '../Typography';
 import { Card } from '../Card';
