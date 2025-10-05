@@ -1,0 +1,415 @@
+import React, { useState, useCallback } from 'react';
+import { Drawer } from '../Drawer';
+import { Typography } from '../Typography';
+import { Button } from '../Button';
+import { Badge } from '../Badge';
+import { Robot, X, Plus, Wrench, Code } from 'phosphor-react';
+import { spacing } from '../../tokens';
+import './AgentDev.css';
+
+export interface AgentDevProps {
+  isOpen: boolean;
+  onClose: () => void;
+  position?: 'left' | 'right' | 'top' | 'bottom';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+export type TabType = 'criar' | 'consertar' | 'agente';
+
+export interface TabState {
+  activeTab: TabType;
+  criar: {
+    selectedType: string | null;
+    prompt: string;
+    images: File[];
+  };
+  consertar: {
+    selectedType: string | null;
+    selectedComponents: string[];
+    description: string;
+  };
+  agente: {
+    prs: any[];
+    mergedPRs: any[];
+    closedPRs: any[];
+    loading: boolean;
+  };
+}
+
+const AgentDev: React.FC<AgentDevProps> = ({
+  isOpen,
+  onClose,
+  position = 'right',
+  size = 'lg',
+  className = '',
+  style,
+  ...props
+}) => {
+  const [activeTab, setActiveTab] = useState<TabType>('criar');
+  const [tabState, setTabState] = useState<TabState>({
+    activeTab: 'criar',
+    criar: {
+      selectedType: null,
+      prompt: '',
+      images: []
+    },
+    consertar: {
+      selectedType: null,
+      selectedComponents: [],
+      description: ''
+    },
+    agente: {
+      prs: [],
+      mergedPRs: [],
+      closedPRs: [],
+      loading: false
+    }
+  });
+
+  const handleTabChange = useCallback((tab: TabType) => {
+    setActiveTab(tab);
+    setTabState(prev => ({ ...prev, activeTab: tab }));
+  }, []);
+
+  const updateTabState = useCallback((tab: TabType, updates: Partial<TabState[TabType]>) => {
+    setTabState(prev => ({
+      ...prev,
+      [tab]: { ...prev[tab], ...updates }
+    }));
+  }, []);
+
+  const tabs = [
+    {
+      id: 'criar' as TabType,
+      label: 'Criar',
+      icon: <Plus size={20} />,
+      description: 'Create new components'
+    },
+    {
+      id: 'consertar' as TabType,
+      label: 'Consertar',
+      icon: <Wrench size={20} />,
+      description: 'Fix existing components'
+    },
+    {
+      id: 'agente' as TabType,
+      label: 'Agente',
+      icon: <Code size={20} />,
+      description: 'Manage agent tasks'
+    }
+  ];
+
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case 'criar':
+        return (
+          <div className="agent-dev__tab-content">
+            <Typography variant="h3" weight="semibold" style={{ marginBottom: spacing[4] }}>
+              Criar Componente
+            </Typography>
+            <Typography variant="body" color="muted" style={{ marginBottom: spacing[6] }}>
+              Selecione o tipo de componente e descreva o que você gostaria de criar.
+            </Typography>
+            
+            {/* Component Type Selection */}
+            <div className="agent-dev__section">
+              <Typography variant="h4" weight="medium" style={{ marginBottom: spacing[3] }}>
+                Tipo de Componente
+              </Typography>
+              <div className="agent-dev__type-selector">
+                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
+                  Layout
+                </Button>
+                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
+                  Forms
+                </Button>
+                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
+                  Navigation
+                </Button>
+                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
+                  Feedback
+                </Button>
+                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
+                  Data Display
+                </Button>
+                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
+                  Content
+                </Button>
+              </div>
+            </div>
+
+            {/* Prompt Input */}
+            <div className="agent-dev__section">
+              <Typography variant="h4" weight="medium" style={{ marginBottom: spacing[3] }}>
+                Descrição do Componente
+              </Typography>
+              <textarea
+                className="agent-dev__textarea"
+                placeholder="Descreva o componente que você gostaria de criar..."
+                value={tabState.criar.prompt}
+                onChange={(e) => updateTabState('criar', { prompt: e.target.value })}
+                rows={6}
+              />
+            </div>
+
+            {/* Image Upload */}
+            <div className="agent-dev__section">
+              <Typography variant="h4" weight="medium" style={{ marginBottom: spacing[3] }}>
+                Imagens de Referência (Opcional)
+              </Typography>
+              <div className="agent-dev__image-upload">
+                <input
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  className="agent-dev__file-input"
+                  id="image-upload"
+                />
+                <label htmlFor="image-upload" className="agent-dev__file-label">
+                  <Plus size={24} />
+                  <span>Adicionar Imagens</span>
+                </label>
+              </div>
+            </div>
+
+            {/* Create Button */}
+            <div className="agent-dev__actions">
+              <Button
+                variant="primary"
+                size="lg"
+                disabled={!tabState.criar.selectedType || !tabState.criar.prompt.trim()}
+                onClick={() => {
+                  // TODO: Implement create functionality
+                  console.log('Creating component:', tabState.criar);
+                }}
+              >
+                <Plus size={16} />
+                Criar Componente
+              </Button>
+            </div>
+          </div>
+        );
+
+      case 'consertar':
+        return (
+          <div className="agent-dev__tab-content">
+            <Typography variant="h3" weight="semibold" style={{ marginBottom: spacing[4] }}>
+              Consertar Componentes
+            </Typography>
+            <Typography variant="body" color="muted" style={{ marginBottom: spacing[6] }}>
+              Selecione os componentes que precisam ser corrigidos e descreva os problemas.
+            </Typography>
+            
+            {/* Component Type Selection */}
+            <div className="agent-dev__section">
+              <Typography variant="h4" weight="medium" style={{ marginBottom: spacing[3] }}>
+                Tipo de Componente
+              </Typography>
+              <div className="agent-dev__type-selector">
+                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
+                  Layout
+                </Button>
+                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
+                  Forms
+                </Button>
+                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
+                  Navigation
+                </Button>
+                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
+                  Feedback
+                </Button>
+                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
+                  Data Display
+                </Button>
+                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
+                  Content
+                </Button>
+              </div>
+            </div>
+
+            {/* Component List */}
+            <div className="agent-dev__section">
+              <Typography variant="h4" weight="medium" style={{ marginBottom: spacing[3] }}>
+                Componentes Disponíveis
+              </Typography>
+              <div className="agent-dev__component-list">
+                <div className="agent-dev__component-item">
+                  <input type="checkbox" id="comp-1" />
+                  <label htmlFor="comp-1">Button</label>
+                </div>
+                <div className="agent-dev__component-item">
+                  <input type="checkbox" id="comp-2" />
+                  <label htmlFor="comp-2">Input</label>
+                </div>
+                <div className="agent-dev__component-item">
+                  <input type="checkbox" id="comp-3" />
+                  <label htmlFor="comp-3">Card</label>
+                </div>
+              </div>
+            </div>
+
+            {/* Fix Description */}
+            <div className="agent-dev__section">
+              <Typography variant="h4" weight="medium" style={{ marginBottom: spacing[3] }}>
+                Descrição do Problema
+              </Typography>
+              <textarea
+                className="agent-dev__textarea"
+                placeholder="Descreva os problemas que precisam ser corrigidos..."
+                value={tabState.consertar.description}
+                onChange={(e) => updateTabState('consertar', { description: e.target.value })}
+                rows={4}
+              />
+            </div>
+
+            {/* Fix Button */}
+            <div className="agent-dev__actions">
+              <Button
+                variant="primary"
+                size="lg"
+                disabled={tabState.consertar.selectedComponents.length === 0 || !tabState.consertar.description.trim()}
+                onClick={() => {
+                  // TODO: Implement fix functionality
+                  console.log('Fixing components:', tabState.consertar);
+                }}
+              >
+                <Wrench size={16} />
+                Consertar Componentes
+              </Button>
+            </div>
+          </div>
+        );
+
+      case 'agente':
+        return (
+          <div className="agent-dev__tab-content">
+            <Typography variant="h3" weight="semibold" style={{ marginBottom: spacing[4] }}>
+              Agente de Desenvolvimento
+            </Typography>
+            <Typography variant="body" color="muted" style={{ marginBottom: spacing[6] }}>
+              Gerencie tarefas do agente e acompanhe o progresso das implementações.
+            </Typography>
+            
+            {/* PR Status Tabs */}
+            <div className="agent-dev__pr-tabs">
+              <Button
+                variant="ghost"
+                size="sm"
+                className={activeTab === 'agente' ? 'agent-dev__pr-tab--active' : ''}
+              >
+                Em Produção
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                className={activeTab === 'agente' ? 'agent-dev__pr-tab--active' : ''}
+              >
+                Recusado
+              </Button>
+            </div>
+
+            {/* PR List */}
+            <div className="agent-dev__pr-list">
+              <div className="agent-dev__pr-item">
+                <div className="agent-dev__pr-header">
+                  <Typography variant="h5" weight="medium">
+                    feat: implement Button component
+                  </Typography>
+                  <Badge variant="success" size="sm">Merged</Badge>
+                </div>
+                <Typography variant="body" color="muted" size="sm">
+                  Implemented new Button component with all variants and states
+                </Typography>
+                <div className="agent-dev__pr-meta">
+                  <span>#123</span>
+                  <span>2 days ago</span>
+                </div>
+              </div>
+
+              <div className="agent-dev__pr-item">
+                <div className="agent-dev__pr-header">
+                  <Typography variant="h5" weight="medium">
+                    fix: resolve Input validation issues
+                  </Typography>
+                  <Badge variant="warning" size="sm">In Progress</Badge>
+                </div>
+                <Typography variant="body" color="muted" size="sm">
+                  Fixed validation logic and error handling in Input component
+                </Typography>
+                <div className="agent-dev__pr-meta">
+                  <span>#124</span>
+                  <span>1 day ago</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <Drawer
+      isOpen={isOpen}
+      onClose={onClose}
+      position={position}
+      size={size}
+      className={`agent-dev ${className}`}
+      style={style}
+      {...props}
+    >
+      <div className="agent-dev__container">
+        {/* Header */}
+        <div className="agent-dev__header">
+          <div className="agent-dev__header-content">
+            <div className="agent-dev__header-icon">
+              <Robot size={24} />
+            </div>
+            <div className="agent-dev__header-text">
+              <Typography variant="h2" weight="bold">
+                Agent Dev
+              </Typography>
+              <Typography variant="body" color="muted" size="sm">
+                Desenvolvimento assistido por IA
+              </Typography>
+            </div>
+          </div>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={onClose}
+            className="agent-dev__close-button"
+          >
+            <X size={20} />
+          </Button>
+        </div>
+
+        {/* Tab Navigation */}
+        <div className="agent-dev__tabs">
+          {tabs.map((tab) => (
+            <button
+              key={tab.id}
+              className={`agent-dev__tab ${activeTab === tab.id ? 'agent-dev__tab--active' : ''}`}
+              onClick={() => handleTabChange(tab.id)}
+              title={tab.description}
+            >
+              {tab.icon}
+              <span>{tab.label}</span>
+            </button>
+          ))}
+        </div>
+
+        {/* Tab Content */}
+        <div className="agent-dev__content">
+          {renderTabContent()}
+        </div>
+      </div>
+    </Drawer>
+  );
+};
+
+export default AgentDev;

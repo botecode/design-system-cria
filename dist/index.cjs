@@ -34,9 +34,12 @@ __export(index_exports, {
   AccordionContent: () => AccordionContent,
   AccordionHeader: () => AccordionHeader,
   AccordionItem: () => AccordionItem,
+  AgentDev: () => AgentDev_default,
   AreaChart: () => AreaChart,
   Avatar: () => Avatar,
   AvatarUpload: () => AvatarUpload,
+  AvatarWithName: () => AvatarWithName,
+  Backgrounds: () => Backgrounds,
   Badge: () => Badge,
   BarChart: () => BarChart,
   BaseChart: () => BaseChart,
@@ -48,6 +51,7 @@ __export(index_exports, {
   CardFooter: () => CardFooter,
   CardHeader: () => CardHeader,
   Carousel: () => Carousel,
+  Changelog: () => Changelog_default,
   Chat: () => Chat,
   Checkbox: () => Checkbox,
   Column: () => Column,
@@ -70,10 +74,12 @@ __export(index_exports, {
   DatePicker: () => DatePicker,
   Divider: () => Divider,
   DonutChart: () => DonutChart,
+  Drawer: () => Drawer,
   Dropdown: () => Dropdown,
   DropdownItem: () => DropdownItem,
   EmptyState: () => EmptyState,
   FileUpload: () => FileUpload,
+  FilterDropdown: () => FilterDropdown,
   Footer: () => Footer,
   Grid: () => Grid,
   Input: () => Input,
@@ -82,6 +88,8 @@ __export(index_exports, {
   Modal: () => Modal,
   Navigation: () => Navigation,
   NavigationSidebar: () => Sidebar,
+  Notification: () => Notification,
+  NotificationCenter: () => NotificationCenter,
   Pagination: () => Pagination,
   PieChart: () => PieChart,
   ProgressBar: () => ProgressBar,
@@ -100,25 +108,30 @@ __export(index_exports, {
   Sidebar: () => Sidebar2,
   Snackbar: () => Snackbar,
   StackedBarChart: () => StackedBarChart,
+  StatisticMetricCard: () => StatisticMetricCard,
   Stepper: () => Stepper,
+  StepperStep: () => StepperStep,
   Switch: () => Switch,
   Table: () => Table,
   Tabs: () => Tabs,
+  TagChip: () => TagChip,
   TextBody: () => TextBody,
   TextContent: () => TextContent,
   TextContentImportant: () => TextContentImportant,
   TextContentTitle: () => TextContentTitle,
   Textarea: () => Textarea,
+  Timeline: () => Timeline,
+  TimelineItem: () => TimelineItem,
   Tooltip: () => Tooltip,
-  Topbar: () => Topbar,
   Typography: () => Typography,
   TypographyDemo: () => TypographyDemo,
+  Version: () => Version,
   VerticalTabs: () => VerticalTabs,
   colors: () => colors,
   cssVariables: () => cssVariables,
   radii: () => radii,
   shadows: () => shadows,
-  spacing: () => spacing2,
+  spacing: () => spacing,
   typography: () => typography
 });
 module.exports = __toCommonJS(index_exports);
@@ -178,7 +191,7 @@ var colors = {
 };
 
 // src/tokens/spacing.ts
-var spacing2 = {
+var spacing = {
   0: "0px",
   1: "4px",
   // 0.25rem
@@ -620,17 +633,17 @@ var AccordionContent = ({
 function getHeaderPadding(size) {
   switch (size) {
     case "sm":
-      return `${spacing2[2]} ${spacing2[3]}`;
+      return `${spacing[2]} ${spacing[3]}`;
     case "md":
-      return `${spacing2[3]} ${spacing2[4]}`;
+      return `${spacing[3]} ${spacing[4]}`;
     case "lg":
-      return `${spacing2[4]} ${spacing2[5]}`;
+      return `${spacing[4]} ${spacing[5]}`;
     default:
-      return `${spacing2[3]} ${spacing2[4]}`;
+      return `${spacing[3]} ${spacing[4]}`;
   }
 }
 function getContentPadding() {
-  return `${spacing2[2]} ${spacing2[4]} ${spacing2[4]} ${spacing2[4]}`;
+  return `${spacing[2]} ${spacing[4]} ${spacing[4]} ${spacing[4]}`;
 }
 
 // src/components/Avatar/Avatar.tsx
@@ -996,9 +1009,163 @@ var AvatarUpload = ({
   ] });
 };
 
-// src/components/Badge/Badge.tsx
+// src/components/Avatar/AvatarWithName.tsx
 var import_react4 = require("react");
 var import_jsx_runtime6 = require("react/jsx-runtime");
+var AvatarWithName = (0, import_react4.forwardRef)(({
+  avatarProps = {},
+  name,
+  size = "md",
+  variant = "default",
+  clickable = false,
+  onClick,
+  className = "",
+  style,
+  ...props
+}, ref) => {
+  const sizeConfig = {
+    sm: {
+      padding: `${spacing[2]} ${spacing[3]}`,
+      avatarSize: "sm",
+      gap: spacing[2],
+      fontSize: "14px",
+      borderRadius: radii.full,
+      minHeight: "32px"
+    },
+    md: {
+      padding: `${spacing[2]} ${spacing[3]}`,
+      avatarSize: "md",
+      gap: spacing[3],
+      fontSize: "16px",
+      borderRadius: radii.full,
+      minHeight: "40px"
+    },
+    lg: {
+      padding: `${spacing[3]} ${spacing[4]}`,
+      avatarSize: "lg",
+      gap: spacing[3],
+      fontSize: "18px",
+      borderRadius: radii.full,
+      minHeight: "48px"
+    }
+  };
+  const config = sizeConfig[size];
+  const handleClick = (event) => {
+    if (clickable && onClick) {
+      onClick(event);
+    }
+  };
+  const handleKeyDown = (event) => {
+    if (clickable && onClick && (event.key === "Enter" || event.key === " ")) {
+      event.preventDefault();
+      onClick(event);
+    }
+  };
+  const componentClasses = [
+    "avatar-with-name",
+    `avatar-with-name--${size}`,
+    `avatar-with-name--${variant}`,
+    clickable && "avatar-with-name--clickable",
+    className
+  ].filter(Boolean).join(" ");
+  const getContainerStyles2 = () => {
+    const baseStyles = {
+      display: "flex",
+      alignItems: "center",
+      gap: config.gap,
+      padding: config.padding,
+      borderRadius: config.borderRadius,
+      minHeight: config.minHeight,
+      cursor: clickable ? "pointer" : "default",
+      transition: "all 0.2s ease",
+      border: "none",
+      background: "transparent",
+      width: "fit-content",
+      ...style
+    };
+    switch (variant) {
+      case "outlined":
+        return {
+          ...baseStyles,
+          border: `1px solid ${colors.gray[200]}`,
+          backgroundColor: colors.white,
+          ":hover": clickable ? {
+            borderColor: colors.primary,
+            backgroundColor: colors.gray[50]
+          } : void 0
+        };
+      case "filled":
+        return {
+          ...baseStyles,
+          backgroundColor: colors.gray[50],
+          border: `1px solid ${colors.gray[100]}`,
+          ":hover": clickable ? {
+            backgroundColor: colors.gray[100],
+            borderColor: colors.gray[200]
+          } : void 0
+        };
+      case "default":
+      default:
+        return {
+          ...baseStyles,
+          backgroundColor: "transparent",
+          ":hover": clickable ? {
+            backgroundColor: colors.gray[50]
+          } : void 0
+        };
+    }
+  };
+  const containerStyles = getContainerStyles2();
+  const ariaLabel = clickable ? `Click to interact with ${name}` : name;
+  const tabIndex = clickable ? 0 : void 0;
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+    "div",
+    {
+      ref,
+      className: componentClasses,
+      style: containerStyles,
+      onClick: handleClick,
+      onKeyDown: handleKeyDown,
+      role: clickable ? "button" : void 0,
+      "aria-label": ariaLabel,
+      tabIndex,
+      ...props,
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+          Avatar,
+          {
+            ...avatarProps,
+            size: config.avatarSize,
+            name
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+          Typography_default,
+          {
+            variant: "body",
+            style: {
+              fontSize: config.fontSize,
+              fontWeight: 500,
+              color: colors.gray[700],
+              lineHeight: 1.4,
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              maxWidth: "200px"
+              // Prevent extremely long names from breaking layout
+            },
+            children: name
+          }
+        )
+      ]
+    }
+  );
+});
+AvatarWithName.displayName = "AvatarWithName";
+
+// src/components/Badge/Badge.tsx
+var import_react5 = require("react");
+var import_jsx_runtime7 = require("react/jsx-runtime");
 var Badge = ({
   variant = "default",
   size = "md",
@@ -1014,7 +1181,7 @@ var Badge = ({
   style,
   ...props
 }) => {
-  const displayContent = (0, import_react4.useMemo)(() => {
+  const displayContent = (0, import_react5.useMemo)(() => {
     if (dot) return null;
     if (typeof children === "number" && maxCount && children > maxCount) {
       return `${maxCount}+`;
@@ -1058,7 +1225,7 @@ var Badge = ({
     }
   };
   const { onClick, onKeyDown, ...restProps } = props;
-  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(
     "span",
     {
       className: classes,
@@ -1070,18 +1237,18 @@ var Badge = ({
       "aria-disabled": disabled,
       ...restProps,
       children: [
-        leftIcon && !dot && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "cria-badge__icon cria-badge__icon--left", "aria-hidden": "true", children: leftIcon }),
-        !dot && displayContent && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "cria-badge__content", children: displayContent }),
-        rightIcon && !dot && /* @__PURE__ */ (0, import_jsx_runtime6.jsx)("span", { className: "cria-badge__icon cria-badge__icon--right", "aria-hidden": "true", children: rightIcon })
+        leftIcon && !dot && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: "cria-badge__icon cria-badge__icon--left", "aria-hidden": "true", children: leftIcon }),
+        !dot && displayContent && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: "cria-badge__content", children: displayContent }),
+        rightIcon && !dot && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: "cria-badge__icon cria-badge__icon--right", "aria-hidden": "true", children: rightIcon })
       ]
     }
   );
 };
 
 // src/components/Button/Button.tsx
-var import_react5 = __toESM(require("react"), 1);
-var import_jsx_runtime7 = require("react/jsx-runtime");
-var Button = import_react5.default.forwardRef(({
+var import_react6 = __toESM(require("react"), 1);
+var import_jsx_runtime8 = require("react/jsx-runtime");
+var Button = import_react6.default.forwardRef(({
   variant = "primary",
   size = "md",
   loading = false,
@@ -1108,7 +1275,7 @@ var Button = import_react5.default.forwardRef(({
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    gap: spacing2[2],
+    gap: spacing[2],
     fontFamily: "var(--cria-font-family)",
     fontWeight: 500,
     textDecoration: "none",
@@ -1122,7 +1289,7 @@ var Button = import_react5.default.forwardRef(({
     ...getSizeStyles2(size),
     ...style
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(
     "button",
     {
       ref,
@@ -1132,7 +1299,7 @@ var Button = import_react5.default.forwardRef(({
       "aria-disabled": isDisabled,
       ...props,
       children: [
-        loading && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+        loading && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
           "div",
           {
             style: {
@@ -1149,10 +1316,10 @@ var Button = import_react5.default.forwardRef(({
             }
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)("span", { style: { opacity: loading ? 0 : 1, display: "flex", alignItems: "center", gap: spacing2[2] }, children: [
-          leftIcon && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { children: leftIcon }),
+        /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("span", { style: { opacity: loading ? 0 : 1, display: "flex", alignItems: "center", gap: spacing[2] }, children: [
+          leftIcon && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { children: leftIcon }),
           children,
-          rightIcon && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { children: rightIcon })
+          rightIcon && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { children: rightIcon })
         ] })
       ]
     }
@@ -1198,19 +1365,19 @@ function getSizeStyles2(size) {
   switch (size) {
     case "sm":
       return {
-        padding: `${spacing2[2]} ${spacing2[3]}`,
+        padding: `${spacing[2]} ${spacing[3]}`,
         fontSize: "14px",
         minHeight: "32px"
       };
     case "md":
       return {
-        padding: `${spacing2[3]} ${spacing2[4]}`,
+        padding: `${spacing[3]} ${spacing[4]}`,
         fontSize: "16px",
         minHeight: "40px"
       };
     case "lg":
       return {
-        padding: `${spacing2[4]} ${spacing2[6]}`,
+        padding: `${spacing[4]} ${spacing[6]}`,
         fontSize: "18px",
         minHeight: "48px"
       };
@@ -1220,92 +1387,92 @@ function getSizeStyles2(size) {
 }
 
 // src/components/Button/demo.tsx
-var import_react6 = require("react");
-var import_jsx_runtime8 = require("react/jsx-runtime");
+var import_react7 = require("react");
+var import_jsx_runtime9 = require("react/jsx-runtime");
 var ButtonDemo = () => {
-  const [loading, setLoading] = (0, import_react6.useState)(false);
+  const [loading, setLoading] = (0, import_react7.useState)(false);
   const handleLoadingClick = () => {
     setLoading(true);
     setTimeout(() => setLoading(false), 2e3);
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { style: { padding: "24px", maxWidth: "800px" }, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Typography, { variant: "title1", weight: "bold", style: { marginBottom: "32px" }, children: "Button Demo" }),
-    /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Variantes" }),
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { variant: "primary", children: "Prim\xE1rio" }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { variant: "secondary", children: "Secund\xE1rio" }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { variant: "outline", children: "Contorno" }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { variant: "ghost", children: "Fantasma" }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { variant: "danger", children: "Perigo" })
+  return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { style: { padding: "24px", maxWidth: "800px" }, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Typography, { variant: "title1", weight: "bold", style: { marginBottom: "32px" }, children: "Button Demo" }),
+    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("section", { style: { marginBottom: "32px" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Variantes" }),
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "primary", children: "Prim\xE1rio" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "secondary", children: "Secund\xE1rio" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "outline", children: "Contorno" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "ghost", children: "Fantasma" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "danger", children: "Perigo" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Tamanhos" }),
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { style: { display: "flex", gap: "12px", alignItems: "center", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { size: "sm", children: "Pequeno" }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { size: "md", children: "M\xE9dio" }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { size: "lg", children: "Grande" })
+    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("section", { style: { marginBottom: "32px" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Tamanhos" }),
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { style: { display: "flex", gap: "12px", alignItems: "center", flexWrap: "wrap" }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { size: "sm", children: "Pequeno" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { size: "md", children: "M\xE9dio" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { size: "lg", children: "Grande" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Estados" }),
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { children: "Normal" }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { loading: true, children: "Carregando" }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { disabled: true, children: "Desabilitado" }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { loading, onClick: handleLoadingClick, children: "Clique para Carregar" })
+    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("section", { style: { marginBottom: "32px" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Estados" }),
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { children: "Normal" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { loading: true, children: "Carregando" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { disabled: true, children: "Desabilitado" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { loading, onClick: handleLoadingClick, children: "Clique para Carregar" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Com \xCDcones" }),
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { leftIcon: "\u2190", children: "Voltar" }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { rightIcon: "\u2192", children: "Pr\xF3ximo" }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { leftIcon: "\u2605", rightIcon: "\u2605", children: "Estrela" }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { leftIcon: "\u{1F4E7}", children: "Email" })
+    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("section", { style: { marginBottom: "32px" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Com \xCDcones" }),
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { leftIcon: "\u2190", children: "Voltar" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { rightIcon: "\u2192", children: "Pr\xF3ximo" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { leftIcon: "\u2605", rightIcon: "\u2605", children: "Estrela" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { leftIcon: "\u{1F4E7}", children: "Email" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Largura Completa" }),
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { style: { display: "flex", flexDirection: "column", gap: "12px" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { fullWidth: true, children: "Bot\xE3o de Largura Completa" }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { variant: "outline", fullWidth: true, children: "Contorno de Largura Completa" })
+    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("section", { style: { marginBottom: "32px" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Largura Completa" }),
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { style: { display: "flex", flexDirection: "column", gap: "12px" }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { fullWidth: true, children: "Bot\xE3o de Largura Completa" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "outline", fullWidth: true, children: "Contorno de Largura Completa" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Efeitos de Hover" }),
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("p", { style: { fontFamily: "var(--cria-font-family)", color: "#6B7280", marginBottom: "16px", fontSize: "14px" }, children: "Passe o mouse sobre os bot\xF5es para ver os efeitos de hover" }),
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { variant: "primary", children: "Prim\xE1rio" }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { variant: "secondary", children: "Secund\xE1rio" }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { variant: "outline", children: "Contorno" }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { variant: "ghost", children: "Fantasma" }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { variant: "danger", children: "Perigo" })
+    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("section", { style: { marginBottom: "32px" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Efeitos de Hover" }),
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("p", { style: { fontFamily: "var(--cria-font-family)", color: "#6B7280", marginBottom: "16px", fontSize: "14px" }, children: "Passe o mouse sobre os bot\xF5es para ver os efeitos de hover" }),
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "primary", children: "Prim\xE1rio" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "secondary", children: "Secund\xE1rio" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "outline", children: "Contorno" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "ghost", children: "Fantasma" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "danger", children: "Perigo" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Exemplos Interativos" }),
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { onClick: () => alert("Prim\xE1rio clicado!"), children: "Clique em Mim" }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { variant: "secondary", onClick: () => console.log("Secund\xE1rio clicado!"), children: "Log no Console" }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { variant: "outline", onClick: () => window.open("https://example.com", "_blank"), children: "Link Externo" })
+    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("section", { style: { marginBottom: "32px" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Exemplos Interativos" }),
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { onClick: () => alert("Prim\xE1rio clicado!"), children: "Clique em Mim" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "secondary", onClick: () => console.log("Secund\xE1rio clicado!"), children: "Log no Console" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "outline", onClick: () => window.open("https://example.com", "_blank"), children: "Link Externo" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Acessibilidade" }),
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { "aria-label": "Fechar di\xE1logo", children: "\xD7" }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { "aria-describedby": "help-text", children: "Ajuda" }),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(Button, { disabled: true, "aria-label": "Esta a\xE7\xE3o n\xE3o est\xE1 dispon\xEDvel", children: "Indispon\xEDvel" })
+    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("section", { style: { marginBottom: "32px" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Acessibilidade" }),
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { "aria-label": "Fechar di\xE1logo", children: "\xD7" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { "aria-describedby": "help-text", children: "Ajuda" }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { disabled: true, "aria-label": "Esta a\xE7\xE3o n\xE3o est\xE1 dispon\xEDvel", children: "Indispon\xEDvel" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("p", { id: "help-text", style: { fontSize: "14px", color: "#6B7280", marginTop: "8px" }, children: "Este bot\xE3o fornece informa\xE7\xF5es de ajuda adicionais." })
+      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("p", { id: "help-text", style: { fontSize: "14px", color: "#6B7280", marginTop: "8px" }, children: "Este bot\xE3o fornece informa\xE7\xF5es de ajuda adicionais." })
     ] })
   ] });
 };
 
 // src/components/Card/Card.tsx
-var import_jsx_runtime9 = require("react/jsx-runtime");
+var import_jsx_runtime10 = require("react/jsx-runtime");
 var Card = ({
   variant = "default",
   size = "md",
@@ -1334,7 +1501,7 @@ var Card = ({
     ...getSizeStyles3(size),
     ...style
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
     "div",
     {
       className: classes,
@@ -1375,15 +1542,15 @@ function getSizeStyles3(size) {
   switch (size) {
     case "sm":
       return {
-        padding: spacing2[3]
+        padding: spacing[3]
       };
     case "md":
       return {
-        padding: spacing2[4]
+        padding: spacing[4]
       };
     case "lg":
       return {
-        padding: spacing2[6]
+        padding: spacing[6]
       };
     default:
       return {};
@@ -1396,12 +1563,12 @@ var CardHeader = ({
   ...props
 }) => {
   const classes = ["cria-card-header", className].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
     "div",
     {
       className: classes,
       style: {
-        marginBottom: spacing2[4],
+        marginBottom: spacing[4],
         ...style
       },
       ...props,
@@ -1416,7 +1583,7 @@ var CardContent = ({
   ...props
 }) => {
   const classes = ["cria-card-content", className].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
     "div",
     {
       className: classes,
@@ -1435,13 +1602,13 @@ var CardFooter = ({
   ...props
 }) => {
   const classes = ["cria-card-footer", className].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
     "div",
     {
       className: classes,
       style: {
-        marginTop: spacing2[4],
-        paddingTop: spacing2[4],
+        marginTop: spacing[4],
+        paddingTop: spacing[4],
         borderTop: `1px solid ${colors.border.light}`,
         ...style
       },
@@ -1452,12 +1619,12 @@ var CardFooter = ({
 };
 
 // src/components/Card/demo.tsx
-var import_react12 = require("react");
+var import_react10 = require("react");
 
 // src/components/CriaLessonCardSmall/CriaLessonCardSmall.tsx
-var import_react7 = require("react");
+var import_react8 = require("react");
 var import_phosphor_react2 = require("phosphor-react");
-var import_jsx_runtime10 = require("react/jsx-runtime");
+var import_jsx_runtime11 = require("react/jsx-runtime");
 var CriaLessonCardSmall = ({
   lesson,
   completed = false,
@@ -1470,7 +1637,7 @@ var CriaLessonCardSmall = ({
   style,
   ...props
 }) => {
-  const [isHovered, setIsHovered] = (0, import_react7.useState)(false);
+  const [isHovered, setIsHovered] = (0, import_react8.useState)(false);
   const lessonId = lesson.id || lesson.slug;
   const thumbnailUrl = lesson.thumbnailUrl || "https://cdn.prod.website-files.com/65870ed41744e63eb43fd116/6876c357bfbaf5d573e3dd27_AU-409Thumb2.png";
   const duration = lesson.duration || lesson.videoLength || "--";
@@ -1512,7 +1679,7 @@ var CriaLessonCardSmall = ({
     boxShadow: shadows.xl,
     transform: "translateY(-2px)"
   } : {};
-  return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
     "div",
     {
       className: classes,
@@ -1525,14 +1692,14 @@ var CriaLessonCardSmall = ({
       "data-tools": lesson.tools?.join(",") || "",
       ...props,
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { style: {
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { style: {
           position: "relative",
           width: "100%",
           height: "140px",
           background: `linear-gradient(135deg, ${colors.gray[100]} 0%, ${colors.gray[200]} 100%)`,
           overflow: "visible"
         }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
             "img",
             {
               src: thumbnailUrl,
@@ -1546,17 +1713,17 @@ var CriaLessonCardSmall = ({
               }
             }
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { style: {
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { style: {
             position: "absolute",
             inset: 0,
             background: "linear-gradient(to top, rgba(0,0,0,0.2) 0%, transparent 100%)"
           } }),
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { style: {
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { style: {
             position: "absolute",
-            top: spacing2[2],
-            right: spacing2[2],
+            top: spacing[2],
+            right: spacing[2],
             zIndex: 10
-          }, children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+          }, children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
             "button",
             {
               onClick: handleToggleCompletion,
@@ -1578,7 +1745,7 @@ var CriaLessonCardSmall = ({
               },
               title: completed ? "Mark as incomplete" : "Mark as completed",
               "aria-label": completed ? "Mark as incomplete" : "Mark as completed",
-              children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+              children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
                 import_phosphor_react2.Check,
                 {
                   size: completed ? 16 : 14,
@@ -1588,12 +1755,12 @@ var CriaLessonCardSmall = ({
               )
             }
           ) }),
-          toolIconUrl && /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { style: {
+          toolIconUrl && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { style: {
             position: "absolute",
             bottom: "-20px",
-            left: spacing2[4],
+            left: spacing[4],
             zIndex: 30
-          }, children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+          }, children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
             "img",
             {
               src: toolIconUrl,
@@ -1607,17 +1774,17 @@ var CriaLessonCardSmall = ({
             }
           ) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { style: {
+        /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { style: {
           flex: 1,
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          padding: `${spacing2[2]} ${spacing2[4]} ${spacing2[4]} ${spacing2[4]}`,
+          padding: `${spacing[2]} ${spacing[4]} ${spacing[4]} ${spacing[4]}`,
           zIndex: 10,
-          paddingTop: toolIconUrl ? spacing2[6] : spacing2[2]
+          paddingTop: toolIconUrl ? spacing[6] : spacing[2]
           // Adjust for tool icon
         }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { style: { marginBottom: spacing2[2] }, children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { style: { marginBottom: spacing[2] }, children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
             Typography,
             {
               variant: "body",
@@ -1636,8 +1803,8 @@ var CriaLessonCardSmall = ({
               children: lesson.title
             }
           ) }),
-          /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { style: { display: "flex", flexDirection: "column", gap: spacing2[2] }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+          /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { style: { display: "flex", flexDirection: "column", gap: spacing[2] }, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
               Typography,
               {
                 variant: "caption",
@@ -1650,14 +1817,14 @@ var CriaLessonCardSmall = ({
                 children: category
               }
             ) }),
-            /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { style: {
+            /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { style: {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between"
             }, children: [
-              /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { style: { display: "flex", alignItems: "center", gap: spacing2[1] }, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(import_phosphor_react2.Clock, { size: 12, color: colors.gray[500] }),
-                /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { style: { display: "flex", alignItems: "center", gap: spacing[1] }, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(import_phosphor_react2.Clock, { size: 12, color: colors.gray[500] }),
+                /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
                   Typography,
                   {
                     variant: "caption",
@@ -1669,7 +1836,7 @@ var CriaLessonCardSmall = ({
                   }
                 )
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { style: {
+              /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { style: {
                 width: lesson.instructors && lesson.instructors.length > 0 ? "80px" : "32px",
                 height: "32px",
                 position: "relative",
@@ -1677,7 +1844,7 @@ var CriaLessonCardSmall = ({
                 justifyContent: "flex-end"
               }, children: lesson.instructors && lesson.instructors.length > 0 ? (
                 // Stacked avatars for multiple instructors
-                lesson.instructors.slice(0, 3).map((instructor, index) => /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+                lesson.instructors.slice(0, 3).map((instructor, index) => /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
                   "div",
                   {
                     onClick: () => onInstructorClick?.(instructor),
@@ -1687,7 +1854,7 @@ var CriaLessonCardSmall = ({
                       right: `${index * 8}px`,
                       zIndex: 3 - index
                     },
-                    children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+                    children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
                       Avatar,
                       {
                         src: instructor.avatarUrl,
@@ -1707,7 +1874,7 @@ var CriaLessonCardSmall = ({
                 ))
               ) : lesson.instructor ? (
                 // Single instructor - aligned to right
-                /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+                /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
                   "div",
                   {
                     onClick: handleInstructorClick,
@@ -1716,7 +1883,7 @@ var CriaLessonCardSmall = ({
                       position: "absolute",
                       right: "0px"
                     },
-                    children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+                    children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
                       Avatar,
                       {
                         src: lesson.instructor.avatarUrl,
@@ -1735,7 +1902,7 @@ var CriaLessonCardSmall = ({
                 )
               ) : (
                 // Default user icon - aligned to right
-                /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("div", { style: {
+                /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { style: {
                   width: "32px",
                   height: "32px",
                   borderRadius: "50%",
@@ -1745,7 +1912,7 @@ var CriaLessonCardSmall = ({
                   justifyContent: "center",
                   position: "absolute",
                   right: "0px"
-                }, children: /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(import_phosphor_react2.User, { size: 16, color: colors.white }) })
+                }, children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(import_phosphor_react2.User, { size: 16, color: colors.white }) })
               ) })
             ] })
           ] })
@@ -1756,9 +1923,9 @@ var CriaLessonCardSmall = ({
 };
 
 // src/components/CriaLessonCard/CriaLessonCard.tsx
-var import_react8 = require("react");
+var import_react9 = require("react");
 var import_phosphor_react3 = require("phosphor-react");
-var import_jsx_runtime11 = require("react/jsx-runtime");
+var import_jsx_runtime12 = require("react/jsx-runtime");
 var CriaLessonCard = ({
   lesson,
   onLessonClick,
@@ -1766,19 +1933,19 @@ var CriaLessonCard = ({
   style,
   ...props
 }) => {
-  const [isHovered, setIsHovered] = (0, import_react8.useState)(false);
-  const [imageLoaded, setImageLoaded] = (0, import_react8.useState)(false);
-  const handleCardClick = (0, import_react8.useCallback)(() => {
+  const [isHovered, setIsHovered] = (0, import_react9.useState)(false);
+  const [imageLoaded, setImageLoaded] = (0, import_react9.useState)(false);
+  const handleCardClick = (0, import_react9.useCallback)(() => {
     onLessonClick?.(lesson);
   }, [lesson, onLessonClick]);
-  const handleInstructorClick = (0, import_react8.useCallback)((e) => {
+  const handleInstructorClick = (0, import_react9.useCallback)((e) => {
     e.stopPropagation();
   }, []);
   const cardClasses = [
     "cria-lesson-card",
     className
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
     "div",
     {
       className: cardClasses,
@@ -1801,7 +1968,7 @@ var CriaLessonCard = ({
       "data-lesson-slug": lesson.slug,
       ...props,
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
           "div",
           {
             style: {
@@ -1812,7 +1979,7 @@ var CriaLessonCard = ({
               borderRadius: `${radii.lg} ${radii.lg} 0 0`,
               overflow: "hidden"
             },
-            children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+            children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
               "img",
               {
                 src: lesson.thumbnailUrl || "https://cdn.prod.website-files.com/65870ed41744e63eb43fd116/6876c357bfbaf5d573e3dd27_AU-409Thumb2.png",
@@ -1831,18 +1998,18 @@ var CriaLessonCard = ({
             )
           }
         ),
-        lesson.toolIconText && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+        lesson.toolIconText && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
           "div",
           {
             style: {
               position: "absolute",
-              left: spacing2[4],
+              left: spacing[4],
               top: "120px",
               width: "48px",
               height: "48px",
               zIndex: 20
             },
-            children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+            children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
               "div",
               {
                 style: {
@@ -1855,7 +2022,7 @@ var CriaLessonCard = ({
                   alignItems: "center",
                   justifyContent: "center"
                 },
-                children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+                children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
                   Typography,
                   {
                     variant: "caption",
@@ -1871,7 +2038,7 @@ var CriaLessonCard = ({
             )
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
           "div",
           {
             style: {
@@ -1880,7 +2047,7 @@ var CriaLessonCard = ({
               left: 0,
               right: 0,
               background: colors.white,
-              padding: `${spacing2[8]} ${spacing2[8]} ${spacing2[6]} ${spacing2[8]}`,
+              padding: `${spacing[8]} ${spacing[8]} ${spacing[6]} ${spacing[8]}`,
               height: "134px",
               display: "flex",
               flexDirection: "column",
@@ -1888,7 +2055,7 @@ var CriaLessonCard = ({
               zIndex: 10
             },
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
                 Typography,
                 {
                   variant: "body",
@@ -1899,7 +2066,7 @@ var CriaLessonCard = ({
                     fontSize: "14px",
                     lineHeight: 1.4,
                     textTransform: "uppercase",
-                    marginBottom: spacing2[2],
+                    marginBottom: spacing[2],
                     display: "-webkit-box",
                     WebkitLineClamp: 3,
                     WebkitBoxOrient: "vertical",
@@ -1910,18 +2077,18 @@ var CriaLessonCard = ({
                   children: lesson.title
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
                 "div",
                 {
                   style: {
                     width: "100%",
                     height: "1px",
                     background: colors.gray[200],
-                    marginBottom: spacing2[2]
+                    marginBottom: spacing[2]
                   }
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
                 Typography,
                 {
                   variant: "caption",
@@ -1944,7 +2111,7 @@ var CriaLessonCard = ({
             ]
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
           "div",
           {
             style: {
@@ -1955,7 +2122,7 @@ var CriaLessonCard = ({
               height: "46px",
               background: colors.white,
               borderRadius: `0 0 ${radii.lg} ${radii.lg}`,
-              padding: `${spacing2[2]} ${spacing2[8]}`,
+              padding: `${spacing[2]} ${spacing[8]}`,
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
@@ -1963,9 +2130,9 @@ var CriaLessonCard = ({
               borderTop: `1px solid ${colors.gray[200]}`
             },
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { style: { display: "flex", alignItems: "center" }, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(import_phosphor_react3.Clock, { size: 16, color: colors.gray[600], style: { marginRight: spacing2[1] } }),
-                /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { style: { display: "flex", alignItems: "center" }, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_phosphor_react3.Clock, { size: 16, color: colors.gray[600], style: { marginRight: spacing[1] } }),
+                /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
                   Typography,
                   {
                     variant: "caption",
@@ -1980,12 +2147,12 @@ var CriaLessonCard = ({
                   }
                 )
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { style: { width: "25px", height: "25px" }, children: lesson.instructor ? /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { style: { width: "25px", height: "25px" }, children: lesson.instructor ? /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
                 "div",
                 {
                   onClick: handleInstructorClick,
                   style: { cursor: "pointer" },
-                  children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+                  children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
                     Avatar,
                     {
                       src: lesson.instructor.avatarUrl,
@@ -2001,7 +2168,7 @@ var CriaLessonCard = ({
                     }
                   )
                 }
-              ) : /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+              ) : /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
                 "div",
                 {
                   style: {
@@ -2013,1345 +2180,9 @@ var CriaLessonCard = ({
                     alignItems: "center",
                     justifyContent: "center"
                   },
-                  children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(import_phosphor_react3.User, { size: 16, color: colors.white })
+                  children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_phosphor_react3.User, { size: 16, color: colors.white })
                 }
               ) })
-            ]
-          }
-        )
-      ]
-    }
-  );
-};
-
-// src/components/CriaCourseCard/CriaCourseCard.tsx
-var import_react9 = require("react");
-var import_phosphor_react4 = require("phosphor-react");
-var import_jsx_runtime12 = require("react/jsx-runtime");
-var CriaCourseCard = ({
-  course,
-  onCourseClick,
-  onInstructorClick,
-  onToolClick,
-  className = "",
-  style,
-  ...props
-}) => {
-  const [isHovered, setIsHovered] = (0, import_react9.useState)(false);
-  const [imageLoaded, setImageLoaded] = (0, import_react9.useState)(false);
-  const handleCardClick = (0, import_react9.useCallback)(() => {
-    onCourseClick?.(course);
-  }, [course, onCourseClick]);
-  const handleInstructorClick = (0, import_react9.useCallback)((instructor, e) => {
-    e.stopPropagation();
-    onInstructorClick?.(instructor);
-  }, [onInstructorClick]);
-  const handleToolClick = (0, import_react9.useCallback)((tool, e) => {
-    e.stopPropagation();
-    onToolClick?.(tool);
-  }, [onToolClick]);
-  const cardClasses = [
-    "cria-course-card",
-    className
-  ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
-    "div",
-    {
-      className: cardClasses,
-      onClick: handleCardClick,
-      onMouseEnter: () => setIsHovered(true),
-      onMouseLeave: () => setIsHovered(false),
-      style: {
-        backgroundColor: colors.white,
-        borderRadius: radii.lg,
-        boxShadow: shadows.sm,
-        overflow: "hidden",
-        display: "flex",
-        cursor: "pointer",
-        transition: "all 0.3s ease",
-        ...style
-      },
-      "data-course-id": course.id,
-      "data-course-slug": course.slug,
-      ...props,
-      children: [
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
-          "div",
-          {
-            style: {
-              width: "33.333%",
-              flexShrink: 0,
-              position: "relative",
-              overflow: "hidden"
-            },
-            children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
-              "img",
-              {
-                src: course.thumbnailUrl || "https://via.placeholder.com/400x300?text=No+Image",
-                alt: course.title,
-                style: {
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  transition: "transform 0.3s ease-out",
-                  transform: isHovered ? "scale(1.05)" : "scale(1)",
-                  opacity: imageLoaded ? 1 : 0,
-                  minHeight: "200px"
-                },
-                onLoad: () => setImageLoaded(true),
-                onError: () => setImageLoaded(true)
-              }
-            )
-          }
-        ),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
-          "div",
-          {
-            style: {
-              padding: `${spacing2[8]} ${spacing2[8]} ${spacing2[8]} ${spacing2[12]}`,
-              flex: 1,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between"
-            },
-            children: [
-              /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { children: [
-                /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
-                  Typography,
-                  {
-                    variant: "h1",
-                    style: {
-                      color: colors.primary,
-                      fontWeight: typography.fontWeight.bold,
-                      letterSpacing: "0.1em",
-                      marginBottom: spacing2[2],
-                      textTransform: "uppercase",
-                      transition: "color 0.3s ease",
-                      cursor: "pointer"
-                    },
-                    onMouseEnter: (e) => {
-                      e.currentTarget.style.color = colors.secondary;
-                    },
-                    onMouseLeave: (e) => {
-                      e.currentTarget.style.color = colors.primary;
-                    },
-                    children: course.title
-                  }
-                ),
-                /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
-                  Typography,
-                  {
-                    variant: "body",
-                    style: {
-                      color: colors.gray[600],
-                      fontSize: "14px",
-                      lineHeight: 1.6,
-                      marginBottom: spacing2[6]
-                    },
-                    children: course.description || "A comprehensive course designed to help you master the fundamentals and advanced concepts."
-                  }
-                )
-              ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
-                "div",
-                {
-                  style: {
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-                    gap: spacing2[8]
-                  },
-                  children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
-                        "div",
-                        {
-                          style: {
-                            display: "flex",
-                            alignItems: "flex-start",
-                            gap: spacing2[2],
-                            marginBottom: spacing2[4]
-                          },
-                          children: [
-                            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
-                              import_phosphor_react4.UserCircle,
-                              {
-                                size: 20,
-                                color: colors.primary,
-                                weight: "duotone",
-                                style: { marginTop: "2px", flexShrink: 0 }
-                              }
-                            ),
-                            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
-                              "div",
-                              {
-                                style: {
-                                  display: "flex",
-                                  flexDirection: "column",
-                                  gap: spacing2[1]
-                                },
-                                children: course.instructors?.map((instructor) => /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
-                                  "div",
-                                  {
-                                    onClick: (e) => handleInstructorClick(instructor, e),
-                                    style: {
-                                      display: "inline-flex",
-                                      alignItems: "center",
-                                      padding: `${spacing2[1]} ${spacing2[2]}`,
-                                      borderRadius: radii.full,
-                                      fontSize: "12px",
-                                      fontWeight: typography.fontWeight.semiBold,
-                                      color: colors.primary,
-                                      border: `1px solid ${colors.primary}20`,
-                                      backgroundColor: colors.primary + "08",
-                                      cursor: "pointer",
-                                      transition: "all 0.2s ease"
-                                    },
-                                    onMouseEnter: (e) => {
-                                      e.currentTarget.style.backgroundColor = colors.primary + "15";
-                                      e.currentTarget.style.borderColor = colors.primary + "40";
-                                    },
-                                    onMouseLeave: (e) => {
-                                      e.currentTarget.style.backgroundColor = colors.primary + "08";
-                                      e.currentTarget.style.borderColor = colors.primary + "20";
-                                    },
-                                    children: [
-                                      instructor.avatarUrl && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
-                                        Avatar,
-                                        {
-                                          src: instructor.avatarUrl,
-                                          alt: instructor.name,
-                                          size: "sm",
-                                          name: instructor.name,
-                                          style: {
-                                            width: "20px",
-                                            height: "20px",
-                                            marginRight: spacing2[1]
-                                          }
-                                        }
-                                      ),
-                                      instructor.name
-                                    ]
-                                  },
-                                  instructor.id
-                                ))
-                              }
-                            )
-                          ]
-                        }
-                      ),
-                      /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
-                        "div",
-                        {
-                          style: {
-                            display: "flex",
-                            alignItems: "center",
-                            gap: spacing2[2]
-                          },
-                          children: [
-                            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
-                              import_phosphor_react4.Clock,
-                              {
-                                size: 20,
-                                color: colors.primary,
-                                weight: "duotone"
-                              }
-                            ),
-                            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
-                              Typography,
-                              {
-                                variant: "caption",
-                                style: {
-                                  color: colors.primary,
-                                  fontSize: "14px"
-                                },
-                                children: course.duration || "--"
-                              }
-                            )
-                          ]
-                        }
-                      )
-                    ] }),
-                    /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
-                      "div",
-                      {
-                        style: {
-                          display: "flex",
-                          alignItems: "flex-start",
-                          gap: spacing2[2]
-                        },
-                        children: [
-                          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
-                            import_phosphor_react4.Wrench,
-                            {
-                              size: 20,
-                              color: colors.primary,
-                              weight: "duotone",
-                              style: { marginTop: "2px", flexShrink: 0 }
-                            }
-                          ),
-                          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
-                            "div",
-                            {
-                              style: {
-                                display: "flex",
-                                flexDirection: "column",
-                                gap: spacing2[1]
-                              },
-                              children: course.tools?.map((tool) => /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
-                                "div",
-                                {
-                                  onClick: (e) => handleToolClick(tool, e),
-                                  style: {
-                                    display: "inline-flex",
-                                    alignItems: "center",
-                                    padding: `${spacing2[1]} ${spacing2[2]}`,
-                                    borderRadius: radii.full,
-                                    fontSize: "12px",
-                                    fontWeight: typography.fontWeight.semiBold,
-                                    color: colors.primary,
-                                    border: `1px solid ${colors.primary}20`,
-                                    backgroundColor: colors.primary + "08",
-                                    cursor: "pointer",
-                                    transition: "all 0.2s ease"
-                                  },
-                                  onMouseEnter: (e) => {
-                                    e.currentTarget.style.backgroundColor = colors.primary + "15";
-                                    e.currentTarget.style.borderColor = colors.primary + "40";
-                                  },
-                                  onMouseLeave: (e) => {
-                                    e.currentTarget.style.backgroundColor = colors.primary + "08";
-                                    e.currentTarget.style.borderColor = colors.primary + "20";
-                                  },
-                                  children: [
-                                    tool.icon && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
-                                      "span",
-                                      {
-                                        style: {
-                                          width: "20px",
-                                          height: "20px",
-                                          marginRight: spacing2[1],
-                                          display: "flex",
-                                          alignItems: "center",
-                                          justifyContent: "center",
-                                          fontSize: "14px"
-                                        },
-                                        children: tool.icon
-                                      }
-                                    ),
-                                    tool.name
-                                  ]
-                                },
-                                tool.id
-                              ))
-                            }
-                          )
-                        ]
-                      }
-                    ) })
-                  ]
-                }
-              )
-            ]
-          }
-        )
-      ]
-    }
-  );
-};
-
-// src/components/CriaClassroomFutureEventCard/CriaClassroomFutureEventCard.tsx
-var import_react10 = require("react");
-var import_phosphor_react5 = require("phosphor-react");
-var import_jsx_runtime13 = require("react/jsx-runtime");
-var CriaClassroomFutureEventCard = ({
-  event,
-  classroomItem,
-  onEventClick,
-  onCalendarClick,
-  className = "",
-  style,
-  ...props
-}) => {
-  const [timeLeft, setTimeLeft] = (0, import_react10.useState)({ days: 0, hours: 0, minutes: 0 });
-  const [isLive, setIsLive] = (0, import_react10.useState)(false);
-  const calculateTimeLeft = (0, import_react10.useCallback)(() => {
-    const eventDate2 = new Date(event.startDate);
-    const now = /* @__PURE__ */ new Date();
-    const difference = eventDate2.getTime() - now.getTime();
-    if (difference > 0) {
-      const days = Math.floor(difference / (1e3 * 60 * 60 * 24));
-      const hours = Math.floor(difference % (1e3 * 60 * 60 * 24) / (1e3 * 60 * 60));
-      const minutes = Math.floor(difference % (1e3 * 60 * 60) / (1e3 * 60));
-      setTimeLeft({ days, hours, minutes });
-      setIsLive(false);
-    } else {
-      setTimeLeft({ days: 0, hours: 0, minutes: 0 });
-      setIsLive(true);
-    }
-  }, [event.startDate]);
-  (0, import_react10.useEffect)(() => {
-    calculateTimeLeft();
-    const interval = setInterval(calculateTimeLeft, 6e4);
-    return () => clearInterval(interval);
-  }, [calculateTimeLeft]);
-  const handleEventClick = (0, import_react10.useCallback)(() => {
-    onEventClick?.(event);
-  }, [event, onEventClick]);
-  const handleCalendarClick = (0, import_react10.useCallback)(() => {
-    onCalendarClick?.(event);
-  }, [event, onCalendarClick]);
-  const title = classroomItem.customTitle || event.name;
-  const description = classroomItem.customSubtitle || event.description || "";
-  const eventDate = new Date(event.startDate);
-  const formattedDate = eventDate.toLocaleDateString("pt-BR", {
-    day: "2-digit",
-    month: "short"
-  });
-  const formattedTime = eventDate.toLocaleTimeString("pt-BR", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false
-  });
-  const cardClasses = [
-    "cria-classroom-future-event-card",
-    className
-  ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(
-    "div",
-    {
-      className: cardClasses,
-      style: {
-        backgroundColor: colors.white,
-        borderRadius: radii.lg,
-        boxShadow: shadows.lg,
-        overflow: "hidden",
-        display: "flex",
-        border: `1px solid ${colors.gray[100]}`,
-        minHeight: "200px",
-        ...style
-      },
-      "data-event-id": event.id,
-      "data-classroom-item-id": classroomItem.id,
-      ...props,
-      children: [
-        /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(
-          "div",
-          {
-            style: {
-              width: "33.333%",
-              flexShrink: 0,
-              position: "relative",
-              overflow: "hidden",
-              minHeight: "200px",
-              padding: spacing2[8],
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between"
-            },
-            children: [
-              classroomItem.imageUrl ? /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                "img",
-                {
-                  src: classroomItem.imageUrl,
-                  alt: title,
-                  style: {
-                    position: "absolute",
-                    inset: 0,
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "center"
-                  },
-                  onError: (e) => {
-                    e.target.style.display = "none";
-                  }
-                }
-              ) : null,
-              /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                "div",
-                {
-                  style: {
-                    position: "absolute",
-                    inset: 0,
-                    background: "linear-gradient(135deg, #a855f7 0%, #3b82f6 50%, #14b8a6 100%)"
-                  }
-                }
-              ),
-              /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                "div",
-                {
-                  style: {
-                    position: "absolute",
-                    inset: 0,
-                    background: "linear-gradient(135deg, rgba(0, 221, 185, 0.6) 0%, rgba(0, 123, 122, 0.6) 100%)",
-                    backdropFilter: "blur(12px)"
-                  }
-                }
-              ),
-              /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { style: { position: "absolute", inset: 0, opacity: 0.3 }, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                  "div",
-                  {
-                    style: {
-                      position: "absolute",
-                      top: "-40px",
-                      right: "-40px",
-                      width: "128px",
-                      height: "128px",
-                      background: colors.white,
-                      borderRadius: "50%",
-                      filter: "blur(32px)"
-                    }
-                  }
-                ),
-                /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                  "div",
-                  {
-                    style: {
-                      position: "absolute",
-                      bottom: "-20px",
-                      left: "-20px",
-                      width: "80px",
-                      height: "80px",
-                      background: "#00ddb9",
-                      borderRadius: "50%",
-                      filter: "blur(24px)"
-                    }
-                  }
-                ),
-                /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                  "div",
-                  {
-                    style: {
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%, -50%)",
-                      width: "96px",
-                      height: "96px",
-                      background: "rgba(255, 255, 255, 0.4)",
-                      borderRadius: "50%",
-                      filter: "blur(16px)"
-                    }
-                  }
-                ),
-                /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                  "div",
-                  {
-                    style: {
-                      position: "absolute",
-                      top: spacing2[4],
-                      left: spacing2[4],
-                      width: "64px",
-                      height: "64px",
-                      background: "rgba(0, 221, 185, 0.3)",
-                      borderRadius: "50%",
-                      filter: "blur(12px)"
-                    }
-                  }
-                ),
-                /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                  "div",
-                  {
-                    style: {
-                      position: "absolute",
-                      bottom: spacing2[4],
-                      right: spacing2[4],
-                      width: "48px",
-                      height: "48px",
-                      background: "rgba(255, 255, 255, 0.5)",
-                      borderRadius: "50%",
-                      filter: "blur(8px)"
-                    }
-                  }
-                )
-              ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { style: { position: "relative", zIndex: 10 }, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                  Typography,
-                  {
-                    variant: "h1",
-                    style: {
-                      fontSize: "48px",
-                      fontFamily: typography.fontFamily.primary,
-                      fontWeight: typography.fontWeight.bold,
-                      color: colors.white,
-                      lineHeight: 1,
-                      marginBottom: spacing2[1]
-                    },
-                    children: String(classroomItem.position || 1).padStart(2, "0")
-                  }
-                ),
-                /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                  Typography,
-                  {
-                    variant: "caption",
-                    style: {
-                      fontFamily: typography.fontFamily.primary,
-                      fontWeight: typography.fontWeight.medium,
-                      color: colors.white,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.1em"
-                    },
-                    children: "Este evento acontecer\xE1 em"
-                  }
-                )
-              ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { style: { position: "relative", zIndex: 10 }, children: /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(
-                "div",
-                {
-                  style: {
-                    display: "flex",
-                    alignItems: "flex-end",
-                    justifyContent: "space-between",
-                    marginBottom: spacing2[1]
-                  },
-                  children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { style: { textAlign: "center" }, children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                        Typography,
-                        {
-                          variant: "h2",
-                          style: {
-                            fontSize: "32px",
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.bold,
-                            color: colors.white,
-                            lineHeight: 1
-                          },
-                          children: String(timeLeft.days).padStart(2, "0")
-                        }
-                      ),
-                      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                        Typography,
-                        {
-                          variant: "caption",
-                          style: {
-                            fontSize: "12px",
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.medium,
-                            color: colors.white,
-                            textTransform: "uppercase",
-                            letterSpacing: "0.1em"
-                          },
-                          children: "dias"
-                        }
-                      )
-                    ] }),
-                    /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { style: { textAlign: "center" }, children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                        Typography,
-                        {
-                          variant: "h2",
-                          style: {
-                            fontSize: "32px",
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.bold,
-                            color: colors.white,
-                            lineHeight: 1
-                          },
-                          children: String(timeLeft.hours).padStart(2, "0")
-                        }
-                      ),
-                      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                        Typography,
-                        {
-                          variant: "caption",
-                          style: {
-                            fontSize: "12px",
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.medium,
-                            color: colors.white,
-                            textTransform: "uppercase",
-                            letterSpacing: "0.1em"
-                          },
-                          children: "horas"
-                        }
-                      )
-                    ] }),
-                    /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { style: { textAlign: "center" }, children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                        Typography,
-                        {
-                          variant: "h2",
-                          style: {
-                            fontSize: "32px",
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.bold,
-                            color: colors.white,
-                            lineHeight: 1
-                          },
-                          children: String(timeLeft.minutes).padStart(2, "0")
-                        }
-                      ),
-                      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                        Typography,
-                        {
-                          variant: "caption",
-                          style: {
-                            fontSize: "12px",
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.medium,
-                            color: colors.white,
-                            textTransform: "uppercase",
-                            letterSpacing: "0.1em"
-                          },
-                          children: "min"
-                        }
-                      )
-                    ] })
-                  ]
-                }
-              ) }),
-              /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { style: { position: "relative", zIndex: 10, display: "flex", justifyContent: "center" }, children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                "div",
-                {
-                  style: {
-                    padding: `${spacing2[1]} ${spacing2[4]}`,
-                    border: `2px solid ${colors.white}`,
-                    borderRadius: radii.full,
-                    color: colors.white,
-                    fontFamily: typography.fontFamily.primary,
-                    fontWeight: typography.fontWeight.medium,
-                    fontSize: "14px",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.1em"
-                  },
-                  children: "Ao Vivo"
-                }
-              ) })
-            ]
-          }
-        ),
-        /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(
-          "div",
-          {
-            style: {
-              padding: `${spacing2[8]} ${spacing2[8]} ${spacing2[8]} ${spacing2[8]}`,
-              flex: 1,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              width: "66.667%",
-              minHeight: "200px"
-            },
-            children: [
-              /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { style: { marginBottom: spacing2[4] }, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                  Typography,
-                  {
-                    variant: "h2",
-                    style: {
-                      color: colors.primary,
-                      fontFamily: typography.fontFamily.primary,
-                      fontWeight: typography.fontWeight.bold,
-                      fontSize: "24px",
-                      lineHeight: 1.2,
-                      marginBottom: spacing2[2],
-                      cursor: "pointer",
-                      textDecoration: "none"
-                    },
-                    onClick: handleEventClick,
-                    children: title
-                  }
-                ),
-                /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                  Typography,
-                  {
-                    variant: "body",
-                    style: {
-                      color: colors.gray[600],
-                      fontSize: "16px",
-                      lineHeight: 1.5
-                    },
-                    children: description
-                  }
-                )
-              ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(
-                "div",
-                {
-                  style: {
-                    display: "flex",
-                    gap: spacing2[8],
-                    marginBottom: spacing2[6]
-                  },
-                  children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                        Typography,
-                        {
-                          variant: "caption",
-                          style: {
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.bold,
-                            color: colors.primary,
-                            textTransform: "uppercase",
-                            letterSpacing: "0.1em",
-                            marginBottom: spacing2[1]
-                          },
-                          children: "Data"
-                        }
-                      ),
-                      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                        Typography,
-                        {
-                          variant: "body",
-                          style: {
-                            fontSize: "18px",
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.medium,
-                            color: colors.primary
-                          },
-                          children: formattedDate
-                        }
-                      )
-                    ] }),
-                    /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                        Typography,
-                        {
-                          variant: "caption",
-                          style: {
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.bold,
-                            color: colors.primary,
-                            textTransform: "uppercase",
-                            letterSpacing: "0.1em",
-                            marginBottom: spacing2[1]
-                          },
-                          children: "Hor\xE1rio"
-                        }
-                      ),
-                      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                        Typography,
-                        {
-                          variant: "body",
-                          style: {
-                            fontSize: "18px",
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.medium,
-                            color: colors.primary
-                          },
-                          children: formattedTime
-                        }
-                      )
-                    ] }),
-                    /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                        Typography,
-                        {
-                          variant: "caption",
-                          style: {
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.bold,
-                            color: colors.primary,
-                            textTransform: "uppercase",
-                            letterSpacing: "0.1em",
-                            marginBottom: spacing2[1]
-                          },
-                          children: "Dura\xE7\xE3o"
-                        }
-                      ),
-                      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                        Typography,
-                        {
-                          variant: "body",
-                          style: {
-                            fontSize: "18px",
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.medium,
-                            color: colors.primary
-                          },
-                          children: event.duration || "2H"
-                        }
-                      )
-                    ] })
-                  ]
-                }
-              ),
-              /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { style: { display: "flex", justifyContent: "flex-end", marginTop: spacing2[4] }, children: event.gcalendarUrl ? /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(
-                Button,
-                {
-                  variant: "primary",
-                  onClick: handleCalendarClick,
-                  style: {
-                    display: "flex",
-                    alignItems: "center",
-                    gap: spacing2[1]
-                  },
-                  children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(import_phosphor_react5.Calendar, { size: 16 }),
-                    "SALVAR NA AGENDA"
-                  ]
-                }
-              ) : /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
-                Typography,
-                {
-                  variant: "caption",
-                  style: {
-                    color: colors.gray[500],
-                    fontFamily: typography.fontFamily.primary
-                  },
-                  children: "Link da agenda n\xE3o dispon\xEDvel"
-                }
-              ) })
-            ]
-          }
-        )
-      ]
-    }
-  );
-};
-
-// src/components/CriaClassroomTrilhaCard/CriaClassroomTrilhaCard.tsx
-var import_react11 = require("react");
-var import_phosphor_react6 = require("phosphor-react");
-var import_jsx_runtime14 = require("react/jsx-runtime");
-var CriaClassroomTrilhaCard = ({
-  customLearning,
-  classroomItem,
-  onCardClick,
-  onInstructorClick,
-  onToolClick,
-  className = "",
-  style,
-  ...props
-}) => {
-  const [isHovered, setIsHovered] = (0, import_react11.useState)(false);
-  const [imageLoaded, setImageLoaded] = (0, import_react11.useState)(false);
-  const handleCardClick = (0, import_react11.useCallback)(() => {
-    onCardClick?.(customLearning);
-  }, [customLearning, onCardClick]);
-  const handleInstructorClick = (0, import_react11.useCallback)((instructor, e) => {
-    e.stopPropagation();
-    onInstructorClick?.(instructor);
-  }, [onInstructorClick]);
-  const handleToolClick = (0, import_react11.useCallback)((tool, e) => {
-    e.stopPropagation();
-    onToolClick?.(tool);
-  }, [onToolClick]);
-  const imageSource = customLearning.imageUrl || classroomItem.imageUrl || "/src/assets/cria_emblem_home.png";
-  const title = classroomItem.customTitle || customLearning.title;
-  const description = classroomItem.customSubtitle || customLearning.description || "";
-  const aggregateInstructors = () => {
-    const allInstructors = [];
-    if (customLearning.lessons) {
-      customLearning.lessons.forEach((lesson) => {
-        if (lesson.instructors) {
-          lesson.instructors.forEach((instructorName) => {
-            const instructor = {
-              id: instructorName.toLowerCase().replace(/\s+/g, "-"),
-              name: instructorName
-            };
-            allInstructors.push(instructor);
-          });
-        }
-      });
-    }
-    if (customLearning.courses) {
-      customLearning.courses.forEach((course) => {
-        if (course.instructors) {
-          allInstructors.push(...course.instructors);
-        }
-      });
-    }
-    const uniqueInstructors = allInstructors.filter(
-      (instructor, index, self) => index === self.findIndex((i) => i.id === instructor.id)
-    );
-    return uniqueInstructors;
-  };
-  const aggregateTools = () => {
-    const allTools = [];
-    if (customLearning.lessons) {
-      customLearning.lessons.forEach((lesson) => {
-        if (lesson.tools) {
-          lesson.tools.forEach((toolName) => {
-            const tool = {
-              id: toolName.toLowerCase().replace(/\s+/g, "-"),
-              name: toolName
-            };
-            allTools.push(tool);
-          });
-        }
-      });
-    }
-    if (customLearning.courses) {
-      customLearning.courses.forEach((course) => {
-        if (course.tools) {
-          allTools.push(...course.tools);
-        }
-      });
-    }
-    const uniqueTools = allTools.filter(
-      (tool, index, self) => index === self.findIndex((t) => t.id === tool.id)
-    );
-    return uniqueTools;
-  };
-  const instructors = aggregateInstructors();
-  const tools = aggregateTools();
-  const visibleInstructors = instructors.slice(0, 2);
-  const overflowInstructorsCount = Math.max(instructors.length - visibleInstructors.length, 0);
-  const cardClasses = [
-    "cria-classroom-trilha-card",
-    className
-  ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
-    "div",
-    {
-      className: cardClasses,
-      onMouseEnter: () => setIsHovered(true),
-      onMouseLeave: () => setIsHovered(false),
-      style: {
-        backgroundColor: colors.white,
-        borderRadius: radii.lg,
-        boxShadow: shadows.lg,
-        overflow: "hidden",
-        display: "flex",
-        border: `1px solid ${colors.gray[100]}`,
-        minHeight: "200px",
-        transition: "all 0.3s ease",
-        cursor: onCardClick ? "pointer" : "default",
-        ...style
-      },
-      "data-custom-learning-id": customLearning.id,
-      "data-classroom-item-id": classroomItem.id,
-      ...props,
-      children: [
-        /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
-          "div",
-          {
-            style: {
-              width: "33.333%",
-              flexShrink: 0,
-              position: "relative",
-              overflow: "hidden",
-              minHeight: "200px"
-            },
-            onClick: handleCardClick,
-            children: [
-              /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
-                "img",
-                {
-                  src: imageSource,
-                  alt: title,
-                  style: {
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "center",
-                    transition: "transform 0.3s ease",
-                    transform: isHovered ? "scale(1.1)" : "scale(1)",
-                    opacity: imageLoaded ? 1 : 0
-                  },
-                  onLoad: () => setImageLoaded(true),
-                  onError: () => setImageLoaded(true)
-                }
-              ),
-              /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
-                "div",
-                {
-                  style: {
-                    position: "absolute",
-                    inset: 0,
-                    background: "linear-gradient(to top, rgba(0,0,0,0.2) 0%, transparent 100%)"
-                  }
-                }
-              ),
-              /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
-                "div",
-                {
-                  className: "learning-path-position",
-                  style: {
-                    position: "absolute",
-                    top: spacing2[4],
-                    left: spacing2[4]
-                  },
-                  children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
-                      Typography,
-                      {
-                        variant: "h1",
-                        style: {
-                          fontSize: "48px",
-                          fontFamily: typography.fontFamily.primary,
-                          fontWeight: typography.fontWeight.bold,
-                          color: colors.white,
-                          lineHeight: 1,
-                          marginBottom: spacing2[1]
-                        },
-                        children: String(classroomItem.position || 1).padStart(2, "0")
-                      }
-                    ),
-                    /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
-                      Typography,
-                      {
-                        variant: "caption",
-                        style: {
-                          fontFamily: typography.fontFamily.primary,
-                          fontWeight: typography.fontWeight.medium,
-                          color: colors.white,
-                          textTransform: "uppercase",
-                          fontSize: "12px",
-                          letterSpacing: "0.1em"
-                        },
-                        children: "TRILHA"
-                      }
-                    )
-                  ]
-                }
-              )
-            ]
-          }
-        ),
-        /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
-          "div",
-          {
-            style: {
-              padding: `${spacing2[2]} ${spacing2[4]} ${spacing2[4]} ${spacing2[4]}`,
-              flex: 1,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              width: "66.667%",
-              minHeight: "200px"
-            },
-            children: [
-              /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { children: [
-                /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
-                  Typography,
-                  {
-                    variant: "h2",
-                    style: {
-                      color: colors.primary,
-                      fontFamily: typography.fontFamily.primary,
-                      fontWeight: typography.fontWeight.bold,
-                      fontSize: "20px",
-                      lineHeight: 1.2,
-                      marginBottom: spacing2[2],
-                      cursor: "pointer",
-                      textDecoration: customLearning.slug ? "underline" : "none",
-                      textDecorationColor: "transparent",
-                      transition: "all 0.3s ease"
-                    },
-                    onClick: handleCardClick,
-                    onMouseEnter: (e) => {
-                      if (customLearning.slug) {
-                        e.currentTarget.style.textDecorationColor = colors.primary;
-                      }
-                    },
-                    onMouseLeave: (e) => {
-                      if (customLearning.slug) {
-                        e.currentTarget.style.textDecorationColor = "transparent";
-                      }
-                    },
-                    children: title
-                  }
-                ),
-                /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
-                  Typography,
-                  {
-                    variant: "body",
-                    style: {
-                      color: colors.gray[600],
-                      fontSize: "14px",
-                      lineHeight: 1.5,
-                      marginBottom: spacing2[4]
-                    },
-                    children: description
-                  }
-                ),
-                /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
-                  "div",
-                  {
-                    style: {
-                      display: "flex",
-                      alignItems: "center",
-                      gap: spacing2[2],
-                      marginTop: spacing2[4],
-                      marginBottom: spacing2[2]
-                    },
-                    children: instructors.length > 0 ? /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(import_jsx_runtime14.Fragment, { children: [
-                      visibleInstructors.map((instructor) => /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
-                        "div",
-                        {
-                          onClick: (e) => handleInstructorClick(instructor, e),
-                          style: {
-                            display: "inline-flex",
-                            alignItems: "center",
-                            padding: `${spacing2[1]} ${spacing2[3]}`,
-                            borderRadius: radii.full,
-                            fontSize: typography.fontSize.caption,
-                            fontWeight: typography.fontWeight.semiBold,
-                            border: `1px solid ${colors.primaryLight}`,
-                            color: colors.primary,
-                            backgroundColor: colors.primaryLighter,
-                            cursor: onInstructorClick ? "pointer" : "default",
-                            flexShrink: 0
-                          },
-                          children: [
-                            instructor.avatarUrl && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
-                              Avatar,
-                              {
-                                src: instructor.avatarUrl,
-                                alt: instructor.name,
-                                size: "xs",
-                                name: instructor.name,
-                                style: { width: "20px", height: "20px", marginRight: spacing2[2] }
-                              }
-                            ),
-                            instructor.name
-                          ]
-                        },
-                        instructor.id
-                      )),
-                      overflowInstructorsCount > 0 && /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
-                        "span",
-                        {
-                          style: {
-                            display: "inline-flex",
-                            alignItems: "center",
-                            padding: `${spacing2[1]} ${spacing2[2]}`,
-                            borderRadius: radii.full,
-                            backgroundColor: colors.gray[100],
-                            color: colors.gray[600],
-                            fontSize: typography.fontSize.caption,
-                            fontWeight: typography.fontWeight.medium,
-                            flexShrink: 0
-                          },
-                          children: [
-                            "+",
-                            overflowInstructorsCount
-                          ]
-                        }
-                      )
-                    ] }) : /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
-                      "span",
-                      {
-                        style: {
-                          display: "inline-flex",
-                          alignItems: "center",
-                          padding: `${spacing2[1]} ${spacing2[3]}`,
-                          borderRadius: radii.full,
-                          backgroundColor: colors.gray[100],
-                          color: colors.gray[600],
-                          fontSize: typography.fontSize.caption,
-                          fontWeight: typography.fontWeight.medium
-                        },
-                        children: "No instructors"
-                      }
-                    )
-                  }
-                ),
-                /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
-                  "div",
-                  {
-                    style: {
-                      display: "flex",
-                      alignItems: "flex-start",
-                      gap: spacing2[3],
-                      marginBottom: spacing2[4]
-                    },
-                    children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(import_phosphor_react6.Wrench, { size: 20, color: colors.primary, style: { marginTop: spacing2[1], flexShrink: 0 } }),
-                      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
-                        "div",
-                        {
-                          style: {
-                            display: "flex",
-                            flexWrap: "wrap",
-                            gap: spacing2[2]
-                          },
-                          children: tools.length > 0 ? tools.map((tool) => /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
-                            "span",
-                            {
-                              onClick: (e) => handleToolClick(tool, e),
-                              style: {
-                                display: "inline-flex",
-                                alignItems: "center",
-                                padding: `${spacing2[1]} ${spacing2[3]}`,
-                                borderRadius: radii.full,
-                                fontSize: typography.fontSize.caption,
-                                fontWeight: typography.fontWeight.semiBold,
-                                border: `1px solid ${colors.primaryLight}`,
-                                color: colors.primary,
-                                backgroundColor: colors.primaryLighter,
-                                cursor: onToolClick ? "pointer" : "default"
-                              },
-                              children: [
-                                tool.icon && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("span", { style: { width: "20px", height: "20px", marginRight: spacing2[2], display: "flex", alignItems: "center", justifyContent: "center" }, children: tool.icon }),
-                                tool.name
-                              ]
-                            },
-                            tool.id
-                          )) : /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
-                            "span",
-                            {
-                              style: {
-                                display: "inline-flex",
-                                alignItems: "center",
-                                padding: `${spacing2[1]} ${spacing2[3]}`,
-                                borderRadius: radii.full,
-                                fontSize: typography.fontSize.caption,
-                                fontWeight: typography.fontWeight.semiBold,
-                                border: `1px solid ${colors.gray[300]}`,
-                                color: colors.gray[600],
-                                backgroundColor: colors.gray[100]
-                              },
-                              children: "No tools"
-                            }
-                          )
-                        }
-                      )
-                    ]
-                  }
-                )
-              ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
-                "div",
-                {
-                  style: {
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    marginTop: spacing2[2]
-                  },
-                  children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { style: { display: "flex", alignItems: "center" }, children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(import_phosphor_react6.Clock, { size: 16, color: colors.primary, style: { marginRight: spacing2[1] } }),
-                      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
-                        Typography,
-                        {
-                          variant: "caption",
-                          style: {
-                            color: colors.primary,
-                            fontSize: "12px",
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.medium
-                          },
-                          children: customLearning.duration || "--"
-                        }
-                      )
-                    ] }),
-                    /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
-                      Typography,
-                      {
-                        variant: "caption",
-                        style: {
-                          color: colors.primary,
-                          fontSize: "12px",
-                          fontFamily: typography.fontFamily.primary,
-                          fontWeight: typography.fontWeight.bold,
-                          textTransform: "uppercase",
-                          letterSpacing: "0.1em"
-                        },
-                        children: "TRILHA"
-                      }
-                    ),
-                    /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", {})
-                  ]
-                }
-              )
             ]
           }
         )
@@ -3361,9 +2192,9 @@ var CriaClassroomTrilhaCard = ({
 };
 
 // src/components/Card/demo.tsx
-var import_jsx_runtime15 = require("react/jsx-runtime");
+var import_jsx_runtime13 = require("react/jsx-runtime");
 var CardDemo = () => {
-  const [completedLessons, setCompletedLessons] = (0, import_react12.useState)(/* @__PURE__ */ new Set(["1", "3", "6"]));
+  const [completedLessons, setCompletedLessons] = (0, import_react10.useState)(/* @__PURE__ */ new Set(["1", "3", "6"]));
   const sampleLessons = [
     {
       id: "1",
@@ -3397,7 +2228,7 @@ var CardDemo = () => {
       title: "JavaScript ES6+ Features",
       thumbnailUrl: "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=400&h=200&fit=crop",
       duration: "25min",
-      category: "JavaScript",
+      category: "Frontend",
       instructor: {
         id: "3",
         name: "Mike Johnson",
@@ -3405,42 +2236,68 @@ var CardDemo = () => {
       }
     },
     {
+      id: "4",
+      slug: "git-workflow",
+      title: "Git Workflow Best Practices",
+      thumbnailUrl: "https://images.unsplash.com/photo-1584949080480-fd112f687692?w=400&h=200&fit=crop",
+      duration: "30min",
+      category: "DevOps",
+      instructor: {
+        id: "4",
+        name: "Emma Davis",
+        avatarUrl: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face"
+      }
+    },
+    {
+      id: "5",
+      slug: "vscode-tips",
+      title: "VS Code Productivity Tips",
+      thumbnailUrl: "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=400&h=200&fit=crop",
+      duration: "12min",
+      category: "Tools",
+      instructor: {
+        id: "5",
+        name: "Chris Evans",
+        avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
+      }
+    },
+    {
       id: "6",
+      slug: "design-principles",
+      title: "Design Principles for Developers",
+      thumbnailUrl: "https://images.unsplash.com/photo-1504384764586-bb4be8f53b13?w=400&h=200&fit=crop",
+      duration: "18min",
+      category: "Design",
+      instructor: {
+        id: "6",
+        name: "Olivia White",
+        avatarUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face"
+      }
+    },
+    {
+      id: "7",
       slug: "nodejs-backend",
       title: "Building REST APIs with Node.js",
       thumbnailUrl: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=200&fit=crop",
       duration: "30min",
       category: "Backend",
       instructor: {
-        id: "4",
+        id: "7",
         name: "Sarah Wilson",
         avatarUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face"
       }
     },
     {
-      id: "7",
+      id: "8",
       slug: "database-design",
       title: "Database Design Principles",
       thumbnailUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop",
       duration: "35min",
       category: "Database",
       instructor: {
-        id: "5",
+        id: "8",
         name: "David Brown",
         avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
-      }
-    },
-    {
-      id: "8",
-      slug: "docker-containers",
-      title: "Docker and Containerization",
-      thumbnailUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=200&fit=crop",
-      duration: "40min",
-      category: "DevOps",
-      instructor: {
-        id: "6",
-        name: "Lisa Garcia",
-        avatarUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=face"
       }
     },
     {
@@ -3494,13 +2351,14 @@ var CardDemo = () => {
   const sampleCriaLessons = [
     {
       id: "1",
-      slug: "react-fundamentals",
-      title: "React Fundamentals",
-      description: "Master the core concepts of React including components, state, and props",
-      thumbnailUrl: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=200&fit=crop",
+      slug: "react-advanced",
+      title: "Advanced React Patterns",
+      description: "Dive deep into advanced React concepts like render props, HOCs, and custom hooks for building scalable applications.",
+      thumbnailUrl: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=300&fit=crop",
       duration: "45min",
       category: "Frontend",
-      toolIconText: "AI",
+      progress: 75,
+      completed: false,
       instructor: {
         id: "1",
         name: "John Doe",
@@ -3509,13 +2367,14 @@ var CardDemo = () => {
     },
     {
       id: "2",
-      slug: "advanced-css",
-      title: "Advanced CSS Techniques",
-      description: "Learn modern CSS features including Grid, Flexbox, and animations",
-      thumbnailUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=200&fit=crop",
+      slug: "state-management",
+      title: "State Management with Redux Toolkit",
+      description: "Learn modern state management using Redux Toolkit, including RTK Query for data fetching and caching.",
+      thumbnailUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=300&fit=crop",
       duration: "60min",
       category: "Frontend",
-      toolIconText: "CSS",
+      progress: 100,
+      completed: true,
       instructor: {
         id: "2",
         name: "Jane Smith",
@@ -3524,13 +2383,14 @@ var CardDemo = () => {
     },
     {
       id: "3",
-      slug: "nodejs-backend",
-      title: "Node.js Backend Development",
-      description: "Build robust backend applications with Node.js and Express",
-      thumbnailUrl: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=200&fit=crop",
-      duration: "90min",
-      category: "Backend",
-      toolIconText: "JS",
+      slug: "performance-optimization",
+      title: "React Performance Optimization",
+      description: "Techniques and best practices to optimize the rendering performance of your React applications.",
+      thumbnailUrl: "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=600&h=300&fit=crop",
+      duration: "30min",
+      category: "Performance",
+      progress: 50,
+      completed: false,
       instructor: {
         id: "3",
         name: "Mike Johnson",
@@ -3542,351 +2402,18 @@ var CardDemo = () => {
     console.log("CriaLesson clicked:", lesson.title);
     alert(`Opening lesson: ${lesson.title}`);
   };
-  const sampleCourses = [
-    {
-      id: "1",
-      slug: "react-complete-course",
-      title: "React Complete Course",
-      description: "Master React from basics to advanced concepts including hooks, context, and performance optimization.",
-      thumbnailUrl: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=300&fit=crop",
-      duration: "8 hours",
-      instructors: [
-        {
-          id: "1",
-          name: "John Doe",
-          avatarUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
-        },
-        {
-          id: "2",
-          name: "Jane Smith",
-          avatarUrl: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face"
-        }
-      ],
-      tools: [
-        {
-          id: "1",
-          name: "React",
-          icon: "\u269B\uFE0F"
-        },
-        {
-          id: "2",
-          name: "TypeScript",
-          icon: "\u{1F537}"
-        },
-        {
-          id: "3",
-          name: "Vite",
-          icon: "\u26A1"
-        }
-      ]
-    },
-    {
-      id: "2",
-      slug: "fullstack-javascript",
-      title: "Full-Stack JavaScript Development",
-      description: "Learn to build complete web applications with JavaScript, Node.js, and modern frameworks.",
-      thumbnailUrl: "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=400&h=300&fit=crop",
-      duration: "12 hours",
-      instructors: [
-        {
-          id: "3",
-          name: "Mike Johnson",
-          avatarUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face"
-        }
-      ],
-      tools: [
-        {
-          id: "4",
-          name: "Node.js",
-          icon: "\u{1F7E2}"
-        },
-        {
-          id: "5",
-          name: "Express",
-          icon: "\u{1F680}"
-        },
-        {
-          id: "6",
-          name: "MongoDB",
-          icon: "\u{1F343}"
-        },
-        {
-          id: "7",
-          name: "Jest",
-          icon: "\u{1F9EA}"
-        }
-      ]
-    },
-    {
-      id: "3",
-      slug: "ui-ux-design",
-      title: "UI/UX Design Fundamentals",
-      description: "Master the principles of user interface and user experience design for modern applications.",
-      thumbnailUrl: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=400&h=300&fit=crop",
-      duration: "6 hours",
-      instructors: [
-        {
-          id: "4",
-          name: "Sarah Wilson",
-          avatarUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face"
-        },
-        {
-          id: "5",
-          name: "David Brown",
-          avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
-        }
-      ],
-      tools: [
-        {
-          id: "8",
-          name: "Figma",
-          icon: "\u{1F3A8}"
-        },
-        {
-          id: "9",
-          name: "Adobe XD",
-          icon: "\u{1F4D0}"
-        },
-        {
-          id: "10",
-          name: "Sketch",
-          icon: "\u270F\uFE0F"
-        }
-      ]
-    }
-  ];
-  const handleCriaCourseClick = (course) => {
-    console.log("CriaCourse clicked:", course.title);
-    alert(`Opening course: ${course.title}`);
-  };
-  const handleCriaInstructorClick = (instructor) => {
-    console.log("Instructor clicked:", instructor.name);
-    alert(`Viewing instructor profile: ${instructor.name}`);
-  };
-  const handleCriaToolClick = (tool) => {
-    console.log("Tool clicked:", tool.name);
-    alert(`Learning about: ${tool.name}`);
-  };
-  const sampleClassroomEvents = [
-    {
-      event: {
-        id: "1",
-        name: "React Workshop",
-        description: "Learn React fundamentals and best practices with hands-on exercises",
-        startDate: new Date(Date.now() + 2 * 24 * 60 * 60 * 1e3).toISOString(),
-        // 2 days from now
-        duration: "2H",
-        eventLink: "/events/react-workshop",
-        gcalendarUrl: "https://calendar.google.com/event"
-      },
-      classroomItem: {
-        id: "1",
-        position: 1,
-        customTitle: "React Workshop - Advanced Concepts",
-        customSubtitle: "Master React hooks, context, and performance optimization",
-        imageUrl: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=300&fit=crop"
-      }
-    },
-    {
-      event: {
-        id: "2",
-        name: "JavaScript Fundamentals",
-        description: "Build a solid foundation in JavaScript programming",
-        startDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1e3).toISOString(),
-        // 5 days from now
-        duration: "3H",
-        eventLink: "/events/javascript-fundamentals",
-        gcalendarUrl: "https://calendar.google.com/event"
-      },
-      classroomItem: {
-        id: "2",
-        position: 2,
-        customTitle: "JavaScript Fundamentals - Complete Course",
-        customSubtitle: "From variables to advanced ES6+ features and async programming",
-        imageUrl: "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=400&h=300&fit=crop"
-      }
-    },
-    {
-      event: {
-        id: "3",
-        name: "UI/UX Design Workshop",
-        description: "Learn design principles and create beautiful user interfaces",
-        startDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1e3).toISOString(),
-        // 7 days from now
-        duration: "2.5H",
-        eventLink: "/events/ui-ux-workshop"
-        // No calendar URL for this event
-      },
-      classroomItem: {
-        id: "3",
-        position: 3,
-        customTitle: "UI/UX Design Workshop - Modern Principles",
-        customSubtitle: "Master design thinking, user research, and prototyping techniques",
-        imageUrl: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=400&h=300&fit=crop"
-      }
-    }
-  ];
-  const handleClassroomEventClick = (event) => {
-    console.log("Classroom event clicked:", event.name);
-    alert(`Opening event: ${event.name}`);
-  };
-  const handleClassroomCalendarClick = (event) => {
-    console.log("Classroom calendar clicked:", event.name);
-    alert(`Adding to calendar: ${event.name}`);
-  };
-  const sampleClassroomTrilhas = [
-    {
-      customLearning: {
-        id: "1",
-        slug: "react-complete-path",
-        title: "React Complete Learning Path",
-        description: "Master React from basics to advanced concepts with comprehensive lessons and courses.",
-        duration: "12 hours",
-        imageUrl: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=300&fit=crop",
-        lessons: [
-          {
-            id: "1",
-            title: "React Fundamentals",
-            instructors: ["John Doe", "Jane Smith"],
-            tools: ["React", "JavaScript", "JSX"]
-          },
-          {
-            id: "2",
-            title: "Advanced React Patterns",
-            instructors: ["Mike Johnson"],
-            tools: ["React", "TypeScript", "Hooks"]
-          }
-        ],
-        courses: [
-          {
-            id: "1",
-            title: "React Complete Course",
-            instructors: [
-              { id: "1", name: "John Doe", avatarUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" },
-              { id: "2", name: "Jane Smith", avatarUrl: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face" }
-            ],
-            tools: [
-              { id: "1", name: "React", icon: "\u269B\uFE0F" },
-              { id: "2", name: "TypeScript", icon: "\u{1F537}" }
-            ]
-          }
-        ]
-      },
-      classroomItem: {
-        id: "1",
-        position: 1,
-        customTitle: "React Complete Path - Advanced",
-        customSubtitle: "From beginner to expert with hands-on projects and real-world applications",
-        imageUrl: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=300&fit=crop"
-      }
-    },
-    {
-      customLearning: {
-        id: "2",
-        slug: "fullstack-javascript-path",
-        title: "Full-Stack JavaScript Learning Path",
-        description: "Learn to build complete web applications with JavaScript, Node.js, and modern frameworks.",
-        duration: "16 hours",
-        imageUrl: "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=400&h=300&fit=crop",
-        lessons: [
-          {
-            id: "1",
-            title: "JavaScript Fundamentals",
-            instructors: ["Alice Brown", "Bob Wilson", "Charlie Davis"],
-            tools: ["JavaScript", "ES6", "DOM"]
-          },
-          {
-            id: "2",
-            title: "Node.js Backend",
-            instructors: ["David Miller"],
-            tools: ["Node.js", "Express", "MongoDB"]
-          }
-        ],
-        courses: [
-          {
-            id: "1",
-            title: "Full-Stack JavaScript Course",
-            instructors: [
-              { id: "3", name: "Alice Brown", avatarUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" },
-              { id: "4", name: "Bob Wilson", avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" }
-            ],
-            tools: [
-              { id: "3", name: "Node.js", icon: "\u{1F7E2}" },
-              { id: "4", name: "Express", icon: "\u{1F680}" },
-              { id: "5", name: "MongoDB", icon: "\u{1F343}" }
-            ]
-          }
-        ]
-      },
-      classroomItem: {
-        id: "2",
-        position: 2,
-        customTitle: "Full-Stack JavaScript Path",
-        customSubtitle: "Build complete web applications from frontend to backend"
-      }
-    },
-    {
-      customLearning: {
-        id: "3",
-        slug: "ui-ux-design-path",
-        title: "UI/UX Design Learning Path",
-        description: "Master the principles of user interface and user experience design for modern applications.",
-        duration: "8 hours",
-        imageUrl: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=400&h=300&fit=crop",
-        lessons: [
-          {
-            id: "1",
-            title: "Design Principles",
-            instructors: ["Sarah Wilson"],
-            tools: ["Figma", "Design Thinking"]
-          }
-        ],
-        courses: [
-          {
-            id: "1",
-            title: "UI/UX Design Course",
-            instructors: [
-              { id: "5", name: "Sarah Wilson", avatarUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" }
-            ],
-            tools: [
-              { id: "6", name: "Figma", icon: "\u{1F3A8}" },
-              { id: "7", name: "Adobe XD", icon: "\u{1F4D0}" }
-            ]
-          }
-        ]
-      },
-      classroomItem: {
-        id: "3",
-        position: 3,
-        customTitle: "UI/UX Design Mastery",
-        customSubtitle: "Create beautiful and intuitive user experiences"
-      }
-    }
-  ];
-  const handleClassroomTrilhaClick = (customLearning) => {
-    console.log("Classroom trilha clicked:", customLearning.title);
-    alert(`Opening learning path: ${customLearning.title}`);
-  };
-  const handleClassroomTrilhaInstructorClick = (instructor) => {
-    console.log("Classroom trilha instructor clicked:", instructor.name);
-    alert(`Viewing instructor: ${instructor.name}`);
-  };
-  const handleClassroomTrilhaToolClick = (tool) => {
-    console.log("Classroom trilha tool clicked:", tool.name);
-    alert(`Learning about: ${tool.name}`);
-  };
-  return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { style: { padding: "24px", maxWidth: "1000px" }, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "title1", weight: "bold", style: { marginBottom: "32px" }, children: "Demo de Cards" }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "CriaLessonCardSmall - Lesson Cards" }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "body", style: { marginBottom: "24px", color: "#6b7280" }, children: "Specialized lesson card component with completion tracking, instructor details, and interactive elements. Features examples with 6 different instructors across various categories, including stacked instructor avatars for collaborative lessons." }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { style: {
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { style: { padding: "24px", maxWidth: "1000px" }, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "title1", weight: "bold", style: { marginBottom: "32px" }, children: "Lesson Cards" }),
+    /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("section", { style: { marginBottom: "32px" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "CriaLessonCardSmall - Lesson Cards" }),
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "body", style: { marginBottom: "24px", color: "#6b7280" }, children: "Specialized lesson card component with completion tracking, instructor details, and interactive elements. Features examples with different instructors across various categories, including stacked instructor avatars for collaborative lessons." }),
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { style: {
         display: "grid",
         gridTemplateColumns: "repeat(4, 1fr)",
         gap: "16px",
         marginBottom: "24px",
         maxWidth: "1200px"
-      }, children: sampleLessons.map((lesson) => /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
+      }, children: sampleLessons.slice(0, 4).map((lesson) => /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
         CriaLessonCardSmall,
         {
           lesson,
@@ -3896,45 +2423,18 @@ var CardDemo = () => {
           onInstructorClick: handleInstructorClick
         },
         lesson.id
-      )) }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { style: {
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-        gap: "16px"
-      }, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
-        CriaLessonCardSmall,
-        {
-          lesson: {
-            id: "5",
-            slug: "vscode-tips",
-            title: "VS Code Productivity Tips",
-            thumbnailUrl: "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=400&h=200&fit=crop",
-            duration: "12min",
-            category: "Tools",
-            instructor: {
-              id: "4",
-              name: "Emma Davis",
-              avatarUrl: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face"
-            }
-          },
-          toolIconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
-          completed: false,
-          onLessonClick: handleLessonClick,
-          onToggleCompletion: handleToggleCompletion,
-          onInstructorClick: handleInstructorClick
-        }
-      ) })
+      )) })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "CriaLessonCard - Detailed Lesson Cards" }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "body", style: { marginBottom: "24px", color: "#6b7280" }, children: "Large, detailed lesson card component with tool icons, descriptions, and comprehensive lesson information. Perfect for showcasing detailed course content with rich visual elements." }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { style: {
+    /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("section", { style: { marginBottom: "32px" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "CriaLessonCard - Detailed Lesson Cards" }),
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "body", style: { marginBottom: "24px", color: "#6b7280" }, children: "Large, detailed lesson card component with tool icons, descriptions, and comprehensive lesson information. Perfect for showcasing detailed course content with rich visual elements." }),
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { style: {
         display: "grid",
         gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
         gap: "24px",
         marginBottom: "24px",
         maxWidth: "1200px"
-      }, children: sampleCriaLessons.map((lesson) => /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
+      }, children: sampleCriaLessons.slice(0, 2).map((lesson) => /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
         CriaLessonCard,
         {
           lesson,
@@ -3943,209 +2443,31 @@ var CardDemo = () => {
         lesson.id
       )) })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "CriaCourseCard - Horizontal Course Cards" }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "body", style: { marginBottom: "24px", color: "#6b7280" }, children: "Large, horizontal course card component with comprehensive course information, instructor details, and tool badges. Perfect for showcasing detailed course content with rich metadata and interactive elements." }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { style: {
-        display: "flex",
-        flexDirection: "column",
-        gap: "24px",
-        marginBottom: "24px",
-        maxWidth: "1200px"
-      }, children: sampleCourses.map((course) => /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
-        CriaCourseCard,
-        {
-          course,
-          onCourseClick: handleCriaCourseClick,
-          onInstructorClick: handleCriaInstructorClick,
-          onToolClick: handleCriaToolClick
-        },
-        course.id
-      )) })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "CriaClassroomFutureEventCard - Event Cards with Countdown" }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "body", style: { marginBottom: "24px", color: "#6b7280" }, children: "Interactive event cards with live countdown timers, beautiful gradient backgrounds, and calendar integration. Perfect for showcasing upcoming classroom events with real-time countdown functionality." }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { style: {
-        display: "flex",
-        flexDirection: "column",
-        gap: "24px",
-        marginBottom: "24px",
-        maxWidth: "1200px"
-      }, children: sampleClassroomEvents.map(({ event, classroomItem }) => /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
-        CriaClassroomFutureEventCard,
-        {
-          event,
-          classroomItem,
-          onEventClick: handleClassroomEventClick,
-          onCalendarClick: handleClassroomCalendarClick
-        },
-        event.id
-      )) })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "CriaClassroomTrilhaCard - Learning Path Cards" }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "body", style: { marginBottom: "24px", color: "#6b7280" }, children: "Custom learning path cards with aggregated instructors and tools from lessons and courses. Features comprehensive learning content display, instructor overflow handling, and interactive tool badges." }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { style: {
-        display: "flex",
-        flexDirection: "column",
-        gap: "24px",
-        marginBottom: "24px",
-        maxWidth: "1200px"
-      }, children: sampleClassroomTrilhas.map(({ customLearning, classroomItem }) => /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
-        CriaClassroomTrilhaCard,
-        {
-          customLearning,
-          classroomItem,
-          onCardClick: handleClassroomTrilhaClick,
-          onInstructorClick: handleClassroomTrilhaInstructorClick,
-          onToolClick: handleClassroomTrilhaToolClick
-        },
-        customLearning.id
-      )) })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "Variantes" }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "16px" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(Card, { variant: "default", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "h3", weight: "medium", children: "Card Padr\xE3o" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "body", children: "Este \xE9 um card padr\xE3o com borda e fundo claros." }) })
+    /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("section", { style: { marginBottom: "32px" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "Variantes" }),
+      /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "16px" }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(Card, { variant: "default", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "h3", weight: "medium", children: "Card Padr\xE3o" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "body", children: "Este \xE9 um card padr\xE3o com borda e fundo claros." }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(Card, { variant: "elevated", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "h3", weight: "medium", children: "Card Elevado" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "body", children: "Este card tem uma sombra para profundidade e hierarquia visual." }) })
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(Card, { variant: "elevated", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "h3", weight: "medium", children: "Card Elevado" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "body", children: "Este card tem uma sombra mais pronunciada para dar destaque." }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(Card, { variant: "outlined", style: { borderColor: "#28DDB9" }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "h3", weight: "medium", children: "Card com Contorno" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "body", children: "Este card tem uma borda proeminente e fundo transparente." }) })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(Card, { variant: "outlined", style: { borderColor: "#28DDB9" }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "h3", weight: "medium", style: { color: "#6B7280" }, children: "Card com Contorno - Texto Secund\xE1rio" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "body", style: { color: "#6B7280" }, children: "Este card tem uma borda proeminente, fundo transparente e texto em cor secund\xE1ria." }) })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(Card, { variant: "filled", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "h3", weight: "medium", children: "Card Preenchido" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "body", children: "Este card tem um preenchimento sutil de cor de fundo." }) })
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(Card, { variant: "outlined", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "h3", children: "Outlined Card" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "body", children: "This card has a prominent border and transparent background." }) })
         ] })
-      ] })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "Tamanhos" }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { style: { display: "flex", gap: "16px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Card, { size: "sm", style: { width: "200px" }, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "bodySmall", children: "Card pequeno com preenchimento m\xEDnimo" }) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Card, { size: "md", style: { width: "250px" }, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "body", children: "Card m\xE9dio com preenchimento padr\xE3o" }) }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Card, { size: "lg", style: { width: "300px" }, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "body", children: "Card grande com preenchimento generoso para mais conte\xFAdo" }) }) })
-      ] })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "Cards Interativos" }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "16px" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(
-          Card,
-          {
-            interactive: true,
-            onClick: () => alert("Card clicado!"),
-            style: { cursor: "pointer" },
-            children: [
-              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "h3", weight: "medium", children: "Card Clic\xE1vel" }) }),
-              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "body", children: "Este card \xE9 interativo e responde a cliques." }) })
-            ]
-          }
-        ),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(Card, { interactive: true, disabled: true, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "h3", color: "disabled", weight: "medium", children: "Card Desabilitado" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "body", color: "disabled", children: "Este card est\xE1 desabilitado e n\xE3o pode ser interagido." }) })
-        ] })
-      ] })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "Exemplos Complexos" }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "16px" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(Card, { variant: "elevated", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(CardContent, { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { style: {
-              height: "200px",
-              backgroundColor: "#f3f4f6",
-              borderRadius: "8px",
-              marginBottom: "16px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#6b7280"
-            }, children: "Imagem do Produto" }),
-            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "h3", weight: "medium", style: { marginBottom: "8px" }, children: "Nome do Produto" }),
-            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "body", style: { marginBottom: "16px" }, children: "Esta \xE9 uma descri\xE7\xE3o do produto que explica o que o produto faz e por que \xE9 \xFAtil." })
-          ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(CardFooter, { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center" }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "h3", weight: "bold", children: "R$ 99,99" }),
-            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Button, { size: "sm", children: "Adicionar ao Carrinho" })
-          ] }) })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(Card, { variant: "outlined", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(CardContent, { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { style: { display: "flex", alignItems: "center", marginBottom: "16px" }, children: [
-              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { style: {
-                width: "60px",
-                height: "60px",
-                borderRadius: "50%",
-                backgroundColor: "#7566A1",
-                marginRight: "16px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "white",
-                fontWeight: "bold"
-              }, children: "JD" }),
-              /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { children: [
-                /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "h3", weight: "medium", children: "Jo\xE3o Silva" }),
-                /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "bodySmall", children: "Engenheiro de Software" })
-              ] })
-            ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "body", style: { marginBottom: "16px" }, children: "Apaixonado por construir grandes experi\xEAncias de usu\xE1rio e resolver problemas complexos." })
-          ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(CardFooter, { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { style: { display: "flex", gap: "8px" }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Button, { variant: "outline", size: "sm", children: "Mensagem" }),
-            /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Button, { size: "sm", children: "Seguir" })
-          ] }) })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Card, { variant: "filled", children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(CardContent, { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "h3", weight: "medium", style: { marginBottom: "8px" }, children: "Receita Total" }),
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "display", weight: "bold", style: { marginBottom: "8px" }, children: "R$ 12.345" }),
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "bodySmall", color: "success", children: "\u2197 +12,5% do m\xEAs passado" })
-        ] }) })
-      ] })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "Cards com A\xE7\xF5es" }),
-      /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(Card, { variant: "elevated", style: { maxWidth: "500px" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "h3", weight: "medium", children: "Configura\xE7\xF5es" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(CardContent, { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "body", style: { marginBottom: "16px" }, children: "Gerencie suas configura\xE7\xF5es de conta e prefer\xEAncias." }),
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { style: { display: "flex", flexDirection: "column", gap: "12px" }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center" }, children: [
-              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "body", children: "Notifica\xE7\xF5es por Email" }),
-              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Button, { variant: "outline", size: "sm", children: "Alternar" })
-            ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center" }, children: [
-              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Typography_default, { variant: "body", children: "Modo Escuro" }),
-              /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Button, { variant: "outline", size: "sm", children: "Alternar" })
-            ] })
-          ] })
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(CardFooter, { children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { style: { display: "flex", gap: "8px", justifyContent: "flex-end" }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Button, { variant: "ghost", size: "sm", children: "Cancelar" }),
-          /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(Button, { size: "sm", children: "Salvar Altera\xE7\xF5es" })
-        ] }) })
       ] })
     ] })
   ] });
 };
 
 // src/components/Checkbox/Checkbox.tsx
-var import_react13 = require("react");
-var import_phosphor_react7 = require("phosphor-react");
-var import_jsx_runtime16 = require("react/jsx-runtime");
-var Checkbox = (0, import_react13.forwardRef)(({
+var import_react11 = require("react");
+var import_phosphor_react4 = require("phosphor-react");
+var import_jsx_runtime14 = require("react/jsx-runtime");
+var Checkbox = (0, import_react11.forwardRef)(({
   checked,
   indeterminate = false,
   disabled = false,
@@ -4170,8 +2492,8 @@ var Checkbox = (0, import_react13.forwardRef)(({
   inputProps = {},
   ...props
 }, ref) => {
-  const inputRef = (0, import_react13.useRef)(null);
-  (0, import_react13.useImperativeHandle)(ref, () => ({
+  const inputRef = (0, import_react11.useRef)(null);
+  (0, import_react11.useImperativeHandle)(ref, () => ({
     focus: () => inputRef.current?.focus(),
     blur: () => inputRef.current?.blur(),
     getChecked: () => inputRef.current?.checked || false,
@@ -4181,15 +2503,15 @@ var Checkbox = (0, import_react13.forwardRef)(({
       }
     }
   }));
-  const handleChange = (0, import_react13.useCallback)((event) => {
+  const handleChange = (0, import_react11.useCallback)((event) => {
     if (disabled || readOnly) return;
     onChange?.(event.target.checked, event);
   }, [disabled, readOnly, onChange]);
-  const handleClick = (0, import_react13.useCallback)((event) => {
+  const handleClick = (0, import_react11.useCallback)((event) => {
     if (disabled || readOnly) return;
     onClick?.(event);
   }, [disabled, readOnly, onClick]);
-  const handleKeyDown = (0, import_react13.useCallback)((event) => {
+  const handleKeyDown = (0, import_react11.useCallback)((event) => {
     if (disabled || readOnly) return;
     if (event.key === " " || event.key === "Enter") {
       event.preventDefault();
@@ -4223,9 +2545,9 @@ var Checkbox = (0, import_react13.forwardRef)(({
     disabled && "cria-checkbox__label--disabled",
     readOnly && "cria-checkbox__label--readonly"
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: checkboxClasses, style, ...props, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: "cria-checkbox__container", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: checkboxClasses, style, ...props, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: "cria-checkbox__container", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
         "input",
         {
           ref: inputRef,
@@ -4254,20 +2576,20 @@ var Checkbox = (0, import_react13.forwardRef)(({
           ...inputProps
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "cria-checkbox__checkmark", children: indeterminate ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { className: "cria-checkbox__indeterminate" }) : checked === true ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(import_phosphor_react7.Check, { size: size === "sm" ? 12 : size === "lg" ? 20 : 16 }) : null }),
-      label && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("label", { htmlFor: id || (label ? `${name || "checkbox"}-input` : void 0), className: labelClasses, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { className: "cria-checkbox__checkmark", children: indeterminate ? /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { className: "cria-checkbox__indeterminate" }) : checked === true ? /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(import_phosphor_react4.Check, { size: size === "sm" ? 12 : size === "lg" ? 20 : 16 }) : null }),
+      label && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("label", { htmlFor: id || (label ? `${name || "checkbox"}-input` : void 0), className: labelClasses, children: /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
         Typography,
         {
           variant: "body",
           color: disabled ? "secondary" : "content",
           children: [
             label,
-            required && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { className: "cria-checkbox__required", "aria-label": "required", children: " *" })
+            required && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("span", { className: "cria-checkbox__required", "aria-label": "required", children: " *" })
           ]
         }
       ) })
     ] }),
-    helperText && !errorMessage && !warningMessage && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(
+    helperText && !errorMessage && !warningMessage && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
       Typography,
       {
         variant: "caption",
@@ -4277,7 +2599,7 @@ var Checkbox = (0, import_react13.forwardRef)(({
         children: helperText
       }
     ),
-    errorMessage && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(
+    errorMessage && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
       Typography,
       {
         variant: "caption",
@@ -4287,7 +2609,7 @@ var Checkbox = (0, import_react13.forwardRef)(({
         children: errorMessage
       }
     ),
-    warningMessage && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(
+    warningMessage && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
       Typography,
       {
         variant: "caption",
@@ -4302,13 +2624,13 @@ var Checkbox = (0, import_react13.forwardRef)(({
 Checkbox.displayName = "Checkbox";
 
 // src/components/Dropdown/Dropdown.tsx
-var import_react14 = require("react");
+var import_react12 = require("react");
 
 // src/components/TextTokens/CriaText.tsx
-var import_jsx_runtime17 = require("react/jsx-runtime");
+var import_jsx_runtime15 = require("react/jsx-runtime");
 var CriaTextHeadline1 = ({ as, children, className = "", ...props }) => {
   const Element = as || "h1";
-  return /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
     Typography,
     {
       as: Element,
@@ -4323,7 +2645,7 @@ var CriaTextHeadline1 = ({ as, children, className = "", ...props }) => {
 };
 var CriaTextHeadline2 = ({ as, children, className = "", ...props }) => {
   const Element = as || "h2";
-  return /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
     Typography,
     {
       as: Element,
@@ -4338,7 +2660,7 @@ var CriaTextHeadline2 = ({ as, children, className = "", ...props }) => {
 };
 var CriaTextBody1 = ({ as, children, className = "", ...props }) => {
   const Element = as || "p";
-  return /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
     Typography,
     {
       as: Element,
@@ -4352,7 +2674,7 @@ var CriaTextBody1 = ({ as, children, className = "", ...props }) => {
 };
 var CriaTextBody2 = ({ as, children, className = "", ...props }) => {
   const Element = as || "span";
-  return /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
     Typography,
     {
       as: Element,
@@ -4366,7 +2688,7 @@ var CriaTextBody2 = ({ as, children, className = "", ...props }) => {
 };
 var CriaTextBody1Inverse = ({ as, children, className = "", ...props }) => {
   const Element = as || "p";
-  return /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
     Typography,
     {
       as: Element,
@@ -4380,7 +2702,7 @@ var CriaTextBody1Inverse = ({ as, children, className = "", ...props }) => {
 };
 var CriaTextTitle1 = ({ as, children, className = "", ...props }) => {
   const Element = as || "h3";
-  return /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
     Typography,
     {
       as: Element,
@@ -4395,7 +2717,7 @@ var CriaTextTitle1 = ({ as, children, className = "", ...props }) => {
 };
 var CriaTextTitle2 = ({ as, children, className = "", ...props }) => {
   const Element = as || "h4";
-  return /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
     Typography,
     {
       as: Element,
@@ -4410,7 +2732,7 @@ var CriaTextTitle2 = ({ as, children, className = "", ...props }) => {
 };
 var CriaTextImportant = ({ as, children, className = "", ...props }) => {
   const Element = as || "span";
-  return /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
     Typography,
     {
       as: Element,
@@ -4425,7 +2747,7 @@ var CriaTextImportant = ({ as, children, className = "", ...props }) => {
 };
 var CriaTextAlert = ({ as, children, className = "", ...props }) => {
   const Element = as || "span";
-  return /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
     Typography,
     {
       as: Element,
@@ -4440,9 +2762,9 @@ var CriaTextAlert = ({ as, children, className = "", ...props }) => {
 };
 
 // src/components/Dropdown/Dropdown.tsx
-var import_phosphor_react8 = require("phosphor-react");
-var import_jsx_runtime18 = require("react/jsx-runtime");
-var Dropdown = (0, import_react14.forwardRef)(({
+var import_phosphor_react5 = require("phosphor-react");
+var import_jsx_runtime16 = require("react/jsx-runtime");
+var Dropdown = (0, import_react12.forwardRef)(({
   options,
   value,
   defaultValue,
@@ -4465,22 +2787,22 @@ var Dropdown = (0, import_react14.forwardRef)(({
   name,
   ...props
 }, ref) => {
-  const [isOpen, setIsOpen] = (0, import_react14.useState)(false);
-  const [searchTerm, setSearchTerm] = (0, import_react14.useState)("");
-  const [focusedIndex, setFocusedIndex] = (0, import_react14.useState)(-1);
-  const [selectedValues, setSelectedValues] = (0, import_react14.useState)(() => {
+  const [isOpen, setIsOpen] = (0, import_react12.useState)(false);
+  const [searchTerm, setSearchTerm] = (0, import_react12.useState)("");
+  const [focusedIndex, setFocusedIndex] = (0, import_react12.useState)(-1);
+  const [selectedValues, setSelectedValues] = (0, import_react12.useState)(() => {
     const initialValue = value || defaultValue;
     return Array.isArray(initialValue) ? initialValue : initialValue ? [initialValue] : [];
   });
-  const triggerRef = (0, import_react14.useRef)(null);
-  const listboxRef = (0, import_react14.useRef)(null);
-  const searchInputRef = (0, import_react14.useRef)(null);
-  (0, import_react14.useEffect)(() => {
+  const triggerRef = (0, import_react12.useRef)(null);
+  const listboxRef = (0, import_react12.useRef)(null);
+  const searchInputRef = (0, import_react12.useRef)(null);
+  (0, import_react12.useEffect)(() => {
     if (value !== void 0) {
       setSelectedValues(Array.isArray(value) ? value : value ? [value] : []);
     }
   }, [value]);
-  (0, import_react14.useImperativeHandle)(ref, () => ({
+  (0, import_react12.useImperativeHandle)(ref, () => ({
     focus: () => triggerRef.current?.focus(),
     blur: () => triggerRef.current?.blur(),
     open: () => setIsOpen(true),
@@ -4506,7 +2828,7 @@ var Dropdown = (0, import_react14.forwardRef)(({
     const option = options.find((opt) => opt.value === selectedValues[0]);
     return option?.label || placeholder;
   };
-  const handleOptionSelect = (0, import_react14.useCallback)((option) => {
+  const handleOptionSelect = (0, import_react12.useCallback)((option) => {
     if (option.disabled) return;
     let newSelectedValues;
     if (multiple) {
@@ -4526,7 +2848,7 @@ var Dropdown = (0, import_react14.forwardRef)(({
       multiple ? selectedOptions : selectedOptions[0]
     );
   }, [selectedValues, multiple, options, onChange]);
-  const handleTriggerClick = (0, import_react14.useCallback)(() => {
+  const handleTriggerClick = (0, import_react12.useCallback)(() => {
     if (disabled || loading) return;
     setIsOpen(!isOpen);
     if (!isOpen) {
@@ -4539,7 +2861,7 @@ var Dropdown = (0, import_react14.forwardRef)(({
       setFocusedIndex(-1);
     }
   }, [disabled, loading, isOpen, onOpen, onClose]);
-  const handleKeyDown = (0, import_react14.useCallback)((event) => {
+  const handleKeyDown = (0, import_react12.useCallback)((event) => {
     if (disabled || loading) return;
     switch (event.key) {
       case "Enter":
@@ -4592,7 +2914,7 @@ var Dropdown = (0, import_react14.forwardRef)(({
         break;
     }
   }, [disabled, loading, isOpen, focusedIndex, filteredOptions, onOpen, onClose, handleOptionSelect]);
-  (0, import_react14.useEffect)(() => {
+  (0, import_react12.useEffect)(() => {
     const handleClickOutside = (event) => {
       if (isOpen && triggerRef.current && listboxRef.current && !triggerRef.current.contains(event.target) && !listboxRef.current.contains(event.target)) {
         setIsOpen(false);
@@ -4605,7 +2927,7 @@ var Dropdown = (0, import_react14.forwardRef)(({
       return () => document.removeEventListener("mousedown", handleClickOutside);
     }
   }, [isOpen, onClose]);
-  (0, import_react14.useEffect)(() => {
+  (0, import_react12.useEffect)(() => {
     if (isOpen && searchable && searchInputRef.current) {
       searchInputRef.current.focus();
     }
@@ -4666,7 +2988,7 @@ var Dropdown = (0, import_react14.forwardRef)(({
     boxShadow: shadows.lg,
     maxHeight: "200px",
     overflowY: "auto",
-    marginTop: spacing2[1]
+    marginTop: spacing[1]
   });
   const getOptionStyles = (option, index) => ({
     padding: getOptionPadding(size),
@@ -4687,12 +3009,12 @@ var Dropdown = (0, import_react14.forwardRef)(({
     ].filter(Boolean);
     return classes.join(" ");
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: containerClasses, style, ...props, children: [
-    label && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("label", { className: "cria-dropdown__label", children: /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(Typography, { variant: "body", weight: "medium", color: "primary", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: containerClasses, style, ...props, children: [
+    label && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("label", { className: "cria-dropdown__label", children: /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(Typography, { variant: "body", weight: "medium", color: "primary", children: [
       label,
-      required && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { style: { color: colors.error }, children: " *" })
+      required && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { style: { color: colors.error }, children: " *" })
     ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(
+    /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(
       "button",
       {
         ref: triggerRef,
@@ -4712,29 +3034,29 @@ var Dropdown = (0, import_react14.forwardRef)(({
         "aria-describedby": helperText || errorMessage ? `${label || "dropdown"}-helper` : void 0,
         id: label ? `${label.toLowerCase().replace(/\s+/g, "-")}-dropdown` : void 0,
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { style: {
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { style: {
             overflow: "hidden",
             textOverflow: "ellipsis",
             whiteSpace: "nowrap",
             flex: 1,
             textAlign: "left"
           }, children: getDisplayText() }),
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
-            import_phosphor_react8.CaretDown,
+          /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(
+            import_phosphor_react5.CaretDown,
             {
               size: 16,
               style: {
                 transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
                 transition: "transform 0.2s ease-in-out",
                 flexShrink: 0,
-                marginLeft: spacing2[2]
+                marginLeft: spacing[2]
               }
             }
           )
         ]
       }
     ),
-    isOpen && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(
+    isOpen && /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(
       "div",
       {
         ref: listboxRef,
@@ -4743,21 +3065,21 @@ var Dropdown = (0, import_react14.forwardRef)(({
         style: getListboxStyles(),
         "aria-labelledby": triggerRef.current?.id,
         children: [
-          searchable && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { style: { padding: spacing2[2], borderBottom: `1px solid ${colors.border.light}` }, children: /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { style: { position: "relative" }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
-              import_phosphor_react8.MagnifyingGlass,
+          searchable && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { style: { padding: spacing[2], borderBottom: `1px solid ${colors.border.light}` }, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { style: { position: "relative" }, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(
+              import_phosphor_react5.MagnifyingGlass,
               {
                 size: 16,
                 style: {
                   position: "absolute",
-                  left: spacing2[2],
+                  left: spacing[2],
                   top: "50%",
                   transform: "translateY(-50%)",
                   color: colors.text.secondary
                 }
               }
             ),
-            /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
+            /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(
               "input",
               {
                 ref: searchInputRef,
@@ -4769,7 +3091,7 @@ var Dropdown = (0, import_react14.forwardRef)(({
                 "aria-label": "Search options",
                 style: {
                   width: "100%",
-                  padding: `${spacing2[2]} ${spacing2[2]} ${spacing2[2]} ${spacing2[8]}`,
+                  padding: `${spacing[2]} ${spacing[2]} ${spacing[2]} ${spacing[8]}`,
                   border: `1px solid ${colors.border.medium}`,
                   borderRadius: radii.sm,
                   fontSize: typography.fontSize.bodySmall,
@@ -4779,7 +3101,7 @@ var Dropdown = (0, import_react14.forwardRef)(({
               }
             )
           ] }) }),
-          filteredOptions.length > 0 ? filteredOptions.map((option, index) => /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(
+          filteredOptions.length > 0 ? filteredOptions.map((option, index) => /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(
             "div",
             {
               role: "option",
@@ -4788,19 +3110,19 @@ var Dropdown = (0, import_react14.forwardRef)(({
               onClick: () => handleOptionSelect(option),
               "aria-selected": selectedValues.includes(option.value),
               children: [
-                /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { style: { display: "flex", alignItems: "center", flex: 1 }, children: [
-                  option.icon && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { style: { marginRight: spacing2[2] }, children: option.icon }),
-                  /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(CriaTextBody1, { as: "span", children: option.label }),
-                    option.description && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { style: { marginTop: spacing2[1] }, children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(CriaTextBody2, { as: "span", children: option.description }) })
+                /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { style: { display: "flex", alignItems: "center", flex: 1 }, children: [
+                  option.icon && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { style: { marginRight: spacing[2] }, children: option.icon }),
+                  /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(CriaTextBody1, { as: "span", children: option.label }),
+                    option.description && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { style: { marginTop: spacing[1] }, children: /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(CriaTextBody2, { as: "span", children: option.description }) })
                   ] })
                 ] }),
-                selectedValues.includes(option.value) && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(import_phosphor_react8.Check, { size: 16, style: { color: colors.primary, flexShrink: 0 } })
+                selectedValues.includes(option.value) && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(import_phosphor_react5.Check, { size: 16, style: { color: colors.primary, flexShrink: 0 } })
               ]
             },
             option.value
-          )) : /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { style: {
-            padding: spacing2[4],
+          )) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { style: {
+            padding: spacing[4],
             textAlign: "center",
             color: colors.text.secondary,
             fontSize: typography.fontSize.bodySmall
@@ -4808,13 +3130,13 @@ var Dropdown = (0, import_react14.forwardRef)(({
         ]
       }
     ),
-    (helperText || errorMessage) && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
+    (helperText || errorMessage) && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(
       "div",
       {
         id: `${label || "dropdown"}-helper`,
         className: "cria-dropdown__messages",
-        style: { marginTop: spacing2[1] },
-        children: errorMessage ? /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Typography, { variant: "bodySmall", color: "error", children: errorMessage }) : /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(Typography, { variant: "bodySmall", color: "secondary", children: helperText })
+        style: { marginTop: spacing[1] },
+        children: errorMessage ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Typography, { variant: "bodySmall", color: "error", children: errorMessage }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Typography, { variant: "bodySmall", color: "secondary", children: helperText })
       }
     )
   ] });
@@ -4823,25 +3145,25 @@ Dropdown.displayName = "Dropdown";
 function getTriggerPadding(size) {
   switch (size) {
     case "sm":
-      return `${spacing2[2]} ${spacing2[3]}`;
+      return `${spacing[2]} ${spacing[3]}`;
     case "md":
-      return `${spacing2[3]} ${spacing2[4]}`;
+      return `${spacing[3]} ${spacing[4]}`;
     case "lg":
-      return `${spacing2[4]} ${spacing2[5]}`;
+      return `${spacing[4]} ${spacing[5]}`;
     default:
-      return `${spacing2[3]} ${spacing2[4]}`;
+      return `${spacing[3]} ${spacing[4]}`;
   }
 }
 function getOptionPadding(size) {
   switch (size) {
     case "sm":
-      return `${spacing2[2]} ${spacing2[3]}`;
+      return `${spacing[2]} ${spacing[3]}`;
     case "md":
-      return `${spacing2[3]} ${spacing2[4]}`;
+      return `${spacing[3]} ${spacing[4]}`;
     case "lg":
-      return `${spacing2[4]} ${spacing2[5]}`;
+      return `${spacing[4]} ${spacing[5]}`;
     default:
-      return `${spacing2[3]} ${spacing2[4]}`;
+      return `${spacing[3]} ${spacing[4]}`;
   }
 }
 var DropdownItem = ({
@@ -4852,24 +3174,24 @@ var DropdownItem = ({
   description,
   children
 }) => {
-  return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { style: { display: "flex", alignItems: "center", flex: 1 }, children: [
-    icon && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { style: { marginRight: spacing2[2] }, children: icon }),
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { children: children || /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(import_jsx_runtime18.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { children: label }),
-      description && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { style: {
+  return /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { style: { display: "flex", alignItems: "center", flex: 1 }, children: [
+    icon && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { style: { marginRight: spacing[2] }, children: icon }),
+    /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { children: children || /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(import_jsx_runtime16.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { children: label }),
+      description && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("div", { style: {
         fontSize: typography.fontSize.caption,
         color: colors.text.secondary,
-        marginTop: spacing2[1]
+        marginTop: spacing[1]
       }, children: description })
     ] }) })
   ] });
 };
 
 // src/components/Input/Input.tsx
-var import_react15 = __toESM(require("react"), 1);
-var import_phosphor_react9 = require("phosphor-react");
-var import_jsx_runtime19 = require("react/jsx-runtime");
-var Input = (0, import_react15.forwardRef)(({
+var import_react13 = __toESM(require("react"), 1);
+var import_phosphor_react6 = require("phosphor-react");
+var import_jsx_runtime17 = require("react/jsx-runtime");
+var Input = (0, import_react13.forwardRef)(({
   label,
   placeholder,
   size = "md",
@@ -4899,10 +3221,10 @@ var Input = (0, import_react15.forwardRef)(({
   defaultValue,
   ...props
 }, ref) => {
-  const inputRef = (0, import_react15.useRef)(null);
-  const [showPassword, setShowPassword] = import_react15.default.useState(false);
-  const [isFocused, setIsFocused] = import_react15.default.useState(false);
-  (0, import_react15.useImperativeHandle)(ref, () => ({
+  const inputRef = (0, import_react13.useRef)(null);
+  const [showPassword, setShowPassword] = import_react13.default.useState(false);
+  const [isFocused, setIsFocused] = import_react13.default.useState(false);
+  (0, import_react13.useImperativeHandle)(ref, () => ({
     focus: () => inputRef.current?.focus(),
     blur: () => inputRef.current?.blur(),
     select: () => inputRef.current?.select(),
@@ -4913,10 +3235,10 @@ var Input = (0, import_react15.forwardRef)(({
       }
     }
   }));
-  const handlePasswordToggle = (0, import_react15.useCallback)(() => {
+  const handlePasswordToggle = (0, import_react13.useCallback)(() => {
     setShowPassword(!showPassword);
   }, [showPassword]);
-  const handleClear = (0, import_react15.useCallback)(() => {
+  const handleClear = (0, import_react13.useCallback)(() => {
     if (inputRef.current) {
       inputRef.current.value = "";
       inputRef.current.focus();
@@ -4927,11 +3249,11 @@ var Input = (0, import_react15.forwardRef)(({
       onClear?.();
     }
   }, [onChange, onClear]);
-  const handleFocus = (0, import_react15.useCallback)((event) => {
+  const handleFocus = (0, import_react13.useCallback)((event) => {
     setIsFocused(true);
     onFocus?.(event);
   }, [onFocus]);
-  const handleBlur = (0, import_react15.useCallback)((event) => {
+  const handleBlur = (0, import_react13.useCallback)((event) => {
     setIsFocused(false);
     onBlur?.(event);
   }, [onBlur]);
@@ -4962,14 +3284,14 @@ var Input = (0, import_react15.forwardRef)(({
   const characterCount = String(currentValue).length;
   const shouldShowClearButton = showClearButton && currentValue && !disabled && !readOnly;
   const shouldShowPasswordToggle = showPasswordToggle && type === "password" && !disabled && !readOnly;
-  return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: containerClasses, style, children: [
-    label && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("label", { className: "cria-input__label", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(Typography, { variant: "body", weight: "medium", color: "primary", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: containerClasses, style, children: [
+    label && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("label", { className: "cria-input__label", children: /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(Typography, { variant: "body", weight: "medium", color: "primary", children: [
       label,
-      required && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "cria-input__required", children: " *" })
+      required && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("span", { className: "cria-input__required", children: " *" })
     ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "cria-input__wrapper", children: [
-      leftIcon && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "cria-input__left-icon", children: leftIcon }),
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(
+    /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "cria-input__wrapper", children: [
+      leftIcon && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "cria-input__left-icon", children: leftIcon }),
+      /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
         "input",
         {
           ref: inputRef,
@@ -4988,45 +3310,45 @@ var Input = (0, import_react15.forwardRef)(({
           ...props
         }
       ),
-      (rightIcon || shouldShowPasswordToggle || shouldShowClearButton) && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "cria-input__right-icons", children: [
-        shouldShowClearButton && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(
+      (rightIcon || shouldShowPasswordToggle || shouldShowClearButton) && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "cria-input__right-icons", children: [
+        shouldShowClearButton && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
           "button",
           {
             type: "button",
             className: "cria-input__clear-button",
             onClick: handleClear,
             "aria-label": "Clear input",
-            children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(import_phosphor_react9.X, { size: 16 })
+            children: /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(import_phosphor_react6.X, { size: 16 })
           }
         ),
-        shouldShowPasswordToggle && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(
+        shouldShowPasswordToggle && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(
           "button",
           {
             type: "button",
             className: "cria-input__password-toggle",
             onClick: handlePasswordToggle,
             "aria-label": showPassword ? "Hide password" : "Show password",
-            children: showPassword ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(import_phosphor_react9.EyeSlash, { size: 16 }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(import_phosphor_react9.Eye, { size: 16 })
+            children: showPassword ? /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(import_phosphor_react6.EyeSlash, { size: 16 }) : /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(import_phosphor_react6.Eye, { size: 16 })
           }
         ),
-        rightIcon && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "cria-input__right-icon", children: rightIcon })
+        rightIcon && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)("div", { className: "cria-input__right-icon", children: rightIcon })
       ] })
     ] }),
-    (helperText || errorMessage || successMessage || warningMessage || showCharacterCount) && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "cria-input__messages", children: [
-      helperText && !errorMessage && !successMessage && !warningMessage && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Typography, { variant: "body", color: "secondary", className: "cria-input__helper-text", children: helperText }),
-      errorMessage && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(Typography, { variant: "body", color: "error", className: "cria-input__error-message", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(import_phosphor_react9.WarningCircle, { size: 14, style: { marginRight: "4px" } }),
+    (helperText || errorMessage || successMessage || warningMessage || showCharacterCount) && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)("div", { className: "cria-input__messages", children: [
+      helperText && !errorMessage && !successMessage && !warningMessage && /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(Typography, { variant: "body", color: "secondary", className: "cria-input__helper-text", children: helperText }),
+      errorMessage && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(Typography, { variant: "body", color: "error", className: "cria-input__error-message", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(import_phosphor_react6.WarningCircle, { size: 14, style: { marginRight: "4px" } }),
         errorMessage
       ] }),
-      successMessage && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(Typography, { variant: "body", color: "success", className: "cria-input__success-message", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(import_phosphor_react9.Check, { size: 14, style: { marginRight: "4px" } }),
+      successMessage && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(Typography, { variant: "body", color: "success", className: "cria-input__success-message", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(import_phosphor_react6.Check, { size: 14, style: { marginRight: "4px" } }),
         successMessage
       ] }),
-      warningMessage && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(Typography, { variant: "body", color: "warning", className: "cria-input__warning-message", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(import_phosphor_react9.WarningCircle, { size: 14, style: { marginRight: "4px" } }),
+      warningMessage && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(Typography, { variant: "body", color: "warning", className: "cria-input__warning-message", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime17.jsx)(import_phosphor_react6.WarningCircle, { size: 14, style: { marginRight: "4px" } }),
         warningMessage
       ] }),
-      showCharacterCount && maxLength && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(Typography, { variant: "body", color: "secondary", className: "cria-input__character-count", children: [
+      showCharacterCount && maxLength && /* @__PURE__ */ (0, import_jsx_runtime17.jsxs)(Typography, { variant: "body", color: "secondary", className: "cria-input__character-count", children: [
         characterCount,
         "/",
         maxLength
@@ -5037,9 +3359,9 @@ var Input = (0, import_react15.forwardRef)(({
 Input.displayName = "Input";
 
 // src/components/Modal/Modal.tsx
-var import_react16 = require("react");
-var import_phosphor_react10 = require("phosphor-react");
-var import_jsx_runtime20 = require("react/jsx-runtime");
+var import_react14 = require("react");
+var import_phosphor_react7 = require("phosphor-react");
+var import_jsx_runtime18 = require("react/jsx-runtime");
 var Modal = ({
   isOpen,
   onClose,
@@ -5062,20 +3384,20 @@ var Modal = ({
   animationDuration = 200,
   ...props
 }) => {
-  const modalRef = (0, import_react16.useRef)(null);
-  const previousActiveElement = (0, import_react16.useRef)(null);
-  const overlayRef = (0, import_react16.useRef)(null);
-  const handleEscapeKey = (0, import_react16.useCallback)((event) => {
+  const modalRef = (0, import_react14.useRef)(null);
+  const previousActiveElement = (0, import_react14.useRef)(null);
+  const overlayRef = (0, import_react14.useRef)(null);
+  const handleEscapeKey = (0, import_react14.useCallback)((event) => {
     if (event.key === "Escape" && closeOnEscape) {
       onClose();
     }
   }, [closeOnEscape, onClose]);
-  const handleOverlayClick = (0, import_react16.useCallback)((event) => {
+  const handleOverlayClick = (0, import_react14.useCallback)((event) => {
     if (closeOnOverlayClick && event.target === overlayRef.current) {
       onClose();
     }
   }, [closeOnOverlayClick, onClose]);
-  const handleFocus = (0, import_react16.useCallback)(() => {
+  const handleFocus = (0, import_react14.useCallback)(() => {
     if (modalRef.current) {
       const focusableElements = modalRef.current.querySelectorAll(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
@@ -5086,14 +3408,14 @@ var Modal = ({
       }
     }
   }, []);
-  const toggleBodyScroll = (0, import_react16.useCallback)((lock) => {
+  const toggleBodyScroll = (0, import_react14.useCallback)((lock) => {
     if (lock) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
     }
   }, []);
-  (0, import_react16.useEffect)(() => {
+  (0, import_react14.useEffect)(() => {
     if (isOpen) {
       previousActiveElement.current = document.activeElement;
       document.addEventListener("keydown", handleEscapeKey);
@@ -5133,7 +3455,7 @@ var Modal = ({
   if (!isOpen) {
     return null;
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
     "div",
     {
       ref: overlayRef,
@@ -5147,7 +3469,7 @@ var Modal = ({
       "aria-modal": "true",
       "aria-labelledby": title ? "modal-title" : void 0,
       "aria-describedby": "modal-content",
-      children: /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(
+      children: /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)(
         "div",
         {
           ref: modalRef,
@@ -5158,8 +3480,8 @@ var Modal = ({
           },
           ...props,
           children: [
-            showHeader && /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "cria-modal__header", children: [
-              title && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
+            showHeader && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "cria-modal__header", children: [
+              title && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
                 Typography,
                 {
                   id: "modal-title",
@@ -5169,7 +3491,7 @@ var Modal = ({
                   children: title
                 }
               ),
-              showCloseButton && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
+              showCloseButton && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
                 Button,
                 {
                   variant: "ghost",
@@ -5177,11 +3499,11 @@ var Modal = ({
                   onClick: onClose,
                   className: "cria-modal__close-button",
                   "aria-label": "Close modal",
-                  children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(import_phosphor_react10.X, { size: 20 })
+                  children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(import_phosphor_react7.X, { size: 20 })
                 }
               )
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
+            /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
               "div",
               {
                 id: "modal-content",
@@ -5189,7 +3511,7 @@ var Modal = ({
                 children
               }
             ),
-            showFooter && footer && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "cria-modal__footer", children: footer })
+            showFooter && footer && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "cria-modal__footer", children: footer })
           ]
         }
       )
@@ -5198,9 +3520,9 @@ var Modal = ({
 };
 
 // src/components/Navigation/Navigation.tsx
-var import_react17 = require("react");
-var import_phosphor_react11 = require("phosphor-react");
-var import_jsx_runtime21 = require("react/jsx-runtime");
+var import_react15 = require("react");
+var import_phosphor_react8 = require("phosphor-react");
+var import_jsx_runtime19 = require("react/jsx-runtime");
 var Sidebar = ({
   items,
   activeRoute,
@@ -5209,16 +3531,17 @@ var Sidebar = ({
   showToggle = true,
   title,
   titleHref,
+  subtitle,
   className,
   style,
   theme = "default",
   ...props
 }) => {
-  const [isMobile, setIsMobile] = (0, import_react17.useState)(false);
-  const [expandedItems, setExpandedItems] = (0, import_react17.useState)(
+  const [isMobile, setIsMobile] = (0, import_react15.useState)(false);
+  const [expandedItems, setExpandedItems] = (0, import_react15.useState)(
     new Set(items.filter((item) => item.defaultExpanded).map((item) => item.id))
   );
-  (0, import_react17.useEffect)(() => {
+  (0, import_react15.useEffect)(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
@@ -5226,10 +3549,10 @@ var Sidebar = ({
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
-  const handleToggle = (0, import_react17.useCallback)(() => {
+  const handleToggle = (0, import_react15.useCallback)(() => {
     onToggle?.(!collapsed);
   }, [collapsed, onToggle]);
-  const handleSubitemToggle = (0, import_react17.useCallback)((itemId) => {
+  const handleSubitemToggle = (0, import_react15.useCallback)((itemId) => {
     setExpandedItems((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(itemId)) {
@@ -5240,7 +3563,7 @@ var Sidebar = ({
       return newSet;
     });
   }, []);
-  const handleKeyDown = (0, import_react17.useCallback)((event, index) => {
+  const handleKeyDown = (0, import_react15.useCallback)((event, index) => {
     const currentIndex = index;
     const nextIndex = currentIndex + 1;
     const prevIndex = currentIndex - 1;
@@ -5269,7 +3592,7 @@ var Sidebar = ({
     theme !== "default" && `cria-sidebar--${theme}`,
     className
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(
     "nav",
     {
       className: sidebarClasses,
@@ -5278,9 +3601,10 @@ var Sidebar = ({
       "aria-label": "Main navigation",
       ...props,
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "cria-sidebar__header", children: [
-          title && !collapsed && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "cria-sidebar__title-section", children: titleHref ? /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("a", { href: titleHref, className: "cria-sidebar__title-link", children: theme !== "default" ? /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Typography, { variant: "h3", weight: "bold", children: title }) : /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Typography, { variant: "h3", weight: "bold", color: "primary", children: title }) }) : theme !== "default" ? /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Typography, { variant: "h3", weight: "bold", children: title }) : /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Typography, { variant: "h3", weight: "bold", color: "primary", children: title }) }),
-          showToggle && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "cria-sidebar__header", children: [
+          title && !collapsed && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "cria-sidebar__title-section", children: titleHref ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("a", { href: titleHref, className: "cria-sidebar__title-link", children: theme !== "default" ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Typography, { variant: "h3", weight: "bold", children: title }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Typography, { variant: "h3", weight: "bold", color: "primary", children: title }) }) : theme !== "default" ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Typography, { variant: "h3", weight: "bold", children: title }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Typography, { variant: "h3", weight: "bold", color: "primary", children: title }) }),
+          subtitle && !collapsed && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "cria-sidebar__subtitle-section", style: { marginTop: "0.5rem" }, children: subtitle }),
+          showToggle && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(
             Button,
             {
               variant: "ghost",
@@ -5288,16 +3612,16 @@ var Sidebar = ({
               onClick: handleToggle,
               "aria-label": "Toggle sidebar",
               className: "cria-sidebar__toggle",
-              children: collapsed ? /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(import_phosphor_react11.CaretRight, { size: 16 }) : /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(import_phosphor_react11.CaretLeft, { size: 16 })
+              children: collapsed ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(import_phosphor_react8.CaretRight, { size: 16 }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(import_phosphor_react8.CaretLeft, { size: 16 })
             }
           )
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "cria-sidebar__content", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("ul", { className: "cria-sidebar__items", role: "menubar", children: items.map((item, index) => {
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "cria-sidebar__content", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("ul", { className: "cria-sidebar__items", role: "menubar", children: items.map((item, index) => {
           const hasSubitems = item.subitems && item.subitems.length > 0;
           const isExpanded = expandedItems.has(item.id);
           const isActive = activeRoute === item.href || hasSubitems && item.subitems?.some((subitem) => activeRoute === subitem.href);
-          return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("li", { className: "cria-sidebar__item-wrapper", children: [
-            hasSubitems ? /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(
+          return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("li", { className: "cria-sidebar__item-wrapper", children: [
+            hasSubitems ? /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(
               "div",
               {
                 className: [
@@ -5320,22 +3644,22 @@ var Sidebar = ({
                   handleKeyDown(e, index);
                 },
                 children: [
-                  item.icon && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "cria-sidebar__icon", "aria-hidden": "true", children: item.icon }),
-                  !collapsed && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(import_jsx_runtime21.Fragment, { children: [
-                    /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "cria-sidebar__label", children: item.label }),
-                    /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(
+                  item.icon && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "cria-sidebar__icon", "aria-hidden": "true", children: item.icon }),
+                  !collapsed && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(import_jsx_runtime19.Fragment, { children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "cria-sidebar__label", children: item.label }),
+                    /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(
                       "span",
                       {
                         className: "cria-sidebar__subitem-toggle",
                         "aria-hidden": "true",
-                        children: isExpanded ? /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(import_phosphor_react11.CaretDown, { size: 16 }) : /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(import_phosphor_react11.CaretRight, { size: 16 })
+                        children: isExpanded ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(import_phosphor_react8.CaretDown, { size: 16 }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(import_phosphor_react8.CaretRight, { size: 16 })
                       }
                     )
                   ] }),
-                  item.badge && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "cria-sidebar__badge", "aria-hidden": "true", children: item.badge })
+                  item.badge && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "cria-sidebar__badge", "aria-hidden": "true", children: item.badge })
                 ]
               }
-            ) : /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(
+            ) : /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(
               "a",
               {
                 href: item.href,
@@ -5351,13 +3675,13 @@ var Sidebar = ({
                 "aria-current": activeRoute === item.href ? "page" : void 0,
                 "aria-disabled": item.disabled,
                 children: [
-                  item.icon && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "cria-sidebar__icon", "aria-hidden": "true", children: item.icon }),
-                  !collapsed && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "cria-sidebar__label", children: item.label }),
-                  item.badge && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "cria-sidebar__badge", "aria-hidden": "true", children: item.badge })
+                  item.icon && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "cria-sidebar__icon", "aria-hidden": "true", children: item.icon }),
+                  !collapsed && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "cria-sidebar__label", children: item.label }),
+                  item.badge && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "cria-sidebar__badge", "aria-hidden": "true", children: item.badge })
                 ]
               }
             ),
-            hasSubitems && isExpanded && !collapsed && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("ul", { className: "cria-sidebar__subitems", role: "menu", children: item.subitems?.map((subitem) => /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("li", { className: "cria-sidebar__subitem-wrapper", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(
+            hasSubitems && isExpanded && !collapsed && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("ul", { className: "cria-sidebar__subitems", role: "menu", children: item.subitems?.map((subitem) => /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("li", { className: "cria-sidebar__subitem-wrapper", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(
               "a",
               {
                 href: subitem.href,
@@ -5370,9 +3694,9 @@ var Sidebar = ({
                 "aria-current": activeRoute === subitem.href ? "page" : void 0,
                 "aria-disabled": subitem.disabled,
                 children: [
-                  subitem.icon && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "cria-sidebar__subitem-icon", "aria-hidden": "true", children: subitem.icon }),
-                  /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "cria-sidebar__subitem-label", children: subitem.label }),
-                  subitem.badge && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "cria-sidebar__subitem-badge", "aria-hidden": "true", children: subitem.badge })
+                  subitem.icon && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "cria-sidebar__subitem-icon", "aria-hidden": "true", children: subitem.icon }),
+                  /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "cria-sidebar__subitem-label", children: subitem.label }),
+                  subitem.badge && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "cria-sidebar__subitem-badge", "aria-hidden": "true", children: subitem.badge })
                 ]
               }
             ) }, subitem.id)) })
@@ -5393,9 +3717,9 @@ var Topbar = ({
   style,
   ...props
 }) => {
-  const [isMobile, setIsMobile] = (0, import_react17.useState)(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = (0, import_react17.useState)(false);
-  (0, import_react17.useEffect)(() => {
+  const [isMobile, setIsMobile] = (0, import_react15.useState)(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = (0, import_react15.useState)(false);
+  (0, import_react15.useEffect)(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
@@ -5403,12 +3727,12 @@ var Topbar = ({
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
-  const handleMobileMenuToggle = (0, import_react17.useCallback)(() => {
+  const handleMobileMenuToggle = (0, import_react15.useCallback)(() => {
     const newState = !mobileMenuOpen;
     setMobileMenuOpen(newState);
     onMobileMenuToggle?.(newState);
   }, [mobileMenuOpen, onMobileMenuToggle]);
-  const handleKeyDown = (0, import_react17.useCallback)((event, index) => {
+  const handleKeyDown = (0, import_react15.useCallback)((event, index) => {
     const currentIndex = index;
     const nextIndex = currentIndex + 1;
     const prevIndex = currentIndex - 1;
@@ -5438,7 +3762,7 @@ var Topbar = ({
     "cria-topbar__items",
     isMobile && !mobileMenuOpen && "cria-topbar__items--hidden"
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(
     "nav",
     {
       className: topbarClasses,
@@ -5447,9 +3771,9 @@ var Topbar = ({
       "aria-label": "Main navigation",
       ...props,
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "cria-topbar__content", children: [
-          brand && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "cria-topbar__brand", children: brandHref ? /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("a", { href: brandHref, className: "cria-topbar__brand-link", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Typography, { variant: "h3", weight: "bold", color: "primary", children: brand }) }) : /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Typography, { variant: "h3", weight: "bold", color: "primary", children: brand }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: itemsClasses, children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("ul", { className: "cria-topbar__items-list", role: "menubar", children: items.map((item, index) => /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("li", { className: "cria-topbar__item-wrapper", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "cria-topbar__content", children: [
+          brand && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "cria-topbar__brand", children: brandHref ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("a", { href: brandHref, className: "cria-topbar__brand-link", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Typography, { variant: "h3", weight: "bold", color: "primary", children: brand }) }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Typography, { variant: "h3", weight: "bold", color: "primary", children: brand }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: itemsClasses, children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("ul", { className: "cria-topbar__items-list", role: "menubar", children: items.map((item, index) => /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("li", { className: "cria-topbar__item-wrapper", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(
             "a",
             {
               href: item.href,
@@ -5465,13 +3789,13 @@ var Topbar = ({
               "aria-current": activeRoute === item.href ? "page" : void 0,
               "aria-disabled": item.disabled,
               children: [
-                item.icon && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "cria-topbar__icon", "aria-hidden": "true", children: item.icon }),
-                /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "cria-topbar__label", children: item.label }),
-                item.badge && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "cria-topbar__badge", "aria-hidden": "true", children: item.badge })
+                item.icon && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "cria-topbar__icon", "aria-hidden": "true", children: item.icon }),
+                /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "cria-topbar__label", children: item.label }),
+                item.badge && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "cria-topbar__badge", "aria-hidden": "true", children: item.badge })
               ]
             }
           ) }, item.id)) }) }),
-          isMobile && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(
+          isMobile && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(
             Button,
             {
               variant: "ghost",
@@ -5480,11 +3804,11 @@ var Topbar = ({
               "aria-label": "Toggle menu",
               "aria-expanded": mobileMenuOpen,
               className: "cria-topbar__mobile-toggle",
-              children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(import_phosphor_react11.List, { size: 16 })
+              children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(import_phosphor_react8.List, { size: 16 })
             }
           )
         ] }),
-        isMobile && mobileMenuOpen && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "cria-topbar__mobile-menu", role: "menu", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("ul", { className: "cria-topbar__mobile-items", children: items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("li", { className: "cria-topbar__mobile-item-wrapper", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(
+        isMobile && mobileMenuOpen && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "cria-topbar__mobile-menu", role: "menu", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("ul", { className: "cria-topbar__mobile-items", children: items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("li", { className: "cria-topbar__mobile-item-wrapper", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(
           "a",
           {
             href: item.href,
@@ -5497,9 +3821,9 @@ var Topbar = ({
             "aria-current": activeRoute === item.href ? "page" : void 0,
             "aria-disabled": item.disabled,
             children: [
-              item.icon && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "cria-topbar__mobile-icon", "aria-hidden": "true", children: item.icon }),
-              /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "cria-topbar__mobile-label", children: item.label }),
-              item.badge && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "cria-topbar__mobile-badge", "aria-hidden": "true", children: item.badge })
+              item.icon && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "cria-topbar__mobile-icon", "aria-hidden": "true", children: item.icon }),
+              /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "cria-topbar__mobile-label", children: item.label }),
+              item.badge && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "cria-topbar__mobile-badge", "aria-hidden": "true", children: item.badge })
             ]
           }
         ) }, item.id)) }) })
@@ -5520,17 +3844,17 @@ var Navigation = ({
     `cria-navigation--${variant}`,
     className
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: navigationClasses, style, ...props, children: [
-    sidebar && (variant === "sidebar-only" || variant === "both") && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Sidebar, { ...sidebar }),
-    topbar && (variant === "topbar-only" || variant === "both") && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(Topbar, { ...topbar })
+  return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: navigationClasses, style, ...props, children: [
+    sidebar && (variant === "sidebar-only" || variant === "both") && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Sidebar, { ...sidebar }),
+    topbar && (variant === "topbar-only" || variant === "both") && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Topbar, { ...topbar })
   ] });
 };
 
 // src/components/Pagination/Pagination.tsx
-var import_react18 = require("react");
-var import_phosphor_react12 = require("phosphor-react");
-var import_jsx_runtime22 = require("react/jsx-runtime");
-var Pagination = (0, import_react18.forwardRef)(({
+var import_react16 = require("react");
+var import_phosphor_react9 = require("phosphor-react");
+var import_jsx_runtime20 = require("react/jsx-runtime");
+var Pagination = (0, import_react16.forwardRef)(({
   currentPage,
   totalPages,
   onPageChange,
@@ -5553,7 +3877,7 @@ var Pagination = (0, import_react18.forwardRef)(({
   style,
   ...props
 }, ref) => {
-  const pageNumbers = (0, import_react18.useMemo)(() => {
+  const pageNumbers = (0, import_react16.useMemo)(() => {
     if (totalPages <= 1) return [1];
     const pages = [];
     const totalVisiblePages = 7;
@@ -5584,7 +3908,7 @@ var Pagination = (0, import_react18.forwardRef)(({
     }
     return pages;
   }, [currentPage, totalPages, siblingCount]);
-  const pageInfo = (0, import_react18.useMemo)(() => {
+  const pageInfo = (0, import_react16.useMemo)(() => {
     if (!showPageInfo || !totalItems || !pageSize) return "";
     const startItem = (currentPage - 1) * pageSize + 1;
     const endItem = Math.min(currentPage * pageSize, totalItems);
@@ -5613,7 +3937,7 @@ var Pagination = (0, import_react18.forwardRef)(({
   if (totalPages <= 0) {
     return null;
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
     "nav",
     {
       ref,
@@ -5621,10 +3945,10 @@ var Pagination = (0, import_react18.forwardRef)(({
       "aria-label": ariaLabel,
       style,
       ...props,
-      children: /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "cria-pagination__content", children: [
-        showPageSize && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "cria-pagination__page-size", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("label", { htmlFor: "page-size-select", className: "cria-pagination__page-size-label", children: "Items per page:" }),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(
+      children: /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "cria-pagination__content", children: [
+        showPageSize && /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "cria-pagination__page-size", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("label", { htmlFor: "page-size-select", className: "cria-pagination__page-size-label", children: "Items per page:" }),
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
             "select",
             {
               id: "page-size-select",
@@ -5632,13 +3956,13 @@ var Pagination = (0, import_react18.forwardRef)(({
               value: pageSize,
               onChange: handlePageSizeChange,
               "aria-label": "Items per page",
-              children: pageSizeOptions.map((size) => /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("option", { value: size, children: size }, size))
+              children: pageSizeOptions.map((size) => /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("option", { value: size, children: size }, size))
             }
           )
         ] }),
-        showPageInfo && pageInfo && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "cria-pagination__info", children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "cria-pagination__info-text", children: pageInfo }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "cria-pagination__navigation", children: [
-          showFirstLast && currentPage > 1 && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(
+        showPageInfo && pageInfo && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "cria-pagination__info", children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "cria-pagination__info-text", children: pageInfo }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "cria-pagination__navigation", children: [
+          showFirstLast && currentPage > 1 && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
             "button",
             {
               className: "cria-pagination__button cria-pagination__button--first",
@@ -5648,7 +3972,7 @@ var Pagination = (0, import_react18.forwardRef)(({
               children: firstLabel
             }
           ),
-          showPrevNext && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(
+          showPrevNext && /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(
             "button",
             {
               className: `cria-pagination__button cria-pagination__button--prev ${currentPage <= 1 ? "cria-pagination__button--disabled" : ""}`,
@@ -5658,14 +3982,14 @@ var Pagination = (0, import_react18.forwardRef)(({
               "aria-disabled": currentPage <= 1,
               "aria-label": previousLabel,
               children: [
-                /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(import_phosphor_react12.CaretLeft, { size: 16 }),
-                variant !== "minimal" && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "cria-pagination__button-text", children: previousLabel })
+                /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(import_phosphor_react9.CaretLeft, { size: 16 }),
+                variant !== "minimal" && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "cria-pagination__button-text", children: previousLabel })
               ]
             }
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "cria-pagination__pages", children: pageNumbers.map((page, index) => {
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "cria-pagination__pages", children: pageNumbers.map((page, index) => {
             if (page === "...") {
-              return /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(
+              return /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
                 "span",
                 {
                   className: "cria-pagination__ellipsis",
@@ -5677,7 +4001,7 @@ var Pagination = (0, import_react18.forwardRef)(({
             }
             const pageNum = page;
             const isActive = pageNum === currentPage;
-            return /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(
+            return /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
               "button",
               {
                 className: `cria-pagination__page ${isActive ? "cria-pagination__page--active" : ""}`,
@@ -5690,7 +4014,7 @@ var Pagination = (0, import_react18.forwardRef)(({
               pageNum
             );
           }) }),
-          showPrevNext && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(
+          showPrevNext && /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(
             "button",
             {
               className: `cria-pagination__button cria-pagination__button--next ${currentPage >= totalPages ? "cria-pagination__button--disabled" : ""}`,
@@ -5700,12 +4024,12 @@ var Pagination = (0, import_react18.forwardRef)(({
               "aria-disabled": currentPage >= totalPages,
               "aria-label": nextLabel,
               children: [
-                variant !== "minimal" && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "cria-pagination__button-text", children: nextLabel }),
-                /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(import_phosphor_react12.CaretRight, { size: 16 })
+                variant !== "minimal" && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "cria-pagination__button-text", children: nextLabel }),
+                /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(import_phosphor_react9.CaretRight, { size: 16 })
               ]
             }
           ),
-          showFirstLast && currentPage < totalPages && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(
+          showFirstLast && currentPage < totalPages && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(
             "button",
             {
               className: "cria-pagination__button cria-pagination__button--last",
@@ -5723,9 +4047,9 @@ var Pagination = (0, import_react18.forwardRef)(({
 Pagination.displayName = "Pagination";
 
 // src/components/ProgressBar/ProgressBar.tsx
-var import_react19 = require("react");
-var import_jsx_runtime23 = require("react/jsx-runtime");
-var ProgressBar = (0, import_react19.forwardRef)(({
+var import_react17 = require("react");
+var import_jsx_runtime21 = require("react/jsx-runtime");
+var ProgressBar = (0, import_react17.forwardRef)(({
   value = 0,
   min = 0,
   max = 100,
@@ -5743,12 +4067,12 @@ var ProgressBar = (0, import_react19.forwardRef)(({
   style,
   ...props
 }, ref) => {
-  const normalizedValue = (0, import_react19.useMemo)(() => {
+  const normalizedValue = (0, import_react17.useMemo)(() => {
     if (variant === "indeterminate") return 0;
     const clampedValue = Math.max(min, Math.min(max, value));
     return clampedValue;
   }, [value, min, max, variant]);
-  const percentage = (0, import_react19.useMemo)(() => {
+  const percentage = (0, import_react17.useMemo)(() => {
     if (variant === "indeterminate") return 0;
     if (min === max) return 100;
     return (normalizedValue - min) / (max - min) * 100;
@@ -5767,7 +4091,7 @@ var ProgressBar = (0, import_react19.forwardRef)(({
     striped && "cria-progress-bar__fill--striped",
     animated && "cria-progress-bar__fill--animated"
   ].filter(Boolean).join(" ");
-  const accessibilityProps = (0, import_react19.useMemo)(() => {
+  const accessibilityProps = (0, import_react17.useMemo)(() => {
     if (variant === "indeterminate") {
       return {
         "aria-busy": true,
@@ -5786,15 +4110,15 @@ var ProgressBar = (0, import_react19.forwardRef)(({
     width: variant === "indeterminate" ? "100%" : `${percentage}%`,
     transitionDuration
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "cria-progress-bar__container", children: [
-    (label || showPercentage) && /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "cria-progress-bar__header", children: [
-      label && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("span", { className: "cria-progress-bar__label", children: label }),
-      showPercentage && variant === "determinate" && /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("span", { className: "cria-progress-bar__percentage", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "cria-progress-bar__container", children: [
+    (label || showPercentage) && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "cria-progress-bar__header", children: [
+      label && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "cria-progress-bar__label", children: label }),
+      showPercentage && variant === "determinate" && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("span", { className: "cria-progress-bar__percentage", children: [
         Math.round(percentage),
         "%"
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
+    /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(
       "div",
       {
         ref,
@@ -5803,7 +4127,7 @@ var ProgressBar = (0, import_react19.forwardRef)(({
         style,
         ...accessibilityProps,
         ...props,
-        children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
+        children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(
           "div",
           {
             className: progressFillClasses,
@@ -5818,8 +4142,8 @@ var ProgressBar = (0, import_react19.forwardRef)(({
 ProgressBar.displayName = "ProgressBar";
 
 // src/components/VerticalTabs/VerticalTabs.tsx
-var import_react20 = __toESM(require("react"), 1);
-var import_jsx_runtime24 = require("react/jsx-runtime");
+var import_react18 = __toESM(require("react"), 1);
+var import_jsx_runtime22 = require("react/jsx-runtime");
 var VerticalTabs = ({
   tabs,
   activeId,
@@ -5829,7 +4153,7 @@ var VerticalTabs = ({
   style,
   ...props
 }) => {
-  const tabRefs = import_react20.default.useRef([]);
+  const tabRefs = import_react18.default.useRef([]);
   const focusTabAt = (startIndex, direction) => {
     const len = tabs.length;
     let i = startIndex;
@@ -5859,10 +4183,10 @@ var VerticalTabs = ({
     }
   };
   const containerClass = ["cria-vertical-tabs", className].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: containerClass, style, ...props, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { role: "tablist", "aria-orientation": "vertical", className: "cria-vertical-tabs__list", children: tabs.map((tab, index) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: containerClass, style, ...props, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { role: "tablist", "aria-orientation": "vertical", className: "cria-vertical-tabs__list", children: tabs.map((tab, index) => {
       const selected = tab.id === activeId;
-      return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(
+      return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(
         "button",
         {
           role: "tab",
@@ -5880,20 +4204,20 @@ var VerticalTabs = ({
           },
           onKeyDown: (e) => onKeyDownTab(e, index, tab.id, tab.disabled),
           children: [
-            tab.icon && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("span", { className: "cria-vertical-tabs__icon", children: tab.icon }),
-            /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("span", { className: "cria-vertical-tabs__label", children: tab.label })
+            tab.icon && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "cria-vertical-tabs__icon", children: tab.icon }),
+            /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "cria-vertical-tabs__label", children: tab.label })
           ]
         },
         tab.id
       );
     }) }),
-    renderPanel && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "cria-vertical-tabs__panel", children: renderPanel(activeId) })
+    renderPanel && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "cria-vertical-tabs__panel", children: renderPanel(activeId) })
   ] });
 };
 
 // src/components/DatePicker/DatePicker.tsx
-var import_react21 = require("react");
-var import_jsx_runtime25 = require("react/jsx-runtime");
+var import_react19 = require("react");
+var import_jsx_runtime23 = require("react/jsx-runtime");
 function startOfMonth(d) {
   return new Date(d.getFullYear(), d.getMonth(), 1);
 }
@@ -5933,15 +4257,15 @@ var DatePicker = ({
   className = "",
   ...inputProps
 }) => {
-  const [open, setOpen] = (0, import_react21.useState)(false);
-  const today = (0, import_react21.useMemo)(() => /* @__PURE__ */ new Date(), []);
+  const [open, setOpen] = (0, import_react19.useState)(false);
+  const today = (0, import_react19.useMemo)(() => /* @__PURE__ */ new Date(), []);
   const initial = Array.isArray(value) ? value[0] ?? today : (value ?? today) || today;
-  const [view, setView] = (0, import_react21.useState)(startOfMonth(initial instanceof Date ? initial : today));
-  const containerRef = (0, import_react21.useRef)(null);
-  const inputRef = (0, import_react21.useRef)(null);
+  const [view, setView] = (0, import_react19.useState)(startOfMonth(initial instanceof Date ? initial : today));
+  const containerRef = (0, import_react19.useRef)(null);
+  const inputRef = (0, import_react19.useRef)(null);
   const selectedStart = Array.isArray(value) ? value[0] : Array.isArray(value) ? null : value ?? null;
   const selectedEnd = Array.isArray(value) ? value[1] : null;
-  const days = (0, import_react21.useMemo)(() => {
+  const days = (0, import_react19.useMemo)(() => {
     const start = startOfMonth(view);
     const end = endOfMonth(view);
     const startWeekday = (start.getDay() + 6) % 7;
@@ -5957,7 +4281,7 @@ var DatePicker = ({
     }
     return out;
   }, [view]);
-  const isDisabled = (0, import_react21.useCallback)((d) => {
+  const isDisabled = (0, import_react19.useCallback)((d) => {
     if (minDate && d < new Date(minDate.getFullYear(), minDate.getMonth(), minDate.getDate())) return true;
     if (maxDate && d > new Date(maxDate.getFullYear(), maxDate.getMonth(), maxDate.getDate())) return true;
     if (disabledDate && disabledDate(d)) return true;
@@ -5989,7 +4313,7 @@ var DatePicker = ({
     if (range) commitRange(d);
     else commitSingle(d);
   };
-  (0, import_react21.useEffect)(() => {
+  (0, import_react19.useEffect)(() => {
     const onDoc = (e) => {
       if (!containerRef.current) return;
       if (!containerRef.current.contains(e.target)) setOpen(false);
@@ -5997,7 +4321,7 @@ var DatePicker = ({
     document.addEventListener("mousedown", onDoc);
     return () => document.removeEventListener("mousedown", onDoc);
   }, []);
-  const displayValue = (0, import_react21.useMemo)(() => {
+  const displayValue = (0, import_react19.useMemo)(() => {
     if (Array.isArray(value)) {
       const [s, e] = value;
       if (s && e) return `${formatDate(s, format)} \u2013 ${formatDate(e, format)}`;
@@ -6013,9 +4337,9 @@ var DatePicker = ({
       return;
     }
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: ["cria-date-picker", className].filter(Boolean).join(" "), ref: containerRef, children: [
-    label && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("label", { className: "cria-date-picker__label", children: label }),
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: ["cria-date-picker", className].filter(Boolean).join(" "), ref: containerRef, children: [
+    label && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("label", { className: "cria-date-picker__label", children: label }),
+    /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
       "input",
       {
         ref: inputRef,
@@ -6031,25 +4355,25 @@ var DatePicker = ({
         ...inputProps
       }
     ),
-    open && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "cria-calendar", role: "dialog", "aria-modal": "false", "aria-label": "Date picker", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "cria-calendar__header", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "cria-calendar__nav", onClick: () => setView(addMonths(view, -1)), "aria-label": "Previous month", children: "\u2039" }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "cria-calendar__month", "aria-live": "polite", children: [
+    open && /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "cria-calendar", role: "dialog", "aria-modal": "false", "aria-label": "Date picker", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "cria-calendar__header", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { className: "cria-calendar__nav", onClick: () => setView(addMonths(view, -1)), "aria-label": "Previous month", children: "\u2039" }),
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "cria-calendar__month", "aria-live": "polite", children: [
           view.toLocaleString(void 0, { month: "long" }),
           " ",
           view.getFullYear()
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("button", { className: "cria-calendar__nav", onClick: () => setView(addMonths(view, 1)), "aria-label": "Next month", children: "\u203A" })
+        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("button", { className: "cria-calendar__nav", onClick: () => setView(addMonths(view, 1)), "aria-label": "Next month", children: "\u203A" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "cria-calendar__weekdays", children: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d) => /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "cria-calendar__weekday", "aria-hidden": "true", children: d }, d)) }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "cria-calendar__grid", role: "grid", children: days.map((d, i) => {
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "cria-calendar__weekdays", children: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d) => /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "cria-calendar__weekday", "aria-hidden": "true", children: d }, d)) }),
+      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "cria-calendar__grid", role: "grid", children: days.map((d, i) => {
         const inMonth = d.getMonth() === view.getMonth();
         const disabled = !inMonth || isDisabled(d);
         const isStart = selectedStart instanceof Date && sameDay(d, selectedStart);
         const isEnd = selectedEnd instanceof Date && sameDay(d, selectedEnd);
         const inRange = range && selectedStart instanceof Date && selectedEnd instanceof Date && d >= selectedStart && d <= selectedEnd;
         const isToday = sameDay(d, today);
-        return /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(
+        return /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
           "button",
           {
             role: "gridcell",
@@ -6076,115 +4400,484 @@ var DatePicker = ({
 };
 
 // src/components/Stepper/Stepper.tsx
-var import_react22 = require("react");
-var import_jsx_runtime26 = require("react/jsx-runtime");
-var Stepper = ({
-  steps,
-  activeId,
-  onChange,
-  orientation = "horizontal",
-  linear = true,
-  className,
-  style,
+var import_react20 = require("react");
+var import_phosphor_react10 = require("phosphor-react");
+var import_jsx_runtime24 = require("react/jsx-runtime");
+var StepperStep = (0, import_react20.forwardRef)(({
+  step,
+  index,
+  size = "md",
+  variant = "default",
+  style = "filled",
+  onClick,
+  className = "",
   ...props
-}) => {
-  const activeIndex = (0, import_react22.useMemo)(() => steps.findIndex((s) => s.id === activeId), [steps, activeId]);
-  const tabRefs = (0, import_react22.useRef)([]);
-  const canActivate = (0, import_react22.useCallback)((index) => {
-    const step = steps[index];
-    if (!step || step.disabled) return false;
-    if (!linear) return true;
-    return index <= activeIndex;
-  }, [steps, linear, activeIndex]);
-  const handleClick = (0, import_react22.useCallback)((index) => {
-    if (canActivate(index)) {
-      onChange?.(steps[index].id);
-    }
-  }, [canActivate, onChange, steps]);
-  const moveFocus = (current, dir) => {
-    const total = steps.length;
-    let i = current;
-    for (let c = 0; c < total; c++) {
-      i = (i + dir + total) % total;
-      if (!steps[i].disabled) {
-        tabRefs.current[i]?.focus();
-        break;
-      }
+}, ref) => {
+  const {
+    id,
+    title,
+    description,
+    icon,
+    completed = false,
+    active = false,
+    disabled = false,
+    loading = false,
+    selected = false
+  } = step;
+  const sizeConfig = {
+    sm: {
+      padding: spacing[2],
+      iconSize: "1rem",
+      fontSize: typography.fontSize.caption,
+      titleFontSize: typography.fontSize.body2,
+      borderRadius: radii.sm,
+      iconPadding: spacing[1]
+    },
+    md: {
+      padding: spacing[3],
+      iconSize: "1.25rem",
+      fontSize: typography.fontSize.body2,
+      titleFontSize: typography.fontSize.body,
+      borderRadius: radii.md,
+      iconPadding: spacing[2]
+    },
+    lg: {
+      padding: spacing[4],
+      iconSize: "1.5rem",
+      fontSize: typography.fontSize.body,
+      titleFontSize: typography.fontSize.h3,
+      borderRadius: radii.lg,
+      iconPadding: spacing[3]
     }
   };
-  const handleKeyDown = (e, index) => {
-    if (orientation === "horizontal") {
-      if (e.key === "ArrowRight") {
-        e.preventDefault();
-        moveFocus(index, 1);
-        return;
-      }
-      if (e.key === "ArrowLeft") {
-        e.preventDefault();
-        moveFocus(index, -1);
-        return;
-      }
+  const config = sizeConfig[size];
+  const getStepStyles = () => {
+    const baseStyles = {
+      display: "flex",
+      alignItems: "center",
+      gap: spacing[3],
+      padding: config.padding,
+      borderRadius: config.borderRadius,
+      transition: "all 0.2s ease",
+      cursor: onClick && !disabled ? "pointer" : "default",
+      opacity: disabled ? 0.6 : 1,
+      position: "relative",
+      ...props.style
+    };
+    let backgroundColor = "transparent";
+    let borderColor = "transparent";
+    let textColor = colors.gray[600];
+    if (completed) {
+      backgroundColor = colors.success[100];
+      borderColor = colors.success[300];
+      textColor = colors.success[800];
+    } else if (active) {
+      backgroundColor = colors.primary[100];
+      borderColor = colors.primary[300];
+      textColor = colors.primary[800];
+    } else if (selected) {
+      backgroundColor = colors.secondary[100];
+      borderColor = colors.secondary[300];
+      textColor = colors.secondary[800];
+    }
+    switch (style) {
+      case "filled":
+        return {
+          ...baseStyles,
+          backgroundColor,
+          border: `1px solid ${borderColor}`
+        };
+      case "outlined":
+        return {
+          ...baseStyles,
+          backgroundColor: "transparent",
+          border: `2px solid ${borderColor}`
+        };
+      case "ghost":
+        return {
+          ...baseStyles,
+          backgroundColor: completed ? colors.success[50] : active ? colors.primary[50] : "transparent",
+          border: "none"
+        };
+      default:
+        return baseStyles;
+    }
+  };
+  const getIconStyles = () => {
+    const baseIconStyles = {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: config.iconSize,
+      height: config.iconSize,
+      borderRadius: "50%",
+      flexShrink: 0,
+      fontSize: config.iconSize
+    };
+    if (completed) {
+      return {
+        ...baseIconStyles,
+        backgroundColor: colors.success[500],
+        color: colors.white
+      };
+    } else if (active) {
+      return {
+        ...baseIconStyles,
+        backgroundColor: colors.primary[500],
+        color: colors.white
+      };
     } else {
-      if (e.key === "ArrowDown") {
-        e.preventDefault();
-        moveFocus(index, 1);
-        return;
-      }
-      if (e.key === "ArrowUp") {
-        e.preventDefault();
-        moveFocus(index, -1);
-        return;
-      }
-    }
-    if ((e.key === "Enter" || e.key === " ") && canActivate(index)) {
-      e.preventDefault();
-      onChange?.(steps[index].id);
+      return {
+        ...baseIconStyles,
+        backgroundColor: colors.gray[200],
+        color: colors.gray[500]
+      };
     }
   };
-  const containerClasses = [
-    "cria-stepper",
-    `cria-stepper--${orientation}`,
-    className
-  ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: containerClasses, style, ...props, children: /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { role: "tablist", "aria-orientation": orientation, className: "cria-stepper__list", children: steps.map((step, index) => {
-    const isActive = step.id === activeId;
-    const isDisabled = !!step.disabled || linear && index > activeIndex;
-    const tabIndex = isDisabled ? -1 : isActive ? 0 : -1;
-    const itemClasses = [
-      "cria-stepper__tab",
-      isActive && "cria-stepper__tab--active",
-      step.completed && "cria-stepper__tab--completed",
-      step.error && "cria-stepper__tab--error",
-      isDisabled && "cria-stepper__tab--disabled"
-    ].filter(Boolean).join(" ");
-    return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(
-      "button",
+  const stepStyles = getStepStyles();
+  const iconStyles = getIconStyles();
+  const handleClick = (event) => {
+    if (onClick && !disabled && !loading) {
+      onClick(index, step);
+    }
+  };
+  const handleKeyDown = (event) => {
+    if (onClick && !disabled && !loading && (event.key === "Enter" || event.key === " ")) {
+      event.preventDefault();
+      onClick(index, step);
+    }
+  };
+  const Component = onClick ? "button" : "div";
+  return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(
+    Component,
+    {
+      ref,
+      className: `stepper-step variant-${variant} size-${size} style-${style} ${className} ${onClick ? "clickable" : ""} ${disabled ? "disabled" : ""} ${loading ? "loading" : ""} ${selected ? "selected" : ""} ${completed ? "completed" : ""} ${active ? "active" : ""}`,
+      role: onClick ? "button" : "listitem",
+      "aria-label": `${title}${description ? `: ${description}` : ""}`,
+      "aria-disabled": disabled || loading,
+      onClick: handleClick,
+      onKeyDown: handleKeyDown,
+      tabIndex: onClick && !disabled ? 0 : void 0,
+      disabled: onClick && disabled,
+      style: stepStyles,
+      ...props,
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "stepper-step-icon", style: iconStyles, children: loading ? /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(import_phosphor_react10.Spinner, { size: 16, weight: "bold", style: { animation: "spin 1s linear infinite" } }) : completed ? /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { style: { fontSize: "0.75rem", fontWeight: "bold" }, children: "\u2713" }) : icon || /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { style: { fontSize: "0.75rem", fontWeight: "bold" }, children: index + 1 }) }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "stepper-step-content", style: { flex: 1, minWidth: 0 }, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
+            "div",
+            {
+              className: "stepper-step-title",
+              style: {
+                fontSize: config.titleFontSize,
+                fontWeight: typography.fontWeight.semiBold,
+                color: stepStyles.color || colors.gray[900],
+                marginBottom: description ? spacing[1] : 0,
+                lineHeight: typography.lineHeight.tight
+              },
+              children: title
+            }
+          ),
+          description && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
+            "div",
+            {
+              className: "stepper-step-description",
+              style: {
+                fontSize: config.fontSize,
+                color: colors.gray[600],
+                lineHeight: typography.lineHeight.relaxed
+              },
+              children: description
+            }
+          )
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("style", { children: `
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .stepper-step.clickable:focus {
+          outline: 2px solid ${colors.primary[500]};
+          outline-offset: 2px;
+        }
+
+        .stepper-step.clickable:focus-visible {
+          outline: 2px solid ${colors.primary[500]};
+          outline-offset: 2px;
+        }
+
+        .stepper-step.clickable:hover {
+          ${!disabled && !loading ? `transform: translateY(-1px); box-shadow: ${shadows.sm};` : ""}
+        }
+      ` })
+      ]
+    }
+  );
+});
+StepperStep.displayName = "StepperStep";
+var Stepper = (0, import_react20.forwardRef)(({
+  steps,
+  currentStep = 0,
+  orientation = "horizontal",
+  size = "md",
+  variant = "default",
+  showConnector = true,
+  showNavigation = true,
+  connector,
+  connectorStyle = "solid",
+  connectorColor = "primary",
+  loading = false,
+  disabled = false,
+  stepRenderer,
+  onStepClick,
+  onNext,
+  onPrevious,
+  onComplete,
+  nextLabel = "Next",
+  previousLabel = "Previous",
+  completeLabel = "Complete",
+  className = "",
+  style = {},
+  ...props
+}, ref) => {
+  const sizeConfig = {
+    sm: {
+      stepSpacing: spacing[3],
+      iconSize: "1rem",
+      fontSize: typography.fontSize.caption,
+      titleFontSize: typography.fontSize.body2,
+      connectorWidth: "2px"
+    },
+    md: {
+      stepSpacing: spacing[4],
+      iconSize: "1.25rem",
+      fontSize: typography.fontSize.body2,
+      titleFontSize: typography.fontSize.body,
+      connectorWidth: "2px"
+    },
+    lg: {
+      stepSpacing: spacing[5],
+      iconSize: "1.5rem",
+      fontSize: typography.fontSize.body,
+      titleFontSize: typography.fontSize.h3,
+      connectorWidth: "3px"
+    }
+  };
+  const config = sizeConfig[size];
+  const connectorColorMap = {
+    primary: colors.primary[500],
+    secondary: colors.secondary[500],
+    gray: colors.gray[300]
+  };
+  const renderLoading = () => /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
+    "div",
+    {
+      className: "stepper-loading",
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: spacing[8],
+        color: colors.gray[500]
+      },
+      "aria-label": "Loading stepper",
+      children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(import_phosphor_react10.Spinner, { size: 24, weight: "bold", style: { animation: "spin 1s linear infinite" } })
+    }
+  );
+  const renderConnector = (isLast) => {
+    if (!showConnector || isLast) return null;
+    if (connector) {
+      return connector;
+    }
+    const connectorStyles = {
+      solid: "solid",
+      dashed: "dashed",
+      dotted: "dotted"
+    };
+    return /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
+      "div",
       {
-        role: "tab",
-        ref: (el) => tabRefs.current[index] = el,
-        className: itemClasses,
-        "aria-selected": isActive ? "true" : "false",
-        "aria-disabled": isDisabled ? "true" : void 0,
-        tabIndex,
-        onClick: () => handleClick(index),
-        onKeyDown: (e) => handleKeyDown(e, index),
-        children: [
-          step.icon && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { className: "cria-stepper__icon", "aria-hidden": "true", children: step.icon }),
-          /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { className: "cria-stepper__title", children: step.title }),
-          step.description && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { className: "cria-stepper__description", children: step.description })
-        ]
+        className: "stepper-connector",
+        style: {
+          position: "absolute",
+          ...orientation === "horizontal" ? {
+            left: "100%",
+            top: "50%",
+            transform: "translateY(-50%)",
+            width: config.stepSpacing,
+            height: config.connectorWidth
+          } : {
+            top: "100%",
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: config.connectorWidth,
+            height: config.stepSpacing
+          },
+          backgroundColor: connectorColorMap[connectorColor],
+          borderStyle: connectorStyles[connectorStyle],
+          borderWidth: "0 0 0 2px",
+          borderColor: connectorColorMap[connectorColor],
+          zIndex: 1
+        }
+      }
+    );
+  };
+  const renderStep = (step, index) => {
+    if (stepRenderer) {
+      return stepRenderer({ step, index });
+    }
+    return /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
+      StepperStep,
+      {
+        step,
+        index,
+        size,
+        variant,
+        onClick: onStepClick,
+        style: {
+          marginBottom: orientation === "vertical" && index < steps.length - 1 ? config.stepSpacing : 0,
+          marginRight: orientation === "horizontal" && index < steps.length - 1 ? config.stepSpacing : 0
+        }
       },
       step.id
     );
-  }) }) });
-};
+  };
+  const renderNavigation = () => {
+    if (!showNavigation) return null;
+    const currentStepData = steps[currentStep];
+    const isFirstStep = currentStep === 0;
+    const isLastStep = currentStep === steps.length - 1;
+    return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(
+      "div",
+      {
+        className: "stepper-navigation",
+        style: {
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginTop: spacing[6],
+          padding: spacing[4],
+          borderTop: `1px solid ${colors.gray[200]}`
+        },
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
+            Button,
+            {
+              variant: "outlined",
+              size,
+              disabled: isFirstStep || disabled || loading,
+              onClick: () => onPrevious?.(currentStep, currentStepData),
+              children: previousLabel
+            }
+          ),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { style: { display: "flex", alignItems: "center", gap: spacing[2] }, children: /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(Typography, { variant: "bodySmall", color: "secondary", children: [
+            "Step ",
+            currentStep + 1,
+            " of ",
+            steps.length
+          ] }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
+            Button,
+            {
+              variant: "primary",
+              size,
+              disabled: disabled || loading,
+              onClick: () => {
+                if (isLastStep) {
+                  onComplete?.(currentStep, currentStepData);
+                } else {
+                  onNext?.(currentStep, currentStepData);
+                }
+              },
+              children: isLastStep ? completeLabel : nextLabel
+            }
+          )
+        ]
+      }
+    );
+  };
+  if (loading) {
+    return /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
+      "div",
+      {
+        ref,
+        className: `stepper loading ${className}`,
+        style,
+        ...props,
+        children: renderLoading()
+      }
+    );
+  }
+  return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(
+    "div",
+    {
+      ref,
+      className: `stepper orientation-${orientation} size-${size} variant-${variant} ${className}`,
+      style: {
+        position: "relative",
+        ...orientation === "horizontal" && {
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center"
+        },
+        ...orientation === "vertical" && {
+          display: "flex",
+          flexDirection: "column"
+        },
+        ...style
+      },
+      role: "navigation",
+      "aria-label": "Stepper navigation",
+      ...props,
+      children: [
+        steps.map((step, index) => /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(
+          "div",
+          {
+            className: "stepper-step-wrapper",
+            style: {
+              position: "relative",
+              ...orientation === "horizontal" && {
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center"
+              },
+              ...orientation === "vertical" && {
+                display: "flex",
+                flexDirection: "column"
+              }
+            },
+            children: [
+              renderStep(step, index),
+              renderConnector(index === steps.length - 1)
+            ]
+          },
+          step.id
+        )),
+        renderNavigation(),
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("style", { children: `
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .stepper-step-wrapper:last-child .stepper-connector {
+          display: none;
+        }
+      ` })
+      ]
+    }
+  );
+});
+Stepper.displayName = "Stepper";
 
 // src/components/RadioGroup/RadioGroup.tsx
-var import_react23 = require("react");
-var import_jsx_runtime27 = require("react/jsx-runtime");
-var RadioGroupContext = (0, import_react23.createContext)(null);
+var import_react21 = require("react");
+var import_jsx_runtime25 = require("react/jsx-runtime");
+var RadioGroupContext = (0, import_react21.createContext)(null);
 var useRadioGroup = () => {
-  const context = (0, import_react23.useContext)(RadioGroupContext);
+  const context = (0, import_react21.useContext)(RadioGroupContext);
   if (!context) {
     throw new Error("RadioGroup components must be used within a RadioGroup");
   }
@@ -6195,18 +4888,18 @@ function getSizeStyles4(size) {
     case "sm":
       return {
         fontSize: typography.fontSize.bodySmall,
-        gap: spacing2[2]
+        gap: spacing[2]
       };
     case "lg":
       return {
         fontSize: typography.fontSize.body,
-        gap: spacing2[4]
+        gap: spacing[4]
       };
     case "md":
     default:
       return {
         fontSize: typography.fontSize.body,
-        gap: spacing2[3]
+        gap: spacing[3]
       };
   }
 }
@@ -6217,14 +4910,14 @@ function getOrientationStyles(orientation) {
         display: "flex",
         flexDirection: "row",
         flexWrap: "wrap",
-        gap: spacing2[4]
+        gap: spacing[4]
       };
     case "vertical":
     default:
       return {
         display: "flex",
         flexDirection: "column",
-        gap: spacing2[2]
+        gap: spacing[2]
       };
   }
 }
@@ -6242,7 +4935,7 @@ var RadioGroup = ({
   children,
   ...props
 }) => {
-  const fieldsetRef = (0, import_react23.useRef)(null);
+  const fieldsetRef = (0, import_react21.useRef)(null);
   const contextValue = {
     name,
     value,
@@ -6253,7 +4946,7 @@ var RadioGroup = ({
     error,
     orientation
   };
-  const handleKeyDown = (0, import_react23.useCallback)((event) => {
+  const handleKeyDown = (0, import_react21.useCallback)((event) => {
     if (disabled) return;
     const radios = fieldsetRef.current?.querySelectorAll('input[type="radio"]');
     if (!radios.length) return;
@@ -6300,7 +4993,7 @@ var RadioGroup = ({
     ...getOrientationStyles(orientation),
     ...style
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(RadioGroupContext.Provider, { value: contextValue, children: /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(RadioGroupContext.Provider, { value: contextValue, children: /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(
     "fieldset",
     {
       ref: fieldsetRef,
@@ -6313,20 +5006,20 @@ var RadioGroup = ({
       ...props,
       children: [
         children,
-        error && /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)(
+        error && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(
           "div",
           {
             role: "alert",
             style: {
               color: colors.error,
               fontSize: typography.fontSize.caption,
-              marginTop: spacing2[2],
+              marginTop: spacing[2],
               display: "flex",
               alignItems: "center",
-              gap: spacing2[1]
+              gap: spacing[1]
             },
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("span", { children: "\u26A0" }),
+              /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("span", { children: "\u26A0" }),
               error
             ]
           }
@@ -6353,11 +5046,11 @@ var RadioGroupLabel = ({
     fontFamily: typography.fontFamily.primary,
     fontWeight: typography.fontWeight.medium,
     color: colors.text.primary,
-    marginBottom: spacing2[2],
+    marginBottom: spacing[2],
     display: "block",
     ...style
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(
     "legend",
     {
       id: labelId,
@@ -6367,12 +5060,12 @@ var RadioGroupLabel = ({
       ...props,
       children: [
         children,
-        required && /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(
+        required && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(
           "span",
           {
             style: {
               color: colors.error,
-              marginLeft: spacing2[1]
+              marginLeft: spacing[1]
             },
             "aria-label": "required",
             children: "*"
@@ -6396,7 +5089,7 @@ var RadioGroupItem = ({
   const isSelected = selectedValue === value;
   const inputId = id || `${name}-${value}`;
   const labelId = `${inputId}-label`;
-  const handleChange = (0, import_react23.useCallback)((event) => {
+  const handleChange = (0, import_react21.useCallback)((event) => {
     if (isDisabled) return;
     if (onChange) {
       onChange(value);
@@ -6412,7 +5105,7 @@ var RadioGroupItem = ({
   const containerStyles = {
     display: "flex",
     alignItems: "center",
-    gap: spacing2[2],
+    gap: spacing[2],
     cursor: isDisabled ? "not-allowed" : "pointer",
     opacity: isDisabled ? 0.6 : 1,
     ...style
@@ -6438,8 +5131,8 @@ var RadioGroupItem = ({
     userSelect: "none",
     flex: 1
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("div", { className: classes, style: containerStyles, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: classes, style: containerStyles, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(
       "input",
       {
         type: "radio",
@@ -6454,7 +5147,7 @@ var RadioGroupItem = ({
         ...props
       }
     ),
-    /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(
+    /* @__PURE__ */ (0, import_jsx_runtime25.jsx)(
       "label",
       {
         id: labelId,
@@ -6467,8 +5160,8 @@ var RadioGroupItem = ({
 };
 
 // src/components/Sidebar/Sidebar.tsx
-var import_react24 = require("react");
-var import_jsx_runtime28 = require("react/jsx-runtime");
+var import_react22 = require("react");
+var import_jsx_runtime26 = require("react/jsx-runtime");
 var Sidebar2 = ({
   items,
   activeItem: controlledActiveItem,
@@ -6484,17 +5177,17 @@ var Sidebar2 = ({
   style,
   ...props
 }) => {
-  const [internalActiveItem, setInternalActiveItem] = (0, import_react24.useState)(
+  const [internalActiveItem, setInternalActiveItem] = (0, import_react22.useState)(
     defaultActiveItem || items[0]?.id || ""
   );
-  const [internalCollapsed, setInternalCollapsed] = (0, import_react24.useState)(false);
+  const [internalCollapsed, setInternalCollapsed] = (0, import_react22.useState)(false);
   const isControlled = controlledActiveItem !== void 0;
   const activeItem = isControlled ? controlledActiveItem : internalActiveItem;
   const isCollapseControlled = controlledCollapsed !== void 0;
   const collapsed = isCollapseControlled ? controlledCollapsed : internalCollapsed;
-  const itemRefs = (0, import_react24.useRef)({});
-  const sidebarRef = (0, import_react24.useRef)(null);
-  const handleItemChange = (0, import_react24.useCallback)((itemId) => {
+  const itemRefs = (0, import_react22.useRef)({});
+  const sidebarRef = (0, import_react22.useRef)(null);
+  const handleItemChange = (0, import_react22.useCallback)((itemId) => {
     if (isControlled) {
       onChange?.(itemId);
     } else {
@@ -6502,7 +5195,7 @@ var Sidebar2 = ({
       onChange?.(itemId);
     }
   }, [isControlled, onChange]);
-  const handleCollapseToggle = (0, import_react24.useCallback)(() => {
+  const handleCollapseToggle = (0, import_react22.useCallback)(() => {
     if (isCollapseControlled) {
       onCollapseChange?.(!collapsed);
     } else {
@@ -6510,7 +5203,7 @@ var Sidebar2 = ({
       onCollapseChange?.(!collapsed);
     }
   }, [isCollapseControlled, collapsed, onCollapseChange]);
-  const handleKeyDown = (0, import_react24.useCallback)((event, itemId) => {
+  const handleKeyDown = (0, import_react22.useCallback)((event, itemId) => {
     const flatItems = items.flatMap(
       (item) => item.children ? [item, ...item.children] : [item]
     );
@@ -6555,7 +5248,7 @@ var Sidebar2 = ({
       itemRefs.current[nextItemId]?.focus();
     }
   }, [items, handleItemChange]);
-  (0, import_react24.useEffect)(() => {
+  (0, import_react22.useEffect)(() => {
     if (activeItem && itemRefs.current[activeItem]) {
       itemRefs.current[activeItem]?.focus();
     }
@@ -6587,8 +5280,8 @@ var Sidebar2 = ({
       isDisabled ? "cria-sidebar__item--disabled" : null,
       hasChildren ? "cria-sidebar__item--has-children" : null
     ].filter(Boolean).join(" ");
-    return /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "cria-sidebar__item-wrapper", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)(
+    return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "cria-sidebar__item-wrapper", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(
         "button",
         {
           ref: (el) => {
@@ -6604,17 +5297,17 @@ var Sidebar2 = ({
           onClick: () => !isDisabled && handleItemChange(item.id),
           onKeyDown: (e) => !isDisabled && handleKeyDown(e, item.id),
           children: [
-            item.icon && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "cria-sidebar__item-icon", children: item.icon }),
-            !collapsed && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "cria-sidebar__item-label", children: item.label }),
-            !collapsed && item.badge && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "cria-sidebar__item-badge", children: item.badge }),
-            hasChildren && !collapsed && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "cria-sidebar__item-arrow", children: item.expanded ? "\u25BC" : "\u25B6" })
+            item.icon && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { className: "cria-sidebar__item-icon", children: item.icon }),
+            !collapsed && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { className: "cria-sidebar__item-label", children: item.label }),
+            !collapsed && item.badge && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { className: "cria-sidebar__item-badge", children: item.badge }),
+            hasChildren && !collapsed && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("span", { className: "cria-sidebar__item-arrow", children: item.expanded ? "\u25BC" : "\u25B6" })
           ]
         }
       ),
-      hasChildren && !collapsed && item.expanded && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "cria-sidebar__submenu", children: item.children?.map((child) => renderSidebarItem(child, level + 1)) })
+      hasChildren && !collapsed && item.expanded && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "cria-sidebar__submenu", children: item.children?.map((child) => renderSidebarItem(child, level + 1)) })
     ] }, item.id);
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(
     "div",
     {
       ref: sidebarRef,
@@ -6624,7 +5317,7 @@ var Sidebar2 = ({
       "aria-label": "Sidebar navigation",
       ...props,
       children: [
-        collapsible && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(
+        collapsible && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(
           "button",
           {
             className: "cria-sidebar__toggle",
@@ -6633,8 +5326,8 @@ var Sidebar2 = ({
             children: collapsed ? "\u25B6" : "\u25C0"
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "cria-sidebar__items", role: "menu", children: items.map((item) => renderSidebarItem(item)) }),
-        showContent && activeItemData?.content && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "cria-sidebar__items", role: "menu", children: items.map((item) => renderSidebarItem(item)) }),
+        showContent && activeItemData?.content && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(
           "div",
           {
             className: contentClasses,
@@ -6649,11 +5342,11 @@ var Sidebar2 = ({
 };
 
 // src/components/Snackbar/Snackbar.tsx
-var React25 = __toESM(require("react"), 1);
+var React23 = __toESM(require("react"), 1);
 var import_react_dom = require("react-dom");
-var import_phosphor_react13 = require("phosphor-react");
-var import_jsx_runtime29 = require("react/jsx-runtime");
-var Snackbar = React25.forwardRef(({
+var import_phosphor_react11 = require("phosphor-react");
+var import_jsx_runtime27 = require("react/jsx-runtime");
+var Snackbar = React23.forwardRef(({
   message,
   open,
   title,
@@ -6668,10 +5361,10 @@ var Snackbar = React25.forwardRef(({
   style,
   ...props
 }, ref) => {
-  const [isVisible, setIsVisible] = React25.useState(open);
-  const [isAnimating, setIsAnimating] = React25.useState(false);
-  const timeoutRef = React25.useRef(null);
-  React25.useEffect(() => {
+  const [isVisible, setIsVisible] = React23.useState(open);
+  const [isAnimating, setIsAnimating] = React23.useState(false);
+  const timeoutRef = React23.useRef(null);
+  React23.useEffect(() => {
     if (open && autoHideDuration > 0) {
       timeoutRef.current = setTimeout(() => {
         handleClose();
@@ -6683,7 +5376,7 @@ var Snackbar = React25.forwardRef(({
       }
     };
   }, [open, autoHideDuration]);
-  React25.useEffect(() => {
+  React23.useEffect(() => {
     if (open) {
       setIsVisible(true);
       setIsAnimating(true);
@@ -6696,20 +5389,20 @@ var Snackbar = React25.forwardRef(({
       }, 300);
     }
   }, [open]);
-  const handleClose = React25.useCallback(() => {
+  const handleClose = React23.useCallback(() => {
     onClose?.();
   }, [onClose]);
-  const handleBackdropClick = React25.useCallback((event) => {
+  const handleBackdropClick = React23.useCallback((event) => {
     if (dismissible && event.target === event.currentTarget) {
       handleClose();
     }
   }, [dismissible, handleClose]);
-  const handleKeyDown = React25.useCallback((event) => {
+  const handleKeyDown = React23.useCallback((event) => {
     if (event.key === "Escape" && dismissible) {
       handleClose();
     }
   }, [dismissible, handleClose]);
-  React25.useImperativeHandle(ref, () => ({
+  React23.useImperativeHandle(ref, () => ({
     close: handleClose
   }), [handleClose]);
   if (!isVisible) {
@@ -6718,13 +5411,13 @@ var Snackbar = React25.forwardRef(({
   const getDefaultIcon = () => {
     switch (variant) {
       case "success":
-        return /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(import_phosphor_react13.CheckCircle, { size: 20, "data-testid": "snackbar-icon" });
+        return /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(import_phosphor_react11.CheckCircle, { size: 20, "data-testid": "snackbar-icon" });
       case "error":
-        return /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(import_phosphor_react13.X, { size: 20, "data-testid": "snackbar-icon" });
+        return /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(import_phosphor_react11.X, { size: 20, "data-testid": "snackbar-icon" });
       case "warning":
-        return /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(import_phosphor_react13.Info, { size: 20, "data-testid": "snackbar-icon" });
+        return /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(import_phosphor_react11.Info, { size: 20, "data-testid": "snackbar-icon" });
       case "info":
-        return /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(import_phosphor_react13.Info, { size: 20, "data-testid": "snackbar-icon" });
+        return /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(import_phosphor_react11.Info, { size: 20, "data-testid": "snackbar-icon" });
       default:
         return null;
     }
@@ -6744,7 +5437,7 @@ var Snackbar = React25.forwardRef(({
     isAnimating && !open && "cria-snackbar--exiting",
     className
   ].filter(Boolean).join(" ");
-  const snackbarContent = /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(
+  const snackbarContent = /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(
     "div",
     {
       "data-testid": "snackbar-container",
@@ -6752,7 +5445,7 @@ var Snackbar = React25.forwardRef(({
       onClick: handleBackdropClick,
       onKeyDown: handleKeyDown,
       tabIndex: -1,
-      children: /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(
+      children: /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)(
         "div",
         {
           className: snackbarClasses,
@@ -6761,15 +5454,15 @@ var Snackbar = React25.forwardRef(({
           "aria-live": ariaLive,
           ...props,
           children: [
-            /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "cria-snackbar__content", children: [
-              displayIcon && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("div", { className: "cria-snackbar__icon", children: displayIcon }),
-              /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "cria-snackbar__text", children: [
-                title && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Typography, { variant: "body", weight: "medium", className: "cria-snackbar__title", children: title }),
-                /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(Typography, { variant: "body", className: "cria-snackbar__message", children: message })
+            /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("div", { className: "cria-snackbar__content", children: [
+              displayIcon && /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("div", { className: "cria-snackbar__icon", children: displayIcon }),
+              /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("div", { className: "cria-snackbar__text", children: [
+                title && /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Typography, { variant: "body", weight: "medium", className: "cria-snackbar__title", children: title }),
+                /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(Typography, { variant: "body", className: "cria-snackbar__message", children: message })
               ] })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "cria-snackbar__actions", children: [
-              action && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(
+            /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("div", { className: "cria-snackbar__actions", children: [
+              action && /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(
                 Button,
                 {
                   variant: "ghost",
@@ -6779,7 +5472,7 @@ var Snackbar = React25.forwardRef(({
                   children: action.label
                 }
               ),
-              dismissible && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(
+              dismissible && /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(
                 Button,
                 {
                   variant: "ghost",
@@ -6787,7 +5480,7 @@ var Snackbar = React25.forwardRef(({
                   onClick: handleClose,
                   className: "cria-snackbar__close",
                   "aria-label": "Close",
-                  children: /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(import_phosphor_react13.X, { size: 16 })
+                  children: /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(import_phosphor_react11.X, { size: 16 })
                 }
               )
             ] })
@@ -6801,9 +5494,9 @@ var Snackbar = React25.forwardRef(({
 Snackbar.displayName = "Snackbar";
 
 // src/components/Switch/Switch.tsx
-var import_react25 = __toESM(require("react"), 1);
-var import_jsx_runtime30 = require("react/jsx-runtime");
-var Switch = (0, import_react25.forwardRef)(({
+var import_react23 = __toESM(require("react"), 1);
+var import_jsx_runtime28 = require("react/jsx-runtime");
+var Switch = (0, import_react23.forwardRef)(({
   checked,
   disabled = false,
   required = false,
@@ -6827,13 +5520,13 @@ var Switch = (0, import_react25.forwardRef)(({
   inputProps = {},
   ...props
 }, ref) => {
-  const inputRef = (0, import_react25.useRef)(null);
-  const reactId = import_react25.default.useId();
+  const inputRef = (0, import_react23.useRef)(null);
+  const reactId = import_react23.default.useId();
   const isControlled = checked !== void 0;
-  const [uncontrolledChecked, setUncontrolledChecked] = import_react25.default.useState(!!checked);
+  const [uncontrolledChecked, setUncontrolledChecked] = import_react23.default.useState(!!checked);
   const isChecked = isControlled ? !!checked : uncontrolledChecked;
   const resolvedId = id || `${name || "switch"}-${reactId}`;
-  (0, import_react25.useImperativeHandle)(ref, () => ({
+  (0, import_react23.useImperativeHandle)(ref, () => ({
     focus: () => inputRef.current?.focus(),
     blur: () => inputRef.current?.blur(),
     getChecked: () => inputRef.current?.checked || false,
@@ -6843,17 +5536,17 @@ var Switch = (0, import_react25.forwardRef)(({
       }
     }
   }));
-  const handleChange = (0, import_react25.useCallback)((event) => {
+  const handleChange = (0, import_react23.useCallback)((event) => {
     if (disabled || readOnly) return;
     const next = event.target.checked;
     if (!isControlled) setUncontrolledChecked(next);
     onChange?.(next, event);
   }, [disabled, readOnly, onChange, isControlled]);
-  const handleClick = (0, import_react25.useCallback)((event) => {
+  const handleClick = (0, import_react23.useCallback)((event) => {
     if (disabled || readOnly) return;
     onClick?.(event);
   }, [disabled, readOnly, onClick]);
-  const handleKeyDown = (0, import_react25.useCallback)((event) => {
+  const handleKeyDown = (0, import_react23.useCallback)((event) => {
     if (disabled || readOnly) return;
     if (event.key === " " || event.key === "Enter") {
       event.preventDefault();
@@ -6887,9 +5580,9 @@ var Switch = (0, import_react25.forwardRef)(({
     disabled && "cria-switch__label--disabled",
     readOnly && "cria-switch__label--readonly"
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: switchClasses, style, ...props, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "cria-switch__container", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: switchClasses, style, ...props, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "cria-switch__container", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(
         "input",
         {
           ref: inputRef,
@@ -6919,20 +5612,20 @@ var Switch = (0, import_react25.forwardRef)(({
           ...inputProps
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("div", { className: "cria-switch__track", children: /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("div", { className: "cria-switch__thumb" }) }),
-      label && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("label", { htmlFor: resolvedId, className: labelClasses, children: /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)(
+      /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "cria-switch__track", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "cria-switch__thumb" }) }),
+      label && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("label", { htmlFor: resolvedId, className: labelClasses, children: /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)(
         Typography,
         {
           variant: "body",
           color: disabled ? "secondary" : "content",
           children: [
             label,
-            required && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "cria-switch__required", "aria-label": "required", children: " *" })
+            required && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "cria-switch__required", "aria-label": "required", children: " *" })
           ]
         }
       ) })
     ] }),
-    helperText && !errorMessage && !warningMessage && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(
+    helperText && !errorMessage && !warningMessage && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(
       Typography,
       {
         variant: "caption",
@@ -6942,7 +5635,7 @@ var Switch = (0, import_react25.forwardRef)(({
         children: helperText
       }
     ),
-    errorMessage && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(
+    errorMessage && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(
       Typography,
       {
         variant: "caption",
@@ -6952,7 +5645,7 @@ var Switch = (0, import_react25.forwardRef)(({
         children: errorMessage
       }
     ),
-    warningMessage && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(
+    warningMessage && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)(
       Typography,
       {
         variant: "caption",
@@ -6967,8 +5660,8 @@ var Switch = (0, import_react25.forwardRef)(({
 Switch.displayName = "Switch";
 
 // src/components/Tabs/Tabs.tsx
-var import_react26 = require("react");
-var import_jsx_runtime31 = require("react/jsx-runtime");
+var import_react24 = require("react");
+var import_jsx_runtime29 = require("react/jsx-runtime");
 var Tabs = ({
   items,
   activeTab: controlledActiveTab,
@@ -6983,14 +5676,14 @@ var Tabs = ({
   style,
   ...props
 }) => {
-  const [internalActiveTab, setInternalActiveTab] = (0, import_react26.useState)(
+  const [internalActiveTab, setInternalActiveTab] = (0, import_react24.useState)(
     defaultActiveTab || items[0]?.id || ""
   );
   const isControlled = controlledActiveTab !== void 0;
   const activeTab = isControlled ? controlledActiveTab : internalActiveTab;
-  const tabRefs = (0, import_react26.useRef)({});
-  const tabListRef = (0, import_react26.useRef)(null);
-  const handleTabChange = (0, import_react26.useCallback)((tabId) => {
+  const tabRefs = (0, import_react24.useRef)({});
+  const tabListRef = (0, import_react24.useRef)(null);
+  const handleTabChange = (0, import_react24.useCallback)((tabId) => {
     if (isControlled) {
       onChange?.(tabId);
     } else {
@@ -6998,7 +5691,7 @@ var Tabs = ({
       onChange?.(tabId);
     }
   }, [isControlled, onChange]);
-  const handleKeyDown = (0, import_react26.useCallback)((event, tabId) => {
+  const handleKeyDown = (0, import_react24.useCallback)((event, tabId) => {
     const tabIds = items.map((item) => item.id);
     const currentIndex = tabIds.indexOf(tabId);
     let nextIndex = currentIndex;
@@ -7040,7 +5733,7 @@ var Tabs = ({
       tabRefs.current[nextTabId]?.focus();
     }
   }, [items, handleTabChange]);
-  (0, import_react26.useEffect)(() => {
+  (0, import_react24.useEffect)(() => {
     if (activeTab && tabRefs.current[activeTab]) {
       tabRefs.current[activeTab]?.focus();
     }
@@ -7066,14 +5759,14 @@ var Tabs = ({
     `cria-tabs__content--${size}`
   ].filter(Boolean).join(" ");
   const activeTabItem = items.find((item) => item.id === activeTab);
-  return /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(
     "div",
     {
       className: containerClasses,
       style,
       ...props,
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(
           "div",
           {
             ref: tabListRef,
@@ -7091,7 +5784,7 @@ var Tabs = ({
                 isDisabled ? "cria-tabs__tab--disabled" : null,
                 fullWidth ? "cria-tabs__tab--full-width" : null
               ].filter(Boolean).join(" ");
-              return /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(
+              return /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)(
                 "button",
                 {
                   ref: (el) => {
@@ -7108,9 +5801,9 @@ var Tabs = ({
                   onClick: () => !isDisabled && handleTabChange(item.id),
                   onKeyDown: (e) => !isDisabled && handleKeyDown(e, item.id),
                   children: [
-                    item.icon && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "cria-tabs__tab-icon", children: item.icon }),
-                    /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "cria-tabs__tab-label", children: item.label }),
-                    item.badge && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "cria-tabs__tab-badge", children: item.badge })
+                    item.icon && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { className: "cria-tabs__tab-icon", children: item.icon }),
+                    /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { className: "cria-tabs__tab-label", children: item.label }),
+                    item.badge && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { className: "cria-tabs__tab-badge", children: item.badge })
                   ]
                 },
                 item.id
@@ -7118,7 +5811,7 @@ var Tabs = ({
             })
           }
         ),
-        showContent && activeTabItem && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(
+        showContent && activeTabItem && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(
           "div",
           {
             className: contentClasses,
@@ -7134,7 +5827,7 @@ var Tabs = ({
 };
 
 // src/components/Text/Text.tsx
-var import_jsx_runtime32 = require("react/jsx-runtime");
+var import_jsx_runtime30 = require("react/jsx-runtime");
 var TextBody = ({
   as = "span",
   children,
@@ -7156,7 +5849,7 @@ var TextBody = ({
     // Default dark gray
     margin: 0
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(Element, { className: classes, style: styles, ...props, children });
+  return /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Element, { className: classes, style: styles, ...props, children });
 };
 var TextContent = ({
   as = "p",
@@ -7180,7 +5873,7 @@ var TextContent = ({
     // Default dark gray
     margin: 0
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(Element, { className: classes, style: styles, ...props, children });
+  return /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Element, { className: classes, style: styles, ...props, children });
 };
 var TextContentTitle = ({
   as = "h3",
@@ -7203,7 +5896,7 @@ var TextContentTitle = ({
     // Default dark gray
     margin: 0
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(Element, { className: classes, style: styles, ...props, children });
+  return /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Element, { className: classes, style: styles, ...props, children });
 };
 var TextContentImportant = ({
   as = "span",
@@ -7226,14 +5919,14 @@ var TextContentImportant = ({
     // Default dark gray
     margin: 0
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(Element, { className: classes, style: styles, ...props, children });
+  return /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Element, { className: classes, style: styles, ...props, children });
 };
 
 // src/components/Textarea/Textarea.tsx
-var import_react27 = __toESM(require("react"), 1);
-var import_phosphor_react14 = require("phosphor-react");
-var import_jsx_runtime33 = require("react/jsx-runtime");
-var Textarea = (0, import_react27.forwardRef)(({
+var import_react25 = __toESM(require("react"), 1);
+var import_phosphor_react12 = require("phosphor-react");
+var import_jsx_runtime31 = require("react/jsx-runtime");
+var Textarea = (0, import_react25.forwardRef)(({
   label,
   placeholder,
   size = "md",
@@ -7261,9 +5954,9 @@ var Textarea = (0, import_react27.forwardRef)(({
   cols,
   ...props
 }, ref) => {
-  const textareaRef = (0, import_react27.useRef)(null);
-  const [isFocused, setIsFocused] = import_react27.default.useState(false);
-  (0, import_react27.useImperativeHandle)(ref, () => ({
+  const textareaRef = (0, import_react25.useRef)(null);
+  const [isFocused, setIsFocused] = import_react25.default.useState(false);
+  (0, import_react25.useImperativeHandle)(ref, () => ({
     focus: () => textareaRef.current?.focus(),
     blur: () => textareaRef.current?.blur(),
     select: () => textareaRef.current?.select(),
@@ -7277,34 +5970,34 @@ var Textarea = (0, import_react27.forwardRef)(({
       }
     }
   }));
-  const adjustHeight = (0, import_react27.useCallback)(() => {
+  const adjustHeight = (0, import_react25.useCallback)(() => {
     if (textareaRef.current && autoResize) {
       const textarea = textareaRef.current;
       textarea.style.height = "auto";
       textarea.style.height = `${textarea.scrollHeight}px`;
     }
   }, [autoResize]);
-  const handleChange = (0, import_react27.useCallback)((event) => {
+  const handleChange = (0, import_react25.useCallback)((event) => {
     if (autoResize) {
       adjustHeight();
     }
     onChange?.(event);
   }, [onChange, autoResize, adjustHeight]);
-  const handleFocus = (0, import_react27.useCallback)((event) => {
+  const handleFocus = (0, import_react25.useCallback)((event) => {
     setIsFocused(true);
     onFocus?.(event);
   }, [onFocus]);
-  const handleBlur = (0, import_react27.useCallback)((event) => {
+  const handleBlur = (0, import_react25.useCallback)((event) => {
     setIsFocused(false);
     onBlur?.(event);
   }, [onBlur]);
-  (0, import_react27.useEffect)(() => {
+  (0, import_react25.useEffect)(() => {
     if (autoResize) {
       adjustHeight();
     }
   }, [value, autoResize, adjustHeight]);
   const currentState = errorMessage ? "error" : successMessage ? "success" : warningMessage ? "warning" : state;
-  const textareaId = import_react27.default.useId();
+  const textareaId = import_react25.default.useId();
   const labelId = `${textareaId}-label`;
   const helperId = `${textareaId}-helper`;
   const errorId = `${textareaId}-error`;
@@ -7341,12 +6034,12 @@ var Textarea = (0, import_react27.forwardRef)(({
     warningMessage ? warningId : null,
     showCharacterCount && maxLength ? countId : null
   ].filter(Boolean).join(" ") || void 0;
-  return /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: containerClasses, style, children: [
-    label && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("label", { htmlFor: textareaId, id: labelId, className: "cria-textarea__label", children: /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(Typography, { variant: "body", weight: "medium", color: "primary", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: containerClasses, style, children: [
+    label && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("label", { htmlFor: textareaId, id: labelId, className: "cria-textarea__label", children: /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(Typography, { variant: "body", weight: "medium", color: "primary", children: [
       label,
-      required && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "cria-textarea__required", "aria-label": "required", children: " *" })
+      required && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "cria-textarea__required", "aria-label": "required", children: " *" })
     ] }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(
+    /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(
       "textarea",
       {
         ref: textareaRef,
@@ -7373,8 +6066,8 @@ var Textarea = (0, import_react27.forwardRef)(({
         ...props
       }
     ),
-    (helperText || errorMessage || successMessage || warningMessage || showCharacterCount) && /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "cria-textarea__messages", children: [
-      helperText && !errorMessage && !successMessage && !warningMessage && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(
+    (helperText || errorMessage || successMessage || warningMessage || showCharacterCount) && /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "cria-textarea__messages", children: [
+      helperText && !errorMessage && !successMessage && !warningMessage && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(
         Typography,
         {
           variant: "body",
@@ -7384,7 +6077,7 @@ var Textarea = (0, import_react27.forwardRef)(({
           children: helperText
         }
       ),
-      errorMessage && /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(
+      errorMessage && /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(
         Typography,
         {
           variant: "body",
@@ -7393,12 +6086,12 @@ var Textarea = (0, import_react27.forwardRef)(({
           id: errorId,
           role: "alert",
           children: [
-            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(import_phosphor_react14.WarningCircle, { size: 14, style: { marginRight: "4px" } }),
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(import_phosphor_react12.WarningCircle, { size: 14, style: { marginRight: "4px" } }),
             errorMessage
           ]
         }
       ),
-      successMessage && /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(
+      successMessage && /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(
         Typography,
         {
           variant: "body",
@@ -7406,12 +6099,12 @@ var Textarea = (0, import_react27.forwardRef)(({
           className: "cria-textarea__success-message",
           id: successId,
           children: [
-            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(import_phosphor_react14.Check, { size: 14, style: { marginRight: "4px" } }),
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(import_phosphor_react12.Check, { size: 14, style: { marginRight: "4px" } }),
             successMessage
           ]
         }
       ),
-      warningMessage && /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(
+      warningMessage && /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(
         Typography,
         {
           variant: "body",
@@ -7419,12 +6112,12 @@ var Textarea = (0, import_react27.forwardRef)(({
           className: "cria-textarea__warning-message",
           id: warningId,
           children: [
-            /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(import_phosphor_react14.WarningCircle, { size: 14, style: { marginRight: "4px" } }),
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(import_phosphor_react12.WarningCircle, { size: 14, style: { marginRight: "4px" } }),
             warningMessage
           ]
         }
       ),
-      showCharacterCount && maxLength && /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(
+      showCharacterCount && maxLength && /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(
         Typography,
         {
           variant: "body",
@@ -7444,9 +6137,9 @@ var Textarea = (0, import_react27.forwardRef)(({
 Textarea.displayName = "Textarea";
 
 // src/components/Tooltip/Tooltip.tsx
-var import_react28 = __toESM(require("react"), 1);
+var import_react26 = __toESM(require("react"), 1);
 var import_react_dom2 = require("react-dom");
-var import_jsx_runtime34 = require("react/jsx-runtime");
+var import_jsx_runtime32 = require("react/jsx-runtime");
 var Tooltip = ({
   content,
   children,
@@ -7464,15 +6157,15 @@ var Tooltip = ({
   onVisibilityChange,
   ...props
 }) => {
-  const [isVisible, setIsVisible] = (0, import_react28.useState)(false);
-  const [tooltipPosition, setTooltipPosition] = (0, import_react28.useState)({ top: 0, left: 0 });
-  const triggerRef = (0, import_react28.useRef)(null);
-  const tooltipRef = (0, import_react28.useRef)(null);
-  const showTimeoutRef = (0, import_react28.useRef)();
-  const hideTimeoutRef = (0, import_react28.useRef)();
+  const [isVisible, setIsVisible] = (0, import_react26.useState)(false);
+  const [tooltipPosition, setTooltipPosition] = (0, import_react26.useState)({ top: 0, left: 0 });
+  const triggerRef = (0, import_react26.useRef)(null);
+  const tooltipRef = (0, import_react26.useRef)(null);
+  const showTimeoutRef = (0, import_react26.useRef)();
+  const hideTimeoutRef = (0, import_react26.useRef)();
   const isControlled = controlledVisible !== void 0;
   const visible = isControlled ? controlledVisible : isVisible;
-  const calculatePosition = (0, import_react28.useCallback)(() => {
+  const calculatePosition = (0, import_react26.useCallback)(() => {
     if (!triggerRef.current || !tooltipRef.current) return;
     const triggerRect = triggerRef.current.getBoundingClientRect();
     const tooltipRect = tooltipRef.current.getBoundingClientRect();
@@ -7545,7 +6238,7 @@ var Tooltip = ({
       left
     });
   }, [position]);
-  const showTooltip = (0, import_react28.useCallback)(() => {
+  const showTooltip = (0, import_react26.useCallback)(() => {
     if (disabled || isControlled) return;
     if (showTimeoutRef.current) {
       clearTimeout(showTimeoutRef.current);
@@ -7555,7 +6248,7 @@ var Tooltip = ({
       onVisibilityChange?.(true);
     }, delay);
   }, [disabled, isControlled, delay, onVisibilityChange]);
-  const hideTooltip = (0, import_react28.useCallback)(() => {
+  const hideTooltip = (0, import_react26.useCallback)(() => {
     if (disabled || isControlled) return;
     if (showTimeoutRef.current) {
       clearTimeout(showTimeoutRef.current);
@@ -7565,28 +6258,28 @@ var Tooltip = ({
       onVisibilityChange?.(false);
     }, hideDelay);
   }, [disabled, isControlled, hideDelay, onVisibilityChange]);
-  const handleMouseEnter = (0, import_react28.useCallback)(() => {
+  const handleMouseEnter = (0, import_react26.useCallback)(() => {
     if (disabled) return;
     showTooltip();
   }, [disabled, showTooltip]);
-  const handleMouseLeave = (0, import_react28.useCallback)(() => {
+  const handleMouseLeave = (0, import_react26.useCallback)(() => {
     if (disabled) return;
     hideTooltip();
   }, [disabled, hideTooltip]);
-  const handleFocus = (0, import_react28.useCallback)(() => {
+  const handleFocus = (0, import_react26.useCallback)(() => {
     if (disabled) return;
     showTooltip();
   }, [disabled, showTooltip]);
-  const handleBlur = (0, import_react28.useCallback)(() => {
+  const handleBlur = (0, import_react26.useCallback)(() => {
     if (disabled) return;
     hideTooltip();
   }, [disabled, hideTooltip]);
-  (0, import_react28.useEffect)(() => {
+  (0, import_react26.useEffect)(() => {
     if (visible) {
       calculatePosition();
     }
   }, [visible, calculatePosition]);
-  (0, import_react28.useEffect)(() => {
+  (0, import_react26.useEffect)(() => {
     if (!visible) return;
     const updatePosition = () => calculatePosition();
     window.addEventListener("scroll", updatePosition, true);
@@ -7596,13 +6289,13 @@ var Tooltip = ({
       window.removeEventListener("resize", updatePosition);
     };
   }, [visible, calculatePosition]);
-  (0, import_react28.useEffect)(() => {
+  (0, import_react26.useEffect)(() => {
     return () => {
       if (showTimeoutRef.current) clearTimeout(showTimeoutRef.current);
       if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
     };
   }, []);
-  const triggerElement = import_react28.default.cloneElement(children, {
+  const triggerElement = import_react26.default.cloneElement(children, {
     ref: (el) => {
       triggerRef.current = el;
       const childRef = children.ref;
@@ -7629,10 +6322,10 @@ var Tooltip = ({
     visible ? "cria-tooltip--visible" : null,
     className
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)(import_jsx_runtime34.Fragment, { children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)(import_jsx_runtime32.Fragment, { children: [
     triggerElement,
     visible && (0, import_react_dom2.createPortal)(
-      /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)(
+      /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)(
         "div",
         {
           ref: tooltipRef,
@@ -7647,8 +6340,8 @@ var Tooltip = ({
           role: "tooltip",
           ...props,
           children: [
-            /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("div", { className: "cria-tooltip__content", children: content }),
-            arrow && /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("div", { className: "cria-tooltip__arrow" })
+            /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("div", { className: "cria-tooltip__content", children: content }),
+            arrow && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("div", { className: "cria-tooltip__arrow" })
           ]
         }
       ),
@@ -7658,8 +6351,8 @@ var Tooltip = ({
 };
 
 // src/components/FileUpload/FileUpload.tsx
-var import_react29 = __toESM(require("react"), 1);
-var import_jsx_runtime35 = require("react/jsx-runtime");
+var import_react27 = __toESM(require("react"), 1);
+var import_jsx_runtime33 = require("react/jsx-runtime");
 var FileUpload = ({
   label = "Upload files",
   description,
@@ -7676,11 +6369,11 @@ var FileUpload = ({
   style,
   ...props
 }) => {
-  const inputRef = (0, import_react29.useRef)(null);
-  const [internalFiles, setInternalFiles] = (0, import_react29.useState)([]);
+  const inputRef = (0, import_react27.useRef)(null);
+  const [internalFiles, setInternalFiles] = (0, import_react27.useState)([]);
   const isControlled = value !== void 0;
   const files = isControlled ? value : internalFiles;
-  const id = import_react29.default.useId();
+  const id = import_react27.default.useId();
   const validate = (next) => {
     if (!maxSizeBytes) return next;
     const valid = next.filter((f) => f.size <= maxSizeBytes);
@@ -7695,16 +6388,16 @@ var FileUpload = ({
     if (!isControlled) setInternalFiles(validated);
     onFilesChange?.(validated);
   };
-  const handleInput = (0, import_react29.useCallback)((e) => {
+  const handleInput = (0, import_react27.useCallback)((e) => {
     if (!e.target.files) return;
     const list = Array.from(e.target.files);
     commit(list);
   }, []);
-  const handleClick = (0, import_react29.useCallback)(() => {
+  const handleClick = (0, import_react27.useCallback)(() => {
     if (disabled) return;
     inputRef.current?.click();
   }, [disabled]);
-  const handleDrop = (0, import_react29.useCallback)((e) => {
+  const handleDrop = (0, import_react27.useCallback)((e) => {
     e.preventDefault();
     if (disabled) return;
     const dt = e.dataTransfer;
@@ -7723,7 +6416,7 @@ var FileUpload = ({
     const next = files.filter((_, i) => i !== idx);
     commit(next);
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(
     "div",
     {
       className: [
@@ -7735,11 +6428,11 @@ var FileUpload = ({
       style,
       ...props,
       children: [
-        label && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("label", { htmlFor: `file-input-${id}`, className: "cria-file-upload__label", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)(Typography, { variant: "body", weight: "medium", color: disabled ? "secondary" : "content", children: [
+        label && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("label", { htmlFor: `file-input-${id}`, className: "cria-file-upload__label", children: /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(Typography, { variant: "body", weight: "medium", color: disabled ? "secondary" : "content", children: [
           label,
-          required && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { "aria-label": "required", children: " *" })
+          required && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { "aria-label": "required", children: " *" })
         ] }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(
           "input",
           {
             ref: inputRef,
@@ -7753,7 +6446,7 @@ var FileUpload = ({
             "aria-describedby": description ? `file-desc-${id}` : void 0
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(
           "div",
           {
             className: "cria-file-upload__dropzone",
@@ -7772,23 +6465,23 @@ var FileUpload = ({
             onDrop: dragAndDrop ? handleDrop : void 0,
             "aria-disabled": disabled,
             "aria-label": label,
-            children: /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "cria-file-upload__dropzone-inner", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Typography, { variant: "body", color: "secondary", children: "Drag & drop files here, or click to select" }),
-              accept && /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)(Typography, { variant: "caption", color: "secondary", children: [
+            children: /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "cria-file-upload__dropzone-inner", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Typography, { variant: "body", color: "secondary", children: "Drag & drop files here, or click to select" }),
+              accept && /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(Typography, { variant: "caption", color: "secondary", children: [
                 "Accepted: ",
                 accept
               ] })
             ] })
           }
         ),
-        description && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(Typography, { id: `file-desc-${id}`, variant: "caption", color: "secondary", style: { marginTop: 8 }, children: description }),
-        files.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("ul", { className: "cria-file-upload__list", "aria-label": "Selected files", children: files.map((f, idx) => /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("li", { className: "cria-file-upload__item", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { className: "cria-file-upload__filename", children: f.name }),
-          /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("span", { className: "cria-file-upload__filesize", children: [
+        description && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Typography, { id: `file-desc-${id}`, variant: "caption", color: "secondary", style: { marginTop: 8 }, children: description }),
+        files.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("ul", { className: "cria-file-upload__list", "aria-label": "Selected files", children: files.map((f, idx) => /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("li", { className: "cria-file-upload__item", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "cria-file-upload__filename", children: f.name }),
+          /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { className: "cria-file-upload__filesize", children: [
             (f.size / 1024).toFixed(1),
             " KB"
           ] }),
-          !disabled && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+          !disabled && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(
             "button",
             {
               type: "button",
@@ -7804,10 +6497,1985 @@ var FileUpload = ({
   );
 };
 
-// src/components/Chat/Chat.tsx
+// src/components/TagChip/TagChip.tsx
+var import_react28 = require("react");
+var import_phosphor_react13 = require("phosphor-react");
+var import_jsx_runtime34 = require("react/jsx-runtime");
+var TagChip = (0, import_react28.forwardRef)(({
+  label,
+  variant = "default",
+  size = "md",
+  visualStyle: styleProp = "filled",
+  icon,
+  clickable = false,
+  removable = false,
+  disabled = false,
+  loading = false,
+  selected = false,
+  closeIcon,
+  onClick,
+  onRemove,
+  className = "",
+  style = {},
+  ...props
+}, ref) => {
+  const colorMap = {
+    default: colors.gray,
+    primary: colors.primary,
+    secondary: colors.secondary,
+    success: colors.success,
+    warning: colors.warning,
+    error: colors.error,
+    info: colors.info
+  };
+  const sizeConfig = {
+    sm: {
+      padding: `${spacing[1]} ${spacing[2]}`,
+      fontSize: typography.fontSize.caption,
+      iconSize: "0.875rem",
+      borderRadius: radii.sm,
+      minHeight: "1.5rem"
+    },
+    md: {
+      padding: `${spacing[2]} ${spacing[3]}`,
+      fontSize: typography.fontSize.body2,
+      iconSize: "1rem",
+      borderRadius: radii.md,
+      minHeight: "2rem"
+    },
+    lg: {
+      padding: `${spacing[3]} ${spacing[4]}`,
+      fontSize: typography.fontSize.body,
+      iconSize: "1.125rem",
+      borderRadius: radii.lg,
+      minHeight: "2.5rem"
+    }
+  };
+  const config = sizeConfig[size];
+  const selectedColor = colorMap[variant];
+  const getStyleConfig = () => {
+    const baseStyles = {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: spacing[1],
+      padding: config.padding,
+      fontSize: config.fontSize,
+      fontWeight: typography.fontWeight.medium,
+      borderRadius: config.borderRadius,
+      minHeight: config.minHeight,
+      transition: "all 0.2s ease",
+      cursor: clickable && !disabled ? "pointer" : "default",
+      opacity: disabled ? 0.6 : 1,
+      userSelect: "none",
+      outline: "none",
+      border: "none",
+      position: "relative",
+      ...style
+    };
+    switch (styleProp) {
+      case "filled":
+        return {
+          ...baseStyles,
+          backgroundColor: selected ? selectedColor[600] : selectedColor[500],
+          color: colors.white,
+          ...clickable && !disabled && {
+            "&:hover": {
+              backgroundColor: selectedColor[600],
+              transform: "translateY(-1px)",
+              boxShadow: shadows.md
+            },
+            "&:active": {
+              transform: "translateY(0)"
+            }
+          }
+        };
+      case "outlined":
+        return {
+          ...baseStyles,
+          backgroundColor: "transparent",
+          color: selected ? selectedColor[600] : selectedColor[500],
+          border: `1px solid ${selected ? selectedColor[600] : selectedColor[500]}`,
+          ...clickable && !disabled && {
+            "&:hover": {
+              backgroundColor: `${selectedColor[500]}10`,
+              borderColor: selectedColor[600]
+            }
+          }
+        };
+      case "soft":
+        return {
+          ...baseStyles,
+          backgroundColor: `${selectedColor[500]}15`,
+          color: selectedColor[700],
+          ...clickable && !disabled && {
+            "&:hover": {
+              backgroundColor: `${selectedColor[500]}25`
+            }
+          }
+        };
+      case "ghost":
+        return {
+          ...baseStyles,
+          backgroundColor: "transparent",
+          color: selectedColor[600],
+          ...clickable && !disabled && {
+            "&:hover": {
+              backgroundColor: `${selectedColor[500]}10`
+            }
+          }
+        };
+      default:
+        return baseStyles;
+    }
+  };
+  const styleConfig = getStyleConfig();
+  const handleClick = (event) => {
+    if (clickable && !disabled && !loading && onClick) {
+      onClick(event);
+    }
+  };
+  const handleKeyDown = (event) => {
+    if (clickable && !disabled && !loading && (event.key === "Enter" || event.key === " ") && onClick) {
+      event.preventDefault();
+      onClick(event);
+    }
+  };
+  const handleRemoveClick = (event) => {
+    if (disabled || loading || !onRemove) return;
+    event.stopPropagation();
+    onRemove(event);
+  };
+  const handleRemoveKeyDown = (event) => {
+    if (disabled || loading || !onRemove) return;
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      event.stopPropagation();
+      onRemove(event);
+    }
+  };
+  const Component = clickable ? "button" : "div";
+  return /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)(
+    Component,
+    {
+      ref,
+      className: `tag-chip variant-${variant} size-${size} style-${styleProp} ${className} ${clickable ? "clickable" : ""} ${disabled ? "disabled" : ""} ${loading ? "loading" : ""} ${selected ? "selected" : ""}`,
+      style: { ...styleConfig, ...style },
+      role: clickable ? "button" : "region",
+      "aria-label": label,
+      "aria-pressed": clickable ? selected : void 0,
+      onClick: handleClick,
+      onKeyDown: handleKeyDown,
+      tabIndex: clickable && !disabled ? 0 : void 0,
+      disabled: clickable && disabled,
+      ...props,
+      children: [
+        loading && /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(
+          "div",
+          {
+            className: "loading-spinner",
+            style: {
+              width: config.iconSize,
+              height: config.iconSize,
+              border: `2px solid ${colors.gray[300]}`,
+              borderTop: `2px solid ${selectedColor[500]}`,
+              borderRadius: "50%",
+              animation: "spin 1s linear infinite",
+              marginRight: spacing[1]
+            }
+          }
+        ),
+        icon && !loading && /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(
+          "span",
+          {
+            className: "tag-chip-icon",
+            style: {
+              fontSize: config.iconSize,
+              display: "inline-flex",
+              alignItems: "center"
+            },
+            children: icon
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(
+          "span",
+          {
+            className: "tag-chip-label",
+            style: {
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+              maxWidth: "200px"
+            },
+            children: label
+          }
+        ),
+        removable && !loading && /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(
+          "button",
+          {
+            className: "tag-chip-remove",
+            type: "button",
+            "aria-label": `Remove ${label}`,
+            onClick: handleRemoveClick,
+            onKeyDown: handleRemoveKeyDown,
+            style: {
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: config.iconSize,
+              height: config.iconSize,
+              backgroundColor: "transparent",
+              border: "none",
+              borderRadius: "50%",
+              cursor: disabled ? "not-allowed" : "pointer",
+              marginLeft: spacing[1],
+              transition: "background-color 0.2s ease",
+              ...styleProp === "filled" && {
+                color: colors.white,
+                "&:hover": {
+                  backgroundColor: "rgba(255, 255, 255, 0.2)"
+                }
+              },
+              ...styleProp !== "filled" && {
+                color: "inherit",
+                "&:hover": {
+                  backgroundColor: `${selectedColor[500]}20`
+                }
+              }
+            },
+            disabled,
+            children: closeIcon || /* @__PURE__ */ (0, import_jsx_runtime34.jsx)(import_phosphor_react13.X, { size: parseInt(config.iconSize) * 0.75 })
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("style", { children: `
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .tag-chip.clickable:focus {
+          outline: 2px solid ${selectedColor[500]};
+          outline-offset: 2px;
+        }
+
+        .tag-chip.clickable:focus-visible {
+          outline: 2px solid ${selectedColor[500]};
+          outline-offset: 2px;
+        }
+
+        .tag-chip-remove:focus {
+          outline: 2px solid ${selectedColor[500]};
+          outline-offset: 1px;
+        }
+
+        .tag-chip-remove:focus-visible {
+          outline: 2px solid ${selectedColor[500]};
+          outline-offset: 1px;
+        }
+      ` })
+      ]
+    }
+  );
+});
+TagChip.displayName = "TagChip";
+
+// src/components/Timeline/Timeline.tsx
+var import_react29 = require("react");
+var import_jsx_runtime35 = require("react/jsx-runtime");
+var TimelineItem = (0, import_react29.forwardRef)(({
+  item,
+  size = "md",
+  showTimestamp = true,
+  timestampFormat,
+  onClick,
+  className = "",
+  style = {},
+  ...props
+}, ref) => {
+  const {
+    id,
+    title,
+    description,
+    timestamp,
+    icon,
+    variant = "default",
+    style: itemStyle = "filled",
+    loading = false,
+    selected = false,
+    disabled = false
+  } = item;
+  const sizeConfig = {
+    sm: {
+      padding: spacing[2],
+      iconSize: "1rem",
+      fontSize: typography.fontSize.caption,
+      titleFontSize: typography.fontSize.body2,
+      borderRadius: radii.sm,
+      iconPadding: spacing[1]
+    },
+    md: {
+      padding: spacing[3],
+      iconSize: "1.25rem",
+      fontSize: typography.fontSize.body2,
+      titleFontSize: typography.fontSize.body,
+      borderRadius: radii.md,
+      iconPadding: spacing[2]
+    },
+    lg: {
+      padding: spacing[4],
+      iconSize: "1.5rem",
+      fontSize: typography.fontSize.body,
+      titleFontSize: typography.fontSize.h3,
+      borderRadius: radii.lg,
+      iconPadding: spacing[3]
+    }
+  };
+  const config = sizeConfig[size];
+  const colorMap = {
+    default: colors.gray,
+    primary: colors.primary,
+    secondary: colors.secondary,
+    success: colors.success,
+    warning: colors.warning,
+    error: colors.error,
+    info: colors.info
+  };
+  const selectedColor = colorMap[variant];
+  const formatTimestamp = (timestamp2, format) => {
+    const date = new Date(timestamp2);
+    if (format) {
+      return date.toLocaleDateString();
+    }
+    return date.toLocaleString();
+  };
+  const getItemStyles = () => {
+    const baseStyles = {
+      display: "flex",
+      alignItems: "flex-start",
+      gap: spacing[3],
+      padding: config.padding,
+      borderRadius: config.borderRadius,
+      transition: "all 0.2s ease",
+      cursor: onClick && !disabled ? "pointer" : "default",
+      opacity: disabled ? 0.6 : 1,
+      position: "relative"
+    };
+    let variantStyles;
+    switch (itemStyle) {
+      case "filled":
+        variantStyles = {
+          backgroundColor: selected ? selectedColor[100] : colors.white,
+          border: `1px solid ${selected ? selectedColor[300] : colors.gray[200]}`,
+          ...onClick && !disabled && {
+            "&:hover": {
+              backgroundColor: selectedColor[50],
+              borderColor: selectedColor[300],
+              transform: "translateY(-1px)",
+              boxShadow: shadows.sm
+            }
+          }
+        };
+        break;
+      case "outlined":
+        variantStyles = {
+          backgroundColor: "transparent",
+          border: `2px solid ${selected ? selectedColor[500] : selectedColor[300]}`,
+          ...onClick && !disabled && {
+            "&:hover": {
+              backgroundColor: `${selectedColor[500]}10`,
+              borderColor: selectedColor[500]
+            }
+          }
+        };
+        break;
+      case "ghost":
+        variantStyles = {
+          backgroundColor: selected ? `${selectedColor[500]}15` : "transparent",
+          border: "none",
+          ...onClick && !disabled && {
+            "&:hover": {
+              backgroundColor: `${selectedColor[500]}10`
+            }
+          }
+        };
+        break;
+      default:
+        variantStyles = {};
+    }
+    return {
+      ...baseStyles,
+      ...variantStyles,
+      ...style
+      // Custom styles override default styles
+    };
+  };
+  const getIconStyles = () => {
+    const baseIconStyles = {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: config.iconSize,
+      height: config.iconSize,
+      borderRadius: "50%",
+      flexShrink: 0,
+      fontSize: config.iconSize
+    };
+    switch (itemStyle) {
+      case "filled":
+        return {
+          ...baseIconStyles,
+          backgroundColor: selectedColor[500],
+          color: colors.white
+        };
+      case "outlined":
+        return {
+          ...baseIconStyles,
+          backgroundColor: "transparent",
+          color: selectedColor[500],
+          border: `2px solid ${selectedColor[500]}`
+        };
+      case "ghost":
+        return {
+          ...baseIconStyles,
+          backgroundColor: `${selectedColor[500]}20`,
+          color: selectedColor[600]
+        };
+      default:
+        return {
+          ...baseIconStyles,
+          backgroundColor: selectedColor[500],
+          color: colors.white
+        };
+    }
+  };
+  const itemStyles = getItemStyles();
+  const iconStyles = getIconStyles();
+  const handleClick = (event) => {
+    if (onClick && !disabled && !loading) {
+      onClick(item);
+    }
+  };
+  const handleKeyDown = (event) => {
+    if (onClick && !disabled && !loading && (event.key === "Enter" || event.key === " ")) {
+      event.preventDefault();
+      onClick(item);
+    }
+  };
+  const Component = onClick ? "button" : "div";
+  return /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)(
+    Component,
+    {
+      ref,
+      className: `timeline-item variant-${variant} size-${size} style-${itemStyle} ${className} ${onClick ? "clickable" : ""} ${disabled ? "disabled" : ""} ${loading ? "loading" : ""} ${selected ? "selected" : ""}`,
+      style: itemStyles,
+      role: onClick ? "button" : "listitem",
+      "aria-label": `${title}${description ? `: ${description}` : ""}`,
+      onClick: handleClick,
+      onKeyDown: handleKeyDown,
+      tabIndex: onClick && !disabled ? 0 : void 0,
+      disabled: onClick && disabled,
+      ...props,
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("div", { className: "timeline-item-icon", style: iconStyles, children: loading ? /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+          "div",
+          {
+            style: {
+              width: "0.75rem",
+              height: "0.75rem",
+              border: `2px solid ${colors.gray[300]}`,
+              borderTop: `2px solid ${selectedColor[500]}`,
+              borderRadius: "50%",
+              animation: "spin 1s linear infinite"
+            }
+          }
+        ) : icon }),
+        /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "timeline-item-content", style: { flex: 1, minWidth: 0 }, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+            "div",
+            {
+              className: "timeline-item-title",
+              style: {
+                fontSize: config.titleFontSize,
+                fontWeight: typography.fontWeight.semiBold,
+                color: colors.gray[900],
+                marginBottom: description ? spacing[1] : 0,
+                lineHeight: typography.lineHeight.tight
+              },
+              children: title
+            }
+          ),
+          description && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+            "div",
+            {
+              className: "timeline-item-description",
+              style: {
+                fontSize: config.fontSize,
+                color: colors.gray[600],
+                lineHeight: typography.lineHeight.relaxed,
+                marginBottom: showTimestamp ? spacing[1] : 0
+              },
+              children: description
+            }
+          ),
+          showTimestamp && timestamp && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+            "div",
+            {
+              className: "timeline-item-timestamp",
+              style: {
+                fontSize: typography.fontSize.caption,
+                color: colors.gray[500],
+                fontWeight: typography.fontWeight.medium
+              },
+              children: formatTimestamp(timestamp, timestampFormat)
+            }
+          )
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("style", { children: `
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .timeline-item.clickable:focus {
+          outline: 2px solid ${selectedColor[500]};
+          outline-offset: 2px;
+        }
+
+        .timeline-item.clickable:focus-visible {
+          outline: 2px solid ${selectedColor[500]};
+          outline-offset: 2px;
+        }
+      ` })
+      ]
+    }
+  );
+});
+TimelineItem.displayName = "TimelineItem";
+var Timeline = (0, import_react29.forwardRef)(({
+  items,
+  orientation = "vertical",
+  size = "md",
+  variant = "default",
+  showConnector = true,
+  showTimestamps = true,
+  connector,
+  connectorStyle = "solid",
+  connectorColor = "gray",
+  loading = false,
+  emptyMessage = "No activities yet",
+  emptyComponent,
+  itemRenderer,
+  onItemClick,
+  className = "",
+  style = {},
+  ...props
+}, ref) => {
+  const sizeConfig = {
+    sm: {
+      itemSpacing: spacing[3],
+      iconSize: "1rem",
+      fontSize: typography.fontSize.caption,
+      titleFontSize: typography.fontSize.body2,
+      connectorWidth: "2px"
+    },
+    md: {
+      itemSpacing: spacing[4],
+      iconSize: "1.25rem",
+      fontSize: typography.fontSize.body2,
+      titleFontSize: typography.fontSize.body,
+      connectorWidth: "2px"
+    },
+    lg: {
+      itemSpacing: spacing[5],
+      iconSize: "1.5rem",
+      fontSize: typography.fontSize.body,
+      titleFontSize: typography.fontSize.h3,
+      connectorWidth: "3px"
+    }
+  };
+  const config = sizeConfig[size];
+  const connectorColorMap = {
+    primary: colors.primary[500],
+    secondary: colors.secondary[500],
+    gray: colors.gray[300]
+  };
+  const formatTimestamp = (timestamp, format) => {
+    const date = new Date(timestamp);
+    if (format) {
+      return date.toLocaleDateString();
+    }
+    return date.toLocaleString();
+  };
+  const renderLoading = () => /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+    "div",
+    {
+      className: "timeline-loading",
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: spacing[8],
+        color: colors.gray[500]
+      },
+      "aria-label": "Loading timeline",
+      children: /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+        "div",
+        {
+          style: {
+            width: "2rem",
+            height: "2rem",
+            border: `3px solid ${colors.gray[200]}`,
+            borderTop: `3px solid ${colors.primary[500]}`,
+            borderRadius: "50%",
+            animation: "spin 1s linear infinite"
+          }
+        }
+      )
+    }
+  );
+  const renderEmpty = () => {
+    if (emptyComponent) {
+      return emptyComponent;
+    }
+    return /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+      "div",
+      {
+        className: "timeline-empty",
+        style: {
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: spacing[8],
+          color: colors.gray[500],
+          textAlign: "center"
+        },
+        children: /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+            "div",
+            {
+              style: {
+                fontSize: "2rem",
+                marginBottom: spacing[2],
+                opacity: 0.5
+              },
+              children: "\u{1F4C5}"
+            }
+          ),
+          /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("div", { style: { fontSize: config.fontSize }, children: emptyMessage })
+        ] })
+      }
+    );
+  };
+  const renderConnector = (isLast) => {
+    if (!showConnector || isLast) return null;
+    if (connector) {
+      return connector;
+    }
+    const connectorStyles = {
+      solid: "solid",
+      dashed: "dashed",
+      dotted: "dotted"
+    };
+    return /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+      "div",
+      {
+        className: "timeline-connector",
+        style: {
+          position: "absolute",
+          left: "50%",
+          top: "100%",
+          transform: "translateX(-50%)",
+          width: config.connectorWidth,
+          height: config.itemSpacing,
+          backgroundColor: connectorColorMap[connectorColor],
+          borderStyle: connectorStyles[connectorStyle],
+          borderWidth: "0 0 0 2px",
+          borderColor: connectorColorMap[connectorColor],
+          zIndex: 1
+        }
+      }
+    );
+  };
+  const renderItem = (item, index) => {
+    if (itemRenderer) {
+      return itemRenderer({ item, index });
+    }
+    return /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+      TimelineItem,
+      {
+        item,
+        size,
+        showTimestamp: showTimestamps,
+        timestampFormat: item.timestampFormat,
+        onClick: onItemClick,
+        style: {
+          marginBottom: index < items.length - 1 ? config.itemSpacing : 0
+        }
+      },
+      item.id
+    );
+  };
+  if (loading) {
+    return /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+      "div",
+      {
+        ref,
+        className: `timeline loading ${className}`,
+        style,
+        ...props,
+        children: renderLoading()
+      }
+    );
+  }
+  if (items.length === 0) {
+    return /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+      "div",
+      {
+        ref,
+        className: `timeline empty ${className}`,
+        style,
+        ...props,
+        children: renderEmpty()
+      }
+    );
+  }
+  return /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)(
+    "div",
+    {
+      ref,
+      className: `timeline orientation-${orientation} size-${size} variant-${variant} ${className}`,
+      style: {
+        position: "relative",
+        ...orientation === "vertical" && {
+          display: "flex",
+          flexDirection: "column"
+        },
+        ...orientation === "horizontal" && {
+          display: "flex",
+          flexDirection: "row",
+          overflowX: "auto"
+        },
+        ...style
+      },
+      role: "list",
+      ...props,
+      children: [
+        items.map((item, index) => /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)(
+          "div",
+          {
+            className: "timeline-item-wrapper",
+            style: {
+              position: "relative",
+              ...orientation === "vertical" && {
+                display: "flex",
+                flexDirection: "column"
+              },
+              ...orientation === "horizontal" && {
+                flex: "0 0 auto",
+                minWidth: "200px"
+              }
+            },
+            children: [
+              renderItem(item, index),
+              renderConnector(index === items.length - 1)
+            ]
+          },
+          item.id
+        )),
+        /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("style", { children: `
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .timeline-item-wrapper:last-child .timeline-connector {
+          display: none;
+        }
+      ` })
+      ]
+    }
+  );
+});
+Timeline.displayName = "Timeline";
+
+// src/components/NotificationCenter/NotificationCenter.tsx
 var import_react30 = require("react");
-var import_phosphor_react15 = require("phosphor-react");
+var import_phosphor_react14 = require("phosphor-react");
 var import_jsx_runtime36 = require("react/jsx-runtime");
+var Notification = (0, import_react30.forwardRef)(({
+  notification,
+  size = "md",
+  variant = "default",
+  showProgress = false,
+  showIcon = true,
+  onDismiss,
+  onAction,
+  className = "",
+  ...props
+}, ref) => {
+  const {
+    id,
+    title,
+    message,
+    type = "info",
+    icon,
+    duration = 5e3,
+    dismissible = true,
+    action,
+    loading = false,
+    disabled = false
+  } = notification;
+  const [progress, setProgress] = (0, import_react30.useState)(100);
+  const [isVisible, setIsVisible] = (0, import_react30.useState)(true);
+  const sizeConfig = {
+    sm: {
+      padding: spacing[2],
+      iconSize: "1rem",
+      fontSize: typography.fontSize.caption,
+      titleFontSize: typography.fontSize.body2,
+      borderRadius: radii.sm,
+      iconPadding: spacing[1]
+    },
+    md: {
+      padding: spacing[3],
+      iconSize: "1.25rem",
+      fontSize: typography.fontSize.body2,
+      titleFontSize: typography.fontSize.body,
+      borderRadius: radii.md,
+      iconPadding: spacing[2]
+    },
+    lg: {
+      padding: spacing[4],
+      iconSize: "1.5rem",
+      fontSize: typography.fontSize.body,
+      titleFontSize: typography.fontSize.h3,
+      borderRadius: radii.lg,
+      iconPadding: spacing[3]
+    }
+  };
+  const config = sizeConfig[size];
+  (0, import_react30.useEffect)(() => {
+    if (duration > 0 && !disabled && onDismiss) {
+      const timer = setTimeout(() => {
+        setIsVisible(false);
+        setTimeout(() => onDismiss(id), 300);
+      }, duration);
+      return () => clearTimeout(timer);
+    }
+  }, [duration, id, onDismiss, disabled]);
+  const colorMap = {
+    success: {
+      main: colors.success[500],
+      bg: colors.success[50],
+      border: colors.success[200],
+      text: colors.success[800],
+      icon: colors.success[600]
+    },
+    error: {
+      main: colors.error[500],
+      bg: colors.error[50],
+      border: colors.error[200],
+      text: colors.error[800],
+      icon: colors.error[600]
+    },
+    warning: {
+      main: colors.warning[500],
+      bg: colors.warning[50],
+      border: colors.warning[200],
+      text: colors.warning[800],
+      icon: colors.warning[600]
+    },
+    info: {
+      main: colors.info[500],
+      bg: colors.info[50],
+      border: colors.info[200],
+      text: colors.info[800],
+      icon: colors.info[600]
+    }
+  };
+  const selectedColor = colorMap[type];
+  const defaultIcons = {
+    success: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(import_phosphor_react14.Check, { size: 16 }),
+    error: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(import_phosphor_react14.XCircle, { size: 16 }),
+    warning: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(import_phosphor_react14.Warning, { size: 16 }),
+    info: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(import_phosphor_react14.Info, { size: 16 })
+  };
+  const getNotificationStyles = () => {
+    const baseStyles = {
+      display: "flex",
+      alignItems: "flex-start",
+      gap: spacing[3],
+      padding: config.padding,
+      borderRadius: config.borderRadius,
+      border: `1px solid ${selectedColor.border}`,
+      backgroundColor: selectedColor.bg,
+      boxShadow: shadows.sm,
+      transition: "all 0.3s ease",
+      opacity: isVisible ? 1 : 0,
+      transform: isVisible ? "translateX(0)" : "translateX(100%)",
+      position: "relative",
+      minWidth: "300px",
+      maxWidth: "400px",
+      ...props.style
+    };
+    if (variant === "compact") {
+      return {
+        ...baseStyles,
+        padding: spacing[2],
+        minWidth: "250px",
+        maxWidth: "300px"
+      };
+    }
+    return baseStyles;
+  };
+  const getIconStyles = () => ({
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: config.iconSize,
+    height: config.iconSize,
+    borderRadius: "50%",
+    backgroundColor: selectedColor.main,
+    color: colors.white,
+    flexShrink: 0,
+    fontSize: config.iconSize
+  });
+  const notificationStyles = getNotificationStyles();
+  const iconStyles = getIconStyles();
+  const handleDismiss = () => {
+    if (dismissible && !disabled) {
+      setIsVisible(false);
+      setTimeout(() => onDismiss?.(id), 300);
+    }
+  };
+  const handleAction = () => {
+    if (action && !disabled) {
+      action.onClick(id, notification);
+    }
+  };
+  if (!isVisible) {
+    return null;
+  }
+  return /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)(
+    "div",
+    {
+      ref,
+      className: `notification type-${type} size-${size} variant-${variant} ${className} ${disabled ? "disabled" : ""} ${loading ? "loading" : ""}`,
+      role: "alert",
+      "aria-live": "polite",
+      style: notificationStyles,
+      ...props,
+      children: [
+        showIcon && /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("div", { className: "notification-icon", style: iconStyles, children: loading ? /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
+          "div",
+          {
+            style: {
+              width: "0.75rem",
+              height: "0.75rem",
+              border: `2px solid ${colors.gray[300]}`,
+              borderTop: `2px solid ${colors.white}`,
+              borderRadius: "50%",
+              animation: "spin 1s linear infinite"
+            }
+          }
+        ) : icon || defaultIcons[type] }),
+        /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { className: "notification-content", style: { flex: 1, minWidth: 0 }, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
+            "div",
+            {
+              className: "notification-title",
+              style: {
+                fontSize: config.titleFontSize,
+                fontWeight: typography.fontWeight.semiBold,
+                color: selectedColor.text,
+                marginBottom: message ? spacing[1] : 0,
+                lineHeight: typography.lineHeight.tight
+              },
+              children: title
+            }
+          ),
+          message && /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
+            "div",
+            {
+              className: "notification-message",
+              style: {
+                fontSize: config.fontSize,
+                color: colors.gray[600],
+                lineHeight: typography.lineHeight.relaxed,
+                marginBottom: action ? spacing[2] : 0
+              },
+              children: message
+            }
+          ),
+          action && /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
+            Button,
+            {
+              variant: "outlined",
+              size: "sm",
+              onClick: handleAction,
+              disabled,
+              style: {
+                marginTop: spacing[1]
+              },
+              children: action.label
+            }
+          )
+        ] }),
+        dismissible && /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
+          "button",
+          {
+            type: "button",
+            "aria-label": "Dismiss notification",
+            onClick: handleDismiss,
+            disabled,
+            style: {
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              background: "none",
+              border: "none",
+              cursor: disabled ? "not-allowed" : "pointer",
+              padding: spacing[1],
+              color: colors.gray[400],
+              transition: "color 0.2s ease",
+              flexShrink: 0
+            },
+            children: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(import_phosphor_react14.X, { size: 16 })
+          }
+        ),
+        showProgress && duration > 0 && /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
+          "div",
+          {
+            className: "notification-progress",
+            style: {
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: "3px",
+              backgroundColor: selectedColor.border,
+              borderRadius: `0 0 ${config.borderRadius} ${config.borderRadius}`
+            },
+            children: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
+              "div",
+              {
+                style: {
+                  height: "100%",
+                  width: `${progress}%`,
+                  backgroundColor: selectedColor.main,
+                  transition: "width 0.1s linear",
+                  borderRadius: `0 0 ${config.borderRadius} ${config.borderRadius}`
+                }
+              }
+            )
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("style", { children: `
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .notification:hover {
+          box-shadow: ${shadows.md};
+          transform: translateY(-1px);
+        }
+
+        .notification.disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+
+        .notification.disabled:hover {
+          transform: none;
+          box-shadow: ${shadows.sm};
+        }
+      ` })
+      ]
+    }
+  );
+});
+Notification.displayName = "Notification";
+var NotificationCenter = (0, import_react30.forwardRef)(({
+  notifications,
+  position = "top-right",
+  size = "md",
+  variant = "default",
+  maxNotifications = 5,
+  showProgress = false,
+  showIcons = true,
+  stackDirection = "down",
+  animation = "slide",
+  notificationRenderer,
+  onDismiss,
+  onAction,
+  className = "",
+  style = {},
+  ...props
+}, ref) => {
+  const limitedNotifications = notifications.slice(0, maxNotifications);
+  const getPositionStyles = () => {
+    const baseStyles = {
+      position: "fixed",
+      zIndex: 1e3,
+      pointerEvents: "none"
+    };
+    switch (position) {
+      case "top-left":
+        return { ...baseStyles, top: spacing[4], left: spacing[4] };
+      case "top-right":
+        return { ...baseStyles, top: spacing[4], right: spacing[4] };
+      case "bottom-left":
+        return { ...baseStyles, bottom: spacing[4], left: spacing[4] };
+      case "bottom-right":
+        return { ...baseStyles, bottom: spacing[4], right: spacing[4] };
+      case "top-center":
+        return { ...baseStyles, top: spacing[4], left: "50%", transform: "translateX(-50%)" };
+      case "bottom-center":
+        return { ...baseStyles, bottom: spacing[4], left: "50%", transform: "translateX(-50%)" };
+      default:
+        return { ...baseStyles, top: spacing[4], right: spacing[4] };
+    }
+  };
+  const getContainerStyles2 = () => ({
+    display: "flex",
+    flexDirection: stackDirection === "up" ? "column-reverse" : "column",
+    gap: spacing[2],
+    pointerEvents: "auto",
+    ...getPositionStyles(),
+    ...style
+  });
+  const renderNotification = (notification) => {
+    if (notificationRenderer) {
+      return notificationRenderer({ notification, onDismiss, onAction });
+    }
+    return /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
+      Notification,
+      {
+        notification,
+        size,
+        variant,
+        showProgress,
+        showIcon: showIcons,
+        onDismiss,
+        onAction
+      },
+      notification.id
+    );
+  };
+  if (limitedNotifications.length === 0) {
+    return null;
+  }
+  return /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
+    "div",
+    {
+      ref,
+      className: `notification-center position-${position} stack-${stackDirection} animation-${animation} ${className}`,
+      style: getContainerStyles2(),
+      role: "region",
+      "aria-label": "Notifications",
+      "aria-live": "polite",
+      ...props,
+      children: limitedNotifications.map((notification) => renderNotification(notification))
+    }
+  );
+});
+NotificationCenter.displayName = "NotificationCenter";
+
+// src/components/Version/Version.tsx
+var import_jsx_runtime37 = require("react/jsx-runtime");
+var Version = ({
+  version,
+  badge = false,
+  showBuildInfo = false,
+  className = "",
+  style,
+  size = "body2",
+  variant = "secondary"
+}) => {
+  const currentVersion = version || "0.1.0";
+  const buildInfo = showBuildInfo ? {
+    buildTime: (/* @__PURE__ */ new Date()).toISOString(),
+    nodeVersion: process.env.NODE_VERSION || "unknown",
+    buildEnv: process.env.NODE_ENV || "development"
+  } : null;
+  const getVariantColor = () => {
+    switch (variant) {
+      case "primary":
+        return colors.primary[600];
+      case "secondary":
+        return colors.gray[600];
+      case "muted":
+        return colors.gray[500];
+      case "success":
+        return colors.success[600];
+      case "warning":
+        return colors.warning[600];
+      case "error":
+        return colors.error[600];
+      default:
+        return colors.gray[600];
+    }
+  };
+  const versionStyles = {
+    color: getVariantColor(),
+    ...style
+  };
+  const badgeStyles = {
+    display: "inline-flex",
+    alignItems: "center",
+    padding: `${spacing[1]} ${spacing[2]}`,
+    backgroundColor: colors.gray[100],
+    border: `1px solid ${colors.gray[200]}`,
+    borderRadius: radii.sm,
+    boxShadow: shadows.xs,
+    ...versionStyles
+  };
+  const buildInfoStyles = {
+    marginTop: spacing[1],
+    fontSize: "0.75rem",
+    color: colors.gray[500],
+    fontFamily: "monospace"
+  };
+  if (badge) {
+    return /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { className: `version-badge ${className}`, style: badgeStyles, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)(Typography, { variant: size, style: { color: "inherit", margin: 0 }, children: [
+        "v",
+        currentVersion
+      ] }),
+      showBuildInfo && buildInfo && /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { style: buildInfoStyles, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { children: [
+          "Build: ",
+          buildInfo.buildTime
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { children: [
+          "Node: ",
+          buildInfo.nodeVersion
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { children: [
+          "Env: ",
+          buildInfo.buildEnv
+        ] })
+      ] })
+    ] });
+  }
+  return /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { className: `version ${className}`, style: versionStyles, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)(Typography, { variant: size, style: { color: "inherit", margin: 0 }, children: [
+      "v",
+      currentVersion
+    ] }),
+    showBuildInfo && buildInfo && /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { style: buildInfoStyles, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { children: [
+        "Build: ",
+        buildInfo.buildTime
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { children: [
+        "Node: ",
+        buildInfo.nodeVersion
+      ] }),
+      /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("div", { children: [
+        "Env: ",
+        buildInfo.buildEnv
+      ] })
+    ] })
+  ] });
+};
+Version.displayName = "Version";
+
+// src/components/Topbar/Topbar.tsx
+var import_react31 = require("react");
+var import_phosphor_react15 = require("phosphor-react");
+var import_jsx_runtime38 = require("react/jsx-runtime");
+
+// src/components/Drawer/Drawer.tsx
+var import_react32 = require("react");
+var import_react_dom3 = require("react-dom");
+var import_phosphor_react16 = require("phosphor-react");
+var import_jsx_runtime39 = require("react/jsx-runtime");
+var Drawer = ({
+  isOpen,
+  onClose,
+  title,
+  children,
+  header,
+  footer,
+  position = "right",
+  size = "md",
+  variant = "default",
+  showCloseButton = true,
+  showOverlay = true,
+  closeOnOverlayClick = true,
+  closeOnEscape = true,
+  lockBodyScroll = true,
+  usePortal = true,
+  zIndex = 9999,
+  animationDuration = 300,
+  loading = false,
+  overlayClassName = "",
+  overlayStyle,
+  className = "",
+  style,
+  ...props
+}) => {
+  const [isVisible, setIsVisible] = (0, import_react32.useState)(false);
+  const [isAnimating, setIsAnimating] = (0, import_react32.useState)(false);
+  const drawerRef = (0, import_react32.useRef)(null);
+  const previousActiveElement = (0, import_react32.useRef)(null);
+  const [prefersReducedMotion, setPrefersReducedMotion] = (0, import_react32.useState)(false);
+  (0, import_react32.useEffect)(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
+    const handleChange = (e) => {
+      setPrefersReducedMotion(e.matches);
+    };
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+  (0, import_react32.useEffect)(() => {
+    if (isOpen) {
+      setIsVisible(true);
+      setIsAnimating(true);
+      previousActiveElement.current = document.activeElement;
+      setTimeout(() => {
+        if (drawerRef.current) {
+          drawerRef.current.focus();
+        }
+      }, 50);
+      setTimeout(() => {
+        setIsAnimating(false);
+      }, animationDuration);
+    } else {
+      setIsAnimating(true);
+      setTimeout(() => {
+        setIsVisible(false);
+        setIsAnimating(false);
+        if (previousActiveElement.current) {
+          previousActiveElement.current.focus();
+        }
+      }, animationDuration);
+    }
+  }, [isOpen, animationDuration]);
+  (0, import_react32.useEffect)(() => {
+    if (isOpen && lockBodyScroll) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isOpen, lockBodyScroll]);
+  (0, import_react32.useEffect)(() => {
+    if (!isOpen || !closeOnEscape) return;
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [isOpen, closeOnEscape, onClose]);
+  const handleOverlayClick = (0, import_react32.useCallback)((event) => {
+    if (closeOnOverlayClick && event.target === event.currentTarget) {
+      onClose();
+    }
+  }, [closeOnOverlayClick, onClose]);
+  const handleKeyDown = (0, import_react32.useCallback)((event) => {
+    if (event.key === "Tab") {
+      const drawer = drawerRef.current;
+      if (!drawer) return;
+      const focusableElements = drawer.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+      if (event.shiftKey) {
+        if (document.activeElement === firstElement) {
+          event.preventDefault();
+          lastElement?.focus();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          event.preventDefault();
+          firstElement?.focus();
+        }
+      }
+    }
+  }, []);
+  const drawerClasses = [
+    "drawer",
+    `drawer--${position}`,
+    `drawer--${size}`,
+    `drawer--${variant}`,
+    isOpen && "drawer--open",
+    isAnimating && "drawer--animating",
+    !prefersReducedMotion && "drawer--animated",
+    prefersReducedMotion && "drawer--no-animation",
+    loading && "drawer--loading",
+    className
+  ].filter(Boolean).join(" ");
+  const overlayClasses = [
+    "drawer__overlay",
+    isOpen && "drawer__overlay--open",
+    isAnimating && "drawer__overlay--animating",
+    overlayClassName
+  ].filter(Boolean).join(" ");
+  const drawerStyles = {
+    zIndex,
+    transitionDuration: `${animationDuration}ms`,
+    ...style
+  };
+  const overlayStyles = {
+    zIndex: zIndex - 1,
+    transitionDuration: `${animationDuration}ms`,
+    ...overlayStyle
+  };
+  if (!isVisible) {
+    return null;
+  }
+  const drawerContent = /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)(import_jsx_runtime39.Fragment, { children: [
+    showOverlay && /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(
+      "div",
+      {
+        className: overlayClasses,
+        style: overlayStyles,
+        onClick: handleOverlayClick,
+        "data-testid": "drawer-overlay",
+        "aria-hidden": "true"
+      }
+    ),
+    /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)(
+      "div",
+      {
+        ref: drawerRef,
+        className: drawerClasses,
+        style: drawerStyles,
+        role: "dialog",
+        "aria-modal": "true",
+        "aria-labelledby": title ? "drawer-title" : void 0,
+        tabIndex: -1,
+        onKeyDown: handleKeyDown,
+        ...props,
+        children: [
+          loading && /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("div", { className: "drawer__loading", "data-testid": "drawer-loading", children: /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(import_phosphor_react16.Spinner, { size: 24, className: "animate-spin" }) }),
+          (title || header || showCloseButton) && /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("div", { className: "drawer__header", children: header || /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)(import_jsx_runtime39.Fragment, { children: [
+            title && /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(
+              Typography,
+              {
+                id: "drawer-title",
+                variant: "h3",
+                weight: "semibold",
+                className: "drawer__title",
+                children: title
+              }
+            ),
+            showCloseButton && /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(
+              Button,
+              {
+                variant: "ghost",
+                size: "sm",
+                onClick: onClose,
+                "aria-label": "Close drawer",
+                className: "drawer__close-button",
+                children: /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(import_phosphor_react16.X, { size: 20 })
+              }
+            )
+          ] }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("div", { className: "drawer__content", children }),
+          footer && /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("div", { className: "drawer__footer", children: footer })
+        ]
+      }
+    )
+  ] });
+  if (usePortal) {
+    return (0, import_react_dom3.createPortal)(drawerContent, document.body);
+  }
+  return drawerContent;
+};
+
+// src/components/Backgrounds/Backgrounds.tsx
+var import_react33 = require("react");
+var import_jsx_runtime40 = require("react/jsx-runtime");
+var Backgrounds = ({
+  children,
+  variant = "plain",
+  gradientType = "linear",
+  gradientDirection = "to-right",
+  gradientColors,
+  gradientStops,
+  gradientPosition = "center",
+  patternType = "dots",
+  patternSize = "20px",
+  patternOpacity = 0.1,
+  patternColor,
+  textureType = "paper",
+  textureIntensity = 0.5,
+  textureScale = 1,
+  modernType = "radial-glow",
+  colorScheme = "primary",
+  size = "md",
+  intensity = "medium",
+  animated = false,
+  animationDuration = 3e3,
+  animationDelay = 0,
+  showOverlay = false,
+  overlayOpacity = 0.1,
+  overlayColor = "#000000",
+  responsive = true,
+  className = "",
+  style,
+  ariaLabel,
+  ariaDescribedBy,
+  ariaLabelledBy,
+  ...props
+}) => {
+  const gradientBackground = (0, import_react33.useMemo)(() => {
+    if (variant !== "gradient") return "";
+    const colors2 = gradientColors || getDefaultGradientColors(colorScheme);
+    const stops = gradientStops || getDefaultGradientStops(colors2.length);
+    let gradient = "";
+    switch (gradientType) {
+      case "linear":
+        gradient = `linear-gradient(${gradientDirection}, ${colors2.map(
+          (color, index) => `${color} ${stops[index] || "0%"}`
+        ).join(", ")})`;
+        break;
+      case "radial":
+        gradient = `radial-gradient(circle at ${gradientPosition}, ${colors2.map(
+          (color, index) => `${color} ${stops[index] || "0%"}`
+        ).join(", ")})`;
+        break;
+      case "conic":
+        gradient = `conic-gradient(from ${gradientDirection}, ${colors2.map(
+          (color, index) => `${color} ${stops[index] || "0%"}`
+        ).join(", ")})`;
+        break;
+    }
+    return gradient;
+  }, [variant, gradientType, gradientDirection, gradientColors, gradientStops, gradientPosition, colorScheme]);
+  const patternBackground = (0, import_react33.useMemo)(() => {
+    if (variant !== "pattern") return "";
+    const color = patternColor || getDefaultPatternColor(colorScheme);
+    const opacity = patternOpacity;
+    switch (patternType) {
+      case "dots":
+        return `radial-gradient(circle at 1px 1px, ${color} ${opacity}, transparent 0)`;
+      case "grid":
+        return `linear-gradient(${color} ${opacity} 1px, transparent 1px), linear-gradient(90deg, ${color} ${opacity} 1px, transparent 1px)`;
+      case "lines":
+        return `repeating-linear-gradient(45deg, transparent, transparent 2px, ${color} ${opacity} 2px, ${color} ${opacity} 4px)`;
+      case "waves":
+        return `radial-gradient(ellipse at center, ${color} ${opacity} 0%, transparent 70%)`;
+      case "geometric":
+        return `conic-gradient(from 0deg at 50% 50%, ${color} ${opacity} 0deg, transparent 60deg, ${color} ${opacity} 120deg, transparent 180deg, ${color} ${opacity} 240deg, transparent 300deg)`;
+      default:
+        return "";
+    }
+  }, [variant, patternType, patternColor, patternOpacity, colorScheme]);
+  const textureBackground = (0, import_react33.useMemo)(() => {
+    if (variant !== "texture") return "";
+    const intensity2 = textureIntensity;
+    const scale = textureScale;
+    switch (textureType) {
+      case "paper":
+        return `radial-gradient(circle at 20% 50%, transparent 20%, rgba(255,255,255,${intensity2}) 21%, rgba(255,255,255,${intensity2}) 34%, transparent 35%, transparent), linear-gradient(0deg, rgba(255,255,255,${intensity2 * 0.5}) 50%, transparent 50%)`;
+      case "fabric":
+        return `repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,${intensity2 * 0.3}) 2px, rgba(255,255,255,${intensity2 * 0.3}) 4px), repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(0,0,0,${intensity2 * 0.1}) 2px, rgba(0,0,0,${intensity2 * 0.1}) 4px)`;
+      case "metal":
+        return `linear-gradient(45deg, rgba(255,255,255,${intensity2 * 0.8}) 25%, transparent 25%), linear-gradient(-45deg, rgba(255,255,255,${intensity2 * 0.8}) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgba(255,255,255,${intensity2 * 0.4}) 75%), linear-gradient(-45deg, transparent 75%, rgba(255,255,255,${intensity2 * 0.4}) 75%)`;
+      case "wood":
+        return `repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(139,69,19,${intensity2 * 0.3}) 2px, rgba(139,69,19,${intensity2 * 0.3}) 4px), repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(160,82,45,${intensity2 * 0.2}) 2px, rgba(160,82,45,${intensity2 * 0.2}) 4px)`;
+      default:
+        return "";
+    }
+  }, [variant, textureType, textureIntensity, textureScale]);
+  const modernBackground = (0, import_react33.useMemo)(() => {
+    if (variant !== "modern") return "";
+    const colors2 = getDefaultGradientColors(colorScheme);
+    switch (modernType) {
+      case "radial-glow":
+        return `radial-gradient(60% 120% at 50% 50%, hsla(0,0%,100%,0) 0, ${colors2[0]}50 100%)`;
+      case "grid-dots":
+        return `linear-gradient(to right, #4f4f4f2e 1px, transparent 1px), linear-gradient(to bottom, #8080800a 1px, transparent 1px), radial-gradient(circle 400px at 50% 300px, ${colors2[0]}36, #000)`;
+      case "mesh-gradient":
+        return `radial-gradient(125% 125% at 50% 10%, #fff 40%, ${colors2[0]} 100%)`;
+      case "noise":
+        return `radial-gradient(#ffffff33 1px, #00091d 1px), url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`;
+      case "aurora":
+        return `linear-gradient(45deg, ${colors2[0]}20, ${colors2[1]}20, ${colors2[0]}20), radial-gradient(circle at 20% 50%, ${colors2[0]}40, transparent 50%), radial-gradient(circle at 80% 20%, ${colors2[1]}40, transparent 50%), radial-gradient(circle at 40% 80%, ${colors2[0]}40, transparent 50%)`;
+      case "waves":
+        return `radial-gradient(circle at 50% 50%, ${colors2[0]}20, transparent 50%), radial-gradient(circle at 80% 20%, ${colors2[1]}20, transparent 50%), radial-gradient(circle at 20% 80%, ${colors2[0]}20, transparent 50%)`;
+      default:
+        return "";
+    }
+  }, [variant, modernType, colorScheme]);
+  const backgroundClasses = [
+    "backgrounds",
+    `backgrounds--${variant}`,
+    variant === "gradient" && `backgrounds--gradient-${gradientType}`,
+    variant === "gradient" && `backgrounds--gradient-${gradientDirection}`,
+    variant === "pattern" && `backgrounds--pattern-${patternType}`,
+    variant === "texture" && `backgrounds--texture-${textureType}`,
+    variant === "modern" && `backgrounds--modern-${modernType}`,
+    `backgrounds--color-${colorScheme}`,
+    `backgrounds--${size}`,
+    `backgrounds--intensity-${intensity}`,
+    animated && "backgrounds--animated",
+    showOverlay && "backgrounds--overlay",
+    responsive && "backgrounds--responsive",
+    className
+  ].filter(Boolean).join(" ");
+  const backgroundStyles = {
+    ...variant === "gradient" && gradientBackground && {
+      background: gradientBackground,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat"
+    },
+    ...variant === "pattern" && patternBackground && {
+      backgroundImage: patternBackground,
+      backgroundSize: patternSize,
+      backgroundPosition: "center",
+      backgroundRepeat: "repeat"
+    },
+    ...variant === "texture" && textureBackground && {
+      backgroundImage: textureBackground,
+      backgroundSize: `${100 * textureScale}%`,
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat"
+    },
+    ...variant === "modern" && modernBackground && {
+      background: modernBackground,
+      backgroundSize: modernType === "noise" ? "20px 20px, 100% 100%" : "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: modernType === "noise" ? "repeat, no-repeat" : "no-repeat"
+    },
+    ...animated && {
+      animationDuration: `${animationDuration}ms`,
+      animationDelay: `${animationDelay}ms`
+    },
+    ...showOverlay && {
+      position: "relative"
+    },
+    ...style
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)(
+    "div",
+    {
+      className: backgroundClasses,
+      style: backgroundStyles,
+      role: "region",
+      "aria-label": ariaLabel,
+      "aria-describedby": ariaDescribedBy,
+      "aria-labelledby": ariaLabelledBy,
+      ...props,
+      children: [
+        showOverlay && /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(
+          "div",
+          {
+            className: "backgrounds__overlay",
+            style: {
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: overlayColor,
+              opacity: overlayOpacity,
+              pointerEvents: "none",
+              zIndex: 1
+            }
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("div", { className: "backgrounds__content", style: { position: "relative", zIndex: 2 }, children })
+      ]
+    }
+  );
+};
+function getDefaultGradientColors(colorScheme) {
+  switch (colorScheme) {
+    case "primary":
+      return ["var(--cria-primary)", "var(--cria-primary-dark)"];
+    case "secondary":
+      return ["var(--cria-secondary)", "var(--cria-secondary-dark)"];
+    case "neutral":
+      return ["var(--cria-background-light)", "var(--cria-background-dark)"];
+    case "accent":
+      return ["var(--cria-primary-light)", "var(--cria-primary-darker)"];
+    default:
+      return ["var(--cria-primary)", "var(--cria-primary-dark)"];
+  }
+}
+function getDefaultGradientStops(count) {
+  const stops = [];
+  for (let i = 0; i < count; i++) {
+    stops.push(`${i / (count - 1) * 100}%`);
+  }
+  return stops;
+}
+function getDefaultPatternColor(colorScheme) {
+  switch (colorScheme) {
+    case "primary":
+      return "var(--cria-primary)";
+    case "secondary":
+      return "var(--cria-secondary)";
+    case "neutral":
+      return "var(--cria-text-secondary)";
+    case "accent":
+      return "var(--cria-primary-light)";
+    default:
+      return "var(--cria-primary)";
+  }
+}
+
+// src/components/Changelog/Changelog.tsx
+var import_react34 = require("react");
+var import_phosphor_react17 = require("phosphor-react");
+var import_jsx_runtime41 = require("react/jsx-runtime");
+var Changelog = ({
+  entries,
+  itemsPerPage = 5,
+  showPagination = true,
+  className = "",
+  style,
+  ...props
+}) => {
+  const [currentPage, setCurrentPage] = (0, import_react34.useState)(1);
+  const totalPages = Math.ceil(entries.length / itemsPerPage);
+  const paginatedEntries = (0, import_react34.useMemo)(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return entries.slice(startIndex, endIndex);
+  }, [entries, currentPage, itemsPerPage]);
+  const getTypeColor = (type) => {
+    switch (type) {
+      case "major":
+        return "error";
+      case "minor":
+        return "warning";
+      case "patch":
+        return "success";
+      case "hotfix":
+        return "info";
+      default:
+        return "default";
+    }
+  };
+  const getChangeTypeColor = (type) => {
+    switch (type) {
+      case "added":
+        return "success";
+      case "changed":
+        return "warning";
+      case "deprecated":
+        return "info";
+      case "removed":
+        return "error";
+      case "fixed":
+        return "success";
+      case "security":
+        return "error";
+      default:
+        return "default";
+    }
+  };
+  const getChangeTypeIcon = (type) => {
+    const iconProps = { size: 16, style: { marginRight: spacing[1] } };
+    switch (type) {
+      case "added":
+        return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(import_phosphor_react17.Plus, { ...iconProps });
+      case "changed":
+        return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(import_phosphor_react17.ArrowsClockwise, { ...iconProps });
+      case "deprecated":
+        return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(import_phosphor_react17.Warning, { ...iconProps });
+      case "removed":
+        return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(import_phosphor_react17.Minus, { ...iconProps });
+      case "fixed":
+        return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(import_phosphor_react17.Wrench, { ...iconProps });
+      case "security":
+        return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(import_phosphor_react17.Lock, { ...iconProps });
+      default:
+        return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(import_phosphor_react17.Tag, { ...iconProps });
+    }
+  };
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+  const renderPagination = () => {
+    if (!showPagination || totalPages <= 1) return null;
+    const pages = [];
+    const maxVisiblePages = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+    if (currentPage > 1) {
+      pages.push(
+        /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(
+          Button,
+          {
+            variant: "outline",
+            size: "sm",
+            onClick: () => handlePageChange(currentPage - 1),
+            style: { marginRight: spacing[2] },
+            children: "Previous"
+          },
+          "prev"
+        )
+      );
+    }
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(
+        /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(
+          Button,
+          {
+            variant: i === currentPage ? "primary" : "outline",
+            size: "sm",
+            onClick: () => handlePageChange(i),
+            style: { marginRight: spacing[2] },
+            children: i
+          },
+          i
+        )
+      );
+    }
+    if (currentPage < totalPages) {
+      pages.push(
+        /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(
+          Button,
+          {
+            variant: "outline",
+            size: "sm",
+            onClick: () => handlePageChange(currentPage + 1),
+            style: { marginLeft: spacing[2] },
+            children: "Next"
+          },
+          "next"
+        )
+      );
+    }
+    return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("div", { style: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: spacing[8],
+      gap: spacing[2]
+    }, children: pages });
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)(
+    "div",
+    {
+      className: `changelog ${className}`,
+      style: {
+        width: "100%",
+        ...style
+      },
+      ...props,
+      children: [
+        paginatedEntries.map((entry) => /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)(Card, { style: { marginBottom: spacing[6] }, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { style: {
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: spacing[4]
+          }, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { style: { display: "flex", alignItems: "center", gap: spacing[4] }, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Typography, { variant: "title2", style: { margin: 0 }, children: entry.title }),
+              /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Badge, { variant: getTypeColor(entry.type), size: "sm", children: entry.version })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { style: {
+              display: "flex",
+              alignItems: "center",
+              gap: spacing[4],
+              color: "#666",
+              fontSize: "14px"
+            }, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { style: { display: "flex", alignItems: "center", gap: spacing[1] }, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(import_phosphor_react17.Calendar, { size: 16 }),
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { children: entry.date })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { style: { display: "flex", alignItems: "center", gap: spacing[1] }, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(import_phosphor_react17.User, { size: 16 }),
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { children: entry.author })
+              ] }),
+              entry.branch && /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { style: { display: "flex", alignItems: "center", gap: spacing[1] }, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(import_phosphor_react17.GitBranch, { size: 16 }),
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { children: entry.branch })
+              ] })
+            ] })
+          ] }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)(CardContent, { children: [
+            entry.description && /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Typography, { variant: "body", style: { marginBottom: spacing[4], color: "#666" }, children: entry.description }),
+            entry.changes.map((change, index) => /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { style: { marginBottom: spacing[4] }, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { style: {
+                display: "flex",
+                alignItems: "center",
+                gap: spacing[2],
+                marginBottom: spacing[2]
+              }, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("div", { style: { display: "flex", alignItems: "center" }, children: getChangeTypeIcon(change.type) }),
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Badge, { variant: getChangeTypeColor(change.type), size: "sm", children: change.type.charAt(0).toUpperCase() + change.type.slice(1) })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("ul", { style: {
+                margin: 0,
+                paddingLeft: spacing[6],
+                listStyle: "none"
+              }, children: change.items.map((item, itemIndex) => /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("li", { style: {
+                marginBottom: spacing[1],
+                position: "relative"
+              }, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { style: {
+                  position: "absolute",
+                  left: `-${spacing[4]}`,
+                  color: "#666"
+                }, children: "\u2022" }),
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Typography, { variant: "body", style: { margin: 0 }, children: item })
+              ] }, itemIndex)) })
+            ] }, index)),
+            entry.breaking && entry.breaking.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { style: {
+              marginTop: spacing[4],
+              padding: spacing[4],
+              backgroundColor: "#fef2f2",
+              border: "1px solid #fecaca",
+              borderRadius: spacing[2]
+            }, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)(Typography, { variant: "title3", style: {
+                color: "#dc2626",
+                marginBottom: spacing[2],
+                fontWeight: "bold"
+              }, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(import_phosphor_react17.Warning, { size: 16, style: { marginRight: spacing[1] } }),
+                "Breaking Changes"
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("ul", { style: {
+                margin: 0,
+                paddingLeft: spacing[6],
+                listStyle: "none"
+              }, children: entry.breaking.map((item, index) => /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("li", { style: {
+                marginBottom: spacing[1],
+                position: "relative"
+              }, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { style: {
+                  position: "absolute",
+                  left: `-${spacing[4]}`,
+                  color: "#dc2626"
+                }, children: "\u2022" }),
+                /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(Typography, { variant: "body", style: { margin: 0, color: "#dc2626" }, children: item })
+              ] }, index)) })
+            ] })
+          ] })
+        ] }, entry.id)),
+        renderPagination()
+      ]
+    }
+  );
+};
+var Changelog_default = Changelog;
+
+// src/components/Chat/Chat.tsx
+var import_react35 = require("react");
+var import_phosphor_react18 = require("phosphor-react");
+var import_jsx_runtime42 = require("react/jsx-runtime");
 var Chat = ({
   messages = [],
   onSend,
@@ -7820,20 +8488,20 @@ var Chat = ({
   style,
   ...props
 }) => {
-  const [text, setText] = (0, import_react30.useState)("");
-  const [replyingTo, setReplyingTo] = (0, import_react30.useState)(null);
-  const logRef = (0, import_react30.useRef)(null);
-  const [revealMsgId, setRevealMsgId] = (0, import_react30.useState)(null);
-  const [revealIndex, setRevealIndex] = (0, import_react30.useState)(0);
-  const revealTimer = (0, import_react30.useRef)(null);
-  const lastRevealedId = (0, import_react30.useRef)(null);
-  (0, import_react30.useEffect)(() => {
+  const [text, setText] = (0, import_react35.useState)("");
+  const [replyingTo, setReplyingTo] = (0, import_react35.useState)(null);
+  const logRef = (0, import_react35.useRef)(null);
+  const [revealMsgId, setRevealMsgId] = (0, import_react35.useState)(null);
+  const [revealIndex, setRevealIndex] = (0, import_react35.useState)(0);
+  const revealTimer = (0, import_react35.useRef)(null);
+  const lastRevealedId = (0, import_react35.useRef)(null);
+  (0, import_react35.useEffect)(() => {
     const el = logRef.current;
     if (el) {
       el.scrollTop = el.scrollHeight;
     }
   }, [messages, typing]);
-  (0, import_react30.useEffect)(() => {
+  (0, import_react35.useEffect)(() => {
     if (!revealThem) return;
     const last = messages[messages.length - 1];
     if (!last || last.author !== "them") return;
@@ -7856,7 +8524,7 @@ var Chat = ({
       if (revealTimer.current) window.clearInterval(revealTimer.current);
     };
   }, [messages, revealThem, revealSpeedMs]);
-  const handleSend = (0, import_react30.useCallback)(() => {
+  const handleSend = (0, import_react35.useCallback)(() => {
     if (!text.trim() || disabled) return;
     onSend?.(text.trim(), replyingTo?.id);
     setText("");
@@ -7880,8 +8548,8 @@ var Chat = ({
   const renderAttachment = (attachment) => {
     switch (attachment.type) {
       case "image":
-        return /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { style: { marginTop: 8, borderRadius: 8, overflow: "hidden" }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
+        return /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { style: { marginTop: 8, borderRadius: 8, overflow: "hidden" }, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(
             "img",
             {
               src: attachment.url,
@@ -7889,7 +8557,7 @@ var Chat = ({
               style: { maxWidth: "100%", height: "auto", display: "block" }
             }
           ),
-          attachment.title && /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { style: {
+          attachment.title && /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { style: {
             padding: 12,
             background: "rgba(0,0,0,0.05)",
             borderTop: "1px solid rgba(0,0,0,0.1)",
@@ -7897,11 +8565,11 @@ var Chat = ({
             flexDirection: "column",
             gap: 8
           }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 4 }, children: attachment.title }),
-              attachment.description && /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(Typography, { variant: "caption", color: "secondary", children: attachment.description })
+            /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 4 }, children: attachment.title }),
+              attachment.description && /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "caption", color: "secondary", children: attachment.description })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
+            /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(
               Button,
               {
                 variant: "primary",
@@ -7916,8 +8584,8 @@ var Chat = ({
           ] })
         ] });
       case "video":
-        return /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { style: { marginTop: 8, borderRadius: 8, overflow: "hidden", position: "relative" }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
+        return /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { style: { marginTop: 8, borderRadius: 8, overflow: "hidden", position: "relative" }, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(
             "video",
             {
               src: attachment.url,
@@ -7925,7 +8593,7 @@ var Chat = ({
               style: { maxWidth: "100%", height: "auto", display: "block" }
             }
           ),
-          attachment.duration && /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("div", { style: {
+          attachment.duration && /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { style: {
             position: "absolute",
             bottom: 8,
             right: 8,
@@ -7937,8 +8605,8 @@ var Chat = ({
           }, children: attachment.duration })
         ] });
       case "card":
-        return /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("div", { style: { marginTop: 8 }, children: /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)(Card, { style: { padding: 12, maxWidth: 280 }, children: [
-          attachment.thumbnail && /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
+        return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { style: { marginTop: 8 }, children: /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)(Card, { style: { padding: 12, maxWidth: 280 }, children: [
+          attachment.thumbnail && /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(
             "img",
             {
               src: attachment.thumbnail,
@@ -7946,11 +8614,11 @@ var Chat = ({
               style: { width: "100%", height: 120, objectFit: "cover", borderRadius: 4, marginBottom: 8 }
             }
           ),
-          attachment.title && /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 4 }, children: attachment.title }),
-          attachment.description && /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(Typography, { variant: "caption", color: "secondary", children: attachment.description })
+          attachment.title && /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 4 }, children: attachment.title }),
+          attachment.description && /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "caption", color: "secondary", children: attachment.description })
         ] }) });
       case "file":
-        return /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { style: {
+        return /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { style: {
           marginTop: 8,
           padding: 8,
           background: "rgba(0,0,0,0.05)",
@@ -7959,16 +8627,16 @@ var Chat = ({
           alignItems: "center",
           gap: 8
         }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(import_phosphor_react15.FileText, { size: 20 }),
-          /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { style: { flex: 1, minWidth: 0 }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 2 }, children: attachment.title || "File" }),
-            attachment.size && /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(Typography, { variant: "caption", color: "secondary", children: attachment.size })
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(import_phosphor_react18.FileText, { size: 20 }),
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { style: { flex: 1, minWidth: 0 }, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 2 }, children: attachment.title || "File" }),
+            attachment.size && /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "caption", color: "secondary", children: attachment.size })
           ] })
         ] });
       case "course":
       case "lesson":
-        return /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { style: { marginTop: 8, borderRadius: 8, overflow: "hidden", border: "1px solid var(--cria-gray-200)", position: "relative" }, children: [
-          attachment.thumbnail && /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
+        return /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { style: { marginTop: 8, borderRadius: 8, overflow: "hidden", border: "1px solid var(--cria-gray-200)", position: "relative" }, children: [
+          attachment.thumbnail && /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(
             "img",
             {
               src: attachment.thumbnail,
@@ -7976,7 +8644,7 @@ var Chat = ({
               style: { width: "100%", height: 200, objectFit: "cover", display: "block" }
             }
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { style: {
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { style: {
             position: "absolute",
             bottom: 0,
             left: 0,
@@ -7987,15 +8655,15 @@ var Chat = ({
             flexDirection: "column",
             gap: 12
           }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { children: [
-              /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 4, color: "var(--cria-white)" }, children: attachment.title }),
-              attachment.description && /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(Typography, { variant: "caption", style: { color: "rgba(255,255,255,0.9)", marginBottom: 4, display: "block" }, children: attachment.description }),
-              attachment.duration && /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)(Typography, { variant: "caption", style: { color: "rgba(255,255,255,0.8)", marginTop: 4, display: "block" }, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { children: [
+              /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 4, color: "var(--cria-white)" }, children: attachment.title }),
+              attachment.description && /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "caption", style: { color: "rgba(255,255,255,0.9)", marginBottom: 4, display: "block" }, children: attachment.description }),
+              attachment.duration && /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)(Typography, { variant: "caption", style: { color: "rgba(255,255,255,0.8)", marginTop: 4, display: "block" }, children: [
                 "Dura\xE7\xE3o: ",
                 attachment.duration
               ] })
             ] }),
-            /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
+            /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(
               Button,
               {
                 variant: "primary",
@@ -8013,7 +8681,7 @@ var Chat = ({
         return null;
     }
   };
-  const grouped = (0, import_react30.useMemo)(() => {
+  const grouped = (0, import_react35.useMemo)(() => {
     const out = [];
     messages.forEach((m) => {
       const last = out[out.length - 1];
@@ -8025,8 +8693,8 @@ var Chat = ({
     });
     return out;
   }, [messages]);
-  return /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { className: ["cria-chat", className].filter(Boolean).join(" "), style, ...props, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: ["cria-chat", className].filter(Boolean).join(" "), style, ...props, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)(
       "div",
       {
         ref: logRef,
@@ -8035,10 +8703,10 @@ var Chat = ({
         "aria-live": "polite",
         "aria-relevant": "additions",
         children: [
-          grouped.map((group) => /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("div", { className: ["cria-chat__group", group.author === "me" ? "cria-chat__group--me" : "cria-chat__group--them"].join(" "), children: group.items.map((item) => {
+          grouped.map((group) => /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { className: ["cria-chat__group", group.author === "me" ? "cria-chat__group--me" : "cria-chat__group--them"].join(" "), children: group.items.map((item) => {
             const repliedMessage = item.replyTo ? findMessageById(item.replyTo) : null;
-            return /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { className: "cria-chat__bubble", "aria-label": `${group.author === "me" ? "Me" : "Them"} said ${item.text}`, children: [
-              repliedMessage && /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { style: {
+            return /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "cria-chat__bubble", "aria-label": `${group.author === "me" ? "Me" : "Them"} said ${item.text}`, children: [
+              repliedMessage && /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { style: {
                 marginBottom: 8,
                 padding: 8,
                 background: "rgba(0,0,0,0.05)",
@@ -8047,28 +8715,28 @@ var Chat = ({
                 fontSize: "12px",
                 color: "var(--cria-gray-600)"
               }, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { style: { fontWeight: 500, marginBottom: 2 }, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { style: { fontWeight: 500, marginBottom: 2 }, children: [
                   "Replying to ",
                   repliedMessage.author === "me" ? "you" : "them"
                 ] }),
-                /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("div", { style: {
+                /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { style: {
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
                   maxWidth: "200px"
                 }, children: repliedMessage.text })
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(Typography, { variant: "body", color: group.author === "me" ? "inverse" : "content", children: revealThem && group.author === "them" && item.id === revealMsgId ? item.text.slice(0, Math.max(0, revealIndex)) : item.text }),
-              item.attachments && item.attachments.map((attachment) => /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("div", { children: renderAttachment(attachment) }, attachment.id)),
-              /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { style: {
+              /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "body", color: group.author === "me" ? "inverse" : "content", children: revealThem && group.author === "them" && item.id === revealMsgId ? item.text.slice(0, Math.max(0, revealIndex)) : item.text }),
+              item.attachments && item.attachments.map((attachment) => /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { children: renderAttachment(attachment) }, attachment.id)),
+              /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { style: {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
                 marginTop: 4,
                 gap: 8
               }, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(Typography, { variant: "caption", color: group.author === "me" ? "inverse" : "secondary", children: item.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) }),
-                /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)(
+                /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "caption", color: group.author === "me" ? "inverse" : "secondary", children: item.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)(
                   "button",
                   {
                     onClick: () => handleReply(item),
@@ -8086,7 +8754,7 @@ var Chat = ({
                     },
                     title: "Reply to this message",
                     children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(import_phosphor_react15.ArrowBendUpLeft, { size: 12 }),
+                      /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(import_phosphor_react18.ArrowBendUpLeft, { size: 12 }),
                       "Reply"
                     ]
                   }
@@ -8094,11 +8762,11 @@ var Chat = ({
               ] })
             ] }, item.id);
           }) }, group.key)),
-          typing && /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("div", { className: "cria-chat__group cria-chat__group--them", "aria-live": "polite", children: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("div", { className: "cria-chat__bubble cria-chat__bubble--typing", "aria-label": "Typing", children: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(import_phosphor_react15.DotsThree, { size: 24, weight: "bold" }) }) })
+          typing && /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { className: "cria-chat__group cria-chat__group--them", "aria-live": "polite", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { className: "cria-chat__bubble cria-chat__bubble--typing", "aria-label": "Typing", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(import_phosphor_react18.DotsThree, { size: 24, weight: "bold" }) }) })
         ]
       }
     ),
-    replyingTo && /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { style: {
+    replyingTo && /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { style: {
       padding: 8,
       background: "rgba(117, 102, 161, 0.1)",
       borderRadius: 6,
@@ -8109,12 +8777,12 @@ var Chat = ({
       justifyContent: "space-between",
       gap: 8
     }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { style: { flex: 1, minWidth: 0 }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { style: { fontSize: "12px", fontWeight: 500, color: "var(--cria-primary)", marginBottom: 2 }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { style: { flex: 1, minWidth: 0 }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { style: { fontSize: "12px", fontWeight: 500, color: "var(--cria-primary)", marginBottom: 2 }, children: [
           "Replying to ",
           replyingTo.author === "me" ? "your message" : "their message"
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("div", { style: {
+        /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { style: {
           fontSize: "12px",
           color: "var(--cria-gray-600)",
           overflow: "hidden",
@@ -8122,7 +8790,7 @@ var Chat = ({
           whiteSpace: "nowrap"
         }, children: replyingTo.text })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(
         "button",
         {
           onClick: cancelReply,
@@ -8140,8 +8808,8 @@ var Chat = ({
         }
       )
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("div", { className: "cria-chat__composer", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
+    /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "cria-chat__composer", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(
         "textarea",
         {
           className: "cria-chat__textarea",
@@ -8154,13 +8822,553 @@ var Chat = ({
           rows: 1
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(Button, { variant: "secondary", size: "sm", onClick: handleSend, disabled: disabled || !text.trim(), "aria-label": "Send message", children: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(import_phosphor_react15.PaperPlaneRight, { size: 18 }) })
+      /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Button, { variant: "secondary", size: "sm", onClick: handleSend, disabled: disabled || !text.trim(), "aria-label": "Send message", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(import_phosphor_react18.PaperPlaneRight, { size: 18 }) })
     ] })
   ] });
 };
 
+// src/components/AgentDev/AgentDev.tsx
+var import_react36 = require("react");
+var import_phosphor_react19 = require("phosphor-react");
+var import_jsx_runtime43 = require("react/jsx-runtime");
+var AgentDev = ({
+  isOpen,
+  onClose,
+  position = "right",
+  size = "lg",
+  className = "",
+  style,
+  ...props
+}) => {
+  const [activeTab, setActiveTab] = (0, import_react36.useState)("criar");
+  const [tabState, setTabState] = (0, import_react36.useState)({
+    activeTab: "criar",
+    criar: {
+      selectedType: null,
+      prompt: "",
+      images: []
+    },
+    consertar: {
+      selectedType: null,
+      selectedComponents: [],
+      description: ""
+    },
+    agente: {
+      prs: [],
+      mergedPRs: [],
+      closedPRs: [],
+      loading: false
+    }
+  });
+  const handleTabChange = (0, import_react36.useCallback)((tab) => {
+    setActiveTab(tab);
+    setTabState((prev) => ({ ...prev, activeTab: tab }));
+  }, []);
+  const updateTabState = (0, import_react36.useCallback)((tab, updates) => {
+    setTabState((prev) => ({
+      ...prev,
+      [tab]: { ...prev[tab], ...updates }
+    }));
+  }, []);
+  const tabs = [
+    {
+      id: "criar",
+      label: "Criar",
+      icon: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(import_phosphor_react19.Plus, { size: 20 }),
+      description: "Create new components"
+    },
+    {
+      id: "consertar",
+      label: "Consertar",
+      icon: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(import_phosphor_react19.Wrench, { size: 20 }),
+      description: "Fix existing components"
+    },
+    {
+      id: "agente",
+      label: "Agente",
+      icon: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(import_phosphor_react19.Code, { size: 20 }),
+      description: "Manage agent tasks"
+    }
+  ];
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case "criar":
+        return /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__tab-content", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "h3", weight: "semibold", style: { marginBottom: spacing[4] }, children: "Criar Componente" }),
+          /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "body", color: "muted", style: { marginBottom: spacing[6] }, children: "Selecione o tipo de componente e descreva o que voc\xEA gostaria de criar." }),
+          /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__section", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Tipo de Componente" }),
+            /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__type-selector", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Layout" }),
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Forms" }),
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Navigation" }),
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Feedback" }),
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Data Display" }),
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Content" })
+            ] })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__section", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Descri\xE7\xE3o do Componente" }),
+            /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(
+              "textarea",
+              {
+                className: "agent-dev__textarea",
+                placeholder: "Descreva o componente que voc\xEA gostaria de criar...",
+                value: tabState.criar.prompt,
+                onChange: (e) => updateTabState("criar", { prompt: e.target.value }),
+                rows: 6
+              }
+            )
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__section", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Imagens de Refer\xEAncia (Opcional)" }),
+            /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__image-upload", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(
+                "input",
+                {
+                  type: "file",
+                  accept: "image/*",
+                  multiple: true,
+                  className: "agent-dev__file-input",
+                  id: "image-upload"
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("label", { htmlFor: "image-upload", className: "agent-dev__file-label", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(import_phosphor_react19.Plus, { size: 24 }),
+                /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("span", { children: "Adicionar Imagens" })
+              ] })
+            ] })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("div", { className: "agent-dev__actions", children: /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)(
+            Button,
+            {
+              variant: "primary",
+              size: "lg",
+              disabled: !tabState.criar.selectedType || !tabState.criar.prompt.trim(),
+              onClick: () => {
+                console.log("Creating component:", tabState.criar);
+              },
+              children: [
+                /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(import_phosphor_react19.Plus, { size: 16 }),
+                "Criar Componente"
+              ]
+            }
+          ) })
+        ] });
+      case "consertar":
+        return /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__tab-content", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "h3", weight: "semibold", style: { marginBottom: spacing[4] }, children: "Consertar Componentes" }),
+          /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "body", color: "muted", style: { marginBottom: spacing[6] }, children: "Selecione os componentes que precisam ser corrigidos e descreva os problemas." }),
+          /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__section", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Tipo de Componente" }),
+            /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__type-selector", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Layout" }),
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Forms" }),
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Navigation" }),
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Feedback" }),
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Data Display" }),
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Content" })
+            ] })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__section", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Componentes Dispon\xEDveis" }),
+            /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__component-list", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__component-item", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("input", { type: "checkbox", id: "comp-1" }),
+                /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("label", { htmlFor: "comp-1", children: "Button" })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__component-item", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("input", { type: "checkbox", id: "comp-2" }),
+                /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("label", { htmlFor: "comp-2", children: "Input" })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__component-item", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("input", { type: "checkbox", id: "comp-3" }),
+                /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("label", { htmlFor: "comp-3", children: "Card" })
+              ] })
+            ] })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__section", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Descri\xE7\xE3o do Problema" }),
+            /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(
+              "textarea",
+              {
+                className: "agent-dev__textarea",
+                placeholder: "Descreva os problemas que precisam ser corrigidos...",
+                value: tabState.consertar.description,
+                onChange: (e) => updateTabState("consertar", { description: e.target.value }),
+                rows: 4
+              }
+            )
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("div", { className: "agent-dev__actions", children: /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)(
+            Button,
+            {
+              variant: "primary",
+              size: "lg",
+              disabled: tabState.consertar.selectedComponents.length === 0 || !tabState.consertar.description.trim(),
+              onClick: () => {
+                console.log("Fixing components:", tabState.consertar);
+              },
+              children: [
+                /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(import_phosphor_react19.Wrench, { size: 16 }),
+                "Consertar Componentes"
+              ]
+            }
+          ) })
+        ] });
+      case "agente":
+        return /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__tab-content", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "h3", weight: "semibold", style: { marginBottom: spacing[4] }, children: "Agente de Desenvolvimento" }),
+          /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "body", color: "muted", style: { marginBottom: spacing[6] }, children: "Gerencie tarefas do agente e acompanhe o progresso das implementa\xE7\xF5es." }),
+          /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__pr-tabs", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(
+              Button,
+              {
+                variant: "ghost",
+                size: "sm",
+                className: activeTab === "agente" ? "agent-dev__pr-tab--active" : "",
+                children: "Em Produ\xE7\xE3o"
+              }
+            ),
+            /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(
+              Button,
+              {
+                variant: "ghost",
+                size: "sm",
+                className: activeTab === "agente" ? "agent-dev__pr-tab--active" : "",
+                children: "Recusado"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__pr-list", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__pr-item", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__pr-header", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "h5", weight: "medium", children: "feat: implement Button component" }),
+                /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Badge, { variant: "success", size: "sm", children: "Merged" })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "body", color: "muted", size: "sm", children: "Implemented new Button component with all variants and states" }),
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__pr-meta", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("span", { children: "#123" }),
+                /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("span", { children: "2 days ago" })
+              ] })
+            ] }),
+            /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__pr-item", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__pr-header", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "h5", weight: "medium", children: "fix: resolve Input validation issues" }),
+                /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Badge, { variant: "warning", size: "sm", children: "In Progress" })
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "body", color: "muted", size: "sm", children: "Fixed validation logic and error handling in Input component" }),
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__pr-meta", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("span", { children: "#124" }),
+                /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("span", { children: "1 day ago" })
+              ] })
+            ] })
+          ] })
+        ] });
+      default:
+        return null;
+    }
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(
+    Drawer,
+    {
+      isOpen,
+      onClose,
+      position,
+      size,
+      className: `agent-dev ${className}`,
+      style,
+      ...props,
+      children: /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__container", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__header", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__header-content", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("div", { className: "agent-dev__header-icon", children: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(import_phosphor_react19.Robot, { size: 24 }) }),
+            /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agent-dev__header-text", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "h2", weight: "bold", children: "Agent Dev" }),
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "body", color: "muted", size: "sm", children: "Desenvolvimento assistido por IA" })
+            ] })
+          ] }),
+          /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(
+            Button,
+            {
+              variant: "ghost",
+              size: "sm",
+              onClick: onClose,
+              className: "agent-dev__close-button",
+              children: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(import_phosphor_react19.X, { size: 20 })
+            }
+          )
+        ] }),
+        /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("div", { className: "agent-dev__tabs", children: tabs.map((tab) => /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)(
+          "button",
+          {
+            className: `agent-dev__tab ${activeTab === tab.id ? "agent-dev__tab--active" : ""}`,
+            onClick: () => handleTabChange(tab.id),
+            title: tab.description,
+            children: [
+              tab.icon,
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("span", { children: tab.label })
+            ]
+          },
+          tab.id
+        )) }),
+        /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("div", { className: "agent-dev__content", children: renderTabContent() })
+      ] })
+    }
+  );
+};
+var AgentDev_default = AgentDev;
+
+// src/components/FilterDropdown/FilterDropdown.tsx
+var import_react37 = require("react");
+var import_phosphor_react20 = require("phosphor-react");
+var import_jsx_runtime44 = require("react/jsx-runtime");
+var FilterDropdown = ({
+  label,
+  options,
+  value,
+  onChange,
+  placeholder = "Select an option",
+  disabled = false,
+  style,
+  className = "",
+  ...props
+}) => {
+  const [isOpen, setIsOpen] = (0, import_react37.useState)(false);
+  const [selectedOption, setSelectedOption] = (0, import_react37.useState)(null);
+  const dropdownRef = (0, import_react37.useRef)(null);
+  const triggerRef = (0, import_react37.useRef)(null);
+  (0, import_react37.useEffect)(() => {
+    const option = options.find((opt) => opt.value === value);
+    setSelectedOption(option || null);
+  }, [value, options]);
+  (0, import_react37.useEffect)(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setIsOpen(!isOpen);
+    } else if (event.key === "Escape") {
+      setIsOpen(false);
+    } else if (event.key === "ArrowDown" && !isOpen) {
+      event.preventDefault();
+      setIsOpen(true);
+    }
+  };
+  const handleOptionSelect = (option) => {
+    setSelectedOption(option);
+    onChange(option.value);
+    setIsOpen(false);
+    triggerRef.current?.focus();
+  };
+  const handleOptionKeyDown = (event, option) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleOptionSelect(option);
+    } else if (event.key === "Escape") {
+      setIsOpen(false);
+      triggerRef.current?.focus();
+    }
+  };
+  const containerStyles = {
+    position: "relative",
+    display: "inline-block",
+    width: "100%",
+    ...style
+  };
+  const labelStyles = {
+    display: "block",
+    fontSize: typography.fontSize.body,
+    fontWeight: typography.fontWeight.medium,
+    color: colors.text.primary,
+    marginBottom: spacing[2]
+  };
+  const triggerStyles = {
+    width: "100%",
+    padding: `${spacing[3]} ${spacing[4]}`,
+    paddingRight: spacing[10],
+    border: `1px solid ${colors.border.medium}`,
+    borderRadius: radii.md,
+    backgroundColor: colors.background.light,
+    color: colors.text.primary,
+    fontSize: typography.fontSize.body,
+    cursor: disabled ? "not-allowed" : "pointer",
+    outline: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    opacity: disabled ? 0.6 : 1,
+    transition: "all 0.2s ease",
+    boxShadow: "none"
+  };
+  const triggerHoverStyles = {
+    borderColor: colors.primary,
+    boxShadow: `0 0 0 1px ${colors.primary}`
+  };
+  const triggerOpenStyles = {
+    borderColor: colors.primary,
+    boxShadow: `0 0 0 1px ${colors.primary}`
+  };
+  const dropdownStyles = {
+    position: "absolute",
+    top: "100%",
+    left: 0,
+    right: 0,
+    zIndex: 1e3,
+    backgroundColor: colors.background.elevated,
+    border: `1px solid ${colors.border.medium}`,
+    borderRadius: radii.md,
+    boxShadow: shadows.lg,
+    marginTop: spacing[1],
+    maxHeight: "200px",
+    overflowY: "auto",
+    display: isOpen ? "block" : "none"
+  };
+  const optionStyles = {
+    padding: `${spacing[3]} ${spacing[4]}`,
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    gap: spacing[3],
+    borderBottom: `1px solid ${colors.border.light}`,
+    transition: "background-color 0.2s ease"
+  };
+  const optionHoverStyles = {
+    backgroundColor: colors.background.hover
+  };
+  const optionSelectedStyles = {
+    backgroundColor: colors.primary,
+    color: colors.white
+  };
+  const iconStyles = {
+    position: "absolute",
+    right: spacing[4],
+    top: "50%",
+    transform: "translateY(-50%)",
+    color: colors.text.secondary,
+    transition: "transform 0.2s ease"
+  };
+  const iconOpenStyles = {
+    transform: "translateY(-50%) rotate(180deg)"
+  };
+  const checkIconStyles = {
+    width: "16px",
+    height: "16px",
+    flexShrink: 0
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)(
+    "div",
+    {
+      ref: dropdownRef,
+      className: `cria-filter-dropdown ${className}`,
+      style: containerStyles,
+      ...props,
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("label", { style: labelStyles, children: label }),
+        /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)(
+          "button",
+          {
+            ref: triggerRef,
+            type: "button",
+            disabled,
+            onClick: () => setIsOpen(!isOpen),
+            onKeyDown: handleKeyDown,
+            style: {
+              ...triggerStyles,
+              ...isOpen ? triggerOpenStyles : {}
+            },
+            onMouseEnter: (e) => {
+              if (!disabled && !isOpen) {
+                Object.assign(e.currentTarget.style, triggerHoverStyles);
+              }
+            },
+            onMouseLeave: (e) => {
+              if (!disabled && !isOpen) {
+                e.currentTarget.style.borderColor = colors.border.medium;
+                e.currentTarget.style.boxShadow = "none";
+              }
+            },
+            "aria-haspopup": "listbox",
+            "aria-expanded": isOpen,
+            "aria-label": `${label} dropdown`,
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { children: selectedOption ? selectedOption.label : placeholder }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
+                import_phosphor_react20.CaretDown,
+                {
+                  size: 16,
+                  style: {
+                    ...iconStyles,
+                    ...isOpen ? iconOpenStyles : {}
+                  }
+                }
+              )
+            ]
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
+          "div",
+          {
+            role: "listbox",
+            "aria-label": `${label} options`,
+            style: dropdownStyles,
+            children: options.map((option, index) => {
+              const isSelected = selectedOption?.value === option.value;
+              return /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)(
+                "div",
+                {
+                  role: "option",
+                  tabIndex: 0,
+                  "aria-selected": isSelected,
+                  onClick: () => handleOptionSelect(option),
+                  onKeyDown: (e) => handleOptionKeyDown(e, option),
+                  style: {
+                    ...optionStyles,
+                    ...isSelected ? optionSelectedStyles : {},
+                    borderBottom: index === options.length - 1 ? "none" : optionStyles.borderBottom
+                  },
+                  onMouseEnter: (e) => {
+                    if (!isSelected) {
+                      Object.assign(e.currentTarget.style, optionHoverStyles);
+                    }
+                  },
+                  onMouseLeave: (e) => {
+                    if (!isSelected) {
+                      e.currentTarget.style.backgroundColor = "transparent";
+                    }
+                  },
+                  children: [
+                    isSelected && /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
+                      import_phosphor_react20.Check,
+                      {
+                        size: 16,
+                        style: checkIconStyles
+                      }
+                    ),
+                    /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { children: option.label })
+                  ]
+                },
+                option.value
+              );
+            })
+          }
+        )
+      ]
+    }
+  );
+};
+
 // src/components/ShimmerSkeleton/ShimmerSkeleton.tsx
-var import_jsx_runtime37 = require("react/jsx-runtime");
+var import_jsx_runtime45 = require("react/jsx-runtime");
 var ShimmerSkeleton = ({
   variant = "rectangle",
   size = "md",
@@ -8231,7 +9439,7 @@ var ShimmerSkeleton = ({
   };
   const renderTextLines = () => {
     if (variant !== "text") return null;
-    return Array.from({ length: lines }, (_, index) => /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(
+    return Array.from({ length: lines }, (_, index) => /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(
       "div",
       {
         className: "cria-shimmer-skeleton__line",
@@ -8243,7 +9451,7 @@ var ShimmerSkeleton = ({
           position: "relative",
           overflow: "hidden"
         },
-        children: animated && /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(
+        children: animated && /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(
           "div",
           {
             className: "cria-shimmer-skeleton__shimmer",
@@ -8264,8 +9472,8 @@ var ShimmerSkeleton = ({
   };
   const renderCardContent = () => {
     if (variant !== "card") return null;
-    return /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)(import_jsx_runtime37.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(import_jsx_runtime45.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(
         "div",
         {
           className: "cria-shimmer-skeleton__line",
@@ -8277,7 +9485,7 @@ var ShimmerSkeleton = ({
             position: "relative",
             overflow: "hidden"
           },
-          children: animated && /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(
+          children: animated && /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(
             "div",
             {
               className: "cria-shimmer-skeleton__shimmer",
@@ -8294,7 +9502,7 @@ var ShimmerSkeleton = ({
           )
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(
         "div",
         {
           className: "cria-shimmer-skeleton__line",
@@ -8306,7 +9514,7 @@ var ShimmerSkeleton = ({
             position: "relative",
             overflow: "hidden"
           },
-          children: animated && /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(
+          children: animated && /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(
             "div",
             {
               className: "cria-shimmer-skeleton__shimmer",
@@ -8323,7 +9531,7 @@ var ShimmerSkeleton = ({
           )
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(
         "div",
         {
           className: "cria-shimmer-skeleton__line",
@@ -8335,7 +9543,7 @@ var ShimmerSkeleton = ({
             position: "relative",
             overflow: "hidden"
           },
-          children: animated && /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(
+          children: animated && /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(
             "div",
             {
               className: "cria-shimmer-skeleton__shimmer",
@@ -8361,7 +9569,7 @@ var ShimmerSkeleton = ({
     ...getVariantStyles4(),
     ...style
   };
-  const shimmerElement = animated && /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(
+  const shimmerElement = animated && /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(
     "div",
     {
       className: "cria-shimmer-skeleton__shimmer",
@@ -8383,7 +9591,7 @@ var ShimmerSkeleton = ({
     !animated && "cria-shimmer-skeleton--no-animation",
     className
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime45.jsxs)(
     "div",
     {
       className: classNames,
@@ -8401,10 +9609,1319 @@ var ShimmerSkeleton = ({
   );
 };
 
+// src/components/CriaCourseCard/CriaCourseCard.tsx
+var import_react38 = require("react");
+var import_phosphor_react21 = require("phosphor-react");
+var import_jsx_runtime46 = require("react/jsx-runtime");
+var CriaCourseCard = ({
+  course,
+  onCourseClick,
+  onInstructorClick,
+  onToolClick,
+  className = "",
+  style,
+  ...props
+}) => {
+  const [isHovered, setIsHovered] = (0, import_react38.useState)(false);
+  const [imageLoaded, setImageLoaded] = (0, import_react38.useState)(false);
+  const handleCardClick = (0, import_react38.useCallback)(() => {
+    onCourseClick?.(course);
+  }, [course, onCourseClick]);
+  const handleInstructorClick = (0, import_react38.useCallback)((instructor, e) => {
+    e.stopPropagation();
+    onInstructorClick?.(instructor);
+  }, [onInstructorClick]);
+  const handleToolClick = (0, import_react38.useCallback)((tool, e) => {
+    e.stopPropagation();
+    onToolClick?.(tool);
+  }, [onToolClick]);
+  const cardClasses = [
+    "cria-course-card",
+    className
+  ].filter(Boolean).join(" ");
+  return /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(
+    "div",
+    {
+      className: cardClasses,
+      onClick: handleCardClick,
+      onMouseEnter: () => setIsHovered(true),
+      onMouseLeave: () => setIsHovered(false),
+      style: {
+        backgroundColor: colors.white,
+        borderRadius: radii.lg,
+        boxShadow: shadows.sm,
+        overflow: "hidden",
+        display: "flex",
+        cursor: "pointer",
+        transition: "all 0.3s ease",
+        ...style
+      },
+      "data-course-id": course.id,
+      "data-course-slug": course.slug,
+      ...props,
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+          "div",
+          {
+            style: {
+              width: "33.333%",
+              flexShrink: 0,
+              position: "relative",
+              overflow: "hidden"
+            },
+            children: /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+              "img",
+              {
+                src: course.thumbnailUrl || "https://via.placeholder.com/400x300?text=No+Image",
+                alt: course.title,
+                style: {
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  transition: "transform 0.3s ease-out",
+                  transform: isHovered ? "scale(1.05)" : "scale(1)",
+                  opacity: imageLoaded ? 1 : 0,
+                  minHeight: "200px"
+                },
+                onLoad: () => setImageLoaded(true),
+                onError: () => setImageLoaded(true)
+              }
+            )
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(
+          "div",
+          {
+            style: {
+              padding: `${spacing[8]} ${spacing[8]} ${spacing[8]} ${spacing[12]}`,
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between"
+            },
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+                  Typography,
+                  {
+                    variant: "h1",
+                    style: {
+                      color: colors.primary,
+                      fontWeight: typography.fontWeight.bold,
+                      letterSpacing: "0.1em",
+                      marginBottom: spacing[2],
+                      textTransform: "uppercase",
+                      transition: "color 0.3s ease",
+                      cursor: "pointer"
+                    },
+                    onMouseEnter: (e) => {
+                      e.currentTarget.style.color = colors.secondary;
+                    },
+                    onMouseLeave: (e) => {
+                      e.currentTarget.style.color = colors.primary;
+                    },
+                    children: course.title
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+                  Typography,
+                  {
+                    variant: "body",
+                    style: {
+                      color: colors.gray[600],
+                      fontSize: "14px",
+                      lineHeight: 1.6,
+                      marginBottom: spacing[6]
+                    },
+                    children: course.description || "A comprehensive course designed to help you master the fundamentals and advanced concepts."
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(
+                "div",
+                {
+                  style: {
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+                    gap: spacing[8]
+                  },
+                  children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)("div", { children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(
+                        "div",
+                        {
+                          style: {
+                            display: "flex",
+                            alignItems: "flex-start",
+                            gap: spacing[2],
+                            marginBottom: spacing[4]
+                          },
+                          children: [
+                            /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+                              import_phosphor_react21.UserCircle,
+                              {
+                                size: 20,
+                                color: colors.primary,
+                                weight: "duotone",
+                                style: { marginTop: "2px", flexShrink: 0 }
+                              }
+                            ),
+                            /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+                              "div",
+                              {
+                                style: {
+                                  display: "flex",
+                                  flexDirection: "row",
+                                  flexWrap: "wrap",
+                                  gap: spacing[2]
+                                },
+                                children: course.instructors?.map((instructor) => /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+                                  AvatarWithName,
+                                  {
+                                    name: instructor.name,
+                                    size: "sm",
+                                    variant: "outlined",
+                                    clickable: true,
+                                    avatarProps: {
+                                      src: instructor.avatarUrl,
+                                      alt: instructor.name,
+                                      size: "sm"
+                                    },
+                                    onClick: (e) => handleInstructorClick(instructor, e)
+                                  },
+                                  instructor.id
+                                ))
+                              }
+                            )
+                          ]
+                        }
+                      ),
+                      /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(
+                        "div",
+                        {
+                          style: {
+                            display: "flex",
+                            alignItems: "center",
+                            gap: spacing[2]
+                          },
+                          children: [
+                            /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+                              import_phosphor_react21.Clock,
+                              {
+                                size: 20,
+                                color: colors.primary,
+                                weight: "duotone"
+                              }
+                            ),
+                            /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+                              Typography,
+                              {
+                                variant: "caption",
+                                style: {
+                                  color: colors.primary,
+                                  fontSize: "14px"
+                                },
+                                children: course.duration || "--"
+                              }
+                            )
+                          ]
+                        }
+                      )
+                    ] }),
+                    /* @__PURE__ */ (0, import_jsx_runtime46.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(
+                      "div",
+                      {
+                        style: {
+                          display: "flex",
+                          alignItems: "flex-start",
+                          gap: spacing[2]
+                        },
+                        children: [
+                          /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+                            import_phosphor_react21.Wrench,
+                            {
+                              size: 20,
+                              color: colors.primary,
+                              weight: "duotone",
+                              style: { marginTop: "2px", flexShrink: 0 }
+                            }
+                          ),
+                          /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+                            "div",
+                            {
+                              style: {
+                                display: "flex",
+                                flexDirection: "row",
+                                flexWrap: "wrap",
+                                gap: spacing[2]
+                              },
+                              children: course.tools?.map((tool) => /* @__PURE__ */ (0, import_jsx_runtime46.jsxs)(
+                                "div",
+                                {
+                                  onClick: (e) => handleToolClick(tool, e),
+                                  style: {
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                    padding: `${spacing[1]} ${spacing[2]}`,
+                                    borderRadius: radii.full,
+                                    fontSize: "12px",
+                                    fontWeight: typography.fontWeight.semiBold,
+                                    color: colors.primary,
+                                    border: `1px solid ${colors.primary}20`,
+                                    backgroundColor: colors.primary + "08",
+                                    cursor: "pointer",
+                                    transition: "all 0.2s ease"
+                                  },
+                                  onMouseEnter: (e) => {
+                                    e.currentTarget.style.backgroundColor = colors.primary + "15";
+                                    e.currentTarget.style.borderColor = colors.primary + "40";
+                                  },
+                                  onMouseLeave: (e) => {
+                                    e.currentTarget.style.backgroundColor = colors.primary + "08";
+                                    e.currentTarget.style.borderColor = colors.primary + "20";
+                                  },
+                                  children: [
+                                    tool.icon && /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+                                      "span",
+                                      {
+                                        style: {
+                                          width: "20px",
+                                          height: "20px",
+                                          marginRight: spacing[1],
+                                          display: "flex",
+                                          alignItems: "center",
+                                          justifyContent: "center",
+                                          fontSize: "14px"
+                                        },
+                                        children: tool.icon
+                                      }
+                                    ),
+                                    tool.name
+                                  ]
+                                },
+                                tool.id
+                              ))
+                            }
+                          )
+                        ]
+                      }
+                    ) })
+                  ]
+                }
+              )
+            ]
+          }
+        )
+      ]
+    }
+  );
+};
+
+// src/components/CriaClassroomFutureEventCard/CriaClassroomFutureEventCard.tsx
+var import_react39 = require("react");
+var import_phosphor_react22 = require("phosphor-react");
+var import_jsx_runtime47 = require("react/jsx-runtime");
+var CriaClassroomFutureEventCard = ({
+  event,
+  classroomItem,
+  onEventClick,
+  onCalendarClick,
+  className = "",
+  style,
+  ...props
+}) => {
+  const [timeLeft, setTimeLeft] = (0, import_react39.useState)({ days: 0, hours: 0, minutes: 0 });
+  const [isLive, setIsLive] = (0, import_react39.useState)(false);
+  const calculateTimeLeft = (0, import_react39.useCallback)(() => {
+    const eventDate2 = new Date(event.startDate);
+    const now = /* @__PURE__ */ new Date();
+    const difference = eventDate2.getTime() - now.getTime();
+    if (difference > 0) {
+      const days = Math.floor(difference / (1e3 * 60 * 60 * 24));
+      const hours = Math.floor(difference % (1e3 * 60 * 60 * 24) / (1e3 * 60 * 60));
+      const minutes = Math.floor(difference % (1e3 * 60 * 60) / (1e3 * 60));
+      setTimeLeft({ days, hours, minutes });
+      setIsLive(false);
+    } else {
+      setTimeLeft({ days: 0, hours: 0, minutes: 0 });
+      setIsLive(true);
+    }
+  }, [event.startDate]);
+  (0, import_react39.useEffect)(() => {
+    calculateTimeLeft();
+    const interval = setInterval(calculateTimeLeft, 6e4);
+    return () => clearInterval(interval);
+  }, [calculateTimeLeft]);
+  const handleEventClick = (0, import_react39.useCallback)(() => {
+    onEventClick?.(event);
+  }, [event, onEventClick]);
+  const handleCalendarClick = (0, import_react39.useCallback)(() => {
+    onCalendarClick?.(event);
+  }, [event, onCalendarClick]);
+  const title = classroomItem.customTitle || event.name;
+  const description = classroomItem.customSubtitle || event.description || "";
+  const eventDate = new Date(event.startDate);
+  const formattedDate = eventDate.toLocaleDateString("pt-BR", {
+    day: "2-digit",
+    month: "short"
+  });
+  const formattedTime = eventDate.toLocaleTimeString("pt-BR", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false
+  });
+  const cardClasses = [
+    "cria-classroom-future-event-card",
+    className
+  ].filter(Boolean).join(" ");
+  return /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)(
+    "div",
+    {
+      className: cardClasses,
+      style: {
+        backgroundColor: colors.white,
+        borderRadius: radii.lg,
+        boxShadow: shadows.lg,
+        overflow: "hidden",
+        display: "flex",
+        border: `1px solid ${colors.gray[100]}`,
+        minHeight: "200px",
+        ...style
+      },
+      "data-event-id": event.id,
+      "data-classroom-item-id": classroomItem.id,
+      ...props,
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)(
+          "div",
+          {
+            style: {
+              width: "33.333%",
+              flexShrink: 0,
+              position: "relative",
+              overflow: "hidden",
+              minHeight: "200px",
+              padding: spacing[8],
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between"
+            },
+            children: [
+              classroomItem.imageUrl ? /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                "img",
+                {
+                  src: classroomItem.imageUrl,
+                  alt: title,
+                  style: {
+                    position: "absolute",
+                    inset: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "center"
+                  },
+                  onError: (e) => {
+                    e.target.style.display = "none";
+                  }
+                }
+              ) : null,
+              /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                "div",
+                {
+                  style: {
+                    position: "absolute",
+                    inset: 0,
+                    background: "linear-gradient(135deg, #a855f7 0%, #3b82f6 50%, #14b8a6 100%)"
+                  }
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                "div",
+                {
+                  style: {
+                    position: "absolute",
+                    inset: 0,
+                    background: "linear-gradient(135deg, rgba(0, 221, 185, 0.6) 0%, rgba(0, 123, 122, 0.6) 100%)",
+                    backdropFilter: "blur(12px)"
+                  }
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)("div", { style: { position: "absolute", inset: 0, opacity: 0.3 }, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                  "div",
+                  {
+                    style: {
+                      position: "absolute",
+                      top: "-40px",
+                      right: "-40px",
+                      width: "128px",
+                      height: "128px",
+                      background: colors.white,
+                      borderRadius: "50%",
+                      filter: "blur(32px)"
+                    }
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                  "div",
+                  {
+                    style: {
+                      position: "absolute",
+                      bottom: "-20px",
+                      left: "-20px",
+                      width: "80px",
+                      height: "80px",
+                      background: "#00ddb9",
+                      borderRadius: "50%",
+                      filter: "blur(24px)"
+                    }
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                  "div",
+                  {
+                    style: {
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      width: "96px",
+                      height: "96px",
+                      background: "rgba(255, 255, 255, 0.4)",
+                      borderRadius: "50%",
+                      filter: "blur(16px)"
+                    }
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                  "div",
+                  {
+                    style: {
+                      position: "absolute",
+                      top: spacing[4],
+                      left: spacing[4],
+                      width: "64px",
+                      height: "64px",
+                      background: "rgba(0, 221, 185, 0.3)",
+                      borderRadius: "50%",
+                      filter: "blur(12px)"
+                    }
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                  "div",
+                  {
+                    style: {
+                      position: "absolute",
+                      bottom: spacing[4],
+                      right: spacing[4],
+                      width: "48px",
+                      height: "48px",
+                      background: "rgba(255, 255, 255, 0.5)",
+                      borderRadius: "50%",
+                      filter: "blur(8px)"
+                    }
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)("div", { style: { position: "relative", zIndex: 10 }, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                  Typography,
+                  {
+                    variant: "h1",
+                    style: {
+                      fontSize: "48px",
+                      fontFamily: typography.fontFamily.primary,
+                      fontWeight: typography.fontWeight.bold,
+                      color: colors.white,
+                      lineHeight: 1,
+                      marginBottom: spacing[1]
+                    },
+                    children: String(classroomItem.position || 1).padStart(2, "0")
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                  Typography,
+                  {
+                    variant: "caption",
+                    style: {
+                      fontFamily: typography.fontFamily.primary,
+                      fontWeight: typography.fontWeight.medium,
+                      color: colors.white,
+                      textTransform: "uppercase",
+                      letterSpacing: "0.1em"
+                    },
+                    children: "Este evento acontecer\xE1 em"
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime47.jsx)("div", { style: { position: "relative", zIndex: 10 }, children: /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)(
+                "div",
+                {
+                  style: {
+                    display: "flex",
+                    alignItems: "flex-end",
+                    justifyContent: "space-between",
+                    marginBottom: spacing[1]
+                  },
+                  children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)("div", { style: { textAlign: "center" }, children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                        Typography,
+                        {
+                          variant: "h2",
+                          style: {
+                            fontSize: "32px",
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.bold,
+                            color: colors.white,
+                            lineHeight: 1
+                          },
+                          children: String(timeLeft.days).padStart(2, "0")
+                        }
+                      ),
+                      /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                        Typography,
+                        {
+                          variant: "caption",
+                          style: {
+                            fontSize: "12px",
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.medium,
+                            color: colors.white,
+                            textTransform: "uppercase",
+                            letterSpacing: "0.1em"
+                          },
+                          children: "dias"
+                        }
+                      )
+                    ] }),
+                    /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)("div", { style: { textAlign: "center" }, children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                        Typography,
+                        {
+                          variant: "h2",
+                          style: {
+                            fontSize: "32px",
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.bold,
+                            color: colors.white,
+                            lineHeight: 1
+                          },
+                          children: String(timeLeft.hours).padStart(2, "0")
+                        }
+                      ),
+                      /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                        Typography,
+                        {
+                          variant: "caption",
+                          style: {
+                            fontSize: "12px",
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.medium,
+                            color: colors.white,
+                            textTransform: "uppercase",
+                            letterSpacing: "0.1em"
+                          },
+                          children: "horas"
+                        }
+                      )
+                    ] }),
+                    /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)("div", { style: { textAlign: "center" }, children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                        Typography,
+                        {
+                          variant: "h2",
+                          style: {
+                            fontSize: "32px",
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.bold,
+                            color: colors.white,
+                            lineHeight: 1
+                          },
+                          children: String(timeLeft.minutes).padStart(2, "0")
+                        }
+                      ),
+                      /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                        Typography,
+                        {
+                          variant: "caption",
+                          style: {
+                            fontSize: "12px",
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.medium,
+                            color: colors.white,
+                            textTransform: "uppercase",
+                            letterSpacing: "0.1em"
+                          },
+                          children: "min"
+                        }
+                      )
+                    ] })
+                  ]
+                }
+              ) }),
+              /* @__PURE__ */ (0, import_jsx_runtime47.jsx)("div", { style: { position: "relative", zIndex: 10, display: "flex", justifyContent: "center" }, children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                "div",
+                {
+                  style: {
+                    padding: `${spacing[1]} ${spacing[4]}`,
+                    border: `2px solid ${colors.white}`,
+                    borderRadius: radii.full,
+                    color: colors.white,
+                    fontFamily: typography.fontFamily.primary,
+                    fontWeight: typography.fontWeight.medium,
+                    fontSize: "14px",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.1em"
+                  },
+                  children: "Ao Vivo"
+                }
+              ) })
+            ]
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)(
+          "div",
+          {
+            style: {
+              padding: `${spacing[8]} ${spacing[8]} ${spacing[8]} ${spacing[8]}`,
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              width: "66.667%",
+              minHeight: "200px"
+            },
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)("div", { style: { marginBottom: spacing[4] }, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                  Typography,
+                  {
+                    variant: "h2",
+                    style: {
+                      color: colors.primary,
+                      fontFamily: typography.fontFamily.primary,
+                      fontWeight: typography.fontWeight.bold,
+                      fontSize: "24px",
+                      lineHeight: 1.2,
+                      marginBottom: spacing[2],
+                      cursor: "pointer",
+                      textDecoration: "none"
+                    },
+                    onClick: handleEventClick,
+                    children: title
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                  Typography,
+                  {
+                    variant: "body",
+                    style: {
+                      color: colors.gray[600],
+                      fontSize: "16px",
+                      lineHeight: 1.5
+                    },
+                    children: description
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)(
+                "div",
+                {
+                  style: {
+                    display: "flex",
+                    gap: spacing[8],
+                    marginBottom: spacing[6]
+                  },
+                  children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)("div", { children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                        Typography,
+                        {
+                          variant: "caption",
+                          style: {
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.bold,
+                            color: colors.primary,
+                            textTransform: "uppercase",
+                            letterSpacing: "0.1em",
+                            marginBottom: spacing[1]
+                          },
+                          children: "Data"
+                        }
+                      ),
+                      /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                        Typography,
+                        {
+                          variant: "body",
+                          style: {
+                            fontSize: "18px",
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.medium,
+                            color: colors.primary
+                          },
+                          children: formattedDate
+                        }
+                      )
+                    ] }),
+                    /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)("div", { children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                        Typography,
+                        {
+                          variant: "caption",
+                          style: {
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.bold,
+                            color: colors.primary,
+                            textTransform: "uppercase",
+                            letterSpacing: "0.1em",
+                            marginBottom: spacing[1]
+                          },
+                          children: "Hor\xE1rio"
+                        }
+                      ),
+                      /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                        Typography,
+                        {
+                          variant: "body",
+                          style: {
+                            fontSize: "18px",
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.medium,
+                            color: colors.primary
+                          },
+                          children: formattedTime
+                        }
+                      )
+                    ] }),
+                    /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)("div", { children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                        Typography,
+                        {
+                          variant: "caption",
+                          style: {
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.bold,
+                            color: colors.primary,
+                            textTransform: "uppercase",
+                            letterSpacing: "0.1em",
+                            marginBottom: spacing[1]
+                          },
+                          children: "Dura\xE7\xE3o"
+                        }
+                      ),
+                      /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                        Typography,
+                        {
+                          variant: "body",
+                          style: {
+                            fontSize: "18px",
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.medium,
+                            color: colors.primary
+                          },
+                          children: event.duration || "2H"
+                        }
+                      )
+                    ] })
+                  ]
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime47.jsx)("div", { style: { display: "flex", justifyContent: "flex-end", marginTop: spacing[4] }, children: event.gcalendarUrl ? /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)(
+                Button,
+                {
+                  variant: "primary",
+                  onClick: handleCalendarClick,
+                  style: {
+                    display: "flex",
+                    alignItems: "center",
+                    gap: spacing[1]
+                  },
+                  children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(import_phosphor_react22.Calendar, { size: 16 }),
+                    "SALVAR NA AGENDA"
+                  ]
+                }
+              ) : /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+                Typography,
+                {
+                  variant: "caption",
+                  style: {
+                    color: colors.gray[500],
+                    fontFamily: typography.fontFamily.primary
+                  },
+                  children: "Link da agenda n\xE3o dispon\xEDvel"
+                }
+              ) })
+            ]
+          }
+        )
+      ]
+    }
+  );
+};
+
+// src/components/CriaClassroomTrilhaCard/CriaClassroomTrilhaCard.tsx
+var import_react40 = require("react");
+var import_phosphor_react23 = require("phosphor-react");
+var import_jsx_runtime48 = require("react/jsx-runtime");
+var CriaClassroomTrilhaCard = ({
+  customLearning,
+  classroomItem,
+  onCardClick,
+  onInstructorClick,
+  onToolClick,
+  className = "",
+  style,
+  ...props
+}) => {
+  const [isHovered, setIsHovered] = (0, import_react40.useState)(false);
+  const [imageLoaded, setImageLoaded] = (0, import_react40.useState)(false);
+  const handleCardClick = (0, import_react40.useCallback)(() => {
+    onCardClick?.(customLearning);
+  }, [customLearning, onCardClick]);
+  const handleInstructorClick = (0, import_react40.useCallback)((instructor, e) => {
+    e.stopPropagation();
+    onInstructorClick?.(instructor);
+  }, [onInstructorClick]);
+  const handleToolClick = (0, import_react40.useCallback)((tool, e) => {
+    e.stopPropagation();
+    onToolClick?.(tool);
+  }, [onToolClick]);
+  const imageSource = customLearning.imageUrl || classroomItem.imageUrl || "/src/assets/cria_emblem_home.png";
+  const title = classroomItem.customTitle || customLearning.title;
+  const description = classroomItem.customSubtitle || customLearning.description || "";
+  const aggregateInstructors = () => {
+    const allInstructors = [];
+    if (customLearning.lessons) {
+      customLearning.lessons.forEach((lesson) => {
+        if (lesson.instructors) {
+          lesson.instructors.forEach((instructorName) => {
+            const instructor = {
+              id: instructorName.toLowerCase().replace(/\s+/g, "-"),
+              name: instructorName
+            };
+            allInstructors.push(instructor);
+          });
+        }
+      });
+    }
+    if (customLearning.courses) {
+      customLearning.courses.forEach((course) => {
+        if (course.instructors) {
+          allInstructors.push(...course.instructors);
+        }
+      });
+    }
+    const uniqueInstructors = allInstructors.filter(
+      (instructor, index, self) => index === self.findIndex((i) => i.id === instructor.id)
+    );
+    return uniqueInstructors;
+  };
+  const aggregateTools = () => {
+    const allTools = [];
+    if (customLearning.lessons) {
+      customLearning.lessons.forEach((lesson) => {
+        if (lesson.tools) {
+          lesson.tools.forEach((toolName) => {
+            const tool = {
+              id: toolName.toLowerCase().replace(/\s+/g, "-"),
+              name: toolName
+            };
+            allTools.push(tool);
+          });
+        }
+      });
+    }
+    if (customLearning.courses) {
+      customLearning.courses.forEach((course) => {
+        if (course.tools) {
+          allTools.push(...course.tools);
+        }
+      });
+    }
+    const uniqueTools = allTools.filter(
+      (tool, index, self) => index === self.findIndex((t) => t.id === tool.id)
+    );
+    return uniqueTools;
+  };
+  const instructors = aggregateInstructors();
+  const tools = aggregateTools();
+  const visibleInstructors = instructors.slice(0, 2);
+  const overflowInstructorsCount = Math.max(instructors.length - visibleInstructors.length, 0);
+  const cardClasses = [
+    "cria-classroom-trilha-card",
+    className
+  ].filter(Boolean).join(" ");
+  return /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(
+    "div",
+    {
+      className: cardClasses,
+      onMouseEnter: () => setIsHovered(true),
+      onMouseLeave: () => setIsHovered(false),
+      style: {
+        backgroundColor: colors.white,
+        borderRadius: radii.lg,
+        boxShadow: shadows.lg,
+        overflow: "hidden",
+        display: "flex",
+        border: `1px solid ${colors.gray[100]}`,
+        minHeight: "200px",
+        transition: "all 0.3s ease",
+        cursor: onCardClick ? "pointer" : "default",
+        ...style
+      },
+      "data-custom-learning-id": customLearning.id,
+      "data-classroom-item-id": classroomItem.id,
+      ...props,
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(
+          "div",
+          {
+            style: {
+              width: "33.333%",
+              flexShrink: 0,
+              position: "relative",
+              overflow: "hidden",
+              minHeight: "200px"
+            },
+            onClick: handleCardClick,
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
+                "img",
+                {
+                  src: imageSource,
+                  alt: title,
+                  style: {
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "center",
+                    transition: "transform 0.3s ease",
+                    transform: isHovered ? "scale(1.1)" : "scale(1)",
+                    opacity: imageLoaded ? 1 : 0
+                  },
+                  onLoad: () => setImageLoaded(true),
+                  onError: () => setImageLoaded(true)
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
+                "div",
+                {
+                  style: {
+                    position: "absolute",
+                    inset: 0,
+                    background: "linear-gradient(to top, rgba(0,0,0,0.2) 0%, transparent 100%)"
+                  }
+                }
+              ),
+              /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(
+                "div",
+                {
+                  className: "learning-path-position",
+                  style: {
+                    position: "absolute",
+                    top: spacing[4],
+                    left: spacing[4]
+                  },
+                  children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
+                      Typography,
+                      {
+                        variant: "h1",
+                        style: {
+                          fontSize: "48px",
+                          fontFamily: typography.fontFamily.primary,
+                          fontWeight: typography.fontWeight.bold,
+                          color: colors.white,
+                          lineHeight: 1,
+                          marginBottom: spacing[1]
+                        },
+                        children: String(classroomItem.position || 1).padStart(2, "0")
+                      }
+                    ),
+                    /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
+                      Typography,
+                      {
+                        variant: "caption",
+                        style: {
+                          fontFamily: typography.fontFamily.primary,
+                          fontWeight: typography.fontWeight.medium,
+                          color: colors.white,
+                          textTransform: "uppercase",
+                          fontSize: "12px",
+                          letterSpacing: "0.1em"
+                        },
+                        children: "TRILHA"
+                      }
+                    )
+                  ]
+                }
+              )
+            ]
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(
+          "div",
+          {
+            style: {
+              padding: `${spacing[2]} ${spacing[4]} ${spacing[4]} ${spacing[4]}`,
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              width: "66.667%",
+              minHeight: "200px"
+            },
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)("div", { children: [
+                /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
+                  Typography,
+                  {
+                    variant: "h2",
+                    style: {
+                      color: colors.primary,
+                      fontFamily: typography.fontFamily.primary,
+                      fontWeight: typography.fontWeight.bold,
+                      fontSize: "20px",
+                      lineHeight: 1.2,
+                      marginBottom: spacing[2],
+                      cursor: "pointer",
+                      textDecoration: customLearning.slug ? "underline" : "none",
+                      textDecorationColor: "transparent",
+                      transition: "all 0.3s ease"
+                    },
+                    onClick: handleCardClick,
+                    onMouseEnter: (e) => {
+                      if (customLearning.slug) {
+                        e.currentTarget.style.textDecorationColor = colors.primary;
+                      }
+                    },
+                    onMouseLeave: (e) => {
+                      if (customLearning.slug) {
+                        e.currentTarget.style.textDecorationColor = "transparent";
+                      }
+                    },
+                    children: title
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
+                  Typography,
+                  {
+                    variant: "body",
+                    style: {
+                      color: colors.gray[600],
+                      fontSize: "14px",
+                      lineHeight: 1.5,
+                      marginBottom: spacing[4]
+                    },
+                    children: description
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
+                  "div",
+                  {
+                    style: {
+                      display: "flex",
+                      alignItems: "center",
+                      gap: spacing[2],
+                      marginTop: spacing[4],
+                      marginBottom: spacing[2]
+                    },
+                    children: instructors.length > 0 ? /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(import_jsx_runtime48.Fragment, { children: [
+                      visibleInstructors.map((instructor) => /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(
+                        "div",
+                        {
+                          onClick: (e) => handleInstructorClick(instructor, e),
+                          style: {
+                            display: "inline-flex",
+                            alignItems: "center",
+                            padding: `${spacing[1]} ${spacing[3]}`,
+                            borderRadius: radii.full,
+                            fontSize: typography.fontSize.caption,
+                            fontWeight: typography.fontWeight.semiBold,
+                            border: `1px solid ${colors.primaryLight}`,
+                            color: colors.primary,
+                            backgroundColor: colors.primaryLighter,
+                            cursor: onInstructorClick ? "pointer" : "default",
+                            flexShrink: 0
+                          },
+                          children: [
+                            instructor.avatarUrl && /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
+                              Avatar,
+                              {
+                                src: instructor.avatarUrl,
+                                alt: instructor.name,
+                                size: "xs",
+                                name: instructor.name,
+                                style: { width: "20px", height: "20px", marginRight: spacing[2] }
+                              }
+                            ),
+                            instructor.name
+                          ]
+                        },
+                        instructor.id
+                      )),
+                      overflowInstructorsCount > 0 && /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(
+                        "span",
+                        {
+                          style: {
+                            display: "inline-flex",
+                            alignItems: "center",
+                            padding: `${spacing[1]} ${spacing[2]}`,
+                            borderRadius: radii.full,
+                            backgroundColor: colors.gray[100],
+                            color: colors.gray[600],
+                            fontSize: typography.fontSize.caption,
+                            fontWeight: typography.fontWeight.medium,
+                            flexShrink: 0
+                          },
+                          children: [
+                            "+",
+                            overflowInstructorsCount
+                          ]
+                        }
+                      )
+                    ] }) : /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
+                      "span",
+                      {
+                        style: {
+                          display: "inline-flex",
+                          alignItems: "center",
+                          padding: `${spacing[1]} ${spacing[3]}`,
+                          borderRadius: radii.full,
+                          backgroundColor: colors.gray[100],
+                          color: colors.gray[600],
+                          fontSize: typography.fontSize.caption,
+                          fontWeight: typography.fontWeight.medium
+                        },
+                        children: "No instructors"
+                      }
+                    )
+                  }
+                ),
+                /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(
+                  "div",
+                  {
+                    style: {
+                      display: "flex",
+                      alignItems: "flex-start",
+                      gap: spacing[3],
+                      marginBottom: spacing[4]
+                    },
+                    children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(import_phosphor_react23.Wrench, { size: 20, color: colors.primary, style: { marginTop: spacing[1], flexShrink: 0 } }),
+                      /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
+                        "div",
+                        {
+                          style: {
+                            display: "flex",
+                            flexWrap: "wrap",
+                            gap: spacing[2]
+                          },
+                          children: tools.length > 0 ? tools.map((tool) => /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(
+                            "span",
+                            {
+                              onClick: (e) => handleToolClick(tool, e),
+                              style: {
+                                display: "inline-flex",
+                                alignItems: "center",
+                                padding: `${spacing[1]} ${spacing[3]}`,
+                                borderRadius: radii.full,
+                                fontSize: typography.fontSize.caption,
+                                fontWeight: typography.fontWeight.semiBold,
+                                border: `1px solid ${colors.primaryLight}`,
+                                color: colors.primary,
+                                backgroundColor: colors.primaryLighter,
+                                cursor: onToolClick ? "pointer" : "default"
+                              },
+                              children: [
+                                tool.icon && /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("span", { style: { width: "20px", height: "20px", marginRight: spacing[2], display: "flex", alignItems: "center", justifyContent: "center" }, children: tool.icon }),
+                                tool.name
+                              ]
+                            },
+                            tool.id
+                          )) : /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
+                            "span",
+                            {
+                              style: {
+                                display: "inline-flex",
+                                alignItems: "center",
+                                padding: `${spacing[1]} ${spacing[3]}`,
+                                borderRadius: radii.full,
+                                fontSize: typography.fontSize.caption,
+                                fontWeight: typography.fontWeight.semiBold,
+                                border: `1px solid ${colors.gray[300]}`,
+                                color: colors.gray[600],
+                                backgroundColor: colors.gray[100]
+                              },
+                              children: "No tools"
+                            }
+                          )
+                        }
+                      )
+                    ]
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(
+                "div",
+                {
+                  style: {
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    marginTop: spacing[2]
+                  },
+                  children: [
+                    /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)("div", { style: { display: "flex", alignItems: "center" }, children: [
+                      /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(import_phosphor_react23.Clock, { size: 16, color: colors.primary, style: { marginRight: spacing[1] } }),
+                      /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
+                        Typography,
+                        {
+                          variant: "caption",
+                          style: {
+                            color: colors.primary,
+                            fontSize: "12px",
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.medium
+                          },
+                          children: customLearning.duration || "--"
+                        }
+                      )
+                    ] }),
+                    /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
+                      Typography,
+                      {
+                        variant: "caption",
+                        style: {
+                          color: colors.primary,
+                          fontSize: "12px",
+                          fontFamily: typography.fontFamily.primary,
+                          fontWeight: typography.fontWeight.bold,
+                          textTransform: "uppercase",
+                          letterSpacing: "0.1em"
+                        },
+                        children: "TRILHA"
+                      }
+                    ),
+                    /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("div", {})
+                  ]
+                }
+              )
+            ]
+          }
+        )
+      ]
+    }
+  );
+};
+
 // src/components/RowOfCards/RowOfCards.tsx
-var import_react31 = require("react");
-var import_phosphor_react16 = require("phosphor-react");
-var import_jsx_runtime38 = require("react/jsx-runtime");
+var import_react41 = require("react");
+var import_phosphor_react24 = require("phosphor-react");
+var import_jsx_runtime49 = require("react/jsx-runtime");
 function RowOfCards({
   cards,
   renderCard,
@@ -8414,8 +10931,8 @@ function RowOfCards({
   style,
   "data-testid": dataTestId
 }) {
-  const [currentPage, setCurrentPage] = (0, import_react31.useState)(1);
-  const pagination = (0, import_react31.useMemo)(() => {
+  const [currentPage, setCurrentPage] = (0, import_react41.useState)(1);
+  const pagination = (0, import_react41.useMemo)(() => {
     const totalPages = Math.ceil(cards.length / cardsPerPage);
     const startIndex = (currentPage - 1) * cardsPerPage;
     const endIndex = startIndex + cardsPerPage;
@@ -8442,7 +10959,7 @@ function RowOfCards({
     }
   };
   if (cards.length === 0) {
-    return /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(
       "div",
       {
         className: `row-of-cards ${className || ""}`,
@@ -8451,16 +10968,16 @@ function RowOfCards({
           justifyContent: "center",
           alignItems: "center",
           minHeight: "200px",
-          padding: spacing2[8],
+          padding: spacing[8],
           ...style
         },
         "data-testid": dataTestId,
-        children: /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(Card, { variant: "outlined", children: /* @__PURE__ */ (0, import_jsx_runtime38.jsx)("div", { style: { textAlign: "center", padding: spacing2[8] }, children: /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(Typography, { variant: "body", color: "secondary", children: "No cards to display" }) }) })
+        children: /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Card, { variant: "outlined", children: /* @__PURE__ */ (0, import_jsx_runtime49.jsx)("div", { style: { textAlign: "center", padding: spacing[8] }, children: /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Typography, { variant: "body", color: "secondary", children: "No cards to display" }) }) })
       }
     );
   }
   if (pagination.totalPages <= 1) {
-    return /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(
       "div",
       {
         className: `row-of-cards ${className || ""}`,
@@ -8468,13 +10985,13 @@ function RowOfCards({
           ...style
         },
         "data-testid": dataTestId,
-        children: /* @__PURE__ */ (0, import_jsx_runtime38.jsx)("div", { className: "row-of-cards-grid", style: gridStyles, children: pagination.currentCards.map(
+        children: /* @__PURE__ */ (0, import_jsx_runtime49.jsx)("div", { className: "row-of-cards-grid", style: gridStyles, children: pagination.currentCards.map(
           (card, index) => renderCard(card, index)
         ) })
       }
     );
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime38.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(
     "div",
     {
       className: `row-of-cards ${className || ""}`,
@@ -8483,10 +11000,10 @@ function RowOfCards({
       },
       "data-testid": dataTestId,
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime38.jsx)("div", { className: "row-of-cards-grid", style: gridStyles, children: pagination.currentCards.map(
+        /* @__PURE__ */ (0, import_jsx_runtime49.jsx)("div", { className: "row-of-cards-grid", style: gridStyles, children: pagination.currentCards.map(
           (card, index) => renderCard(card, index)
         ) }),
-        /* @__PURE__ */ (0, import_jsx_runtime38.jsxs)(
+        /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(
           "div",
           {
             className: "row-of-cards-pagination",
@@ -8494,7 +11011,7 @@ function RowOfCards({
             role: "navigation",
             "aria-label": "Cards pagination",
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime38.jsx)("div", { style: pageInfoStyles, children: /* @__PURE__ */ (0, import_jsx_runtime38.jsxs)(
+              /* @__PURE__ */ (0, import_jsx_runtime49.jsx)("div", { style: pageInfoStyles, children: /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(
                 Typography,
                 {
                   variant: "bodySmall",
@@ -8511,8 +11028,8 @@ function RowOfCards({
                   ]
                 }
               ) }),
-              /* @__PURE__ */ (0, import_jsx_runtime38.jsxs)("div", { style: navButtonsStyles, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime38.jsxs)(
+              /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)("div", { style: navButtonsStyles, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(
                   Button,
                   {
                     variant: "outlined",
@@ -8522,12 +11039,12 @@ function RowOfCards({
                     "aria-label": "Go to previous page",
                     style: navButtonStyles,
                     children: [
-                      /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(import_phosphor_react16.CaretLeft, { size: 16 }),
+                      /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(import_phosphor_react24.CaretLeft, { size: 16 }),
                       "Previous"
                     ]
                   }
                 ),
-                /* @__PURE__ */ (0, import_jsx_runtime38.jsxs)(
+                /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(
                   Button,
                   {
                     variant: "outlined",
@@ -8538,7 +11055,7 @@ function RowOfCards({
                     style: navButtonStyles,
                     children: [
                       "Next",
-                      /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(import_phosphor_react16.CaretRight, { size: 16 })
+                      /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(import_phosphor_react24.CaretRight, { size: 16 })
                     ]
                   }
                 )
@@ -8553,15 +11070,15 @@ function RowOfCards({
 var gridStyles = {
   display: "grid",
   gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-  gap: spacing2[6],
-  marginBottom: spacing2[8],
-  padding: spacing2[4]
+  gap: spacing[6],
+  marginBottom: spacing[8],
+  padding: spacing[4]
 };
 var paginationStyles = {
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  padding: `${spacing2[4]} ${spacing2[6]}`,
+  padding: `${spacing[4]} ${spacing[6]}`,
   backgroundColor: colors.backgroundLight,
   border: `1px solid ${colors.border.light}`,
   borderRadius: radii.md,
@@ -8573,20 +11090,20 @@ var pageInfoStyles = {
 };
 var navButtonsStyles = {
   display: "flex",
-  gap: spacing2[3]
+  gap: spacing[3]
 };
 var navButtonStyles = {
   minWidth: "100px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  gap: spacing2[2]
+  gap: spacing[2]
 };
 
 // src/components/SearchFilters/SearchFilters.tsx
-var import_react32 = require("react");
-var import_phosphor_react17 = require("phosphor-react");
-var import_jsx_runtime39 = require("react/jsx-runtime");
+var import_react42 = require("react");
+var import_phosphor_react25 = require("phosphor-react");
+var import_jsx_runtime50 = require("react/jsx-runtime");
 function SearchFilters({
   filters,
   values = {},
@@ -8596,9 +11113,9 @@ function SearchFilters({
   style,
   "data-testid": dataTestId
 }) {
-  const [isMobileOpen, setIsMobileOpen] = (0, import_react32.useState)(false);
-  const [filterValues, setFilterValues] = (0, import_react32.useState)(values);
-  (0, import_react32.useEffect)(() => {
+  const [isMobileOpen, setIsMobileOpen] = (0, import_react42.useState)(false);
+  const [filterValues, setFilterValues] = (0, import_react42.useState)(values);
+  (0, import_react42.useEffect)(() => {
     const initialValues = {};
     filters.forEach((filter) => {
       if (!filterValues[filter.id]) {
@@ -8664,7 +11181,7 @@ function SearchFilters({
     const value = filterValues[filter.id];
     switch (filter.type) {
       case "text":
-        return /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("div", { style: filterGroupStyles, children: /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(
+        return /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("div", { style: filterGroupStyles, children: /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
           Input,
           {
             label: filter.label,
@@ -8676,34 +11193,25 @@ function SearchFilters({
           }
         ) }, filter.id);
       case "select":
-        return /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)("div", { style: filterGroupStyles, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("label", { style: filterLabelStyles, children: filter.label }),
-          /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)("div", { style: selectContainerStyles, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)(
-              "select",
-              {
-                value,
-                onChange: (e) => handleFilterChange(filter.id, e.target.value),
-                style: selectStyles,
-                "aria-label": filter.label,
-                children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)("option", { value: "", children: [
-                    "All ",
-                    filter.label,
-                    "s"
-                  ] }),
-                  filter.options?.map((option) => /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("option", { value: option.value, children: option.label }, option.value))
-                ]
-              }
-            ),
-            /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(import_phosphor_react17.CaretDown, { size: 16, style: selectIconStyles })
-          ] })
-        ] }, filter.id);
+        const selectOptions = [
+          { value: "", label: `All ${filter.label}s` },
+          ...filter.options || []
+        ];
+        return /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("div", { style: filterGroupStyles, children: /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
+          FilterDropdown,
+          {
+            label: filter.label,
+            options: selectOptions,
+            value: value || "",
+            onChange: (newValue) => handleFilterChange(filter.id, newValue),
+            style: filterInputStyles
+          }
+        ) }, filter.id);
       case "checkbox":
-        return /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)("div", { style: filterGroupStyles, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(Typography, { variant: "bodySmall", weight: "medium", style: filterLabelStyles, children: filter.label }),
-          /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("div", { style: checkboxContainerStyles, children: filter.options?.map((option) => /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)("label", { style: checkboxLabelStyles, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(
+        return /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("div", { style: filterGroupStyles, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Typography, { variant: "bodySmall", weight: "medium", style: filterLabelStyles, children: filter.label }),
+          /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("div", { style: checkboxContainerStyles, children: filter.options?.map((option) => /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("label", { style: checkboxLabelStyles, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
               "input",
               {
                 type: "checkbox",
@@ -8712,14 +11220,14 @@ function SearchFilters({
                 style: checkboxInputStyles
               }
             ),
-            /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("span", { style: checkboxTextStyles, children: option.label })
+            /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("span", { style: checkboxTextStyles, children: option.label })
           ] }, option.value)) })
         ] }, filter.id);
       case "dateRange":
-        return /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)("div", { style: filterGroupStyles, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(Typography, { variant: "bodySmall", weight: "medium", style: filterLabelStyles, children: filter.label }),
-          /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)("div", { style: dateRangeContainerStyles, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(
+        return /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("div", { style: filterGroupStyles, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Typography, { variant: "bodySmall", weight: "medium", style: filterLabelStyles, children: filter.label }),
+          /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("div", { style: dateRangeContainerStyles, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
               Input,
               {
                 type: "date",
@@ -8730,7 +11238,7 @@ function SearchFilters({
                 "aria-label": filter.startLabel || "Start Date"
               }
             ),
-            /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(
+            /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
               Input,
               {
                 type: "date",
@@ -8748,24 +11256,24 @@ function SearchFilters({
     }
   };
   if (filters.length === 0) {
-    return /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
       "div",
       {
         className: `search-filters-container ${className || ""}`,
         style: getContainerStyles(style),
         "data-testid": dataTestId,
-        children: /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(Typography, { variant: "body", color: "secondary", children: "No filters configured" })
+        children: /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(Typography, { variant: "body", color: "secondary", children: "No filters configured" })
       }
     );
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(
     "div",
     {
       className: `search-filters-container ${className || ""}`,
       style: getContainerStyles(style),
       "data-testid": dataTestId,
       children: [
-        mobileCollapsed && /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)(
+        mobileCollapsed && /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(
           Button,
           {
             variant: "outlined",
@@ -8773,10 +11281,10 @@ function SearchFilters({
             "aria-label": "Toggle filters",
             style: mobileToggleStyles,
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(import_phosphor_react17.FunnelSimple, { size: 16 }),
+              /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(import_phosphor_react25.FunnelSimple, { size: 16 }),
               "Filters",
-              /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(
-                import_phosphor_react17.CaretDown,
+              /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
+                import_phosphor_react25.CaretDown,
                 {
                   size: 16,
                   style: {
@@ -8788,9 +11296,9 @@ function SearchFilters({
             ]
           }
         ),
-        (!mobileCollapsed || isMobileOpen) && /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)("div", { className: "search-filters-content", style: filtersContentStyles, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("div", { style: filtersGridStyles, children: filters.map(renderFilter) }),
-          /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("div", { style: actionsStyles, children: /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)(
+        (!mobileCollapsed || isMobileOpen) && /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("div", { className: "search-filters-content", style: filtersContentStyles, children: [
+          /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("div", { style: filtersGridStyles, children: filters.map(renderFilter) }),
+          /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("div", { style: actionsStyles, children: /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(
             Button,
             {
               variant: "outlined",
@@ -8799,7 +11307,7 @@ function SearchFilters({
               disabled: !hasActiveFilters,
               style: clearButtonStyles,
               children: [
-                /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(import_phosphor_react17.X, { size: 16 }),
+                /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(import_phosphor_react25.X, { size: 16 }),
                 "Clear All"
               ]
             }
@@ -8813,17 +11321,17 @@ var getContainerStyles = (customStyle) => ({
   backgroundColor: colors.backgroundLight,
   border: `1px solid ${colors.border.light}`,
   borderRadius: radii.md,
-  padding: spacing2[6],
+  padding: spacing[6],
   boxShadow: shadows.sm,
   ...customStyle
 });
 var mobileToggleStyles = {
   width: "100%",
-  marginBottom: spacing2[4],
+  marginBottom: spacing[4],
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  gap: spacing2[2]
+  gap: spacing[2]
 };
 var filtersContentStyles = {
   // Content styles handled by grid and individual filters
@@ -8831,32 +11339,28 @@ var filtersContentStyles = {
 var filtersGridStyles = {
   display: "grid",
   gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-  gap: spacing2[6],
-  marginBottom: spacing2[6]
+  gap: spacing[6],
+  marginBottom: spacing[6]
 };
 var filterGroupStyles = {
   display: "flex",
   flexDirection: "column",
-  gap: spacing2[2]
+  gap: spacing[2]
 };
 var filterLabelStyles = {
   fontFamily: typography.fontFamily.primary,
   fontSize: "14px",
   fontWeight: typography.fontWeight.medium,
   color: colors.text.primary,
-  marginBottom: spacing2[1]
+  marginBottom: spacing[1]
 };
 var filterInputStyles = {
   width: "100%"
 };
-var selectContainerStyles = {
-  position: "relative",
-  width: "100%"
-};
 var selectStyles = {
   width: "100%",
-  padding: `${spacing2[3]} ${spacing2[4]}`,
-  paddingRight: spacing2[8],
+  padding: `${spacing[3]} ${spacing[4]}`,
+  paddingRight: spacing[8],
   border: `1px solid ${colors.border.medium}`,
   borderRadius: radii.sm,
   backgroundColor: colors.backgroundLight,
@@ -8869,7 +11373,7 @@ var selectStyles = {
 };
 var selectIconStyles = {
   position: "absolute",
-  right: spacing2[3],
+  right: spacing[3],
   top: "50%",
   transform: "translateY(-50%)",
   pointerEvents: "none",
@@ -8878,12 +11382,12 @@ var selectIconStyles = {
 var checkboxContainerStyles = {
   display: "flex",
   flexDirection: "column",
-  gap: spacing2[2]
+  gap: spacing[2]
 };
 var checkboxLabelStyles = {
   display: "flex",
   alignItems: "center",
-  gap: spacing2[2],
+  gap: spacing[2],
   cursor: "pointer",
   fontSize: "14px",
   color: colors.text.primary
@@ -8899,7 +11403,7 @@ var checkboxTextStyles = {
 };
 var dateRangeContainerStyles = {
   display: "flex",
-  gap: spacing2[3]
+  gap: spacing[3]
 };
 var dateInputStyles = {
   flex: 1
@@ -8907,17 +11411,17 @@ var dateInputStyles = {
 var actionsStyles = {
   display: "flex",
   justifyContent: "flex-end",
-  paddingTop: spacing2[4],
+  paddingTop: spacing[4],
   borderTop: `1px solid ${colors.border.light}`
 };
 var clearButtonStyles = {
   display: "flex",
   alignItems: "center",
-  gap: spacing2[2]
+  gap: spacing[2]
 };
 
 // src/components/Divider/Divider.tsx
-var import_jsx_runtime40 = require("react/jsx-runtime");
+var import_jsx_runtime51 = require("react/jsx-runtime");
 var Divider = ({
   orientation = "horizontal",
   variant = "solid",
@@ -8966,7 +11470,7 @@ var Divider = ({
     }
   });
   if (label && orientation === "horizontal") {
-    return /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)(
+    return /* @__PURE__ */ (0, import_jsx_runtime51.jsxs)(
       "div",
       {
         className: `${classes} cria-divider--with-label`,
@@ -8975,14 +11479,14 @@ var Divider = ({
         "aria-orientation": orientation,
         ...dataProps,
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("div", { className: "cria-divider__line cria-divider__line--before" }),
-          /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("span", { className: `cria-divider__label cria-divider__label--${labelPosition}`, children: label }),
-          /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("div", { className: "cria-divider__line cria-divider__line--after" })
+          /* @__PURE__ */ (0, import_jsx_runtime51.jsx)("div", { className: "cria-divider__line cria-divider__line--before" }),
+          /* @__PURE__ */ (0, import_jsx_runtime51.jsx)("span", { className: `cria-divider__label cria-divider__label--${labelPosition}`, children: label }),
+          /* @__PURE__ */ (0, import_jsx_runtime51.jsx)("div", { className: "cria-divider__line cria-divider__line--after" })
         ]
       }
     );
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(
     "div",
     {
       className: classes,
@@ -8995,7 +11499,7 @@ var Divider = ({
 };
 
 // src/components/Grid/Grid.tsx
-var import_jsx_runtime41 = require("react/jsx-runtime");
+var import_jsx_runtime52 = require("react/jsx-runtime");
 var Grid = ({
   columns = 12,
   gap = "md",
@@ -9049,7 +11553,7 @@ var Grid = ({
   if (!autoFit && !autoFill && minColumnWidth !== "250px") {
     inlineStyles.gridTemplateColumns = `repeat(auto-fit, minmax(${minColumnWidth}, 1fr))`;
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime52.jsx)(
     "div",
     {
       className: classes,
@@ -9061,7 +11565,7 @@ var Grid = ({
 };
 
 // src/components/Grid/Row.tsx
-var import_jsx_runtime42 = require("react/jsx-runtime");
+var import_jsx_runtime53 = require("react/jsx-runtime");
 var Row = ({
   gap = "md",
   align = "stretch",
@@ -9087,7 +11591,7 @@ var Row = ({
     baseClasses.push(className);
   }
   const classes = baseClasses.join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime53.jsx)(
     "div",
     {
       className: classes,
@@ -9099,7 +11603,7 @@ var Row = ({
 };
 
 // src/components/Grid/Column.tsx
-var import_jsx_runtime43 = require("react/jsx-runtime");
+var import_jsx_runtime54 = require("react/jsx-runtime");
 var Column = ({
   span = 12,
   offset = 0,
@@ -9157,7 +11661,7 @@ var Column = ({
     baseClasses.push(className);
   }
   const classes = baseClasses.join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime54.jsx)(
     "div",
     {
       className: classes,
@@ -9169,7 +11673,7 @@ var Column = ({
 };
 
 // src/components/Container/Container.tsx
-var import_jsx_runtime44 = require("react/jsx-runtime");
+var import_jsx_runtime55 = require("react/jsx-runtime");
 var Container = ({
   maxWidth = "lg",
   padding = "md",
@@ -9228,7 +11732,7 @@ var Container = ({
   if (typeof maxWidth === "string" && !["sm", "md", "lg", "xl", "2xl", "full"].includes(maxWidth)) {
     inlineStyles.maxWidth = maxWidth;
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime55.jsx)(
     "div",
     {
       className: classes,
@@ -9240,7 +11744,7 @@ var Container = ({
 };
 
 // src/components/Container/Section.tsx
-var import_jsx_runtime45 = require("react/jsx-runtime");
+var import_jsx_runtime56 = require("react/jsx-runtime");
 var Section = ({
   variant = "default",
   size = "md",
@@ -9298,7 +11802,7 @@ var Section = ({
   if (!["primary", "secondary", "gray", "white", "transparent"].includes(backgroundColor)) {
     inlineStyles.backgroundColor = backgroundColor;
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime45.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(
     "section",
     {
       className: classes,
@@ -9310,8 +11814,8 @@ var Section = ({
 };
 
 // src/components/Scrollbar/Scrollbar.tsx
-var import_react33 = require("react");
-var import_jsx_runtime46 = require("react/jsx-runtime");
+var import_react43 = require("react");
+var import_jsx_runtime57 = require("react/jsx-runtime");
 var Scrollbar = ({
   size = "md",
   theme = "light",
@@ -9371,12 +11875,12 @@ var Scrollbar = ({
   if (hoverColor) {
     inlineStyles["--scrollbar-hover-color"] = hoverColor;
   }
-  const handleScroll = (0, import_react33.useCallback)((event) => {
+  const handleScroll = (0, import_react43.useCallback)((event) => {
     if (onScroll) {
       onScroll(event);
     }
   }, [onScroll]);
-  return /* @__PURE__ */ (0, import_jsx_runtime46.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(
     "div",
     {
       className: classes,
@@ -9389,8 +11893,8 @@ var Scrollbar = ({
 };
 
 // src/components/Footer/Footer.tsx
-var import_react34 = __toESM(require("react"), 1);
-var import_jsx_runtime47 = require("react/jsx-runtime");
+var import_react44 = __toESM(require("react"), 1);
+var import_jsx_runtime58 = require("react/jsx-runtime");
 var Footer = ({
   variant = "default",
   size = "md",
@@ -9435,13 +11939,13 @@ var Footer = ({
     baseClasses.push(className);
   }
   const classes = baseClasses.join(" ");
-  const handleLinkClick = (0, import_react34.useCallback)((href, label, event) => {
+  const handleLinkClick = (0, import_react44.useCallback)((href, label, event) => {
     if (onLinkClick) {
       event.preventDefault();
       onLinkClick(href, label);
     }
   }, [onLinkClick]);
-  const handleSocialClick = (0, import_react34.useCallback)((href, label, icon, event) => {
+  const handleSocialClick = (0, import_react44.useCallback)((href, label, icon, event) => {
     if (onSocialClick) {
       event.preventDefault();
       onSocialClick(href, label, icon);
@@ -9449,11 +11953,11 @@ var Footer = ({
   }, [onSocialClick]);
   const renderLinks = () => {
     if (!links) return null;
-    if (import_react34.default.isValidElement(links)) {
+    if (import_react44.default.isValidElement(links)) {
       return links;
     }
     if (Array.isArray(links)) {
-      return /* @__PURE__ */ (0, import_jsx_runtime47.jsx)("nav", { className: "cria-footer__links", "aria-label": "Footer navigation", children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)("ul", { children: links.map((link, index) => /* @__PURE__ */ (0, import_jsx_runtime47.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+      return /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("nav", { className: "cria-footer__links", "aria-label": "Footer navigation", children: /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("ul", { children: links.map((link, index) => /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(
         "a",
         {
           href: link.href,
@@ -9469,11 +11973,11 @@ var Footer = ({
   };
   const renderSocialLinks = () => {
     if (!socialLinks) return null;
-    if (import_react34.default.isValidElement(socialLinks)) {
+    if (import_react44.default.isValidElement(socialLinks)) {
       return socialLinks;
     }
     if (Array.isArray(socialLinks)) {
-      return /* @__PURE__ */ (0, import_jsx_runtime47.jsx)("nav", { className: "cria-footer__social", "aria-label": "Social media links", children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)("ul", { children: socialLinks.map((socialLink, index) => /* @__PURE__ */ (0, import_jsx_runtime47.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)(
+      return /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("nav", { className: "cria-footer__social", "aria-label": "Social media links", children: /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("ul", { children: socialLinks.map((socialLink, index) => /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(
         "a",
         {
           href: socialLink.href,
@@ -9482,7 +11986,7 @@ var Footer = ({
           onClick: (e) => handleSocialClick(socialLink.href, socialLink.label, socialLink.icon, e),
           className: "cria-footer__social-link",
           "aria-label": socialLink.label,
-          children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)("span", { className: `cria-footer__social-icon cria-footer__social-icon--${socialLink.icon}`, children: socialLink.icon })
+          children: /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("span", { className: `cria-footer__social-icon cria-footer__social-icon--${socialLink.icon}`, children: socialLink.icon })
         }
       ) }, index)) }) });
     }
@@ -9490,23 +11994,23 @@ var Footer = ({
   };
   const renderCopyright = () => {
     if (!copyright) return null;
-    if (import_react34.default.isValidElement(copyright)) {
-      return /* @__PURE__ */ (0, import_jsx_runtime47.jsx)("div", { className: "cria-footer__copyright", children: copyright });
+    if (import_react44.default.isValidElement(copyright)) {
+      return /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("div", { className: "cria-footer__copyright", children: copyright });
     }
     if (typeof copyright === "string") {
-      return /* @__PURE__ */ (0, import_jsx_runtime47.jsx)("div", { className: "cria-footer__copyright", children: /* @__PURE__ */ (0, import_jsx_runtime47.jsx)("span", { children: copyright }) });
+      return /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("div", { className: "cria-footer__copyright", children: /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("span", { children: copyright }) });
     }
     return null;
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)(
     "footer",
     {
       className: classes,
       style,
       ...props,
       children: [
-        children && /* @__PURE__ */ (0, import_jsx_runtime47.jsx)("div", { className: "cria-footer__content", children }),
-        /* @__PURE__ */ (0, import_jsx_runtime47.jsxs)("div", { className: "cria-footer__sections", children: [
+        children && /* @__PURE__ */ (0, import_jsx_runtime58.jsx)("div", { className: "cria-footer__content", children }),
+        /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)("div", { className: "cria-footer__sections", children: [
           renderLinks(),
           renderSocialLinks(),
           renderCopyright()
@@ -9517,8 +12021,8 @@ var Footer = ({
 };
 
 // src/components/MegaMenu/MegaMenu.tsx
-var import_react35 = require("react");
-var import_jsx_runtime48 = require("react/jsx-runtime");
+var import_react45 = require("react");
+var import_jsx_runtime59 = require("react/jsx-runtime");
 var MegaMenu = ({
   variant = "default",
   position = "static",
@@ -9542,11 +12046,11 @@ var MegaMenu = ({
   children,
   ...props
 }) => {
-  const [activeDropdown, setActiveDropdown] = (0, import_react35.useState)(null);
-  const [mobileMenuOpen, setMobileMenuOpen] = (0, import_react35.useState)(false);
-  const [searchQuery, setSearchQuery] = (0, import_react35.useState)("");
-  const megaMenuRef = (0, import_react35.useRef)(null);
-  const timeoutRef = (0, import_react35.useRef)(null);
+  const [activeDropdown, setActiveDropdown] = (0, import_react45.useState)(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = (0, import_react45.useState)(false);
+  const [searchQuery, setSearchQuery] = (0, import_react45.useState)("");
+  const megaMenuRef = (0, import_react45.useRef)(null);
+  const timeoutRef = (0, import_react45.useRef)(null);
   const baseClasses = ["cria-mega-menu"];
   baseClasses.push(`cria-mega-menu--${variant}`);
   baseClasses.push(`cria-mega-menu--position-${position}`);
@@ -9571,27 +12075,27 @@ var MegaMenu = ({
     baseClasses.push(className);
   }
   const classes = baseClasses.join(" ");
-  const handleItemClick = (0, import_react35.useCallback)((item, event) => {
+  const handleItemClick = (0, import_react45.useCallback)((item, event) => {
     if (onItemClick) {
       event.preventDefault();
       onItemClick(item.href, item.label, item);
     }
   }, [onItemClick]);
-  const handleSearchChange = (0, import_react35.useCallback)((event) => {
+  const handleSearchChange = (0, import_react45.useCallback)((event) => {
     const query = event.target.value;
     setSearchQuery(query);
     if (onSearch) {
       onSearch(query);
     }
   }, [onSearch]);
-  const handleMouseEnter = (0, import_react35.useCallback)((itemLabel) => {
+  const handleMouseEnter = (0, import_react45.useCallback)((itemLabel) => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
     }
     setActiveDropdown(itemLabel);
   }, []);
-  const handleMouseLeave = (0, import_react35.useCallback)(() => {
+  const handleMouseLeave = (0, import_react45.useCallback)(() => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
@@ -9599,16 +12103,16 @@ var MegaMenu = ({
       setActiveDropdown(null);
     }, 150);
   }, []);
-  const handleMobileToggle = (0, import_react35.useCallback)(() => {
+  const handleMobileToggle = (0, import_react45.useCallback)(() => {
     setMobileMenuOpen(!mobileMenuOpen);
   }, [mobileMenuOpen]);
-  const handleCtaClick = (0, import_react35.useCallback)((event) => {
+  const handleCtaClick = (0, import_react45.useCallback)((event) => {
     if (ctaButton?.onClick) {
       event.preventDefault();
       ctaButton.onClick();
     }
   }, [ctaButton]);
-  (0, import_react35.useEffect)(() => {
+  (0, import_react45.useEffect)(() => {
     return () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
@@ -9619,8 +12123,8 @@ var MegaMenu = ({
     const hasChildren = item.children && item.children.length > 0;
     const hasCustomDropdown = !!item.customDropdown;
     const showDropdown = activeDropdown === item.label && (hasChildren || hasCustomDropdown);
-    return /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)("li", { className: `cria-mega-menu__item cria-mega-menu__item--level-${level}`, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(
+    return /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("li", { className: `cria-mega-menu__item cria-mega-menu__item--level-${level}`, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)(
         "a",
         {
           href: item.href,
@@ -9632,23 +12136,22 @@ var MegaMenu = ({
           className: `cria-mega-menu__link ${hasChildren || hasCustomDropdown ? "cria-mega-menu__link--has-dropdown" : ""}`,
           children: [
             item.label,
-            (hasChildren || hasCustomDropdown) && /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("span", { className: "cria-mega-menu__dropdown-arrow", "aria-hidden": "true", children: "\u25BC" })
+            (hasChildren || hasCustomDropdown) && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("span", { className: "cria-mega-menu__dropdown-arrow", "aria-hidden": "true", children: "\u25BC" })
           ]
         }
       ),
-      (hasChildren || hasCustomDropdown) && showDropdown && /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
+      (hasChildren || hasCustomDropdown) && showDropdown && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(
         "div",
         {
-          className: `cria-mega-menu__dropdown cria-mega-menu__dropdown--level-${level}`,
+          className: `cria-mega-menu__dropdown cria-mega-menu__dropdown--level-${level} show`,
           onMouseEnter: () => handleMouseEnter(item.label),
           onMouseLeave: handleMouseLeave,
-          style: { display: "block" },
-          children: hasCustomDropdown ? item.customDropdown : /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("ul", { className: "cria-mega-menu__dropdown-list", children: item.children?.map((child) => renderMenuItem(child, level + 1)) })
+          children: hasCustomDropdown ? item.customDropdown : /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("ul", { className: "cria-mega-menu__dropdown-list", children: item.children?.map((child) => renderMenuItem(child, level + 1)) })
         }
       )
     ] }, item.label);
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)(
     "nav",
     {
       ref: megaMenuRef,
@@ -9656,11 +12159,11 @@ var MegaMenu = ({
       style,
       ...props,
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)("div", { className: "cria-mega-menu__container", children: [
-          logo && /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("div", { className: "cria-mega-menu__logo", children: logo }),
-          trigger && /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("div", { className: "cria-mega-menu__trigger", children: trigger }),
-          items.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("ul", { className: "cria-mega-menu__list", children: items.map((item) => renderMenuItem(item)) }),
-          showSearch && /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("div", { className: "cria-mega-menu__search", children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "cria-mega-menu__container", children: [
+          logo && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "cria-mega-menu__logo", children: logo }),
+          trigger && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "cria-mega-menu__trigger", children: trigger }),
+          items.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("ul", { className: "cria-mega-menu__list", children: items.map((item) => renderMenuItem(item)) }),
+          showSearch && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "cria-mega-menu__search", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(
             "input",
             {
               type: "text",
@@ -9670,7 +12173,7 @@ var MegaMenu = ({
               className: "cria-mega-menu__search-input"
             }
           ) }),
-          ctaButton && /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("div", { className: "cria-mega-menu__cta", children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
+          ctaButton && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "cria-mega-menu__cta", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(
             "a",
             {
               href: ctaButton.href || "#",
@@ -9679,20 +12182,20 @@ var MegaMenu = ({
               children: ctaButton.label
             }
           ) }),
-          showMobileToggle && /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
+          showMobileToggle && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(
             "button",
             {
               onClick: handleMobileToggle,
               className: "cria-mega-menu__mobile-toggle",
               "aria-label": mobileMenuOpen ? "Close menu" : "Open menu",
               "aria-expanded": mobileMenuOpen,
-              children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("span", { className: "cria-mega-menu__mobile-toggle-icon", children: mobileMenuOpen ? "\u2715" : "\u2630" })
+              children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("span", { className: "cria-mega-menu__mobile-toggle-icon", children: mobileMenuOpen ? "\u2715" : "\u2630" })
             }
           )
         ] }),
-        showMobileToggle && mobileMenuOpen && /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("div", { className: "cria-mega-menu__mobile-menu", children: /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)("div", { className: "cria-mega-menu__mobile-menu-content", children: [
-          items.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("ul", { className: "cria-mega-menu__mobile-list", children: items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)("li", { className: "cria-mega-menu__mobile-item", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
+        showMobileToggle && mobileMenuOpen && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "cria-mega-menu__mobile-menu", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("div", { className: "cria-mega-menu__mobile-menu-content", children: [
+          items.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("ul", { className: "cria-mega-menu__mobile-list", children: items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)("li", { className: "cria-mega-menu__mobile-item", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(
               "a",
               {
                 href: item.href,
@@ -9703,7 +12206,7 @@ var MegaMenu = ({
                 children: item.label
               }
             ),
-            item.children && item.children.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("ul", { className: "cria-mega-menu__mobile-sublist", children: item.children.map((child) => /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("li", { className: "cria-mega-menu__mobile-subitem", children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
+            item.children && item.children.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("ul", { className: "cria-mega-menu__mobile-sublist", children: item.children.map((child) => /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("li", { className: "cria-mega-menu__mobile-subitem", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(
               "a",
               {
                 href: child.href,
@@ -9715,7 +12218,7 @@ var MegaMenu = ({
               }
             ) }, child.label)) })
           ] }, item.label)) }),
-          showSearch && /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("div", { className: "cria-mega-menu__mobile-search", children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
+          showSearch && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "cria-mega-menu__mobile-search", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(
             "input",
             {
               type: "text",
@@ -9725,7 +12228,7 @@ var MegaMenu = ({
               className: "cria-mega-menu__mobile-search-input"
             }
           ) }),
-          ctaButton && /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("div", { className: "cria-mega-menu__mobile-cta", children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
+          ctaButton && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "cria-mega-menu__mobile-cta", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(
             "a",
             {
               href: ctaButton.href || "#",
@@ -9735,19 +12238,19 @@ var MegaMenu = ({
             }
           ) })
         ] }) }),
-        loading && /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("div", { className: "cria-mega-menu__loading-overlay", children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("div", { className: "cria-mega-menu__loading-spinner", "aria-label": "Loading", children: /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("span", { children: "Loading..." }) }) }),
-        children && /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("div", { className: "cria-mega-menu__content", children })
+        loading && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "cria-mega-menu__loading-overlay", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "cria-mega-menu__loading-spinner", "aria-label": "Loading", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("span", { children: "Loading..." }) }) }),
+        children && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)("div", { className: "cria-mega-menu__content", children })
       ]
     }
   );
 };
 
 // src/components/Carousel/Carousel.tsx
-var import_react36 = require("react");
+var import_react46 = require("react");
 var import_embla_carousel_react = __toESM(require("embla-carousel-react"), 1);
 var import_embla_carousel_autoplay = __toESM(require("embla-carousel-autoplay"), 1);
-var import_phosphor_react18 = require("phosphor-react");
-var import_jsx_runtime49 = require("react/jsx-runtime");
+var import_phosphor_react26 = require("phosphor-react");
+var import_jsx_runtime60 = require("react/jsx-runtime");
 var Carousel = ({
   slides,
   children,
@@ -9781,23 +12284,23 @@ var Carousel = ({
     },
     autoPlay ? [(0, import_embla_carousel_autoplay.default)({ delay: autoPlayDelay })] : []
   );
-  const [selectedIndex, setSelectedIndex] = (0, import_react36.useState)(0);
-  const [scrollSnaps, setScrollSnaps] = (0, import_react36.useState)([]);
-  const scrollPrev = (0, import_react36.useCallback)(() => {
+  const [selectedIndex, setSelectedIndex] = (0, import_react46.useState)(0);
+  const [scrollSnaps, setScrollSnaps] = (0, import_react46.useState)([]);
+  const scrollPrev = (0, import_react46.useCallback)(() => {
     if (emblaApi) emblaApi.scrollPrev();
   }, [emblaApi]);
-  const scrollNext = (0, import_react36.useCallback)(() => {
+  const scrollNext = (0, import_react46.useCallback)(() => {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
-  const scrollTo = (0, import_react36.useCallback)((index) => {
+  const scrollTo = (0, import_react46.useCallback)((index) => {
     if (emblaApi) emblaApi.scrollTo(index);
   }, [emblaApi]);
-  const onSelect = (0, import_react36.useCallback)(() => {
+  const onSelect = (0, import_react46.useCallback)(() => {
     if (!emblaApi) return;
     setSelectedIndex(emblaApi.selectedScrollSnap());
     onSlideChange?.(emblaApi.selectedScrollSnap());
   }, [emblaApi, onSlideChange]);
-  (0, import_react36.useEffect)(() => {
+  (0, import_react46.useEffect)(() => {
     if (!emblaApi) return;
     onSelect();
     setScrollSnaps(emblaApi.scrollSnapList());
@@ -9808,7 +12311,7 @@ var Carousel = ({
       emblaApi.off("reInit", onSelect);
     };
   }, [emblaApi, onSelect]);
-  const handleSlideClick = (0, import_react36.useCallback)((slide, index) => {
+  const handleSlideClick = (0, import_react46.useCallback)((slide, index) => {
     onSlideClick?.(slide, index);
   }, [onSlideClick]);
   const classes = [
@@ -9822,12 +12325,12 @@ var Carousel = ({
     className
   ].filter(Boolean).join(" ");
   if (loading) {
-    return /* @__PURE__ */ (0, import_jsx_runtime49.jsx)("div", { className: classes, style, ...props, children: /* @__PURE__ */ (0, import_jsx_runtime49.jsx)("div", { className: "cria-carousel__loading", children: /* @__PURE__ */ (0, import_jsx_runtime49.jsx)("div", { className: "cria-carousel__spinner" }) }) });
+    return /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: classes, style, ...props, children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "cria-carousel__loading", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "cria-carousel__spinner" }) }) });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)("div", { className: classes, style, ...props, children: [
-    header && /* @__PURE__ */ (0, import_jsx_runtime49.jsx)("div", { className: "cria-carousel__header", children: header }),
-    /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)("div", { className: "cria-carousel__container", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime49.jsx)("div", { className: "cria-carousel__viewport", ref: emblaRef, children: /* @__PURE__ */ (0, import_jsx_runtime49.jsx)("div", { className: "cria-carousel__container-inner", children: slides.map((slide, index) => /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: classes, style, ...props, children: [
+    header && /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "cria-carousel__header", children: header }),
+    /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)("div", { className: "cria-carousel__container", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "cria-carousel__viewport", ref: emblaRef, children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "cria-carousel__container-inner", children: slides.map((slide, index) => /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(
         "div",
         {
           className: "cria-carousel__slide",
@@ -9836,45 +12339,45 @@ var Carousel = ({
         },
         slide.id
       )) }) }),
-      showArrows && /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(import_jsx_runtime49.Fragment, { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(
+      showArrows && /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)(import_jsx_runtime60.Fragment, { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(
           "button",
           {
             className: "cria-carousel__arrow cria-carousel__arrow--prev",
             onClick: scrollPrev,
             "aria-label": "Previous slide",
-            children: /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(import_phosphor_react18.CaretLeft, { size: 24 })
+            children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(import_phosphor_react26.CaretLeft, { size: 24 })
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(
           "button",
           {
             className: "cria-carousel__arrow cria-carousel__arrow--next",
             onClick: scrollNext,
             "aria-label": "Next slide",
-            children: /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(import_phosphor_react18.CaretRight, { size: 24 })
+            children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(import_phosphor_react26.CaretRight, { size: 24 })
           }
         )
       ] })
     ] }),
-    showDots && scrollSnaps.length > 1 && /* @__PURE__ */ (0, import_jsx_runtime49.jsx)("div", { className: "cria-carousel__dots", children: scrollSnaps.map((_, index) => /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(
+    showDots && scrollSnaps.length > 1 && /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "cria-carousel__dots", children: scrollSnaps.map((_, index) => /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(
       "button",
       {
         className: `cria-carousel__dot ${index === selectedIndex ? "cria-carousel__dot--active" : ""}`,
         onClick: () => scrollTo(index),
         "aria-label": `Go to slide ${index + 1}`,
-        children: index === selectedIndex ? /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(import_phosphor_react18.Circle, { size: 12, weight: "fill" }) : /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(import_phosphor_react18.CircleDashed, { size: 12, weight: "regular" })
+        children: index === selectedIndex ? /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(import_phosphor_react26.Circle, { size: 12, weight: "fill" }) : /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(import_phosphor_react26.CircleDashed, { size: 12, weight: "regular" })
       },
       index
     )) }),
-    footer && /* @__PURE__ */ (0, import_jsx_runtime49.jsx)("div", { className: "cria-carousel__footer", children: footer })
+    footer && /* @__PURE__ */ (0, import_jsx_runtime60.jsx)("div", { className: "cria-carousel__footer", children: footer })
   ] });
 };
 
 // src/components/Table/Table.tsx
-var import_react37 = require("react");
-var import_phosphor_react19 = require("phosphor-react");
-var import_jsx_runtime50 = require("react/jsx-runtime");
+var import_react47 = require("react");
+var import_phosphor_react27 = require("phosphor-react");
+var import_jsx_runtime61 = require("react/jsx-runtime");
 var Table = ({
   columns,
   data,
@@ -9911,15 +12414,15 @@ var Table = ({
   style = {},
   ...props
 }) => {
-  const [internalFilter, setInternalFilter] = (0, import_react37.useState)(filterValue || "");
-  const [showRowActions, setShowRowActions] = (0, import_react37.useState)({});
-  const getRowKey = (0, import_react37.useCallback)((row, index) => {
+  const [internalFilter, setInternalFilter] = (0, import_react47.useState)(filterValue || "");
+  const [showRowActions, setShowRowActions] = (0, import_react47.useState)({});
+  const getRowKey = (0, import_react47.useCallback)((row, index) => {
     if (typeof rowKey === "function") {
       return rowKey(row, index);
     }
     return row[rowKey] || index;
   }, [rowKey]);
-  const filteredData = (0, import_react37.useMemo)(() => {
+  const filteredData = (0, import_react47.useMemo)(() => {
     if (!data || !Array.isArray(data)) {
       return [];
     }
@@ -9934,7 +12437,7 @@ var Table = ({
       })
     );
   }, [data, columns, filterable, internalFilter, filterValue]);
-  const sortedData = (0, import_react37.useMemo)(() => {
+  const sortedData = (0, import_react47.useMemo)(() => {
     if (!sortBy || !sortDirection) {
       return filteredData;
     }
@@ -9946,7 +12449,7 @@ var Table = ({
       return sortDirection === "asc" ? comparison : -comparison;
     });
   }, [filteredData, sortBy, sortDirection]);
-  const paginatedData = (0, import_react37.useMemo)(() => {
+  const paginatedData = (0, import_react47.useMemo)(() => {
     if (!pagination) {
       return sortedData;
     }
@@ -9954,7 +12457,7 @@ var Table = ({
     const endIndex = startIndex + pagination.pageSize;
     return sortedData.slice(startIndex, endIndex);
   }, [sortedData, pagination]);
-  const handleSort = (0, import_react37.useCallback)((columnKey) => {
+  const handleSort = (0, import_react47.useCallback)((columnKey) => {
     if (!onSort) return;
     const column = columns.find((col) => col.key === columnKey);
     if (!column || !column.sortable) return;
@@ -9964,7 +12467,7 @@ var Table = ({
     }
     onSort(columnKey, newDirection);
   }, [columns, sortBy, sortDirection, onSort]);
-  const handleRowSelect = (0, import_react37.useCallback)((row, checked) => {
+  const handleRowSelect = (0, import_react47.useCallback)((row, checked) => {
     if (!selection || !onSelectionChange) return;
     const currentSelection = selection.selectedRows || [];
     let newSelection;
@@ -9977,47 +12480,47 @@ var Table = ({
     }
     onSelectionChange(newSelection);
   }, [selection, onSelectionChange, getRowKey]);
-  const handleSelectAll = (0, import_react37.useCallback)((checked) => {
+  const handleSelectAll = (0, import_react47.useCallback)((checked) => {
     if (!selection || !onSelectionChange) return;
     onSelectionChange(checked ? paginatedData : []);
   }, [selection, onSelectionChange, paginatedData]);
-  const handleFilterChange = (0, import_react37.useCallback)((value) => {
+  const handleFilterChange = (0, import_react47.useCallback)((value) => {
     setInternalFilter(value);
     onFilterChange?.(value);
   }, [onFilterChange]);
-  const handleRowClick = (0, import_react37.useCallback)((row, index) => {
+  const handleRowClick = (0, import_react47.useCallback)((row, index) => {
     if (rowClickable && onRowClick) {
       onRowClick(row, index);
     }
   }, [rowClickable, onRowClick]);
-  const handleRowActionClick = (0, import_react37.useCallback)((action, row, index) => {
+  const handleRowActionClick = (0, import_react47.useCallback)((action, row, index) => {
     action.onClick(row, index);
     onRowAction?.(action.label, row, index);
     setShowRowActions((prev) => ({ ...prev, [getRowKey(row, index)]: false }));
   }, [onRowAction, getRowKey]);
-  const renderSortIcon = (0, import_react37.useCallback)((columnKey) => {
+  const renderSortIcon = (0, import_react47.useCallback)((columnKey) => {
     if (!sortable) return null;
     if (sortBy === columnKey) {
-      return sortDirection === "asc" ? /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(import_phosphor_react19.CaretUp, { size: 16 }) : /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(import_phosphor_react19.CaretDown, { size: 16 });
+      return sortDirection === "asc" ? /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(import_phosphor_react27.CaretUp, { size: 16 }) : /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(import_phosphor_react27.CaretDown, { size: 16 });
     }
-    return /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("div", { style: { display: "flex", flexDirection: "column", alignItems: "center" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(import_phosphor_react19.CaretUp, { size: 8 }),
-      /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(import_phosphor_react19.CaretDown, { size: 8 })
+    return /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { style: { display: "flex", flexDirection: "column", alignItems: "center" }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(import_phosphor_react27.CaretUp, { size: 8 }),
+      /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(import_phosphor_react27.CaretDown, { size: 8 })
     ] });
   }, [sortable, sortBy, sortDirection]);
-  const renderPagination = (0, import_react37.useCallback)(() => {
+  const renderPagination = (0, import_react47.useCallback)(() => {
     if (!pagination) return null;
     const totalPages = Math.ceil(pagination.total / pagination.pageSize);
     const pageSizeOptions = pagination.pageSizeOptions || [10, 20, 50, 100];
-    return /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("div", { className: "cria-table__pagination", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("div", { className: "cria-table__pagination-info", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("span", { children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "cria-table__pagination", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "cria-table__pagination-info", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("span", { children: [
           "Page ",
           pagination.page,
           " of ",
           totalPages
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("span", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("span", { children: [
           "Showing ",
           (pagination.page - 1) * pagination.pageSize + 1,
           " to",
@@ -10029,21 +12532,21 @@ var Table = ({
           " entries"
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("div", { className: "cria-table__pagination-controls", children: [
-        pagination.showSizeChanger && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "cria-table__pagination-controls", children: [
+        pagination.showSizeChanger && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
           "select",
           {
             value: pagination.pageSize,
             onChange: (e) => onPageSizeChange?.(Number(e.target.value)),
             className: "cria-table__page-size-select",
-            children: pageSizeOptions.map((size2) => /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("option", { value: size2, children: [
+            children: pageSizeOptions.map((size2) => /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("option", { value: size2, children: [
               size2,
               " per page"
             ] }, size2))
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("div", { className: "cria-table__page-buttons", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "cria-table__page-buttons", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
             "button",
             {
               disabled: pagination.page <= 1,
@@ -10055,7 +12558,7 @@ var Table = ({
           Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
             const page = pagination.page <= 3 ? i + 1 : pagination.page - 2 + i;
             if (page > totalPages) return null;
-            return /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
+            return /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
               "button",
               {
                 onClick: () => onPageChange?.(page),
@@ -10065,7 +12568,7 @@ var Table = ({
               page
             );
           }),
-          /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
+          /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
             "button",
             {
               disabled: pagination.page >= totalPages,
@@ -10086,17 +12589,17 @@ var Table = ({
     className
   ].filter(Boolean).join(" ");
   if (loading) {
-    return /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("div", { className: classes, style, ...props, children: /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("div", { className: "cria-table__loading", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("div", { className: "cria-table__spinner" }),
-      /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("span", { children: loadingMessage })
+    return /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: classes, style, ...props, children: /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "cria-table__loading", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: "cria-table__spinner" }),
+      /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("span", { children: loadingMessage })
     ] }) });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("div", { className: classes, style, children: [
-    header && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("div", { className: "cria-table__header", children: header }),
-    /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("div", { className: "cria-table__toolbar", children: [
-      filterable && /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("div", { className: "cria-table__filter", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(import_phosphor_react19.MagnifyingGlass, { size: 16 }),
-        /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: classes, style, children: [
+    header && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: "cria-table__header", children: header }),
+    /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "cria-table__toolbar", children: [
+      filterable && /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "cria-table__filter", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(import_phosphor_react27.MagnifyingGlass, { size: 16 }),
+        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
           "input",
           {
             type: "text",
@@ -10107,21 +12610,21 @@ var Table = ({
           }
         )
       ] }),
-      exportable && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("div", { className: "cria-table__export", children: /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(
+      exportable && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: "cria-table__export", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(
         "button",
         {
           onClick: () => onExport?.("csv"),
           className: "cria-table__export-button",
           children: [
-            /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(import_phosphor_react19.Download, { size: 16 }),
+            /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(import_phosphor_react27.Download, { size: 16 }),
             "Export CSV"
           ]
         }
       ) })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("div", { className: "cria-table__container", children: /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("table", { className: "cria-table__table", role: "table", tabIndex: 0, ...props, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("thead", { className: "cria-table__thead", children: /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("tr", { className: "cria-table__tr", children: [
-        selection && selection.type === "checkbox" && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("th", { className: "cria-table__th", children: /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
+    /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: "cria-table__container", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("table", { className: "cria-table__table", role: "table", tabIndex: 0, ...props, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("thead", { className: "cria-table__thead", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("tr", { className: "cria-table__tr", children: [
+        selection && selection.type === "checkbox" && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("th", { className: "cria-table__th", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
           "input",
           {
             type: "checkbox",
@@ -10134,7 +12637,7 @@ var Table = ({
             "aria-label": "Select all rows"
           }
         ) }),
-        columns.map((column) => /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
+        columns.map((column) => /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
           "th",
           {
             className: `cria-table__th ${column.headerClassName || ""}`,
@@ -10142,14 +12645,14 @@ var Table = ({
               width: column.width,
               textAlign: column.align || "left"
             },
-            children: /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(
+            children: /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(
               "div",
               {
                 className: `cria-table__header-cell ${column.sortable && sortable ? "cria-table__header-cell--sortable" : ""}`,
                 onClick: () => column.sortable && handleSort(column.key),
                 "aria-sort": sortBy === column.key ? sortDirection === "asc" ? "ascending" : "descending" : "none",
                 children: [
-                  /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("span", { children: column.label }),
+                  /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("span", { children: column.label }),
                   renderSortIcon(column.key)
                 ]
               }
@@ -10157,27 +12660,27 @@ var Table = ({
           },
           column.key
         )),
-        rowActions && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("th", { className: "cria-table__th cria-table__th--actions", children: "Actions" })
+        rowActions && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("th", { className: "cria-table__th cria-table__th--actions", children: "Actions" })
       ] }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("tbody", { className: "cria-table__tbody", children: paginatedData.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("tr", { className: "cria-table__tr", children: /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("tbody", { className: "cria-table__tbody", children: paginatedData.length === 0 ? /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("tr", { className: "cria-table__tr", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
         "td",
         {
           className: "cria-table__td cria-table__td--empty",
           colSpan: columns.length + (selection ? 1 : 0) + (rowActions ? 1 : 0),
-          children: emptyComponent || /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("div", { className: "cria-table__empty", children: /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("span", { children: emptyMessage }) })
+          children: emptyComponent || /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: "cria-table__empty", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("span", { children: emptyMessage }) })
         }
       ) }) : paginatedData.map((row, index) => {
         const key = getRowKey(row, index);
         const isSelected = selection?.selectedRows?.some(
           (selected) => getRowKey(selected, 0) === key
         );
-        return /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(
+        return /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(
           "tr",
           {
             className: `cria-table__tr ${rowClassName ? rowClassName(row, index) : ""} ${rowClickable ? "cria-table__tr--clickable" : ""} ${isSelected ? "cria-table__tr--selected" : ""}`,
             onClick: () => handleRowClick(row, index),
             children: [
-              selection && selection.type === "checkbox" && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("td", { className: "cria-table__td", children: /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
+              selection && selection.type === "checkbox" && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("td", { className: "cria-table__td", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
                 "input",
                 {
                   type: "checkbox",
@@ -10186,7 +12689,7 @@ var Table = ({
                   "aria-label": `Select row ${index + 1}`
                 }
               ) }),
-              selection && selection.type === "radio" && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("td", { className: "cria-table__td", children: /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
+              selection && selection.type === "radio" && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("td", { className: "cria-table__td", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
                 "input",
                 {
                   type: "radio",
@@ -10196,7 +12699,7 @@ var Table = ({
                   "aria-label": `Select row ${index + 1}`
                 }
               ) }),
-              columns.map((column) => /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
+              columns.map((column) => /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
                 "td",
                 {
                   className: `cria-table__td ${column.className || ""}`,
@@ -10205,8 +12708,8 @@ var Table = ({
                 },
                 column.key
               )),
-              rowActions && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("td", { className: "cria-table__td cria-table__td--actions", children: /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)("div", { className: "cria-table__row-actions", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
+              rowActions && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("td", { className: "cria-table__td cria-table__td--actions", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)("div", { className: "cria-table__row-actions", children: [
+                /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
                   "button",
                   {
                     className: "cria-table__row-actions-button",
@@ -10218,10 +12721,10 @@ var Table = ({
                       }));
                     },
                     "aria-label": `Actions for row ${index + 1}`,
-                    children: /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(import_phosphor_react19.DotsThree, { size: 16 })
+                    children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(import_phosphor_react27.DotsThree, { size: 16 })
                   }
                 ),
-                showRowActions[key] && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("div", { className: "cria-table__row-actions-menu", children: rowActions(row, index).map((action, actionIndex) => /* @__PURE__ */ (0, import_jsx_runtime50.jsxs)(
+                showRowActions[key] && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: "cria-table__row-actions-menu", children: rowActions(row, index).map((action, actionIndex) => /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(
                   "button",
                   {
                     className: `cria-table__row-action ${action.className || ""}`,
@@ -10245,12 +12748,12 @@ var Table = ({
       }) })
     ] }) }),
     renderPagination(),
-    footer && /* @__PURE__ */ (0, import_jsx_runtime50.jsx)("div", { className: "cria-table__footer", children: footer })
+    footer && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)("div", { className: "cria-table__footer", children: footer })
   ] });
 };
 
 // src/components/EmptyState/EmptyState.tsx
-var import_jsx_runtime51 = require("react/jsx-runtime");
+var import_jsx_runtime62 = require("react/jsx-runtime");
 var EmptyState = ({
   icon,
   title,
@@ -10275,18 +12778,18 @@ var EmptyState = ({
   const renderTitle = () => {
     if (!title) return null;
     if (typeof title === "string") {
-      return /* @__PURE__ */ (0, import_jsx_runtime51.jsx)("h3", { className: "cria-empty-state__title", children: title });
+      return /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("h3", { className: "cria-empty-state__title", children: title });
     }
-    return /* @__PURE__ */ (0, import_jsx_runtime51.jsx)("div", { className: "cria-empty-state__title", children: title });
+    return /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("div", { className: "cria-empty-state__title", children: title });
   };
   const renderDescription = () => {
     if (!description) return null;
     if (typeof description === "string") {
-      return /* @__PURE__ */ (0, import_jsx_runtime51.jsx)("p", { className: "cria-empty-state__description", children: description });
+      return /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("p", { className: "cria-empty-state__description", children: description });
     }
-    return /* @__PURE__ */ (0, import_jsx_runtime51.jsx)("div", { className: "cria-empty-state__description", children: description });
+    return /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("div", { className: "cria-empty-state__description", children: description });
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
     "div",
     {
       className: classes,
@@ -10294,20 +12797,20 @@ var EmptyState = ({
       role: "status",
       "aria-live": "polite",
       ...props,
-      children: /* @__PURE__ */ (0, import_jsx_runtime51.jsxs)("div", { className: "cria-empty-state__content", children: [
-        icon && /* @__PURE__ */ (0, import_jsx_runtime51.jsx)("div", { className: "cria-empty-state__icon", children: icon }),
+      children: /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)("div", { className: "cria-empty-state__content", children: [
+        icon && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("div", { className: "cria-empty-state__icon", children: icon }),
         renderTitle(),
         renderDescription(),
-        action && /* @__PURE__ */ (0, import_jsx_runtime51.jsx)("div", { className: "cria-empty-state__action", children: action }),
-        additionalContent && /* @__PURE__ */ (0, import_jsx_runtime51.jsx)("div", { className: "cria-empty-state__additional", children: additionalContent }),
-        children && /* @__PURE__ */ (0, import_jsx_runtime51.jsx)("div", { className: "cria-empty-state__children", children })
+        action && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("div", { className: "cria-empty-state__action", children: action }),
+        additionalContent && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("div", { className: "cria-empty-state__additional", children: additionalContent }),
+        children && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)("div", { className: "cria-empty-state__children", children })
       ] })
     }
   );
 };
 
 // src/components/Charts/BaseChart.tsx
-var import_jsx_runtime52 = require("react/jsx-runtime");
+var import_jsx_runtime63 = require("react/jsx-runtime");
 var BaseChart = ({
   title,
   children,
@@ -10315,15 +12818,15 @@ var BaseChart = ({
   style = {},
   height = 300
 }) => {
-  return /* @__PURE__ */ (0, import_jsx_runtime52.jsxs)(Card, { className: `cria-chart-card ${className}`, style, children: [
-    title && /* @__PURE__ */ (0, import_jsx_runtime52.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime52.jsx)(Typography, { variant: "title2", style: { color: colors.text.primary }, children: title }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime52.jsx)(CardContent, { style: { padding: spacing2[4] }, children: /* @__PURE__ */ (0, import_jsx_runtime52.jsx)("div", { style: { height: `${height}px`, width: "100%" }, children }) })
+  return /* @__PURE__ */ (0, import_jsx_runtime63.jsxs)(Card, { className: `cria-chart-card ${className}`, style, children: [
+    title && /* @__PURE__ */ (0, import_jsx_runtime63.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime63.jsx)(Typography, { variant: "title2", style: { color: colors.text.primary }, children: title }) }),
+    /* @__PURE__ */ (0, import_jsx_runtime63.jsx)(CardContent, { style: { padding: spacing[6] }, children: /* @__PURE__ */ (0, import_jsx_runtime63.jsx)("div", { style: { height: `${height}px`, width: "100%" }, children }) })
   ] });
 };
 
 // src/components/Charts/LineChart.tsx
 var import_recharts = require("recharts");
-var import_jsx_runtime53 = require("react/jsx-runtime");
+var import_jsx_runtime64 = require("react/jsx-runtime");
 var LineChart = ({
   data,
   title = "Line Chart",
@@ -10337,7 +12840,7 @@ var LineChart = ({
   style = {}
 }) => {
   const defaultColors = [colors.primary, colors.secondary, colors.accent, colors.warning, colors.success];
-  return /* @__PURE__ */ (0, import_jsx_runtime53.jsx)(BaseChart, { title, height, className, style, children: /* @__PURE__ */ (0, import_jsx_runtime53.jsx)(import_recharts.ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime53.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime64.jsx)(BaseChart, { title, height, className, style, children: /* @__PURE__ */ (0, import_jsx_runtime64.jsx)(import_recharts.ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime64.jsxs)(
     import_recharts.LineChart,
     {
       data,
@@ -10348,7 +12851,7 @@ var LineChart = ({
         bottom: 20
       },
       children: [
-        showGrid && /* @__PURE__ */ (0, import_jsx_runtime53.jsx)(
+        showGrid && /* @__PURE__ */ (0, import_jsx_runtime64.jsx)(
           import_recharts.CartesianGrid,
           {
             strokeDasharray: "3 3",
@@ -10356,7 +12859,7 @@ var LineChart = ({
             opacity: 0.3
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime64.jsx)(
           import_recharts.XAxis,
           {
             dataKey: "name",
@@ -10366,7 +12869,7 @@ var LineChart = ({
             axisLine: false
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime53.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime64.jsx)(
           import_recharts.YAxis,
           {
             stroke: colors.text.secondary,
@@ -10375,7 +12878,7 @@ var LineChart = ({
             axisLine: false
           }
         ),
-        showTooltip && /* @__PURE__ */ (0, import_jsx_runtime53.jsx)(
+        showTooltip && /* @__PURE__ */ (0, import_jsx_runtime64.jsx)(
           import_recharts.Tooltip,
           {
             contentStyle: {
@@ -10388,7 +12891,7 @@ var LineChart = ({
             labelStyle: { color: colors.text.primary, fontWeight: "600" }
           }
         ),
-        showLegend && /* @__PURE__ */ (0, import_jsx_runtime53.jsx)(
+        showLegend && /* @__PURE__ */ (0, import_jsx_runtime64.jsx)(
           import_recharts.Legend,
           {
             wrapperStyle: {
@@ -10398,7 +12901,7 @@ var LineChart = ({
             }
           }
         ),
-        lines.map((line, index) => /* @__PURE__ */ (0, import_jsx_runtime53.jsx)(
+        lines.map((line, index) => /* @__PURE__ */ (0, import_jsx_runtime64.jsx)(
           import_recharts.Line,
           {
             type: "monotone",
@@ -10418,7 +12921,7 @@ var LineChart = ({
 
 // src/components/Charts/BarChart.tsx
 var import_recharts2 = require("recharts");
-var import_jsx_runtime54 = require("react/jsx-runtime");
+var import_jsx_runtime65 = require("react/jsx-runtime");
 var BarChart = ({
   data,
   title = "Bar Chart",
@@ -10431,7 +12934,7 @@ var BarChart = ({
   style = {}
 }) => {
   const defaultColors = [colors.primary, colors.secondary, colors.accent, colors.warning, colors.success];
-  return /* @__PURE__ */ (0, import_jsx_runtime54.jsx)(BaseChart, { title, height, className, style, children: /* @__PURE__ */ (0, import_jsx_runtime54.jsx)(import_recharts2.ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime54.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime65.jsx)(BaseChart, { title, height, className, style, children: /* @__PURE__ */ (0, import_jsx_runtime65.jsx)(import_recharts2.ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime65.jsxs)(
     import_recharts2.BarChart,
     {
       data,
@@ -10442,7 +12945,7 @@ var BarChart = ({
         bottom: 20
       },
       children: [
-        showGrid && /* @__PURE__ */ (0, import_jsx_runtime54.jsx)(
+        showGrid && /* @__PURE__ */ (0, import_jsx_runtime65.jsx)(
           import_recharts2.CartesianGrid,
           {
             strokeDasharray: "3 3",
@@ -10450,7 +12953,7 @@ var BarChart = ({
             opacity: 0.3
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime54.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)(
           import_recharts2.XAxis,
           {
             dataKey: "name",
@@ -10460,7 +12963,7 @@ var BarChart = ({
             axisLine: false
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime54.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime65.jsx)(
           import_recharts2.YAxis,
           {
             stroke: colors.text.secondary,
@@ -10469,7 +12972,7 @@ var BarChart = ({
             axisLine: false
           }
         ),
-        showTooltip && /* @__PURE__ */ (0, import_jsx_runtime54.jsx)(
+        showTooltip && /* @__PURE__ */ (0, import_jsx_runtime65.jsx)(
           import_recharts2.Tooltip,
           {
             contentStyle: {
@@ -10482,7 +12985,7 @@ var BarChart = ({
             labelStyle: { color: colors.text.primary, fontWeight: "600" }
           }
         ),
-        showLegend && /* @__PURE__ */ (0, import_jsx_runtime54.jsx)(
+        showLegend && /* @__PURE__ */ (0, import_jsx_runtime65.jsx)(
           import_recharts2.Legend,
           {
             wrapperStyle: {
@@ -10492,7 +12995,7 @@ var BarChart = ({
             }
           }
         ),
-        bars.map((bar, index) => /* @__PURE__ */ (0, import_jsx_runtime54.jsx)(
+        bars.map((bar, index) => /* @__PURE__ */ (0, import_jsx_runtime65.jsx)(
           import_recharts2.Bar,
           {
             dataKey: bar.dataKey,
@@ -10509,7 +13012,7 @@ var BarChart = ({
 
 // src/components/Charts/StackedBarChart.tsx
 var import_recharts3 = require("recharts");
-var import_jsx_runtime55 = require("react/jsx-runtime");
+var import_jsx_runtime66 = require("react/jsx-runtime");
 var StackedBarChart = ({
   data,
   title = "Stacked Bar Chart",
@@ -10525,7 +13028,7 @@ var StackedBarChart = ({
   style = {}
 }) => {
   const defaultColors = [colors.primary, colors.secondary, colors.accent, colors.warning, colors.success];
-  return /* @__PURE__ */ (0, import_jsx_runtime55.jsx)(BaseChart, { title, height, className, style, children: /* @__PURE__ */ (0, import_jsx_runtime55.jsx)(import_recharts3.ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime55.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime66.jsx)(BaseChart, { title, height, className, style, children: /* @__PURE__ */ (0, import_jsx_runtime66.jsx)(import_recharts3.ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime66.jsxs)(
     import_recharts3.BarChart,
     {
       data,
@@ -10536,7 +13039,7 @@ var StackedBarChart = ({
         bottom: 20
       },
       children: [
-        showGrid && /* @__PURE__ */ (0, import_jsx_runtime55.jsx)(
+        showGrid && /* @__PURE__ */ (0, import_jsx_runtime66.jsx)(
           import_recharts3.CartesianGrid,
           {
             strokeDasharray: "3 3",
@@ -10544,7 +13047,7 @@ var StackedBarChart = ({
             opacity: 0.3
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime55.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)(
           import_recharts3.XAxis,
           {
             dataKey: "name",
@@ -10554,7 +13057,7 @@ var StackedBarChart = ({
             axisLine: false
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime55.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime66.jsx)(
           import_recharts3.YAxis,
           {
             stroke: colors.text.secondary,
@@ -10563,7 +13066,7 @@ var StackedBarChart = ({
             axisLine: false
           }
         ),
-        showTooltip && /* @__PURE__ */ (0, import_jsx_runtime55.jsx)(
+        showTooltip && /* @__PURE__ */ (0, import_jsx_runtime66.jsx)(
           import_recharts3.Tooltip,
           {
             contentStyle: {
@@ -10576,7 +13079,7 @@ var StackedBarChart = ({
             labelStyle: { color: colors.text.primary, fontWeight: "600" }
           }
         ),
-        showLegend && /* @__PURE__ */ (0, import_jsx_runtime55.jsx)(
+        showLegend && /* @__PURE__ */ (0, import_jsx_runtime66.jsx)(
           import_recharts3.Legend,
           {
             wrapperStyle: {
@@ -10586,7 +13089,7 @@ var StackedBarChart = ({
             }
           }
         ),
-        bars.map((bar, index) => /* @__PURE__ */ (0, import_jsx_runtime55.jsx)(
+        bars.map((bar, index) => /* @__PURE__ */ (0, import_jsx_runtime66.jsx)(
           import_recharts3.Bar,
           {
             dataKey: bar.dataKey,
@@ -10604,7 +13107,7 @@ var StackedBarChart = ({
 
 // src/components/Charts/AreaChart.tsx
 var import_recharts4 = require("recharts");
-var import_jsx_runtime56 = require("react/jsx-runtime");
+var import_jsx_runtime67 = require("react/jsx-runtime");
 var AreaChart = ({
   data,
   title = "Area Chart",
@@ -10617,7 +13120,7 @@ var AreaChart = ({
   style = {}
 }) => {
   const defaultColors = [colors.primary, colors.secondary, colors.accent, colors.warning, colors.success];
-  return /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(BaseChart, { title, height, className, style, children: /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(import_recharts4.ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime67.jsx)(BaseChart, { title, height, className, style, children: /* @__PURE__ */ (0, import_jsx_runtime67.jsx)(import_recharts4.ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime67.jsxs)(
     import_recharts4.AreaChart,
     {
       data,
@@ -10628,7 +13131,7 @@ var AreaChart = ({
         bottom: 20
       },
       children: [
-        showGrid && /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(
+        showGrid && /* @__PURE__ */ (0, import_jsx_runtime67.jsx)(
           import_recharts4.CartesianGrid,
           {
             strokeDasharray: "3 3",
@@ -10636,7 +13139,7 @@ var AreaChart = ({
             opacity: 0.3
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime67.jsx)(
           import_recharts4.XAxis,
           {
             dataKey: "name",
@@ -10646,7 +13149,7 @@ var AreaChart = ({
             axisLine: false
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime67.jsx)(
           import_recharts4.YAxis,
           {
             stroke: colors.text.secondary,
@@ -10655,7 +13158,7 @@ var AreaChart = ({
             axisLine: false
           }
         ),
-        showTooltip && /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(
+        showTooltip && /* @__PURE__ */ (0, import_jsx_runtime67.jsx)(
           import_recharts4.Tooltip,
           {
             contentStyle: {
@@ -10668,7 +13171,7 @@ var AreaChart = ({
             labelStyle: { color: colors.text.primary, fontWeight: "600" }
           }
         ),
-        showLegend && /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(
+        showLegend && /* @__PURE__ */ (0, import_jsx_runtime67.jsx)(
           import_recharts4.Legend,
           {
             wrapperStyle: {
@@ -10678,7 +13181,7 @@ var AreaChart = ({
             }
           }
         ),
-        areas.map((area, index) => /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(
+        areas.map((area, index) => /* @__PURE__ */ (0, import_jsx_runtime67.jsx)(
           import_recharts4.Area,
           {
             type: "monotone",
@@ -10698,7 +13201,7 @@ var AreaChart = ({
 
 // src/components/Charts/PieChart.tsx
 var import_recharts5 = require("recharts");
-var import_jsx_runtime57 = require("react/jsx-runtime");
+var import_jsx_runtime68 = require("react/jsx-runtime");
 var PieChart = ({
   data,
   title = "Pie Chart",
@@ -10715,8 +13218,8 @@ var PieChart = ({
     ...item,
     color: item.color || defaultColors[index % defaultColors.length]
   }));
-  return /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(BaseChart, { title, height, className, style, children: /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(import_recharts5.ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime57.jsxs)(import_recharts5.PieChart, { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime68.jsx)(BaseChart, { title, height, className, style, children: /* @__PURE__ */ (0, import_jsx_runtime68.jsx)(import_recharts5.ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)(import_recharts5.PieChart, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime68.jsx)(
       import_recharts5.Pie,
       {
         data: dataWithColors,
@@ -10728,10 +13231,10 @@ var PieChart = ({
         innerRadius,
         fill: "#8884d8",
         dataKey: "value",
-        children: dataWithColors.map((entry, index) => /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(import_recharts5.Cell, { fill: entry.color }, `cell-${index}`))
+        children: dataWithColors.map((entry, index) => /* @__PURE__ */ (0, import_jsx_runtime68.jsx)(import_recharts5.Cell, { fill: entry.color }, `cell-${index}`))
       }
     ),
-    showTooltip && /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(
+    showTooltip && /* @__PURE__ */ (0, import_jsx_runtime68.jsx)(
       import_recharts5.Tooltip,
       {
         contentStyle: {
@@ -10744,7 +13247,7 @@ var PieChart = ({
         formatter: (value, name) => [value, name]
       }
     ),
-    showLegend && /* @__PURE__ */ (0, import_jsx_runtime57.jsx)(
+    showLegend && /* @__PURE__ */ (0, import_jsx_runtime68.jsx)(
       import_recharts5.Legend,
       {
         wrapperStyle: {
@@ -10759,7 +13262,7 @@ var PieChart = ({
 
 // src/components/Charts/DonutChart.tsx
 var import_recharts6 = require("recharts");
-var import_jsx_runtime58 = require("react/jsx-runtime");
+var import_jsx_runtime69 = require("react/jsx-runtime");
 var DonutChart = ({
   data,
   title = "Donut Chart",
@@ -10776,8 +13279,8 @@ var DonutChart = ({
     ...item,
     color: item.color || defaultColors[index % defaultColors.length]
   }));
-  return /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(BaseChart, { title, height, className, style, children: /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(import_recharts6.ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime58.jsxs)(import_recharts6.PieChart, { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime69.jsx)(BaseChart, { title, height, className, style, children: /* @__PURE__ */ (0, import_jsx_runtime69.jsx)(import_recharts6.ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime69.jsxs)(import_recharts6.PieChart, { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime69.jsx)(
       import_recharts6.Pie,
       {
         data: dataWithColors,
@@ -10789,10 +13292,10 @@ var DonutChart = ({
         innerRadius,
         fill: "#8884d8",
         dataKey: "value",
-        children: dataWithColors.map((entry, index) => /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(import_recharts6.Cell, { fill: entry.color }, `cell-${index}`))
+        children: dataWithColors.map((entry, index) => /* @__PURE__ */ (0, import_jsx_runtime69.jsx)(import_recharts6.Cell, { fill: entry.color }, `cell-${index}`))
       }
     ),
-    showTooltip && /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(
+    showTooltip && /* @__PURE__ */ (0, import_jsx_runtime69.jsx)(
       import_recharts6.Tooltip,
       {
         contentStyle: {
@@ -10805,7 +13308,7 @@ var DonutChart = ({
         formatter: (value, name) => [value, name]
       }
     ),
-    showLegend && /* @__PURE__ */ (0, import_jsx_runtime58.jsx)(
+    showLegend && /* @__PURE__ */ (0, import_jsx_runtime69.jsx)(
       import_recharts6.Legend,
       {
         wrapperStyle: {
@@ -10820,7 +13323,7 @@ var DonutChart = ({
 
 // src/components/Charts/RadarChart.tsx
 var import_recharts7 = require("recharts");
-var import_jsx_runtime59 = require("react/jsx-runtime");
+var import_jsx_runtime70 = require("react/jsx-runtime");
 var RadarChart = ({
   data,
   title = "Radar Chart",
@@ -10832,16 +13335,16 @@ var RadarChart = ({
   style = {}
 }) => {
   const defaultColors = [colors.primary, colors.secondary, colors.accent, colors.warning, colors.success];
-  return /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(BaseChart, { title, height, className, style, children: /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(import_recharts7.ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime59.jsxs)(import_recharts7.RadarChart, { data, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(import_recharts7.PolarGrid, { stroke: colors.border.light }),
-    /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime70.jsx)(BaseChart, { title, height, className, style, children: /* @__PURE__ */ (0, import_jsx_runtime70.jsx)(import_recharts7.ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime70.jsxs)(import_recharts7.RadarChart, { data, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)(import_recharts7.PolarGrid, { stroke: colors.border.light }),
+    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)(
       import_recharts7.PolarAngleAxis,
       {
         dataKey: "subject",
         tick: { fontSize: 12, fill: colors.text.secondary }
       }
     ),
-    /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(
+    /* @__PURE__ */ (0, import_jsx_runtime70.jsx)(
       import_recharts7.PolarRadiusAxis,
       {
         angle: 90,
@@ -10849,7 +13352,7 @@ var RadarChart = ({
         tick: { fontSize: 12, fill: colors.text.secondary }
       }
     ),
-    showTooltip && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(
+    showTooltip && /* @__PURE__ */ (0, import_jsx_runtime70.jsx)(
       import_recharts7.Tooltip,
       {
         contentStyle: {
@@ -10862,7 +13365,7 @@ var RadarChart = ({
         labelStyle: { color: colors.text.primary, fontWeight: "600" }
       }
     ),
-    showLegend && /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(
+    showLegend && /* @__PURE__ */ (0, import_jsx_runtime70.jsx)(
       import_recharts7.Legend,
       {
         wrapperStyle: {
@@ -10872,7 +13375,7 @@ var RadarChart = ({
         }
       }
     ),
-    radars.map((radar, index) => /* @__PURE__ */ (0, import_jsx_runtime59.jsx)(
+    radars.map((radar, index) => /* @__PURE__ */ (0, import_jsx_runtime70.jsx)(
       import_recharts7.Radar,
       {
         name: radar.name || radar.dataKey,
@@ -10888,7 +13391,7 @@ var RadarChart = ({
 
 // src/components/Charts/ScatterChart.tsx
 var import_recharts8 = require("recharts");
-var import_jsx_runtime60 = require("react/jsx-runtime");
+var import_jsx_runtime71 = require("react/jsx-runtime");
 var ScatterChart = ({
   data,
   title = "Scatter Chart",
@@ -10903,7 +13406,7 @@ var ScatterChart = ({
   style = {}
 }) => {
   const defaultColors = [colors.primary, colors.secondary, colors.accent, colors.warning, colors.success];
-  return /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(BaseChart, { title, height, className, style, children: /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(import_recharts8.ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime60.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime71.jsx)(BaseChart, { title, height, className, style, children: /* @__PURE__ */ (0, import_jsx_runtime71.jsx)(import_recharts8.ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime71.jsxs)(
     import_recharts8.ScatterChart,
     {
       data,
@@ -10914,7 +13417,7 @@ var ScatterChart = ({
         bottom: 20
       },
       children: [
-        showGrid && /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(
+        showGrid && /* @__PURE__ */ (0, import_jsx_runtime71.jsx)(
           import_recharts8.CartesianGrid,
           {
             strokeDasharray: "3 3",
@@ -10922,7 +13425,7 @@ var ScatterChart = ({
             opacity: 0.3
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)(
           import_recharts8.XAxis,
           {
             dataKey: xAxisKey,
@@ -10932,7 +13435,7 @@ var ScatterChart = ({
             axisLine: false
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime71.jsx)(
           import_recharts8.YAxis,
           {
             dataKey: yAxisKey,
@@ -10942,7 +13445,7 @@ var ScatterChart = ({
             axisLine: false
           }
         ),
-        showTooltip && /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(
+        showTooltip && /* @__PURE__ */ (0, import_jsx_runtime71.jsx)(
           import_recharts8.Tooltip,
           {
             contentStyle: {
@@ -10955,7 +13458,7 @@ var ScatterChart = ({
             labelStyle: { color: colors.text.primary, fontWeight: "600" }
           }
         ),
-        showLegend && /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(
+        showLegend && /* @__PURE__ */ (0, import_jsx_runtime71.jsx)(
           import_recharts8.Legend,
           {
             wrapperStyle: {
@@ -10965,7 +13468,7 @@ var ScatterChart = ({
             }
           }
         ),
-        scatters.map((scatter, index) => /* @__PURE__ */ (0, import_jsx_runtime60.jsx)(
+        scatters.map((scatter, index) => /* @__PURE__ */ (0, import_jsx_runtime71.jsx)(
           import_recharts8.Scatter,
           {
             dataKey: scatter.dataKey,
@@ -10982,7 +13485,7 @@ var ScatterChart = ({
 
 // src/components/Charts/ComposedChart.tsx
 var import_recharts9 = require("recharts");
-var import_jsx_runtime61 = require("react/jsx-runtime");
+var import_jsx_runtime72 = require("react/jsx-runtime");
 var ComposedChart = ({
   data,
   title = "Composed Chart",
@@ -10996,7 +13499,7 @@ var ComposedChart = ({
   style = {}
 }) => {
   const defaultColors = [colors.primary, colors.secondary, colors.accent, colors.warning, colors.success];
-  return /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(BaseChart, { title, height, className, style, children: /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(import_recharts9.ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime61.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime72.jsx)(BaseChart, { title, height, className, style, children: /* @__PURE__ */ (0, import_jsx_runtime72.jsx)(import_recharts9.ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime72.jsxs)(
     import_recharts9.ComposedChart,
     {
       data,
@@ -11007,7 +13510,7 @@ var ComposedChart = ({
         bottom: 20
       },
       children: [
-        showGrid && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+        showGrid && /* @__PURE__ */ (0, import_jsx_runtime72.jsx)(
           import_recharts9.CartesianGrid,
           {
             strokeDasharray: "3 3",
@@ -11015,7 +13518,7 @@ var ComposedChart = ({
             opacity: 0.3
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)(
           import_recharts9.XAxis,
           {
             dataKey: "name",
@@ -11025,7 +13528,7 @@ var ComposedChart = ({
             axisLine: false
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime72.jsx)(
           import_recharts9.YAxis,
           {
             stroke: colors.text.secondary,
@@ -11034,7 +13537,7 @@ var ComposedChart = ({
             axisLine: false
           }
         ),
-        showTooltip && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+        showTooltip && /* @__PURE__ */ (0, import_jsx_runtime72.jsx)(
           import_recharts9.Tooltip,
           {
             contentStyle: {
@@ -11047,7 +13550,7 @@ var ComposedChart = ({
             labelStyle: { color: colors.text.primary, fontWeight: "600" }
           }
         ),
-        showLegend && /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+        showLegend && /* @__PURE__ */ (0, import_jsx_runtime72.jsx)(
           import_recharts9.Legend,
           {
             wrapperStyle: {
@@ -11057,7 +13560,7 @@ var ComposedChart = ({
             }
           }
         ),
-        bars.map((bar, index) => /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+        bars.map((bar, index) => /* @__PURE__ */ (0, import_jsx_runtime72.jsx)(
           import_recharts9.Bar,
           {
             dataKey: bar.dataKey,
@@ -11067,7 +13570,7 @@ var ComposedChart = ({
           },
           bar.dataKey
         )),
-        lines.map((line, index) => /* @__PURE__ */ (0, import_jsx_runtime61.jsx)(
+        lines.map((line, index) => /* @__PURE__ */ (0, import_jsx_runtime72.jsx)(
           import_recharts9.Line,
           {
             type: "monotone",
@@ -11086,7 +13589,7 @@ var ComposedChart = ({
 
 // src/components/Charts/RadialProgressChart.tsx
 var import_recharts10 = require("recharts");
-var import_jsx_runtime62 = require("react/jsx-runtime");
+var import_jsx_runtime73 = require("react/jsx-runtime");
 var RadialProgressChart = ({
   data,
   title = "Radial Progress Chart",
@@ -11104,7 +13607,7 @@ var RadialProgressChart = ({
     ...item,
     fill: item.fill || defaultColors[index % defaultColors.length]
   }));
-  return /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(BaseChart, { title, height, className, style, children: /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(import_recharts10.ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime62.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime73.jsx)(BaseChart, { title, height, className, style, children: /* @__PURE__ */ (0, import_jsx_runtime73.jsx)(import_recharts10.ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ (0, import_jsx_runtime73.jsxs)(
     import_recharts10.RadialBarChart,
     {
       cx: "50%",
@@ -11115,7 +13618,7 @@ var RadialProgressChart = ({
       endAngle,
       data: dataWithColors,
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime73.jsx)(
           import_recharts10.RadialBar,
           {
             minAngle: 15,
@@ -11125,7 +13628,7 @@ var RadialProgressChart = ({
             dataKey: "value"
           }
         ),
-        showLegend && /* @__PURE__ */ (0, import_jsx_runtime62.jsx)(
+        showLegend && /* @__PURE__ */ (0, import_jsx_runtime73.jsx)(
           import_recharts10.Legend,
           {
             iconType: "circle",
@@ -11140,15 +13643,258 @@ var RadialProgressChart = ({
     }
   ) }) });
 };
+
+// src/components/StatisticMetricCard/StatisticMetricCard.tsx
+var import_react48 = require("react");
+var import_jsx_runtime74 = require("react/jsx-runtime");
+var StatisticMetricCard = (0, import_react48.forwardRef)(({
+  id,
+  value,
+  label,
+  icon,
+  color = "primary",
+  size = "md",
+  trend,
+  loading = false,
+  error,
+  onClick,
+  className = "",
+  style,
+  ...props
+}, ref) => {
+  const colorMap = {
+    primary: colors.primary,
+    secondary: colors.secondary,
+    success: colors.success,
+    warning: colors.warning,
+    error: colors.error,
+    info: colors.info
+  };
+  const trendColorMap = {
+    up: colors.success,
+    down: colors.error,
+    neutral: colors.gray[500]
+  };
+  const sizeConfig = {
+    sm: {
+      valueFontSize: typography.fontSize.h3,
+      labelFontSize: typography.fontSize.body2,
+      trendFontSize: typography.fontSize.caption,
+      iconSize: "1.5rem",
+      padding: spacing[3]
+    },
+    md: {
+      valueFontSize: typography.fontSize.h1,
+      labelFontSize: typography.fontSize.body,
+      trendFontSize: typography.fontSize.caption,
+      iconSize: "2rem",
+      padding: spacing[4]
+    },
+    lg: {
+      valueFontSize: typography.fontSize.display2,
+      labelFontSize: typography.fontSize.h3,
+      trendFontSize: typography.fontSize.body,
+      iconSize: "2.5rem",
+      padding: spacing[5]
+    }
+  };
+  const config = sizeConfig[size];
+  const selectedColor = colorMap[color];
+  const formatTrendValue = (trendValue, direction) => {
+    const sign = direction === "up" ? "+" : direction === "down" ? "-" : "+";
+    const absoluteValue = Math.abs(trendValue);
+    return `${sign}${absoluteValue.toFixed(1)}%`;
+  };
+  const trendId = `trend-${id}`;
+  const handleClick = (event) => {
+    if (onClick && !loading && !error) {
+      onClick({ id, value, label, icon, color, size, trend, loading, error });
+    }
+  };
+  const handleKeyDown = (event) => {
+    if ((event.key === "Enter" || event.key === " ") && onClick && !loading && !error) {
+      event.preventDefault();
+      onClick({ id, value, label, icon, color, size, trend, loading, error });
+    }
+  };
+  const Component = onClick ? "button" : "div";
+  const renderLoading = () => /* @__PURE__ */ (0, import_jsx_runtime74.jsxs)("div", { style: { display: "flex", flexDirection: "column", gap: spacing[2] }, children: [
+    icon && /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(
+      ShimmerSkeleton,
+      {
+        variant: "circle",
+        width: config.iconSize,
+        height: config.iconSize,
+        style: { marginBottom: spacing[2] }
+      }
+    ),
+    /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(
+      ShimmerSkeleton,
+      {
+        variant: "text",
+        width: "60%",
+        height: config.valueFontSize,
+        style: { marginBottom: spacing[1] }
+      }
+    ),
+    /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(
+      ShimmerSkeleton,
+      {
+        variant: "text",
+        width: "80%",
+        height: config.labelFontSize,
+        style: { marginBottom: spacing[2] }
+      }
+    ),
+    trend && /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(
+      ShimmerSkeleton,
+      {
+        variant: "text",
+        width: "40%",
+        height: config.trendFontSize
+      }
+    )
+  ] });
+  const renderError = () => /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("div", { style: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: spacing[3],
+    color: colors.error,
+    textAlign: "center"
+  }, children: /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(Typography, { variant: "body2", weight: "medium", children: error }) });
+  return /* @__PURE__ */ (0, import_jsx_runtime74.jsxs)(
+    Component,
+    {
+      ref,
+      className: `statistic-metric-card variant-${color} size-${size} ${className} ${onClick ? "clickable" : ""}`,
+      style: {
+        background: "transparent",
+        padding: "0",
+        cursor: onClick ? "pointer" : "default",
+        width: "100%",
+        textAlign: "left",
+        ...style
+      },
+      role: onClick ? "button" : "region",
+      "aria-label": `${label}: ${value}`,
+      "aria-describedby": trend ? trendId : void 0,
+      onClick: handleClick,
+      onKeyDown: handleKeyDown,
+      tabIndex: onClick ? 0 : void 0,
+      ...props,
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(
+          Card,
+          {
+            variant: "default",
+            size: "md",
+            style: {
+              borderRadius: radii.md,
+              overflow: "hidden",
+              position: "relative",
+              cursor: onClick ? "pointer" : "default",
+              transition: "all 0.2s ease",
+              backgroundColor: colors.white,
+              border: `1px solid ${colors.gray[200]}`,
+              padding: config.padding,
+              height: "100%"
+            },
+            children: /* @__PURE__ */ (0, import_jsx_runtime74.jsxs)(CardContent, { style: { padding: "0" }, children: [
+              loading ? renderLoading() : /* @__PURE__ */ (0, import_jsx_runtime74.jsxs)(import_jsx_runtime74.Fragment, { children: [
+                icon && /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("div", { style: { display: "flex", alignItems: "center", justifyContent: "flex-start", marginBottom: spacing[3] }, children: /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("span", { style: { fontSize: config.iconSize, display: "inline-block" }, children: icon }) }),
+                /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("div", { style: { marginBottom: spacing[2] }, children: /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(
+                  Typography,
+                  {
+                    variant: size === "sm" ? "h3" : size === "lg" ? "display2" : "h1",
+                    style: {
+                      fontWeight: typography.fontWeight.bold,
+                      color: selectedColor,
+                      lineHeight: typography.lineHeight.tight
+                    },
+                    children: value
+                  }
+                ) }),
+                /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(
+                  Typography,
+                  {
+                    variant: size === "sm" ? "body2" : "body",
+                    style: {
+                      color: colors.gray[700],
+                      fontWeight: typography.fontWeight.medium,
+                      marginBottom: spacing[1]
+                    },
+                    children: label
+                  }
+                ),
+                trend && /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("div", { id: trendId, children: /* @__PURE__ */ (0, import_jsx_runtime74.jsxs)("div", { style: { display: "flex", alignItems: "center", gap: spacing[1], marginTop: spacing[2] }, children: [
+                  /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("span", { style: { color: trendColorMap[trend.direction], fontWeight: typography.fontWeight.semiBold }, children: trend.direction === "up" ? "\u2197" : trend.direction === "down" ? "\u2198" : "\u2192" }),
+                  /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(
+                    Typography,
+                    {
+                      variant: "caption",
+                      style: {
+                        color: trendColorMap[trend.direction],
+                        fontSize: config.trendFontSize,
+                        fontWeight: typography.fontWeight.medium
+                      },
+                      children: formatTrendValue(trend.value, trend.direction)
+                    }
+                  ),
+                  /* @__PURE__ */ (0, import_jsx_runtime74.jsx)(
+                    Typography,
+                    {
+                      variant: "caption",
+                      style: {
+                        color: colors.gray[500],
+                        fontSize: config.trendFontSize
+                      },
+                      children: trend.period
+                    }
+                  )
+                ] }) })
+              ] }),
+              error && renderError()
+            ] })
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime74.jsx)("style", { children: `
+        @keyframes pulse {
+          0%, 100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.5;
+          }
+        }
+
+        .statistic-metric-card.clickable:focus {
+          outline: 2px solid ${selectedColor};
+          outline-offset: 2px;
+        }
+
+        .statistic-metric-card.clickable:focus-visible {
+          outline: 2px solid ${selectedColor};
+          outline-offset: 2px;
+        }
+      ` })
+      ]
+    }
+  );
+});
+StatisticMetricCard.displayName = "StatisticMetricCard";
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   Accordion,
   AccordionContent,
   AccordionHeader,
   AccordionItem,
+  AgentDev,
   AreaChart,
   Avatar,
   AvatarUpload,
+  AvatarWithName,
+  Backgrounds,
   Badge,
   BarChart,
   BaseChart,
@@ -11160,6 +13906,7 @@ var RadialProgressChart = ({
   CardFooter,
   CardHeader,
   Carousel,
+  Changelog,
   Chat,
   Checkbox,
   Column,
@@ -11182,10 +13929,12 @@ var RadialProgressChart = ({
   DatePicker,
   Divider,
   DonutChart,
+  Drawer,
   Dropdown,
   DropdownItem,
   EmptyState,
   FileUpload,
+  FilterDropdown,
   Footer,
   Grid,
   Input,
@@ -11194,6 +13943,8 @@ var RadialProgressChart = ({
   Modal,
   Navigation,
   NavigationSidebar,
+  Notification,
+  NotificationCenter,
   Pagination,
   PieChart,
   ProgressBar,
@@ -11212,19 +13963,24 @@ var RadialProgressChart = ({
   Sidebar,
   Snackbar,
   StackedBarChart,
+  StatisticMetricCard,
   Stepper,
+  StepperStep,
   Switch,
   Table,
   Tabs,
+  TagChip,
   TextBody,
   TextContent,
   TextContentImportant,
   TextContentTitle,
   Textarea,
+  Timeline,
+  TimelineItem,
   Tooltip,
-  Topbar,
   Typography,
   TypographyDemo,
+  Version,
   VerticalTabs,
   colors,
   cssVariables,

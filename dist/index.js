@@ -53,7 +53,7 @@ var colors = {
 };
 
 // src/tokens/spacing.ts
-var spacing2 = {
+var spacing = {
   0: "0px",
   1: "4px",
   // 0.25rem
@@ -495,17 +495,17 @@ var AccordionContent = ({
 function getHeaderPadding(size) {
   switch (size) {
     case "sm":
-      return `${spacing2[2]} ${spacing2[3]}`;
+      return `${spacing[2]} ${spacing[3]}`;
     case "md":
-      return `${spacing2[3]} ${spacing2[4]}`;
+      return `${spacing[3]} ${spacing[4]}`;
     case "lg":
-      return `${spacing2[4]} ${spacing2[5]}`;
+      return `${spacing[4]} ${spacing[5]}`;
     default:
-      return `${spacing2[3]} ${spacing2[4]}`;
+      return `${spacing[3]} ${spacing[4]}`;
   }
 }
 function getContentPadding() {
-  return `${spacing2[2]} ${spacing2[4]} ${spacing2[4]} ${spacing2[4]}`;
+  return `${spacing[2]} ${spacing[4]} ${spacing[4]} ${spacing[4]}`;
 }
 
 // src/components/Avatar/Avatar.tsx
@@ -871,9 +871,163 @@ var AvatarUpload = ({
   ] });
 };
 
+// src/components/Avatar/AvatarWithName.tsx
+import { forwardRef as forwardRef2 } from "react";
+import { jsx as jsx6, jsxs as jsxs5 } from "react/jsx-runtime";
+var AvatarWithName = forwardRef2(({
+  avatarProps = {},
+  name,
+  size = "md",
+  variant = "default",
+  clickable = false,
+  onClick,
+  className = "",
+  style,
+  ...props
+}, ref) => {
+  const sizeConfig = {
+    sm: {
+      padding: `${spacing[2]} ${spacing[3]}`,
+      avatarSize: "sm",
+      gap: spacing[2],
+      fontSize: "14px",
+      borderRadius: radii.full,
+      minHeight: "32px"
+    },
+    md: {
+      padding: `${spacing[2]} ${spacing[3]}`,
+      avatarSize: "md",
+      gap: spacing[3],
+      fontSize: "16px",
+      borderRadius: radii.full,
+      minHeight: "40px"
+    },
+    lg: {
+      padding: `${spacing[3]} ${spacing[4]}`,
+      avatarSize: "lg",
+      gap: spacing[3],
+      fontSize: "18px",
+      borderRadius: radii.full,
+      minHeight: "48px"
+    }
+  };
+  const config = sizeConfig[size];
+  const handleClick = (event) => {
+    if (clickable && onClick) {
+      onClick(event);
+    }
+  };
+  const handleKeyDown = (event) => {
+    if (clickable && onClick && (event.key === "Enter" || event.key === " ")) {
+      event.preventDefault();
+      onClick(event);
+    }
+  };
+  const componentClasses = [
+    "avatar-with-name",
+    `avatar-with-name--${size}`,
+    `avatar-with-name--${variant}`,
+    clickable && "avatar-with-name--clickable",
+    className
+  ].filter(Boolean).join(" ");
+  const getContainerStyles2 = () => {
+    const baseStyles = {
+      display: "flex",
+      alignItems: "center",
+      gap: config.gap,
+      padding: config.padding,
+      borderRadius: config.borderRadius,
+      minHeight: config.minHeight,
+      cursor: clickable ? "pointer" : "default",
+      transition: "all 0.2s ease",
+      border: "none",
+      background: "transparent",
+      width: "fit-content",
+      ...style
+    };
+    switch (variant) {
+      case "outlined":
+        return {
+          ...baseStyles,
+          border: `1px solid ${colors.gray[200]}`,
+          backgroundColor: colors.white,
+          ":hover": clickable ? {
+            borderColor: colors.primary,
+            backgroundColor: colors.gray[50]
+          } : void 0
+        };
+      case "filled":
+        return {
+          ...baseStyles,
+          backgroundColor: colors.gray[50],
+          border: `1px solid ${colors.gray[100]}`,
+          ":hover": clickable ? {
+            backgroundColor: colors.gray[100],
+            borderColor: colors.gray[200]
+          } : void 0
+        };
+      case "default":
+      default:
+        return {
+          ...baseStyles,
+          backgroundColor: "transparent",
+          ":hover": clickable ? {
+            backgroundColor: colors.gray[50]
+          } : void 0
+        };
+    }
+  };
+  const containerStyles = getContainerStyles2();
+  const ariaLabel = clickable ? `Click to interact with ${name}` : name;
+  const tabIndex = clickable ? 0 : void 0;
+  return /* @__PURE__ */ jsxs5(
+    "div",
+    {
+      ref,
+      className: componentClasses,
+      style: containerStyles,
+      onClick: handleClick,
+      onKeyDown: handleKeyDown,
+      role: clickable ? "button" : void 0,
+      "aria-label": ariaLabel,
+      tabIndex,
+      ...props,
+      children: [
+        /* @__PURE__ */ jsx6(
+          Avatar,
+          {
+            ...avatarProps,
+            size: config.avatarSize,
+            name
+          }
+        ),
+        /* @__PURE__ */ jsx6(
+          Typography_default,
+          {
+            variant: "body",
+            style: {
+              fontSize: config.fontSize,
+              fontWeight: 500,
+              color: colors.gray[700],
+              lineHeight: 1.4,
+              whiteSpace: "nowrap",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              maxWidth: "200px"
+              // Prevent extremely long names from breaking layout
+            },
+            children: name
+          }
+        )
+      ]
+    }
+  );
+});
+AvatarWithName.displayName = "AvatarWithName";
+
 // src/components/Badge/Badge.tsx
 import { useMemo } from "react";
-import { jsx as jsx6, jsxs as jsxs5 } from "react/jsx-runtime";
+import { jsx as jsx7, jsxs as jsxs6 } from "react/jsx-runtime";
 var Badge = ({
   variant = "default",
   size = "md",
@@ -933,7 +1087,7 @@ var Badge = ({
     }
   };
   const { onClick, onKeyDown, ...restProps } = props;
-  return /* @__PURE__ */ jsxs5(
+  return /* @__PURE__ */ jsxs6(
     "span",
     {
       className: classes,
@@ -945,18 +1099,18 @@ var Badge = ({
       "aria-disabled": disabled,
       ...restProps,
       children: [
-        leftIcon && !dot && /* @__PURE__ */ jsx6("span", { className: "cria-badge__icon cria-badge__icon--left", "aria-hidden": "true", children: leftIcon }),
-        !dot && displayContent && /* @__PURE__ */ jsx6("span", { className: "cria-badge__content", children: displayContent }),
-        rightIcon && !dot && /* @__PURE__ */ jsx6("span", { className: "cria-badge__icon cria-badge__icon--right", "aria-hidden": "true", children: rightIcon })
+        leftIcon && !dot && /* @__PURE__ */ jsx7("span", { className: "cria-badge__icon cria-badge__icon--left", "aria-hidden": "true", children: leftIcon }),
+        !dot && displayContent && /* @__PURE__ */ jsx7("span", { className: "cria-badge__content", children: displayContent }),
+        rightIcon && !dot && /* @__PURE__ */ jsx7("span", { className: "cria-badge__icon cria-badge__icon--right", "aria-hidden": "true", children: rightIcon })
       ]
     }
   );
 };
 
 // src/components/Button/Button.tsx
-import React5 from "react";
-import { jsx as jsx7, jsxs as jsxs6 } from "react/jsx-runtime";
-var Button = React5.forwardRef(({
+import React6 from "react";
+import { jsx as jsx8, jsxs as jsxs7 } from "react/jsx-runtime";
+var Button = React6.forwardRef(({
   variant = "primary",
   size = "md",
   loading = false,
@@ -983,7 +1137,7 @@ var Button = React5.forwardRef(({
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
-    gap: spacing2[2],
+    gap: spacing[2],
     fontFamily: "var(--cria-font-family)",
     fontWeight: 500,
     textDecoration: "none",
@@ -997,7 +1151,7 @@ var Button = React5.forwardRef(({
     ...getSizeStyles2(size),
     ...style
   };
-  return /* @__PURE__ */ jsxs6(
+  return /* @__PURE__ */ jsxs7(
     "button",
     {
       ref,
@@ -1007,7 +1161,7 @@ var Button = React5.forwardRef(({
       "aria-disabled": isDisabled,
       ...props,
       children: [
-        loading && /* @__PURE__ */ jsx7(
+        loading && /* @__PURE__ */ jsx8(
           "div",
           {
             style: {
@@ -1024,10 +1178,10 @@ var Button = React5.forwardRef(({
             }
           }
         ),
-        /* @__PURE__ */ jsxs6("span", { style: { opacity: loading ? 0 : 1, display: "flex", alignItems: "center", gap: spacing2[2] }, children: [
-          leftIcon && /* @__PURE__ */ jsx7("span", { children: leftIcon }),
+        /* @__PURE__ */ jsxs7("span", { style: { opacity: loading ? 0 : 1, display: "flex", alignItems: "center", gap: spacing[2] }, children: [
+          leftIcon && /* @__PURE__ */ jsx8("span", { children: leftIcon }),
           children,
-          rightIcon && /* @__PURE__ */ jsx7("span", { children: rightIcon })
+          rightIcon && /* @__PURE__ */ jsx8("span", { children: rightIcon })
         ] })
       ]
     }
@@ -1073,19 +1227,19 @@ function getSizeStyles2(size) {
   switch (size) {
     case "sm":
       return {
-        padding: `${spacing2[2]} ${spacing2[3]}`,
+        padding: `${spacing[2]} ${spacing[3]}`,
         fontSize: "14px",
         minHeight: "32px"
       };
     case "md":
       return {
-        padding: `${spacing2[3]} ${spacing2[4]}`,
+        padding: `${spacing[3]} ${spacing[4]}`,
         fontSize: "16px",
         minHeight: "40px"
       };
     case "lg":
       return {
-        padding: `${spacing2[4]} ${spacing2[6]}`,
+        padding: `${spacing[4]} ${spacing[6]}`,
         fontSize: "18px",
         minHeight: "48px"
       };
@@ -1096,91 +1250,91 @@ function getSizeStyles2(size) {
 
 // src/components/Button/demo.tsx
 import { useState as useState4 } from "react";
-import { jsx as jsx8, jsxs as jsxs7 } from "react/jsx-runtime";
+import { jsx as jsx9, jsxs as jsxs8 } from "react/jsx-runtime";
 var ButtonDemo = () => {
   const [loading, setLoading] = useState4(false);
   const handleLoadingClick = () => {
     setLoading(true);
     setTimeout(() => setLoading(false), 2e3);
   };
-  return /* @__PURE__ */ jsxs7("div", { style: { padding: "24px", maxWidth: "800px" }, children: [
-    /* @__PURE__ */ jsx8(Typography, { variant: "title1", weight: "bold", style: { marginBottom: "32px" }, children: "Button Demo" }),
-    /* @__PURE__ */ jsxs7("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ jsx8("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Variantes" }),
-      /* @__PURE__ */ jsxs7("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ jsx8(Button, { variant: "primary", children: "Prim\xE1rio" }),
-        /* @__PURE__ */ jsx8(Button, { variant: "secondary", children: "Secund\xE1rio" }),
-        /* @__PURE__ */ jsx8(Button, { variant: "outline", children: "Contorno" }),
-        /* @__PURE__ */ jsx8(Button, { variant: "ghost", children: "Fantasma" }),
-        /* @__PURE__ */ jsx8(Button, { variant: "danger", children: "Perigo" })
+  return /* @__PURE__ */ jsxs8("div", { style: { padding: "24px", maxWidth: "800px" }, children: [
+    /* @__PURE__ */ jsx9(Typography, { variant: "title1", weight: "bold", style: { marginBottom: "32px" }, children: "Button Demo" }),
+    /* @__PURE__ */ jsxs8("section", { style: { marginBottom: "32px" }, children: [
+      /* @__PURE__ */ jsx9("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Variantes" }),
+      /* @__PURE__ */ jsxs8("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
+        /* @__PURE__ */ jsx9(Button, { variant: "primary", children: "Prim\xE1rio" }),
+        /* @__PURE__ */ jsx9(Button, { variant: "secondary", children: "Secund\xE1rio" }),
+        /* @__PURE__ */ jsx9(Button, { variant: "outline", children: "Contorno" }),
+        /* @__PURE__ */ jsx9(Button, { variant: "ghost", children: "Fantasma" }),
+        /* @__PURE__ */ jsx9(Button, { variant: "danger", children: "Perigo" })
       ] })
     ] }),
-    /* @__PURE__ */ jsxs7("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ jsx8("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Tamanhos" }),
-      /* @__PURE__ */ jsxs7("div", { style: { display: "flex", gap: "12px", alignItems: "center", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ jsx8(Button, { size: "sm", children: "Pequeno" }),
-        /* @__PURE__ */ jsx8(Button, { size: "md", children: "M\xE9dio" }),
-        /* @__PURE__ */ jsx8(Button, { size: "lg", children: "Grande" })
+    /* @__PURE__ */ jsxs8("section", { style: { marginBottom: "32px" }, children: [
+      /* @__PURE__ */ jsx9("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Tamanhos" }),
+      /* @__PURE__ */ jsxs8("div", { style: { display: "flex", gap: "12px", alignItems: "center", flexWrap: "wrap" }, children: [
+        /* @__PURE__ */ jsx9(Button, { size: "sm", children: "Pequeno" }),
+        /* @__PURE__ */ jsx9(Button, { size: "md", children: "M\xE9dio" }),
+        /* @__PURE__ */ jsx9(Button, { size: "lg", children: "Grande" })
       ] })
     ] }),
-    /* @__PURE__ */ jsxs7("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ jsx8("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Estados" }),
-      /* @__PURE__ */ jsxs7("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ jsx8(Button, { children: "Normal" }),
-        /* @__PURE__ */ jsx8(Button, { loading: true, children: "Carregando" }),
-        /* @__PURE__ */ jsx8(Button, { disabled: true, children: "Desabilitado" }),
-        /* @__PURE__ */ jsx8(Button, { loading, onClick: handleLoadingClick, children: "Clique para Carregar" })
+    /* @__PURE__ */ jsxs8("section", { style: { marginBottom: "32px" }, children: [
+      /* @__PURE__ */ jsx9("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Estados" }),
+      /* @__PURE__ */ jsxs8("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
+        /* @__PURE__ */ jsx9(Button, { children: "Normal" }),
+        /* @__PURE__ */ jsx9(Button, { loading: true, children: "Carregando" }),
+        /* @__PURE__ */ jsx9(Button, { disabled: true, children: "Desabilitado" }),
+        /* @__PURE__ */ jsx9(Button, { loading, onClick: handleLoadingClick, children: "Clique para Carregar" })
       ] })
     ] }),
-    /* @__PURE__ */ jsxs7("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ jsx8("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Com \xCDcones" }),
-      /* @__PURE__ */ jsxs7("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ jsx8(Button, { leftIcon: "\u2190", children: "Voltar" }),
-        /* @__PURE__ */ jsx8(Button, { rightIcon: "\u2192", children: "Pr\xF3ximo" }),
-        /* @__PURE__ */ jsx8(Button, { leftIcon: "\u2605", rightIcon: "\u2605", children: "Estrela" }),
-        /* @__PURE__ */ jsx8(Button, { leftIcon: "\u{1F4E7}", children: "Email" })
+    /* @__PURE__ */ jsxs8("section", { style: { marginBottom: "32px" }, children: [
+      /* @__PURE__ */ jsx9("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Com \xCDcones" }),
+      /* @__PURE__ */ jsxs8("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
+        /* @__PURE__ */ jsx9(Button, { leftIcon: "\u2190", children: "Voltar" }),
+        /* @__PURE__ */ jsx9(Button, { rightIcon: "\u2192", children: "Pr\xF3ximo" }),
+        /* @__PURE__ */ jsx9(Button, { leftIcon: "\u2605", rightIcon: "\u2605", children: "Estrela" }),
+        /* @__PURE__ */ jsx9(Button, { leftIcon: "\u{1F4E7}", children: "Email" })
       ] })
     ] }),
-    /* @__PURE__ */ jsxs7("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ jsx8("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Largura Completa" }),
-      /* @__PURE__ */ jsxs7("div", { style: { display: "flex", flexDirection: "column", gap: "12px" }, children: [
-        /* @__PURE__ */ jsx8(Button, { fullWidth: true, children: "Bot\xE3o de Largura Completa" }),
-        /* @__PURE__ */ jsx8(Button, { variant: "outline", fullWidth: true, children: "Contorno de Largura Completa" })
+    /* @__PURE__ */ jsxs8("section", { style: { marginBottom: "32px" }, children: [
+      /* @__PURE__ */ jsx9("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Largura Completa" }),
+      /* @__PURE__ */ jsxs8("div", { style: { display: "flex", flexDirection: "column", gap: "12px" }, children: [
+        /* @__PURE__ */ jsx9(Button, { fullWidth: true, children: "Bot\xE3o de Largura Completa" }),
+        /* @__PURE__ */ jsx9(Button, { variant: "outline", fullWidth: true, children: "Contorno de Largura Completa" })
       ] })
     ] }),
-    /* @__PURE__ */ jsxs7("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ jsx8("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Efeitos de Hover" }),
-      /* @__PURE__ */ jsx8("p", { style: { fontFamily: "var(--cria-font-family)", color: "#6B7280", marginBottom: "16px", fontSize: "14px" }, children: "Passe o mouse sobre os bot\xF5es para ver os efeitos de hover" }),
-      /* @__PURE__ */ jsxs7("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ jsx8(Button, { variant: "primary", children: "Prim\xE1rio" }),
-        /* @__PURE__ */ jsx8(Button, { variant: "secondary", children: "Secund\xE1rio" }),
-        /* @__PURE__ */ jsx8(Button, { variant: "outline", children: "Contorno" }),
-        /* @__PURE__ */ jsx8(Button, { variant: "ghost", children: "Fantasma" }),
-        /* @__PURE__ */ jsx8(Button, { variant: "danger", children: "Perigo" })
+    /* @__PURE__ */ jsxs8("section", { style: { marginBottom: "32px" }, children: [
+      /* @__PURE__ */ jsx9("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Efeitos de Hover" }),
+      /* @__PURE__ */ jsx9("p", { style: { fontFamily: "var(--cria-font-family)", color: "#6B7280", marginBottom: "16px", fontSize: "14px" }, children: "Passe o mouse sobre os bot\xF5es para ver os efeitos de hover" }),
+      /* @__PURE__ */ jsxs8("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
+        /* @__PURE__ */ jsx9(Button, { variant: "primary", children: "Prim\xE1rio" }),
+        /* @__PURE__ */ jsx9(Button, { variant: "secondary", children: "Secund\xE1rio" }),
+        /* @__PURE__ */ jsx9(Button, { variant: "outline", children: "Contorno" }),
+        /* @__PURE__ */ jsx9(Button, { variant: "ghost", children: "Fantasma" }),
+        /* @__PURE__ */ jsx9(Button, { variant: "danger", children: "Perigo" })
       ] })
     ] }),
-    /* @__PURE__ */ jsxs7("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ jsx8("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Exemplos Interativos" }),
-      /* @__PURE__ */ jsxs7("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ jsx8(Button, { onClick: () => alert("Prim\xE1rio clicado!"), children: "Clique em Mim" }),
-        /* @__PURE__ */ jsx8(Button, { variant: "secondary", onClick: () => console.log("Secund\xE1rio clicado!"), children: "Log no Console" }),
-        /* @__PURE__ */ jsx8(Button, { variant: "outline", onClick: () => window.open("https://example.com", "_blank"), children: "Link Externo" })
+    /* @__PURE__ */ jsxs8("section", { style: { marginBottom: "32px" }, children: [
+      /* @__PURE__ */ jsx9("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Exemplos Interativos" }),
+      /* @__PURE__ */ jsxs8("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
+        /* @__PURE__ */ jsx9(Button, { onClick: () => alert("Prim\xE1rio clicado!"), children: "Clique em Mim" }),
+        /* @__PURE__ */ jsx9(Button, { variant: "secondary", onClick: () => console.log("Secund\xE1rio clicado!"), children: "Log no Console" }),
+        /* @__PURE__ */ jsx9(Button, { variant: "outline", onClick: () => window.open("https://example.com", "_blank"), children: "Link Externo" })
       ] })
     ] }),
-    /* @__PURE__ */ jsxs7("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ jsx8("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Acessibilidade" }),
-      /* @__PURE__ */ jsxs7("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ jsx8(Button, { "aria-label": "Fechar di\xE1logo", children: "\xD7" }),
-        /* @__PURE__ */ jsx8(Button, { "aria-describedby": "help-text", children: "Ajuda" }),
-        /* @__PURE__ */ jsx8(Button, { disabled: true, "aria-label": "Esta a\xE7\xE3o n\xE3o est\xE1 dispon\xEDvel", children: "Indispon\xEDvel" })
+    /* @__PURE__ */ jsxs8("section", { style: { marginBottom: "32px" }, children: [
+      /* @__PURE__ */ jsx9("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Acessibilidade" }),
+      /* @__PURE__ */ jsxs8("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
+        /* @__PURE__ */ jsx9(Button, { "aria-label": "Fechar di\xE1logo", children: "\xD7" }),
+        /* @__PURE__ */ jsx9(Button, { "aria-describedby": "help-text", children: "Ajuda" }),
+        /* @__PURE__ */ jsx9(Button, { disabled: true, "aria-label": "Esta a\xE7\xE3o n\xE3o est\xE1 dispon\xEDvel", children: "Indispon\xEDvel" })
       ] }),
-      /* @__PURE__ */ jsx8("p", { id: "help-text", style: { fontSize: "14px", color: "#6B7280", marginTop: "8px" }, children: "Este bot\xE3o fornece informa\xE7\xF5es de ajuda adicionais." })
+      /* @__PURE__ */ jsx9("p", { id: "help-text", style: { fontSize: "14px", color: "#6B7280", marginTop: "8px" }, children: "Este bot\xE3o fornece informa\xE7\xF5es de ajuda adicionais." })
     ] })
   ] });
 };
 
 // src/components/Card/Card.tsx
-import { jsx as jsx9 } from "react/jsx-runtime";
+import { jsx as jsx10 } from "react/jsx-runtime";
 var Card = ({
   variant = "default",
   size = "md",
@@ -1209,7 +1363,7 @@ var Card = ({
     ...getSizeStyles3(size),
     ...style
   };
-  return /* @__PURE__ */ jsx9(
+  return /* @__PURE__ */ jsx10(
     "div",
     {
       className: classes,
@@ -1250,15 +1404,15 @@ function getSizeStyles3(size) {
   switch (size) {
     case "sm":
       return {
-        padding: spacing2[3]
+        padding: spacing[3]
       };
     case "md":
       return {
-        padding: spacing2[4]
+        padding: spacing[4]
       };
     case "lg":
       return {
-        padding: spacing2[6]
+        padding: spacing[6]
       };
     default:
       return {};
@@ -1271,12 +1425,12 @@ var CardHeader = ({
   ...props
 }) => {
   const classes = ["cria-card-header", className].filter(Boolean).join(" ");
-  return /* @__PURE__ */ jsx9(
+  return /* @__PURE__ */ jsx10(
     "div",
     {
       className: classes,
       style: {
-        marginBottom: spacing2[4],
+        marginBottom: spacing[4],
         ...style
       },
       ...props,
@@ -1291,7 +1445,7 @@ var CardContent = ({
   ...props
 }) => {
   const classes = ["cria-card-content", className].filter(Boolean).join(" ");
-  return /* @__PURE__ */ jsx9(
+  return /* @__PURE__ */ jsx10(
     "div",
     {
       className: classes,
@@ -1310,13 +1464,13 @@ var CardFooter = ({
   ...props
 }) => {
   const classes = ["cria-card-footer", className].filter(Boolean).join(" ");
-  return /* @__PURE__ */ jsx9(
+  return /* @__PURE__ */ jsx10(
     "div",
     {
       className: classes,
       style: {
-        marginTop: spacing2[4],
-        paddingTop: spacing2[4],
+        marginTop: spacing[4],
+        paddingTop: spacing[4],
         borderTop: `1px solid ${colors.border.light}`,
         ...style
       },
@@ -1327,12 +1481,12 @@ var CardFooter = ({
 };
 
 // src/components/Card/demo.tsx
-import { useState as useState10 } from "react";
+import { useState as useState7 } from "react";
 
 // src/components/CriaLessonCardSmall/CriaLessonCardSmall.tsx
 import { useState as useState5 } from "react";
 import { Check, Clock, User as User2 } from "phosphor-react";
-import { jsx as jsx10, jsxs as jsxs8 } from "react/jsx-runtime";
+import { jsx as jsx11, jsxs as jsxs9 } from "react/jsx-runtime";
 var CriaLessonCardSmall = ({
   lesson,
   completed = false,
@@ -1387,7 +1541,7 @@ var CriaLessonCardSmall = ({
     boxShadow: shadows.xl,
     transform: "translateY(-2px)"
   } : {};
-  return /* @__PURE__ */ jsxs8(
+  return /* @__PURE__ */ jsxs9(
     "div",
     {
       className: classes,
@@ -1400,14 +1554,14 @@ var CriaLessonCardSmall = ({
       "data-tools": lesson.tools?.join(",") || "",
       ...props,
       children: [
-        /* @__PURE__ */ jsxs8("div", { style: {
+        /* @__PURE__ */ jsxs9("div", { style: {
           position: "relative",
           width: "100%",
           height: "140px",
           background: `linear-gradient(135deg, ${colors.gray[100]} 0%, ${colors.gray[200]} 100%)`,
           overflow: "visible"
         }, children: [
-          /* @__PURE__ */ jsx10(
+          /* @__PURE__ */ jsx11(
             "img",
             {
               src: thumbnailUrl,
@@ -1421,17 +1575,17 @@ var CriaLessonCardSmall = ({
               }
             }
           ),
-          /* @__PURE__ */ jsx10("div", { style: {
+          /* @__PURE__ */ jsx11("div", { style: {
             position: "absolute",
             inset: 0,
             background: "linear-gradient(to top, rgba(0,0,0,0.2) 0%, transparent 100%)"
           } }),
-          /* @__PURE__ */ jsx10("div", { style: {
+          /* @__PURE__ */ jsx11("div", { style: {
             position: "absolute",
-            top: spacing2[2],
-            right: spacing2[2],
+            top: spacing[2],
+            right: spacing[2],
             zIndex: 10
-          }, children: /* @__PURE__ */ jsx10(
+          }, children: /* @__PURE__ */ jsx11(
             "button",
             {
               onClick: handleToggleCompletion,
@@ -1453,7 +1607,7 @@ var CriaLessonCardSmall = ({
               },
               title: completed ? "Mark as incomplete" : "Mark as completed",
               "aria-label": completed ? "Mark as incomplete" : "Mark as completed",
-              children: /* @__PURE__ */ jsx10(
+              children: /* @__PURE__ */ jsx11(
                 Check,
                 {
                   size: completed ? 16 : 14,
@@ -1463,12 +1617,12 @@ var CriaLessonCardSmall = ({
               )
             }
           ) }),
-          toolIconUrl && /* @__PURE__ */ jsx10("div", { style: {
+          toolIconUrl && /* @__PURE__ */ jsx11("div", { style: {
             position: "absolute",
             bottom: "-20px",
-            left: spacing2[4],
+            left: spacing[4],
             zIndex: 30
-          }, children: /* @__PURE__ */ jsx10(
+          }, children: /* @__PURE__ */ jsx11(
             "img",
             {
               src: toolIconUrl,
@@ -1482,17 +1636,17 @@ var CriaLessonCardSmall = ({
             }
           ) })
         ] }),
-        /* @__PURE__ */ jsxs8("div", { style: {
+        /* @__PURE__ */ jsxs9("div", { style: {
           flex: 1,
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          padding: `${spacing2[2]} ${spacing2[4]} ${spacing2[4]} ${spacing2[4]}`,
+          padding: `${spacing[2]} ${spacing[4]} ${spacing[4]} ${spacing[4]}`,
           zIndex: 10,
-          paddingTop: toolIconUrl ? spacing2[6] : spacing2[2]
+          paddingTop: toolIconUrl ? spacing[6] : spacing[2]
           // Adjust for tool icon
         }, children: [
-          /* @__PURE__ */ jsx10("div", { style: { marginBottom: spacing2[2] }, children: /* @__PURE__ */ jsx10(
+          /* @__PURE__ */ jsx11("div", { style: { marginBottom: spacing[2] }, children: /* @__PURE__ */ jsx11(
             Typography,
             {
               variant: "body",
@@ -1511,8 +1665,8 @@ var CriaLessonCardSmall = ({
               children: lesson.title
             }
           ) }),
-          /* @__PURE__ */ jsxs8("div", { style: { display: "flex", flexDirection: "column", gap: spacing2[2] }, children: [
-            /* @__PURE__ */ jsx10("div", { children: /* @__PURE__ */ jsx10(
+          /* @__PURE__ */ jsxs9("div", { style: { display: "flex", flexDirection: "column", gap: spacing[2] }, children: [
+            /* @__PURE__ */ jsx11("div", { children: /* @__PURE__ */ jsx11(
               Typography,
               {
                 variant: "caption",
@@ -1525,14 +1679,14 @@ var CriaLessonCardSmall = ({
                 children: category
               }
             ) }),
-            /* @__PURE__ */ jsxs8("div", { style: {
+            /* @__PURE__ */ jsxs9("div", { style: {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between"
             }, children: [
-              /* @__PURE__ */ jsxs8("div", { style: { display: "flex", alignItems: "center", gap: spacing2[1] }, children: [
-                /* @__PURE__ */ jsx10(Clock, { size: 12, color: colors.gray[500] }),
-                /* @__PURE__ */ jsx10(
+              /* @__PURE__ */ jsxs9("div", { style: { display: "flex", alignItems: "center", gap: spacing[1] }, children: [
+                /* @__PURE__ */ jsx11(Clock, { size: 12, color: colors.gray[500] }),
+                /* @__PURE__ */ jsx11(
                   Typography,
                   {
                     variant: "caption",
@@ -1544,7 +1698,7 @@ var CriaLessonCardSmall = ({
                   }
                 )
               ] }),
-              /* @__PURE__ */ jsx10("div", { style: {
+              /* @__PURE__ */ jsx11("div", { style: {
                 width: lesson.instructors && lesson.instructors.length > 0 ? "80px" : "32px",
                 height: "32px",
                 position: "relative",
@@ -1552,7 +1706,7 @@ var CriaLessonCardSmall = ({
                 justifyContent: "flex-end"
               }, children: lesson.instructors && lesson.instructors.length > 0 ? (
                 // Stacked avatars for multiple instructors
-                lesson.instructors.slice(0, 3).map((instructor, index) => /* @__PURE__ */ jsx10(
+                lesson.instructors.slice(0, 3).map((instructor, index) => /* @__PURE__ */ jsx11(
                   "div",
                   {
                     onClick: () => onInstructorClick?.(instructor),
@@ -1562,7 +1716,7 @@ var CriaLessonCardSmall = ({
                       right: `${index * 8}px`,
                       zIndex: 3 - index
                     },
-                    children: /* @__PURE__ */ jsx10(
+                    children: /* @__PURE__ */ jsx11(
                       Avatar,
                       {
                         src: instructor.avatarUrl,
@@ -1582,7 +1736,7 @@ var CriaLessonCardSmall = ({
                 ))
               ) : lesson.instructor ? (
                 // Single instructor - aligned to right
-                /* @__PURE__ */ jsx10(
+                /* @__PURE__ */ jsx11(
                   "div",
                   {
                     onClick: handleInstructorClick,
@@ -1591,7 +1745,7 @@ var CriaLessonCardSmall = ({
                       position: "absolute",
                       right: "0px"
                     },
-                    children: /* @__PURE__ */ jsx10(
+                    children: /* @__PURE__ */ jsx11(
                       Avatar,
                       {
                         src: lesson.instructor.avatarUrl,
@@ -1610,7 +1764,7 @@ var CriaLessonCardSmall = ({
                 )
               ) : (
                 // Default user icon - aligned to right
-                /* @__PURE__ */ jsx10("div", { style: {
+                /* @__PURE__ */ jsx11("div", { style: {
                   width: "32px",
                   height: "32px",
                   borderRadius: "50%",
@@ -1620,7 +1774,7 @@ var CriaLessonCardSmall = ({
                   justifyContent: "center",
                   position: "absolute",
                   right: "0px"
-                }, children: /* @__PURE__ */ jsx10(User2, { size: 16, color: colors.white }) })
+                }, children: /* @__PURE__ */ jsx11(User2, { size: 16, color: colors.white }) })
               ) })
             ] })
           ] })
@@ -1633,7 +1787,7 @@ var CriaLessonCardSmall = ({
 // src/components/CriaLessonCard/CriaLessonCard.tsx
 import { useState as useState6, useCallback as useCallback4 } from "react";
 import { Clock as Clock2, User as User3 } from "phosphor-react";
-import { jsx as jsx11, jsxs as jsxs9 } from "react/jsx-runtime";
+import { jsx as jsx12, jsxs as jsxs10 } from "react/jsx-runtime";
 var CriaLessonCard = ({
   lesson,
   onLessonClick,
@@ -1653,7 +1807,7 @@ var CriaLessonCard = ({
     "cria-lesson-card",
     className
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ jsxs9(
+  return /* @__PURE__ */ jsxs10(
     "div",
     {
       className: cardClasses,
@@ -1676,7 +1830,7 @@ var CriaLessonCard = ({
       "data-lesson-slug": lesson.slug,
       ...props,
       children: [
-        /* @__PURE__ */ jsx11(
+        /* @__PURE__ */ jsx12(
           "div",
           {
             style: {
@@ -1687,7 +1841,7 @@ var CriaLessonCard = ({
               borderRadius: `${radii.lg} ${radii.lg} 0 0`,
               overflow: "hidden"
             },
-            children: /* @__PURE__ */ jsx11(
+            children: /* @__PURE__ */ jsx12(
               "img",
               {
                 src: lesson.thumbnailUrl || "https://cdn.prod.website-files.com/65870ed41744e63eb43fd116/6876c357bfbaf5d573e3dd27_AU-409Thumb2.png",
@@ -1706,18 +1860,18 @@ var CriaLessonCard = ({
             )
           }
         ),
-        lesson.toolIconText && /* @__PURE__ */ jsx11(
+        lesson.toolIconText && /* @__PURE__ */ jsx12(
           "div",
           {
             style: {
               position: "absolute",
-              left: spacing2[4],
+              left: spacing[4],
               top: "120px",
               width: "48px",
               height: "48px",
               zIndex: 20
             },
-            children: /* @__PURE__ */ jsx11(
+            children: /* @__PURE__ */ jsx12(
               "div",
               {
                 style: {
@@ -1730,7 +1884,7 @@ var CriaLessonCard = ({
                   alignItems: "center",
                   justifyContent: "center"
                 },
-                children: /* @__PURE__ */ jsx11(
+                children: /* @__PURE__ */ jsx12(
                   Typography,
                   {
                     variant: "caption",
@@ -1746,7 +1900,7 @@ var CriaLessonCard = ({
             )
           }
         ),
-        /* @__PURE__ */ jsxs9(
+        /* @__PURE__ */ jsxs10(
           "div",
           {
             style: {
@@ -1755,7 +1909,7 @@ var CriaLessonCard = ({
               left: 0,
               right: 0,
               background: colors.white,
-              padding: `${spacing2[8]} ${spacing2[8]} ${spacing2[6]} ${spacing2[8]}`,
+              padding: `${spacing[8]} ${spacing[8]} ${spacing[6]} ${spacing[8]}`,
               height: "134px",
               display: "flex",
               flexDirection: "column",
@@ -1763,7 +1917,7 @@ var CriaLessonCard = ({
               zIndex: 10
             },
             children: [
-              /* @__PURE__ */ jsx11(
+              /* @__PURE__ */ jsx12(
                 Typography,
                 {
                   variant: "body",
@@ -1774,7 +1928,7 @@ var CriaLessonCard = ({
                     fontSize: "14px",
                     lineHeight: 1.4,
                     textTransform: "uppercase",
-                    marginBottom: spacing2[2],
+                    marginBottom: spacing[2],
                     display: "-webkit-box",
                     WebkitLineClamp: 3,
                     WebkitBoxOrient: "vertical",
@@ -1785,18 +1939,18 @@ var CriaLessonCard = ({
                   children: lesson.title
                 }
               ),
-              /* @__PURE__ */ jsx11(
+              /* @__PURE__ */ jsx12(
                 "div",
                 {
                   style: {
                     width: "100%",
                     height: "1px",
                     background: colors.gray[200],
-                    marginBottom: spacing2[2]
+                    marginBottom: spacing[2]
                   }
                 }
               ),
-              /* @__PURE__ */ jsx11(
+              /* @__PURE__ */ jsx12(
                 Typography,
                 {
                   variant: "caption",
@@ -1819,7 +1973,7 @@ var CriaLessonCard = ({
             ]
           }
         ),
-        /* @__PURE__ */ jsxs9(
+        /* @__PURE__ */ jsxs10(
           "div",
           {
             style: {
@@ -1830,7 +1984,7 @@ var CriaLessonCard = ({
               height: "46px",
               background: colors.white,
               borderRadius: `0 0 ${radii.lg} ${radii.lg}`,
-              padding: `${spacing2[2]} ${spacing2[8]}`,
+              padding: `${spacing[2]} ${spacing[8]}`,
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
@@ -1838,9 +1992,9 @@ var CriaLessonCard = ({
               borderTop: `1px solid ${colors.gray[200]}`
             },
             children: [
-              /* @__PURE__ */ jsxs9("div", { style: { display: "flex", alignItems: "center" }, children: [
-                /* @__PURE__ */ jsx11(Clock2, { size: 16, color: colors.gray[600], style: { marginRight: spacing2[1] } }),
-                /* @__PURE__ */ jsx11(
+              /* @__PURE__ */ jsxs10("div", { style: { display: "flex", alignItems: "center" }, children: [
+                /* @__PURE__ */ jsx12(Clock2, { size: 16, color: colors.gray[600], style: { marginRight: spacing[1] } }),
+                /* @__PURE__ */ jsx12(
                   Typography,
                   {
                     variant: "caption",
@@ -1855,12 +2009,12 @@ var CriaLessonCard = ({
                   }
                 )
               ] }),
-              /* @__PURE__ */ jsx11("div", { style: { width: "25px", height: "25px" }, children: lesson.instructor ? /* @__PURE__ */ jsx11(
+              /* @__PURE__ */ jsx12("div", { style: { width: "25px", height: "25px" }, children: lesson.instructor ? /* @__PURE__ */ jsx12(
                 "div",
                 {
                   onClick: handleInstructorClick,
                   style: { cursor: "pointer" },
-                  children: /* @__PURE__ */ jsx11(
+                  children: /* @__PURE__ */ jsx12(
                     Avatar,
                     {
                       src: lesson.instructor.avatarUrl,
@@ -1876,7 +2030,7 @@ var CriaLessonCard = ({
                     }
                   )
                 }
-              ) : /* @__PURE__ */ jsx11(
+              ) : /* @__PURE__ */ jsx12(
                 "div",
                 {
                   style: {
@@ -1888,1345 +2042,9 @@ var CriaLessonCard = ({
                     alignItems: "center",
                     justifyContent: "center"
                   },
-                  children: /* @__PURE__ */ jsx11(User3, { size: 16, color: colors.white })
+                  children: /* @__PURE__ */ jsx12(User3, { size: 16, color: colors.white })
                 }
               ) })
-            ]
-          }
-        )
-      ]
-    }
-  );
-};
-
-// src/components/CriaCourseCard/CriaCourseCard.tsx
-import { useState as useState7, useCallback as useCallback5 } from "react";
-import { Clock as Clock3, UserCircle, Wrench } from "phosphor-react";
-import { jsx as jsx12, jsxs as jsxs10 } from "react/jsx-runtime";
-var CriaCourseCard = ({
-  course,
-  onCourseClick,
-  onInstructorClick,
-  onToolClick,
-  className = "",
-  style,
-  ...props
-}) => {
-  const [isHovered, setIsHovered] = useState7(false);
-  const [imageLoaded, setImageLoaded] = useState7(false);
-  const handleCardClick = useCallback5(() => {
-    onCourseClick?.(course);
-  }, [course, onCourseClick]);
-  const handleInstructorClick = useCallback5((instructor, e) => {
-    e.stopPropagation();
-    onInstructorClick?.(instructor);
-  }, [onInstructorClick]);
-  const handleToolClick = useCallback5((tool, e) => {
-    e.stopPropagation();
-    onToolClick?.(tool);
-  }, [onToolClick]);
-  const cardClasses = [
-    "cria-course-card",
-    className
-  ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ jsxs10(
-    "div",
-    {
-      className: cardClasses,
-      onClick: handleCardClick,
-      onMouseEnter: () => setIsHovered(true),
-      onMouseLeave: () => setIsHovered(false),
-      style: {
-        backgroundColor: colors.white,
-        borderRadius: radii.lg,
-        boxShadow: shadows.sm,
-        overflow: "hidden",
-        display: "flex",
-        cursor: "pointer",
-        transition: "all 0.3s ease",
-        ...style
-      },
-      "data-course-id": course.id,
-      "data-course-slug": course.slug,
-      ...props,
-      children: [
-        /* @__PURE__ */ jsx12(
-          "div",
-          {
-            style: {
-              width: "33.333%",
-              flexShrink: 0,
-              position: "relative",
-              overflow: "hidden"
-            },
-            children: /* @__PURE__ */ jsx12(
-              "img",
-              {
-                src: course.thumbnailUrl || "https://via.placeholder.com/400x300?text=No+Image",
-                alt: course.title,
-                style: {
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  transition: "transform 0.3s ease-out",
-                  transform: isHovered ? "scale(1.05)" : "scale(1)",
-                  opacity: imageLoaded ? 1 : 0,
-                  minHeight: "200px"
-                },
-                onLoad: () => setImageLoaded(true),
-                onError: () => setImageLoaded(true)
-              }
-            )
-          }
-        ),
-        /* @__PURE__ */ jsxs10(
-          "div",
-          {
-            style: {
-              padding: `${spacing2[8]} ${spacing2[8]} ${spacing2[8]} ${spacing2[12]}`,
-              flex: 1,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between"
-            },
-            children: [
-              /* @__PURE__ */ jsxs10("div", { children: [
-                /* @__PURE__ */ jsx12(
-                  Typography,
-                  {
-                    variant: "h1",
-                    style: {
-                      color: colors.primary,
-                      fontWeight: typography.fontWeight.bold,
-                      letterSpacing: "0.1em",
-                      marginBottom: spacing2[2],
-                      textTransform: "uppercase",
-                      transition: "color 0.3s ease",
-                      cursor: "pointer"
-                    },
-                    onMouseEnter: (e) => {
-                      e.currentTarget.style.color = colors.secondary;
-                    },
-                    onMouseLeave: (e) => {
-                      e.currentTarget.style.color = colors.primary;
-                    },
-                    children: course.title
-                  }
-                ),
-                /* @__PURE__ */ jsx12(
-                  Typography,
-                  {
-                    variant: "body",
-                    style: {
-                      color: colors.gray[600],
-                      fontSize: "14px",
-                      lineHeight: 1.6,
-                      marginBottom: spacing2[6]
-                    },
-                    children: course.description || "A comprehensive course designed to help you master the fundamentals and advanced concepts."
-                  }
-                )
-              ] }),
-              /* @__PURE__ */ jsxs10(
-                "div",
-                {
-                  style: {
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-                    gap: spacing2[8]
-                  },
-                  children: [
-                    /* @__PURE__ */ jsxs10("div", { children: [
-                      /* @__PURE__ */ jsxs10(
-                        "div",
-                        {
-                          style: {
-                            display: "flex",
-                            alignItems: "flex-start",
-                            gap: spacing2[2],
-                            marginBottom: spacing2[4]
-                          },
-                          children: [
-                            /* @__PURE__ */ jsx12(
-                              UserCircle,
-                              {
-                                size: 20,
-                                color: colors.primary,
-                                weight: "duotone",
-                                style: { marginTop: "2px", flexShrink: 0 }
-                              }
-                            ),
-                            /* @__PURE__ */ jsx12(
-                              "div",
-                              {
-                                style: {
-                                  display: "flex",
-                                  flexDirection: "column",
-                                  gap: spacing2[1]
-                                },
-                                children: course.instructors?.map((instructor) => /* @__PURE__ */ jsxs10(
-                                  "div",
-                                  {
-                                    onClick: (e) => handleInstructorClick(instructor, e),
-                                    style: {
-                                      display: "inline-flex",
-                                      alignItems: "center",
-                                      padding: `${spacing2[1]} ${spacing2[2]}`,
-                                      borderRadius: radii.full,
-                                      fontSize: "12px",
-                                      fontWeight: typography.fontWeight.semiBold,
-                                      color: colors.primary,
-                                      border: `1px solid ${colors.primary}20`,
-                                      backgroundColor: colors.primary + "08",
-                                      cursor: "pointer",
-                                      transition: "all 0.2s ease"
-                                    },
-                                    onMouseEnter: (e) => {
-                                      e.currentTarget.style.backgroundColor = colors.primary + "15";
-                                      e.currentTarget.style.borderColor = colors.primary + "40";
-                                    },
-                                    onMouseLeave: (e) => {
-                                      e.currentTarget.style.backgroundColor = colors.primary + "08";
-                                      e.currentTarget.style.borderColor = colors.primary + "20";
-                                    },
-                                    children: [
-                                      instructor.avatarUrl && /* @__PURE__ */ jsx12(
-                                        Avatar,
-                                        {
-                                          src: instructor.avatarUrl,
-                                          alt: instructor.name,
-                                          size: "sm",
-                                          name: instructor.name,
-                                          style: {
-                                            width: "20px",
-                                            height: "20px",
-                                            marginRight: spacing2[1]
-                                          }
-                                        }
-                                      ),
-                                      instructor.name
-                                    ]
-                                  },
-                                  instructor.id
-                                ))
-                              }
-                            )
-                          ]
-                        }
-                      ),
-                      /* @__PURE__ */ jsxs10(
-                        "div",
-                        {
-                          style: {
-                            display: "flex",
-                            alignItems: "center",
-                            gap: spacing2[2]
-                          },
-                          children: [
-                            /* @__PURE__ */ jsx12(
-                              Clock3,
-                              {
-                                size: 20,
-                                color: colors.primary,
-                                weight: "duotone"
-                              }
-                            ),
-                            /* @__PURE__ */ jsx12(
-                              Typography,
-                              {
-                                variant: "caption",
-                                style: {
-                                  color: colors.primary,
-                                  fontSize: "14px"
-                                },
-                                children: course.duration || "--"
-                              }
-                            )
-                          ]
-                        }
-                      )
-                    ] }),
-                    /* @__PURE__ */ jsx12("div", { children: /* @__PURE__ */ jsxs10(
-                      "div",
-                      {
-                        style: {
-                          display: "flex",
-                          alignItems: "flex-start",
-                          gap: spacing2[2]
-                        },
-                        children: [
-                          /* @__PURE__ */ jsx12(
-                            Wrench,
-                            {
-                              size: 20,
-                              color: colors.primary,
-                              weight: "duotone",
-                              style: { marginTop: "2px", flexShrink: 0 }
-                            }
-                          ),
-                          /* @__PURE__ */ jsx12(
-                            "div",
-                            {
-                              style: {
-                                display: "flex",
-                                flexDirection: "column",
-                                gap: spacing2[1]
-                              },
-                              children: course.tools?.map((tool) => /* @__PURE__ */ jsxs10(
-                                "div",
-                                {
-                                  onClick: (e) => handleToolClick(tool, e),
-                                  style: {
-                                    display: "inline-flex",
-                                    alignItems: "center",
-                                    padding: `${spacing2[1]} ${spacing2[2]}`,
-                                    borderRadius: radii.full,
-                                    fontSize: "12px",
-                                    fontWeight: typography.fontWeight.semiBold,
-                                    color: colors.primary,
-                                    border: `1px solid ${colors.primary}20`,
-                                    backgroundColor: colors.primary + "08",
-                                    cursor: "pointer",
-                                    transition: "all 0.2s ease"
-                                  },
-                                  onMouseEnter: (e) => {
-                                    e.currentTarget.style.backgroundColor = colors.primary + "15";
-                                    e.currentTarget.style.borderColor = colors.primary + "40";
-                                  },
-                                  onMouseLeave: (e) => {
-                                    e.currentTarget.style.backgroundColor = colors.primary + "08";
-                                    e.currentTarget.style.borderColor = colors.primary + "20";
-                                  },
-                                  children: [
-                                    tool.icon && /* @__PURE__ */ jsx12(
-                                      "span",
-                                      {
-                                        style: {
-                                          width: "20px",
-                                          height: "20px",
-                                          marginRight: spacing2[1],
-                                          display: "flex",
-                                          alignItems: "center",
-                                          justifyContent: "center",
-                                          fontSize: "14px"
-                                        },
-                                        children: tool.icon
-                                      }
-                                    ),
-                                    tool.name
-                                  ]
-                                },
-                                tool.id
-                              ))
-                            }
-                          )
-                        ]
-                      }
-                    ) })
-                  ]
-                }
-              )
-            ]
-          }
-        )
-      ]
-    }
-  );
-};
-
-// src/components/CriaClassroomFutureEventCard/CriaClassroomFutureEventCard.tsx
-import { useState as useState8, useEffect as useEffect2, useCallback as useCallback6 } from "react";
-import { Calendar } from "phosphor-react";
-import { jsx as jsx13, jsxs as jsxs11 } from "react/jsx-runtime";
-var CriaClassroomFutureEventCard = ({
-  event,
-  classroomItem,
-  onEventClick,
-  onCalendarClick,
-  className = "",
-  style,
-  ...props
-}) => {
-  const [timeLeft, setTimeLeft] = useState8({ days: 0, hours: 0, minutes: 0 });
-  const [isLive, setIsLive] = useState8(false);
-  const calculateTimeLeft = useCallback6(() => {
-    const eventDate2 = new Date(event.startDate);
-    const now = /* @__PURE__ */ new Date();
-    const difference = eventDate2.getTime() - now.getTime();
-    if (difference > 0) {
-      const days = Math.floor(difference / (1e3 * 60 * 60 * 24));
-      const hours = Math.floor(difference % (1e3 * 60 * 60 * 24) / (1e3 * 60 * 60));
-      const minutes = Math.floor(difference % (1e3 * 60 * 60) / (1e3 * 60));
-      setTimeLeft({ days, hours, minutes });
-      setIsLive(false);
-    } else {
-      setTimeLeft({ days: 0, hours: 0, minutes: 0 });
-      setIsLive(true);
-    }
-  }, [event.startDate]);
-  useEffect2(() => {
-    calculateTimeLeft();
-    const interval = setInterval(calculateTimeLeft, 6e4);
-    return () => clearInterval(interval);
-  }, [calculateTimeLeft]);
-  const handleEventClick = useCallback6(() => {
-    onEventClick?.(event);
-  }, [event, onEventClick]);
-  const handleCalendarClick = useCallback6(() => {
-    onCalendarClick?.(event);
-  }, [event, onCalendarClick]);
-  const title = classroomItem.customTitle || event.name;
-  const description = classroomItem.customSubtitle || event.description || "";
-  const eventDate = new Date(event.startDate);
-  const formattedDate = eventDate.toLocaleDateString("pt-BR", {
-    day: "2-digit",
-    month: "short"
-  });
-  const formattedTime = eventDate.toLocaleTimeString("pt-BR", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false
-  });
-  const cardClasses = [
-    "cria-classroom-future-event-card",
-    className
-  ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ jsxs11(
-    "div",
-    {
-      className: cardClasses,
-      style: {
-        backgroundColor: colors.white,
-        borderRadius: radii.lg,
-        boxShadow: shadows.lg,
-        overflow: "hidden",
-        display: "flex",
-        border: `1px solid ${colors.gray[100]}`,
-        minHeight: "200px",
-        ...style
-      },
-      "data-event-id": event.id,
-      "data-classroom-item-id": classroomItem.id,
-      ...props,
-      children: [
-        /* @__PURE__ */ jsxs11(
-          "div",
-          {
-            style: {
-              width: "33.333%",
-              flexShrink: 0,
-              position: "relative",
-              overflow: "hidden",
-              minHeight: "200px",
-              padding: spacing2[8],
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between"
-            },
-            children: [
-              classroomItem.imageUrl ? /* @__PURE__ */ jsx13(
-                "img",
-                {
-                  src: classroomItem.imageUrl,
-                  alt: title,
-                  style: {
-                    position: "absolute",
-                    inset: 0,
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "center"
-                  },
-                  onError: (e) => {
-                    e.target.style.display = "none";
-                  }
-                }
-              ) : null,
-              /* @__PURE__ */ jsx13(
-                "div",
-                {
-                  style: {
-                    position: "absolute",
-                    inset: 0,
-                    background: "linear-gradient(135deg, #a855f7 0%, #3b82f6 50%, #14b8a6 100%)"
-                  }
-                }
-              ),
-              /* @__PURE__ */ jsx13(
-                "div",
-                {
-                  style: {
-                    position: "absolute",
-                    inset: 0,
-                    background: "linear-gradient(135deg, rgba(0, 221, 185, 0.6) 0%, rgba(0, 123, 122, 0.6) 100%)",
-                    backdropFilter: "blur(12px)"
-                  }
-                }
-              ),
-              /* @__PURE__ */ jsxs11("div", { style: { position: "absolute", inset: 0, opacity: 0.3 }, children: [
-                /* @__PURE__ */ jsx13(
-                  "div",
-                  {
-                    style: {
-                      position: "absolute",
-                      top: "-40px",
-                      right: "-40px",
-                      width: "128px",
-                      height: "128px",
-                      background: colors.white,
-                      borderRadius: "50%",
-                      filter: "blur(32px)"
-                    }
-                  }
-                ),
-                /* @__PURE__ */ jsx13(
-                  "div",
-                  {
-                    style: {
-                      position: "absolute",
-                      bottom: "-20px",
-                      left: "-20px",
-                      width: "80px",
-                      height: "80px",
-                      background: "#00ddb9",
-                      borderRadius: "50%",
-                      filter: "blur(24px)"
-                    }
-                  }
-                ),
-                /* @__PURE__ */ jsx13(
-                  "div",
-                  {
-                    style: {
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%, -50%)",
-                      width: "96px",
-                      height: "96px",
-                      background: "rgba(255, 255, 255, 0.4)",
-                      borderRadius: "50%",
-                      filter: "blur(16px)"
-                    }
-                  }
-                ),
-                /* @__PURE__ */ jsx13(
-                  "div",
-                  {
-                    style: {
-                      position: "absolute",
-                      top: spacing2[4],
-                      left: spacing2[4],
-                      width: "64px",
-                      height: "64px",
-                      background: "rgba(0, 221, 185, 0.3)",
-                      borderRadius: "50%",
-                      filter: "blur(12px)"
-                    }
-                  }
-                ),
-                /* @__PURE__ */ jsx13(
-                  "div",
-                  {
-                    style: {
-                      position: "absolute",
-                      bottom: spacing2[4],
-                      right: spacing2[4],
-                      width: "48px",
-                      height: "48px",
-                      background: "rgba(255, 255, 255, 0.5)",
-                      borderRadius: "50%",
-                      filter: "blur(8px)"
-                    }
-                  }
-                )
-              ] }),
-              /* @__PURE__ */ jsxs11("div", { style: { position: "relative", zIndex: 10 }, children: [
-                /* @__PURE__ */ jsx13(
-                  Typography,
-                  {
-                    variant: "h1",
-                    style: {
-                      fontSize: "48px",
-                      fontFamily: typography.fontFamily.primary,
-                      fontWeight: typography.fontWeight.bold,
-                      color: colors.white,
-                      lineHeight: 1,
-                      marginBottom: spacing2[1]
-                    },
-                    children: String(classroomItem.position || 1).padStart(2, "0")
-                  }
-                ),
-                /* @__PURE__ */ jsx13(
-                  Typography,
-                  {
-                    variant: "caption",
-                    style: {
-                      fontFamily: typography.fontFamily.primary,
-                      fontWeight: typography.fontWeight.medium,
-                      color: colors.white,
-                      textTransform: "uppercase",
-                      letterSpacing: "0.1em"
-                    },
-                    children: "Este evento acontecer\xE1 em"
-                  }
-                )
-              ] }),
-              /* @__PURE__ */ jsx13("div", { style: { position: "relative", zIndex: 10 }, children: /* @__PURE__ */ jsxs11(
-                "div",
-                {
-                  style: {
-                    display: "flex",
-                    alignItems: "flex-end",
-                    justifyContent: "space-between",
-                    marginBottom: spacing2[1]
-                  },
-                  children: [
-                    /* @__PURE__ */ jsxs11("div", { style: { textAlign: "center" }, children: [
-                      /* @__PURE__ */ jsx13(
-                        Typography,
-                        {
-                          variant: "h2",
-                          style: {
-                            fontSize: "32px",
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.bold,
-                            color: colors.white,
-                            lineHeight: 1
-                          },
-                          children: String(timeLeft.days).padStart(2, "0")
-                        }
-                      ),
-                      /* @__PURE__ */ jsx13(
-                        Typography,
-                        {
-                          variant: "caption",
-                          style: {
-                            fontSize: "12px",
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.medium,
-                            color: colors.white,
-                            textTransform: "uppercase",
-                            letterSpacing: "0.1em"
-                          },
-                          children: "dias"
-                        }
-                      )
-                    ] }),
-                    /* @__PURE__ */ jsxs11("div", { style: { textAlign: "center" }, children: [
-                      /* @__PURE__ */ jsx13(
-                        Typography,
-                        {
-                          variant: "h2",
-                          style: {
-                            fontSize: "32px",
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.bold,
-                            color: colors.white,
-                            lineHeight: 1
-                          },
-                          children: String(timeLeft.hours).padStart(2, "0")
-                        }
-                      ),
-                      /* @__PURE__ */ jsx13(
-                        Typography,
-                        {
-                          variant: "caption",
-                          style: {
-                            fontSize: "12px",
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.medium,
-                            color: colors.white,
-                            textTransform: "uppercase",
-                            letterSpacing: "0.1em"
-                          },
-                          children: "horas"
-                        }
-                      )
-                    ] }),
-                    /* @__PURE__ */ jsxs11("div", { style: { textAlign: "center" }, children: [
-                      /* @__PURE__ */ jsx13(
-                        Typography,
-                        {
-                          variant: "h2",
-                          style: {
-                            fontSize: "32px",
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.bold,
-                            color: colors.white,
-                            lineHeight: 1
-                          },
-                          children: String(timeLeft.minutes).padStart(2, "0")
-                        }
-                      ),
-                      /* @__PURE__ */ jsx13(
-                        Typography,
-                        {
-                          variant: "caption",
-                          style: {
-                            fontSize: "12px",
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.medium,
-                            color: colors.white,
-                            textTransform: "uppercase",
-                            letterSpacing: "0.1em"
-                          },
-                          children: "min"
-                        }
-                      )
-                    ] })
-                  ]
-                }
-              ) }),
-              /* @__PURE__ */ jsx13("div", { style: { position: "relative", zIndex: 10, display: "flex", justifyContent: "center" }, children: /* @__PURE__ */ jsx13(
-                "div",
-                {
-                  style: {
-                    padding: `${spacing2[1]} ${spacing2[4]}`,
-                    border: `2px solid ${colors.white}`,
-                    borderRadius: radii.full,
-                    color: colors.white,
-                    fontFamily: typography.fontFamily.primary,
-                    fontWeight: typography.fontWeight.medium,
-                    fontSize: "14px",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.1em"
-                  },
-                  children: "Ao Vivo"
-                }
-              ) })
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsxs11(
-          "div",
-          {
-            style: {
-              padding: `${spacing2[8]} ${spacing2[8]} ${spacing2[8]} ${spacing2[8]}`,
-              flex: 1,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              width: "66.667%",
-              minHeight: "200px"
-            },
-            children: [
-              /* @__PURE__ */ jsxs11("div", { style: { marginBottom: spacing2[4] }, children: [
-                /* @__PURE__ */ jsx13(
-                  Typography,
-                  {
-                    variant: "h2",
-                    style: {
-                      color: colors.primary,
-                      fontFamily: typography.fontFamily.primary,
-                      fontWeight: typography.fontWeight.bold,
-                      fontSize: "24px",
-                      lineHeight: 1.2,
-                      marginBottom: spacing2[2],
-                      cursor: "pointer",
-                      textDecoration: "none"
-                    },
-                    onClick: handleEventClick,
-                    children: title
-                  }
-                ),
-                /* @__PURE__ */ jsx13(
-                  Typography,
-                  {
-                    variant: "body",
-                    style: {
-                      color: colors.gray[600],
-                      fontSize: "16px",
-                      lineHeight: 1.5
-                    },
-                    children: description
-                  }
-                )
-              ] }),
-              /* @__PURE__ */ jsxs11(
-                "div",
-                {
-                  style: {
-                    display: "flex",
-                    gap: spacing2[8],
-                    marginBottom: spacing2[6]
-                  },
-                  children: [
-                    /* @__PURE__ */ jsxs11("div", { children: [
-                      /* @__PURE__ */ jsx13(
-                        Typography,
-                        {
-                          variant: "caption",
-                          style: {
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.bold,
-                            color: colors.primary,
-                            textTransform: "uppercase",
-                            letterSpacing: "0.1em",
-                            marginBottom: spacing2[1]
-                          },
-                          children: "Data"
-                        }
-                      ),
-                      /* @__PURE__ */ jsx13(
-                        Typography,
-                        {
-                          variant: "body",
-                          style: {
-                            fontSize: "18px",
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.medium,
-                            color: colors.primary
-                          },
-                          children: formattedDate
-                        }
-                      )
-                    ] }),
-                    /* @__PURE__ */ jsxs11("div", { children: [
-                      /* @__PURE__ */ jsx13(
-                        Typography,
-                        {
-                          variant: "caption",
-                          style: {
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.bold,
-                            color: colors.primary,
-                            textTransform: "uppercase",
-                            letterSpacing: "0.1em",
-                            marginBottom: spacing2[1]
-                          },
-                          children: "Hor\xE1rio"
-                        }
-                      ),
-                      /* @__PURE__ */ jsx13(
-                        Typography,
-                        {
-                          variant: "body",
-                          style: {
-                            fontSize: "18px",
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.medium,
-                            color: colors.primary
-                          },
-                          children: formattedTime
-                        }
-                      )
-                    ] }),
-                    /* @__PURE__ */ jsxs11("div", { children: [
-                      /* @__PURE__ */ jsx13(
-                        Typography,
-                        {
-                          variant: "caption",
-                          style: {
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.bold,
-                            color: colors.primary,
-                            textTransform: "uppercase",
-                            letterSpacing: "0.1em",
-                            marginBottom: spacing2[1]
-                          },
-                          children: "Dura\xE7\xE3o"
-                        }
-                      ),
-                      /* @__PURE__ */ jsx13(
-                        Typography,
-                        {
-                          variant: "body",
-                          style: {
-                            fontSize: "18px",
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.medium,
-                            color: colors.primary
-                          },
-                          children: event.duration || "2H"
-                        }
-                      )
-                    ] })
-                  ]
-                }
-              ),
-              /* @__PURE__ */ jsx13("div", { style: { display: "flex", justifyContent: "flex-end", marginTop: spacing2[4] }, children: event.gcalendarUrl ? /* @__PURE__ */ jsxs11(
-                Button,
-                {
-                  variant: "primary",
-                  onClick: handleCalendarClick,
-                  style: {
-                    display: "flex",
-                    alignItems: "center",
-                    gap: spacing2[1]
-                  },
-                  children: [
-                    /* @__PURE__ */ jsx13(Calendar, { size: 16 }),
-                    "SALVAR NA AGENDA"
-                  ]
-                }
-              ) : /* @__PURE__ */ jsx13(
-                Typography,
-                {
-                  variant: "caption",
-                  style: {
-                    color: colors.gray[500],
-                    fontFamily: typography.fontFamily.primary
-                  },
-                  children: "Link da agenda n\xE3o dispon\xEDvel"
-                }
-              ) })
-            ]
-          }
-        )
-      ]
-    }
-  );
-};
-
-// src/components/CriaClassroomTrilhaCard/CriaClassroomTrilhaCard.tsx
-import { useState as useState9, useCallback as useCallback7 } from "react";
-import { Clock as Clock4, Wrench as Wrench2 } from "phosphor-react";
-import { Fragment, jsx as jsx14, jsxs as jsxs12 } from "react/jsx-runtime";
-var CriaClassroomTrilhaCard = ({
-  customLearning,
-  classroomItem,
-  onCardClick,
-  onInstructorClick,
-  onToolClick,
-  className = "",
-  style,
-  ...props
-}) => {
-  const [isHovered, setIsHovered] = useState9(false);
-  const [imageLoaded, setImageLoaded] = useState9(false);
-  const handleCardClick = useCallback7(() => {
-    onCardClick?.(customLearning);
-  }, [customLearning, onCardClick]);
-  const handleInstructorClick = useCallback7((instructor, e) => {
-    e.stopPropagation();
-    onInstructorClick?.(instructor);
-  }, [onInstructorClick]);
-  const handleToolClick = useCallback7((tool, e) => {
-    e.stopPropagation();
-    onToolClick?.(tool);
-  }, [onToolClick]);
-  const imageSource = customLearning.imageUrl || classroomItem.imageUrl || "/src/assets/cria_emblem_home.png";
-  const title = classroomItem.customTitle || customLearning.title;
-  const description = classroomItem.customSubtitle || customLearning.description || "";
-  const aggregateInstructors = () => {
-    const allInstructors = [];
-    if (customLearning.lessons) {
-      customLearning.lessons.forEach((lesson) => {
-        if (lesson.instructors) {
-          lesson.instructors.forEach((instructorName) => {
-            const instructor = {
-              id: instructorName.toLowerCase().replace(/\s+/g, "-"),
-              name: instructorName
-            };
-            allInstructors.push(instructor);
-          });
-        }
-      });
-    }
-    if (customLearning.courses) {
-      customLearning.courses.forEach((course) => {
-        if (course.instructors) {
-          allInstructors.push(...course.instructors);
-        }
-      });
-    }
-    const uniqueInstructors = allInstructors.filter(
-      (instructor, index, self) => index === self.findIndex((i) => i.id === instructor.id)
-    );
-    return uniqueInstructors;
-  };
-  const aggregateTools = () => {
-    const allTools = [];
-    if (customLearning.lessons) {
-      customLearning.lessons.forEach((lesson) => {
-        if (lesson.tools) {
-          lesson.tools.forEach((toolName) => {
-            const tool = {
-              id: toolName.toLowerCase().replace(/\s+/g, "-"),
-              name: toolName
-            };
-            allTools.push(tool);
-          });
-        }
-      });
-    }
-    if (customLearning.courses) {
-      customLearning.courses.forEach((course) => {
-        if (course.tools) {
-          allTools.push(...course.tools);
-        }
-      });
-    }
-    const uniqueTools = allTools.filter(
-      (tool, index, self) => index === self.findIndex((t) => t.id === tool.id)
-    );
-    return uniqueTools;
-  };
-  const instructors = aggregateInstructors();
-  const tools = aggregateTools();
-  const visibleInstructors = instructors.slice(0, 2);
-  const overflowInstructorsCount = Math.max(instructors.length - visibleInstructors.length, 0);
-  const cardClasses = [
-    "cria-classroom-trilha-card",
-    className
-  ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ jsxs12(
-    "div",
-    {
-      className: cardClasses,
-      onMouseEnter: () => setIsHovered(true),
-      onMouseLeave: () => setIsHovered(false),
-      style: {
-        backgroundColor: colors.white,
-        borderRadius: radii.lg,
-        boxShadow: shadows.lg,
-        overflow: "hidden",
-        display: "flex",
-        border: `1px solid ${colors.gray[100]}`,
-        minHeight: "200px",
-        transition: "all 0.3s ease",
-        cursor: onCardClick ? "pointer" : "default",
-        ...style
-      },
-      "data-custom-learning-id": customLearning.id,
-      "data-classroom-item-id": classroomItem.id,
-      ...props,
-      children: [
-        /* @__PURE__ */ jsxs12(
-          "div",
-          {
-            style: {
-              width: "33.333%",
-              flexShrink: 0,
-              position: "relative",
-              overflow: "hidden",
-              minHeight: "200px"
-            },
-            onClick: handleCardClick,
-            children: [
-              /* @__PURE__ */ jsx14(
-                "img",
-                {
-                  src: imageSource,
-                  alt: title,
-                  style: {
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "center",
-                    transition: "transform 0.3s ease",
-                    transform: isHovered ? "scale(1.1)" : "scale(1)",
-                    opacity: imageLoaded ? 1 : 0
-                  },
-                  onLoad: () => setImageLoaded(true),
-                  onError: () => setImageLoaded(true)
-                }
-              ),
-              /* @__PURE__ */ jsx14(
-                "div",
-                {
-                  style: {
-                    position: "absolute",
-                    inset: 0,
-                    background: "linear-gradient(to top, rgba(0,0,0,0.2) 0%, transparent 100%)"
-                  }
-                }
-              ),
-              /* @__PURE__ */ jsxs12(
-                "div",
-                {
-                  className: "learning-path-position",
-                  style: {
-                    position: "absolute",
-                    top: spacing2[4],
-                    left: spacing2[4]
-                  },
-                  children: [
-                    /* @__PURE__ */ jsx14(
-                      Typography,
-                      {
-                        variant: "h1",
-                        style: {
-                          fontSize: "48px",
-                          fontFamily: typography.fontFamily.primary,
-                          fontWeight: typography.fontWeight.bold,
-                          color: colors.white,
-                          lineHeight: 1,
-                          marginBottom: spacing2[1]
-                        },
-                        children: String(classroomItem.position || 1).padStart(2, "0")
-                      }
-                    ),
-                    /* @__PURE__ */ jsx14(
-                      Typography,
-                      {
-                        variant: "caption",
-                        style: {
-                          fontFamily: typography.fontFamily.primary,
-                          fontWeight: typography.fontWeight.medium,
-                          color: colors.white,
-                          textTransform: "uppercase",
-                          fontSize: "12px",
-                          letterSpacing: "0.1em"
-                        },
-                        children: "TRILHA"
-                      }
-                    )
-                  ]
-                }
-              )
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsxs12(
-          "div",
-          {
-            style: {
-              padding: `${spacing2[2]} ${spacing2[4]} ${spacing2[4]} ${spacing2[4]}`,
-              flex: 1,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              width: "66.667%",
-              minHeight: "200px"
-            },
-            children: [
-              /* @__PURE__ */ jsxs12("div", { children: [
-                /* @__PURE__ */ jsx14(
-                  Typography,
-                  {
-                    variant: "h2",
-                    style: {
-                      color: colors.primary,
-                      fontFamily: typography.fontFamily.primary,
-                      fontWeight: typography.fontWeight.bold,
-                      fontSize: "20px",
-                      lineHeight: 1.2,
-                      marginBottom: spacing2[2],
-                      cursor: "pointer",
-                      textDecoration: customLearning.slug ? "underline" : "none",
-                      textDecorationColor: "transparent",
-                      transition: "all 0.3s ease"
-                    },
-                    onClick: handleCardClick,
-                    onMouseEnter: (e) => {
-                      if (customLearning.slug) {
-                        e.currentTarget.style.textDecorationColor = colors.primary;
-                      }
-                    },
-                    onMouseLeave: (e) => {
-                      if (customLearning.slug) {
-                        e.currentTarget.style.textDecorationColor = "transparent";
-                      }
-                    },
-                    children: title
-                  }
-                ),
-                /* @__PURE__ */ jsx14(
-                  Typography,
-                  {
-                    variant: "body",
-                    style: {
-                      color: colors.gray[600],
-                      fontSize: "14px",
-                      lineHeight: 1.5,
-                      marginBottom: spacing2[4]
-                    },
-                    children: description
-                  }
-                ),
-                /* @__PURE__ */ jsx14(
-                  "div",
-                  {
-                    style: {
-                      display: "flex",
-                      alignItems: "center",
-                      gap: spacing2[2],
-                      marginTop: spacing2[4],
-                      marginBottom: spacing2[2]
-                    },
-                    children: instructors.length > 0 ? /* @__PURE__ */ jsxs12(Fragment, { children: [
-                      visibleInstructors.map((instructor) => /* @__PURE__ */ jsxs12(
-                        "div",
-                        {
-                          onClick: (e) => handleInstructorClick(instructor, e),
-                          style: {
-                            display: "inline-flex",
-                            alignItems: "center",
-                            padding: `${spacing2[1]} ${spacing2[3]}`,
-                            borderRadius: radii.full,
-                            fontSize: typography.fontSize.caption,
-                            fontWeight: typography.fontWeight.semiBold,
-                            border: `1px solid ${colors.primaryLight}`,
-                            color: colors.primary,
-                            backgroundColor: colors.primaryLighter,
-                            cursor: onInstructorClick ? "pointer" : "default",
-                            flexShrink: 0
-                          },
-                          children: [
-                            instructor.avatarUrl && /* @__PURE__ */ jsx14(
-                              Avatar,
-                              {
-                                src: instructor.avatarUrl,
-                                alt: instructor.name,
-                                size: "xs",
-                                name: instructor.name,
-                                style: { width: "20px", height: "20px", marginRight: spacing2[2] }
-                              }
-                            ),
-                            instructor.name
-                          ]
-                        },
-                        instructor.id
-                      )),
-                      overflowInstructorsCount > 0 && /* @__PURE__ */ jsxs12(
-                        "span",
-                        {
-                          style: {
-                            display: "inline-flex",
-                            alignItems: "center",
-                            padding: `${spacing2[1]} ${spacing2[2]}`,
-                            borderRadius: radii.full,
-                            backgroundColor: colors.gray[100],
-                            color: colors.gray[600],
-                            fontSize: typography.fontSize.caption,
-                            fontWeight: typography.fontWeight.medium,
-                            flexShrink: 0
-                          },
-                          children: [
-                            "+",
-                            overflowInstructorsCount
-                          ]
-                        }
-                      )
-                    ] }) : /* @__PURE__ */ jsx14(
-                      "span",
-                      {
-                        style: {
-                          display: "inline-flex",
-                          alignItems: "center",
-                          padding: `${spacing2[1]} ${spacing2[3]}`,
-                          borderRadius: radii.full,
-                          backgroundColor: colors.gray[100],
-                          color: colors.gray[600],
-                          fontSize: typography.fontSize.caption,
-                          fontWeight: typography.fontWeight.medium
-                        },
-                        children: "No instructors"
-                      }
-                    )
-                  }
-                ),
-                /* @__PURE__ */ jsxs12(
-                  "div",
-                  {
-                    style: {
-                      display: "flex",
-                      alignItems: "flex-start",
-                      gap: spacing2[3],
-                      marginBottom: spacing2[4]
-                    },
-                    children: [
-                      /* @__PURE__ */ jsx14(Wrench2, { size: 20, color: colors.primary, style: { marginTop: spacing2[1], flexShrink: 0 } }),
-                      /* @__PURE__ */ jsx14(
-                        "div",
-                        {
-                          style: {
-                            display: "flex",
-                            flexWrap: "wrap",
-                            gap: spacing2[2]
-                          },
-                          children: tools.length > 0 ? tools.map((tool) => /* @__PURE__ */ jsxs12(
-                            "span",
-                            {
-                              onClick: (e) => handleToolClick(tool, e),
-                              style: {
-                                display: "inline-flex",
-                                alignItems: "center",
-                                padding: `${spacing2[1]} ${spacing2[3]}`,
-                                borderRadius: radii.full,
-                                fontSize: typography.fontSize.caption,
-                                fontWeight: typography.fontWeight.semiBold,
-                                border: `1px solid ${colors.primaryLight}`,
-                                color: colors.primary,
-                                backgroundColor: colors.primaryLighter,
-                                cursor: onToolClick ? "pointer" : "default"
-                              },
-                              children: [
-                                tool.icon && /* @__PURE__ */ jsx14("span", { style: { width: "20px", height: "20px", marginRight: spacing2[2], display: "flex", alignItems: "center", justifyContent: "center" }, children: tool.icon }),
-                                tool.name
-                              ]
-                            },
-                            tool.id
-                          )) : /* @__PURE__ */ jsx14(
-                            "span",
-                            {
-                              style: {
-                                display: "inline-flex",
-                                alignItems: "center",
-                                padding: `${spacing2[1]} ${spacing2[3]}`,
-                                borderRadius: radii.full,
-                                fontSize: typography.fontSize.caption,
-                                fontWeight: typography.fontWeight.semiBold,
-                                border: `1px solid ${colors.gray[300]}`,
-                                color: colors.gray[600],
-                                backgroundColor: colors.gray[100]
-                              },
-                              children: "No tools"
-                            }
-                          )
-                        }
-                      )
-                    ]
-                  }
-                )
-              ] }),
-              /* @__PURE__ */ jsxs12(
-                "div",
-                {
-                  style: {
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "space-between",
-                    marginTop: spacing2[2]
-                  },
-                  children: [
-                    /* @__PURE__ */ jsxs12("div", { style: { display: "flex", alignItems: "center" }, children: [
-                      /* @__PURE__ */ jsx14(Clock4, { size: 16, color: colors.primary, style: { marginRight: spacing2[1] } }),
-                      /* @__PURE__ */ jsx14(
-                        Typography,
-                        {
-                          variant: "caption",
-                          style: {
-                            color: colors.primary,
-                            fontSize: "12px",
-                            fontFamily: typography.fontFamily.primary,
-                            fontWeight: typography.fontWeight.medium
-                          },
-                          children: customLearning.duration || "--"
-                        }
-                      )
-                    ] }),
-                    /* @__PURE__ */ jsx14(
-                      Typography,
-                      {
-                        variant: "caption",
-                        style: {
-                          color: colors.primary,
-                          fontSize: "12px",
-                          fontFamily: typography.fontFamily.primary,
-                          fontWeight: typography.fontWeight.bold,
-                          textTransform: "uppercase",
-                          letterSpacing: "0.1em"
-                        },
-                        children: "TRILHA"
-                      }
-                    ),
-                    /* @__PURE__ */ jsx14("div", {})
-                  ]
-                }
-              )
             ]
           }
         )
@@ -3236,9 +2054,9 @@ var CriaClassroomTrilhaCard = ({
 };
 
 // src/components/Card/demo.tsx
-import { jsx as jsx15, jsxs as jsxs13 } from "react/jsx-runtime";
+import { jsx as jsx13, jsxs as jsxs11 } from "react/jsx-runtime";
 var CardDemo = () => {
-  const [completedLessons, setCompletedLessons] = useState10(/* @__PURE__ */ new Set(["1", "3", "6"]));
+  const [completedLessons, setCompletedLessons] = useState7(/* @__PURE__ */ new Set(["1", "3", "6"]));
   const sampleLessons = [
     {
       id: "1",
@@ -3272,7 +2090,7 @@ var CardDemo = () => {
       title: "JavaScript ES6+ Features",
       thumbnailUrl: "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=400&h=200&fit=crop",
       duration: "25min",
-      category: "JavaScript",
+      category: "Frontend",
       instructor: {
         id: "3",
         name: "Mike Johnson",
@@ -3280,42 +2098,68 @@ var CardDemo = () => {
       }
     },
     {
+      id: "4",
+      slug: "git-workflow",
+      title: "Git Workflow Best Practices",
+      thumbnailUrl: "https://images.unsplash.com/photo-1584949080480-fd112f687692?w=400&h=200&fit=crop",
+      duration: "30min",
+      category: "DevOps",
+      instructor: {
+        id: "4",
+        name: "Emma Davis",
+        avatarUrl: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face"
+      }
+    },
+    {
+      id: "5",
+      slug: "vscode-tips",
+      title: "VS Code Productivity Tips",
+      thumbnailUrl: "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=400&h=200&fit=crop",
+      duration: "12min",
+      category: "Tools",
+      instructor: {
+        id: "5",
+        name: "Chris Evans",
+        avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
+      }
+    },
+    {
       id: "6",
+      slug: "design-principles",
+      title: "Design Principles for Developers",
+      thumbnailUrl: "https://images.unsplash.com/photo-1504384764586-bb4be8f53b13?w=400&h=200&fit=crop",
+      duration: "18min",
+      category: "Design",
+      instructor: {
+        id: "6",
+        name: "Olivia White",
+        avatarUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face"
+      }
+    },
+    {
+      id: "7",
       slug: "nodejs-backend",
       title: "Building REST APIs with Node.js",
       thumbnailUrl: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=200&fit=crop",
       duration: "30min",
       category: "Backend",
       instructor: {
-        id: "4",
+        id: "7",
         name: "Sarah Wilson",
         avatarUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face"
       }
     },
     {
-      id: "7",
+      id: "8",
       slug: "database-design",
       title: "Database Design Principles",
       thumbnailUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=200&fit=crop",
       duration: "35min",
       category: "Database",
       instructor: {
-        id: "5",
+        id: "8",
         name: "David Brown",
         avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
-      }
-    },
-    {
-      id: "8",
-      slug: "docker-containers",
-      title: "Docker and Containerization",
-      thumbnailUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=200&fit=crop",
-      duration: "40min",
-      category: "DevOps",
-      instructor: {
-        id: "6",
-        name: "Lisa Garcia",
-        avatarUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&crop=face"
       }
     },
     {
@@ -3369,13 +2213,14 @@ var CardDemo = () => {
   const sampleCriaLessons = [
     {
       id: "1",
-      slug: "react-fundamentals",
-      title: "React Fundamentals",
-      description: "Master the core concepts of React including components, state, and props",
-      thumbnailUrl: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=200&fit=crop",
+      slug: "react-advanced",
+      title: "Advanced React Patterns",
+      description: "Dive deep into advanced React concepts like render props, HOCs, and custom hooks for building scalable applications.",
+      thumbnailUrl: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&h=300&fit=crop",
       duration: "45min",
       category: "Frontend",
-      toolIconText: "AI",
+      progress: 75,
+      completed: false,
       instructor: {
         id: "1",
         name: "John Doe",
@@ -3384,13 +2229,14 @@ var CardDemo = () => {
     },
     {
       id: "2",
-      slug: "advanced-css",
-      title: "Advanced CSS Techniques",
-      description: "Learn modern CSS features including Grid, Flexbox, and animations",
-      thumbnailUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=200&fit=crop",
+      slug: "state-management",
+      title: "State Management with Redux Toolkit",
+      description: "Learn modern state management using Redux Toolkit, including RTK Query for data fetching and caching.",
+      thumbnailUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=300&fit=crop",
       duration: "60min",
       category: "Frontend",
-      toolIconText: "CSS",
+      progress: 100,
+      completed: true,
       instructor: {
         id: "2",
         name: "Jane Smith",
@@ -3399,13 +2245,14 @@ var CardDemo = () => {
     },
     {
       id: "3",
-      slug: "nodejs-backend",
-      title: "Node.js Backend Development",
-      description: "Build robust backend applications with Node.js and Express",
-      thumbnailUrl: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=400&h=200&fit=crop",
-      duration: "90min",
-      category: "Backend",
-      toolIconText: "JS",
+      slug: "performance-optimization",
+      title: "React Performance Optimization",
+      description: "Techniques and best practices to optimize the rendering performance of your React applications.",
+      thumbnailUrl: "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=600&h=300&fit=crop",
+      duration: "30min",
+      category: "Performance",
+      progress: 50,
+      completed: false,
       instructor: {
         id: "3",
         name: "Mike Johnson",
@@ -3417,351 +2264,18 @@ var CardDemo = () => {
     console.log("CriaLesson clicked:", lesson.title);
     alert(`Opening lesson: ${lesson.title}`);
   };
-  const sampleCourses = [
-    {
-      id: "1",
-      slug: "react-complete-course",
-      title: "React Complete Course",
-      description: "Master React from basics to advanced concepts including hooks, context, and performance optimization.",
-      thumbnailUrl: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=300&fit=crop",
-      duration: "8 hours",
-      instructors: [
-        {
-          id: "1",
-          name: "John Doe",
-          avatarUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face"
-        },
-        {
-          id: "2",
-          name: "Jane Smith",
-          avatarUrl: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face"
-        }
-      ],
-      tools: [
-        {
-          id: "1",
-          name: "React",
-          icon: "\u269B\uFE0F"
-        },
-        {
-          id: "2",
-          name: "TypeScript",
-          icon: "\u{1F537}"
-        },
-        {
-          id: "3",
-          name: "Vite",
-          icon: "\u26A1"
-        }
-      ]
-    },
-    {
-      id: "2",
-      slug: "fullstack-javascript",
-      title: "Full-Stack JavaScript Development",
-      description: "Learn to build complete web applications with JavaScript, Node.js, and modern frameworks.",
-      thumbnailUrl: "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=400&h=300&fit=crop",
-      duration: "12 hours",
-      instructors: [
-        {
-          id: "3",
-          name: "Mike Johnson",
-          avatarUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face"
-        }
-      ],
-      tools: [
-        {
-          id: "4",
-          name: "Node.js",
-          icon: "\u{1F7E2}"
-        },
-        {
-          id: "5",
-          name: "Express",
-          icon: "\u{1F680}"
-        },
-        {
-          id: "6",
-          name: "MongoDB",
-          icon: "\u{1F343}"
-        },
-        {
-          id: "7",
-          name: "Jest",
-          icon: "\u{1F9EA}"
-        }
-      ]
-    },
-    {
-      id: "3",
-      slug: "ui-ux-design",
-      title: "UI/UX Design Fundamentals",
-      description: "Master the principles of user interface and user experience design for modern applications.",
-      thumbnailUrl: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=400&h=300&fit=crop",
-      duration: "6 hours",
-      instructors: [
-        {
-          id: "4",
-          name: "Sarah Wilson",
-          avatarUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face"
-        },
-        {
-          id: "5",
-          name: "David Brown",
-          avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face"
-        }
-      ],
-      tools: [
-        {
-          id: "8",
-          name: "Figma",
-          icon: "\u{1F3A8}"
-        },
-        {
-          id: "9",
-          name: "Adobe XD",
-          icon: "\u{1F4D0}"
-        },
-        {
-          id: "10",
-          name: "Sketch",
-          icon: "\u270F\uFE0F"
-        }
-      ]
-    }
-  ];
-  const handleCriaCourseClick = (course) => {
-    console.log("CriaCourse clicked:", course.title);
-    alert(`Opening course: ${course.title}`);
-  };
-  const handleCriaInstructorClick = (instructor) => {
-    console.log("Instructor clicked:", instructor.name);
-    alert(`Viewing instructor profile: ${instructor.name}`);
-  };
-  const handleCriaToolClick = (tool) => {
-    console.log("Tool clicked:", tool.name);
-    alert(`Learning about: ${tool.name}`);
-  };
-  const sampleClassroomEvents = [
-    {
-      event: {
-        id: "1",
-        name: "React Workshop",
-        description: "Learn React fundamentals and best practices with hands-on exercises",
-        startDate: new Date(Date.now() + 2 * 24 * 60 * 60 * 1e3).toISOString(),
-        // 2 days from now
-        duration: "2H",
-        eventLink: "/events/react-workshop",
-        gcalendarUrl: "https://calendar.google.com/event"
-      },
-      classroomItem: {
-        id: "1",
-        position: 1,
-        customTitle: "React Workshop - Advanced Concepts",
-        customSubtitle: "Master React hooks, context, and performance optimization",
-        imageUrl: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=300&fit=crop"
-      }
-    },
-    {
-      event: {
-        id: "2",
-        name: "JavaScript Fundamentals",
-        description: "Build a solid foundation in JavaScript programming",
-        startDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1e3).toISOString(),
-        // 5 days from now
-        duration: "3H",
-        eventLink: "/events/javascript-fundamentals",
-        gcalendarUrl: "https://calendar.google.com/event"
-      },
-      classroomItem: {
-        id: "2",
-        position: 2,
-        customTitle: "JavaScript Fundamentals - Complete Course",
-        customSubtitle: "From variables to advanced ES6+ features and async programming",
-        imageUrl: "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=400&h=300&fit=crop"
-      }
-    },
-    {
-      event: {
-        id: "3",
-        name: "UI/UX Design Workshop",
-        description: "Learn design principles and create beautiful user interfaces",
-        startDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1e3).toISOString(),
-        // 7 days from now
-        duration: "2.5H",
-        eventLink: "/events/ui-ux-workshop"
-        // No calendar URL for this event
-      },
-      classroomItem: {
-        id: "3",
-        position: 3,
-        customTitle: "UI/UX Design Workshop - Modern Principles",
-        customSubtitle: "Master design thinking, user research, and prototyping techniques",
-        imageUrl: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=400&h=300&fit=crop"
-      }
-    }
-  ];
-  const handleClassroomEventClick = (event) => {
-    console.log("Classroom event clicked:", event.name);
-    alert(`Opening event: ${event.name}`);
-  };
-  const handleClassroomCalendarClick = (event) => {
-    console.log("Classroom calendar clicked:", event.name);
-    alert(`Adding to calendar: ${event.name}`);
-  };
-  const sampleClassroomTrilhas = [
-    {
-      customLearning: {
-        id: "1",
-        slug: "react-complete-path",
-        title: "React Complete Learning Path",
-        description: "Master React from basics to advanced concepts with comprehensive lessons and courses.",
-        duration: "12 hours",
-        imageUrl: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=300&fit=crop",
-        lessons: [
-          {
-            id: "1",
-            title: "React Fundamentals",
-            instructors: ["John Doe", "Jane Smith"],
-            tools: ["React", "JavaScript", "JSX"]
-          },
-          {
-            id: "2",
-            title: "Advanced React Patterns",
-            instructors: ["Mike Johnson"],
-            tools: ["React", "TypeScript", "Hooks"]
-          }
-        ],
-        courses: [
-          {
-            id: "1",
-            title: "React Complete Course",
-            instructors: [
-              { id: "1", name: "John Doe", avatarUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face" },
-              { id: "2", name: "Jane Smith", avatarUrl: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face" }
-            ],
-            tools: [
-              { id: "1", name: "React", icon: "\u269B\uFE0F" },
-              { id: "2", name: "TypeScript", icon: "\u{1F537}" }
-            ]
-          }
-        ]
-      },
-      classroomItem: {
-        id: "1",
-        position: 1,
-        customTitle: "React Complete Path - Advanced",
-        customSubtitle: "From beginner to expert with hands-on projects and real-world applications",
-        imageUrl: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=300&fit=crop"
-      }
-    },
-    {
-      customLearning: {
-        id: "2",
-        slug: "fullstack-javascript-path",
-        title: "Full-Stack JavaScript Learning Path",
-        description: "Learn to build complete web applications with JavaScript, Node.js, and modern frameworks.",
-        duration: "16 hours",
-        imageUrl: "https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=400&h=300&fit=crop",
-        lessons: [
-          {
-            id: "1",
-            title: "JavaScript Fundamentals",
-            instructors: ["Alice Brown", "Bob Wilson", "Charlie Davis"],
-            tools: ["JavaScript", "ES6", "DOM"]
-          },
-          {
-            id: "2",
-            title: "Node.js Backend",
-            instructors: ["David Miller"],
-            tools: ["Node.js", "Express", "MongoDB"]
-          }
-        ],
-        courses: [
-          {
-            id: "1",
-            title: "Full-Stack JavaScript Course",
-            instructors: [
-              { id: "3", name: "Alice Brown", avatarUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" },
-              { id: "4", name: "Bob Wilson", avatarUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" }
-            ],
-            tools: [
-              { id: "3", name: "Node.js", icon: "\u{1F7E2}" },
-              { id: "4", name: "Express", icon: "\u{1F680}" },
-              { id: "5", name: "MongoDB", icon: "\u{1F343}" }
-            ]
-          }
-        ]
-      },
-      classroomItem: {
-        id: "2",
-        position: 2,
-        customTitle: "Full-Stack JavaScript Path",
-        customSubtitle: "Build complete web applications from frontend to backend"
-      }
-    },
-    {
-      customLearning: {
-        id: "3",
-        slug: "ui-ux-design-path",
-        title: "UI/UX Design Learning Path",
-        description: "Master the principles of user interface and user experience design for modern applications.",
-        duration: "8 hours",
-        imageUrl: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=400&h=300&fit=crop",
-        lessons: [
-          {
-            id: "1",
-            title: "Design Principles",
-            instructors: ["Sarah Wilson"],
-            tools: ["Figma", "Design Thinking"]
-          }
-        ],
-        courses: [
-          {
-            id: "1",
-            title: "UI/UX Design Course",
-            instructors: [
-              { id: "5", name: "Sarah Wilson", avatarUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" }
-            ],
-            tools: [
-              { id: "6", name: "Figma", icon: "\u{1F3A8}" },
-              { id: "7", name: "Adobe XD", icon: "\u{1F4D0}" }
-            ]
-          }
-        ]
-      },
-      classroomItem: {
-        id: "3",
-        position: 3,
-        customTitle: "UI/UX Design Mastery",
-        customSubtitle: "Create beautiful and intuitive user experiences"
-      }
-    }
-  ];
-  const handleClassroomTrilhaClick = (customLearning) => {
-    console.log("Classroom trilha clicked:", customLearning.title);
-    alert(`Opening learning path: ${customLearning.title}`);
-  };
-  const handleClassroomTrilhaInstructorClick = (instructor) => {
-    console.log("Classroom trilha instructor clicked:", instructor.name);
-    alert(`Viewing instructor: ${instructor.name}`);
-  };
-  const handleClassroomTrilhaToolClick = (tool) => {
-    console.log("Classroom trilha tool clicked:", tool.name);
-    alert(`Learning about: ${tool.name}`);
-  };
-  return /* @__PURE__ */ jsxs13("div", { style: { padding: "24px", maxWidth: "1000px" }, children: [
-    /* @__PURE__ */ jsx15(Typography_default, { variant: "title1", weight: "bold", style: { marginBottom: "32px" }, children: "Demo de Cards" }),
-    /* @__PURE__ */ jsxs13("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ jsx15(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "CriaLessonCardSmall - Lesson Cards" }),
-      /* @__PURE__ */ jsx15(Typography_default, { variant: "body", style: { marginBottom: "24px", color: "#6b7280" }, children: "Specialized lesson card component with completion tracking, instructor details, and interactive elements. Features examples with 6 different instructors across various categories, including stacked instructor avatars for collaborative lessons." }),
-      /* @__PURE__ */ jsx15("div", { style: {
+  return /* @__PURE__ */ jsxs11("div", { style: { padding: "24px", maxWidth: "1000px" }, children: [
+    /* @__PURE__ */ jsx13(Typography_default, { variant: "title1", weight: "bold", style: { marginBottom: "32px" }, children: "Lesson Cards" }),
+    /* @__PURE__ */ jsxs11("section", { style: { marginBottom: "32px" }, children: [
+      /* @__PURE__ */ jsx13(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "CriaLessonCardSmall - Lesson Cards" }),
+      /* @__PURE__ */ jsx13(Typography_default, { variant: "body", style: { marginBottom: "24px", color: "#6b7280" }, children: "Specialized lesson card component with completion tracking, instructor details, and interactive elements. Features examples with different instructors across various categories, including stacked instructor avatars for collaborative lessons." }),
+      /* @__PURE__ */ jsx13("div", { style: {
         display: "grid",
         gridTemplateColumns: "repeat(4, 1fr)",
         gap: "16px",
         marginBottom: "24px",
         maxWidth: "1200px"
-      }, children: sampleLessons.map((lesson) => /* @__PURE__ */ jsx15(
+      }, children: sampleLessons.slice(0, 4).map((lesson) => /* @__PURE__ */ jsx13(
         CriaLessonCardSmall,
         {
           lesson,
@@ -3771,45 +2285,18 @@ var CardDemo = () => {
           onInstructorClick: handleInstructorClick
         },
         lesson.id
-      )) }),
-      /* @__PURE__ */ jsx15("div", { style: {
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-        gap: "16px"
-      }, children: /* @__PURE__ */ jsx15(
-        CriaLessonCardSmall,
-        {
-          lesson: {
-            id: "5",
-            slug: "vscode-tips",
-            title: "VS Code Productivity Tips",
-            thumbnailUrl: "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=400&h=200&fit=crop",
-            duration: "12min",
-            category: "Tools",
-            instructor: {
-              id: "4",
-              name: "Emma Davis",
-              avatarUrl: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face"
-            }
-          },
-          toolIconUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
-          completed: false,
-          onLessonClick: handleLessonClick,
-          onToggleCompletion: handleToggleCompletion,
-          onInstructorClick: handleInstructorClick
-        }
-      ) })
+      )) })
     ] }),
-    /* @__PURE__ */ jsxs13("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ jsx15(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "CriaLessonCard - Detailed Lesson Cards" }),
-      /* @__PURE__ */ jsx15(Typography_default, { variant: "body", style: { marginBottom: "24px", color: "#6b7280" }, children: "Large, detailed lesson card component with tool icons, descriptions, and comprehensive lesson information. Perfect for showcasing detailed course content with rich visual elements." }),
-      /* @__PURE__ */ jsx15("div", { style: {
+    /* @__PURE__ */ jsxs11("section", { style: { marginBottom: "32px" }, children: [
+      /* @__PURE__ */ jsx13(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "CriaLessonCard - Detailed Lesson Cards" }),
+      /* @__PURE__ */ jsx13(Typography_default, { variant: "body", style: { marginBottom: "24px", color: "#6b7280" }, children: "Large, detailed lesson card component with tool icons, descriptions, and comprehensive lesson information. Perfect for showcasing detailed course content with rich visual elements." }),
+      /* @__PURE__ */ jsx13("div", { style: {
         display: "grid",
         gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
         gap: "24px",
         marginBottom: "24px",
         maxWidth: "1200px"
-      }, children: sampleCriaLessons.map((lesson) => /* @__PURE__ */ jsx15(
+      }, children: sampleCriaLessons.slice(0, 2).map((lesson) => /* @__PURE__ */ jsx13(
         CriaLessonCard,
         {
           lesson,
@@ -3818,209 +2305,31 @@ var CardDemo = () => {
         lesson.id
       )) })
     ] }),
-    /* @__PURE__ */ jsxs13("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ jsx15(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "CriaCourseCard - Horizontal Course Cards" }),
-      /* @__PURE__ */ jsx15(Typography_default, { variant: "body", style: { marginBottom: "24px", color: "#6b7280" }, children: "Large, horizontal course card component with comprehensive course information, instructor details, and tool badges. Perfect for showcasing detailed course content with rich metadata and interactive elements." }),
-      /* @__PURE__ */ jsx15("div", { style: {
-        display: "flex",
-        flexDirection: "column",
-        gap: "24px",
-        marginBottom: "24px",
-        maxWidth: "1200px"
-      }, children: sampleCourses.map((course) => /* @__PURE__ */ jsx15(
-        CriaCourseCard,
-        {
-          course,
-          onCourseClick: handleCriaCourseClick,
-          onInstructorClick: handleCriaInstructorClick,
-          onToolClick: handleCriaToolClick
-        },
-        course.id
-      )) })
-    ] }),
-    /* @__PURE__ */ jsxs13("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ jsx15(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "CriaClassroomFutureEventCard - Event Cards with Countdown" }),
-      /* @__PURE__ */ jsx15(Typography_default, { variant: "body", style: { marginBottom: "24px", color: "#6b7280" }, children: "Interactive event cards with live countdown timers, beautiful gradient backgrounds, and calendar integration. Perfect for showcasing upcoming classroom events with real-time countdown functionality." }),
-      /* @__PURE__ */ jsx15("div", { style: {
-        display: "flex",
-        flexDirection: "column",
-        gap: "24px",
-        marginBottom: "24px",
-        maxWidth: "1200px"
-      }, children: sampleClassroomEvents.map(({ event, classroomItem }) => /* @__PURE__ */ jsx15(
-        CriaClassroomFutureEventCard,
-        {
-          event,
-          classroomItem,
-          onEventClick: handleClassroomEventClick,
-          onCalendarClick: handleClassroomCalendarClick
-        },
-        event.id
-      )) })
-    ] }),
-    /* @__PURE__ */ jsxs13("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ jsx15(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "CriaClassroomTrilhaCard - Learning Path Cards" }),
-      /* @__PURE__ */ jsx15(Typography_default, { variant: "body", style: { marginBottom: "24px", color: "#6b7280" }, children: "Custom learning path cards with aggregated instructors and tools from lessons and courses. Features comprehensive learning content display, instructor overflow handling, and interactive tool badges." }),
-      /* @__PURE__ */ jsx15("div", { style: {
-        display: "flex",
-        flexDirection: "column",
-        gap: "24px",
-        marginBottom: "24px",
-        maxWidth: "1200px"
-      }, children: sampleClassroomTrilhas.map(({ customLearning, classroomItem }) => /* @__PURE__ */ jsx15(
-        CriaClassroomTrilhaCard,
-        {
-          customLearning,
-          classroomItem,
-          onCardClick: handleClassroomTrilhaClick,
-          onInstructorClick: handleClassroomTrilhaInstructorClick,
-          onToolClick: handleClassroomTrilhaToolClick
-        },
-        customLearning.id
-      )) })
-    ] }),
-    /* @__PURE__ */ jsxs13("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ jsx15(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "Variantes" }),
-      /* @__PURE__ */ jsxs13("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "16px" }, children: [
-        /* @__PURE__ */ jsxs13(Card, { variant: "default", children: [
-          /* @__PURE__ */ jsx15(CardHeader, { children: /* @__PURE__ */ jsx15(Typography_default, { variant: "h3", weight: "medium", children: "Card Padr\xE3o" }) }),
-          /* @__PURE__ */ jsx15(CardContent, { children: /* @__PURE__ */ jsx15(Typography_default, { variant: "body", children: "Este \xE9 um card padr\xE3o com borda e fundo claros." }) })
+    /* @__PURE__ */ jsxs11("section", { style: { marginBottom: "32px" }, children: [
+      /* @__PURE__ */ jsx13(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "Variantes" }),
+      /* @__PURE__ */ jsxs11("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "16px" }, children: [
+        /* @__PURE__ */ jsxs11(Card, { variant: "default", children: [
+          /* @__PURE__ */ jsx13(CardHeader, { children: /* @__PURE__ */ jsx13(Typography_default, { variant: "h3", weight: "medium", children: "Card Padr\xE3o" }) }),
+          /* @__PURE__ */ jsx13(CardContent, { children: /* @__PURE__ */ jsx13(Typography_default, { variant: "body", children: "Este \xE9 um card padr\xE3o com borda e fundo claros." }) })
         ] }),
-        /* @__PURE__ */ jsxs13(Card, { variant: "elevated", children: [
-          /* @__PURE__ */ jsx15(CardHeader, { children: /* @__PURE__ */ jsx15(Typography_default, { variant: "h3", weight: "medium", children: "Card Elevado" }) }),
-          /* @__PURE__ */ jsx15(CardContent, { children: /* @__PURE__ */ jsx15(Typography_default, { variant: "body", children: "Este card tem uma sombra para profundidade e hierarquia visual." }) })
+        /* @__PURE__ */ jsxs11(Card, { variant: "elevated", children: [
+          /* @__PURE__ */ jsx13(CardHeader, { children: /* @__PURE__ */ jsx13(Typography_default, { variant: "h3", weight: "medium", children: "Card Elevado" }) }),
+          /* @__PURE__ */ jsx13(CardContent, { children: /* @__PURE__ */ jsx13(Typography_default, { variant: "body", children: "Este card tem uma sombra mais pronunciada para dar destaque." }) })
         ] }),
-        /* @__PURE__ */ jsxs13(Card, { variant: "outlined", style: { borderColor: "#28DDB9" }, children: [
-          /* @__PURE__ */ jsx15(CardHeader, { children: /* @__PURE__ */ jsx15(Typography_default, { variant: "h3", weight: "medium", children: "Card com Contorno" }) }),
-          /* @__PURE__ */ jsx15(CardContent, { children: /* @__PURE__ */ jsx15(Typography_default, { variant: "body", children: "Este card tem uma borda proeminente e fundo transparente." }) })
-        ] }),
-        /* @__PURE__ */ jsxs13(Card, { variant: "outlined", style: { borderColor: "#28DDB9" }, children: [
-          /* @__PURE__ */ jsx15(CardHeader, { children: /* @__PURE__ */ jsx15(Typography_default, { variant: "h3", weight: "medium", style: { color: "#6B7280" }, children: "Card com Contorno - Texto Secund\xE1rio" }) }),
-          /* @__PURE__ */ jsx15(CardContent, { children: /* @__PURE__ */ jsx15(Typography_default, { variant: "body", style: { color: "#6B7280" }, children: "Este card tem uma borda proeminente, fundo transparente e texto em cor secund\xE1ria." }) })
-        ] }),
-        /* @__PURE__ */ jsxs13(Card, { variant: "filled", children: [
-          /* @__PURE__ */ jsx15(CardHeader, { children: /* @__PURE__ */ jsx15(Typography_default, { variant: "h3", weight: "medium", children: "Card Preenchido" }) }),
-          /* @__PURE__ */ jsx15(CardContent, { children: /* @__PURE__ */ jsx15(Typography_default, { variant: "body", children: "Este card tem um preenchimento sutil de cor de fundo." }) })
+        /* @__PURE__ */ jsxs11(Card, { variant: "outlined", children: [
+          /* @__PURE__ */ jsx13(CardHeader, { children: /* @__PURE__ */ jsx13(Typography_default, { variant: "h3", children: "Outlined Card" }) }),
+          /* @__PURE__ */ jsx13(CardContent, { children: /* @__PURE__ */ jsx13(Typography_default, { variant: "body", children: "This card has a prominent border and transparent background." }) })
         ] })
-      ] })
-    ] }),
-    /* @__PURE__ */ jsxs13("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ jsx15(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "Tamanhos" }),
-      /* @__PURE__ */ jsxs13("div", { style: { display: "flex", gap: "16px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ jsx15(Card, { size: "sm", style: { width: "200px" }, children: /* @__PURE__ */ jsx15(CardContent, { children: /* @__PURE__ */ jsx15(Typography_default, { variant: "bodySmall", children: "Card pequeno com preenchimento m\xEDnimo" }) }) }),
-        /* @__PURE__ */ jsx15(Card, { size: "md", style: { width: "250px" }, children: /* @__PURE__ */ jsx15(CardContent, { children: /* @__PURE__ */ jsx15(Typography_default, { variant: "body", children: "Card m\xE9dio com preenchimento padr\xE3o" }) }) }),
-        /* @__PURE__ */ jsx15(Card, { size: "lg", style: { width: "300px" }, children: /* @__PURE__ */ jsx15(CardContent, { children: /* @__PURE__ */ jsx15(Typography_default, { variant: "body", children: "Card grande com preenchimento generoso para mais conte\xFAdo" }) }) })
-      ] })
-    ] }),
-    /* @__PURE__ */ jsxs13("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ jsx15(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "Cards Interativos" }),
-      /* @__PURE__ */ jsxs13("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "16px" }, children: [
-        /* @__PURE__ */ jsxs13(
-          Card,
-          {
-            interactive: true,
-            onClick: () => alert("Card clicado!"),
-            style: { cursor: "pointer" },
-            children: [
-              /* @__PURE__ */ jsx15(CardHeader, { children: /* @__PURE__ */ jsx15(Typography_default, { variant: "h3", weight: "medium", children: "Card Clic\xE1vel" }) }),
-              /* @__PURE__ */ jsx15(CardContent, { children: /* @__PURE__ */ jsx15(Typography_default, { variant: "body", children: "Este card \xE9 interativo e responde a cliques." }) })
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsxs13(Card, { interactive: true, disabled: true, children: [
-          /* @__PURE__ */ jsx15(CardHeader, { children: /* @__PURE__ */ jsx15(Typography_default, { variant: "h3", color: "disabled", weight: "medium", children: "Card Desabilitado" }) }),
-          /* @__PURE__ */ jsx15(CardContent, { children: /* @__PURE__ */ jsx15(Typography_default, { variant: "body", color: "disabled", children: "Este card est\xE1 desabilitado e n\xE3o pode ser interagido." }) })
-        ] })
-      ] })
-    ] }),
-    /* @__PURE__ */ jsxs13("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ jsx15(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "Exemplos Complexos" }),
-      /* @__PURE__ */ jsxs13("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))", gap: "16px" }, children: [
-        /* @__PURE__ */ jsxs13(Card, { variant: "elevated", children: [
-          /* @__PURE__ */ jsxs13(CardContent, { children: [
-            /* @__PURE__ */ jsx15("div", { style: {
-              height: "200px",
-              backgroundColor: "#f3f4f6",
-              borderRadius: "8px",
-              marginBottom: "16px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#6b7280"
-            }, children: "Imagem do Produto" }),
-            /* @__PURE__ */ jsx15(Typography_default, { variant: "h3", weight: "medium", style: { marginBottom: "8px" }, children: "Nome do Produto" }),
-            /* @__PURE__ */ jsx15(Typography_default, { variant: "body", style: { marginBottom: "16px" }, children: "Esta \xE9 uma descri\xE7\xE3o do produto que explica o que o produto faz e por que \xE9 \xFAtil." })
-          ] }),
-          /* @__PURE__ */ jsx15(CardFooter, { children: /* @__PURE__ */ jsxs13("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center" }, children: [
-            /* @__PURE__ */ jsx15(Typography_default, { variant: "h3", weight: "bold", children: "R$ 99,99" }),
-            /* @__PURE__ */ jsx15(Button, { size: "sm", children: "Adicionar ao Carrinho" })
-          ] }) })
-        ] }),
-        /* @__PURE__ */ jsxs13(Card, { variant: "outlined", children: [
-          /* @__PURE__ */ jsxs13(CardContent, { children: [
-            /* @__PURE__ */ jsxs13("div", { style: { display: "flex", alignItems: "center", marginBottom: "16px" }, children: [
-              /* @__PURE__ */ jsx15("div", { style: {
-                width: "60px",
-                height: "60px",
-                borderRadius: "50%",
-                backgroundColor: "#7566A1",
-                marginRight: "16px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: "white",
-                fontWeight: "bold"
-              }, children: "JD" }),
-              /* @__PURE__ */ jsxs13("div", { children: [
-                /* @__PURE__ */ jsx15(Typography_default, { variant: "h3", weight: "medium", children: "Jo\xE3o Silva" }),
-                /* @__PURE__ */ jsx15(Typography_default, { variant: "bodySmall", children: "Engenheiro de Software" })
-              ] })
-            ] }),
-            /* @__PURE__ */ jsx15(Typography_default, { variant: "body", style: { marginBottom: "16px" }, children: "Apaixonado por construir grandes experi\xEAncias de usu\xE1rio e resolver problemas complexos." })
-          ] }),
-          /* @__PURE__ */ jsx15(CardFooter, { children: /* @__PURE__ */ jsxs13("div", { style: { display: "flex", gap: "8px" }, children: [
-            /* @__PURE__ */ jsx15(Button, { variant: "outline", size: "sm", children: "Mensagem" }),
-            /* @__PURE__ */ jsx15(Button, { size: "sm", children: "Seguir" })
-          ] }) })
-        ] }),
-        /* @__PURE__ */ jsx15(Card, { variant: "filled", children: /* @__PURE__ */ jsxs13(CardContent, { children: [
-          /* @__PURE__ */ jsx15(Typography_default, { variant: "h3", weight: "medium", style: { marginBottom: "8px" }, children: "Receita Total" }),
-          /* @__PURE__ */ jsx15(Typography_default, { variant: "display", weight: "bold", style: { marginBottom: "8px" }, children: "R$ 12.345" }),
-          /* @__PURE__ */ jsx15(Typography_default, { variant: "bodySmall", color: "success", children: "\u2197 +12,5% do m\xEAs passado" })
-        ] }) })
-      ] })
-    ] }),
-    /* @__PURE__ */ jsxs13("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ jsx15(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "Cards com A\xE7\xF5es" }),
-      /* @__PURE__ */ jsxs13(Card, { variant: "elevated", style: { maxWidth: "500px" }, children: [
-        /* @__PURE__ */ jsx15(CardHeader, { children: /* @__PURE__ */ jsx15(Typography_default, { variant: "h3", weight: "medium", children: "Configura\xE7\xF5es" }) }),
-        /* @__PURE__ */ jsxs13(CardContent, { children: [
-          /* @__PURE__ */ jsx15(Typography_default, { variant: "body", style: { marginBottom: "16px" }, children: "Gerencie suas configura\xE7\xF5es de conta e prefer\xEAncias." }),
-          /* @__PURE__ */ jsxs13("div", { style: { display: "flex", flexDirection: "column", gap: "12px" }, children: [
-            /* @__PURE__ */ jsxs13("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center" }, children: [
-              /* @__PURE__ */ jsx15(Typography_default, { variant: "body", children: "Notifica\xE7\xF5es por Email" }),
-              /* @__PURE__ */ jsx15(Button, { variant: "outline", size: "sm", children: "Alternar" })
-            ] }),
-            /* @__PURE__ */ jsxs13("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center" }, children: [
-              /* @__PURE__ */ jsx15(Typography_default, { variant: "body", children: "Modo Escuro" }),
-              /* @__PURE__ */ jsx15(Button, { variant: "outline", size: "sm", children: "Alternar" })
-            ] })
-          ] })
-        ] }),
-        /* @__PURE__ */ jsx15(CardFooter, { children: /* @__PURE__ */ jsxs13("div", { style: { display: "flex", gap: "8px", justifyContent: "flex-end" }, children: [
-          /* @__PURE__ */ jsx15(Button, { variant: "ghost", size: "sm", children: "Cancelar" }),
-          /* @__PURE__ */ jsx15(Button, { size: "sm", children: "Salvar Altera\xE7\xF5es" })
-        ] }) })
       ] })
     ] })
   ] });
 };
 
 // src/components/Checkbox/Checkbox.tsx
-import { forwardRef as forwardRef2, useRef as useRef3, useImperativeHandle, useCallback as useCallback8 } from "react";
+import { forwardRef as forwardRef3, useRef as useRef3, useImperativeHandle, useCallback as useCallback5 } from "react";
 import { Check as Check2 } from "phosphor-react";
-import { jsx as jsx16, jsxs as jsxs14 } from "react/jsx-runtime";
-var Checkbox = forwardRef2(({
+import { jsx as jsx14, jsxs as jsxs12 } from "react/jsx-runtime";
+var Checkbox = forwardRef3(({
   checked,
   indeterminate = false,
   disabled = false,
@@ -4056,15 +2365,15 @@ var Checkbox = forwardRef2(({
       }
     }
   }));
-  const handleChange = useCallback8((event) => {
+  const handleChange = useCallback5((event) => {
     if (disabled || readOnly) return;
     onChange?.(event.target.checked, event);
   }, [disabled, readOnly, onChange]);
-  const handleClick = useCallback8((event) => {
+  const handleClick = useCallback5((event) => {
     if (disabled || readOnly) return;
     onClick?.(event);
   }, [disabled, readOnly, onClick]);
-  const handleKeyDown = useCallback8((event) => {
+  const handleKeyDown = useCallback5((event) => {
     if (disabled || readOnly) return;
     if (event.key === " " || event.key === "Enter") {
       event.preventDefault();
@@ -4098,9 +2407,9 @@ var Checkbox = forwardRef2(({
     disabled && "cria-checkbox__label--disabled",
     readOnly && "cria-checkbox__label--readonly"
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ jsxs14("div", { className: checkboxClasses, style, ...props, children: [
-    /* @__PURE__ */ jsxs14("div", { className: "cria-checkbox__container", children: [
-      /* @__PURE__ */ jsx16(
+  return /* @__PURE__ */ jsxs12("div", { className: checkboxClasses, style, ...props, children: [
+    /* @__PURE__ */ jsxs12("div", { className: "cria-checkbox__container", children: [
+      /* @__PURE__ */ jsx14(
         "input",
         {
           ref: inputRef,
@@ -4129,20 +2438,20 @@ var Checkbox = forwardRef2(({
           ...inputProps
         }
       ),
-      /* @__PURE__ */ jsx16("div", { className: "cria-checkbox__checkmark", children: indeterminate ? /* @__PURE__ */ jsx16("div", { className: "cria-checkbox__indeterminate" }) : checked === true ? /* @__PURE__ */ jsx16(Check2, { size: size === "sm" ? 12 : size === "lg" ? 20 : 16 }) : null }),
-      label && /* @__PURE__ */ jsx16("label", { htmlFor: id || (label ? `${name || "checkbox"}-input` : void 0), className: labelClasses, children: /* @__PURE__ */ jsxs14(
+      /* @__PURE__ */ jsx14("div", { className: "cria-checkbox__checkmark", children: indeterminate ? /* @__PURE__ */ jsx14("div", { className: "cria-checkbox__indeterminate" }) : checked === true ? /* @__PURE__ */ jsx14(Check2, { size: size === "sm" ? 12 : size === "lg" ? 20 : 16 }) : null }),
+      label && /* @__PURE__ */ jsx14("label", { htmlFor: id || (label ? `${name || "checkbox"}-input` : void 0), className: labelClasses, children: /* @__PURE__ */ jsxs12(
         Typography,
         {
           variant: "body",
           color: disabled ? "secondary" : "content",
           children: [
             label,
-            required && /* @__PURE__ */ jsx16("span", { className: "cria-checkbox__required", "aria-label": "required", children: " *" })
+            required && /* @__PURE__ */ jsx14("span", { className: "cria-checkbox__required", "aria-label": "required", children: " *" })
           ]
         }
       ) })
     ] }),
-    helperText && !errorMessage && !warningMessage && /* @__PURE__ */ jsx16(
+    helperText && !errorMessage && !warningMessage && /* @__PURE__ */ jsx14(
       Typography,
       {
         variant: "caption",
@@ -4152,7 +2461,7 @@ var Checkbox = forwardRef2(({
         children: helperText
       }
     ),
-    errorMessage && /* @__PURE__ */ jsx16(
+    errorMessage && /* @__PURE__ */ jsx14(
       Typography,
       {
         variant: "caption",
@@ -4162,7 +2471,7 @@ var Checkbox = forwardRef2(({
         children: errorMessage
       }
     ),
-    warningMessage && /* @__PURE__ */ jsx16(
+    warningMessage && /* @__PURE__ */ jsx14(
       Typography,
       {
         variant: "caption",
@@ -4177,13 +2486,13 @@ var Checkbox = forwardRef2(({
 Checkbox.displayName = "Checkbox";
 
 // src/components/Dropdown/Dropdown.tsx
-import { useState as useState11, useRef as useRef4, useEffect as useEffect3, useCallback as useCallback9, forwardRef as forwardRef3, useImperativeHandle as useImperativeHandle2 } from "react";
+import { useState as useState8, useRef as useRef4, useEffect as useEffect2, useCallback as useCallback6, forwardRef as forwardRef4, useImperativeHandle as useImperativeHandle2 } from "react";
 
 // src/components/TextTokens/CriaText.tsx
-import { jsx as jsx17 } from "react/jsx-runtime";
+import { jsx as jsx15 } from "react/jsx-runtime";
 var CriaTextHeadline1 = ({ as, children, className = "", ...props }) => {
   const Element = as || "h1";
-  return /* @__PURE__ */ jsx17(
+  return /* @__PURE__ */ jsx15(
     Typography,
     {
       as: Element,
@@ -4198,7 +2507,7 @@ var CriaTextHeadline1 = ({ as, children, className = "", ...props }) => {
 };
 var CriaTextHeadline2 = ({ as, children, className = "", ...props }) => {
   const Element = as || "h2";
-  return /* @__PURE__ */ jsx17(
+  return /* @__PURE__ */ jsx15(
     Typography,
     {
       as: Element,
@@ -4213,7 +2522,7 @@ var CriaTextHeadline2 = ({ as, children, className = "", ...props }) => {
 };
 var CriaTextBody1 = ({ as, children, className = "", ...props }) => {
   const Element = as || "p";
-  return /* @__PURE__ */ jsx17(
+  return /* @__PURE__ */ jsx15(
     Typography,
     {
       as: Element,
@@ -4227,7 +2536,7 @@ var CriaTextBody1 = ({ as, children, className = "", ...props }) => {
 };
 var CriaTextBody2 = ({ as, children, className = "", ...props }) => {
   const Element = as || "span";
-  return /* @__PURE__ */ jsx17(
+  return /* @__PURE__ */ jsx15(
     Typography,
     {
       as: Element,
@@ -4241,7 +2550,7 @@ var CriaTextBody2 = ({ as, children, className = "", ...props }) => {
 };
 var CriaTextBody1Inverse = ({ as, children, className = "", ...props }) => {
   const Element = as || "p";
-  return /* @__PURE__ */ jsx17(
+  return /* @__PURE__ */ jsx15(
     Typography,
     {
       as: Element,
@@ -4255,7 +2564,7 @@ var CriaTextBody1Inverse = ({ as, children, className = "", ...props }) => {
 };
 var CriaTextTitle1 = ({ as, children, className = "", ...props }) => {
   const Element = as || "h3";
-  return /* @__PURE__ */ jsx17(
+  return /* @__PURE__ */ jsx15(
     Typography,
     {
       as: Element,
@@ -4270,7 +2579,7 @@ var CriaTextTitle1 = ({ as, children, className = "", ...props }) => {
 };
 var CriaTextTitle2 = ({ as, children, className = "", ...props }) => {
   const Element = as || "h4";
-  return /* @__PURE__ */ jsx17(
+  return /* @__PURE__ */ jsx15(
     Typography,
     {
       as: Element,
@@ -4285,7 +2594,7 @@ var CriaTextTitle2 = ({ as, children, className = "", ...props }) => {
 };
 var CriaTextImportant = ({ as, children, className = "", ...props }) => {
   const Element = as || "span";
-  return /* @__PURE__ */ jsx17(
+  return /* @__PURE__ */ jsx15(
     Typography,
     {
       as: Element,
@@ -4300,7 +2609,7 @@ var CriaTextImportant = ({ as, children, className = "", ...props }) => {
 };
 var CriaTextAlert = ({ as, children, className = "", ...props }) => {
   const Element = as || "span";
-  return /* @__PURE__ */ jsx17(
+  return /* @__PURE__ */ jsx15(
     Typography,
     {
       as: Element,
@@ -4316,8 +2625,8 @@ var CriaTextAlert = ({ as, children, className = "", ...props }) => {
 
 // src/components/Dropdown/Dropdown.tsx
 import { CaretDown, MagnifyingGlass, Check as Check3 } from "phosphor-react";
-import { Fragment as Fragment2, jsx as jsx18, jsxs as jsxs15 } from "react/jsx-runtime";
-var Dropdown = forwardRef3(({
+import { Fragment, jsx as jsx16, jsxs as jsxs13 } from "react/jsx-runtime";
+var Dropdown = forwardRef4(({
   options,
   value,
   defaultValue,
@@ -4340,17 +2649,17 @@ var Dropdown = forwardRef3(({
   name,
   ...props
 }, ref) => {
-  const [isOpen, setIsOpen] = useState11(false);
-  const [searchTerm, setSearchTerm] = useState11("");
-  const [focusedIndex, setFocusedIndex] = useState11(-1);
-  const [selectedValues, setSelectedValues] = useState11(() => {
+  const [isOpen, setIsOpen] = useState8(false);
+  const [searchTerm, setSearchTerm] = useState8("");
+  const [focusedIndex, setFocusedIndex] = useState8(-1);
+  const [selectedValues, setSelectedValues] = useState8(() => {
     const initialValue = value || defaultValue;
     return Array.isArray(initialValue) ? initialValue : initialValue ? [initialValue] : [];
   });
   const triggerRef = useRef4(null);
   const listboxRef = useRef4(null);
   const searchInputRef = useRef4(null);
-  useEffect3(() => {
+  useEffect2(() => {
     if (value !== void 0) {
       setSelectedValues(Array.isArray(value) ? value : value ? [value] : []);
     }
@@ -4381,7 +2690,7 @@ var Dropdown = forwardRef3(({
     const option = options.find((opt) => opt.value === selectedValues[0]);
     return option?.label || placeholder;
   };
-  const handleOptionSelect = useCallback9((option) => {
+  const handleOptionSelect = useCallback6((option) => {
     if (option.disabled) return;
     let newSelectedValues;
     if (multiple) {
@@ -4401,7 +2710,7 @@ var Dropdown = forwardRef3(({
       multiple ? selectedOptions : selectedOptions[0]
     );
   }, [selectedValues, multiple, options, onChange]);
-  const handleTriggerClick = useCallback9(() => {
+  const handleTriggerClick = useCallback6(() => {
     if (disabled || loading) return;
     setIsOpen(!isOpen);
     if (!isOpen) {
@@ -4414,7 +2723,7 @@ var Dropdown = forwardRef3(({
       setFocusedIndex(-1);
     }
   }, [disabled, loading, isOpen, onOpen, onClose]);
-  const handleKeyDown = useCallback9((event) => {
+  const handleKeyDown = useCallback6((event) => {
     if (disabled || loading) return;
     switch (event.key) {
       case "Enter":
@@ -4467,7 +2776,7 @@ var Dropdown = forwardRef3(({
         break;
     }
   }, [disabled, loading, isOpen, focusedIndex, filteredOptions, onOpen, onClose, handleOptionSelect]);
-  useEffect3(() => {
+  useEffect2(() => {
     const handleClickOutside = (event) => {
       if (isOpen && triggerRef.current && listboxRef.current && !triggerRef.current.contains(event.target) && !listboxRef.current.contains(event.target)) {
         setIsOpen(false);
@@ -4480,7 +2789,7 @@ var Dropdown = forwardRef3(({
       return () => document.removeEventListener("mousedown", handleClickOutside);
     }
   }, [isOpen, onClose]);
-  useEffect3(() => {
+  useEffect2(() => {
     if (isOpen && searchable && searchInputRef.current) {
       searchInputRef.current.focus();
     }
@@ -4541,7 +2850,7 @@ var Dropdown = forwardRef3(({
     boxShadow: shadows.lg,
     maxHeight: "200px",
     overflowY: "auto",
-    marginTop: spacing2[1]
+    marginTop: spacing[1]
   });
   const getOptionStyles = (option, index) => ({
     padding: getOptionPadding(size),
@@ -4562,12 +2871,12 @@ var Dropdown = forwardRef3(({
     ].filter(Boolean);
     return classes.join(" ");
   };
-  return /* @__PURE__ */ jsxs15("div", { className: containerClasses, style, ...props, children: [
-    label && /* @__PURE__ */ jsx18("label", { className: "cria-dropdown__label", children: /* @__PURE__ */ jsxs15(Typography, { variant: "body", weight: "medium", color: "primary", children: [
+  return /* @__PURE__ */ jsxs13("div", { className: containerClasses, style, ...props, children: [
+    label && /* @__PURE__ */ jsx16("label", { className: "cria-dropdown__label", children: /* @__PURE__ */ jsxs13(Typography, { variant: "body", weight: "medium", color: "primary", children: [
       label,
-      required && /* @__PURE__ */ jsx18("span", { style: { color: colors.error }, children: " *" })
+      required && /* @__PURE__ */ jsx16("span", { style: { color: colors.error }, children: " *" })
     ] }) }),
-    /* @__PURE__ */ jsxs15(
+    /* @__PURE__ */ jsxs13(
       "button",
       {
         ref: triggerRef,
@@ -4587,14 +2896,14 @@ var Dropdown = forwardRef3(({
         "aria-describedby": helperText || errorMessage ? `${label || "dropdown"}-helper` : void 0,
         id: label ? `${label.toLowerCase().replace(/\s+/g, "-")}-dropdown` : void 0,
         children: [
-          /* @__PURE__ */ jsx18("span", { style: {
+          /* @__PURE__ */ jsx16("span", { style: {
             overflow: "hidden",
             textOverflow: "ellipsis",
             whiteSpace: "nowrap",
             flex: 1,
             textAlign: "left"
           }, children: getDisplayText() }),
-          /* @__PURE__ */ jsx18(
+          /* @__PURE__ */ jsx16(
             CaretDown,
             {
               size: 16,
@@ -4602,14 +2911,14 @@ var Dropdown = forwardRef3(({
                 transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
                 transition: "transform 0.2s ease-in-out",
                 flexShrink: 0,
-                marginLeft: spacing2[2]
+                marginLeft: spacing[2]
               }
             }
           )
         ]
       }
     ),
-    isOpen && /* @__PURE__ */ jsxs15(
+    isOpen && /* @__PURE__ */ jsxs13(
       "div",
       {
         ref: listboxRef,
@@ -4618,21 +2927,21 @@ var Dropdown = forwardRef3(({
         style: getListboxStyles(),
         "aria-labelledby": triggerRef.current?.id,
         children: [
-          searchable && /* @__PURE__ */ jsx18("div", { style: { padding: spacing2[2], borderBottom: `1px solid ${colors.border.light}` }, children: /* @__PURE__ */ jsxs15("div", { style: { position: "relative" }, children: [
-            /* @__PURE__ */ jsx18(
+          searchable && /* @__PURE__ */ jsx16("div", { style: { padding: spacing[2], borderBottom: `1px solid ${colors.border.light}` }, children: /* @__PURE__ */ jsxs13("div", { style: { position: "relative" }, children: [
+            /* @__PURE__ */ jsx16(
               MagnifyingGlass,
               {
                 size: 16,
                 style: {
                   position: "absolute",
-                  left: spacing2[2],
+                  left: spacing[2],
                   top: "50%",
                   transform: "translateY(-50%)",
                   color: colors.text.secondary
                 }
               }
             ),
-            /* @__PURE__ */ jsx18(
+            /* @__PURE__ */ jsx16(
               "input",
               {
                 ref: searchInputRef,
@@ -4644,7 +2953,7 @@ var Dropdown = forwardRef3(({
                 "aria-label": "Search options",
                 style: {
                   width: "100%",
-                  padding: `${spacing2[2]} ${spacing2[2]} ${spacing2[2]} ${spacing2[8]}`,
+                  padding: `${spacing[2]} ${spacing[2]} ${spacing[2]} ${spacing[8]}`,
                   border: `1px solid ${colors.border.medium}`,
                   borderRadius: radii.sm,
                   fontSize: typography.fontSize.bodySmall,
@@ -4654,7 +2963,7 @@ var Dropdown = forwardRef3(({
               }
             )
           ] }) }),
-          filteredOptions.length > 0 ? filteredOptions.map((option, index) => /* @__PURE__ */ jsxs15(
+          filteredOptions.length > 0 ? filteredOptions.map((option, index) => /* @__PURE__ */ jsxs13(
             "div",
             {
               role: "option",
@@ -4663,19 +2972,19 @@ var Dropdown = forwardRef3(({
               onClick: () => handleOptionSelect(option),
               "aria-selected": selectedValues.includes(option.value),
               children: [
-                /* @__PURE__ */ jsxs15("div", { style: { display: "flex", alignItems: "center", flex: 1 }, children: [
-                  option.icon && /* @__PURE__ */ jsx18("span", { style: { marginRight: spacing2[2] }, children: option.icon }),
-                  /* @__PURE__ */ jsxs15("div", { children: [
-                    /* @__PURE__ */ jsx18(CriaTextBody1, { as: "span", children: option.label }),
-                    option.description && /* @__PURE__ */ jsx18("div", { style: { marginTop: spacing2[1] }, children: /* @__PURE__ */ jsx18(CriaTextBody2, { as: "span", children: option.description }) })
+                /* @__PURE__ */ jsxs13("div", { style: { display: "flex", alignItems: "center", flex: 1 }, children: [
+                  option.icon && /* @__PURE__ */ jsx16("span", { style: { marginRight: spacing[2] }, children: option.icon }),
+                  /* @__PURE__ */ jsxs13("div", { children: [
+                    /* @__PURE__ */ jsx16(CriaTextBody1, { as: "span", children: option.label }),
+                    option.description && /* @__PURE__ */ jsx16("div", { style: { marginTop: spacing[1] }, children: /* @__PURE__ */ jsx16(CriaTextBody2, { as: "span", children: option.description }) })
                   ] })
                 ] }),
-                selectedValues.includes(option.value) && /* @__PURE__ */ jsx18(Check3, { size: 16, style: { color: colors.primary, flexShrink: 0 } })
+                selectedValues.includes(option.value) && /* @__PURE__ */ jsx16(Check3, { size: 16, style: { color: colors.primary, flexShrink: 0 } })
               ]
             },
             option.value
-          )) : /* @__PURE__ */ jsx18("div", { style: {
-            padding: spacing2[4],
+          )) : /* @__PURE__ */ jsx16("div", { style: {
+            padding: spacing[4],
             textAlign: "center",
             color: colors.text.secondary,
             fontSize: typography.fontSize.bodySmall
@@ -4683,13 +2992,13 @@ var Dropdown = forwardRef3(({
         ]
       }
     ),
-    (helperText || errorMessage) && /* @__PURE__ */ jsx18(
+    (helperText || errorMessage) && /* @__PURE__ */ jsx16(
       "div",
       {
         id: `${label || "dropdown"}-helper`,
         className: "cria-dropdown__messages",
-        style: { marginTop: spacing2[1] },
-        children: errorMessage ? /* @__PURE__ */ jsx18(Typography, { variant: "bodySmall", color: "error", children: errorMessage }) : /* @__PURE__ */ jsx18(Typography, { variant: "bodySmall", color: "secondary", children: helperText })
+        style: { marginTop: spacing[1] },
+        children: errorMessage ? /* @__PURE__ */ jsx16(Typography, { variant: "bodySmall", color: "error", children: errorMessage }) : /* @__PURE__ */ jsx16(Typography, { variant: "bodySmall", color: "secondary", children: helperText })
       }
     )
   ] });
@@ -4698,25 +3007,25 @@ Dropdown.displayName = "Dropdown";
 function getTriggerPadding(size) {
   switch (size) {
     case "sm":
-      return `${spacing2[2]} ${spacing2[3]}`;
+      return `${spacing[2]} ${spacing[3]}`;
     case "md":
-      return `${spacing2[3]} ${spacing2[4]}`;
+      return `${spacing[3]} ${spacing[4]}`;
     case "lg":
-      return `${spacing2[4]} ${spacing2[5]}`;
+      return `${spacing[4]} ${spacing[5]}`;
     default:
-      return `${spacing2[3]} ${spacing2[4]}`;
+      return `${spacing[3]} ${spacing[4]}`;
   }
 }
 function getOptionPadding(size) {
   switch (size) {
     case "sm":
-      return `${spacing2[2]} ${spacing2[3]}`;
+      return `${spacing[2]} ${spacing[3]}`;
     case "md":
-      return `${spacing2[3]} ${spacing2[4]}`;
+      return `${spacing[3]} ${spacing[4]}`;
     case "lg":
-      return `${spacing2[4]} ${spacing2[5]}`;
+      return `${spacing[4]} ${spacing[5]}`;
     default:
-      return `${spacing2[3]} ${spacing2[4]}`;
+      return `${spacing[3]} ${spacing[4]}`;
   }
 }
 var DropdownItem = ({
@@ -4727,24 +3036,24 @@ var DropdownItem = ({
   description,
   children
 }) => {
-  return /* @__PURE__ */ jsxs15("div", { style: { display: "flex", alignItems: "center", flex: 1 }, children: [
-    icon && /* @__PURE__ */ jsx18("span", { style: { marginRight: spacing2[2] }, children: icon }),
-    /* @__PURE__ */ jsx18("div", { children: children || /* @__PURE__ */ jsxs15(Fragment2, { children: [
-      /* @__PURE__ */ jsx18("div", { children: label }),
-      description && /* @__PURE__ */ jsx18("div", { style: {
+  return /* @__PURE__ */ jsxs13("div", { style: { display: "flex", alignItems: "center", flex: 1 }, children: [
+    icon && /* @__PURE__ */ jsx16("span", { style: { marginRight: spacing[2] }, children: icon }),
+    /* @__PURE__ */ jsx16("div", { children: children || /* @__PURE__ */ jsxs13(Fragment, { children: [
+      /* @__PURE__ */ jsx16("div", { children: label }),
+      description && /* @__PURE__ */ jsx16("div", { style: {
         fontSize: typography.fontSize.caption,
         color: colors.text.secondary,
-        marginTop: spacing2[1]
+        marginTop: spacing[1]
       }, children: description })
     ] }) })
   ] });
 };
 
 // src/components/Input/Input.tsx
-import React15, { forwardRef as forwardRef4, useRef as useRef5, useImperativeHandle as useImperativeHandle3, useCallback as useCallback10 } from "react";
+import React13, { forwardRef as forwardRef5, useRef as useRef5, useImperativeHandle as useImperativeHandle3, useCallback as useCallback7 } from "react";
 import { Eye, EyeSlash, X as X2, Check as Check4, WarningCircle } from "phosphor-react";
-import { jsx as jsx19, jsxs as jsxs16 } from "react/jsx-runtime";
-var Input = forwardRef4(({
+import { jsx as jsx17, jsxs as jsxs14 } from "react/jsx-runtime";
+var Input = forwardRef5(({
   label,
   placeholder,
   size = "md",
@@ -4775,8 +3084,8 @@ var Input = forwardRef4(({
   ...props
 }, ref) => {
   const inputRef = useRef5(null);
-  const [showPassword, setShowPassword] = React15.useState(false);
-  const [isFocused, setIsFocused] = React15.useState(false);
+  const [showPassword, setShowPassword] = React13.useState(false);
+  const [isFocused, setIsFocused] = React13.useState(false);
   useImperativeHandle3(ref, () => ({
     focus: () => inputRef.current?.focus(),
     blur: () => inputRef.current?.blur(),
@@ -4788,10 +3097,10 @@ var Input = forwardRef4(({
       }
     }
   }));
-  const handlePasswordToggle = useCallback10(() => {
+  const handlePasswordToggle = useCallback7(() => {
     setShowPassword(!showPassword);
   }, [showPassword]);
-  const handleClear = useCallback10(() => {
+  const handleClear = useCallback7(() => {
     if (inputRef.current) {
       inputRef.current.value = "";
       inputRef.current.focus();
@@ -4802,11 +3111,11 @@ var Input = forwardRef4(({
       onClear?.();
     }
   }, [onChange, onClear]);
-  const handleFocus = useCallback10((event) => {
+  const handleFocus = useCallback7((event) => {
     setIsFocused(true);
     onFocus?.(event);
   }, [onFocus]);
-  const handleBlur = useCallback10((event) => {
+  const handleBlur = useCallback7((event) => {
     setIsFocused(false);
     onBlur?.(event);
   }, [onBlur]);
@@ -4837,14 +3146,14 @@ var Input = forwardRef4(({
   const characterCount = String(currentValue).length;
   const shouldShowClearButton = showClearButton && currentValue && !disabled && !readOnly;
   const shouldShowPasswordToggle = showPasswordToggle && type === "password" && !disabled && !readOnly;
-  return /* @__PURE__ */ jsxs16("div", { className: containerClasses, style, children: [
-    label && /* @__PURE__ */ jsx19("label", { className: "cria-input__label", children: /* @__PURE__ */ jsxs16(Typography, { variant: "body", weight: "medium", color: "primary", children: [
+  return /* @__PURE__ */ jsxs14("div", { className: containerClasses, style, children: [
+    label && /* @__PURE__ */ jsx17("label", { className: "cria-input__label", children: /* @__PURE__ */ jsxs14(Typography, { variant: "body", weight: "medium", color: "primary", children: [
       label,
-      required && /* @__PURE__ */ jsx19("span", { className: "cria-input__required", children: " *" })
+      required && /* @__PURE__ */ jsx17("span", { className: "cria-input__required", children: " *" })
     ] }) }),
-    /* @__PURE__ */ jsxs16("div", { className: "cria-input__wrapper", children: [
-      leftIcon && /* @__PURE__ */ jsx19("div", { className: "cria-input__left-icon", children: leftIcon }),
-      /* @__PURE__ */ jsx19(
+    /* @__PURE__ */ jsxs14("div", { className: "cria-input__wrapper", children: [
+      leftIcon && /* @__PURE__ */ jsx17("div", { className: "cria-input__left-icon", children: leftIcon }),
+      /* @__PURE__ */ jsx17(
         "input",
         {
           ref: inputRef,
@@ -4863,45 +3172,45 @@ var Input = forwardRef4(({
           ...props
         }
       ),
-      (rightIcon || shouldShowPasswordToggle || shouldShowClearButton) && /* @__PURE__ */ jsxs16("div", { className: "cria-input__right-icons", children: [
-        shouldShowClearButton && /* @__PURE__ */ jsx19(
+      (rightIcon || shouldShowPasswordToggle || shouldShowClearButton) && /* @__PURE__ */ jsxs14("div", { className: "cria-input__right-icons", children: [
+        shouldShowClearButton && /* @__PURE__ */ jsx17(
           "button",
           {
             type: "button",
             className: "cria-input__clear-button",
             onClick: handleClear,
             "aria-label": "Clear input",
-            children: /* @__PURE__ */ jsx19(X2, { size: 16 })
+            children: /* @__PURE__ */ jsx17(X2, { size: 16 })
           }
         ),
-        shouldShowPasswordToggle && /* @__PURE__ */ jsx19(
+        shouldShowPasswordToggle && /* @__PURE__ */ jsx17(
           "button",
           {
             type: "button",
             className: "cria-input__password-toggle",
             onClick: handlePasswordToggle,
             "aria-label": showPassword ? "Hide password" : "Show password",
-            children: showPassword ? /* @__PURE__ */ jsx19(EyeSlash, { size: 16 }) : /* @__PURE__ */ jsx19(Eye, { size: 16 })
+            children: showPassword ? /* @__PURE__ */ jsx17(EyeSlash, { size: 16 }) : /* @__PURE__ */ jsx17(Eye, { size: 16 })
           }
         ),
-        rightIcon && /* @__PURE__ */ jsx19("div", { className: "cria-input__right-icon", children: rightIcon })
+        rightIcon && /* @__PURE__ */ jsx17("div", { className: "cria-input__right-icon", children: rightIcon })
       ] })
     ] }),
-    (helperText || errorMessage || successMessage || warningMessage || showCharacterCount) && /* @__PURE__ */ jsxs16("div", { className: "cria-input__messages", children: [
-      helperText && !errorMessage && !successMessage && !warningMessage && /* @__PURE__ */ jsx19(Typography, { variant: "body", color: "secondary", className: "cria-input__helper-text", children: helperText }),
-      errorMessage && /* @__PURE__ */ jsxs16(Typography, { variant: "body", color: "error", className: "cria-input__error-message", children: [
-        /* @__PURE__ */ jsx19(WarningCircle, { size: 14, style: { marginRight: "4px" } }),
+    (helperText || errorMessage || successMessage || warningMessage || showCharacterCount) && /* @__PURE__ */ jsxs14("div", { className: "cria-input__messages", children: [
+      helperText && !errorMessage && !successMessage && !warningMessage && /* @__PURE__ */ jsx17(Typography, { variant: "body", color: "secondary", className: "cria-input__helper-text", children: helperText }),
+      errorMessage && /* @__PURE__ */ jsxs14(Typography, { variant: "body", color: "error", className: "cria-input__error-message", children: [
+        /* @__PURE__ */ jsx17(WarningCircle, { size: 14, style: { marginRight: "4px" } }),
         errorMessage
       ] }),
-      successMessage && /* @__PURE__ */ jsxs16(Typography, { variant: "body", color: "success", className: "cria-input__success-message", children: [
-        /* @__PURE__ */ jsx19(Check4, { size: 14, style: { marginRight: "4px" } }),
+      successMessage && /* @__PURE__ */ jsxs14(Typography, { variant: "body", color: "success", className: "cria-input__success-message", children: [
+        /* @__PURE__ */ jsx17(Check4, { size: 14, style: { marginRight: "4px" } }),
         successMessage
       ] }),
-      warningMessage && /* @__PURE__ */ jsxs16(Typography, { variant: "body", color: "warning", className: "cria-input__warning-message", children: [
-        /* @__PURE__ */ jsx19(WarningCircle, { size: 14, style: { marginRight: "4px" } }),
+      warningMessage && /* @__PURE__ */ jsxs14(Typography, { variant: "body", color: "warning", className: "cria-input__warning-message", children: [
+        /* @__PURE__ */ jsx17(WarningCircle, { size: 14, style: { marginRight: "4px" } }),
         warningMessage
       ] }),
-      showCharacterCount && maxLength && /* @__PURE__ */ jsxs16(Typography, { variant: "body", color: "secondary", className: "cria-input__character-count", children: [
+      showCharacterCount && maxLength && /* @__PURE__ */ jsxs14(Typography, { variant: "body", color: "secondary", className: "cria-input__character-count", children: [
         characterCount,
         "/",
         maxLength
@@ -4912,9 +3221,9 @@ var Input = forwardRef4(({
 Input.displayName = "Input";
 
 // src/components/Modal/Modal.tsx
-import { useEffect as useEffect4, useRef as useRef6, useCallback as useCallback11 } from "react";
+import { useEffect as useEffect3, useRef as useRef6, useCallback as useCallback8 } from "react";
 import { X as X3 } from "phosphor-react";
-import { jsx as jsx20, jsxs as jsxs17 } from "react/jsx-runtime";
+import { jsx as jsx18, jsxs as jsxs15 } from "react/jsx-runtime";
 var Modal = ({
   isOpen,
   onClose,
@@ -4940,17 +3249,17 @@ var Modal = ({
   const modalRef = useRef6(null);
   const previousActiveElement = useRef6(null);
   const overlayRef = useRef6(null);
-  const handleEscapeKey = useCallback11((event) => {
+  const handleEscapeKey = useCallback8((event) => {
     if (event.key === "Escape" && closeOnEscape) {
       onClose();
     }
   }, [closeOnEscape, onClose]);
-  const handleOverlayClick = useCallback11((event) => {
+  const handleOverlayClick = useCallback8((event) => {
     if (closeOnOverlayClick && event.target === overlayRef.current) {
       onClose();
     }
   }, [closeOnOverlayClick, onClose]);
-  const handleFocus = useCallback11(() => {
+  const handleFocus = useCallback8(() => {
     if (modalRef.current) {
       const focusableElements = modalRef.current.querySelectorAll(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
@@ -4961,14 +3270,14 @@ var Modal = ({
       }
     }
   }, []);
-  const toggleBodyScroll = useCallback11((lock) => {
+  const toggleBodyScroll = useCallback8((lock) => {
     if (lock) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
     }
   }, []);
-  useEffect4(() => {
+  useEffect3(() => {
     if (isOpen) {
       previousActiveElement.current = document.activeElement;
       document.addEventListener("keydown", handleEscapeKey);
@@ -5008,7 +3317,7 @@ var Modal = ({
   if (!isOpen) {
     return null;
   }
-  return /* @__PURE__ */ jsx20(
+  return /* @__PURE__ */ jsx18(
     "div",
     {
       ref: overlayRef,
@@ -5022,7 +3331,7 @@ var Modal = ({
       "aria-modal": "true",
       "aria-labelledby": title ? "modal-title" : void 0,
       "aria-describedby": "modal-content",
-      children: /* @__PURE__ */ jsxs17(
+      children: /* @__PURE__ */ jsxs15(
         "div",
         {
           ref: modalRef,
@@ -5033,8 +3342,8 @@ var Modal = ({
           },
           ...props,
           children: [
-            showHeader && /* @__PURE__ */ jsxs17("div", { className: "cria-modal__header", children: [
-              title && /* @__PURE__ */ jsx20(
+            showHeader && /* @__PURE__ */ jsxs15("div", { className: "cria-modal__header", children: [
+              title && /* @__PURE__ */ jsx18(
                 Typography,
                 {
                   id: "modal-title",
@@ -5044,7 +3353,7 @@ var Modal = ({
                   children: title
                 }
               ),
-              showCloseButton && /* @__PURE__ */ jsx20(
+              showCloseButton && /* @__PURE__ */ jsx18(
                 Button,
                 {
                   variant: "ghost",
@@ -5052,11 +3361,11 @@ var Modal = ({
                   onClick: onClose,
                   className: "cria-modal__close-button",
                   "aria-label": "Close modal",
-                  children: /* @__PURE__ */ jsx20(X3, { size: 20 })
+                  children: /* @__PURE__ */ jsx18(X3, { size: 20 })
                 }
               )
             ] }),
-            /* @__PURE__ */ jsx20(
+            /* @__PURE__ */ jsx18(
               "div",
               {
                 id: "modal-content",
@@ -5064,7 +3373,7 @@ var Modal = ({
                 children
               }
             ),
-            showFooter && footer && /* @__PURE__ */ jsx20("div", { className: "cria-modal__footer", children: footer })
+            showFooter && footer && /* @__PURE__ */ jsx18("div", { className: "cria-modal__footer", children: footer })
           ]
         }
       )
@@ -5073,9 +3382,9 @@ var Modal = ({
 };
 
 // src/components/Navigation/Navigation.tsx
-import { useState as useState12, useCallback as useCallback12, useEffect as useEffect5 } from "react";
+import { useState as useState9, useCallback as useCallback9, useEffect as useEffect4 } from "react";
 import { List, CaretDown as CaretDown2, CaretRight, CaretLeft } from "phosphor-react";
-import { Fragment as Fragment3, jsx as jsx21, jsxs as jsxs18 } from "react/jsx-runtime";
+import { Fragment as Fragment2, jsx as jsx19, jsxs as jsxs16 } from "react/jsx-runtime";
 var Sidebar = ({
   items,
   activeRoute,
@@ -5084,16 +3393,17 @@ var Sidebar = ({
   showToggle = true,
   title,
   titleHref,
+  subtitle,
   className,
   style,
   theme = "default",
   ...props
 }) => {
-  const [isMobile, setIsMobile] = useState12(false);
-  const [expandedItems, setExpandedItems] = useState12(
+  const [isMobile, setIsMobile] = useState9(false);
+  const [expandedItems, setExpandedItems] = useState9(
     new Set(items.filter((item) => item.defaultExpanded).map((item) => item.id))
   );
-  useEffect5(() => {
+  useEffect4(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
@@ -5101,10 +3411,10 @@ var Sidebar = ({
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
-  const handleToggle = useCallback12(() => {
+  const handleToggle = useCallback9(() => {
     onToggle?.(!collapsed);
   }, [collapsed, onToggle]);
-  const handleSubitemToggle = useCallback12((itemId) => {
+  const handleSubitemToggle = useCallback9((itemId) => {
     setExpandedItems((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(itemId)) {
@@ -5115,7 +3425,7 @@ var Sidebar = ({
       return newSet;
     });
   }, []);
-  const handleKeyDown = useCallback12((event, index) => {
+  const handleKeyDown = useCallback9((event, index) => {
     const currentIndex = index;
     const nextIndex = currentIndex + 1;
     const prevIndex = currentIndex - 1;
@@ -5144,7 +3454,7 @@ var Sidebar = ({
     theme !== "default" && `cria-sidebar--${theme}`,
     className
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ jsxs18(
+  return /* @__PURE__ */ jsxs16(
     "nav",
     {
       className: sidebarClasses,
@@ -5153,9 +3463,10 @@ var Sidebar = ({
       "aria-label": "Main navigation",
       ...props,
       children: [
-        /* @__PURE__ */ jsxs18("div", { className: "cria-sidebar__header", children: [
-          title && !collapsed && /* @__PURE__ */ jsx21("div", { className: "cria-sidebar__title-section", children: titleHref ? /* @__PURE__ */ jsx21("a", { href: titleHref, className: "cria-sidebar__title-link", children: theme !== "default" ? /* @__PURE__ */ jsx21(Typography, { variant: "h3", weight: "bold", children: title }) : /* @__PURE__ */ jsx21(Typography, { variant: "h3", weight: "bold", color: "primary", children: title }) }) : theme !== "default" ? /* @__PURE__ */ jsx21(Typography, { variant: "h3", weight: "bold", children: title }) : /* @__PURE__ */ jsx21(Typography, { variant: "h3", weight: "bold", color: "primary", children: title }) }),
-          showToggle && /* @__PURE__ */ jsx21(
+        /* @__PURE__ */ jsxs16("div", { className: "cria-sidebar__header", children: [
+          title && !collapsed && /* @__PURE__ */ jsx19("div", { className: "cria-sidebar__title-section", children: titleHref ? /* @__PURE__ */ jsx19("a", { href: titleHref, className: "cria-sidebar__title-link", children: theme !== "default" ? /* @__PURE__ */ jsx19(Typography, { variant: "h3", weight: "bold", children: title }) : /* @__PURE__ */ jsx19(Typography, { variant: "h3", weight: "bold", color: "primary", children: title }) }) : theme !== "default" ? /* @__PURE__ */ jsx19(Typography, { variant: "h3", weight: "bold", children: title }) : /* @__PURE__ */ jsx19(Typography, { variant: "h3", weight: "bold", color: "primary", children: title }) }),
+          subtitle && !collapsed && /* @__PURE__ */ jsx19("div", { className: "cria-sidebar__subtitle-section", style: { marginTop: "0.5rem" }, children: subtitle }),
+          showToggle && /* @__PURE__ */ jsx19(
             Button,
             {
               variant: "ghost",
@@ -5163,16 +3474,16 @@ var Sidebar = ({
               onClick: handleToggle,
               "aria-label": "Toggle sidebar",
               className: "cria-sidebar__toggle",
-              children: collapsed ? /* @__PURE__ */ jsx21(CaretRight, { size: 16 }) : /* @__PURE__ */ jsx21(CaretLeft, { size: 16 })
+              children: collapsed ? /* @__PURE__ */ jsx19(CaretRight, { size: 16 }) : /* @__PURE__ */ jsx19(CaretLeft, { size: 16 })
             }
           )
         ] }),
-        /* @__PURE__ */ jsx21("div", { className: "cria-sidebar__content", children: /* @__PURE__ */ jsx21("ul", { className: "cria-sidebar__items", role: "menubar", children: items.map((item, index) => {
+        /* @__PURE__ */ jsx19("div", { className: "cria-sidebar__content", children: /* @__PURE__ */ jsx19("ul", { className: "cria-sidebar__items", role: "menubar", children: items.map((item, index) => {
           const hasSubitems = item.subitems && item.subitems.length > 0;
           const isExpanded = expandedItems.has(item.id);
           const isActive = activeRoute === item.href || hasSubitems && item.subitems?.some((subitem) => activeRoute === subitem.href);
-          return /* @__PURE__ */ jsxs18("li", { className: "cria-sidebar__item-wrapper", children: [
-            hasSubitems ? /* @__PURE__ */ jsxs18(
+          return /* @__PURE__ */ jsxs16("li", { className: "cria-sidebar__item-wrapper", children: [
+            hasSubitems ? /* @__PURE__ */ jsxs16(
               "div",
               {
                 className: [
@@ -5195,22 +3506,22 @@ var Sidebar = ({
                   handleKeyDown(e, index);
                 },
                 children: [
-                  item.icon && /* @__PURE__ */ jsx21("span", { className: "cria-sidebar__icon", "aria-hidden": "true", children: item.icon }),
-                  !collapsed && /* @__PURE__ */ jsxs18(Fragment3, { children: [
-                    /* @__PURE__ */ jsx21("span", { className: "cria-sidebar__label", children: item.label }),
-                    /* @__PURE__ */ jsx21(
+                  item.icon && /* @__PURE__ */ jsx19("span", { className: "cria-sidebar__icon", "aria-hidden": "true", children: item.icon }),
+                  !collapsed && /* @__PURE__ */ jsxs16(Fragment2, { children: [
+                    /* @__PURE__ */ jsx19("span", { className: "cria-sidebar__label", children: item.label }),
+                    /* @__PURE__ */ jsx19(
                       "span",
                       {
                         className: "cria-sidebar__subitem-toggle",
                         "aria-hidden": "true",
-                        children: isExpanded ? /* @__PURE__ */ jsx21(CaretDown2, { size: 16 }) : /* @__PURE__ */ jsx21(CaretRight, { size: 16 })
+                        children: isExpanded ? /* @__PURE__ */ jsx19(CaretDown2, { size: 16 }) : /* @__PURE__ */ jsx19(CaretRight, { size: 16 })
                       }
                     )
                   ] }),
-                  item.badge && /* @__PURE__ */ jsx21("span", { className: "cria-sidebar__badge", "aria-hidden": "true", children: item.badge })
+                  item.badge && /* @__PURE__ */ jsx19("span", { className: "cria-sidebar__badge", "aria-hidden": "true", children: item.badge })
                 ]
               }
-            ) : /* @__PURE__ */ jsxs18(
+            ) : /* @__PURE__ */ jsxs16(
               "a",
               {
                 href: item.href,
@@ -5226,13 +3537,13 @@ var Sidebar = ({
                 "aria-current": activeRoute === item.href ? "page" : void 0,
                 "aria-disabled": item.disabled,
                 children: [
-                  item.icon && /* @__PURE__ */ jsx21("span", { className: "cria-sidebar__icon", "aria-hidden": "true", children: item.icon }),
-                  !collapsed && /* @__PURE__ */ jsx21("span", { className: "cria-sidebar__label", children: item.label }),
-                  item.badge && /* @__PURE__ */ jsx21("span", { className: "cria-sidebar__badge", "aria-hidden": "true", children: item.badge })
+                  item.icon && /* @__PURE__ */ jsx19("span", { className: "cria-sidebar__icon", "aria-hidden": "true", children: item.icon }),
+                  !collapsed && /* @__PURE__ */ jsx19("span", { className: "cria-sidebar__label", children: item.label }),
+                  item.badge && /* @__PURE__ */ jsx19("span", { className: "cria-sidebar__badge", "aria-hidden": "true", children: item.badge })
                 ]
               }
             ),
-            hasSubitems && isExpanded && !collapsed && /* @__PURE__ */ jsx21("ul", { className: "cria-sidebar__subitems", role: "menu", children: item.subitems?.map((subitem) => /* @__PURE__ */ jsx21("li", { className: "cria-sidebar__subitem-wrapper", children: /* @__PURE__ */ jsxs18(
+            hasSubitems && isExpanded && !collapsed && /* @__PURE__ */ jsx19("ul", { className: "cria-sidebar__subitems", role: "menu", children: item.subitems?.map((subitem) => /* @__PURE__ */ jsx19("li", { className: "cria-sidebar__subitem-wrapper", children: /* @__PURE__ */ jsxs16(
               "a",
               {
                 href: subitem.href,
@@ -5245,9 +3556,9 @@ var Sidebar = ({
                 "aria-current": activeRoute === subitem.href ? "page" : void 0,
                 "aria-disabled": subitem.disabled,
                 children: [
-                  subitem.icon && /* @__PURE__ */ jsx21("span", { className: "cria-sidebar__subitem-icon", "aria-hidden": "true", children: subitem.icon }),
-                  /* @__PURE__ */ jsx21("span", { className: "cria-sidebar__subitem-label", children: subitem.label }),
-                  subitem.badge && /* @__PURE__ */ jsx21("span", { className: "cria-sidebar__subitem-badge", "aria-hidden": "true", children: subitem.badge })
+                  subitem.icon && /* @__PURE__ */ jsx19("span", { className: "cria-sidebar__subitem-icon", "aria-hidden": "true", children: subitem.icon }),
+                  /* @__PURE__ */ jsx19("span", { className: "cria-sidebar__subitem-label", children: subitem.label }),
+                  subitem.badge && /* @__PURE__ */ jsx19("span", { className: "cria-sidebar__subitem-badge", "aria-hidden": "true", children: subitem.badge })
                 ]
               }
             ) }, subitem.id)) })
@@ -5268,9 +3579,9 @@ var Topbar = ({
   style,
   ...props
 }) => {
-  const [isMobile, setIsMobile] = useState12(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState12(false);
-  useEffect5(() => {
+  const [isMobile, setIsMobile] = useState9(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState9(false);
+  useEffect4(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
@@ -5278,12 +3589,12 @@ var Topbar = ({
     window.addEventListener("resize", checkMobile);
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
-  const handleMobileMenuToggle = useCallback12(() => {
+  const handleMobileMenuToggle = useCallback9(() => {
     const newState = !mobileMenuOpen;
     setMobileMenuOpen(newState);
     onMobileMenuToggle?.(newState);
   }, [mobileMenuOpen, onMobileMenuToggle]);
-  const handleKeyDown = useCallback12((event, index) => {
+  const handleKeyDown = useCallback9((event, index) => {
     const currentIndex = index;
     const nextIndex = currentIndex + 1;
     const prevIndex = currentIndex - 1;
@@ -5313,7 +3624,7 @@ var Topbar = ({
     "cria-topbar__items",
     isMobile && !mobileMenuOpen && "cria-topbar__items--hidden"
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ jsxs18(
+  return /* @__PURE__ */ jsxs16(
     "nav",
     {
       className: topbarClasses,
@@ -5322,9 +3633,9 @@ var Topbar = ({
       "aria-label": "Main navigation",
       ...props,
       children: [
-        /* @__PURE__ */ jsxs18("div", { className: "cria-topbar__content", children: [
-          brand && /* @__PURE__ */ jsx21("div", { className: "cria-topbar__brand", children: brandHref ? /* @__PURE__ */ jsx21("a", { href: brandHref, className: "cria-topbar__brand-link", children: /* @__PURE__ */ jsx21(Typography, { variant: "h3", weight: "bold", color: "primary", children: brand }) }) : /* @__PURE__ */ jsx21(Typography, { variant: "h3", weight: "bold", color: "primary", children: brand }) }),
-          /* @__PURE__ */ jsx21("div", { className: itemsClasses, children: /* @__PURE__ */ jsx21("ul", { className: "cria-topbar__items-list", role: "menubar", children: items.map((item, index) => /* @__PURE__ */ jsx21("li", { className: "cria-topbar__item-wrapper", children: /* @__PURE__ */ jsxs18(
+        /* @__PURE__ */ jsxs16("div", { className: "cria-topbar__content", children: [
+          brand && /* @__PURE__ */ jsx19("div", { className: "cria-topbar__brand", children: brandHref ? /* @__PURE__ */ jsx19("a", { href: brandHref, className: "cria-topbar__brand-link", children: /* @__PURE__ */ jsx19(Typography, { variant: "h3", weight: "bold", color: "primary", children: brand }) }) : /* @__PURE__ */ jsx19(Typography, { variant: "h3", weight: "bold", color: "primary", children: brand }) }),
+          /* @__PURE__ */ jsx19("div", { className: itemsClasses, children: /* @__PURE__ */ jsx19("ul", { className: "cria-topbar__items-list", role: "menubar", children: items.map((item, index) => /* @__PURE__ */ jsx19("li", { className: "cria-topbar__item-wrapper", children: /* @__PURE__ */ jsxs16(
             "a",
             {
               href: item.href,
@@ -5340,13 +3651,13 @@ var Topbar = ({
               "aria-current": activeRoute === item.href ? "page" : void 0,
               "aria-disabled": item.disabled,
               children: [
-                item.icon && /* @__PURE__ */ jsx21("span", { className: "cria-topbar__icon", "aria-hidden": "true", children: item.icon }),
-                /* @__PURE__ */ jsx21("span", { className: "cria-topbar__label", children: item.label }),
-                item.badge && /* @__PURE__ */ jsx21("span", { className: "cria-topbar__badge", "aria-hidden": "true", children: item.badge })
+                item.icon && /* @__PURE__ */ jsx19("span", { className: "cria-topbar__icon", "aria-hidden": "true", children: item.icon }),
+                /* @__PURE__ */ jsx19("span", { className: "cria-topbar__label", children: item.label }),
+                item.badge && /* @__PURE__ */ jsx19("span", { className: "cria-topbar__badge", "aria-hidden": "true", children: item.badge })
               ]
             }
           ) }, item.id)) }) }),
-          isMobile && /* @__PURE__ */ jsx21(
+          isMobile && /* @__PURE__ */ jsx19(
             Button,
             {
               variant: "ghost",
@@ -5355,11 +3666,11 @@ var Topbar = ({
               "aria-label": "Toggle menu",
               "aria-expanded": mobileMenuOpen,
               className: "cria-topbar__mobile-toggle",
-              children: /* @__PURE__ */ jsx21(List, { size: 16 })
+              children: /* @__PURE__ */ jsx19(List, { size: 16 })
             }
           )
         ] }),
-        isMobile && mobileMenuOpen && /* @__PURE__ */ jsx21("div", { className: "cria-topbar__mobile-menu", role: "menu", children: /* @__PURE__ */ jsx21("ul", { className: "cria-topbar__mobile-items", children: items.map((item) => /* @__PURE__ */ jsx21("li", { className: "cria-topbar__mobile-item-wrapper", children: /* @__PURE__ */ jsxs18(
+        isMobile && mobileMenuOpen && /* @__PURE__ */ jsx19("div", { className: "cria-topbar__mobile-menu", role: "menu", children: /* @__PURE__ */ jsx19("ul", { className: "cria-topbar__mobile-items", children: items.map((item) => /* @__PURE__ */ jsx19("li", { className: "cria-topbar__mobile-item-wrapper", children: /* @__PURE__ */ jsxs16(
           "a",
           {
             href: item.href,
@@ -5372,9 +3683,9 @@ var Topbar = ({
             "aria-current": activeRoute === item.href ? "page" : void 0,
             "aria-disabled": item.disabled,
             children: [
-              item.icon && /* @__PURE__ */ jsx21("span", { className: "cria-topbar__mobile-icon", "aria-hidden": "true", children: item.icon }),
-              /* @__PURE__ */ jsx21("span", { className: "cria-topbar__mobile-label", children: item.label }),
-              item.badge && /* @__PURE__ */ jsx21("span", { className: "cria-topbar__mobile-badge", "aria-hidden": "true", children: item.badge })
+              item.icon && /* @__PURE__ */ jsx19("span", { className: "cria-topbar__mobile-icon", "aria-hidden": "true", children: item.icon }),
+              /* @__PURE__ */ jsx19("span", { className: "cria-topbar__mobile-label", children: item.label }),
+              item.badge && /* @__PURE__ */ jsx19("span", { className: "cria-topbar__mobile-badge", "aria-hidden": "true", children: item.badge })
             ]
           }
         ) }, item.id)) }) })
@@ -5395,17 +3706,17 @@ var Navigation = ({
     `cria-navigation--${variant}`,
     className
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ jsxs18("div", { className: navigationClasses, style, ...props, children: [
-    sidebar && (variant === "sidebar-only" || variant === "both") && /* @__PURE__ */ jsx21(Sidebar, { ...sidebar }),
-    topbar && (variant === "topbar-only" || variant === "both") && /* @__PURE__ */ jsx21(Topbar, { ...topbar })
+  return /* @__PURE__ */ jsxs16("div", { className: navigationClasses, style, ...props, children: [
+    sidebar && (variant === "sidebar-only" || variant === "both") && /* @__PURE__ */ jsx19(Sidebar, { ...sidebar }),
+    topbar && (variant === "topbar-only" || variant === "both") && /* @__PURE__ */ jsx19(Topbar, { ...topbar })
   ] });
 };
 
 // src/components/Pagination/Pagination.tsx
-import { forwardRef as forwardRef5, useMemo as useMemo2 } from "react";
+import { forwardRef as forwardRef6, useMemo as useMemo2 } from "react";
 import { CaretLeft as CaretLeft2, CaretRight as CaretRight2 } from "phosphor-react";
-import { jsx as jsx22, jsxs as jsxs19 } from "react/jsx-runtime";
-var Pagination = forwardRef5(({
+import { jsx as jsx20, jsxs as jsxs17 } from "react/jsx-runtime";
+var Pagination = forwardRef6(({
   currentPage,
   totalPages,
   onPageChange,
@@ -5488,7 +3799,7 @@ var Pagination = forwardRef5(({
   if (totalPages <= 0) {
     return null;
   }
-  return /* @__PURE__ */ jsx22(
+  return /* @__PURE__ */ jsx20(
     "nav",
     {
       ref,
@@ -5496,10 +3807,10 @@ var Pagination = forwardRef5(({
       "aria-label": ariaLabel,
       style,
       ...props,
-      children: /* @__PURE__ */ jsxs19("div", { className: "cria-pagination__content", children: [
-        showPageSize && /* @__PURE__ */ jsxs19("div", { className: "cria-pagination__page-size", children: [
-          /* @__PURE__ */ jsx22("label", { htmlFor: "page-size-select", className: "cria-pagination__page-size-label", children: "Items per page:" }),
-          /* @__PURE__ */ jsx22(
+      children: /* @__PURE__ */ jsxs17("div", { className: "cria-pagination__content", children: [
+        showPageSize && /* @__PURE__ */ jsxs17("div", { className: "cria-pagination__page-size", children: [
+          /* @__PURE__ */ jsx20("label", { htmlFor: "page-size-select", className: "cria-pagination__page-size-label", children: "Items per page:" }),
+          /* @__PURE__ */ jsx20(
             "select",
             {
               id: "page-size-select",
@@ -5507,13 +3818,13 @@ var Pagination = forwardRef5(({
               value: pageSize,
               onChange: handlePageSizeChange,
               "aria-label": "Items per page",
-              children: pageSizeOptions.map((size) => /* @__PURE__ */ jsx22("option", { value: size, children: size }, size))
+              children: pageSizeOptions.map((size) => /* @__PURE__ */ jsx20("option", { value: size, children: size }, size))
             }
           )
         ] }),
-        showPageInfo && pageInfo && /* @__PURE__ */ jsx22("div", { className: "cria-pagination__info", children: /* @__PURE__ */ jsx22("span", { className: "cria-pagination__info-text", children: pageInfo }) }),
-        /* @__PURE__ */ jsxs19("div", { className: "cria-pagination__navigation", children: [
-          showFirstLast && currentPage > 1 && /* @__PURE__ */ jsx22(
+        showPageInfo && pageInfo && /* @__PURE__ */ jsx20("div", { className: "cria-pagination__info", children: /* @__PURE__ */ jsx20("span", { className: "cria-pagination__info-text", children: pageInfo }) }),
+        /* @__PURE__ */ jsxs17("div", { className: "cria-pagination__navigation", children: [
+          showFirstLast && currentPage > 1 && /* @__PURE__ */ jsx20(
             "button",
             {
               className: "cria-pagination__button cria-pagination__button--first",
@@ -5523,7 +3834,7 @@ var Pagination = forwardRef5(({
               children: firstLabel
             }
           ),
-          showPrevNext && /* @__PURE__ */ jsxs19(
+          showPrevNext && /* @__PURE__ */ jsxs17(
             "button",
             {
               className: `cria-pagination__button cria-pagination__button--prev ${currentPage <= 1 ? "cria-pagination__button--disabled" : ""}`,
@@ -5533,14 +3844,14 @@ var Pagination = forwardRef5(({
               "aria-disabled": currentPage <= 1,
               "aria-label": previousLabel,
               children: [
-                /* @__PURE__ */ jsx22(CaretLeft2, { size: 16 }),
-                variant !== "minimal" && /* @__PURE__ */ jsx22("span", { className: "cria-pagination__button-text", children: previousLabel })
+                /* @__PURE__ */ jsx20(CaretLeft2, { size: 16 }),
+                variant !== "minimal" && /* @__PURE__ */ jsx20("span", { className: "cria-pagination__button-text", children: previousLabel })
               ]
             }
           ),
-          /* @__PURE__ */ jsx22("div", { className: "cria-pagination__pages", children: pageNumbers.map((page, index) => {
+          /* @__PURE__ */ jsx20("div", { className: "cria-pagination__pages", children: pageNumbers.map((page, index) => {
             if (page === "...") {
-              return /* @__PURE__ */ jsx22(
+              return /* @__PURE__ */ jsx20(
                 "span",
                 {
                   className: "cria-pagination__ellipsis",
@@ -5552,7 +3863,7 @@ var Pagination = forwardRef5(({
             }
             const pageNum = page;
             const isActive = pageNum === currentPage;
-            return /* @__PURE__ */ jsx22(
+            return /* @__PURE__ */ jsx20(
               "button",
               {
                 className: `cria-pagination__page ${isActive ? "cria-pagination__page--active" : ""}`,
@@ -5565,7 +3876,7 @@ var Pagination = forwardRef5(({
               pageNum
             );
           }) }),
-          showPrevNext && /* @__PURE__ */ jsxs19(
+          showPrevNext && /* @__PURE__ */ jsxs17(
             "button",
             {
               className: `cria-pagination__button cria-pagination__button--next ${currentPage >= totalPages ? "cria-pagination__button--disabled" : ""}`,
@@ -5575,12 +3886,12 @@ var Pagination = forwardRef5(({
               "aria-disabled": currentPage >= totalPages,
               "aria-label": nextLabel,
               children: [
-                variant !== "minimal" && /* @__PURE__ */ jsx22("span", { className: "cria-pagination__button-text", children: nextLabel }),
-                /* @__PURE__ */ jsx22(CaretRight2, { size: 16 })
+                variant !== "minimal" && /* @__PURE__ */ jsx20("span", { className: "cria-pagination__button-text", children: nextLabel }),
+                /* @__PURE__ */ jsx20(CaretRight2, { size: 16 })
               ]
             }
           ),
-          showFirstLast && currentPage < totalPages && /* @__PURE__ */ jsx22(
+          showFirstLast && currentPage < totalPages && /* @__PURE__ */ jsx20(
             "button",
             {
               className: "cria-pagination__button cria-pagination__button--last",
@@ -5598,9 +3909,9 @@ var Pagination = forwardRef5(({
 Pagination.displayName = "Pagination";
 
 // src/components/ProgressBar/ProgressBar.tsx
-import { forwardRef as forwardRef6, useMemo as useMemo3 } from "react";
-import { jsx as jsx23, jsxs as jsxs20 } from "react/jsx-runtime";
-var ProgressBar = forwardRef6(({
+import { forwardRef as forwardRef7, useMemo as useMemo3 } from "react";
+import { jsx as jsx21, jsxs as jsxs18 } from "react/jsx-runtime";
+var ProgressBar = forwardRef7(({
   value = 0,
   min = 0,
   max = 100,
@@ -5661,15 +3972,15 @@ var ProgressBar = forwardRef6(({
     width: variant === "indeterminate" ? "100%" : `${percentage}%`,
     transitionDuration
   };
-  return /* @__PURE__ */ jsxs20("div", { className: "cria-progress-bar__container", children: [
-    (label || showPercentage) && /* @__PURE__ */ jsxs20("div", { className: "cria-progress-bar__header", children: [
-      label && /* @__PURE__ */ jsx23("span", { className: "cria-progress-bar__label", children: label }),
-      showPercentage && variant === "determinate" && /* @__PURE__ */ jsxs20("span", { className: "cria-progress-bar__percentage", children: [
+  return /* @__PURE__ */ jsxs18("div", { className: "cria-progress-bar__container", children: [
+    (label || showPercentage) && /* @__PURE__ */ jsxs18("div", { className: "cria-progress-bar__header", children: [
+      label && /* @__PURE__ */ jsx21("span", { className: "cria-progress-bar__label", children: label }),
+      showPercentage && variant === "determinate" && /* @__PURE__ */ jsxs18("span", { className: "cria-progress-bar__percentage", children: [
         Math.round(percentage),
         "%"
       ] })
     ] }),
-    /* @__PURE__ */ jsx23(
+    /* @__PURE__ */ jsx21(
       "div",
       {
         ref,
@@ -5678,7 +3989,7 @@ var ProgressBar = forwardRef6(({
         style,
         ...accessibilityProps,
         ...props,
-        children: /* @__PURE__ */ jsx23(
+        children: /* @__PURE__ */ jsx21(
           "div",
           {
             className: progressFillClasses,
@@ -5693,8 +4004,8 @@ var ProgressBar = forwardRef6(({
 ProgressBar.displayName = "ProgressBar";
 
 // src/components/VerticalTabs/VerticalTabs.tsx
-import React20 from "react";
-import { jsx as jsx24, jsxs as jsxs21 } from "react/jsx-runtime";
+import React18 from "react";
+import { jsx as jsx22, jsxs as jsxs19 } from "react/jsx-runtime";
 var VerticalTabs = ({
   tabs,
   activeId,
@@ -5704,7 +4015,7 @@ var VerticalTabs = ({
   style,
   ...props
 }) => {
-  const tabRefs = React20.useRef([]);
+  const tabRefs = React18.useRef([]);
   const focusTabAt = (startIndex, direction) => {
     const len = tabs.length;
     let i = startIndex;
@@ -5734,10 +4045,10 @@ var VerticalTabs = ({
     }
   };
   const containerClass = ["cria-vertical-tabs", className].filter(Boolean).join(" ");
-  return /* @__PURE__ */ jsxs21("div", { className: containerClass, style, ...props, children: [
-    /* @__PURE__ */ jsx24("div", { role: "tablist", "aria-orientation": "vertical", className: "cria-vertical-tabs__list", children: tabs.map((tab, index) => {
+  return /* @__PURE__ */ jsxs19("div", { className: containerClass, style, ...props, children: [
+    /* @__PURE__ */ jsx22("div", { role: "tablist", "aria-orientation": "vertical", className: "cria-vertical-tabs__list", children: tabs.map((tab, index) => {
       const selected = tab.id === activeId;
-      return /* @__PURE__ */ jsxs21(
+      return /* @__PURE__ */ jsxs19(
         "button",
         {
           role: "tab",
@@ -5755,20 +4066,20 @@ var VerticalTabs = ({
           },
           onKeyDown: (e) => onKeyDownTab(e, index, tab.id, tab.disabled),
           children: [
-            tab.icon && /* @__PURE__ */ jsx24("span", { className: "cria-vertical-tabs__icon", children: tab.icon }),
-            /* @__PURE__ */ jsx24("span", { className: "cria-vertical-tabs__label", children: tab.label })
+            tab.icon && /* @__PURE__ */ jsx22("span", { className: "cria-vertical-tabs__icon", children: tab.icon }),
+            /* @__PURE__ */ jsx22("span", { className: "cria-vertical-tabs__label", children: tab.label })
           ]
         },
         tab.id
       );
     }) }),
-    renderPanel && /* @__PURE__ */ jsx24("div", { className: "cria-vertical-tabs__panel", children: renderPanel(activeId) })
+    renderPanel && /* @__PURE__ */ jsx22("div", { className: "cria-vertical-tabs__panel", children: renderPanel(activeId) })
   ] });
 };
 
 // src/components/DatePicker/DatePicker.tsx
-import { useCallback as useCallback13, useEffect as useEffect6, useMemo as useMemo4, useRef as useRef8, useState as useState13 } from "react";
-import { jsx as jsx25, jsxs as jsxs22 } from "react/jsx-runtime";
+import { useCallback as useCallback10, useEffect as useEffect5, useMemo as useMemo4, useRef as useRef8, useState as useState10 } from "react";
+import { jsx as jsx23, jsxs as jsxs20 } from "react/jsx-runtime";
 function startOfMonth(d) {
   return new Date(d.getFullYear(), d.getMonth(), 1);
 }
@@ -5808,10 +4119,10 @@ var DatePicker = ({
   className = "",
   ...inputProps
 }) => {
-  const [open, setOpen] = useState13(false);
+  const [open, setOpen] = useState10(false);
   const today = useMemo4(() => /* @__PURE__ */ new Date(), []);
   const initial = Array.isArray(value) ? value[0] ?? today : (value ?? today) || today;
-  const [view, setView] = useState13(startOfMonth(initial instanceof Date ? initial : today));
+  const [view, setView] = useState10(startOfMonth(initial instanceof Date ? initial : today));
   const containerRef = useRef8(null);
   const inputRef = useRef8(null);
   const selectedStart = Array.isArray(value) ? value[0] : Array.isArray(value) ? null : value ?? null;
@@ -5832,7 +4143,7 @@ var DatePicker = ({
     }
     return out;
   }, [view]);
-  const isDisabled = useCallback13((d) => {
+  const isDisabled = useCallback10((d) => {
     if (minDate && d < new Date(minDate.getFullYear(), minDate.getMonth(), minDate.getDate())) return true;
     if (maxDate && d > new Date(maxDate.getFullYear(), maxDate.getMonth(), maxDate.getDate())) return true;
     if (disabledDate && disabledDate(d)) return true;
@@ -5864,7 +4175,7 @@ var DatePicker = ({
     if (range) commitRange(d);
     else commitSingle(d);
   };
-  useEffect6(() => {
+  useEffect5(() => {
     const onDoc = (e) => {
       if (!containerRef.current) return;
       if (!containerRef.current.contains(e.target)) setOpen(false);
@@ -5888,9 +4199,9 @@ var DatePicker = ({
       return;
     }
   };
-  return /* @__PURE__ */ jsxs22("div", { className: ["cria-date-picker", className].filter(Boolean).join(" "), ref: containerRef, children: [
-    label && /* @__PURE__ */ jsx25("label", { className: "cria-date-picker__label", children: label }),
-    /* @__PURE__ */ jsx25(
+  return /* @__PURE__ */ jsxs20("div", { className: ["cria-date-picker", className].filter(Boolean).join(" "), ref: containerRef, children: [
+    label && /* @__PURE__ */ jsx23("label", { className: "cria-date-picker__label", children: label }),
+    /* @__PURE__ */ jsx23(
       "input",
       {
         ref: inputRef,
@@ -5906,25 +4217,25 @@ var DatePicker = ({
         ...inputProps
       }
     ),
-    open && /* @__PURE__ */ jsxs22("div", { className: "cria-calendar", role: "dialog", "aria-modal": "false", "aria-label": "Date picker", children: [
-      /* @__PURE__ */ jsxs22("div", { className: "cria-calendar__header", children: [
-        /* @__PURE__ */ jsx25("button", { className: "cria-calendar__nav", onClick: () => setView(addMonths(view, -1)), "aria-label": "Previous month", children: "\u2039" }),
-        /* @__PURE__ */ jsxs22("div", { className: "cria-calendar__month", "aria-live": "polite", children: [
+    open && /* @__PURE__ */ jsxs20("div", { className: "cria-calendar", role: "dialog", "aria-modal": "false", "aria-label": "Date picker", children: [
+      /* @__PURE__ */ jsxs20("div", { className: "cria-calendar__header", children: [
+        /* @__PURE__ */ jsx23("button", { className: "cria-calendar__nav", onClick: () => setView(addMonths(view, -1)), "aria-label": "Previous month", children: "\u2039" }),
+        /* @__PURE__ */ jsxs20("div", { className: "cria-calendar__month", "aria-live": "polite", children: [
           view.toLocaleString(void 0, { month: "long" }),
           " ",
           view.getFullYear()
         ] }),
-        /* @__PURE__ */ jsx25("button", { className: "cria-calendar__nav", onClick: () => setView(addMonths(view, 1)), "aria-label": "Next month", children: "\u203A" })
+        /* @__PURE__ */ jsx23("button", { className: "cria-calendar__nav", onClick: () => setView(addMonths(view, 1)), "aria-label": "Next month", children: "\u203A" })
       ] }),
-      /* @__PURE__ */ jsx25("div", { className: "cria-calendar__weekdays", children: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d) => /* @__PURE__ */ jsx25("div", { className: "cria-calendar__weekday", "aria-hidden": "true", children: d }, d)) }),
-      /* @__PURE__ */ jsx25("div", { className: "cria-calendar__grid", role: "grid", children: days.map((d, i) => {
+      /* @__PURE__ */ jsx23("div", { className: "cria-calendar__weekdays", children: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map((d) => /* @__PURE__ */ jsx23("div", { className: "cria-calendar__weekday", "aria-hidden": "true", children: d }, d)) }),
+      /* @__PURE__ */ jsx23("div", { className: "cria-calendar__grid", role: "grid", children: days.map((d, i) => {
         const inMonth = d.getMonth() === view.getMonth();
         const disabled = !inMonth || isDisabled(d);
         const isStart = selectedStart instanceof Date && sameDay(d, selectedStart);
         const isEnd = selectedEnd instanceof Date && sameDay(d, selectedEnd);
         const inRange = range && selectedStart instanceof Date && selectedEnd instanceof Date && d >= selectedStart && d <= selectedEnd;
         const isToday = sameDay(d, today);
-        return /* @__PURE__ */ jsx25(
+        return /* @__PURE__ */ jsx23(
           "button",
           {
             role: "gridcell",
@@ -5951,112 +4262,481 @@ var DatePicker = ({
 };
 
 // src/components/Stepper/Stepper.tsx
-import { useCallback as useCallback14, useMemo as useMemo5, useRef as useRef9 } from "react";
-import { jsx as jsx26, jsxs as jsxs23 } from "react/jsx-runtime";
-var Stepper = ({
-  steps,
-  activeId,
-  onChange,
-  orientation = "horizontal",
-  linear = true,
-  className,
-  style,
+import { forwardRef as forwardRef8 } from "react";
+import { Spinner } from "phosphor-react";
+import { jsx as jsx24, jsxs as jsxs21 } from "react/jsx-runtime";
+var StepperStep = forwardRef8(({
+  step,
+  index,
+  size = "md",
+  variant = "default",
+  style = "filled",
+  onClick,
+  className = "",
   ...props
-}) => {
-  const activeIndex = useMemo5(() => steps.findIndex((s) => s.id === activeId), [steps, activeId]);
-  const tabRefs = useRef9([]);
-  const canActivate = useCallback14((index) => {
-    const step = steps[index];
-    if (!step || step.disabled) return false;
-    if (!linear) return true;
-    return index <= activeIndex;
-  }, [steps, linear, activeIndex]);
-  const handleClick = useCallback14((index) => {
-    if (canActivate(index)) {
-      onChange?.(steps[index].id);
-    }
-  }, [canActivate, onChange, steps]);
-  const moveFocus = (current, dir) => {
-    const total = steps.length;
-    let i = current;
-    for (let c = 0; c < total; c++) {
-      i = (i + dir + total) % total;
-      if (!steps[i].disabled) {
-        tabRefs.current[i]?.focus();
-        break;
-      }
+}, ref) => {
+  const {
+    id,
+    title,
+    description,
+    icon,
+    completed = false,
+    active = false,
+    disabled = false,
+    loading = false,
+    selected = false
+  } = step;
+  const sizeConfig = {
+    sm: {
+      padding: spacing[2],
+      iconSize: "1rem",
+      fontSize: typography.fontSize.caption,
+      titleFontSize: typography.fontSize.body2,
+      borderRadius: radii.sm,
+      iconPadding: spacing[1]
+    },
+    md: {
+      padding: spacing[3],
+      iconSize: "1.25rem",
+      fontSize: typography.fontSize.body2,
+      titleFontSize: typography.fontSize.body,
+      borderRadius: radii.md,
+      iconPadding: spacing[2]
+    },
+    lg: {
+      padding: spacing[4],
+      iconSize: "1.5rem",
+      fontSize: typography.fontSize.body,
+      titleFontSize: typography.fontSize.h3,
+      borderRadius: radii.lg,
+      iconPadding: spacing[3]
     }
   };
-  const handleKeyDown = (e, index) => {
-    if (orientation === "horizontal") {
-      if (e.key === "ArrowRight") {
-        e.preventDefault();
-        moveFocus(index, 1);
-        return;
-      }
-      if (e.key === "ArrowLeft") {
-        e.preventDefault();
-        moveFocus(index, -1);
-        return;
-      }
+  const config = sizeConfig[size];
+  const getStepStyles = () => {
+    const baseStyles = {
+      display: "flex",
+      alignItems: "center",
+      gap: spacing[3],
+      padding: config.padding,
+      borderRadius: config.borderRadius,
+      transition: "all 0.2s ease",
+      cursor: onClick && !disabled ? "pointer" : "default",
+      opacity: disabled ? 0.6 : 1,
+      position: "relative",
+      ...props.style
+    };
+    let backgroundColor = "transparent";
+    let borderColor = "transparent";
+    let textColor = colors.gray[600];
+    if (completed) {
+      backgroundColor = colors.success[100];
+      borderColor = colors.success[300];
+      textColor = colors.success[800];
+    } else if (active) {
+      backgroundColor = colors.primary[100];
+      borderColor = colors.primary[300];
+      textColor = colors.primary[800];
+    } else if (selected) {
+      backgroundColor = colors.secondary[100];
+      borderColor = colors.secondary[300];
+      textColor = colors.secondary[800];
+    }
+    switch (style) {
+      case "filled":
+        return {
+          ...baseStyles,
+          backgroundColor,
+          border: `1px solid ${borderColor}`
+        };
+      case "outlined":
+        return {
+          ...baseStyles,
+          backgroundColor: "transparent",
+          border: `2px solid ${borderColor}`
+        };
+      case "ghost":
+        return {
+          ...baseStyles,
+          backgroundColor: completed ? colors.success[50] : active ? colors.primary[50] : "transparent",
+          border: "none"
+        };
+      default:
+        return baseStyles;
+    }
+  };
+  const getIconStyles = () => {
+    const baseIconStyles = {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: config.iconSize,
+      height: config.iconSize,
+      borderRadius: "50%",
+      flexShrink: 0,
+      fontSize: config.iconSize
+    };
+    if (completed) {
+      return {
+        ...baseIconStyles,
+        backgroundColor: colors.success[500],
+        color: colors.white
+      };
+    } else if (active) {
+      return {
+        ...baseIconStyles,
+        backgroundColor: colors.primary[500],
+        color: colors.white
+      };
     } else {
-      if (e.key === "ArrowDown") {
-        e.preventDefault();
-        moveFocus(index, 1);
-        return;
-      }
-      if (e.key === "ArrowUp") {
-        e.preventDefault();
-        moveFocus(index, -1);
-        return;
-      }
-    }
-    if ((e.key === "Enter" || e.key === " ") && canActivate(index)) {
-      e.preventDefault();
-      onChange?.(steps[index].id);
+      return {
+        ...baseIconStyles,
+        backgroundColor: colors.gray[200],
+        color: colors.gray[500]
+      };
     }
   };
-  const containerClasses = [
-    "cria-stepper",
-    `cria-stepper--${orientation}`,
-    className
-  ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ jsx26("div", { className: containerClasses, style, ...props, children: /* @__PURE__ */ jsx26("div", { role: "tablist", "aria-orientation": orientation, className: "cria-stepper__list", children: steps.map((step, index) => {
-    const isActive = step.id === activeId;
-    const isDisabled = !!step.disabled || linear && index > activeIndex;
-    const tabIndex = isDisabled ? -1 : isActive ? 0 : -1;
-    const itemClasses = [
-      "cria-stepper__tab",
-      isActive && "cria-stepper__tab--active",
-      step.completed && "cria-stepper__tab--completed",
-      step.error && "cria-stepper__tab--error",
-      isDisabled && "cria-stepper__tab--disabled"
-    ].filter(Boolean).join(" ");
-    return /* @__PURE__ */ jsxs23(
-      "button",
+  const stepStyles = getStepStyles();
+  const iconStyles = getIconStyles();
+  const handleClick = (event) => {
+    if (onClick && !disabled && !loading) {
+      onClick(index, step);
+    }
+  };
+  const handleKeyDown = (event) => {
+    if (onClick && !disabled && !loading && (event.key === "Enter" || event.key === " ")) {
+      event.preventDefault();
+      onClick(index, step);
+    }
+  };
+  const Component = onClick ? "button" : "div";
+  return /* @__PURE__ */ jsxs21(
+    Component,
+    {
+      ref,
+      className: `stepper-step variant-${variant} size-${size} style-${style} ${className} ${onClick ? "clickable" : ""} ${disabled ? "disabled" : ""} ${loading ? "loading" : ""} ${selected ? "selected" : ""} ${completed ? "completed" : ""} ${active ? "active" : ""}`,
+      role: onClick ? "button" : "listitem",
+      "aria-label": `${title}${description ? `: ${description}` : ""}`,
+      "aria-disabled": disabled || loading,
+      onClick: handleClick,
+      onKeyDown: handleKeyDown,
+      tabIndex: onClick && !disabled ? 0 : void 0,
+      disabled: onClick && disabled,
+      style: stepStyles,
+      ...props,
+      children: [
+        /* @__PURE__ */ jsx24("div", { className: "stepper-step-icon", style: iconStyles, children: loading ? /* @__PURE__ */ jsx24(Spinner, { size: 16, weight: "bold", style: { animation: "spin 1s linear infinite" } }) : completed ? /* @__PURE__ */ jsx24("div", { style: { fontSize: "0.75rem", fontWeight: "bold" }, children: "\u2713" }) : icon || /* @__PURE__ */ jsx24("div", { style: { fontSize: "0.75rem", fontWeight: "bold" }, children: index + 1 }) }),
+        /* @__PURE__ */ jsxs21("div", { className: "stepper-step-content", style: { flex: 1, minWidth: 0 }, children: [
+          /* @__PURE__ */ jsx24(
+            "div",
+            {
+              className: "stepper-step-title",
+              style: {
+                fontSize: config.titleFontSize,
+                fontWeight: typography.fontWeight.semiBold,
+                color: stepStyles.color || colors.gray[900],
+                marginBottom: description ? spacing[1] : 0,
+                lineHeight: typography.lineHeight.tight
+              },
+              children: title
+            }
+          ),
+          description && /* @__PURE__ */ jsx24(
+            "div",
+            {
+              className: "stepper-step-description",
+              style: {
+                fontSize: config.fontSize,
+                color: colors.gray[600],
+                lineHeight: typography.lineHeight.relaxed
+              },
+              children: description
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsx24("style", { children: `
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .stepper-step.clickable:focus {
+          outline: 2px solid ${colors.primary[500]};
+          outline-offset: 2px;
+        }
+
+        .stepper-step.clickable:focus-visible {
+          outline: 2px solid ${colors.primary[500]};
+          outline-offset: 2px;
+        }
+
+        .stepper-step.clickable:hover {
+          ${!disabled && !loading ? `transform: translateY(-1px); box-shadow: ${shadows.sm};` : ""}
+        }
+      ` })
+      ]
+    }
+  );
+});
+StepperStep.displayName = "StepperStep";
+var Stepper = forwardRef8(({
+  steps,
+  currentStep = 0,
+  orientation = "horizontal",
+  size = "md",
+  variant = "default",
+  showConnector = true,
+  showNavigation = true,
+  connector,
+  connectorStyle = "solid",
+  connectorColor = "primary",
+  loading = false,
+  disabled = false,
+  stepRenderer,
+  onStepClick,
+  onNext,
+  onPrevious,
+  onComplete,
+  nextLabel = "Next",
+  previousLabel = "Previous",
+  completeLabel = "Complete",
+  className = "",
+  style = {},
+  ...props
+}, ref) => {
+  const sizeConfig = {
+    sm: {
+      stepSpacing: spacing[3],
+      iconSize: "1rem",
+      fontSize: typography.fontSize.caption,
+      titleFontSize: typography.fontSize.body2,
+      connectorWidth: "2px"
+    },
+    md: {
+      stepSpacing: spacing[4],
+      iconSize: "1.25rem",
+      fontSize: typography.fontSize.body2,
+      titleFontSize: typography.fontSize.body,
+      connectorWidth: "2px"
+    },
+    lg: {
+      stepSpacing: spacing[5],
+      iconSize: "1.5rem",
+      fontSize: typography.fontSize.body,
+      titleFontSize: typography.fontSize.h3,
+      connectorWidth: "3px"
+    }
+  };
+  const config = sizeConfig[size];
+  const connectorColorMap = {
+    primary: colors.primary[500],
+    secondary: colors.secondary[500],
+    gray: colors.gray[300]
+  };
+  const renderLoading = () => /* @__PURE__ */ jsx24(
+    "div",
+    {
+      className: "stepper-loading",
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: spacing[8],
+        color: colors.gray[500]
+      },
+      "aria-label": "Loading stepper",
+      children: /* @__PURE__ */ jsx24(Spinner, { size: 24, weight: "bold", style: { animation: "spin 1s linear infinite" } })
+    }
+  );
+  const renderConnector = (isLast) => {
+    if (!showConnector || isLast) return null;
+    if (connector) {
+      return connector;
+    }
+    const connectorStyles = {
+      solid: "solid",
+      dashed: "dashed",
+      dotted: "dotted"
+    };
+    return /* @__PURE__ */ jsx24(
+      "div",
       {
-        role: "tab",
-        ref: (el) => tabRefs.current[index] = el,
-        className: itemClasses,
-        "aria-selected": isActive ? "true" : "false",
-        "aria-disabled": isDisabled ? "true" : void 0,
-        tabIndex,
-        onClick: () => handleClick(index),
-        onKeyDown: (e) => handleKeyDown(e, index),
-        children: [
-          step.icon && /* @__PURE__ */ jsx26("span", { className: "cria-stepper__icon", "aria-hidden": "true", children: step.icon }),
-          /* @__PURE__ */ jsx26("span", { className: "cria-stepper__title", children: step.title }),
-          step.description && /* @__PURE__ */ jsx26("span", { className: "cria-stepper__description", children: step.description })
-        ]
+        className: "stepper-connector",
+        style: {
+          position: "absolute",
+          ...orientation === "horizontal" ? {
+            left: "100%",
+            top: "50%",
+            transform: "translateY(-50%)",
+            width: config.stepSpacing,
+            height: config.connectorWidth
+          } : {
+            top: "100%",
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: config.connectorWidth,
+            height: config.stepSpacing
+          },
+          backgroundColor: connectorColorMap[connectorColor],
+          borderStyle: connectorStyles[connectorStyle],
+          borderWidth: "0 0 0 2px",
+          borderColor: connectorColorMap[connectorColor],
+          zIndex: 1
+        }
+      }
+    );
+  };
+  const renderStep = (step, index) => {
+    if (stepRenderer) {
+      return stepRenderer({ step, index });
+    }
+    return /* @__PURE__ */ jsx24(
+      StepperStep,
+      {
+        step,
+        index,
+        size,
+        variant,
+        onClick: onStepClick,
+        style: {
+          marginBottom: orientation === "vertical" && index < steps.length - 1 ? config.stepSpacing : 0,
+          marginRight: orientation === "horizontal" && index < steps.length - 1 ? config.stepSpacing : 0
+        }
       },
       step.id
     );
-  }) }) });
-};
+  };
+  const renderNavigation = () => {
+    if (!showNavigation) return null;
+    const currentStepData = steps[currentStep];
+    const isFirstStep = currentStep === 0;
+    const isLastStep = currentStep === steps.length - 1;
+    return /* @__PURE__ */ jsxs21(
+      "div",
+      {
+        className: "stepper-navigation",
+        style: {
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          marginTop: spacing[6],
+          padding: spacing[4],
+          borderTop: `1px solid ${colors.gray[200]}`
+        },
+        children: [
+          /* @__PURE__ */ jsx24(
+            Button,
+            {
+              variant: "outlined",
+              size,
+              disabled: isFirstStep || disabled || loading,
+              onClick: () => onPrevious?.(currentStep, currentStepData),
+              children: previousLabel
+            }
+          ),
+          /* @__PURE__ */ jsx24("div", { style: { display: "flex", alignItems: "center", gap: spacing[2] }, children: /* @__PURE__ */ jsxs21(Typography, { variant: "bodySmall", color: "secondary", children: [
+            "Step ",
+            currentStep + 1,
+            " of ",
+            steps.length
+          ] }) }),
+          /* @__PURE__ */ jsx24(
+            Button,
+            {
+              variant: "primary",
+              size,
+              disabled: disabled || loading,
+              onClick: () => {
+                if (isLastStep) {
+                  onComplete?.(currentStep, currentStepData);
+                } else {
+                  onNext?.(currentStep, currentStepData);
+                }
+              },
+              children: isLastStep ? completeLabel : nextLabel
+            }
+          )
+        ]
+      }
+    );
+  };
+  if (loading) {
+    return /* @__PURE__ */ jsx24(
+      "div",
+      {
+        ref,
+        className: `stepper loading ${className}`,
+        style,
+        ...props,
+        children: renderLoading()
+      }
+    );
+  }
+  return /* @__PURE__ */ jsxs21(
+    "div",
+    {
+      ref,
+      className: `stepper orientation-${orientation} size-${size} variant-${variant} ${className}`,
+      style: {
+        position: "relative",
+        ...orientation === "horizontal" && {
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center"
+        },
+        ...orientation === "vertical" && {
+          display: "flex",
+          flexDirection: "column"
+        },
+        ...style
+      },
+      role: "navigation",
+      "aria-label": "Stepper navigation",
+      ...props,
+      children: [
+        steps.map((step, index) => /* @__PURE__ */ jsxs21(
+          "div",
+          {
+            className: "stepper-step-wrapper",
+            style: {
+              position: "relative",
+              ...orientation === "horizontal" && {
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center"
+              },
+              ...orientation === "vertical" && {
+                display: "flex",
+                flexDirection: "column"
+              }
+            },
+            children: [
+              renderStep(step, index),
+              renderConnector(index === steps.length - 1)
+            ]
+          },
+          step.id
+        )),
+        renderNavigation(),
+        /* @__PURE__ */ jsx24("style", { children: `
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .stepper-step-wrapper:last-child .stepper-connector {
+          display: none;
+        }
+      ` })
+      ]
+    }
+  );
+});
+Stepper.displayName = "Stepper";
 
 // src/components/RadioGroup/RadioGroup.tsx
-import { createContext as createContext2, useContext as useContext2, useCallback as useCallback15, useRef as useRef10 } from "react";
-import { jsx as jsx27, jsxs as jsxs24 } from "react/jsx-runtime";
+import { createContext as createContext2, useContext as useContext2, useCallback as useCallback11, useRef as useRef9 } from "react";
+import { jsx as jsx25, jsxs as jsxs22 } from "react/jsx-runtime";
 var RadioGroupContext = createContext2(null);
 var useRadioGroup = () => {
   const context = useContext2(RadioGroupContext);
@@ -6070,18 +4750,18 @@ function getSizeStyles4(size) {
     case "sm":
       return {
         fontSize: typography.fontSize.bodySmall,
-        gap: spacing2[2]
+        gap: spacing[2]
       };
     case "lg":
       return {
         fontSize: typography.fontSize.body,
-        gap: spacing2[4]
+        gap: spacing[4]
       };
     case "md":
     default:
       return {
         fontSize: typography.fontSize.body,
-        gap: spacing2[3]
+        gap: spacing[3]
       };
   }
 }
@@ -6092,14 +4772,14 @@ function getOrientationStyles(orientation) {
         display: "flex",
         flexDirection: "row",
         flexWrap: "wrap",
-        gap: spacing2[4]
+        gap: spacing[4]
       };
     case "vertical":
     default:
       return {
         display: "flex",
         flexDirection: "column",
-        gap: spacing2[2]
+        gap: spacing[2]
       };
   }
 }
@@ -6117,7 +4797,7 @@ var RadioGroup = ({
   children,
   ...props
 }) => {
-  const fieldsetRef = useRef10(null);
+  const fieldsetRef = useRef9(null);
   const contextValue = {
     name,
     value,
@@ -6128,7 +4808,7 @@ var RadioGroup = ({
     error,
     orientation
   };
-  const handleKeyDown = useCallback15((event) => {
+  const handleKeyDown = useCallback11((event) => {
     if (disabled) return;
     const radios = fieldsetRef.current?.querySelectorAll('input[type="radio"]');
     if (!radios.length) return;
@@ -6175,7 +4855,7 @@ var RadioGroup = ({
     ...getOrientationStyles(orientation),
     ...style
   };
-  return /* @__PURE__ */ jsx27(RadioGroupContext.Provider, { value: contextValue, children: /* @__PURE__ */ jsxs24(
+  return /* @__PURE__ */ jsx25(RadioGroupContext.Provider, { value: contextValue, children: /* @__PURE__ */ jsxs22(
     "fieldset",
     {
       ref: fieldsetRef,
@@ -6188,20 +4868,20 @@ var RadioGroup = ({
       ...props,
       children: [
         children,
-        error && /* @__PURE__ */ jsxs24(
+        error && /* @__PURE__ */ jsxs22(
           "div",
           {
             role: "alert",
             style: {
               color: colors.error,
               fontSize: typography.fontSize.caption,
-              marginTop: spacing2[2],
+              marginTop: spacing[2],
               display: "flex",
               alignItems: "center",
-              gap: spacing2[1]
+              gap: spacing[1]
             },
             children: [
-              /* @__PURE__ */ jsx27("span", { children: "\u26A0" }),
+              /* @__PURE__ */ jsx25("span", { children: "\u26A0" }),
               error
             ]
           }
@@ -6228,11 +4908,11 @@ var RadioGroupLabel = ({
     fontFamily: typography.fontFamily.primary,
     fontWeight: typography.fontWeight.medium,
     color: colors.text.primary,
-    marginBottom: spacing2[2],
+    marginBottom: spacing[2],
     display: "block",
     ...style
   };
-  return /* @__PURE__ */ jsxs24(
+  return /* @__PURE__ */ jsxs22(
     "legend",
     {
       id: labelId,
@@ -6242,12 +4922,12 @@ var RadioGroupLabel = ({
       ...props,
       children: [
         children,
-        required && /* @__PURE__ */ jsx27(
+        required && /* @__PURE__ */ jsx25(
           "span",
           {
             style: {
               color: colors.error,
-              marginLeft: spacing2[1]
+              marginLeft: spacing[1]
             },
             "aria-label": "required",
             children: "*"
@@ -6271,7 +4951,7 @@ var RadioGroupItem = ({
   const isSelected = selectedValue === value;
   const inputId = id || `${name}-${value}`;
   const labelId = `${inputId}-label`;
-  const handleChange = useCallback15((event) => {
+  const handleChange = useCallback11((event) => {
     if (isDisabled) return;
     if (onChange) {
       onChange(value);
@@ -6287,7 +4967,7 @@ var RadioGroupItem = ({
   const containerStyles = {
     display: "flex",
     alignItems: "center",
-    gap: spacing2[2],
+    gap: spacing[2],
     cursor: isDisabled ? "not-allowed" : "pointer",
     opacity: isDisabled ? 0.6 : 1,
     ...style
@@ -6313,8 +4993,8 @@ var RadioGroupItem = ({
     userSelect: "none",
     flex: 1
   };
-  return /* @__PURE__ */ jsxs24("div", { className: classes, style: containerStyles, children: [
-    /* @__PURE__ */ jsx27(
+  return /* @__PURE__ */ jsxs22("div", { className: classes, style: containerStyles, children: [
+    /* @__PURE__ */ jsx25(
       "input",
       {
         type: "radio",
@@ -6329,7 +5009,7 @@ var RadioGroupItem = ({
         ...props
       }
     ),
-    /* @__PURE__ */ jsx27(
+    /* @__PURE__ */ jsx25(
       "label",
       {
         id: labelId,
@@ -6342,8 +5022,8 @@ var RadioGroupItem = ({
 };
 
 // src/components/Sidebar/Sidebar.tsx
-import { useState as useState14, useCallback as useCallback16, useRef as useRef11, useEffect as useEffect7 } from "react";
-import { jsx as jsx28, jsxs as jsxs25 } from "react/jsx-runtime";
+import { useState as useState11, useCallback as useCallback12, useRef as useRef10, useEffect as useEffect6 } from "react";
+import { jsx as jsx26, jsxs as jsxs23 } from "react/jsx-runtime";
 var Sidebar2 = ({
   items,
   activeItem: controlledActiveItem,
@@ -6359,17 +5039,17 @@ var Sidebar2 = ({
   style,
   ...props
 }) => {
-  const [internalActiveItem, setInternalActiveItem] = useState14(
+  const [internalActiveItem, setInternalActiveItem] = useState11(
     defaultActiveItem || items[0]?.id || ""
   );
-  const [internalCollapsed, setInternalCollapsed] = useState14(false);
+  const [internalCollapsed, setInternalCollapsed] = useState11(false);
   const isControlled = controlledActiveItem !== void 0;
   const activeItem = isControlled ? controlledActiveItem : internalActiveItem;
   const isCollapseControlled = controlledCollapsed !== void 0;
   const collapsed = isCollapseControlled ? controlledCollapsed : internalCollapsed;
-  const itemRefs = useRef11({});
-  const sidebarRef = useRef11(null);
-  const handleItemChange = useCallback16((itemId) => {
+  const itemRefs = useRef10({});
+  const sidebarRef = useRef10(null);
+  const handleItemChange = useCallback12((itemId) => {
     if (isControlled) {
       onChange?.(itemId);
     } else {
@@ -6377,7 +5057,7 @@ var Sidebar2 = ({
       onChange?.(itemId);
     }
   }, [isControlled, onChange]);
-  const handleCollapseToggle = useCallback16(() => {
+  const handleCollapseToggle = useCallback12(() => {
     if (isCollapseControlled) {
       onCollapseChange?.(!collapsed);
     } else {
@@ -6385,7 +5065,7 @@ var Sidebar2 = ({
       onCollapseChange?.(!collapsed);
     }
   }, [isCollapseControlled, collapsed, onCollapseChange]);
-  const handleKeyDown = useCallback16((event, itemId) => {
+  const handleKeyDown = useCallback12((event, itemId) => {
     const flatItems = items.flatMap(
       (item) => item.children ? [item, ...item.children] : [item]
     );
@@ -6430,7 +5110,7 @@ var Sidebar2 = ({
       itemRefs.current[nextItemId]?.focus();
     }
   }, [items, handleItemChange]);
-  useEffect7(() => {
+  useEffect6(() => {
     if (activeItem && itemRefs.current[activeItem]) {
       itemRefs.current[activeItem]?.focus();
     }
@@ -6462,8 +5142,8 @@ var Sidebar2 = ({
       isDisabled ? "cria-sidebar__item--disabled" : null,
       hasChildren ? "cria-sidebar__item--has-children" : null
     ].filter(Boolean).join(" ");
-    return /* @__PURE__ */ jsxs25("div", { className: "cria-sidebar__item-wrapper", children: [
-      /* @__PURE__ */ jsxs25(
+    return /* @__PURE__ */ jsxs23("div", { className: "cria-sidebar__item-wrapper", children: [
+      /* @__PURE__ */ jsxs23(
         "button",
         {
           ref: (el) => {
@@ -6479,17 +5159,17 @@ var Sidebar2 = ({
           onClick: () => !isDisabled && handleItemChange(item.id),
           onKeyDown: (e) => !isDisabled && handleKeyDown(e, item.id),
           children: [
-            item.icon && /* @__PURE__ */ jsx28("span", { className: "cria-sidebar__item-icon", children: item.icon }),
-            !collapsed && /* @__PURE__ */ jsx28("span", { className: "cria-sidebar__item-label", children: item.label }),
-            !collapsed && item.badge && /* @__PURE__ */ jsx28("span", { className: "cria-sidebar__item-badge", children: item.badge }),
-            hasChildren && !collapsed && /* @__PURE__ */ jsx28("span", { className: "cria-sidebar__item-arrow", children: item.expanded ? "\u25BC" : "\u25B6" })
+            item.icon && /* @__PURE__ */ jsx26("span", { className: "cria-sidebar__item-icon", children: item.icon }),
+            !collapsed && /* @__PURE__ */ jsx26("span", { className: "cria-sidebar__item-label", children: item.label }),
+            !collapsed && item.badge && /* @__PURE__ */ jsx26("span", { className: "cria-sidebar__item-badge", children: item.badge }),
+            hasChildren && !collapsed && /* @__PURE__ */ jsx26("span", { className: "cria-sidebar__item-arrow", children: item.expanded ? "\u25BC" : "\u25B6" })
           ]
         }
       ),
-      hasChildren && !collapsed && item.expanded && /* @__PURE__ */ jsx28("div", { className: "cria-sidebar__submenu", children: item.children?.map((child) => renderSidebarItem(child, level + 1)) })
+      hasChildren && !collapsed && item.expanded && /* @__PURE__ */ jsx26("div", { className: "cria-sidebar__submenu", children: item.children?.map((child) => renderSidebarItem(child, level + 1)) })
     ] }, item.id);
   };
-  return /* @__PURE__ */ jsxs25(
+  return /* @__PURE__ */ jsxs23(
     "div",
     {
       ref: sidebarRef,
@@ -6499,7 +5179,7 @@ var Sidebar2 = ({
       "aria-label": "Sidebar navigation",
       ...props,
       children: [
-        collapsible && /* @__PURE__ */ jsx28(
+        collapsible && /* @__PURE__ */ jsx26(
           "button",
           {
             className: "cria-sidebar__toggle",
@@ -6508,8 +5188,8 @@ var Sidebar2 = ({
             children: collapsed ? "\u25B6" : "\u25C0"
           }
         ),
-        /* @__PURE__ */ jsx28("div", { className: "cria-sidebar__items", role: "menu", children: items.map((item) => renderSidebarItem(item)) }),
-        showContent && activeItemData?.content && /* @__PURE__ */ jsx28(
+        /* @__PURE__ */ jsx26("div", { className: "cria-sidebar__items", role: "menu", children: items.map((item) => renderSidebarItem(item)) }),
+        showContent && activeItemData?.content && /* @__PURE__ */ jsx26(
           "div",
           {
             className: contentClasses,
@@ -6524,11 +5204,11 @@ var Sidebar2 = ({
 };
 
 // src/components/Snackbar/Snackbar.tsx
-import * as React25 from "react";
+import * as React23 from "react";
 import { createPortal } from "react-dom";
 import { X as X4, CheckCircle, Info } from "phosphor-react";
-import { jsx as jsx29, jsxs as jsxs26 } from "react/jsx-runtime";
-var Snackbar = React25.forwardRef(({
+import { jsx as jsx27, jsxs as jsxs24 } from "react/jsx-runtime";
+var Snackbar = React23.forwardRef(({
   message,
   open,
   title,
@@ -6543,10 +5223,10 @@ var Snackbar = React25.forwardRef(({
   style,
   ...props
 }, ref) => {
-  const [isVisible, setIsVisible] = React25.useState(open);
-  const [isAnimating, setIsAnimating] = React25.useState(false);
-  const timeoutRef = React25.useRef(null);
-  React25.useEffect(() => {
+  const [isVisible, setIsVisible] = React23.useState(open);
+  const [isAnimating, setIsAnimating] = React23.useState(false);
+  const timeoutRef = React23.useRef(null);
+  React23.useEffect(() => {
     if (open && autoHideDuration > 0) {
       timeoutRef.current = setTimeout(() => {
         handleClose();
@@ -6558,7 +5238,7 @@ var Snackbar = React25.forwardRef(({
       }
     };
   }, [open, autoHideDuration]);
-  React25.useEffect(() => {
+  React23.useEffect(() => {
     if (open) {
       setIsVisible(true);
       setIsAnimating(true);
@@ -6571,20 +5251,20 @@ var Snackbar = React25.forwardRef(({
       }, 300);
     }
   }, [open]);
-  const handleClose = React25.useCallback(() => {
+  const handleClose = React23.useCallback(() => {
     onClose?.();
   }, [onClose]);
-  const handleBackdropClick = React25.useCallback((event) => {
+  const handleBackdropClick = React23.useCallback((event) => {
     if (dismissible && event.target === event.currentTarget) {
       handleClose();
     }
   }, [dismissible, handleClose]);
-  const handleKeyDown = React25.useCallback((event) => {
+  const handleKeyDown = React23.useCallback((event) => {
     if (event.key === "Escape" && dismissible) {
       handleClose();
     }
   }, [dismissible, handleClose]);
-  React25.useImperativeHandle(ref, () => ({
+  React23.useImperativeHandle(ref, () => ({
     close: handleClose
   }), [handleClose]);
   if (!isVisible) {
@@ -6593,13 +5273,13 @@ var Snackbar = React25.forwardRef(({
   const getDefaultIcon = () => {
     switch (variant) {
       case "success":
-        return /* @__PURE__ */ jsx29(CheckCircle, { size: 20, "data-testid": "snackbar-icon" });
+        return /* @__PURE__ */ jsx27(CheckCircle, { size: 20, "data-testid": "snackbar-icon" });
       case "error":
-        return /* @__PURE__ */ jsx29(X4, { size: 20, "data-testid": "snackbar-icon" });
+        return /* @__PURE__ */ jsx27(X4, { size: 20, "data-testid": "snackbar-icon" });
       case "warning":
-        return /* @__PURE__ */ jsx29(Info, { size: 20, "data-testid": "snackbar-icon" });
+        return /* @__PURE__ */ jsx27(Info, { size: 20, "data-testid": "snackbar-icon" });
       case "info":
-        return /* @__PURE__ */ jsx29(Info, { size: 20, "data-testid": "snackbar-icon" });
+        return /* @__PURE__ */ jsx27(Info, { size: 20, "data-testid": "snackbar-icon" });
       default:
         return null;
     }
@@ -6619,7 +5299,7 @@ var Snackbar = React25.forwardRef(({
     isAnimating && !open && "cria-snackbar--exiting",
     className
   ].filter(Boolean).join(" ");
-  const snackbarContent = /* @__PURE__ */ jsx29(
+  const snackbarContent = /* @__PURE__ */ jsx27(
     "div",
     {
       "data-testid": "snackbar-container",
@@ -6627,7 +5307,7 @@ var Snackbar = React25.forwardRef(({
       onClick: handleBackdropClick,
       onKeyDown: handleKeyDown,
       tabIndex: -1,
-      children: /* @__PURE__ */ jsxs26(
+      children: /* @__PURE__ */ jsxs24(
         "div",
         {
           className: snackbarClasses,
@@ -6636,15 +5316,15 @@ var Snackbar = React25.forwardRef(({
           "aria-live": ariaLive,
           ...props,
           children: [
-            /* @__PURE__ */ jsxs26("div", { className: "cria-snackbar__content", children: [
-              displayIcon && /* @__PURE__ */ jsx29("div", { className: "cria-snackbar__icon", children: displayIcon }),
-              /* @__PURE__ */ jsxs26("div", { className: "cria-snackbar__text", children: [
-                title && /* @__PURE__ */ jsx29(Typography, { variant: "body", weight: "medium", className: "cria-snackbar__title", children: title }),
-                /* @__PURE__ */ jsx29(Typography, { variant: "body", className: "cria-snackbar__message", children: message })
+            /* @__PURE__ */ jsxs24("div", { className: "cria-snackbar__content", children: [
+              displayIcon && /* @__PURE__ */ jsx27("div", { className: "cria-snackbar__icon", children: displayIcon }),
+              /* @__PURE__ */ jsxs24("div", { className: "cria-snackbar__text", children: [
+                title && /* @__PURE__ */ jsx27(Typography, { variant: "body", weight: "medium", className: "cria-snackbar__title", children: title }),
+                /* @__PURE__ */ jsx27(Typography, { variant: "body", className: "cria-snackbar__message", children: message })
               ] })
             ] }),
-            /* @__PURE__ */ jsxs26("div", { className: "cria-snackbar__actions", children: [
-              action && /* @__PURE__ */ jsx29(
+            /* @__PURE__ */ jsxs24("div", { className: "cria-snackbar__actions", children: [
+              action && /* @__PURE__ */ jsx27(
                 Button,
                 {
                   variant: "ghost",
@@ -6654,7 +5334,7 @@ var Snackbar = React25.forwardRef(({
                   children: action.label
                 }
               ),
-              dismissible && /* @__PURE__ */ jsx29(
+              dismissible && /* @__PURE__ */ jsx27(
                 Button,
                 {
                   variant: "ghost",
@@ -6662,7 +5342,7 @@ var Snackbar = React25.forwardRef(({
                   onClick: handleClose,
                   className: "cria-snackbar__close",
                   "aria-label": "Close",
-                  children: /* @__PURE__ */ jsx29(X4, { size: 16 })
+                  children: /* @__PURE__ */ jsx27(X4, { size: 16 })
                 }
               )
             ] })
@@ -6676,9 +5356,9 @@ var Snackbar = React25.forwardRef(({
 Snackbar.displayName = "Snackbar";
 
 // src/components/Switch/Switch.tsx
-import React26, { forwardRef as forwardRef8, useRef as useRef13, useImperativeHandle as useImperativeHandle5, useCallback as useCallback18 } from "react";
-import { jsx as jsx30, jsxs as jsxs27 } from "react/jsx-runtime";
-var Switch = forwardRef8(({
+import React24, { forwardRef as forwardRef10, useRef as useRef12, useImperativeHandle as useImperativeHandle5, useCallback as useCallback14 } from "react";
+import { jsx as jsx28, jsxs as jsxs25 } from "react/jsx-runtime";
+var Switch = forwardRef10(({
   checked,
   disabled = false,
   required = false,
@@ -6702,10 +5382,10 @@ var Switch = forwardRef8(({
   inputProps = {},
   ...props
 }, ref) => {
-  const inputRef = useRef13(null);
-  const reactId = React26.useId();
+  const inputRef = useRef12(null);
+  const reactId = React24.useId();
   const isControlled = checked !== void 0;
-  const [uncontrolledChecked, setUncontrolledChecked] = React26.useState(!!checked);
+  const [uncontrolledChecked, setUncontrolledChecked] = React24.useState(!!checked);
   const isChecked = isControlled ? !!checked : uncontrolledChecked;
   const resolvedId = id || `${name || "switch"}-${reactId}`;
   useImperativeHandle5(ref, () => ({
@@ -6718,17 +5398,17 @@ var Switch = forwardRef8(({
       }
     }
   }));
-  const handleChange = useCallback18((event) => {
+  const handleChange = useCallback14((event) => {
     if (disabled || readOnly) return;
     const next = event.target.checked;
     if (!isControlled) setUncontrolledChecked(next);
     onChange?.(next, event);
   }, [disabled, readOnly, onChange, isControlled]);
-  const handleClick = useCallback18((event) => {
+  const handleClick = useCallback14((event) => {
     if (disabled || readOnly) return;
     onClick?.(event);
   }, [disabled, readOnly, onClick]);
-  const handleKeyDown = useCallback18((event) => {
+  const handleKeyDown = useCallback14((event) => {
     if (disabled || readOnly) return;
     if (event.key === " " || event.key === "Enter") {
       event.preventDefault();
@@ -6762,9 +5442,9 @@ var Switch = forwardRef8(({
     disabled && "cria-switch__label--disabled",
     readOnly && "cria-switch__label--readonly"
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ jsxs27("div", { className: switchClasses, style, ...props, children: [
-    /* @__PURE__ */ jsxs27("div", { className: "cria-switch__container", children: [
-      /* @__PURE__ */ jsx30(
+  return /* @__PURE__ */ jsxs25("div", { className: switchClasses, style, ...props, children: [
+    /* @__PURE__ */ jsxs25("div", { className: "cria-switch__container", children: [
+      /* @__PURE__ */ jsx28(
         "input",
         {
           ref: inputRef,
@@ -6794,20 +5474,20 @@ var Switch = forwardRef8(({
           ...inputProps
         }
       ),
-      /* @__PURE__ */ jsx30("div", { className: "cria-switch__track", children: /* @__PURE__ */ jsx30("div", { className: "cria-switch__thumb" }) }),
-      label && /* @__PURE__ */ jsx30("label", { htmlFor: resolvedId, className: labelClasses, children: /* @__PURE__ */ jsxs27(
+      /* @__PURE__ */ jsx28("div", { className: "cria-switch__track", children: /* @__PURE__ */ jsx28("div", { className: "cria-switch__thumb" }) }),
+      label && /* @__PURE__ */ jsx28("label", { htmlFor: resolvedId, className: labelClasses, children: /* @__PURE__ */ jsxs25(
         Typography,
         {
           variant: "body",
           color: disabled ? "secondary" : "content",
           children: [
             label,
-            required && /* @__PURE__ */ jsx30("span", { className: "cria-switch__required", "aria-label": "required", children: " *" })
+            required && /* @__PURE__ */ jsx28("span", { className: "cria-switch__required", "aria-label": "required", children: " *" })
           ]
         }
       ) })
     ] }),
-    helperText && !errorMessage && !warningMessage && /* @__PURE__ */ jsx30(
+    helperText && !errorMessage && !warningMessage && /* @__PURE__ */ jsx28(
       Typography,
       {
         variant: "caption",
@@ -6817,7 +5497,7 @@ var Switch = forwardRef8(({
         children: helperText
       }
     ),
-    errorMessage && /* @__PURE__ */ jsx30(
+    errorMessage && /* @__PURE__ */ jsx28(
       Typography,
       {
         variant: "caption",
@@ -6827,7 +5507,7 @@ var Switch = forwardRef8(({
         children: errorMessage
       }
     ),
-    warningMessage && /* @__PURE__ */ jsx30(
+    warningMessage && /* @__PURE__ */ jsx28(
       Typography,
       {
         variant: "caption",
@@ -6842,8 +5522,8 @@ var Switch = forwardRef8(({
 Switch.displayName = "Switch";
 
 // src/components/Tabs/Tabs.tsx
-import { useState as useState16, useCallback as useCallback19, useRef as useRef14, useEffect as useEffect9 } from "react";
-import { jsx as jsx31, jsxs as jsxs28 } from "react/jsx-runtime";
+import { useState as useState13, useCallback as useCallback15, useRef as useRef13, useEffect as useEffect8 } from "react";
+import { jsx as jsx29, jsxs as jsxs26 } from "react/jsx-runtime";
 var Tabs = ({
   items,
   activeTab: controlledActiveTab,
@@ -6858,14 +5538,14 @@ var Tabs = ({
   style,
   ...props
 }) => {
-  const [internalActiveTab, setInternalActiveTab] = useState16(
+  const [internalActiveTab, setInternalActiveTab] = useState13(
     defaultActiveTab || items[0]?.id || ""
   );
   const isControlled = controlledActiveTab !== void 0;
   const activeTab = isControlled ? controlledActiveTab : internalActiveTab;
-  const tabRefs = useRef14({});
-  const tabListRef = useRef14(null);
-  const handleTabChange = useCallback19((tabId) => {
+  const tabRefs = useRef13({});
+  const tabListRef = useRef13(null);
+  const handleTabChange = useCallback15((tabId) => {
     if (isControlled) {
       onChange?.(tabId);
     } else {
@@ -6873,7 +5553,7 @@ var Tabs = ({
       onChange?.(tabId);
     }
   }, [isControlled, onChange]);
-  const handleKeyDown = useCallback19((event, tabId) => {
+  const handleKeyDown = useCallback15((event, tabId) => {
     const tabIds = items.map((item) => item.id);
     const currentIndex = tabIds.indexOf(tabId);
     let nextIndex = currentIndex;
@@ -6915,7 +5595,7 @@ var Tabs = ({
       tabRefs.current[nextTabId]?.focus();
     }
   }, [items, handleTabChange]);
-  useEffect9(() => {
+  useEffect8(() => {
     if (activeTab && tabRefs.current[activeTab]) {
       tabRefs.current[activeTab]?.focus();
     }
@@ -6941,14 +5621,14 @@ var Tabs = ({
     `cria-tabs__content--${size}`
   ].filter(Boolean).join(" ");
   const activeTabItem = items.find((item) => item.id === activeTab);
-  return /* @__PURE__ */ jsxs28(
+  return /* @__PURE__ */ jsxs26(
     "div",
     {
       className: containerClasses,
       style,
       ...props,
       children: [
-        /* @__PURE__ */ jsx31(
+        /* @__PURE__ */ jsx29(
           "div",
           {
             ref: tabListRef,
@@ -6966,7 +5646,7 @@ var Tabs = ({
                 isDisabled ? "cria-tabs__tab--disabled" : null,
                 fullWidth ? "cria-tabs__tab--full-width" : null
               ].filter(Boolean).join(" ");
-              return /* @__PURE__ */ jsxs28(
+              return /* @__PURE__ */ jsxs26(
                 "button",
                 {
                   ref: (el) => {
@@ -6983,9 +5663,9 @@ var Tabs = ({
                   onClick: () => !isDisabled && handleTabChange(item.id),
                   onKeyDown: (e) => !isDisabled && handleKeyDown(e, item.id),
                   children: [
-                    item.icon && /* @__PURE__ */ jsx31("span", { className: "cria-tabs__tab-icon", children: item.icon }),
-                    /* @__PURE__ */ jsx31("span", { className: "cria-tabs__tab-label", children: item.label }),
-                    item.badge && /* @__PURE__ */ jsx31("span", { className: "cria-tabs__tab-badge", children: item.badge })
+                    item.icon && /* @__PURE__ */ jsx29("span", { className: "cria-tabs__tab-icon", children: item.icon }),
+                    /* @__PURE__ */ jsx29("span", { className: "cria-tabs__tab-label", children: item.label }),
+                    item.badge && /* @__PURE__ */ jsx29("span", { className: "cria-tabs__tab-badge", children: item.badge })
                   ]
                 },
                 item.id
@@ -6993,7 +5673,7 @@ var Tabs = ({
             })
           }
         ),
-        showContent && activeTabItem && /* @__PURE__ */ jsx31(
+        showContent && activeTabItem && /* @__PURE__ */ jsx29(
           "div",
           {
             className: contentClasses,
@@ -7009,7 +5689,7 @@ var Tabs = ({
 };
 
 // src/components/Text/Text.tsx
-import { jsx as jsx32 } from "react/jsx-runtime";
+import { jsx as jsx30 } from "react/jsx-runtime";
 var TextBody = ({
   as = "span",
   children,
@@ -7031,7 +5711,7 @@ var TextBody = ({
     // Default dark gray
     margin: 0
   };
-  return /* @__PURE__ */ jsx32(Element, { className: classes, style: styles, ...props, children });
+  return /* @__PURE__ */ jsx30(Element, { className: classes, style: styles, ...props, children });
 };
 var TextContent = ({
   as = "p",
@@ -7055,7 +5735,7 @@ var TextContent = ({
     // Default dark gray
     margin: 0
   };
-  return /* @__PURE__ */ jsx32(Element, { className: classes, style: styles, ...props, children });
+  return /* @__PURE__ */ jsx30(Element, { className: classes, style: styles, ...props, children });
 };
 var TextContentTitle = ({
   as = "h3",
@@ -7078,7 +5758,7 @@ var TextContentTitle = ({
     // Default dark gray
     margin: 0
   };
-  return /* @__PURE__ */ jsx32(Element, { className: classes, style: styles, ...props, children });
+  return /* @__PURE__ */ jsx30(Element, { className: classes, style: styles, ...props, children });
 };
 var TextContentImportant = ({
   as = "span",
@@ -7101,14 +5781,14 @@ var TextContentImportant = ({
     // Default dark gray
     margin: 0
   };
-  return /* @__PURE__ */ jsx32(Element, { className: classes, style: styles, ...props, children });
+  return /* @__PURE__ */ jsx30(Element, { className: classes, style: styles, ...props, children });
 };
 
 // src/components/Textarea/Textarea.tsx
-import React28, { forwardRef as forwardRef9, useRef as useRef15, useImperativeHandle as useImperativeHandle6, useCallback as useCallback20, useEffect as useEffect10 } from "react";
+import React26, { forwardRef as forwardRef11, useRef as useRef14, useImperativeHandle as useImperativeHandle6, useCallback as useCallback16, useEffect as useEffect9 } from "react";
 import { Check as Check5, WarningCircle as WarningCircle2 } from "phosphor-react";
-import { jsx as jsx33, jsxs as jsxs29 } from "react/jsx-runtime";
-var Textarea = forwardRef9(({
+import { jsx as jsx31, jsxs as jsxs27 } from "react/jsx-runtime";
+var Textarea = forwardRef11(({
   label,
   placeholder,
   size = "md",
@@ -7136,8 +5816,8 @@ var Textarea = forwardRef9(({
   cols,
   ...props
 }, ref) => {
-  const textareaRef = useRef15(null);
-  const [isFocused, setIsFocused] = React28.useState(false);
+  const textareaRef = useRef14(null);
+  const [isFocused, setIsFocused] = React26.useState(false);
   useImperativeHandle6(ref, () => ({
     focus: () => textareaRef.current?.focus(),
     blur: () => textareaRef.current?.blur(),
@@ -7152,34 +5832,34 @@ var Textarea = forwardRef9(({
       }
     }
   }));
-  const adjustHeight = useCallback20(() => {
+  const adjustHeight = useCallback16(() => {
     if (textareaRef.current && autoResize) {
       const textarea = textareaRef.current;
       textarea.style.height = "auto";
       textarea.style.height = `${textarea.scrollHeight}px`;
     }
   }, [autoResize]);
-  const handleChange = useCallback20((event) => {
+  const handleChange = useCallback16((event) => {
     if (autoResize) {
       adjustHeight();
     }
     onChange?.(event);
   }, [onChange, autoResize, adjustHeight]);
-  const handleFocus = useCallback20((event) => {
+  const handleFocus = useCallback16((event) => {
     setIsFocused(true);
     onFocus?.(event);
   }, [onFocus]);
-  const handleBlur = useCallback20((event) => {
+  const handleBlur = useCallback16((event) => {
     setIsFocused(false);
     onBlur?.(event);
   }, [onBlur]);
-  useEffect10(() => {
+  useEffect9(() => {
     if (autoResize) {
       adjustHeight();
     }
   }, [value, autoResize, adjustHeight]);
   const currentState = errorMessage ? "error" : successMessage ? "success" : warningMessage ? "warning" : state;
-  const textareaId = React28.useId();
+  const textareaId = React26.useId();
   const labelId = `${textareaId}-label`;
   const helperId = `${textareaId}-helper`;
   const errorId = `${textareaId}-error`;
@@ -7216,12 +5896,12 @@ var Textarea = forwardRef9(({
     warningMessage ? warningId : null,
     showCharacterCount && maxLength ? countId : null
   ].filter(Boolean).join(" ") || void 0;
-  return /* @__PURE__ */ jsxs29("div", { className: containerClasses, style, children: [
-    label && /* @__PURE__ */ jsx33("label", { htmlFor: textareaId, id: labelId, className: "cria-textarea__label", children: /* @__PURE__ */ jsxs29(Typography, { variant: "body", weight: "medium", color: "primary", children: [
+  return /* @__PURE__ */ jsxs27("div", { className: containerClasses, style, children: [
+    label && /* @__PURE__ */ jsx31("label", { htmlFor: textareaId, id: labelId, className: "cria-textarea__label", children: /* @__PURE__ */ jsxs27(Typography, { variant: "body", weight: "medium", color: "primary", children: [
       label,
-      required && /* @__PURE__ */ jsx33("span", { className: "cria-textarea__required", "aria-label": "required", children: " *" })
+      required && /* @__PURE__ */ jsx31("span", { className: "cria-textarea__required", "aria-label": "required", children: " *" })
     ] }) }),
-    /* @__PURE__ */ jsx33(
+    /* @__PURE__ */ jsx31(
       "textarea",
       {
         ref: textareaRef,
@@ -7248,8 +5928,8 @@ var Textarea = forwardRef9(({
         ...props
       }
     ),
-    (helperText || errorMessage || successMessage || warningMessage || showCharacterCount) && /* @__PURE__ */ jsxs29("div", { className: "cria-textarea__messages", children: [
-      helperText && !errorMessage && !successMessage && !warningMessage && /* @__PURE__ */ jsx33(
+    (helperText || errorMessage || successMessage || warningMessage || showCharacterCount) && /* @__PURE__ */ jsxs27("div", { className: "cria-textarea__messages", children: [
+      helperText && !errorMessage && !successMessage && !warningMessage && /* @__PURE__ */ jsx31(
         Typography,
         {
           variant: "body",
@@ -7259,7 +5939,7 @@ var Textarea = forwardRef9(({
           children: helperText
         }
       ),
-      errorMessage && /* @__PURE__ */ jsxs29(
+      errorMessage && /* @__PURE__ */ jsxs27(
         Typography,
         {
           variant: "body",
@@ -7268,12 +5948,12 @@ var Textarea = forwardRef9(({
           id: errorId,
           role: "alert",
           children: [
-            /* @__PURE__ */ jsx33(WarningCircle2, { size: 14, style: { marginRight: "4px" } }),
+            /* @__PURE__ */ jsx31(WarningCircle2, { size: 14, style: { marginRight: "4px" } }),
             errorMessage
           ]
         }
       ),
-      successMessage && /* @__PURE__ */ jsxs29(
+      successMessage && /* @__PURE__ */ jsxs27(
         Typography,
         {
           variant: "body",
@@ -7281,12 +5961,12 @@ var Textarea = forwardRef9(({
           className: "cria-textarea__success-message",
           id: successId,
           children: [
-            /* @__PURE__ */ jsx33(Check5, { size: 14, style: { marginRight: "4px" } }),
+            /* @__PURE__ */ jsx31(Check5, { size: 14, style: { marginRight: "4px" } }),
             successMessage
           ]
         }
       ),
-      warningMessage && /* @__PURE__ */ jsxs29(
+      warningMessage && /* @__PURE__ */ jsxs27(
         Typography,
         {
           variant: "body",
@@ -7294,12 +5974,12 @@ var Textarea = forwardRef9(({
           className: "cria-textarea__warning-message",
           id: warningId,
           children: [
-            /* @__PURE__ */ jsx33(WarningCircle2, { size: 14, style: { marginRight: "4px" } }),
+            /* @__PURE__ */ jsx31(WarningCircle2, { size: 14, style: { marginRight: "4px" } }),
             warningMessage
           ]
         }
       ),
-      showCharacterCount && maxLength && /* @__PURE__ */ jsxs29(
+      showCharacterCount && maxLength && /* @__PURE__ */ jsxs27(
         Typography,
         {
           variant: "body",
@@ -7319,9 +5999,9 @@ var Textarea = forwardRef9(({
 Textarea.displayName = "Textarea";
 
 // src/components/Tooltip/Tooltip.tsx
-import React29, { useState as useState17, useRef as useRef16, useEffect as useEffect11, useCallback as useCallback21 } from "react";
+import React27, { useState as useState14, useRef as useRef15, useEffect as useEffect10, useCallback as useCallback17 } from "react";
 import { createPortal as createPortal2 } from "react-dom";
-import { Fragment as Fragment4, jsx as jsx34, jsxs as jsxs30 } from "react/jsx-runtime";
+import { Fragment as Fragment3, jsx as jsx32, jsxs as jsxs28 } from "react/jsx-runtime";
 var Tooltip = ({
   content,
   children,
@@ -7339,15 +6019,15 @@ var Tooltip = ({
   onVisibilityChange,
   ...props
 }) => {
-  const [isVisible, setIsVisible] = useState17(false);
-  const [tooltipPosition, setTooltipPosition] = useState17({ top: 0, left: 0 });
-  const triggerRef = useRef16(null);
-  const tooltipRef = useRef16(null);
-  const showTimeoutRef = useRef16();
-  const hideTimeoutRef = useRef16();
+  const [isVisible, setIsVisible] = useState14(false);
+  const [tooltipPosition, setTooltipPosition] = useState14({ top: 0, left: 0 });
+  const triggerRef = useRef15(null);
+  const tooltipRef = useRef15(null);
+  const showTimeoutRef = useRef15();
+  const hideTimeoutRef = useRef15();
   const isControlled = controlledVisible !== void 0;
   const visible = isControlled ? controlledVisible : isVisible;
-  const calculatePosition = useCallback21(() => {
+  const calculatePosition = useCallback17(() => {
     if (!triggerRef.current || !tooltipRef.current) return;
     const triggerRect = triggerRef.current.getBoundingClientRect();
     const tooltipRect = tooltipRef.current.getBoundingClientRect();
@@ -7420,7 +6100,7 @@ var Tooltip = ({
       left
     });
   }, [position]);
-  const showTooltip = useCallback21(() => {
+  const showTooltip = useCallback17(() => {
     if (disabled || isControlled) return;
     if (showTimeoutRef.current) {
       clearTimeout(showTimeoutRef.current);
@@ -7430,7 +6110,7 @@ var Tooltip = ({
       onVisibilityChange?.(true);
     }, delay);
   }, [disabled, isControlled, delay, onVisibilityChange]);
-  const hideTooltip = useCallback21(() => {
+  const hideTooltip = useCallback17(() => {
     if (disabled || isControlled) return;
     if (showTimeoutRef.current) {
       clearTimeout(showTimeoutRef.current);
@@ -7440,28 +6120,28 @@ var Tooltip = ({
       onVisibilityChange?.(false);
     }, hideDelay);
   }, [disabled, isControlled, hideDelay, onVisibilityChange]);
-  const handleMouseEnter = useCallback21(() => {
+  const handleMouseEnter = useCallback17(() => {
     if (disabled) return;
     showTooltip();
   }, [disabled, showTooltip]);
-  const handleMouseLeave = useCallback21(() => {
+  const handleMouseLeave = useCallback17(() => {
     if (disabled) return;
     hideTooltip();
   }, [disabled, hideTooltip]);
-  const handleFocus = useCallback21(() => {
+  const handleFocus = useCallback17(() => {
     if (disabled) return;
     showTooltip();
   }, [disabled, showTooltip]);
-  const handleBlur = useCallback21(() => {
+  const handleBlur = useCallback17(() => {
     if (disabled) return;
     hideTooltip();
   }, [disabled, hideTooltip]);
-  useEffect11(() => {
+  useEffect10(() => {
     if (visible) {
       calculatePosition();
     }
   }, [visible, calculatePosition]);
-  useEffect11(() => {
+  useEffect10(() => {
     if (!visible) return;
     const updatePosition = () => calculatePosition();
     window.addEventListener("scroll", updatePosition, true);
@@ -7471,13 +6151,13 @@ var Tooltip = ({
       window.removeEventListener("resize", updatePosition);
     };
   }, [visible, calculatePosition]);
-  useEffect11(() => {
+  useEffect10(() => {
     return () => {
       if (showTimeoutRef.current) clearTimeout(showTimeoutRef.current);
       if (hideTimeoutRef.current) clearTimeout(hideTimeoutRef.current);
     };
   }, []);
-  const triggerElement = React29.cloneElement(children, {
+  const triggerElement = React27.cloneElement(children, {
     ref: (el) => {
       triggerRef.current = el;
       const childRef = children.ref;
@@ -7504,10 +6184,10 @@ var Tooltip = ({
     visible ? "cria-tooltip--visible" : null,
     className
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ jsxs30(Fragment4, { children: [
+  return /* @__PURE__ */ jsxs28(Fragment3, { children: [
     triggerElement,
     visible && createPortal2(
-      /* @__PURE__ */ jsxs30(
+      /* @__PURE__ */ jsxs28(
         "div",
         {
           ref: tooltipRef,
@@ -7522,8 +6202,8 @@ var Tooltip = ({
           role: "tooltip",
           ...props,
           children: [
-            /* @__PURE__ */ jsx34("div", { className: "cria-tooltip__content", children: content }),
-            arrow && /* @__PURE__ */ jsx34("div", { className: "cria-tooltip__arrow" })
+            /* @__PURE__ */ jsx32("div", { className: "cria-tooltip__content", children: content }),
+            arrow && /* @__PURE__ */ jsx32("div", { className: "cria-tooltip__arrow" })
           ]
         }
       ),
@@ -7533,8 +6213,8 @@ var Tooltip = ({
 };
 
 // src/components/FileUpload/FileUpload.tsx
-import React30, { useCallback as useCallback22, useRef as useRef17, useState as useState18 } from "react";
-import { jsx as jsx35, jsxs as jsxs31 } from "react/jsx-runtime";
+import React28, { useCallback as useCallback18, useRef as useRef16, useState as useState15 } from "react";
+import { jsx as jsx33, jsxs as jsxs29 } from "react/jsx-runtime";
 var FileUpload = ({
   label = "Upload files",
   description,
@@ -7551,11 +6231,11 @@ var FileUpload = ({
   style,
   ...props
 }) => {
-  const inputRef = useRef17(null);
-  const [internalFiles, setInternalFiles] = useState18([]);
+  const inputRef = useRef16(null);
+  const [internalFiles, setInternalFiles] = useState15([]);
   const isControlled = value !== void 0;
   const files = isControlled ? value : internalFiles;
-  const id = React30.useId();
+  const id = React28.useId();
   const validate = (next) => {
     if (!maxSizeBytes) return next;
     const valid = next.filter((f) => f.size <= maxSizeBytes);
@@ -7570,16 +6250,16 @@ var FileUpload = ({
     if (!isControlled) setInternalFiles(validated);
     onFilesChange?.(validated);
   };
-  const handleInput = useCallback22((e) => {
+  const handleInput = useCallback18((e) => {
     if (!e.target.files) return;
     const list = Array.from(e.target.files);
     commit(list);
   }, []);
-  const handleClick = useCallback22(() => {
+  const handleClick = useCallback18(() => {
     if (disabled) return;
     inputRef.current?.click();
   }, [disabled]);
-  const handleDrop = useCallback22((e) => {
+  const handleDrop = useCallback18((e) => {
     e.preventDefault();
     if (disabled) return;
     const dt = e.dataTransfer;
@@ -7598,7 +6278,7 @@ var FileUpload = ({
     const next = files.filter((_, i) => i !== idx);
     commit(next);
   };
-  return /* @__PURE__ */ jsxs31(
+  return /* @__PURE__ */ jsxs29(
     "div",
     {
       className: [
@@ -7610,11 +6290,11 @@ var FileUpload = ({
       style,
       ...props,
       children: [
-        label && /* @__PURE__ */ jsx35("label", { htmlFor: `file-input-${id}`, className: "cria-file-upload__label", children: /* @__PURE__ */ jsxs31(Typography, { variant: "body", weight: "medium", color: disabled ? "secondary" : "content", children: [
+        label && /* @__PURE__ */ jsx33("label", { htmlFor: `file-input-${id}`, className: "cria-file-upload__label", children: /* @__PURE__ */ jsxs29(Typography, { variant: "body", weight: "medium", color: disabled ? "secondary" : "content", children: [
           label,
-          required && /* @__PURE__ */ jsx35("span", { "aria-label": "required", children: " *" })
+          required && /* @__PURE__ */ jsx33("span", { "aria-label": "required", children: " *" })
         ] }) }),
-        /* @__PURE__ */ jsx35(
+        /* @__PURE__ */ jsx33(
           "input",
           {
             ref: inputRef,
@@ -7628,7 +6308,7 @@ var FileUpload = ({
             "aria-describedby": description ? `file-desc-${id}` : void 0
           }
         ),
-        /* @__PURE__ */ jsx35(
+        /* @__PURE__ */ jsx33(
           "div",
           {
             className: "cria-file-upload__dropzone",
@@ -7647,23 +6327,23 @@ var FileUpload = ({
             onDrop: dragAndDrop ? handleDrop : void 0,
             "aria-disabled": disabled,
             "aria-label": label,
-            children: /* @__PURE__ */ jsxs31("div", { className: "cria-file-upload__dropzone-inner", children: [
-              /* @__PURE__ */ jsx35(Typography, { variant: "body", color: "secondary", children: "Drag & drop files here, or click to select" }),
-              accept && /* @__PURE__ */ jsxs31(Typography, { variant: "caption", color: "secondary", children: [
+            children: /* @__PURE__ */ jsxs29("div", { className: "cria-file-upload__dropzone-inner", children: [
+              /* @__PURE__ */ jsx33(Typography, { variant: "body", color: "secondary", children: "Drag & drop files here, or click to select" }),
+              accept && /* @__PURE__ */ jsxs29(Typography, { variant: "caption", color: "secondary", children: [
                 "Accepted: ",
                 accept
               ] })
             ] })
           }
         ),
-        description && /* @__PURE__ */ jsx35(Typography, { id: `file-desc-${id}`, variant: "caption", color: "secondary", style: { marginTop: 8 }, children: description }),
-        files.length > 0 && /* @__PURE__ */ jsx35("ul", { className: "cria-file-upload__list", "aria-label": "Selected files", children: files.map((f, idx) => /* @__PURE__ */ jsxs31("li", { className: "cria-file-upload__item", children: [
-          /* @__PURE__ */ jsx35("span", { className: "cria-file-upload__filename", children: f.name }),
-          /* @__PURE__ */ jsxs31("span", { className: "cria-file-upload__filesize", children: [
+        description && /* @__PURE__ */ jsx33(Typography, { id: `file-desc-${id}`, variant: "caption", color: "secondary", style: { marginTop: 8 }, children: description }),
+        files.length > 0 && /* @__PURE__ */ jsx33("ul", { className: "cria-file-upload__list", "aria-label": "Selected files", children: files.map((f, idx) => /* @__PURE__ */ jsxs29("li", { className: "cria-file-upload__item", children: [
+          /* @__PURE__ */ jsx33("span", { className: "cria-file-upload__filename", children: f.name }),
+          /* @__PURE__ */ jsxs29("span", { className: "cria-file-upload__filesize", children: [
             (f.size / 1024).toFixed(1),
             " KB"
           ] }),
-          !disabled && /* @__PURE__ */ jsx35(
+          !disabled && /* @__PURE__ */ jsx33(
             "button",
             {
               type: "button",
@@ -7679,10 +6359,1985 @@ var FileUpload = ({
   );
 };
 
-// src/components/Chat/Chat.tsx
-import { useCallback as useCallback23, useEffect as useEffect12, useMemo as useMemo6, useRef as useRef18, useState as useState19 } from "react";
-import { PaperPlaneRight, DotsThree, FileText, ArrowBendUpLeft } from "phosphor-react";
+// src/components/TagChip/TagChip.tsx
+import { forwardRef as forwardRef12 } from "react";
+import { X as X5 } from "phosphor-react";
+import { jsx as jsx34, jsxs as jsxs30 } from "react/jsx-runtime";
+var TagChip = forwardRef12(({
+  label,
+  variant = "default",
+  size = "md",
+  visualStyle: styleProp = "filled",
+  icon,
+  clickable = false,
+  removable = false,
+  disabled = false,
+  loading = false,
+  selected = false,
+  closeIcon,
+  onClick,
+  onRemove,
+  className = "",
+  style = {},
+  ...props
+}, ref) => {
+  const colorMap = {
+    default: colors.gray,
+    primary: colors.primary,
+    secondary: colors.secondary,
+    success: colors.success,
+    warning: colors.warning,
+    error: colors.error,
+    info: colors.info
+  };
+  const sizeConfig = {
+    sm: {
+      padding: `${spacing[1]} ${spacing[2]}`,
+      fontSize: typography.fontSize.caption,
+      iconSize: "0.875rem",
+      borderRadius: radii.sm,
+      minHeight: "1.5rem"
+    },
+    md: {
+      padding: `${spacing[2]} ${spacing[3]}`,
+      fontSize: typography.fontSize.body2,
+      iconSize: "1rem",
+      borderRadius: radii.md,
+      minHeight: "2rem"
+    },
+    lg: {
+      padding: `${spacing[3]} ${spacing[4]}`,
+      fontSize: typography.fontSize.body,
+      iconSize: "1.125rem",
+      borderRadius: radii.lg,
+      minHeight: "2.5rem"
+    }
+  };
+  const config = sizeConfig[size];
+  const selectedColor = colorMap[variant];
+  const getStyleConfig = () => {
+    const baseStyles = {
+      display: "inline-flex",
+      alignItems: "center",
+      gap: spacing[1],
+      padding: config.padding,
+      fontSize: config.fontSize,
+      fontWeight: typography.fontWeight.medium,
+      borderRadius: config.borderRadius,
+      minHeight: config.minHeight,
+      transition: "all 0.2s ease",
+      cursor: clickable && !disabled ? "pointer" : "default",
+      opacity: disabled ? 0.6 : 1,
+      userSelect: "none",
+      outline: "none",
+      border: "none",
+      position: "relative",
+      ...style
+    };
+    switch (styleProp) {
+      case "filled":
+        return {
+          ...baseStyles,
+          backgroundColor: selected ? selectedColor[600] : selectedColor[500],
+          color: colors.white,
+          ...clickable && !disabled && {
+            "&:hover": {
+              backgroundColor: selectedColor[600],
+              transform: "translateY(-1px)",
+              boxShadow: shadows.md
+            },
+            "&:active": {
+              transform: "translateY(0)"
+            }
+          }
+        };
+      case "outlined":
+        return {
+          ...baseStyles,
+          backgroundColor: "transparent",
+          color: selected ? selectedColor[600] : selectedColor[500],
+          border: `1px solid ${selected ? selectedColor[600] : selectedColor[500]}`,
+          ...clickable && !disabled && {
+            "&:hover": {
+              backgroundColor: `${selectedColor[500]}10`,
+              borderColor: selectedColor[600]
+            }
+          }
+        };
+      case "soft":
+        return {
+          ...baseStyles,
+          backgroundColor: `${selectedColor[500]}15`,
+          color: selectedColor[700],
+          ...clickable && !disabled && {
+            "&:hover": {
+              backgroundColor: `${selectedColor[500]}25`
+            }
+          }
+        };
+      case "ghost":
+        return {
+          ...baseStyles,
+          backgroundColor: "transparent",
+          color: selectedColor[600],
+          ...clickable && !disabled && {
+            "&:hover": {
+              backgroundColor: `${selectedColor[500]}10`
+            }
+          }
+        };
+      default:
+        return baseStyles;
+    }
+  };
+  const styleConfig = getStyleConfig();
+  const handleClick = (event) => {
+    if (clickable && !disabled && !loading && onClick) {
+      onClick(event);
+    }
+  };
+  const handleKeyDown = (event) => {
+    if (clickable && !disabled && !loading && (event.key === "Enter" || event.key === " ") && onClick) {
+      event.preventDefault();
+      onClick(event);
+    }
+  };
+  const handleRemoveClick = (event) => {
+    if (disabled || loading || !onRemove) return;
+    event.stopPropagation();
+    onRemove(event);
+  };
+  const handleRemoveKeyDown = (event) => {
+    if (disabled || loading || !onRemove) return;
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      event.stopPropagation();
+      onRemove(event);
+    }
+  };
+  const Component = clickable ? "button" : "div";
+  return /* @__PURE__ */ jsxs30(
+    Component,
+    {
+      ref,
+      className: `tag-chip variant-${variant} size-${size} style-${styleProp} ${className} ${clickable ? "clickable" : ""} ${disabled ? "disabled" : ""} ${loading ? "loading" : ""} ${selected ? "selected" : ""}`,
+      style: { ...styleConfig, ...style },
+      role: clickable ? "button" : "region",
+      "aria-label": label,
+      "aria-pressed": clickable ? selected : void 0,
+      onClick: handleClick,
+      onKeyDown: handleKeyDown,
+      tabIndex: clickable && !disabled ? 0 : void 0,
+      disabled: clickable && disabled,
+      ...props,
+      children: [
+        loading && /* @__PURE__ */ jsx34(
+          "div",
+          {
+            className: "loading-spinner",
+            style: {
+              width: config.iconSize,
+              height: config.iconSize,
+              border: `2px solid ${colors.gray[300]}`,
+              borderTop: `2px solid ${selectedColor[500]}`,
+              borderRadius: "50%",
+              animation: "spin 1s linear infinite",
+              marginRight: spacing[1]
+            }
+          }
+        ),
+        icon && !loading && /* @__PURE__ */ jsx34(
+          "span",
+          {
+            className: "tag-chip-icon",
+            style: {
+              fontSize: config.iconSize,
+              display: "inline-flex",
+              alignItems: "center"
+            },
+            children: icon
+          }
+        ),
+        /* @__PURE__ */ jsx34(
+          "span",
+          {
+            className: "tag-chip-label",
+            style: {
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+              maxWidth: "200px"
+            },
+            children: label
+          }
+        ),
+        removable && !loading && /* @__PURE__ */ jsx34(
+          "button",
+          {
+            className: "tag-chip-remove",
+            type: "button",
+            "aria-label": `Remove ${label}`,
+            onClick: handleRemoveClick,
+            onKeyDown: handleRemoveKeyDown,
+            style: {
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: config.iconSize,
+              height: config.iconSize,
+              backgroundColor: "transparent",
+              border: "none",
+              borderRadius: "50%",
+              cursor: disabled ? "not-allowed" : "pointer",
+              marginLeft: spacing[1],
+              transition: "background-color 0.2s ease",
+              ...styleProp === "filled" && {
+                color: colors.white,
+                "&:hover": {
+                  backgroundColor: "rgba(255, 255, 255, 0.2)"
+                }
+              },
+              ...styleProp !== "filled" && {
+                color: "inherit",
+                "&:hover": {
+                  backgroundColor: `${selectedColor[500]}20`
+                }
+              }
+            },
+            disabled,
+            children: closeIcon || /* @__PURE__ */ jsx34(X5, { size: parseInt(config.iconSize) * 0.75 })
+          }
+        ),
+        /* @__PURE__ */ jsx34("style", { children: `
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .tag-chip.clickable:focus {
+          outline: 2px solid ${selectedColor[500]};
+          outline-offset: 2px;
+        }
+
+        .tag-chip.clickable:focus-visible {
+          outline: 2px solid ${selectedColor[500]};
+          outline-offset: 2px;
+        }
+
+        .tag-chip-remove:focus {
+          outline: 2px solid ${selectedColor[500]};
+          outline-offset: 1px;
+        }
+
+        .tag-chip-remove:focus-visible {
+          outline: 2px solid ${selectedColor[500]};
+          outline-offset: 1px;
+        }
+      ` })
+      ]
+    }
+  );
+});
+TagChip.displayName = "TagChip";
+
+// src/components/Timeline/Timeline.tsx
+import { forwardRef as forwardRef13 } from "react";
+import { jsx as jsx35, jsxs as jsxs31 } from "react/jsx-runtime";
+var TimelineItem = forwardRef13(({
+  item,
+  size = "md",
+  showTimestamp = true,
+  timestampFormat,
+  onClick,
+  className = "",
+  style = {},
+  ...props
+}, ref) => {
+  const {
+    id,
+    title,
+    description,
+    timestamp,
+    icon,
+    variant = "default",
+    style: itemStyle = "filled",
+    loading = false,
+    selected = false,
+    disabled = false
+  } = item;
+  const sizeConfig = {
+    sm: {
+      padding: spacing[2],
+      iconSize: "1rem",
+      fontSize: typography.fontSize.caption,
+      titleFontSize: typography.fontSize.body2,
+      borderRadius: radii.sm,
+      iconPadding: spacing[1]
+    },
+    md: {
+      padding: spacing[3],
+      iconSize: "1.25rem",
+      fontSize: typography.fontSize.body2,
+      titleFontSize: typography.fontSize.body,
+      borderRadius: radii.md,
+      iconPadding: spacing[2]
+    },
+    lg: {
+      padding: spacing[4],
+      iconSize: "1.5rem",
+      fontSize: typography.fontSize.body,
+      titleFontSize: typography.fontSize.h3,
+      borderRadius: radii.lg,
+      iconPadding: spacing[3]
+    }
+  };
+  const config = sizeConfig[size];
+  const colorMap = {
+    default: colors.gray,
+    primary: colors.primary,
+    secondary: colors.secondary,
+    success: colors.success,
+    warning: colors.warning,
+    error: colors.error,
+    info: colors.info
+  };
+  const selectedColor = colorMap[variant];
+  const formatTimestamp = (timestamp2, format) => {
+    const date = new Date(timestamp2);
+    if (format) {
+      return date.toLocaleDateString();
+    }
+    return date.toLocaleString();
+  };
+  const getItemStyles = () => {
+    const baseStyles = {
+      display: "flex",
+      alignItems: "flex-start",
+      gap: spacing[3],
+      padding: config.padding,
+      borderRadius: config.borderRadius,
+      transition: "all 0.2s ease",
+      cursor: onClick && !disabled ? "pointer" : "default",
+      opacity: disabled ? 0.6 : 1,
+      position: "relative"
+    };
+    let variantStyles;
+    switch (itemStyle) {
+      case "filled":
+        variantStyles = {
+          backgroundColor: selected ? selectedColor[100] : colors.white,
+          border: `1px solid ${selected ? selectedColor[300] : colors.gray[200]}`,
+          ...onClick && !disabled && {
+            "&:hover": {
+              backgroundColor: selectedColor[50],
+              borderColor: selectedColor[300],
+              transform: "translateY(-1px)",
+              boxShadow: shadows.sm
+            }
+          }
+        };
+        break;
+      case "outlined":
+        variantStyles = {
+          backgroundColor: "transparent",
+          border: `2px solid ${selected ? selectedColor[500] : selectedColor[300]}`,
+          ...onClick && !disabled && {
+            "&:hover": {
+              backgroundColor: `${selectedColor[500]}10`,
+              borderColor: selectedColor[500]
+            }
+          }
+        };
+        break;
+      case "ghost":
+        variantStyles = {
+          backgroundColor: selected ? `${selectedColor[500]}15` : "transparent",
+          border: "none",
+          ...onClick && !disabled && {
+            "&:hover": {
+              backgroundColor: `${selectedColor[500]}10`
+            }
+          }
+        };
+        break;
+      default:
+        variantStyles = {};
+    }
+    return {
+      ...baseStyles,
+      ...variantStyles,
+      ...style
+      // Custom styles override default styles
+    };
+  };
+  const getIconStyles = () => {
+    const baseIconStyles = {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      width: config.iconSize,
+      height: config.iconSize,
+      borderRadius: "50%",
+      flexShrink: 0,
+      fontSize: config.iconSize
+    };
+    switch (itemStyle) {
+      case "filled":
+        return {
+          ...baseIconStyles,
+          backgroundColor: selectedColor[500],
+          color: colors.white
+        };
+      case "outlined":
+        return {
+          ...baseIconStyles,
+          backgroundColor: "transparent",
+          color: selectedColor[500],
+          border: `2px solid ${selectedColor[500]}`
+        };
+      case "ghost":
+        return {
+          ...baseIconStyles,
+          backgroundColor: `${selectedColor[500]}20`,
+          color: selectedColor[600]
+        };
+      default:
+        return {
+          ...baseIconStyles,
+          backgroundColor: selectedColor[500],
+          color: colors.white
+        };
+    }
+  };
+  const itemStyles = getItemStyles();
+  const iconStyles = getIconStyles();
+  const handleClick = (event) => {
+    if (onClick && !disabled && !loading) {
+      onClick(item);
+    }
+  };
+  const handleKeyDown = (event) => {
+    if (onClick && !disabled && !loading && (event.key === "Enter" || event.key === " ")) {
+      event.preventDefault();
+      onClick(item);
+    }
+  };
+  const Component = onClick ? "button" : "div";
+  return /* @__PURE__ */ jsxs31(
+    Component,
+    {
+      ref,
+      className: `timeline-item variant-${variant} size-${size} style-${itemStyle} ${className} ${onClick ? "clickable" : ""} ${disabled ? "disabled" : ""} ${loading ? "loading" : ""} ${selected ? "selected" : ""}`,
+      style: itemStyles,
+      role: onClick ? "button" : "listitem",
+      "aria-label": `${title}${description ? `: ${description}` : ""}`,
+      onClick: handleClick,
+      onKeyDown: handleKeyDown,
+      tabIndex: onClick && !disabled ? 0 : void 0,
+      disabled: onClick && disabled,
+      ...props,
+      children: [
+        /* @__PURE__ */ jsx35("div", { className: "timeline-item-icon", style: iconStyles, children: loading ? /* @__PURE__ */ jsx35(
+          "div",
+          {
+            style: {
+              width: "0.75rem",
+              height: "0.75rem",
+              border: `2px solid ${colors.gray[300]}`,
+              borderTop: `2px solid ${selectedColor[500]}`,
+              borderRadius: "50%",
+              animation: "spin 1s linear infinite"
+            }
+          }
+        ) : icon }),
+        /* @__PURE__ */ jsxs31("div", { className: "timeline-item-content", style: { flex: 1, minWidth: 0 }, children: [
+          /* @__PURE__ */ jsx35(
+            "div",
+            {
+              className: "timeline-item-title",
+              style: {
+                fontSize: config.titleFontSize,
+                fontWeight: typography.fontWeight.semiBold,
+                color: colors.gray[900],
+                marginBottom: description ? spacing[1] : 0,
+                lineHeight: typography.lineHeight.tight
+              },
+              children: title
+            }
+          ),
+          description && /* @__PURE__ */ jsx35(
+            "div",
+            {
+              className: "timeline-item-description",
+              style: {
+                fontSize: config.fontSize,
+                color: colors.gray[600],
+                lineHeight: typography.lineHeight.relaxed,
+                marginBottom: showTimestamp ? spacing[1] : 0
+              },
+              children: description
+            }
+          ),
+          showTimestamp && timestamp && /* @__PURE__ */ jsx35(
+            "div",
+            {
+              className: "timeline-item-timestamp",
+              style: {
+                fontSize: typography.fontSize.caption,
+                color: colors.gray[500],
+                fontWeight: typography.fontWeight.medium
+              },
+              children: formatTimestamp(timestamp, timestampFormat)
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsx35("style", { children: `
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .timeline-item.clickable:focus {
+          outline: 2px solid ${selectedColor[500]};
+          outline-offset: 2px;
+        }
+
+        .timeline-item.clickable:focus-visible {
+          outline: 2px solid ${selectedColor[500]};
+          outline-offset: 2px;
+        }
+      ` })
+      ]
+    }
+  );
+});
+TimelineItem.displayName = "TimelineItem";
+var Timeline = forwardRef13(({
+  items,
+  orientation = "vertical",
+  size = "md",
+  variant = "default",
+  showConnector = true,
+  showTimestamps = true,
+  connector,
+  connectorStyle = "solid",
+  connectorColor = "gray",
+  loading = false,
+  emptyMessage = "No activities yet",
+  emptyComponent,
+  itemRenderer,
+  onItemClick,
+  className = "",
+  style = {},
+  ...props
+}, ref) => {
+  const sizeConfig = {
+    sm: {
+      itemSpacing: spacing[3],
+      iconSize: "1rem",
+      fontSize: typography.fontSize.caption,
+      titleFontSize: typography.fontSize.body2,
+      connectorWidth: "2px"
+    },
+    md: {
+      itemSpacing: spacing[4],
+      iconSize: "1.25rem",
+      fontSize: typography.fontSize.body2,
+      titleFontSize: typography.fontSize.body,
+      connectorWidth: "2px"
+    },
+    lg: {
+      itemSpacing: spacing[5],
+      iconSize: "1.5rem",
+      fontSize: typography.fontSize.body,
+      titleFontSize: typography.fontSize.h3,
+      connectorWidth: "3px"
+    }
+  };
+  const config = sizeConfig[size];
+  const connectorColorMap = {
+    primary: colors.primary[500],
+    secondary: colors.secondary[500],
+    gray: colors.gray[300]
+  };
+  const formatTimestamp = (timestamp, format) => {
+    const date = new Date(timestamp);
+    if (format) {
+      return date.toLocaleDateString();
+    }
+    return date.toLocaleString();
+  };
+  const renderLoading = () => /* @__PURE__ */ jsx35(
+    "div",
+    {
+      className: "timeline-loading",
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: spacing[8],
+        color: colors.gray[500]
+      },
+      "aria-label": "Loading timeline",
+      children: /* @__PURE__ */ jsx35(
+        "div",
+        {
+          style: {
+            width: "2rem",
+            height: "2rem",
+            border: `3px solid ${colors.gray[200]}`,
+            borderTop: `3px solid ${colors.primary[500]}`,
+            borderRadius: "50%",
+            animation: "spin 1s linear infinite"
+          }
+        }
+      )
+    }
+  );
+  const renderEmpty = () => {
+    if (emptyComponent) {
+      return emptyComponent;
+    }
+    return /* @__PURE__ */ jsx35(
+      "div",
+      {
+        className: "timeline-empty",
+        style: {
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: spacing[8],
+          color: colors.gray[500],
+          textAlign: "center"
+        },
+        children: /* @__PURE__ */ jsxs31("div", { children: [
+          /* @__PURE__ */ jsx35(
+            "div",
+            {
+              style: {
+                fontSize: "2rem",
+                marginBottom: spacing[2],
+                opacity: 0.5
+              },
+              children: "\u{1F4C5}"
+            }
+          ),
+          /* @__PURE__ */ jsx35("div", { style: { fontSize: config.fontSize }, children: emptyMessage })
+        ] })
+      }
+    );
+  };
+  const renderConnector = (isLast) => {
+    if (!showConnector || isLast) return null;
+    if (connector) {
+      return connector;
+    }
+    const connectorStyles = {
+      solid: "solid",
+      dashed: "dashed",
+      dotted: "dotted"
+    };
+    return /* @__PURE__ */ jsx35(
+      "div",
+      {
+        className: "timeline-connector",
+        style: {
+          position: "absolute",
+          left: "50%",
+          top: "100%",
+          transform: "translateX(-50%)",
+          width: config.connectorWidth,
+          height: config.itemSpacing,
+          backgroundColor: connectorColorMap[connectorColor],
+          borderStyle: connectorStyles[connectorStyle],
+          borderWidth: "0 0 0 2px",
+          borderColor: connectorColorMap[connectorColor],
+          zIndex: 1
+        }
+      }
+    );
+  };
+  const renderItem = (item, index) => {
+    if (itemRenderer) {
+      return itemRenderer({ item, index });
+    }
+    return /* @__PURE__ */ jsx35(
+      TimelineItem,
+      {
+        item,
+        size,
+        showTimestamp: showTimestamps,
+        timestampFormat: item.timestampFormat,
+        onClick: onItemClick,
+        style: {
+          marginBottom: index < items.length - 1 ? config.itemSpacing : 0
+        }
+      },
+      item.id
+    );
+  };
+  if (loading) {
+    return /* @__PURE__ */ jsx35(
+      "div",
+      {
+        ref,
+        className: `timeline loading ${className}`,
+        style,
+        ...props,
+        children: renderLoading()
+      }
+    );
+  }
+  if (items.length === 0) {
+    return /* @__PURE__ */ jsx35(
+      "div",
+      {
+        ref,
+        className: `timeline empty ${className}`,
+        style,
+        ...props,
+        children: renderEmpty()
+      }
+    );
+  }
+  return /* @__PURE__ */ jsxs31(
+    "div",
+    {
+      ref,
+      className: `timeline orientation-${orientation} size-${size} variant-${variant} ${className}`,
+      style: {
+        position: "relative",
+        ...orientation === "vertical" && {
+          display: "flex",
+          flexDirection: "column"
+        },
+        ...orientation === "horizontal" && {
+          display: "flex",
+          flexDirection: "row",
+          overflowX: "auto"
+        },
+        ...style
+      },
+      role: "list",
+      ...props,
+      children: [
+        items.map((item, index) => /* @__PURE__ */ jsxs31(
+          "div",
+          {
+            className: "timeline-item-wrapper",
+            style: {
+              position: "relative",
+              ...orientation === "vertical" && {
+                display: "flex",
+                flexDirection: "column"
+              },
+              ...orientation === "horizontal" && {
+                flex: "0 0 auto",
+                minWidth: "200px"
+              }
+            },
+            children: [
+              renderItem(item, index),
+              renderConnector(index === items.length - 1)
+            ]
+          },
+          item.id
+        )),
+        /* @__PURE__ */ jsx35("style", { children: `
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .timeline-item-wrapper:last-child .timeline-connector {
+          display: none;
+        }
+      ` })
+      ]
+    }
+  );
+});
+Timeline.displayName = "Timeline";
+
+// src/components/NotificationCenter/NotificationCenter.tsx
+import { forwardRef as forwardRef14, useEffect as useEffect11, useState as useState16 } from "react";
+import { X as X6, Check as Check7, Warning as Warning2, Info as Info2, XCircle } from "phosphor-react";
 import { jsx as jsx36, jsxs as jsxs32 } from "react/jsx-runtime";
+var Notification = forwardRef14(({
+  notification,
+  size = "md",
+  variant = "default",
+  showProgress = false,
+  showIcon = true,
+  onDismiss,
+  onAction,
+  className = "",
+  ...props
+}, ref) => {
+  const {
+    id,
+    title,
+    message,
+    type = "info",
+    icon,
+    duration = 5e3,
+    dismissible = true,
+    action,
+    loading = false,
+    disabled = false
+  } = notification;
+  const [progress, setProgress] = useState16(100);
+  const [isVisible, setIsVisible] = useState16(true);
+  const sizeConfig = {
+    sm: {
+      padding: spacing[2],
+      iconSize: "1rem",
+      fontSize: typography.fontSize.caption,
+      titleFontSize: typography.fontSize.body2,
+      borderRadius: radii.sm,
+      iconPadding: spacing[1]
+    },
+    md: {
+      padding: spacing[3],
+      iconSize: "1.25rem",
+      fontSize: typography.fontSize.body2,
+      titleFontSize: typography.fontSize.body,
+      borderRadius: radii.md,
+      iconPadding: spacing[2]
+    },
+    lg: {
+      padding: spacing[4],
+      iconSize: "1.5rem",
+      fontSize: typography.fontSize.body,
+      titleFontSize: typography.fontSize.h3,
+      borderRadius: radii.lg,
+      iconPadding: spacing[3]
+    }
+  };
+  const config = sizeConfig[size];
+  useEffect11(() => {
+    if (duration > 0 && !disabled && onDismiss) {
+      const timer = setTimeout(() => {
+        setIsVisible(false);
+        setTimeout(() => onDismiss(id), 300);
+      }, duration);
+      return () => clearTimeout(timer);
+    }
+  }, [duration, id, onDismiss, disabled]);
+  const colorMap = {
+    success: {
+      main: colors.success[500],
+      bg: colors.success[50],
+      border: colors.success[200],
+      text: colors.success[800],
+      icon: colors.success[600]
+    },
+    error: {
+      main: colors.error[500],
+      bg: colors.error[50],
+      border: colors.error[200],
+      text: colors.error[800],
+      icon: colors.error[600]
+    },
+    warning: {
+      main: colors.warning[500],
+      bg: colors.warning[50],
+      border: colors.warning[200],
+      text: colors.warning[800],
+      icon: colors.warning[600]
+    },
+    info: {
+      main: colors.info[500],
+      bg: colors.info[50],
+      border: colors.info[200],
+      text: colors.info[800],
+      icon: colors.info[600]
+    }
+  };
+  const selectedColor = colorMap[type];
+  const defaultIcons = {
+    success: /* @__PURE__ */ jsx36(Check7, { size: 16 }),
+    error: /* @__PURE__ */ jsx36(XCircle, { size: 16 }),
+    warning: /* @__PURE__ */ jsx36(Warning2, { size: 16 }),
+    info: /* @__PURE__ */ jsx36(Info2, { size: 16 })
+  };
+  const getNotificationStyles = () => {
+    const baseStyles = {
+      display: "flex",
+      alignItems: "flex-start",
+      gap: spacing[3],
+      padding: config.padding,
+      borderRadius: config.borderRadius,
+      border: `1px solid ${selectedColor.border}`,
+      backgroundColor: selectedColor.bg,
+      boxShadow: shadows.sm,
+      transition: "all 0.3s ease",
+      opacity: isVisible ? 1 : 0,
+      transform: isVisible ? "translateX(0)" : "translateX(100%)",
+      position: "relative",
+      minWidth: "300px",
+      maxWidth: "400px",
+      ...props.style
+    };
+    if (variant === "compact") {
+      return {
+        ...baseStyles,
+        padding: spacing[2],
+        minWidth: "250px",
+        maxWidth: "300px"
+      };
+    }
+    return baseStyles;
+  };
+  const getIconStyles = () => ({
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: config.iconSize,
+    height: config.iconSize,
+    borderRadius: "50%",
+    backgroundColor: selectedColor.main,
+    color: colors.white,
+    flexShrink: 0,
+    fontSize: config.iconSize
+  });
+  const notificationStyles = getNotificationStyles();
+  const iconStyles = getIconStyles();
+  const handleDismiss = () => {
+    if (dismissible && !disabled) {
+      setIsVisible(false);
+      setTimeout(() => onDismiss?.(id), 300);
+    }
+  };
+  const handleAction = () => {
+    if (action && !disabled) {
+      action.onClick(id, notification);
+    }
+  };
+  if (!isVisible) {
+    return null;
+  }
+  return /* @__PURE__ */ jsxs32(
+    "div",
+    {
+      ref,
+      className: `notification type-${type} size-${size} variant-${variant} ${className} ${disabled ? "disabled" : ""} ${loading ? "loading" : ""}`,
+      role: "alert",
+      "aria-live": "polite",
+      style: notificationStyles,
+      ...props,
+      children: [
+        showIcon && /* @__PURE__ */ jsx36("div", { className: "notification-icon", style: iconStyles, children: loading ? /* @__PURE__ */ jsx36(
+          "div",
+          {
+            style: {
+              width: "0.75rem",
+              height: "0.75rem",
+              border: `2px solid ${colors.gray[300]}`,
+              borderTop: `2px solid ${colors.white}`,
+              borderRadius: "50%",
+              animation: "spin 1s linear infinite"
+            }
+          }
+        ) : icon || defaultIcons[type] }),
+        /* @__PURE__ */ jsxs32("div", { className: "notification-content", style: { flex: 1, minWidth: 0 }, children: [
+          /* @__PURE__ */ jsx36(
+            "div",
+            {
+              className: "notification-title",
+              style: {
+                fontSize: config.titleFontSize,
+                fontWeight: typography.fontWeight.semiBold,
+                color: selectedColor.text,
+                marginBottom: message ? spacing[1] : 0,
+                lineHeight: typography.lineHeight.tight
+              },
+              children: title
+            }
+          ),
+          message && /* @__PURE__ */ jsx36(
+            "div",
+            {
+              className: "notification-message",
+              style: {
+                fontSize: config.fontSize,
+                color: colors.gray[600],
+                lineHeight: typography.lineHeight.relaxed,
+                marginBottom: action ? spacing[2] : 0
+              },
+              children: message
+            }
+          ),
+          action && /* @__PURE__ */ jsx36(
+            Button,
+            {
+              variant: "outlined",
+              size: "sm",
+              onClick: handleAction,
+              disabled,
+              style: {
+                marginTop: spacing[1]
+              },
+              children: action.label
+            }
+          )
+        ] }),
+        dismissible && /* @__PURE__ */ jsx36(
+          "button",
+          {
+            type: "button",
+            "aria-label": "Dismiss notification",
+            onClick: handleDismiss,
+            disabled,
+            style: {
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              background: "none",
+              border: "none",
+              cursor: disabled ? "not-allowed" : "pointer",
+              padding: spacing[1],
+              color: colors.gray[400],
+              transition: "color 0.2s ease",
+              flexShrink: 0
+            },
+            children: /* @__PURE__ */ jsx36(X6, { size: 16 })
+          }
+        ),
+        showProgress && duration > 0 && /* @__PURE__ */ jsx36(
+          "div",
+          {
+            className: "notification-progress",
+            style: {
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: "3px",
+              backgroundColor: selectedColor.border,
+              borderRadius: `0 0 ${config.borderRadius} ${config.borderRadius}`
+            },
+            children: /* @__PURE__ */ jsx36(
+              "div",
+              {
+                style: {
+                  height: "100%",
+                  width: `${progress}%`,
+                  backgroundColor: selectedColor.main,
+                  transition: "width 0.1s linear",
+                  borderRadius: `0 0 ${config.borderRadius} ${config.borderRadius}`
+                }
+              }
+            )
+          }
+        ),
+        /* @__PURE__ */ jsx36("style", { children: `
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .notification:hover {
+          box-shadow: ${shadows.md};
+          transform: translateY(-1px);
+        }
+
+        .notification.disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+
+        .notification.disabled:hover {
+          transform: none;
+          box-shadow: ${shadows.sm};
+        }
+      ` })
+      ]
+    }
+  );
+});
+Notification.displayName = "Notification";
+var NotificationCenter = forwardRef14(({
+  notifications,
+  position = "top-right",
+  size = "md",
+  variant = "default",
+  maxNotifications = 5,
+  showProgress = false,
+  showIcons = true,
+  stackDirection = "down",
+  animation = "slide",
+  notificationRenderer,
+  onDismiss,
+  onAction,
+  className = "",
+  style = {},
+  ...props
+}, ref) => {
+  const limitedNotifications = notifications.slice(0, maxNotifications);
+  const getPositionStyles = () => {
+    const baseStyles = {
+      position: "fixed",
+      zIndex: 1e3,
+      pointerEvents: "none"
+    };
+    switch (position) {
+      case "top-left":
+        return { ...baseStyles, top: spacing[4], left: spacing[4] };
+      case "top-right":
+        return { ...baseStyles, top: spacing[4], right: spacing[4] };
+      case "bottom-left":
+        return { ...baseStyles, bottom: spacing[4], left: spacing[4] };
+      case "bottom-right":
+        return { ...baseStyles, bottom: spacing[4], right: spacing[4] };
+      case "top-center":
+        return { ...baseStyles, top: spacing[4], left: "50%", transform: "translateX(-50%)" };
+      case "bottom-center":
+        return { ...baseStyles, bottom: spacing[4], left: "50%", transform: "translateX(-50%)" };
+      default:
+        return { ...baseStyles, top: spacing[4], right: spacing[4] };
+    }
+  };
+  const getContainerStyles2 = () => ({
+    display: "flex",
+    flexDirection: stackDirection === "up" ? "column-reverse" : "column",
+    gap: spacing[2],
+    pointerEvents: "auto",
+    ...getPositionStyles(),
+    ...style
+  });
+  const renderNotification = (notification) => {
+    if (notificationRenderer) {
+      return notificationRenderer({ notification, onDismiss, onAction });
+    }
+    return /* @__PURE__ */ jsx36(
+      Notification,
+      {
+        notification,
+        size,
+        variant,
+        showProgress,
+        showIcon: showIcons,
+        onDismiss,
+        onAction
+      },
+      notification.id
+    );
+  };
+  if (limitedNotifications.length === 0) {
+    return null;
+  }
+  return /* @__PURE__ */ jsx36(
+    "div",
+    {
+      ref,
+      className: `notification-center position-${position} stack-${stackDirection} animation-${animation} ${className}`,
+      style: getContainerStyles2(),
+      role: "region",
+      "aria-label": "Notifications",
+      "aria-live": "polite",
+      ...props,
+      children: limitedNotifications.map((notification) => renderNotification(notification))
+    }
+  );
+});
+NotificationCenter.displayName = "NotificationCenter";
+
+// src/components/Version/Version.tsx
+import { jsxs as jsxs33 } from "react/jsx-runtime";
+var Version = ({
+  version,
+  badge = false,
+  showBuildInfo = false,
+  className = "",
+  style,
+  size = "body2",
+  variant = "secondary"
+}) => {
+  const currentVersion = version || "0.1.0";
+  const buildInfo = showBuildInfo ? {
+    buildTime: (/* @__PURE__ */ new Date()).toISOString(),
+    nodeVersion: process.env.NODE_VERSION || "unknown",
+    buildEnv: process.env.NODE_ENV || "development"
+  } : null;
+  const getVariantColor = () => {
+    switch (variant) {
+      case "primary":
+        return colors.primary[600];
+      case "secondary":
+        return colors.gray[600];
+      case "muted":
+        return colors.gray[500];
+      case "success":
+        return colors.success[600];
+      case "warning":
+        return colors.warning[600];
+      case "error":
+        return colors.error[600];
+      default:
+        return colors.gray[600];
+    }
+  };
+  const versionStyles = {
+    color: getVariantColor(),
+    ...style
+  };
+  const badgeStyles = {
+    display: "inline-flex",
+    alignItems: "center",
+    padding: `${spacing[1]} ${spacing[2]}`,
+    backgroundColor: colors.gray[100],
+    border: `1px solid ${colors.gray[200]}`,
+    borderRadius: radii.sm,
+    boxShadow: shadows.xs,
+    ...versionStyles
+  };
+  const buildInfoStyles = {
+    marginTop: spacing[1],
+    fontSize: "0.75rem",
+    color: colors.gray[500],
+    fontFamily: "monospace"
+  };
+  if (badge) {
+    return /* @__PURE__ */ jsxs33("div", { className: `version-badge ${className}`, style: badgeStyles, children: [
+      /* @__PURE__ */ jsxs33(Typography, { variant: size, style: { color: "inherit", margin: 0 }, children: [
+        "v",
+        currentVersion
+      ] }),
+      showBuildInfo && buildInfo && /* @__PURE__ */ jsxs33("div", { style: buildInfoStyles, children: [
+        /* @__PURE__ */ jsxs33("div", { children: [
+          "Build: ",
+          buildInfo.buildTime
+        ] }),
+        /* @__PURE__ */ jsxs33("div", { children: [
+          "Node: ",
+          buildInfo.nodeVersion
+        ] }),
+        /* @__PURE__ */ jsxs33("div", { children: [
+          "Env: ",
+          buildInfo.buildEnv
+        ] })
+      ] })
+    ] });
+  }
+  return /* @__PURE__ */ jsxs33("div", { className: `version ${className}`, style: versionStyles, children: [
+    /* @__PURE__ */ jsxs33(Typography, { variant: size, style: { color: "inherit", margin: 0 }, children: [
+      "v",
+      currentVersion
+    ] }),
+    showBuildInfo && buildInfo && /* @__PURE__ */ jsxs33("div", { style: buildInfoStyles, children: [
+      /* @__PURE__ */ jsxs33("div", { children: [
+        "Build: ",
+        buildInfo.buildTime
+      ] }),
+      /* @__PURE__ */ jsxs33("div", { children: [
+        "Node: ",
+        buildInfo.nodeVersion
+      ] }),
+      /* @__PURE__ */ jsxs33("div", { children: [
+        "Env: ",
+        buildInfo.buildEnv
+      ] })
+    ] })
+  ] });
+};
+Version.displayName = "Version";
+
+// src/components/Topbar/Topbar.tsx
+import { useState as useState17, useEffect as useEffect12, useCallback as useCallback19, useRef as useRef17 } from "react";
+import { List as List2, X as X7 } from "phosphor-react";
+import { jsx as jsx37, jsxs as jsxs34 } from "react/jsx-runtime";
+
+// src/components/Drawer/Drawer.tsx
+import { useEffect as useEffect13, useRef as useRef18, useCallback as useCallback20, useState as useState18 } from "react";
+import { createPortal as createPortal3 } from "react-dom";
+import { X as X8, Spinner as Spinner2 } from "phosphor-react";
+import { Fragment as Fragment4, jsx as jsx38, jsxs as jsxs35 } from "react/jsx-runtime";
+var Drawer = ({
+  isOpen,
+  onClose,
+  title,
+  children,
+  header,
+  footer,
+  position = "right",
+  size = "md",
+  variant = "default",
+  showCloseButton = true,
+  showOverlay = true,
+  closeOnOverlayClick = true,
+  closeOnEscape = true,
+  lockBodyScroll = true,
+  usePortal = true,
+  zIndex = 9999,
+  animationDuration = 300,
+  loading = false,
+  overlayClassName = "",
+  overlayStyle,
+  className = "",
+  style,
+  ...props
+}) => {
+  const [isVisible, setIsVisible] = useState18(false);
+  const [isAnimating, setIsAnimating] = useState18(false);
+  const drawerRef = useRef18(null);
+  const previousActiveElement = useRef18(null);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState18(false);
+  useEffect13(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
+    const handleChange = (e) => {
+      setPrefersReducedMotion(e.matches);
+    };
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+  useEffect13(() => {
+    if (isOpen) {
+      setIsVisible(true);
+      setIsAnimating(true);
+      previousActiveElement.current = document.activeElement;
+      setTimeout(() => {
+        if (drawerRef.current) {
+          drawerRef.current.focus();
+        }
+      }, 50);
+      setTimeout(() => {
+        setIsAnimating(false);
+      }, animationDuration);
+    } else {
+      setIsAnimating(true);
+      setTimeout(() => {
+        setIsVisible(false);
+        setIsAnimating(false);
+        if (previousActiveElement.current) {
+          previousActiveElement.current.focus();
+        }
+      }, animationDuration);
+    }
+  }, [isOpen, animationDuration]);
+  useEffect13(() => {
+    if (isOpen && lockBodyScroll) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isOpen, lockBodyScroll]);
+  useEffect13(() => {
+    if (!isOpen || !closeOnEscape) return;
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [isOpen, closeOnEscape, onClose]);
+  const handleOverlayClick = useCallback20((event) => {
+    if (closeOnOverlayClick && event.target === event.currentTarget) {
+      onClose();
+    }
+  }, [closeOnOverlayClick, onClose]);
+  const handleKeyDown = useCallback20((event) => {
+    if (event.key === "Tab") {
+      const drawer = drawerRef.current;
+      if (!drawer) return;
+      const focusableElements = drawer.querySelectorAll(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+      if (event.shiftKey) {
+        if (document.activeElement === firstElement) {
+          event.preventDefault();
+          lastElement?.focus();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          event.preventDefault();
+          firstElement?.focus();
+        }
+      }
+    }
+  }, []);
+  const drawerClasses = [
+    "drawer",
+    `drawer--${position}`,
+    `drawer--${size}`,
+    `drawer--${variant}`,
+    isOpen && "drawer--open",
+    isAnimating && "drawer--animating",
+    !prefersReducedMotion && "drawer--animated",
+    prefersReducedMotion && "drawer--no-animation",
+    loading && "drawer--loading",
+    className
+  ].filter(Boolean).join(" ");
+  const overlayClasses = [
+    "drawer__overlay",
+    isOpen && "drawer__overlay--open",
+    isAnimating && "drawer__overlay--animating",
+    overlayClassName
+  ].filter(Boolean).join(" ");
+  const drawerStyles = {
+    zIndex,
+    transitionDuration: `${animationDuration}ms`,
+    ...style
+  };
+  const overlayStyles = {
+    zIndex: zIndex - 1,
+    transitionDuration: `${animationDuration}ms`,
+    ...overlayStyle
+  };
+  if (!isVisible) {
+    return null;
+  }
+  const drawerContent = /* @__PURE__ */ jsxs35(Fragment4, { children: [
+    showOverlay && /* @__PURE__ */ jsx38(
+      "div",
+      {
+        className: overlayClasses,
+        style: overlayStyles,
+        onClick: handleOverlayClick,
+        "data-testid": "drawer-overlay",
+        "aria-hidden": "true"
+      }
+    ),
+    /* @__PURE__ */ jsxs35(
+      "div",
+      {
+        ref: drawerRef,
+        className: drawerClasses,
+        style: drawerStyles,
+        role: "dialog",
+        "aria-modal": "true",
+        "aria-labelledby": title ? "drawer-title" : void 0,
+        tabIndex: -1,
+        onKeyDown: handleKeyDown,
+        ...props,
+        children: [
+          loading && /* @__PURE__ */ jsx38("div", { className: "drawer__loading", "data-testid": "drawer-loading", children: /* @__PURE__ */ jsx38(Spinner2, { size: 24, className: "animate-spin" }) }),
+          (title || header || showCloseButton) && /* @__PURE__ */ jsx38("div", { className: "drawer__header", children: header || /* @__PURE__ */ jsxs35(Fragment4, { children: [
+            title && /* @__PURE__ */ jsx38(
+              Typography,
+              {
+                id: "drawer-title",
+                variant: "h3",
+                weight: "semibold",
+                className: "drawer__title",
+                children: title
+              }
+            ),
+            showCloseButton && /* @__PURE__ */ jsx38(
+              Button,
+              {
+                variant: "ghost",
+                size: "sm",
+                onClick: onClose,
+                "aria-label": "Close drawer",
+                className: "drawer__close-button",
+                children: /* @__PURE__ */ jsx38(X8, { size: 20 })
+              }
+            )
+          ] }) }),
+          /* @__PURE__ */ jsx38("div", { className: "drawer__content", children }),
+          footer && /* @__PURE__ */ jsx38("div", { className: "drawer__footer", children: footer })
+        ]
+      }
+    )
+  ] });
+  if (usePortal) {
+    return createPortal3(drawerContent, document.body);
+  }
+  return drawerContent;
+};
+
+// src/components/Backgrounds/Backgrounds.tsx
+import { useMemo as useMemo5 } from "react";
+import { jsx as jsx39, jsxs as jsxs36 } from "react/jsx-runtime";
+var Backgrounds = ({
+  children,
+  variant = "plain",
+  gradientType = "linear",
+  gradientDirection = "to-right",
+  gradientColors,
+  gradientStops,
+  gradientPosition = "center",
+  patternType = "dots",
+  patternSize = "20px",
+  patternOpacity = 0.1,
+  patternColor,
+  textureType = "paper",
+  textureIntensity = 0.5,
+  textureScale = 1,
+  modernType = "radial-glow",
+  colorScheme = "primary",
+  size = "md",
+  intensity = "medium",
+  animated = false,
+  animationDuration = 3e3,
+  animationDelay = 0,
+  showOverlay = false,
+  overlayOpacity = 0.1,
+  overlayColor = "#000000",
+  responsive = true,
+  className = "",
+  style,
+  ariaLabel,
+  ariaDescribedBy,
+  ariaLabelledBy,
+  ...props
+}) => {
+  const gradientBackground = useMemo5(() => {
+    if (variant !== "gradient") return "";
+    const colors2 = gradientColors || getDefaultGradientColors(colorScheme);
+    const stops = gradientStops || getDefaultGradientStops(colors2.length);
+    let gradient = "";
+    switch (gradientType) {
+      case "linear":
+        gradient = `linear-gradient(${gradientDirection}, ${colors2.map(
+          (color, index) => `${color} ${stops[index] || "0%"}`
+        ).join(", ")})`;
+        break;
+      case "radial":
+        gradient = `radial-gradient(circle at ${gradientPosition}, ${colors2.map(
+          (color, index) => `${color} ${stops[index] || "0%"}`
+        ).join(", ")})`;
+        break;
+      case "conic":
+        gradient = `conic-gradient(from ${gradientDirection}, ${colors2.map(
+          (color, index) => `${color} ${stops[index] || "0%"}`
+        ).join(", ")})`;
+        break;
+    }
+    return gradient;
+  }, [variant, gradientType, gradientDirection, gradientColors, gradientStops, gradientPosition, colorScheme]);
+  const patternBackground = useMemo5(() => {
+    if (variant !== "pattern") return "";
+    const color = patternColor || getDefaultPatternColor(colorScheme);
+    const opacity = patternOpacity;
+    switch (patternType) {
+      case "dots":
+        return `radial-gradient(circle at 1px 1px, ${color} ${opacity}, transparent 0)`;
+      case "grid":
+        return `linear-gradient(${color} ${opacity} 1px, transparent 1px), linear-gradient(90deg, ${color} ${opacity} 1px, transparent 1px)`;
+      case "lines":
+        return `repeating-linear-gradient(45deg, transparent, transparent 2px, ${color} ${opacity} 2px, ${color} ${opacity} 4px)`;
+      case "waves":
+        return `radial-gradient(ellipse at center, ${color} ${opacity} 0%, transparent 70%)`;
+      case "geometric":
+        return `conic-gradient(from 0deg at 50% 50%, ${color} ${opacity} 0deg, transparent 60deg, ${color} ${opacity} 120deg, transparent 180deg, ${color} ${opacity} 240deg, transparent 300deg)`;
+      default:
+        return "";
+    }
+  }, [variant, patternType, patternColor, patternOpacity, colorScheme]);
+  const textureBackground = useMemo5(() => {
+    if (variant !== "texture") return "";
+    const intensity2 = textureIntensity;
+    const scale = textureScale;
+    switch (textureType) {
+      case "paper":
+        return `radial-gradient(circle at 20% 50%, transparent 20%, rgba(255,255,255,${intensity2}) 21%, rgba(255,255,255,${intensity2}) 34%, transparent 35%, transparent), linear-gradient(0deg, rgba(255,255,255,${intensity2 * 0.5}) 50%, transparent 50%)`;
+      case "fabric":
+        return `repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,${intensity2 * 0.3}) 2px, rgba(255,255,255,${intensity2 * 0.3}) 4px), repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(0,0,0,${intensity2 * 0.1}) 2px, rgba(0,0,0,${intensity2 * 0.1}) 4px)`;
+      case "metal":
+        return `linear-gradient(45deg, rgba(255,255,255,${intensity2 * 0.8}) 25%, transparent 25%), linear-gradient(-45deg, rgba(255,255,255,${intensity2 * 0.8}) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgba(255,255,255,${intensity2 * 0.4}) 75%), linear-gradient(-45deg, transparent 75%, rgba(255,255,255,${intensity2 * 0.4}) 75%)`;
+      case "wood":
+        return `repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(139,69,19,${intensity2 * 0.3}) 2px, rgba(139,69,19,${intensity2 * 0.3}) 4px), repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(160,82,45,${intensity2 * 0.2}) 2px, rgba(160,82,45,${intensity2 * 0.2}) 4px)`;
+      default:
+        return "";
+    }
+  }, [variant, textureType, textureIntensity, textureScale]);
+  const modernBackground = useMemo5(() => {
+    if (variant !== "modern") return "";
+    const colors2 = getDefaultGradientColors(colorScheme);
+    switch (modernType) {
+      case "radial-glow":
+        return `radial-gradient(60% 120% at 50% 50%, hsla(0,0%,100%,0) 0, ${colors2[0]}50 100%)`;
+      case "grid-dots":
+        return `linear-gradient(to right, #4f4f4f2e 1px, transparent 1px), linear-gradient(to bottom, #8080800a 1px, transparent 1px), radial-gradient(circle 400px at 50% 300px, ${colors2[0]}36, #000)`;
+      case "mesh-gradient":
+        return `radial-gradient(125% 125% at 50% 10%, #fff 40%, ${colors2[0]} 100%)`;
+      case "noise":
+        return `radial-gradient(#ffffff33 1px, #00091d 1px), url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`;
+      case "aurora":
+        return `linear-gradient(45deg, ${colors2[0]}20, ${colors2[1]}20, ${colors2[0]}20), radial-gradient(circle at 20% 50%, ${colors2[0]}40, transparent 50%), radial-gradient(circle at 80% 20%, ${colors2[1]}40, transparent 50%), radial-gradient(circle at 40% 80%, ${colors2[0]}40, transparent 50%)`;
+      case "waves":
+        return `radial-gradient(circle at 50% 50%, ${colors2[0]}20, transparent 50%), radial-gradient(circle at 80% 20%, ${colors2[1]}20, transparent 50%), radial-gradient(circle at 20% 80%, ${colors2[0]}20, transparent 50%)`;
+      default:
+        return "";
+    }
+  }, [variant, modernType, colorScheme]);
+  const backgroundClasses = [
+    "backgrounds",
+    `backgrounds--${variant}`,
+    variant === "gradient" && `backgrounds--gradient-${gradientType}`,
+    variant === "gradient" && `backgrounds--gradient-${gradientDirection}`,
+    variant === "pattern" && `backgrounds--pattern-${patternType}`,
+    variant === "texture" && `backgrounds--texture-${textureType}`,
+    variant === "modern" && `backgrounds--modern-${modernType}`,
+    `backgrounds--color-${colorScheme}`,
+    `backgrounds--${size}`,
+    `backgrounds--intensity-${intensity}`,
+    animated && "backgrounds--animated",
+    showOverlay && "backgrounds--overlay",
+    responsive && "backgrounds--responsive",
+    className
+  ].filter(Boolean).join(" ");
+  const backgroundStyles = {
+    ...variant === "gradient" && gradientBackground && {
+      background: gradientBackground,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat"
+    },
+    ...variant === "pattern" && patternBackground && {
+      backgroundImage: patternBackground,
+      backgroundSize: patternSize,
+      backgroundPosition: "center",
+      backgroundRepeat: "repeat"
+    },
+    ...variant === "texture" && textureBackground && {
+      backgroundImage: textureBackground,
+      backgroundSize: `${100 * textureScale}%`,
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat"
+    },
+    ...variant === "modern" && modernBackground && {
+      background: modernBackground,
+      backgroundSize: modernType === "noise" ? "20px 20px, 100% 100%" : "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: modernType === "noise" ? "repeat, no-repeat" : "no-repeat"
+    },
+    ...animated && {
+      animationDuration: `${animationDuration}ms`,
+      animationDelay: `${animationDelay}ms`
+    },
+    ...showOverlay && {
+      position: "relative"
+    },
+    ...style
+  };
+  return /* @__PURE__ */ jsxs36(
+    "div",
+    {
+      className: backgroundClasses,
+      style: backgroundStyles,
+      role: "region",
+      "aria-label": ariaLabel,
+      "aria-describedby": ariaDescribedBy,
+      "aria-labelledby": ariaLabelledBy,
+      ...props,
+      children: [
+        showOverlay && /* @__PURE__ */ jsx39(
+          "div",
+          {
+            className: "backgrounds__overlay",
+            style: {
+              position: "absolute",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: overlayColor,
+              opacity: overlayOpacity,
+              pointerEvents: "none",
+              zIndex: 1
+            }
+          }
+        ),
+        /* @__PURE__ */ jsx39("div", { className: "backgrounds__content", style: { position: "relative", zIndex: 2 }, children })
+      ]
+    }
+  );
+};
+function getDefaultGradientColors(colorScheme) {
+  switch (colorScheme) {
+    case "primary":
+      return ["var(--cria-primary)", "var(--cria-primary-dark)"];
+    case "secondary":
+      return ["var(--cria-secondary)", "var(--cria-secondary-dark)"];
+    case "neutral":
+      return ["var(--cria-background-light)", "var(--cria-background-dark)"];
+    case "accent":
+      return ["var(--cria-primary-light)", "var(--cria-primary-darker)"];
+    default:
+      return ["var(--cria-primary)", "var(--cria-primary-dark)"];
+  }
+}
+function getDefaultGradientStops(count) {
+  const stops = [];
+  for (let i = 0; i < count; i++) {
+    stops.push(`${i / (count - 1) * 100}%`);
+  }
+  return stops;
+}
+function getDefaultPatternColor(colorScheme) {
+  switch (colorScheme) {
+    case "primary":
+      return "var(--cria-primary)";
+    case "secondary":
+      return "var(--cria-secondary)";
+    case "neutral":
+      return "var(--cria-text-secondary)";
+    case "accent":
+      return "var(--cria-primary-light)";
+    default:
+      return "var(--cria-primary)";
+  }
+}
+
+// src/components/Changelog/Changelog.tsx
+import { useState as useState19, useMemo as useMemo6 } from "react";
+import { Calendar, Tag, User as User5, GitBranch, Wrench, Lock, Warning as Warning3, Plus, Minus, ArrowsClockwise } from "phosphor-react";
+import { jsx as jsx40, jsxs as jsxs37 } from "react/jsx-runtime";
+var Changelog = ({
+  entries,
+  itemsPerPage = 5,
+  showPagination = true,
+  className = "",
+  style,
+  ...props
+}) => {
+  const [currentPage, setCurrentPage] = useState19(1);
+  const totalPages = Math.ceil(entries.length / itemsPerPage);
+  const paginatedEntries = useMemo6(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return entries.slice(startIndex, endIndex);
+  }, [entries, currentPage, itemsPerPage]);
+  const getTypeColor = (type) => {
+    switch (type) {
+      case "major":
+        return "error";
+      case "minor":
+        return "warning";
+      case "patch":
+        return "success";
+      case "hotfix":
+        return "info";
+      default:
+        return "default";
+    }
+  };
+  const getChangeTypeColor = (type) => {
+    switch (type) {
+      case "added":
+        return "success";
+      case "changed":
+        return "warning";
+      case "deprecated":
+        return "info";
+      case "removed":
+        return "error";
+      case "fixed":
+        return "success";
+      case "security":
+        return "error";
+      default:
+        return "default";
+    }
+  };
+  const getChangeTypeIcon = (type) => {
+    const iconProps = { size: 16, style: { marginRight: spacing[1] } };
+    switch (type) {
+      case "added":
+        return /* @__PURE__ */ jsx40(Plus, { ...iconProps });
+      case "changed":
+        return /* @__PURE__ */ jsx40(ArrowsClockwise, { ...iconProps });
+      case "deprecated":
+        return /* @__PURE__ */ jsx40(Warning3, { ...iconProps });
+      case "removed":
+        return /* @__PURE__ */ jsx40(Minus, { ...iconProps });
+      case "fixed":
+        return /* @__PURE__ */ jsx40(Wrench, { ...iconProps });
+      case "security":
+        return /* @__PURE__ */ jsx40(Lock, { ...iconProps });
+      default:
+        return /* @__PURE__ */ jsx40(Tag, { ...iconProps });
+    }
+  };
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+  const renderPagination = () => {
+    if (!showPagination || totalPages <= 1) return null;
+    const pages = [];
+    const maxVisiblePages = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+    if (currentPage > 1) {
+      pages.push(
+        /* @__PURE__ */ jsx40(
+          Button,
+          {
+            variant: "outline",
+            size: "sm",
+            onClick: () => handlePageChange(currentPage - 1),
+            style: { marginRight: spacing[2] },
+            children: "Previous"
+          },
+          "prev"
+        )
+      );
+    }
+    for (let i = startPage; i <= endPage; i++) {
+      pages.push(
+        /* @__PURE__ */ jsx40(
+          Button,
+          {
+            variant: i === currentPage ? "primary" : "outline",
+            size: "sm",
+            onClick: () => handlePageChange(i),
+            style: { marginRight: spacing[2] },
+            children: i
+          },
+          i
+        )
+      );
+    }
+    if (currentPage < totalPages) {
+      pages.push(
+        /* @__PURE__ */ jsx40(
+          Button,
+          {
+            variant: "outline",
+            size: "sm",
+            onClick: () => handlePageChange(currentPage + 1),
+            style: { marginLeft: spacing[2] },
+            children: "Next"
+          },
+          "next"
+        )
+      );
+    }
+    return /* @__PURE__ */ jsx40("div", { style: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: spacing[8],
+      gap: spacing[2]
+    }, children: pages });
+  };
+  return /* @__PURE__ */ jsxs37(
+    "div",
+    {
+      className: `changelog ${className}`,
+      style: {
+        width: "100%",
+        ...style
+      },
+      ...props,
+      children: [
+        paginatedEntries.map((entry) => /* @__PURE__ */ jsxs37(Card, { style: { marginBottom: spacing[6] }, children: [
+          /* @__PURE__ */ jsx40(CardHeader, { children: /* @__PURE__ */ jsxs37("div", { style: {
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            flexWrap: "wrap",
+            gap: spacing[4]
+          }, children: [
+            /* @__PURE__ */ jsxs37("div", { style: { display: "flex", alignItems: "center", gap: spacing[4] }, children: [
+              /* @__PURE__ */ jsx40(Typography, { variant: "title2", style: { margin: 0 }, children: entry.title }),
+              /* @__PURE__ */ jsx40(Badge, { variant: getTypeColor(entry.type), size: "sm", children: entry.version })
+            ] }),
+            /* @__PURE__ */ jsxs37("div", { style: {
+              display: "flex",
+              alignItems: "center",
+              gap: spacing[4],
+              color: "#666",
+              fontSize: "14px"
+            }, children: [
+              /* @__PURE__ */ jsxs37("div", { style: { display: "flex", alignItems: "center", gap: spacing[1] }, children: [
+                /* @__PURE__ */ jsx40(Calendar, { size: 16 }),
+                /* @__PURE__ */ jsx40("span", { children: entry.date })
+              ] }),
+              /* @__PURE__ */ jsxs37("div", { style: { display: "flex", alignItems: "center", gap: spacing[1] }, children: [
+                /* @__PURE__ */ jsx40(User5, { size: 16 }),
+                /* @__PURE__ */ jsx40("span", { children: entry.author })
+              ] }),
+              entry.branch && /* @__PURE__ */ jsxs37("div", { style: { display: "flex", alignItems: "center", gap: spacing[1] }, children: [
+                /* @__PURE__ */ jsx40(GitBranch, { size: 16 }),
+                /* @__PURE__ */ jsx40("span", { children: entry.branch })
+              ] })
+            ] })
+          ] }) }),
+          /* @__PURE__ */ jsxs37(CardContent, { children: [
+            entry.description && /* @__PURE__ */ jsx40(Typography, { variant: "body", style: { marginBottom: spacing[4], color: "#666" }, children: entry.description }),
+            entry.changes.map((change, index) => /* @__PURE__ */ jsxs37("div", { style: { marginBottom: spacing[4] }, children: [
+              /* @__PURE__ */ jsxs37("div", { style: {
+                display: "flex",
+                alignItems: "center",
+                gap: spacing[2],
+                marginBottom: spacing[2]
+              }, children: [
+                /* @__PURE__ */ jsx40("div", { style: { display: "flex", alignItems: "center" }, children: getChangeTypeIcon(change.type) }),
+                /* @__PURE__ */ jsx40(Badge, { variant: getChangeTypeColor(change.type), size: "sm", children: change.type.charAt(0).toUpperCase() + change.type.slice(1) })
+              ] }),
+              /* @__PURE__ */ jsx40("ul", { style: {
+                margin: 0,
+                paddingLeft: spacing[6],
+                listStyle: "none"
+              }, children: change.items.map((item, itemIndex) => /* @__PURE__ */ jsxs37("li", { style: {
+                marginBottom: spacing[1],
+                position: "relative"
+              }, children: [
+                /* @__PURE__ */ jsx40("span", { style: {
+                  position: "absolute",
+                  left: `-${spacing[4]}`,
+                  color: "#666"
+                }, children: "\u2022" }),
+                /* @__PURE__ */ jsx40(Typography, { variant: "body", style: { margin: 0 }, children: item })
+              ] }, itemIndex)) })
+            ] }, index)),
+            entry.breaking && entry.breaking.length > 0 && /* @__PURE__ */ jsxs37("div", { style: {
+              marginTop: spacing[4],
+              padding: spacing[4],
+              backgroundColor: "#fef2f2",
+              border: "1px solid #fecaca",
+              borderRadius: spacing[2]
+            }, children: [
+              /* @__PURE__ */ jsxs37(Typography, { variant: "title3", style: {
+                color: "#dc2626",
+                marginBottom: spacing[2],
+                fontWeight: "bold"
+              }, children: [
+                /* @__PURE__ */ jsx40(Warning3, { size: 16, style: { marginRight: spacing[1] } }),
+                "Breaking Changes"
+              ] }),
+              /* @__PURE__ */ jsx40("ul", { style: {
+                margin: 0,
+                paddingLeft: spacing[6],
+                listStyle: "none"
+              }, children: entry.breaking.map((item, index) => /* @__PURE__ */ jsxs37("li", { style: {
+                marginBottom: spacing[1],
+                position: "relative"
+              }, children: [
+                /* @__PURE__ */ jsx40("span", { style: {
+                  position: "absolute",
+                  left: `-${spacing[4]}`,
+                  color: "#dc2626"
+                }, children: "\u2022" }),
+                /* @__PURE__ */ jsx40(Typography, { variant: "body", style: { margin: 0, color: "#dc2626" }, children: item })
+              ] }, index)) })
+            ] })
+          ] })
+        ] }, entry.id)),
+        renderPagination()
+      ]
+    }
+  );
+};
+var Changelog_default = Changelog;
+
+// src/components/Chat/Chat.tsx
+import { useCallback as useCallback21, useEffect as useEffect14, useMemo as useMemo7, useRef as useRef19, useState as useState20 } from "react";
+import { PaperPlaneRight, DotsThree, FileText, ArrowBendUpLeft } from "phosphor-react";
+import { jsx as jsx41, jsxs as jsxs38 } from "react/jsx-runtime";
 var Chat = ({
   messages = [],
   onSend,
@@ -7695,20 +8350,20 @@ var Chat = ({
   style,
   ...props
 }) => {
-  const [text, setText] = useState19("");
-  const [replyingTo, setReplyingTo] = useState19(null);
-  const logRef = useRef18(null);
-  const [revealMsgId, setRevealMsgId] = useState19(null);
-  const [revealIndex, setRevealIndex] = useState19(0);
-  const revealTimer = useRef18(null);
-  const lastRevealedId = useRef18(null);
-  useEffect12(() => {
+  const [text, setText] = useState20("");
+  const [replyingTo, setReplyingTo] = useState20(null);
+  const logRef = useRef19(null);
+  const [revealMsgId, setRevealMsgId] = useState20(null);
+  const [revealIndex, setRevealIndex] = useState20(0);
+  const revealTimer = useRef19(null);
+  const lastRevealedId = useRef19(null);
+  useEffect14(() => {
     const el = logRef.current;
     if (el) {
       el.scrollTop = el.scrollHeight;
     }
   }, [messages, typing]);
-  useEffect12(() => {
+  useEffect14(() => {
     if (!revealThem) return;
     const last = messages[messages.length - 1];
     if (!last || last.author !== "them") return;
@@ -7731,7 +8386,7 @@ var Chat = ({
       if (revealTimer.current) window.clearInterval(revealTimer.current);
     };
   }, [messages, revealThem, revealSpeedMs]);
-  const handleSend = useCallback23(() => {
+  const handleSend = useCallback21(() => {
     if (!text.trim() || disabled) return;
     onSend?.(text.trim(), replyingTo?.id);
     setText("");
@@ -7755,8 +8410,8 @@ var Chat = ({
   const renderAttachment = (attachment) => {
     switch (attachment.type) {
       case "image":
-        return /* @__PURE__ */ jsxs32("div", { style: { marginTop: 8, borderRadius: 8, overflow: "hidden" }, children: [
-          /* @__PURE__ */ jsx36(
+        return /* @__PURE__ */ jsxs38("div", { style: { marginTop: 8, borderRadius: 8, overflow: "hidden" }, children: [
+          /* @__PURE__ */ jsx41(
             "img",
             {
               src: attachment.url,
@@ -7764,7 +8419,7 @@ var Chat = ({
               style: { maxWidth: "100%", height: "auto", display: "block" }
             }
           ),
-          attachment.title && /* @__PURE__ */ jsxs32("div", { style: {
+          attachment.title && /* @__PURE__ */ jsxs38("div", { style: {
             padding: 12,
             background: "rgba(0,0,0,0.05)",
             borderTop: "1px solid rgba(0,0,0,0.1)",
@@ -7772,11 +8427,11 @@ var Chat = ({
             flexDirection: "column",
             gap: 8
           }, children: [
-            /* @__PURE__ */ jsxs32("div", { children: [
-              /* @__PURE__ */ jsx36(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 4 }, children: attachment.title }),
-              attachment.description && /* @__PURE__ */ jsx36(Typography, { variant: "caption", color: "secondary", children: attachment.description })
+            /* @__PURE__ */ jsxs38("div", { children: [
+              /* @__PURE__ */ jsx41(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 4 }, children: attachment.title }),
+              attachment.description && /* @__PURE__ */ jsx41(Typography, { variant: "caption", color: "secondary", children: attachment.description })
             ] }),
-            /* @__PURE__ */ jsx36(
+            /* @__PURE__ */ jsx41(
               Button,
               {
                 variant: "primary",
@@ -7791,8 +8446,8 @@ var Chat = ({
           ] })
         ] });
       case "video":
-        return /* @__PURE__ */ jsxs32("div", { style: { marginTop: 8, borderRadius: 8, overflow: "hidden", position: "relative" }, children: [
-          /* @__PURE__ */ jsx36(
+        return /* @__PURE__ */ jsxs38("div", { style: { marginTop: 8, borderRadius: 8, overflow: "hidden", position: "relative" }, children: [
+          /* @__PURE__ */ jsx41(
             "video",
             {
               src: attachment.url,
@@ -7800,7 +8455,7 @@ var Chat = ({
               style: { maxWidth: "100%", height: "auto", display: "block" }
             }
           ),
-          attachment.duration && /* @__PURE__ */ jsx36("div", { style: {
+          attachment.duration && /* @__PURE__ */ jsx41("div", { style: {
             position: "absolute",
             bottom: 8,
             right: 8,
@@ -7812,8 +8467,8 @@ var Chat = ({
           }, children: attachment.duration })
         ] });
       case "card":
-        return /* @__PURE__ */ jsx36("div", { style: { marginTop: 8 }, children: /* @__PURE__ */ jsxs32(Card, { style: { padding: 12, maxWidth: 280 }, children: [
-          attachment.thumbnail && /* @__PURE__ */ jsx36(
+        return /* @__PURE__ */ jsx41("div", { style: { marginTop: 8 }, children: /* @__PURE__ */ jsxs38(Card, { style: { padding: 12, maxWidth: 280 }, children: [
+          attachment.thumbnail && /* @__PURE__ */ jsx41(
             "img",
             {
               src: attachment.thumbnail,
@@ -7821,11 +8476,11 @@ var Chat = ({
               style: { width: "100%", height: 120, objectFit: "cover", borderRadius: 4, marginBottom: 8 }
             }
           ),
-          attachment.title && /* @__PURE__ */ jsx36(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 4 }, children: attachment.title }),
-          attachment.description && /* @__PURE__ */ jsx36(Typography, { variant: "caption", color: "secondary", children: attachment.description })
+          attachment.title && /* @__PURE__ */ jsx41(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 4 }, children: attachment.title }),
+          attachment.description && /* @__PURE__ */ jsx41(Typography, { variant: "caption", color: "secondary", children: attachment.description })
         ] }) });
       case "file":
-        return /* @__PURE__ */ jsxs32("div", { style: {
+        return /* @__PURE__ */ jsxs38("div", { style: {
           marginTop: 8,
           padding: 8,
           background: "rgba(0,0,0,0.05)",
@@ -7834,16 +8489,16 @@ var Chat = ({
           alignItems: "center",
           gap: 8
         }, children: [
-          /* @__PURE__ */ jsx36(FileText, { size: 20 }),
-          /* @__PURE__ */ jsxs32("div", { style: { flex: 1, minWidth: 0 }, children: [
-            /* @__PURE__ */ jsx36(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 2 }, children: attachment.title || "File" }),
-            attachment.size && /* @__PURE__ */ jsx36(Typography, { variant: "caption", color: "secondary", children: attachment.size })
+          /* @__PURE__ */ jsx41(FileText, { size: 20 }),
+          /* @__PURE__ */ jsxs38("div", { style: { flex: 1, minWidth: 0 }, children: [
+            /* @__PURE__ */ jsx41(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 2 }, children: attachment.title || "File" }),
+            attachment.size && /* @__PURE__ */ jsx41(Typography, { variant: "caption", color: "secondary", children: attachment.size })
           ] })
         ] });
       case "course":
       case "lesson":
-        return /* @__PURE__ */ jsxs32("div", { style: { marginTop: 8, borderRadius: 8, overflow: "hidden", border: "1px solid var(--cria-gray-200)", position: "relative" }, children: [
-          attachment.thumbnail && /* @__PURE__ */ jsx36(
+        return /* @__PURE__ */ jsxs38("div", { style: { marginTop: 8, borderRadius: 8, overflow: "hidden", border: "1px solid var(--cria-gray-200)", position: "relative" }, children: [
+          attachment.thumbnail && /* @__PURE__ */ jsx41(
             "img",
             {
               src: attachment.thumbnail,
@@ -7851,7 +8506,7 @@ var Chat = ({
               style: { width: "100%", height: 200, objectFit: "cover", display: "block" }
             }
           ),
-          /* @__PURE__ */ jsxs32("div", { style: {
+          /* @__PURE__ */ jsxs38("div", { style: {
             position: "absolute",
             bottom: 0,
             left: 0,
@@ -7862,15 +8517,15 @@ var Chat = ({
             flexDirection: "column",
             gap: 12
           }, children: [
-            /* @__PURE__ */ jsxs32("div", { children: [
-              /* @__PURE__ */ jsx36(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 4, color: "var(--cria-white)" }, children: attachment.title }),
-              attachment.description && /* @__PURE__ */ jsx36(Typography, { variant: "caption", style: { color: "rgba(255,255,255,0.9)", marginBottom: 4, display: "block" }, children: attachment.description }),
-              attachment.duration && /* @__PURE__ */ jsxs32(Typography, { variant: "caption", style: { color: "rgba(255,255,255,0.8)", marginTop: 4, display: "block" }, children: [
+            /* @__PURE__ */ jsxs38("div", { children: [
+              /* @__PURE__ */ jsx41(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 4, color: "var(--cria-white)" }, children: attachment.title }),
+              attachment.description && /* @__PURE__ */ jsx41(Typography, { variant: "caption", style: { color: "rgba(255,255,255,0.9)", marginBottom: 4, display: "block" }, children: attachment.description }),
+              attachment.duration && /* @__PURE__ */ jsxs38(Typography, { variant: "caption", style: { color: "rgba(255,255,255,0.8)", marginTop: 4, display: "block" }, children: [
                 "Dura\xE7\xE3o: ",
                 attachment.duration
               ] })
             ] }),
-            /* @__PURE__ */ jsx36(
+            /* @__PURE__ */ jsx41(
               Button,
               {
                 variant: "primary",
@@ -7888,7 +8543,7 @@ var Chat = ({
         return null;
     }
   };
-  const grouped = useMemo6(() => {
+  const grouped = useMemo7(() => {
     const out = [];
     messages.forEach((m) => {
       const last = out[out.length - 1];
@@ -7900,8 +8555,8 @@ var Chat = ({
     });
     return out;
   }, [messages]);
-  return /* @__PURE__ */ jsxs32("div", { className: ["cria-chat", className].filter(Boolean).join(" "), style, ...props, children: [
-    /* @__PURE__ */ jsxs32(
+  return /* @__PURE__ */ jsxs38("div", { className: ["cria-chat", className].filter(Boolean).join(" "), style, ...props, children: [
+    /* @__PURE__ */ jsxs38(
       "div",
       {
         ref: logRef,
@@ -7910,10 +8565,10 @@ var Chat = ({
         "aria-live": "polite",
         "aria-relevant": "additions",
         children: [
-          grouped.map((group) => /* @__PURE__ */ jsx36("div", { className: ["cria-chat__group", group.author === "me" ? "cria-chat__group--me" : "cria-chat__group--them"].join(" "), children: group.items.map((item) => {
+          grouped.map((group) => /* @__PURE__ */ jsx41("div", { className: ["cria-chat__group", group.author === "me" ? "cria-chat__group--me" : "cria-chat__group--them"].join(" "), children: group.items.map((item) => {
             const repliedMessage = item.replyTo ? findMessageById(item.replyTo) : null;
-            return /* @__PURE__ */ jsxs32("div", { className: "cria-chat__bubble", "aria-label": `${group.author === "me" ? "Me" : "Them"} said ${item.text}`, children: [
-              repliedMessage && /* @__PURE__ */ jsxs32("div", { style: {
+            return /* @__PURE__ */ jsxs38("div", { className: "cria-chat__bubble", "aria-label": `${group.author === "me" ? "Me" : "Them"} said ${item.text}`, children: [
+              repliedMessage && /* @__PURE__ */ jsxs38("div", { style: {
                 marginBottom: 8,
                 padding: 8,
                 background: "rgba(0,0,0,0.05)",
@@ -7922,28 +8577,28 @@ var Chat = ({
                 fontSize: "12px",
                 color: "var(--cria-gray-600)"
               }, children: [
-                /* @__PURE__ */ jsxs32("div", { style: { fontWeight: 500, marginBottom: 2 }, children: [
+                /* @__PURE__ */ jsxs38("div", { style: { fontWeight: 500, marginBottom: 2 }, children: [
                   "Replying to ",
                   repliedMessage.author === "me" ? "you" : "them"
                 ] }),
-                /* @__PURE__ */ jsx36("div", { style: {
+                /* @__PURE__ */ jsx41("div", { style: {
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
                   maxWidth: "200px"
                 }, children: repliedMessage.text })
               ] }),
-              /* @__PURE__ */ jsx36(Typography, { variant: "body", color: group.author === "me" ? "inverse" : "content", children: revealThem && group.author === "them" && item.id === revealMsgId ? item.text.slice(0, Math.max(0, revealIndex)) : item.text }),
-              item.attachments && item.attachments.map((attachment) => /* @__PURE__ */ jsx36("div", { children: renderAttachment(attachment) }, attachment.id)),
-              /* @__PURE__ */ jsxs32("div", { style: {
+              /* @__PURE__ */ jsx41(Typography, { variant: "body", color: group.author === "me" ? "inverse" : "content", children: revealThem && group.author === "them" && item.id === revealMsgId ? item.text.slice(0, Math.max(0, revealIndex)) : item.text }),
+              item.attachments && item.attachments.map((attachment) => /* @__PURE__ */ jsx41("div", { children: renderAttachment(attachment) }, attachment.id)),
+              /* @__PURE__ */ jsxs38("div", { style: {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
                 marginTop: 4,
                 gap: 8
               }, children: [
-                /* @__PURE__ */ jsx36(Typography, { variant: "caption", color: group.author === "me" ? "inverse" : "secondary", children: item.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) }),
-                /* @__PURE__ */ jsxs32(
+                /* @__PURE__ */ jsx41(Typography, { variant: "caption", color: group.author === "me" ? "inverse" : "secondary", children: item.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) }),
+                /* @__PURE__ */ jsxs38(
                   "button",
                   {
                     onClick: () => handleReply(item),
@@ -7961,7 +8616,7 @@ var Chat = ({
                     },
                     title: "Reply to this message",
                     children: [
-                      /* @__PURE__ */ jsx36(ArrowBendUpLeft, { size: 12 }),
+                      /* @__PURE__ */ jsx41(ArrowBendUpLeft, { size: 12 }),
                       "Reply"
                     ]
                   }
@@ -7969,11 +8624,11 @@ var Chat = ({
               ] })
             ] }, item.id);
           }) }, group.key)),
-          typing && /* @__PURE__ */ jsx36("div", { className: "cria-chat__group cria-chat__group--them", "aria-live": "polite", children: /* @__PURE__ */ jsx36("div", { className: "cria-chat__bubble cria-chat__bubble--typing", "aria-label": "Typing", children: /* @__PURE__ */ jsx36(DotsThree, { size: 24, weight: "bold" }) }) })
+          typing && /* @__PURE__ */ jsx41("div", { className: "cria-chat__group cria-chat__group--them", "aria-live": "polite", children: /* @__PURE__ */ jsx41("div", { className: "cria-chat__bubble cria-chat__bubble--typing", "aria-label": "Typing", children: /* @__PURE__ */ jsx41(DotsThree, { size: 24, weight: "bold" }) }) })
         ]
       }
     ),
-    replyingTo && /* @__PURE__ */ jsxs32("div", { style: {
+    replyingTo && /* @__PURE__ */ jsxs38("div", { style: {
       padding: 8,
       background: "rgba(117, 102, 161, 0.1)",
       borderRadius: 6,
@@ -7984,12 +8639,12 @@ var Chat = ({
       justifyContent: "space-between",
       gap: 8
     }, children: [
-      /* @__PURE__ */ jsxs32("div", { style: { flex: 1, minWidth: 0 }, children: [
-        /* @__PURE__ */ jsxs32("div", { style: { fontSize: "12px", fontWeight: 500, color: "var(--cria-primary)", marginBottom: 2 }, children: [
+      /* @__PURE__ */ jsxs38("div", { style: { flex: 1, minWidth: 0 }, children: [
+        /* @__PURE__ */ jsxs38("div", { style: { fontSize: "12px", fontWeight: 500, color: "var(--cria-primary)", marginBottom: 2 }, children: [
           "Replying to ",
           replyingTo.author === "me" ? "your message" : "their message"
         ] }),
-        /* @__PURE__ */ jsx36("div", { style: {
+        /* @__PURE__ */ jsx41("div", { style: {
           fontSize: "12px",
           color: "var(--cria-gray-600)",
           overflow: "hidden",
@@ -7997,7 +8652,7 @@ var Chat = ({
           whiteSpace: "nowrap"
         }, children: replyingTo.text })
       ] }),
-      /* @__PURE__ */ jsx36(
+      /* @__PURE__ */ jsx41(
         "button",
         {
           onClick: cancelReply,
@@ -8015,8 +8670,8 @@ var Chat = ({
         }
       )
     ] }),
-    /* @__PURE__ */ jsxs32("div", { className: "cria-chat__composer", children: [
-      /* @__PURE__ */ jsx36(
+    /* @__PURE__ */ jsxs38("div", { className: "cria-chat__composer", children: [
+      /* @__PURE__ */ jsx41(
         "textarea",
         {
           className: "cria-chat__textarea",
@@ -8029,13 +8684,553 @@ var Chat = ({
           rows: 1
         }
       ),
-      /* @__PURE__ */ jsx36(Button, { variant: "secondary", size: "sm", onClick: handleSend, disabled: disabled || !text.trim(), "aria-label": "Send message", children: /* @__PURE__ */ jsx36(PaperPlaneRight, { size: 18 }) })
+      /* @__PURE__ */ jsx41(Button, { variant: "secondary", size: "sm", onClick: handleSend, disabled: disabled || !text.trim(), "aria-label": "Send message", children: /* @__PURE__ */ jsx41(PaperPlaneRight, { size: 18 }) })
     ] })
   ] });
 };
 
+// src/components/AgentDev/AgentDev.tsx
+import { useState as useState21, useCallback as useCallback22 } from "react";
+import { Robot, X as X9, Plus as Plus2, Wrench as Wrench2, Code } from "phosphor-react";
+import { jsx as jsx42, jsxs as jsxs39 } from "react/jsx-runtime";
+var AgentDev = ({
+  isOpen,
+  onClose,
+  position = "right",
+  size = "lg",
+  className = "",
+  style,
+  ...props
+}) => {
+  const [activeTab, setActiveTab] = useState21("criar");
+  const [tabState, setTabState] = useState21({
+    activeTab: "criar",
+    criar: {
+      selectedType: null,
+      prompt: "",
+      images: []
+    },
+    consertar: {
+      selectedType: null,
+      selectedComponents: [],
+      description: ""
+    },
+    agente: {
+      prs: [],
+      mergedPRs: [],
+      closedPRs: [],
+      loading: false
+    }
+  });
+  const handleTabChange = useCallback22((tab) => {
+    setActiveTab(tab);
+    setTabState((prev) => ({ ...prev, activeTab: tab }));
+  }, []);
+  const updateTabState = useCallback22((tab, updates) => {
+    setTabState((prev) => ({
+      ...prev,
+      [tab]: { ...prev[tab], ...updates }
+    }));
+  }, []);
+  const tabs = [
+    {
+      id: "criar",
+      label: "Criar",
+      icon: /* @__PURE__ */ jsx42(Plus2, { size: 20 }),
+      description: "Create new components"
+    },
+    {
+      id: "consertar",
+      label: "Consertar",
+      icon: /* @__PURE__ */ jsx42(Wrench2, { size: 20 }),
+      description: "Fix existing components"
+    },
+    {
+      id: "agente",
+      label: "Agente",
+      icon: /* @__PURE__ */ jsx42(Code, { size: 20 }),
+      description: "Manage agent tasks"
+    }
+  ];
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case "criar":
+        return /* @__PURE__ */ jsxs39("div", { className: "agent-dev__tab-content", children: [
+          /* @__PURE__ */ jsx42(Typography, { variant: "h3", weight: "semibold", style: { marginBottom: spacing[4] }, children: "Criar Componente" }),
+          /* @__PURE__ */ jsx42(Typography, { variant: "body", color: "muted", style: { marginBottom: spacing[6] }, children: "Selecione o tipo de componente e descreva o que voc\xEA gostaria de criar." }),
+          /* @__PURE__ */ jsxs39("div", { className: "agent-dev__section", children: [
+            /* @__PURE__ */ jsx42(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Tipo de Componente" }),
+            /* @__PURE__ */ jsxs39("div", { className: "agent-dev__type-selector", children: [
+              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Layout" }),
+              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Forms" }),
+              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Navigation" }),
+              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Feedback" }),
+              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Data Display" }),
+              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Content" })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxs39("div", { className: "agent-dev__section", children: [
+            /* @__PURE__ */ jsx42(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Descri\xE7\xE3o do Componente" }),
+            /* @__PURE__ */ jsx42(
+              "textarea",
+              {
+                className: "agent-dev__textarea",
+                placeholder: "Descreva o componente que voc\xEA gostaria de criar...",
+                value: tabState.criar.prompt,
+                onChange: (e) => updateTabState("criar", { prompt: e.target.value }),
+                rows: 6
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxs39("div", { className: "agent-dev__section", children: [
+            /* @__PURE__ */ jsx42(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Imagens de Refer\xEAncia (Opcional)" }),
+            /* @__PURE__ */ jsxs39("div", { className: "agent-dev__image-upload", children: [
+              /* @__PURE__ */ jsx42(
+                "input",
+                {
+                  type: "file",
+                  accept: "image/*",
+                  multiple: true,
+                  className: "agent-dev__file-input",
+                  id: "image-upload"
+                }
+              ),
+              /* @__PURE__ */ jsxs39("label", { htmlFor: "image-upload", className: "agent-dev__file-label", children: [
+                /* @__PURE__ */ jsx42(Plus2, { size: 24 }),
+                /* @__PURE__ */ jsx42("span", { children: "Adicionar Imagens" })
+              ] })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsx42("div", { className: "agent-dev__actions", children: /* @__PURE__ */ jsxs39(
+            Button,
+            {
+              variant: "primary",
+              size: "lg",
+              disabled: !tabState.criar.selectedType || !tabState.criar.prompt.trim(),
+              onClick: () => {
+                console.log("Creating component:", tabState.criar);
+              },
+              children: [
+                /* @__PURE__ */ jsx42(Plus2, { size: 16 }),
+                "Criar Componente"
+              ]
+            }
+          ) })
+        ] });
+      case "consertar":
+        return /* @__PURE__ */ jsxs39("div", { className: "agent-dev__tab-content", children: [
+          /* @__PURE__ */ jsx42(Typography, { variant: "h3", weight: "semibold", style: { marginBottom: spacing[4] }, children: "Consertar Componentes" }),
+          /* @__PURE__ */ jsx42(Typography, { variant: "body", color: "muted", style: { marginBottom: spacing[6] }, children: "Selecione os componentes que precisam ser corrigidos e descreva os problemas." }),
+          /* @__PURE__ */ jsxs39("div", { className: "agent-dev__section", children: [
+            /* @__PURE__ */ jsx42(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Tipo de Componente" }),
+            /* @__PURE__ */ jsxs39("div", { className: "agent-dev__type-selector", children: [
+              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Layout" }),
+              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Forms" }),
+              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Navigation" }),
+              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Feedback" }),
+              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Data Display" }),
+              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Content" })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxs39("div", { className: "agent-dev__section", children: [
+            /* @__PURE__ */ jsx42(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Componentes Dispon\xEDveis" }),
+            /* @__PURE__ */ jsxs39("div", { className: "agent-dev__component-list", children: [
+              /* @__PURE__ */ jsxs39("div", { className: "agent-dev__component-item", children: [
+                /* @__PURE__ */ jsx42("input", { type: "checkbox", id: "comp-1" }),
+                /* @__PURE__ */ jsx42("label", { htmlFor: "comp-1", children: "Button" })
+              ] }),
+              /* @__PURE__ */ jsxs39("div", { className: "agent-dev__component-item", children: [
+                /* @__PURE__ */ jsx42("input", { type: "checkbox", id: "comp-2" }),
+                /* @__PURE__ */ jsx42("label", { htmlFor: "comp-2", children: "Input" })
+              ] }),
+              /* @__PURE__ */ jsxs39("div", { className: "agent-dev__component-item", children: [
+                /* @__PURE__ */ jsx42("input", { type: "checkbox", id: "comp-3" }),
+                /* @__PURE__ */ jsx42("label", { htmlFor: "comp-3", children: "Card" })
+              ] })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxs39("div", { className: "agent-dev__section", children: [
+            /* @__PURE__ */ jsx42(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Descri\xE7\xE3o do Problema" }),
+            /* @__PURE__ */ jsx42(
+              "textarea",
+              {
+                className: "agent-dev__textarea",
+                placeholder: "Descreva os problemas que precisam ser corrigidos...",
+                value: tabState.consertar.description,
+                onChange: (e) => updateTabState("consertar", { description: e.target.value }),
+                rows: 4
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsx42("div", { className: "agent-dev__actions", children: /* @__PURE__ */ jsxs39(
+            Button,
+            {
+              variant: "primary",
+              size: "lg",
+              disabled: tabState.consertar.selectedComponents.length === 0 || !tabState.consertar.description.trim(),
+              onClick: () => {
+                console.log("Fixing components:", tabState.consertar);
+              },
+              children: [
+                /* @__PURE__ */ jsx42(Wrench2, { size: 16 }),
+                "Consertar Componentes"
+              ]
+            }
+          ) })
+        ] });
+      case "agente":
+        return /* @__PURE__ */ jsxs39("div", { className: "agent-dev__tab-content", children: [
+          /* @__PURE__ */ jsx42(Typography, { variant: "h3", weight: "semibold", style: { marginBottom: spacing[4] }, children: "Agente de Desenvolvimento" }),
+          /* @__PURE__ */ jsx42(Typography, { variant: "body", color: "muted", style: { marginBottom: spacing[6] }, children: "Gerencie tarefas do agente e acompanhe o progresso das implementa\xE7\xF5es." }),
+          /* @__PURE__ */ jsxs39("div", { className: "agent-dev__pr-tabs", children: [
+            /* @__PURE__ */ jsx42(
+              Button,
+              {
+                variant: "ghost",
+                size: "sm",
+                className: activeTab === "agente" ? "agent-dev__pr-tab--active" : "",
+                children: "Em Produ\xE7\xE3o"
+              }
+            ),
+            /* @__PURE__ */ jsx42(
+              Button,
+              {
+                variant: "ghost",
+                size: "sm",
+                className: activeTab === "agente" ? "agent-dev__pr-tab--active" : "",
+                children: "Recusado"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxs39("div", { className: "agent-dev__pr-list", children: [
+            /* @__PURE__ */ jsxs39("div", { className: "agent-dev__pr-item", children: [
+              /* @__PURE__ */ jsxs39("div", { className: "agent-dev__pr-header", children: [
+                /* @__PURE__ */ jsx42(Typography, { variant: "h5", weight: "medium", children: "feat: implement Button component" }),
+                /* @__PURE__ */ jsx42(Badge, { variant: "success", size: "sm", children: "Merged" })
+              ] }),
+              /* @__PURE__ */ jsx42(Typography, { variant: "body", color: "muted", size: "sm", children: "Implemented new Button component with all variants and states" }),
+              /* @__PURE__ */ jsxs39("div", { className: "agent-dev__pr-meta", children: [
+                /* @__PURE__ */ jsx42("span", { children: "#123" }),
+                /* @__PURE__ */ jsx42("span", { children: "2 days ago" })
+              ] })
+            ] }),
+            /* @__PURE__ */ jsxs39("div", { className: "agent-dev__pr-item", children: [
+              /* @__PURE__ */ jsxs39("div", { className: "agent-dev__pr-header", children: [
+                /* @__PURE__ */ jsx42(Typography, { variant: "h5", weight: "medium", children: "fix: resolve Input validation issues" }),
+                /* @__PURE__ */ jsx42(Badge, { variant: "warning", size: "sm", children: "In Progress" })
+              ] }),
+              /* @__PURE__ */ jsx42(Typography, { variant: "body", color: "muted", size: "sm", children: "Fixed validation logic and error handling in Input component" }),
+              /* @__PURE__ */ jsxs39("div", { className: "agent-dev__pr-meta", children: [
+                /* @__PURE__ */ jsx42("span", { children: "#124" }),
+                /* @__PURE__ */ jsx42("span", { children: "1 day ago" })
+              ] })
+            ] })
+          ] })
+        ] });
+      default:
+        return null;
+    }
+  };
+  return /* @__PURE__ */ jsx42(
+    Drawer,
+    {
+      isOpen,
+      onClose,
+      position,
+      size,
+      className: `agent-dev ${className}`,
+      style,
+      ...props,
+      children: /* @__PURE__ */ jsxs39("div", { className: "agent-dev__container", children: [
+        /* @__PURE__ */ jsxs39("div", { className: "agent-dev__header", children: [
+          /* @__PURE__ */ jsxs39("div", { className: "agent-dev__header-content", children: [
+            /* @__PURE__ */ jsx42("div", { className: "agent-dev__header-icon", children: /* @__PURE__ */ jsx42(Robot, { size: 24 }) }),
+            /* @__PURE__ */ jsxs39("div", { className: "agent-dev__header-text", children: [
+              /* @__PURE__ */ jsx42(Typography, { variant: "h2", weight: "bold", children: "Agent Dev" }),
+              /* @__PURE__ */ jsx42(Typography, { variant: "body", color: "muted", size: "sm", children: "Desenvolvimento assistido por IA" })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsx42(
+            Button,
+            {
+              variant: "ghost",
+              size: "sm",
+              onClick: onClose,
+              className: "agent-dev__close-button",
+              children: /* @__PURE__ */ jsx42(X9, { size: 20 })
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsx42("div", { className: "agent-dev__tabs", children: tabs.map((tab) => /* @__PURE__ */ jsxs39(
+          "button",
+          {
+            className: `agent-dev__tab ${activeTab === tab.id ? "agent-dev__tab--active" : ""}`,
+            onClick: () => handleTabChange(tab.id),
+            title: tab.description,
+            children: [
+              tab.icon,
+              /* @__PURE__ */ jsx42("span", { children: tab.label })
+            ]
+          },
+          tab.id
+        )) }),
+        /* @__PURE__ */ jsx42("div", { className: "agent-dev__content", children: renderTabContent() })
+      ] })
+    }
+  );
+};
+var AgentDev_default = AgentDev;
+
+// src/components/FilterDropdown/FilterDropdown.tsx
+import { useState as useState22, useRef as useRef20, useEffect as useEffect15 } from "react";
+import { Check as Check8, CaretDown as CaretDown3 } from "phosphor-react";
+import { jsx as jsx43, jsxs as jsxs40 } from "react/jsx-runtime";
+var FilterDropdown = ({
+  label,
+  options,
+  value,
+  onChange,
+  placeholder = "Select an option",
+  disabled = false,
+  style,
+  className = "",
+  ...props
+}) => {
+  const [isOpen, setIsOpen] = useState22(false);
+  const [selectedOption, setSelectedOption] = useState22(null);
+  const dropdownRef = useRef20(null);
+  const triggerRef = useRef20(null);
+  useEffect15(() => {
+    const option = options.find((opt) => opt.value === value);
+    setSelectedOption(option || null);
+  }, [value, options]);
+  useEffect15(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setIsOpen(!isOpen);
+    } else if (event.key === "Escape") {
+      setIsOpen(false);
+    } else if (event.key === "ArrowDown" && !isOpen) {
+      event.preventDefault();
+      setIsOpen(true);
+    }
+  };
+  const handleOptionSelect = (option) => {
+    setSelectedOption(option);
+    onChange(option.value);
+    setIsOpen(false);
+    triggerRef.current?.focus();
+  };
+  const handleOptionKeyDown = (event, option) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleOptionSelect(option);
+    } else if (event.key === "Escape") {
+      setIsOpen(false);
+      triggerRef.current?.focus();
+    }
+  };
+  const containerStyles = {
+    position: "relative",
+    display: "inline-block",
+    width: "100%",
+    ...style
+  };
+  const labelStyles = {
+    display: "block",
+    fontSize: typography.fontSize.body,
+    fontWeight: typography.fontWeight.medium,
+    color: colors.text.primary,
+    marginBottom: spacing[2]
+  };
+  const triggerStyles = {
+    width: "100%",
+    padding: `${spacing[3]} ${spacing[4]}`,
+    paddingRight: spacing[10],
+    border: `1px solid ${colors.border.medium}`,
+    borderRadius: radii.md,
+    backgroundColor: colors.background.light,
+    color: colors.text.primary,
+    fontSize: typography.fontSize.body,
+    cursor: disabled ? "not-allowed" : "pointer",
+    outline: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    opacity: disabled ? 0.6 : 1,
+    transition: "all 0.2s ease",
+    boxShadow: "none"
+  };
+  const triggerHoverStyles = {
+    borderColor: colors.primary,
+    boxShadow: `0 0 0 1px ${colors.primary}`
+  };
+  const triggerOpenStyles = {
+    borderColor: colors.primary,
+    boxShadow: `0 0 0 1px ${colors.primary}`
+  };
+  const dropdownStyles = {
+    position: "absolute",
+    top: "100%",
+    left: 0,
+    right: 0,
+    zIndex: 1e3,
+    backgroundColor: colors.background.elevated,
+    border: `1px solid ${colors.border.medium}`,
+    borderRadius: radii.md,
+    boxShadow: shadows.lg,
+    marginTop: spacing[1],
+    maxHeight: "200px",
+    overflowY: "auto",
+    display: isOpen ? "block" : "none"
+  };
+  const optionStyles = {
+    padding: `${spacing[3]} ${spacing[4]}`,
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    gap: spacing[3],
+    borderBottom: `1px solid ${colors.border.light}`,
+    transition: "background-color 0.2s ease"
+  };
+  const optionHoverStyles = {
+    backgroundColor: colors.background.hover
+  };
+  const optionSelectedStyles = {
+    backgroundColor: colors.primary,
+    color: colors.white
+  };
+  const iconStyles = {
+    position: "absolute",
+    right: spacing[4],
+    top: "50%",
+    transform: "translateY(-50%)",
+    color: colors.text.secondary,
+    transition: "transform 0.2s ease"
+  };
+  const iconOpenStyles = {
+    transform: "translateY(-50%) rotate(180deg)"
+  };
+  const checkIconStyles = {
+    width: "16px",
+    height: "16px",
+    flexShrink: 0
+  };
+  return /* @__PURE__ */ jsxs40(
+    "div",
+    {
+      ref: dropdownRef,
+      className: `cria-filter-dropdown ${className}`,
+      style: containerStyles,
+      ...props,
+      children: [
+        /* @__PURE__ */ jsx43("label", { style: labelStyles, children: label }),
+        /* @__PURE__ */ jsxs40(
+          "button",
+          {
+            ref: triggerRef,
+            type: "button",
+            disabled,
+            onClick: () => setIsOpen(!isOpen),
+            onKeyDown: handleKeyDown,
+            style: {
+              ...triggerStyles,
+              ...isOpen ? triggerOpenStyles : {}
+            },
+            onMouseEnter: (e) => {
+              if (!disabled && !isOpen) {
+                Object.assign(e.currentTarget.style, triggerHoverStyles);
+              }
+            },
+            onMouseLeave: (e) => {
+              if (!disabled && !isOpen) {
+                e.currentTarget.style.borderColor = colors.border.medium;
+                e.currentTarget.style.boxShadow = "none";
+              }
+            },
+            "aria-haspopup": "listbox",
+            "aria-expanded": isOpen,
+            "aria-label": `${label} dropdown`,
+            children: [
+              /* @__PURE__ */ jsx43("span", { children: selectedOption ? selectedOption.label : placeholder }),
+              /* @__PURE__ */ jsx43(
+                CaretDown3,
+                {
+                  size: 16,
+                  style: {
+                    ...iconStyles,
+                    ...isOpen ? iconOpenStyles : {}
+                  }
+                }
+              )
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsx43(
+          "div",
+          {
+            role: "listbox",
+            "aria-label": `${label} options`,
+            style: dropdownStyles,
+            children: options.map((option, index) => {
+              const isSelected = selectedOption?.value === option.value;
+              return /* @__PURE__ */ jsxs40(
+                "div",
+                {
+                  role: "option",
+                  tabIndex: 0,
+                  "aria-selected": isSelected,
+                  onClick: () => handleOptionSelect(option),
+                  onKeyDown: (e) => handleOptionKeyDown(e, option),
+                  style: {
+                    ...optionStyles,
+                    ...isSelected ? optionSelectedStyles : {},
+                    borderBottom: index === options.length - 1 ? "none" : optionStyles.borderBottom
+                  },
+                  onMouseEnter: (e) => {
+                    if (!isSelected) {
+                      Object.assign(e.currentTarget.style, optionHoverStyles);
+                    }
+                  },
+                  onMouseLeave: (e) => {
+                    if (!isSelected) {
+                      e.currentTarget.style.backgroundColor = "transparent";
+                    }
+                  },
+                  children: [
+                    isSelected && /* @__PURE__ */ jsx43(
+                      Check8,
+                      {
+                        size: 16,
+                        style: checkIconStyles
+                      }
+                    ),
+                    /* @__PURE__ */ jsx43("span", { children: option.label })
+                  ]
+                },
+                option.value
+              );
+            })
+          }
+        )
+      ]
+    }
+  );
+};
+
 // src/components/ShimmerSkeleton/ShimmerSkeleton.tsx
-import { Fragment as Fragment5, jsx as jsx37, jsxs as jsxs33 } from "react/jsx-runtime";
+import { Fragment as Fragment5, jsx as jsx44, jsxs as jsxs41 } from "react/jsx-runtime";
 var ShimmerSkeleton = ({
   variant = "rectangle",
   size = "md",
@@ -8106,7 +9301,7 @@ var ShimmerSkeleton = ({
   };
   const renderTextLines = () => {
     if (variant !== "text") return null;
-    return Array.from({ length: lines }, (_, index) => /* @__PURE__ */ jsx37(
+    return Array.from({ length: lines }, (_, index) => /* @__PURE__ */ jsx44(
       "div",
       {
         className: "cria-shimmer-skeleton__line",
@@ -8118,7 +9313,7 @@ var ShimmerSkeleton = ({
           position: "relative",
           overflow: "hidden"
         },
-        children: animated && /* @__PURE__ */ jsx37(
+        children: animated && /* @__PURE__ */ jsx44(
           "div",
           {
             className: "cria-shimmer-skeleton__shimmer",
@@ -8139,8 +9334,8 @@ var ShimmerSkeleton = ({
   };
   const renderCardContent = () => {
     if (variant !== "card") return null;
-    return /* @__PURE__ */ jsxs33(Fragment5, { children: [
-      /* @__PURE__ */ jsx37(
+    return /* @__PURE__ */ jsxs41(Fragment5, { children: [
+      /* @__PURE__ */ jsx44(
         "div",
         {
           className: "cria-shimmer-skeleton__line",
@@ -8152,7 +9347,7 @@ var ShimmerSkeleton = ({
             position: "relative",
             overflow: "hidden"
           },
-          children: animated && /* @__PURE__ */ jsx37(
+          children: animated && /* @__PURE__ */ jsx44(
             "div",
             {
               className: "cria-shimmer-skeleton__shimmer",
@@ -8169,7 +9364,7 @@ var ShimmerSkeleton = ({
           )
         }
       ),
-      /* @__PURE__ */ jsx37(
+      /* @__PURE__ */ jsx44(
         "div",
         {
           className: "cria-shimmer-skeleton__line",
@@ -8181,7 +9376,7 @@ var ShimmerSkeleton = ({
             position: "relative",
             overflow: "hidden"
           },
-          children: animated && /* @__PURE__ */ jsx37(
+          children: animated && /* @__PURE__ */ jsx44(
             "div",
             {
               className: "cria-shimmer-skeleton__shimmer",
@@ -8198,7 +9393,7 @@ var ShimmerSkeleton = ({
           )
         }
       ),
-      /* @__PURE__ */ jsx37(
+      /* @__PURE__ */ jsx44(
         "div",
         {
           className: "cria-shimmer-skeleton__line",
@@ -8210,7 +9405,7 @@ var ShimmerSkeleton = ({
             position: "relative",
             overflow: "hidden"
           },
-          children: animated && /* @__PURE__ */ jsx37(
+          children: animated && /* @__PURE__ */ jsx44(
             "div",
             {
               className: "cria-shimmer-skeleton__shimmer",
@@ -8236,7 +9431,7 @@ var ShimmerSkeleton = ({
     ...getVariantStyles4(),
     ...style
   };
-  const shimmerElement = animated && /* @__PURE__ */ jsx37(
+  const shimmerElement = animated && /* @__PURE__ */ jsx44(
     "div",
     {
       className: "cria-shimmer-skeleton__shimmer",
@@ -8258,7 +9453,7 @@ var ShimmerSkeleton = ({
     !animated && "cria-shimmer-skeleton--no-animation",
     className
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ jsxs33(
+  return /* @__PURE__ */ jsxs41(
     "div",
     {
       className: classNames,
@@ -8276,10 +9471,1319 @@ var ShimmerSkeleton = ({
   );
 };
 
+// src/components/CriaCourseCard/CriaCourseCard.tsx
+import { useState as useState23, useCallback as useCallback23 } from "react";
+import { Clock as Clock3, UserCircle, Wrench as Wrench3 } from "phosphor-react";
+import { jsx as jsx45, jsxs as jsxs42 } from "react/jsx-runtime";
+var CriaCourseCard = ({
+  course,
+  onCourseClick,
+  onInstructorClick,
+  onToolClick,
+  className = "",
+  style,
+  ...props
+}) => {
+  const [isHovered, setIsHovered] = useState23(false);
+  const [imageLoaded, setImageLoaded] = useState23(false);
+  const handleCardClick = useCallback23(() => {
+    onCourseClick?.(course);
+  }, [course, onCourseClick]);
+  const handleInstructorClick = useCallback23((instructor, e) => {
+    e.stopPropagation();
+    onInstructorClick?.(instructor);
+  }, [onInstructorClick]);
+  const handleToolClick = useCallback23((tool, e) => {
+    e.stopPropagation();
+    onToolClick?.(tool);
+  }, [onToolClick]);
+  const cardClasses = [
+    "cria-course-card",
+    className
+  ].filter(Boolean).join(" ");
+  return /* @__PURE__ */ jsxs42(
+    "div",
+    {
+      className: cardClasses,
+      onClick: handleCardClick,
+      onMouseEnter: () => setIsHovered(true),
+      onMouseLeave: () => setIsHovered(false),
+      style: {
+        backgroundColor: colors.white,
+        borderRadius: radii.lg,
+        boxShadow: shadows.sm,
+        overflow: "hidden",
+        display: "flex",
+        cursor: "pointer",
+        transition: "all 0.3s ease",
+        ...style
+      },
+      "data-course-id": course.id,
+      "data-course-slug": course.slug,
+      ...props,
+      children: [
+        /* @__PURE__ */ jsx45(
+          "div",
+          {
+            style: {
+              width: "33.333%",
+              flexShrink: 0,
+              position: "relative",
+              overflow: "hidden"
+            },
+            children: /* @__PURE__ */ jsx45(
+              "img",
+              {
+                src: course.thumbnailUrl || "https://via.placeholder.com/400x300?text=No+Image",
+                alt: course.title,
+                style: {
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  transition: "transform 0.3s ease-out",
+                  transform: isHovered ? "scale(1.05)" : "scale(1)",
+                  opacity: imageLoaded ? 1 : 0,
+                  minHeight: "200px"
+                },
+                onLoad: () => setImageLoaded(true),
+                onError: () => setImageLoaded(true)
+              }
+            )
+          }
+        ),
+        /* @__PURE__ */ jsxs42(
+          "div",
+          {
+            style: {
+              padding: `${spacing[8]} ${spacing[8]} ${spacing[8]} ${spacing[12]}`,
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between"
+            },
+            children: [
+              /* @__PURE__ */ jsxs42("div", { children: [
+                /* @__PURE__ */ jsx45(
+                  Typography,
+                  {
+                    variant: "h1",
+                    style: {
+                      color: colors.primary,
+                      fontWeight: typography.fontWeight.bold,
+                      letterSpacing: "0.1em",
+                      marginBottom: spacing[2],
+                      textTransform: "uppercase",
+                      transition: "color 0.3s ease",
+                      cursor: "pointer"
+                    },
+                    onMouseEnter: (e) => {
+                      e.currentTarget.style.color = colors.secondary;
+                    },
+                    onMouseLeave: (e) => {
+                      e.currentTarget.style.color = colors.primary;
+                    },
+                    children: course.title
+                  }
+                ),
+                /* @__PURE__ */ jsx45(
+                  Typography,
+                  {
+                    variant: "body",
+                    style: {
+                      color: colors.gray[600],
+                      fontSize: "14px",
+                      lineHeight: 1.6,
+                      marginBottom: spacing[6]
+                    },
+                    children: course.description || "A comprehensive course designed to help you master the fundamentals and advanced concepts."
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxs42(
+                "div",
+                {
+                  style: {
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+                    gap: spacing[8]
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxs42("div", { children: [
+                      /* @__PURE__ */ jsxs42(
+                        "div",
+                        {
+                          style: {
+                            display: "flex",
+                            alignItems: "flex-start",
+                            gap: spacing[2],
+                            marginBottom: spacing[4]
+                          },
+                          children: [
+                            /* @__PURE__ */ jsx45(
+                              UserCircle,
+                              {
+                                size: 20,
+                                color: colors.primary,
+                                weight: "duotone",
+                                style: { marginTop: "2px", flexShrink: 0 }
+                              }
+                            ),
+                            /* @__PURE__ */ jsx45(
+                              "div",
+                              {
+                                style: {
+                                  display: "flex",
+                                  flexDirection: "row",
+                                  flexWrap: "wrap",
+                                  gap: spacing[2]
+                                },
+                                children: course.instructors?.map((instructor) => /* @__PURE__ */ jsx45(
+                                  AvatarWithName,
+                                  {
+                                    name: instructor.name,
+                                    size: "sm",
+                                    variant: "outlined",
+                                    clickable: true,
+                                    avatarProps: {
+                                      src: instructor.avatarUrl,
+                                      alt: instructor.name,
+                                      size: "sm"
+                                    },
+                                    onClick: (e) => handleInstructorClick(instructor, e)
+                                  },
+                                  instructor.id
+                                ))
+                              }
+                            )
+                          ]
+                        }
+                      ),
+                      /* @__PURE__ */ jsxs42(
+                        "div",
+                        {
+                          style: {
+                            display: "flex",
+                            alignItems: "center",
+                            gap: spacing[2]
+                          },
+                          children: [
+                            /* @__PURE__ */ jsx45(
+                              Clock3,
+                              {
+                                size: 20,
+                                color: colors.primary,
+                                weight: "duotone"
+                              }
+                            ),
+                            /* @__PURE__ */ jsx45(
+                              Typography,
+                              {
+                                variant: "caption",
+                                style: {
+                                  color: colors.primary,
+                                  fontSize: "14px"
+                                },
+                                children: course.duration || "--"
+                              }
+                            )
+                          ]
+                        }
+                      )
+                    ] }),
+                    /* @__PURE__ */ jsx45("div", { children: /* @__PURE__ */ jsxs42(
+                      "div",
+                      {
+                        style: {
+                          display: "flex",
+                          alignItems: "flex-start",
+                          gap: spacing[2]
+                        },
+                        children: [
+                          /* @__PURE__ */ jsx45(
+                            Wrench3,
+                            {
+                              size: 20,
+                              color: colors.primary,
+                              weight: "duotone",
+                              style: { marginTop: "2px", flexShrink: 0 }
+                            }
+                          ),
+                          /* @__PURE__ */ jsx45(
+                            "div",
+                            {
+                              style: {
+                                display: "flex",
+                                flexDirection: "row",
+                                flexWrap: "wrap",
+                                gap: spacing[2]
+                              },
+                              children: course.tools?.map((tool) => /* @__PURE__ */ jsxs42(
+                                "div",
+                                {
+                                  onClick: (e) => handleToolClick(tool, e),
+                                  style: {
+                                    display: "inline-flex",
+                                    alignItems: "center",
+                                    padding: `${spacing[1]} ${spacing[2]}`,
+                                    borderRadius: radii.full,
+                                    fontSize: "12px",
+                                    fontWeight: typography.fontWeight.semiBold,
+                                    color: colors.primary,
+                                    border: `1px solid ${colors.primary}20`,
+                                    backgroundColor: colors.primary + "08",
+                                    cursor: "pointer",
+                                    transition: "all 0.2s ease"
+                                  },
+                                  onMouseEnter: (e) => {
+                                    e.currentTarget.style.backgroundColor = colors.primary + "15";
+                                    e.currentTarget.style.borderColor = colors.primary + "40";
+                                  },
+                                  onMouseLeave: (e) => {
+                                    e.currentTarget.style.backgroundColor = colors.primary + "08";
+                                    e.currentTarget.style.borderColor = colors.primary + "20";
+                                  },
+                                  children: [
+                                    tool.icon && /* @__PURE__ */ jsx45(
+                                      "span",
+                                      {
+                                        style: {
+                                          width: "20px",
+                                          height: "20px",
+                                          marginRight: spacing[1],
+                                          display: "flex",
+                                          alignItems: "center",
+                                          justifyContent: "center",
+                                          fontSize: "14px"
+                                        },
+                                        children: tool.icon
+                                      }
+                                    ),
+                                    tool.name
+                                  ]
+                                },
+                                tool.id
+                              ))
+                            }
+                          )
+                        ]
+                      }
+                    ) })
+                  ]
+                }
+              )
+            ]
+          }
+        )
+      ]
+    }
+  );
+};
+
+// src/components/CriaClassroomFutureEventCard/CriaClassroomFutureEventCard.tsx
+import { useState as useState24, useEffect as useEffect16, useCallback as useCallback24 } from "react";
+import { Calendar as Calendar2 } from "phosphor-react";
+import { jsx as jsx46, jsxs as jsxs43 } from "react/jsx-runtime";
+var CriaClassroomFutureEventCard = ({
+  event,
+  classroomItem,
+  onEventClick,
+  onCalendarClick,
+  className = "",
+  style,
+  ...props
+}) => {
+  const [timeLeft, setTimeLeft] = useState24({ days: 0, hours: 0, minutes: 0 });
+  const [isLive, setIsLive] = useState24(false);
+  const calculateTimeLeft = useCallback24(() => {
+    const eventDate2 = new Date(event.startDate);
+    const now = /* @__PURE__ */ new Date();
+    const difference = eventDate2.getTime() - now.getTime();
+    if (difference > 0) {
+      const days = Math.floor(difference / (1e3 * 60 * 60 * 24));
+      const hours = Math.floor(difference % (1e3 * 60 * 60 * 24) / (1e3 * 60 * 60));
+      const minutes = Math.floor(difference % (1e3 * 60 * 60) / (1e3 * 60));
+      setTimeLeft({ days, hours, minutes });
+      setIsLive(false);
+    } else {
+      setTimeLeft({ days: 0, hours: 0, minutes: 0 });
+      setIsLive(true);
+    }
+  }, [event.startDate]);
+  useEffect16(() => {
+    calculateTimeLeft();
+    const interval = setInterval(calculateTimeLeft, 6e4);
+    return () => clearInterval(interval);
+  }, [calculateTimeLeft]);
+  const handleEventClick = useCallback24(() => {
+    onEventClick?.(event);
+  }, [event, onEventClick]);
+  const handleCalendarClick = useCallback24(() => {
+    onCalendarClick?.(event);
+  }, [event, onCalendarClick]);
+  const title = classroomItem.customTitle || event.name;
+  const description = classroomItem.customSubtitle || event.description || "";
+  const eventDate = new Date(event.startDate);
+  const formattedDate = eventDate.toLocaleDateString("pt-BR", {
+    day: "2-digit",
+    month: "short"
+  });
+  const formattedTime = eventDate.toLocaleTimeString("pt-BR", {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false
+  });
+  const cardClasses = [
+    "cria-classroom-future-event-card",
+    className
+  ].filter(Boolean).join(" ");
+  return /* @__PURE__ */ jsxs43(
+    "div",
+    {
+      className: cardClasses,
+      style: {
+        backgroundColor: colors.white,
+        borderRadius: radii.lg,
+        boxShadow: shadows.lg,
+        overflow: "hidden",
+        display: "flex",
+        border: `1px solid ${colors.gray[100]}`,
+        minHeight: "200px",
+        ...style
+      },
+      "data-event-id": event.id,
+      "data-classroom-item-id": classroomItem.id,
+      ...props,
+      children: [
+        /* @__PURE__ */ jsxs43(
+          "div",
+          {
+            style: {
+              width: "33.333%",
+              flexShrink: 0,
+              position: "relative",
+              overflow: "hidden",
+              minHeight: "200px",
+              padding: spacing[8],
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between"
+            },
+            children: [
+              classroomItem.imageUrl ? /* @__PURE__ */ jsx46(
+                "img",
+                {
+                  src: classroomItem.imageUrl,
+                  alt: title,
+                  style: {
+                    position: "absolute",
+                    inset: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "center"
+                  },
+                  onError: (e) => {
+                    e.target.style.display = "none";
+                  }
+                }
+              ) : null,
+              /* @__PURE__ */ jsx46(
+                "div",
+                {
+                  style: {
+                    position: "absolute",
+                    inset: 0,
+                    background: "linear-gradient(135deg, #a855f7 0%, #3b82f6 50%, #14b8a6 100%)"
+                  }
+                }
+              ),
+              /* @__PURE__ */ jsx46(
+                "div",
+                {
+                  style: {
+                    position: "absolute",
+                    inset: 0,
+                    background: "linear-gradient(135deg, rgba(0, 221, 185, 0.6) 0%, rgba(0, 123, 122, 0.6) 100%)",
+                    backdropFilter: "blur(12px)"
+                  }
+                }
+              ),
+              /* @__PURE__ */ jsxs43("div", { style: { position: "absolute", inset: 0, opacity: 0.3 }, children: [
+                /* @__PURE__ */ jsx46(
+                  "div",
+                  {
+                    style: {
+                      position: "absolute",
+                      top: "-40px",
+                      right: "-40px",
+                      width: "128px",
+                      height: "128px",
+                      background: colors.white,
+                      borderRadius: "50%",
+                      filter: "blur(32px)"
+                    }
+                  }
+                ),
+                /* @__PURE__ */ jsx46(
+                  "div",
+                  {
+                    style: {
+                      position: "absolute",
+                      bottom: "-20px",
+                      left: "-20px",
+                      width: "80px",
+                      height: "80px",
+                      background: "#00ddb9",
+                      borderRadius: "50%",
+                      filter: "blur(24px)"
+                    }
+                  }
+                ),
+                /* @__PURE__ */ jsx46(
+                  "div",
+                  {
+                    style: {
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      width: "96px",
+                      height: "96px",
+                      background: "rgba(255, 255, 255, 0.4)",
+                      borderRadius: "50%",
+                      filter: "blur(16px)"
+                    }
+                  }
+                ),
+                /* @__PURE__ */ jsx46(
+                  "div",
+                  {
+                    style: {
+                      position: "absolute",
+                      top: spacing[4],
+                      left: spacing[4],
+                      width: "64px",
+                      height: "64px",
+                      background: "rgba(0, 221, 185, 0.3)",
+                      borderRadius: "50%",
+                      filter: "blur(12px)"
+                    }
+                  }
+                ),
+                /* @__PURE__ */ jsx46(
+                  "div",
+                  {
+                    style: {
+                      position: "absolute",
+                      bottom: spacing[4],
+                      right: spacing[4],
+                      width: "48px",
+                      height: "48px",
+                      background: "rgba(255, 255, 255, 0.5)",
+                      borderRadius: "50%",
+                      filter: "blur(8px)"
+                    }
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxs43("div", { style: { position: "relative", zIndex: 10 }, children: [
+                /* @__PURE__ */ jsx46(
+                  Typography,
+                  {
+                    variant: "h1",
+                    style: {
+                      fontSize: "48px",
+                      fontFamily: typography.fontFamily.primary,
+                      fontWeight: typography.fontWeight.bold,
+                      color: colors.white,
+                      lineHeight: 1,
+                      marginBottom: spacing[1]
+                    },
+                    children: String(classroomItem.position || 1).padStart(2, "0")
+                  }
+                ),
+                /* @__PURE__ */ jsx46(
+                  Typography,
+                  {
+                    variant: "caption",
+                    style: {
+                      fontFamily: typography.fontFamily.primary,
+                      fontWeight: typography.fontWeight.medium,
+                      color: colors.white,
+                      textTransform: "uppercase",
+                      letterSpacing: "0.1em"
+                    },
+                    children: "Este evento acontecer\xE1 em"
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsx46("div", { style: { position: "relative", zIndex: 10 }, children: /* @__PURE__ */ jsxs43(
+                "div",
+                {
+                  style: {
+                    display: "flex",
+                    alignItems: "flex-end",
+                    justifyContent: "space-between",
+                    marginBottom: spacing[1]
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxs43("div", { style: { textAlign: "center" }, children: [
+                      /* @__PURE__ */ jsx46(
+                        Typography,
+                        {
+                          variant: "h2",
+                          style: {
+                            fontSize: "32px",
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.bold,
+                            color: colors.white,
+                            lineHeight: 1
+                          },
+                          children: String(timeLeft.days).padStart(2, "0")
+                        }
+                      ),
+                      /* @__PURE__ */ jsx46(
+                        Typography,
+                        {
+                          variant: "caption",
+                          style: {
+                            fontSize: "12px",
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.medium,
+                            color: colors.white,
+                            textTransform: "uppercase",
+                            letterSpacing: "0.1em"
+                          },
+                          children: "dias"
+                        }
+                      )
+                    ] }),
+                    /* @__PURE__ */ jsxs43("div", { style: { textAlign: "center" }, children: [
+                      /* @__PURE__ */ jsx46(
+                        Typography,
+                        {
+                          variant: "h2",
+                          style: {
+                            fontSize: "32px",
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.bold,
+                            color: colors.white,
+                            lineHeight: 1
+                          },
+                          children: String(timeLeft.hours).padStart(2, "0")
+                        }
+                      ),
+                      /* @__PURE__ */ jsx46(
+                        Typography,
+                        {
+                          variant: "caption",
+                          style: {
+                            fontSize: "12px",
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.medium,
+                            color: colors.white,
+                            textTransform: "uppercase",
+                            letterSpacing: "0.1em"
+                          },
+                          children: "horas"
+                        }
+                      )
+                    ] }),
+                    /* @__PURE__ */ jsxs43("div", { style: { textAlign: "center" }, children: [
+                      /* @__PURE__ */ jsx46(
+                        Typography,
+                        {
+                          variant: "h2",
+                          style: {
+                            fontSize: "32px",
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.bold,
+                            color: colors.white,
+                            lineHeight: 1
+                          },
+                          children: String(timeLeft.minutes).padStart(2, "0")
+                        }
+                      ),
+                      /* @__PURE__ */ jsx46(
+                        Typography,
+                        {
+                          variant: "caption",
+                          style: {
+                            fontSize: "12px",
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.medium,
+                            color: colors.white,
+                            textTransform: "uppercase",
+                            letterSpacing: "0.1em"
+                          },
+                          children: "min"
+                        }
+                      )
+                    ] })
+                  ]
+                }
+              ) }),
+              /* @__PURE__ */ jsx46("div", { style: { position: "relative", zIndex: 10, display: "flex", justifyContent: "center" }, children: /* @__PURE__ */ jsx46(
+                "div",
+                {
+                  style: {
+                    padding: `${spacing[1]} ${spacing[4]}`,
+                    border: `2px solid ${colors.white}`,
+                    borderRadius: radii.full,
+                    color: colors.white,
+                    fontFamily: typography.fontFamily.primary,
+                    fontWeight: typography.fontWeight.medium,
+                    fontSize: "14px",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.1em"
+                  },
+                  children: "Ao Vivo"
+                }
+              ) })
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxs43(
+          "div",
+          {
+            style: {
+              padding: `${spacing[8]} ${spacing[8]} ${spacing[8]} ${spacing[8]}`,
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              width: "66.667%",
+              minHeight: "200px"
+            },
+            children: [
+              /* @__PURE__ */ jsxs43("div", { style: { marginBottom: spacing[4] }, children: [
+                /* @__PURE__ */ jsx46(
+                  Typography,
+                  {
+                    variant: "h2",
+                    style: {
+                      color: colors.primary,
+                      fontFamily: typography.fontFamily.primary,
+                      fontWeight: typography.fontWeight.bold,
+                      fontSize: "24px",
+                      lineHeight: 1.2,
+                      marginBottom: spacing[2],
+                      cursor: "pointer",
+                      textDecoration: "none"
+                    },
+                    onClick: handleEventClick,
+                    children: title
+                  }
+                ),
+                /* @__PURE__ */ jsx46(
+                  Typography,
+                  {
+                    variant: "body",
+                    style: {
+                      color: colors.gray[600],
+                      fontSize: "16px",
+                      lineHeight: 1.5
+                    },
+                    children: description
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxs43(
+                "div",
+                {
+                  style: {
+                    display: "flex",
+                    gap: spacing[8],
+                    marginBottom: spacing[6]
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxs43("div", { children: [
+                      /* @__PURE__ */ jsx46(
+                        Typography,
+                        {
+                          variant: "caption",
+                          style: {
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.bold,
+                            color: colors.primary,
+                            textTransform: "uppercase",
+                            letterSpacing: "0.1em",
+                            marginBottom: spacing[1]
+                          },
+                          children: "Data"
+                        }
+                      ),
+                      /* @__PURE__ */ jsx46(
+                        Typography,
+                        {
+                          variant: "body",
+                          style: {
+                            fontSize: "18px",
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.medium,
+                            color: colors.primary
+                          },
+                          children: formattedDate
+                        }
+                      )
+                    ] }),
+                    /* @__PURE__ */ jsxs43("div", { children: [
+                      /* @__PURE__ */ jsx46(
+                        Typography,
+                        {
+                          variant: "caption",
+                          style: {
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.bold,
+                            color: colors.primary,
+                            textTransform: "uppercase",
+                            letterSpacing: "0.1em",
+                            marginBottom: spacing[1]
+                          },
+                          children: "Hor\xE1rio"
+                        }
+                      ),
+                      /* @__PURE__ */ jsx46(
+                        Typography,
+                        {
+                          variant: "body",
+                          style: {
+                            fontSize: "18px",
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.medium,
+                            color: colors.primary
+                          },
+                          children: formattedTime
+                        }
+                      )
+                    ] }),
+                    /* @__PURE__ */ jsxs43("div", { children: [
+                      /* @__PURE__ */ jsx46(
+                        Typography,
+                        {
+                          variant: "caption",
+                          style: {
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.bold,
+                            color: colors.primary,
+                            textTransform: "uppercase",
+                            letterSpacing: "0.1em",
+                            marginBottom: spacing[1]
+                          },
+                          children: "Dura\xE7\xE3o"
+                        }
+                      ),
+                      /* @__PURE__ */ jsx46(
+                        Typography,
+                        {
+                          variant: "body",
+                          style: {
+                            fontSize: "18px",
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.medium,
+                            color: colors.primary
+                          },
+                          children: event.duration || "2H"
+                        }
+                      )
+                    ] })
+                  ]
+                }
+              ),
+              /* @__PURE__ */ jsx46("div", { style: { display: "flex", justifyContent: "flex-end", marginTop: spacing[4] }, children: event.gcalendarUrl ? /* @__PURE__ */ jsxs43(
+                Button,
+                {
+                  variant: "primary",
+                  onClick: handleCalendarClick,
+                  style: {
+                    display: "flex",
+                    alignItems: "center",
+                    gap: spacing[1]
+                  },
+                  children: [
+                    /* @__PURE__ */ jsx46(Calendar2, { size: 16 }),
+                    "SALVAR NA AGENDA"
+                  ]
+                }
+              ) : /* @__PURE__ */ jsx46(
+                Typography,
+                {
+                  variant: "caption",
+                  style: {
+                    color: colors.gray[500],
+                    fontFamily: typography.fontFamily.primary
+                  },
+                  children: "Link da agenda n\xE3o dispon\xEDvel"
+                }
+              ) })
+            ]
+          }
+        )
+      ]
+    }
+  );
+};
+
+// src/components/CriaClassroomTrilhaCard/CriaClassroomTrilhaCard.tsx
+import { useState as useState25, useCallback as useCallback25 } from "react";
+import { Clock as Clock4, Wrench as Wrench4 } from "phosphor-react";
+import { Fragment as Fragment6, jsx as jsx47, jsxs as jsxs44 } from "react/jsx-runtime";
+var CriaClassroomTrilhaCard = ({
+  customLearning,
+  classroomItem,
+  onCardClick,
+  onInstructorClick,
+  onToolClick,
+  className = "",
+  style,
+  ...props
+}) => {
+  const [isHovered, setIsHovered] = useState25(false);
+  const [imageLoaded, setImageLoaded] = useState25(false);
+  const handleCardClick = useCallback25(() => {
+    onCardClick?.(customLearning);
+  }, [customLearning, onCardClick]);
+  const handleInstructorClick = useCallback25((instructor, e) => {
+    e.stopPropagation();
+    onInstructorClick?.(instructor);
+  }, [onInstructorClick]);
+  const handleToolClick = useCallback25((tool, e) => {
+    e.stopPropagation();
+    onToolClick?.(tool);
+  }, [onToolClick]);
+  const imageSource = customLearning.imageUrl || classroomItem.imageUrl || "/src/assets/cria_emblem_home.png";
+  const title = classroomItem.customTitle || customLearning.title;
+  const description = classroomItem.customSubtitle || customLearning.description || "";
+  const aggregateInstructors = () => {
+    const allInstructors = [];
+    if (customLearning.lessons) {
+      customLearning.lessons.forEach((lesson) => {
+        if (lesson.instructors) {
+          lesson.instructors.forEach((instructorName) => {
+            const instructor = {
+              id: instructorName.toLowerCase().replace(/\s+/g, "-"),
+              name: instructorName
+            };
+            allInstructors.push(instructor);
+          });
+        }
+      });
+    }
+    if (customLearning.courses) {
+      customLearning.courses.forEach((course) => {
+        if (course.instructors) {
+          allInstructors.push(...course.instructors);
+        }
+      });
+    }
+    const uniqueInstructors = allInstructors.filter(
+      (instructor, index, self) => index === self.findIndex((i) => i.id === instructor.id)
+    );
+    return uniqueInstructors;
+  };
+  const aggregateTools = () => {
+    const allTools = [];
+    if (customLearning.lessons) {
+      customLearning.lessons.forEach((lesson) => {
+        if (lesson.tools) {
+          lesson.tools.forEach((toolName) => {
+            const tool = {
+              id: toolName.toLowerCase().replace(/\s+/g, "-"),
+              name: toolName
+            };
+            allTools.push(tool);
+          });
+        }
+      });
+    }
+    if (customLearning.courses) {
+      customLearning.courses.forEach((course) => {
+        if (course.tools) {
+          allTools.push(...course.tools);
+        }
+      });
+    }
+    const uniqueTools = allTools.filter(
+      (tool, index, self) => index === self.findIndex((t) => t.id === tool.id)
+    );
+    return uniqueTools;
+  };
+  const instructors = aggregateInstructors();
+  const tools = aggregateTools();
+  const visibleInstructors = instructors.slice(0, 2);
+  const overflowInstructorsCount = Math.max(instructors.length - visibleInstructors.length, 0);
+  const cardClasses = [
+    "cria-classroom-trilha-card",
+    className
+  ].filter(Boolean).join(" ");
+  return /* @__PURE__ */ jsxs44(
+    "div",
+    {
+      className: cardClasses,
+      onMouseEnter: () => setIsHovered(true),
+      onMouseLeave: () => setIsHovered(false),
+      style: {
+        backgroundColor: colors.white,
+        borderRadius: radii.lg,
+        boxShadow: shadows.lg,
+        overflow: "hidden",
+        display: "flex",
+        border: `1px solid ${colors.gray[100]}`,
+        minHeight: "200px",
+        transition: "all 0.3s ease",
+        cursor: onCardClick ? "pointer" : "default",
+        ...style
+      },
+      "data-custom-learning-id": customLearning.id,
+      "data-classroom-item-id": classroomItem.id,
+      ...props,
+      children: [
+        /* @__PURE__ */ jsxs44(
+          "div",
+          {
+            style: {
+              width: "33.333%",
+              flexShrink: 0,
+              position: "relative",
+              overflow: "hidden",
+              minHeight: "200px"
+            },
+            onClick: handleCardClick,
+            children: [
+              /* @__PURE__ */ jsx47(
+                "img",
+                {
+                  src: imageSource,
+                  alt: title,
+                  style: {
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "center",
+                    transition: "transform 0.3s ease",
+                    transform: isHovered ? "scale(1.1)" : "scale(1)",
+                    opacity: imageLoaded ? 1 : 0
+                  },
+                  onLoad: () => setImageLoaded(true),
+                  onError: () => setImageLoaded(true)
+                }
+              ),
+              /* @__PURE__ */ jsx47(
+                "div",
+                {
+                  style: {
+                    position: "absolute",
+                    inset: 0,
+                    background: "linear-gradient(to top, rgba(0,0,0,0.2) 0%, transparent 100%)"
+                  }
+                }
+              ),
+              /* @__PURE__ */ jsxs44(
+                "div",
+                {
+                  className: "learning-path-position",
+                  style: {
+                    position: "absolute",
+                    top: spacing[4],
+                    left: spacing[4]
+                  },
+                  children: [
+                    /* @__PURE__ */ jsx47(
+                      Typography,
+                      {
+                        variant: "h1",
+                        style: {
+                          fontSize: "48px",
+                          fontFamily: typography.fontFamily.primary,
+                          fontWeight: typography.fontWeight.bold,
+                          color: colors.white,
+                          lineHeight: 1,
+                          marginBottom: spacing[1]
+                        },
+                        children: String(classroomItem.position || 1).padStart(2, "0")
+                      }
+                    ),
+                    /* @__PURE__ */ jsx47(
+                      Typography,
+                      {
+                        variant: "caption",
+                        style: {
+                          fontFamily: typography.fontFamily.primary,
+                          fontWeight: typography.fontWeight.medium,
+                          color: colors.white,
+                          textTransform: "uppercase",
+                          fontSize: "12px",
+                          letterSpacing: "0.1em"
+                        },
+                        children: "TRILHA"
+                      }
+                    )
+                  ]
+                }
+              )
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxs44(
+          "div",
+          {
+            style: {
+              padding: `${spacing[2]} ${spacing[4]} ${spacing[4]} ${spacing[4]}`,
+              flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              width: "66.667%",
+              minHeight: "200px"
+            },
+            children: [
+              /* @__PURE__ */ jsxs44("div", { children: [
+                /* @__PURE__ */ jsx47(
+                  Typography,
+                  {
+                    variant: "h2",
+                    style: {
+                      color: colors.primary,
+                      fontFamily: typography.fontFamily.primary,
+                      fontWeight: typography.fontWeight.bold,
+                      fontSize: "20px",
+                      lineHeight: 1.2,
+                      marginBottom: spacing[2],
+                      cursor: "pointer",
+                      textDecoration: customLearning.slug ? "underline" : "none",
+                      textDecorationColor: "transparent",
+                      transition: "all 0.3s ease"
+                    },
+                    onClick: handleCardClick,
+                    onMouseEnter: (e) => {
+                      if (customLearning.slug) {
+                        e.currentTarget.style.textDecorationColor = colors.primary;
+                      }
+                    },
+                    onMouseLeave: (e) => {
+                      if (customLearning.slug) {
+                        e.currentTarget.style.textDecorationColor = "transparent";
+                      }
+                    },
+                    children: title
+                  }
+                ),
+                /* @__PURE__ */ jsx47(
+                  Typography,
+                  {
+                    variant: "body",
+                    style: {
+                      color: colors.gray[600],
+                      fontSize: "14px",
+                      lineHeight: 1.5,
+                      marginBottom: spacing[4]
+                    },
+                    children: description
+                  }
+                ),
+                /* @__PURE__ */ jsx47(
+                  "div",
+                  {
+                    style: {
+                      display: "flex",
+                      alignItems: "center",
+                      gap: spacing[2],
+                      marginTop: spacing[4],
+                      marginBottom: spacing[2]
+                    },
+                    children: instructors.length > 0 ? /* @__PURE__ */ jsxs44(Fragment6, { children: [
+                      visibleInstructors.map((instructor) => /* @__PURE__ */ jsxs44(
+                        "div",
+                        {
+                          onClick: (e) => handleInstructorClick(instructor, e),
+                          style: {
+                            display: "inline-flex",
+                            alignItems: "center",
+                            padding: `${spacing[1]} ${spacing[3]}`,
+                            borderRadius: radii.full,
+                            fontSize: typography.fontSize.caption,
+                            fontWeight: typography.fontWeight.semiBold,
+                            border: `1px solid ${colors.primaryLight}`,
+                            color: colors.primary,
+                            backgroundColor: colors.primaryLighter,
+                            cursor: onInstructorClick ? "pointer" : "default",
+                            flexShrink: 0
+                          },
+                          children: [
+                            instructor.avatarUrl && /* @__PURE__ */ jsx47(
+                              Avatar,
+                              {
+                                src: instructor.avatarUrl,
+                                alt: instructor.name,
+                                size: "xs",
+                                name: instructor.name,
+                                style: { width: "20px", height: "20px", marginRight: spacing[2] }
+                              }
+                            ),
+                            instructor.name
+                          ]
+                        },
+                        instructor.id
+                      )),
+                      overflowInstructorsCount > 0 && /* @__PURE__ */ jsxs44(
+                        "span",
+                        {
+                          style: {
+                            display: "inline-flex",
+                            alignItems: "center",
+                            padding: `${spacing[1]} ${spacing[2]}`,
+                            borderRadius: radii.full,
+                            backgroundColor: colors.gray[100],
+                            color: colors.gray[600],
+                            fontSize: typography.fontSize.caption,
+                            fontWeight: typography.fontWeight.medium,
+                            flexShrink: 0
+                          },
+                          children: [
+                            "+",
+                            overflowInstructorsCount
+                          ]
+                        }
+                      )
+                    ] }) : /* @__PURE__ */ jsx47(
+                      "span",
+                      {
+                        style: {
+                          display: "inline-flex",
+                          alignItems: "center",
+                          padding: `${spacing[1]} ${spacing[3]}`,
+                          borderRadius: radii.full,
+                          backgroundColor: colors.gray[100],
+                          color: colors.gray[600],
+                          fontSize: typography.fontSize.caption,
+                          fontWeight: typography.fontWeight.medium
+                        },
+                        children: "No instructors"
+                      }
+                    )
+                  }
+                ),
+                /* @__PURE__ */ jsxs44(
+                  "div",
+                  {
+                    style: {
+                      display: "flex",
+                      alignItems: "flex-start",
+                      gap: spacing[3],
+                      marginBottom: spacing[4]
+                    },
+                    children: [
+                      /* @__PURE__ */ jsx47(Wrench4, { size: 20, color: colors.primary, style: { marginTop: spacing[1], flexShrink: 0 } }),
+                      /* @__PURE__ */ jsx47(
+                        "div",
+                        {
+                          style: {
+                            display: "flex",
+                            flexWrap: "wrap",
+                            gap: spacing[2]
+                          },
+                          children: tools.length > 0 ? tools.map((tool) => /* @__PURE__ */ jsxs44(
+                            "span",
+                            {
+                              onClick: (e) => handleToolClick(tool, e),
+                              style: {
+                                display: "inline-flex",
+                                alignItems: "center",
+                                padding: `${spacing[1]} ${spacing[3]}`,
+                                borderRadius: radii.full,
+                                fontSize: typography.fontSize.caption,
+                                fontWeight: typography.fontWeight.semiBold,
+                                border: `1px solid ${colors.primaryLight}`,
+                                color: colors.primary,
+                                backgroundColor: colors.primaryLighter,
+                                cursor: onToolClick ? "pointer" : "default"
+                              },
+                              children: [
+                                tool.icon && /* @__PURE__ */ jsx47("span", { style: { width: "20px", height: "20px", marginRight: spacing[2], display: "flex", alignItems: "center", justifyContent: "center" }, children: tool.icon }),
+                                tool.name
+                              ]
+                            },
+                            tool.id
+                          )) : /* @__PURE__ */ jsx47(
+                            "span",
+                            {
+                              style: {
+                                display: "inline-flex",
+                                alignItems: "center",
+                                padding: `${spacing[1]} ${spacing[3]}`,
+                                borderRadius: radii.full,
+                                fontSize: typography.fontSize.caption,
+                                fontWeight: typography.fontWeight.semiBold,
+                                border: `1px solid ${colors.gray[300]}`,
+                                color: colors.gray[600],
+                                backgroundColor: colors.gray[100]
+                              },
+                              children: "No tools"
+                            }
+                          )
+                        }
+                      )
+                    ]
+                  }
+                )
+              ] }),
+              /* @__PURE__ */ jsxs44(
+                "div",
+                {
+                  style: {
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    marginTop: spacing[2]
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxs44("div", { style: { display: "flex", alignItems: "center" }, children: [
+                      /* @__PURE__ */ jsx47(Clock4, { size: 16, color: colors.primary, style: { marginRight: spacing[1] } }),
+                      /* @__PURE__ */ jsx47(
+                        Typography,
+                        {
+                          variant: "caption",
+                          style: {
+                            color: colors.primary,
+                            fontSize: "12px",
+                            fontFamily: typography.fontFamily.primary,
+                            fontWeight: typography.fontWeight.medium
+                          },
+                          children: customLearning.duration || "--"
+                        }
+                      )
+                    ] }),
+                    /* @__PURE__ */ jsx47(
+                      Typography,
+                      {
+                        variant: "caption",
+                        style: {
+                          color: colors.primary,
+                          fontSize: "12px",
+                          fontFamily: typography.fontFamily.primary,
+                          fontWeight: typography.fontWeight.bold,
+                          textTransform: "uppercase",
+                          letterSpacing: "0.1em"
+                        },
+                        children: "TRILHA"
+                      }
+                    ),
+                    /* @__PURE__ */ jsx47("div", {})
+                  ]
+                }
+              )
+            ]
+          }
+        )
+      ]
+    }
+  );
+};
+
 // src/components/RowOfCards/RowOfCards.tsx
-import { useState as useState20, useMemo as useMemo7 } from "react";
+import { useState as useState26, useMemo as useMemo8 } from "react";
 import { CaretLeft as CaretLeft3, CaretRight as CaretRight3 } from "phosphor-react";
-import { jsx as jsx38, jsxs as jsxs34 } from "react/jsx-runtime";
+import { jsx as jsx48, jsxs as jsxs45 } from "react/jsx-runtime";
 function RowOfCards({
   cards,
   renderCard,
@@ -8289,8 +10793,8 @@ function RowOfCards({
   style,
   "data-testid": dataTestId
 }) {
-  const [currentPage, setCurrentPage] = useState20(1);
-  const pagination = useMemo7(() => {
+  const [currentPage, setCurrentPage] = useState26(1);
+  const pagination = useMemo8(() => {
     const totalPages = Math.ceil(cards.length / cardsPerPage);
     const startIndex = (currentPage - 1) * cardsPerPage;
     const endIndex = startIndex + cardsPerPage;
@@ -8317,7 +10821,7 @@ function RowOfCards({
     }
   };
   if (cards.length === 0) {
-    return /* @__PURE__ */ jsx38(
+    return /* @__PURE__ */ jsx48(
       "div",
       {
         className: `row-of-cards ${className || ""}`,
@@ -8326,16 +10830,16 @@ function RowOfCards({
           justifyContent: "center",
           alignItems: "center",
           minHeight: "200px",
-          padding: spacing2[8],
+          padding: spacing[8],
           ...style
         },
         "data-testid": dataTestId,
-        children: /* @__PURE__ */ jsx38(Card, { variant: "outlined", children: /* @__PURE__ */ jsx38("div", { style: { textAlign: "center", padding: spacing2[8] }, children: /* @__PURE__ */ jsx38(Typography, { variant: "body", color: "secondary", children: "No cards to display" }) }) })
+        children: /* @__PURE__ */ jsx48(Card, { variant: "outlined", children: /* @__PURE__ */ jsx48("div", { style: { textAlign: "center", padding: spacing[8] }, children: /* @__PURE__ */ jsx48(Typography, { variant: "body", color: "secondary", children: "No cards to display" }) }) })
       }
     );
   }
   if (pagination.totalPages <= 1) {
-    return /* @__PURE__ */ jsx38(
+    return /* @__PURE__ */ jsx48(
       "div",
       {
         className: `row-of-cards ${className || ""}`,
@@ -8343,13 +10847,13 @@ function RowOfCards({
           ...style
         },
         "data-testid": dataTestId,
-        children: /* @__PURE__ */ jsx38("div", { className: "row-of-cards-grid", style: gridStyles, children: pagination.currentCards.map(
+        children: /* @__PURE__ */ jsx48("div", { className: "row-of-cards-grid", style: gridStyles, children: pagination.currentCards.map(
           (card, index) => renderCard(card, index)
         ) })
       }
     );
   }
-  return /* @__PURE__ */ jsxs34(
+  return /* @__PURE__ */ jsxs45(
     "div",
     {
       className: `row-of-cards ${className || ""}`,
@@ -8358,10 +10862,10 @@ function RowOfCards({
       },
       "data-testid": dataTestId,
       children: [
-        /* @__PURE__ */ jsx38("div", { className: "row-of-cards-grid", style: gridStyles, children: pagination.currentCards.map(
+        /* @__PURE__ */ jsx48("div", { className: "row-of-cards-grid", style: gridStyles, children: pagination.currentCards.map(
           (card, index) => renderCard(card, index)
         ) }),
-        /* @__PURE__ */ jsxs34(
+        /* @__PURE__ */ jsxs45(
           "div",
           {
             className: "row-of-cards-pagination",
@@ -8369,7 +10873,7 @@ function RowOfCards({
             role: "navigation",
             "aria-label": "Cards pagination",
             children: [
-              /* @__PURE__ */ jsx38("div", { style: pageInfoStyles, children: /* @__PURE__ */ jsxs34(
+              /* @__PURE__ */ jsx48("div", { style: pageInfoStyles, children: /* @__PURE__ */ jsxs45(
                 Typography,
                 {
                   variant: "bodySmall",
@@ -8386,8 +10890,8 @@ function RowOfCards({
                   ]
                 }
               ) }),
-              /* @__PURE__ */ jsxs34("div", { style: navButtonsStyles, children: [
-                /* @__PURE__ */ jsxs34(
+              /* @__PURE__ */ jsxs45("div", { style: navButtonsStyles, children: [
+                /* @__PURE__ */ jsxs45(
                   Button,
                   {
                     variant: "outlined",
@@ -8397,12 +10901,12 @@ function RowOfCards({
                     "aria-label": "Go to previous page",
                     style: navButtonStyles,
                     children: [
-                      /* @__PURE__ */ jsx38(CaretLeft3, { size: 16 }),
+                      /* @__PURE__ */ jsx48(CaretLeft3, { size: 16 }),
                       "Previous"
                     ]
                   }
                 ),
-                /* @__PURE__ */ jsxs34(
+                /* @__PURE__ */ jsxs45(
                   Button,
                   {
                     variant: "outlined",
@@ -8413,7 +10917,7 @@ function RowOfCards({
                     style: navButtonStyles,
                     children: [
                       "Next",
-                      /* @__PURE__ */ jsx38(CaretRight3, { size: 16 })
+                      /* @__PURE__ */ jsx48(CaretRight3, { size: 16 })
                     ]
                   }
                 )
@@ -8428,15 +10932,15 @@ function RowOfCards({
 var gridStyles = {
   display: "grid",
   gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-  gap: spacing2[6],
-  marginBottom: spacing2[8],
-  padding: spacing2[4]
+  gap: spacing[6],
+  marginBottom: spacing[8],
+  padding: spacing[4]
 };
 var paginationStyles = {
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",
-  padding: `${spacing2[4]} ${spacing2[6]}`,
+  padding: `${spacing[4]} ${spacing[6]}`,
   backgroundColor: colors.backgroundLight,
   border: `1px solid ${colors.border.light}`,
   borderRadius: radii.md,
@@ -8448,20 +10952,20 @@ var pageInfoStyles = {
 };
 var navButtonsStyles = {
   display: "flex",
-  gap: spacing2[3]
+  gap: spacing[3]
 };
 var navButtonStyles = {
   minWidth: "100px",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  gap: spacing2[2]
+  gap: spacing[2]
 };
 
 // src/components/SearchFilters/SearchFilters.tsx
-import { useState as useState21, useEffect as useEffect13 } from "react";
-import { FunnelSimple, X as X5, CaretDown as CaretDown3 } from "phosphor-react";
-import { jsx as jsx39, jsxs as jsxs35 } from "react/jsx-runtime";
+import { useState as useState27, useEffect as useEffect17 } from "react";
+import { FunnelSimple, X as X10, CaretDown as CaretDown4 } from "phosphor-react";
+import { jsx as jsx49, jsxs as jsxs46 } from "react/jsx-runtime";
 function SearchFilters({
   filters,
   values = {},
@@ -8471,9 +10975,9 @@ function SearchFilters({
   style,
   "data-testid": dataTestId
 }) {
-  const [isMobileOpen, setIsMobileOpen] = useState21(false);
-  const [filterValues, setFilterValues] = useState21(values);
-  useEffect13(() => {
+  const [isMobileOpen, setIsMobileOpen] = useState27(false);
+  const [filterValues, setFilterValues] = useState27(values);
+  useEffect17(() => {
     const initialValues = {};
     filters.forEach((filter) => {
       if (!filterValues[filter.id]) {
@@ -8539,7 +11043,7 @@ function SearchFilters({
     const value = filterValues[filter.id];
     switch (filter.type) {
       case "text":
-        return /* @__PURE__ */ jsx39("div", { style: filterGroupStyles, children: /* @__PURE__ */ jsx39(
+        return /* @__PURE__ */ jsx49("div", { style: filterGroupStyles, children: /* @__PURE__ */ jsx49(
           Input,
           {
             label: filter.label,
@@ -8551,34 +11055,25 @@ function SearchFilters({
           }
         ) }, filter.id);
       case "select":
-        return /* @__PURE__ */ jsxs35("div", { style: filterGroupStyles, children: [
-          /* @__PURE__ */ jsx39("label", { style: filterLabelStyles, children: filter.label }),
-          /* @__PURE__ */ jsxs35("div", { style: selectContainerStyles, children: [
-            /* @__PURE__ */ jsxs35(
-              "select",
-              {
-                value,
-                onChange: (e) => handleFilterChange(filter.id, e.target.value),
-                style: selectStyles,
-                "aria-label": filter.label,
-                children: [
-                  /* @__PURE__ */ jsxs35("option", { value: "", children: [
-                    "All ",
-                    filter.label,
-                    "s"
-                  ] }),
-                  filter.options?.map((option) => /* @__PURE__ */ jsx39("option", { value: option.value, children: option.label }, option.value))
-                ]
-              }
-            ),
-            /* @__PURE__ */ jsx39(CaretDown3, { size: 16, style: selectIconStyles })
-          ] })
-        ] }, filter.id);
+        const selectOptions = [
+          { value: "", label: `All ${filter.label}s` },
+          ...filter.options || []
+        ];
+        return /* @__PURE__ */ jsx49("div", { style: filterGroupStyles, children: /* @__PURE__ */ jsx49(
+          FilterDropdown,
+          {
+            label: filter.label,
+            options: selectOptions,
+            value: value || "",
+            onChange: (newValue) => handleFilterChange(filter.id, newValue),
+            style: filterInputStyles
+          }
+        ) }, filter.id);
       case "checkbox":
-        return /* @__PURE__ */ jsxs35("div", { style: filterGroupStyles, children: [
-          /* @__PURE__ */ jsx39(Typography, { variant: "bodySmall", weight: "medium", style: filterLabelStyles, children: filter.label }),
-          /* @__PURE__ */ jsx39("div", { style: checkboxContainerStyles, children: filter.options?.map((option) => /* @__PURE__ */ jsxs35("label", { style: checkboxLabelStyles, children: [
-            /* @__PURE__ */ jsx39(
+        return /* @__PURE__ */ jsxs46("div", { style: filterGroupStyles, children: [
+          /* @__PURE__ */ jsx49(Typography, { variant: "bodySmall", weight: "medium", style: filterLabelStyles, children: filter.label }),
+          /* @__PURE__ */ jsx49("div", { style: checkboxContainerStyles, children: filter.options?.map((option) => /* @__PURE__ */ jsxs46("label", { style: checkboxLabelStyles, children: [
+            /* @__PURE__ */ jsx49(
               "input",
               {
                 type: "checkbox",
@@ -8587,14 +11082,14 @@ function SearchFilters({
                 style: checkboxInputStyles
               }
             ),
-            /* @__PURE__ */ jsx39("span", { style: checkboxTextStyles, children: option.label })
+            /* @__PURE__ */ jsx49("span", { style: checkboxTextStyles, children: option.label })
           ] }, option.value)) })
         ] }, filter.id);
       case "dateRange":
-        return /* @__PURE__ */ jsxs35("div", { style: filterGroupStyles, children: [
-          /* @__PURE__ */ jsx39(Typography, { variant: "bodySmall", weight: "medium", style: filterLabelStyles, children: filter.label }),
-          /* @__PURE__ */ jsxs35("div", { style: dateRangeContainerStyles, children: [
-            /* @__PURE__ */ jsx39(
+        return /* @__PURE__ */ jsxs46("div", { style: filterGroupStyles, children: [
+          /* @__PURE__ */ jsx49(Typography, { variant: "bodySmall", weight: "medium", style: filterLabelStyles, children: filter.label }),
+          /* @__PURE__ */ jsxs46("div", { style: dateRangeContainerStyles, children: [
+            /* @__PURE__ */ jsx49(
               Input,
               {
                 type: "date",
@@ -8605,7 +11100,7 @@ function SearchFilters({
                 "aria-label": filter.startLabel || "Start Date"
               }
             ),
-            /* @__PURE__ */ jsx39(
+            /* @__PURE__ */ jsx49(
               Input,
               {
                 type: "date",
@@ -8623,24 +11118,24 @@ function SearchFilters({
     }
   };
   if (filters.length === 0) {
-    return /* @__PURE__ */ jsx39(
+    return /* @__PURE__ */ jsx49(
       "div",
       {
         className: `search-filters-container ${className || ""}`,
         style: getContainerStyles(style),
         "data-testid": dataTestId,
-        children: /* @__PURE__ */ jsx39(Typography, { variant: "body", color: "secondary", children: "No filters configured" })
+        children: /* @__PURE__ */ jsx49(Typography, { variant: "body", color: "secondary", children: "No filters configured" })
       }
     );
   }
-  return /* @__PURE__ */ jsxs35(
+  return /* @__PURE__ */ jsxs46(
     "div",
     {
       className: `search-filters-container ${className || ""}`,
       style: getContainerStyles(style),
       "data-testid": dataTestId,
       children: [
-        mobileCollapsed && /* @__PURE__ */ jsxs35(
+        mobileCollapsed && /* @__PURE__ */ jsxs46(
           Button,
           {
             variant: "outlined",
@@ -8648,10 +11143,10 @@ function SearchFilters({
             "aria-label": "Toggle filters",
             style: mobileToggleStyles,
             children: [
-              /* @__PURE__ */ jsx39(FunnelSimple, { size: 16 }),
+              /* @__PURE__ */ jsx49(FunnelSimple, { size: 16 }),
               "Filters",
-              /* @__PURE__ */ jsx39(
-                CaretDown3,
+              /* @__PURE__ */ jsx49(
+                CaretDown4,
                 {
                   size: 16,
                   style: {
@@ -8663,9 +11158,9 @@ function SearchFilters({
             ]
           }
         ),
-        (!mobileCollapsed || isMobileOpen) && /* @__PURE__ */ jsxs35("div", { className: "search-filters-content", style: filtersContentStyles, children: [
-          /* @__PURE__ */ jsx39("div", { style: filtersGridStyles, children: filters.map(renderFilter) }),
-          /* @__PURE__ */ jsx39("div", { style: actionsStyles, children: /* @__PURE__ */ jsxs35(
+        (!mobileCollapsed || isMobileOpen) && /* @__PURE__ */ jsxs46("div", { className: "search-filters-content", style: filtersContentStyles, children: [
+          /* @__PURE__ */ jsx49("div", { style: filtersGridStyles, children: filters.map(renderFilter) }),
+          /* @__PURE__ */ jsx49("div", { style: actionsStyles, children: /* @__PURE__ */ jsxs46(
             Button,
             {
               variant: "outlined",
@@ -8674,7 +11169,7 @@ function SearchFilters({
               disabled: !hasActiveFilters,
               style: clearButtonStyles,
               children: [
-                /* @__PURE__ */ jsx39(X5, { size: 16 }),
+                /* @__PURE__ */ jsx49(X10, { size: 16 }),
                 "Clear All"
               ]
             }
@@ -8688,17 +11183,17 @@ var getContainerStyles = (customStyle) => ({
   backgroundColor: colors.backgroundLight,
   border: `1px solid ${colors.border.light}`,
   borderRadius: radii.md,
-  padding: spacing2[6],
+  padding: spacing[6],
   boxShadow: shadows.sm,
   ...customStyle
 });
 var mobileToggleStyles = {
   width: "100%",
-  marginBottom: spacing2[4],
+  marginBottom: spacing[4],
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  gap: spacing2[2]
+  gap: spacing[2]
 };
 var filtersContentStyles = {
   // Content styles handled by grid and individual filters
@@ -8706,32 +11201,28 @@ var filtersContentStyles = {
 var filtersGridStyles = {
   display: "grid",
   gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-  gap: spacing2[6],
-  marginBottom: spacing2[6]
+  gap: spacing[6],
+  marginBottom: spacing[6]
 };
 var filterGroupStyles = {
   display: "flex",
   flexDirection: "column",
-  gap: spacing2[2]
+  gap: spacing[2]
 };
 var filterLabelStyles = {
   fontFamily: typography.fontFamily.primary,
   fontSize: "14px",
   fontWeight: typography.fontWeight.medium,
   color: colors.text.primary,
-  marginBottom: spacing2[1]
+  marginBottom: spacing[1]
 };
 var filterInputStyles = {
   width: "100%"
 };
-var selectContainerStyles = {
-  position: "relative",
-  width: "100%"
-};
 var selectStyles = {
   width: "100%",
-  padding: `${spacing2[3]} ${spacing2[4]}`,
-  paddingRight: spacing2[8],
+  padding: `${spacing[3]} ${spacing[4]}`,
+  paddingRight: spacing[8],
   border: `1px solid ${colors.border.medium}`,
   borderRadius: radii.sm,
   backgroundColor: colors.backgroundLight,
@@ -8744,7 +11235,7 @@ var selectStyles = {
 };
 var selectIconStyles = {
   position: "absolute",
-  right: spacing2[3],
+  right: spacing[3],
   top: "50%",
   transform: "translateY(-50%)",
   pointerEvents: "none",
@@ -8753,12 +11244,12 @@ var selectIconStyles = {
 var checkboxContainerStyles = {
   display: "flex",
   flexDirection: "column",
-  gap: spacing2[2]
+  gap: spacing[2]
 };
 var checkboxLabelStyles = {
   display: "flex",
   alignItems: "center",
-  gap: spacing2[2],
+  gap: spacing[2],
   cursor: "pointer",
   fontSize: "14px",
   color: colors.text.primary
@@ -8774,7 +11265,7 @@ var checkboxTextStyles = {
 };
 var dateRangeContainerStyles = {
   display: "flex",
-  gap: spacing2[3]
+  gap: spacing[3]
 };
 var dateInputStyles = {
   flex: 1
@@ -8782,17 +11273,17 @@ var dateInputStyles = {
 var actionsStyles = {
   display: "flex",
   justifyContent: "flex-end",
-  paddingTop: spacing2[4],
+  paddingTop: spacing[4],
   borderTop: `1px solid ${colors.border.light}`
 };
 var clearButtonStyles = {
   display: "flex",
   alignItems: "center",
-  gap: spacing2[2]
+  gap: spacing[2]
 };
 
 // src/components/Divider/Divider.tsx
-import { jsx as jsx40, jsxs as jsxs36 } from "react/jsx-runtime";
+import { jsx as jsx50, jsxs as jsxs47 } from "react/jsx-runtime";
 var Divider = ({
   orientation = "horizontal",
   variant = "solid",
@@ -8841,7 +11332,7 @@ var Divider = ({
     }
   });
   if (label && orientation === "horizontal") {
-    return /* @__PURE__ */ jsxs36(
+    return /* @__PURE__ */ jsxs47(
       "div",
       {
         className: `${classes} cria-divider--with-label`,
@@ -8850,14 +11341,14 @@ var Divider = ({
         "aria-orientation": orientation,
         ...dataProps,
         children: [
-          /* @__PURE__ */ jsx40("div", { className: "cria-divider__line cria-divider__line--before" }),
-          /* @__PURE__ */ jsx40("span", { className: `cria-divider__label cria-divider__label--${labelPosition}`, children: label }),
-          /* @__PURE__ */ jsx40("div", { className: "cria-divider__line cria-divider__line--after" })
+          /* @__PURE__ */ jsx50("div", { className: "cria-divider__line cria-divider__line--before" }),
+          /* @__PURE__ */ jsx50("span", { className: `cria-divider__label cria-divider__label--${labelPosition}`, children: label }),
+          /* @__PURE__ */ jsx50("div", { className: "cria-divider__line cria-divider__line--after" })
         ]
       }
     );
   }
-  return /* @__PURE__ */ jsx40(
+  return /* @__PURE__ */ jsx50(
     "div",
     {
       className: classes,
@@ -8870,7 +11361,7 @@ var Divider = ({
 };
 
 // src/components/Grid/Grid.tsx
-import { jsx as jsx41 } from "react/jsx-runtime";
+import { jsx as jsx51 } from "react/jsx-runtime";
 var Grid = ({
   columns = 12,
   gap = "md",
@@ -8924,7 +11415,7 @@ var Grid = ({
   if (!autoFit && !autoFill && minColumnWidth !== "250px") {
     inlineStyles.gridTemplateColumns = `repeat(auto-fit, minmax(${minColumnWidth}, 1fr))`;
   }
-  return /* @__PURE__ */ jsx41(
+  return /* @__PURE__ */ jsx51(
     "div",
     {
       className: classes,
@@ -8936,7 +11427,7 @@ var Grid = ({
 };
 
 // src/components/Grid/Row.tsx
-import { jsx as jsx42 } from "react/jsx-runtime";
+import { jsx as jsx52 } from "react/jsx-runtime";
 var Row = ({
   gap = "md",
   align = "stretch",
@@ -8962,7 +11453,7 @@ var Row = ({
     baseClasses.push(className);
   }
   const classes = baseClasses.join(" ");
-  return /* @__PURE__ */ jsx42(
+  return /* @__PURE__ */ jsx52(
     "div",
     {
       className: classes,
@@ -8974,7 +11465,7 @@ var Row = ({
 };
 
 // src/components/Grid/Column.tsx
-import { jsx as jsx43 } from "react/jsx-runtime";
+import { jsx as jsx53 } from "react/jsx-runtime";
 var Column = ({
   span = 12,
   offset = 0,
@@ -9032,7 +11523,7 @@ var Column = ({
     baseClasses.push(className);
   }
   const classes = baseClasses.join(" ");
-  return /* @__PURE__ */ jsx43(
+  return /* @__PURE__ */ jsx53(
     "div",
     {
       className: classes,
@@ -9044,7 +11535,7 @@ var Column = ({
 };
 
 // src/components/Container/Container.tsx
-import { jsx as jsx44 } from "react/jsx-runtime";
+import { jsx as jsx54 } from "react/jsx-runtime";
 var Container = ({
   maxWidth = "lg",
   padding = "md",
@@ -9103,7 +11594,7 @@ var Container = ({
   if (typeof maxWidth === "string" && !["sm", "md", "lg", "xl", "2xl", "full"].includes(maxWidth)) {
     inlineStyles.maxWidth = maxWidth;
   }
-  return /* @__PURE__ */ jsx44(
+  return /* @__PURE__ */ jsx54(
     "div",
     {
       className: classes,
@@ -9115,7 +11606,7 @@ var Container = ({
 };
 
 // src/components/Container/Section.tsx
-import { jsx as jsx45 } from "react/jsx-runtime";
+import { jsx as jsx55 } from "react/jsx-runtime";
 var Section = ({
   variant = "default",
   size = "md",
@@ -9173,7 +11664,7 @@ var Section = ({
   if (!["primary", "secondary", "gray", "white", "transparent"].includes(backgroundColor)) {
     inlineStyles.backgroundColor = backgroundColor;
   }
-  return /* @__PURE__ */ jsx45(
+  return /* @__PURE__ */ jsx55(
     "section",
     {
       className: classes,
@@ -9185,8 +11676,8 @@ var Section = ({
 };
 
 // src/components/Scrollbar/Scrollbar.tsx
-import { useCallback as useCallback24 } from "react";
-import { jsx as jsx46 } from "react/jsx-runtime";
+import { useCallback as useCallback26 } from "react";
+import { jsx as jsx56 } from "react/jsx-runtime";
 var Scrollbar = ({
   size = "md",
   theme = "light",
@@ -9246,12 +11737,12 @@ var Scrollbar = ({
   if (hoverColor) {
     inlineStyles["--scrollbar-hover-color"] = hoverColor;
   }
-  const handleScroll = useCallback24((event) => {
+  const handleScroll = useCallback26((event) => {
     if (onScroll) {
       onScroll(event);
     }
   }, [onScroll]);
-  return /* @__PURE__ */ jsx46(
+  return /* @__PURE__ */ jsx56(
     "div",
     {
       className: classes,
@@ -9264,8 +11755,8 @@ var Scrollbar = ({
 };
 
 // src/components/Footer/Footer.tsx
-import React35, { useCallback as useCallback25 } from "react";
-import { jsx as jsx47, jsxs as jsxs37 } from "react/jsx-runtime";
+import React45, { useCallback as useCallback27 } from "react";
+import { jsx as jsx57, jsxs as jsxs48 } from "react/jsx-runtime";
 var Footer = ({
   variant = "default",
   size = "md",
@@ -9310,13 +11801,13 @@ var Footer = ({
     baseClasses.push(className);
   }
   const classes = baseClasses.join(" ");
-  const handleLinkClick = useCallback25((href, label, event) => {
+  const handleLinkClick = useCallback27((href, label, event) => {
     if (onLinkClick) {
       event.preventDefault();
       onLinkClick(href, label);
     }
   }, [onLinkClick]);
-  const handleSocialClick = useCallback25((href, label, icon, event) => {
+  const handleSocialClick = useCallback27((href, label, icon, event) => {
     if (onSocialClick) {
       event.preventDefault();
       onSocialClick(href, label, icon);
@@ -9324,11 +11815,11 @@ var Footer = ({
   }, [onSocialClick]);
   const renderLinks = () => {
     if (!links) return null;
-    if (React35.isValidElement(links)) {
+    if (React45.isValidElement(links)) {
       return links;
     }
     if (Array.isArray(links)) {
-      return /* @__PURE__ */ jsx47("nav", { className: "cria-footer__links", "aria-label": "Footer navigation", children: /* @__PURE__ */ jsx47("ul", { children: links.map((link, index) => /* @__PURE__ */ jsx47("li", { children: /* @__PURE__ */ jsx47(
+      return /* @__PURE__ */ jsx57("nav", { className: "cria-footer__links", "aria-label": "Footer navigation", children: /* @__PURE__ */ jsx57("ul", { children: links.map((link, index) => /* @__PURE__ */ jsx57("li", { children: /* @__PURE__ */ jsx57(
         "a",
         {
           href: link.href,
@@ -9344,11 +11835,11 @@ var Footer = ({
   };
   const renderSocialLinks = () => {
     if (!socialLinks) return null;
-    if (React35.isValidElement(socialLinks)) {
+    if (React45.isValidElement(socialLinks)) {
       return socialLinks;
     }
     if (Array.isArray(socialLinks)) {
-      return /* @__PURE__ */ jsx47("nav", { className: "cria-footer__social", "aria-label": "Social media links", children: /* @__PURE__ */ jsx47("ul", { children: socialLinks.map((socialLink, index) => /* @__PURE__ */ jsx47("li", { children: /* @__PURE__ */ jsx47(
+      return /* @__PURE__ */ jsx57("nav", { className: "cria-footer__social", "aria-label": "Social media links", children: /* @__PURE__ */ jsx57("ul", { children: socialLinks.map((socialLink, index) => /* @__PURE__ */ jsx57("li", { children: /* @__PURE__ */ jsx57(
         "a",
         {
           href: socialLink.href,
@@ -9357,7 +11848,7 @@ var Footer = ({
           onClick: (e) => handleSocialClick(socialLink.href, socialLink.label, socialLink.icon, e),
           className: "cria-footer__social-link",
           "aria-label": socialLink.label,
-          children: /* @__PURE__ */ jsx47("span", { className: `cria-footer__social-icon cria-footer__social-icon--${socialLink.icon}`, children: socialLink.icon })
+          children: /* @__PURE__ */ jsx57("span", { className: `cria-footer__social-icon cria-footer__social-icon--${socialLink.icon}`, children: socialLink.icon })
         }
       ) }, index)) }) });
     }
@@ -9365,23 +11856,23 @@ var Footer = ({
   };
   const renderCopyright = () => {
     if (!copyright) return null;
-    if (React35.isValidElement(copyright)) {
-      return /* @__PURE__ */ jsx47("div", { className: "cria-footer__copyright", children: copyright });
+    if (React45.isValidElement(copyright)) {
+      return /* @__PURE__ */ jsx57("div", { className: "cria-footer__copyright", children: copyright });
     }
     if (typeof copyright === "string") {
-      return /* @__PURE__ */ jsx47("div", { className: "cria-footer__copyright", children: /* @__PURE__ */ jsx47("span", { children: copyright }) });
+      return /* @__PURE__ */ jsx57("div", { className: "cria-footer__copyright", children: /* @__PURE__ */ jsx57("span", { children: copyright }) });
     }
     return null;
   };
-  return /* @__PURE__ */ jsxs37(
+  return /* @__PURE__ */ jsxs48(
     "footer",
     {
       className: classes,
       style,
       ...props,
       children: [
-        children && /* @__PURE__ */ jsx47("div", { className: "cria-footer__content", children }),
-        /* @__PURE__ */ jsxs37("div", { className: "cria-footer__sections", children: [
+        children && /* @__PURE__ */ jsx57("div", { className: "cria-footer__content", children }),
+        /* @__PURE__ */ jsxs48("div", { className: "cria-footer__sections", children: [
           renderLinks(),
           renderSocialLinks(),
           renderCopyright()
@@ -9392,8 +11883,8 @@ var Footer = ({
 };
 
 // src/components/MegaMenu/MegaMenu.tsx
-import { useState as useState22, useCallback as useCallback26, useRef as useRef19, useEffect as useEffect14 } from "react";
-import { jsx as jsx48, jsxs as jsxs38 } from "react/jsx-runtime";
+import { useState as useState28, useCallback as useCallback28, useRef as useRef21, useEffect as useEffect18 } from "react";
+import { jsx as jsx58, jsxs as jsxs49 } from "react/jsx-runtime";
 var MegaMenu = ({
   variant = "default",
   position = "static",
@@ -9417,11 +11908,11 @@ var MegaMenu = ({
   children,
   ...props
 }) => {
-  const [activeDropdown, setActiveDropdown] = useState22(null);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState22(false);
-  const [searchQuery, setSearchQuery] = useState22("");
-  const megaMenuRef = useRef19(null);
-  const timeoutRef = useRef19(null);
+  const [activeDropdown, setActiveDropdown] = useState28(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState28(false);
+  const [searchQuery, setSearchQuery] = useState28("");
+  const megaMenuRef = useRef21(null);
+  const timeoutRef = useRef21(null);
   const baseClasses = ["cria-mega-menu"];
   baseClasses.push(`cria-mega-menu--${variant}`);
   baseClasses.push(`cria-mega-menu--position-${position}`);
@@ -9446,27 +11937,27 @@ var MegaMenu = ({
     baseClasses.push(className);
   }
   const classes = baseClasses.join(" ");
-  const handleItemClick = useCallback26((item, event) => {
+  const handleItemClick = useCallback28((item, event) => {
     if (onItemClick) {
       event.preventDefault();
       onItemClick(item.href, item.label, item);
     }
   }, [onItemClick]);
-  const handleSearchChange = useCallback26((event) => {
+  const handleSearchChange = useCallback28((event) => {
     const query = event.target.value;
     setSearchQuery(query);
     if (onSearch) {
       onSearch(query);
     }
   }, [onSearch]);
-  const handleMouseEnter = useCallback26((itemLabel) => {
+  const handleMouseEnter = useCallback28((itemLabel) => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = null;
     }
     setActiveDropdown(itemLabel);
   }, []);
-  const handleMouseLeave = useCallback26(() => {
+  const handleMouseLeave = useCallback28(() => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
     }
@@ -9474,16 +11965,16 @@ var MegaMenu = ({
       setActiveDropdown(null);
     }, 150);
   }, []);
-  const handleMobileToggle = useCallback26(() => {
+  const handleMobileToggle = useCallback28(() => {
     setMobileMenuOpen(!mobileMenuOpen);
   }, [mobileMenuOpen]);
-  const handleCtaClick = useCallback26((event) => {
+  const handleCtaClick = useCallback28((event) => {
     if (ctaButton?.onClick) {
       event.preventDefault();
       ctaButton.onClick();
     }
   }, [ctaButton]);
-  useEffect14(() => {
+  useEffect18(() => {
     return () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
@@ -9494,8 +11985,8 @@ var MegaMenu = ({
     const hasChildren = item.children && item.children.length > 0;
     const hasCustomDropdown = !!item.customDropdown;
     const showDropdown = activeDropdown === item.label && (hasChildren || hasCustomDropdown);
-    return /* @__PURE__ */ jsxs38("li", { className: `cria-mega-menu__item cria-mega-menu__item--level-${level}`, children: [
-      /* @__PURE__ */ jsxs38(
+    return /* @__PURE__ */ jsxs49("li", { className: `cria-mega-menu__item cria-mega-menu__item--level-${level}`, children: [
+      /* @__PURE__ */ jsxs49(
         "a",
         {
           href: item.href,
@@ -9507,23 +11998,22 @@ var MegaMenu = ({
           className: `cria-mega-menu__link ${hasChildren || hasCustomDropdown ? "cria-mega-menu__link--has-dropdown" : ""}`,
           children: [
             item.label,
-            (hasChildren || hasCustomDropdown) && /* @__PURE__ */ jsx48("span", { className: "cria-mega-menu__dropdown-arrow", "aria-hidden": "true", children: "\u25BC" })
+            (hasChildren || hasCustomDropdown) && /* @__PURE__ */ jsx58("span", { className: "cria-mega-menu__dropdown-arrow", "aria-hidden": "true", children: "\u25BC" })
           ]
         }
       ),
-      (hasChildren || hasCustomDropdown) && showDropdown && /* @__PURE__ */ jsx48(
+      (hasChildren || hasCustomDropdown) && showDropdown && /* @__PURE__ */ jsx58(
         "div",
         {
-          className: `cria-mega-menu__dropdown cria-mega-menu__dropdown--level-${level}`,
+          className: `cria-mega-menu__dropdown cria-mega-menu__dropdown--level-${level} show`,
           onMouseEnter: () => handleMouseEnter(item.label),
           onMouseLeave: handleMouseLeave,
-          style: { display: "block" },
-          children: hasCustomDropdown ? item.customDropdown : /* @__PURE__ */ jsx48("ul", { className: "cria-mega-menu__dropdown-list", children: item.children?.map((child) => renderMenuItem(child, level + 1)) })
+          children: hasCustomDropdown ? item.customDropdown : /* @__PURE__ */ jsx58("ul", { className: "cria-mega-menu__dropdown-list", children: item.children?.map((child) => renderMenuItem(child, level + 1)) })
         }
       )
     ] }, item.label);
   };
-  return /* @__PURE__ */ jsxs38(
+  return /* @__PURE__ */ jsxs49(
     "nav",
     {
       ref: megaMenuRef,
@@ -9531,11 +12021,11 @@ var MegaMenu = ({
       style,
       ...props,
       children: [
-        /* @__PURE__ */ jsxs38("div", { className: "cria-mega-menu__container", children: [
-          logo && /* @__PURE__ */ jsx48("div", { className: "cria-mega-menu__logo", children: logo }),
-          trigger && /* @__PURE__ */ jsx48("div", { className: "cria-mega-menu__trigger", children: trigger }),
-          items.length > 0 && /* @__PURE__ */ jsx48("ul", { className: "cria-mega-menu__list", children: items.map((item) => renderMenuItem(item)) }),
-          showSearch && /* @__PURE__ */ jsx48("div", { className: "cria-mega-menu__search", children: /* @__PURE__ */ jsx48(
+        /* @__PURE__ */ jsxs49("div", { className: "cria-mega-menu__container", children: [
+          logo && /* @__PURE__ */ jsx58("div", { className: "cria-mega-menu__logo", children: logo }),
+          trigger && /* @__PURE__ */ jsx58("div", { className: "cria-mega-menu__trigger", children: trigger }),
+          items.length > 0 && /* @__PURE__ */ jsx58("ul", { className: "cria-mega-menu__list", children: items.map((item) => renderMenuItem(item)) }),
+          showSearch && /* @__PURE__ */ jsx58("div", { className: "cria-mega-menu__search", children: /* @__PURE__ */ jsx58(
             "input",
             {
               type: "text",
@@ -9545,7 +12035,7 @@ var MegaMenu = ({
               className: "cria-mega-menu__search-input"
             }
           ) }),
-          ctaButton && /* @__PURE__ */ jsx48("div", { className: "cria-mega-menu__cta", children: /* @__PURE__ */ jsx48(
+          ctaButton && /* @__PURE__ */ jsx58("div", { className: "cria-mega-menu__cta", children: /* @__PURE__ */ jsx58(
             "a",
             {
               href: ctaButton.href || "#",
@@ -9554,20 +12044,20 @@ var MegaMenu = ({
               children: ctaButton.label
             }
           ) }),
-          showMobileToggle && /* @__PURE__ */ jsx48(
+          showMobileToggle && /* @__PURE__ */ jsx58(
             "button",
             {
               onClick: handleMobileToggle,
               className: "cria-mega-menu__mobile-toggle",
               "aria-label": mobileMenuOpen ? "Close menu" : "Open menu",
               "aria-expanded": mobileMenuOpen,
-              children: /* @__PURE__ */ jsx48("span", { className: "cria-mega-menu__mobile-toggle-icon", children: mobileMenuOpen ? "\u2715" : "\u2630" })
+              children: /* @__PURE__ */ jsx58("span", { className: "cria-mega-menu__mobile-toggle-icon", children: mobileMenuOpen ? "\u2715" : "\u2630" })
             }
           )
         ] }),
-        showMobileToggle && mobileMenuOpen && /* @__PURE__ */ jsx48("div", { className: "cria-mega-menu__mobile-menu", children: /* @__PURE__ */ jsxs38("div", { className: "cria-mega-menu__mobile-menu-content", children: [
-          items.length > 0 && /* @__PURE__ */ jsx48("ul", { className: "cria-mega-menu__mobile-list", children: items.map((item) => /* @__PURE__ */ jsxs38("li", { className: "cria-mega-menu__mobile-item", children: [
-            /* @__PURE__ */ jsx48(
+        showMobileToggle && mobileMenuOpen && /* @__PURE__ */ jsx58("div", { className: "cria-mega-menu__mobile-menu", children: /* @__PURE__ */ jsxs49("div", { className: "cria-mega-menu__mobile-menu-content", children: [
+          items.length > 0 && /* @__PURE__ */ jsx58("ul", { className: "cria-mega-menu__mobile-list", children: items.map((item) => /* @__PURE__ */ jsxs49("li", { className: "cria-mega-menu__mobile-item", children: [
+            /* @__PURE__ */ jsx58(
               "a",
               {
                 href: item.href,
@@ -9578,7 +12068,7 @@ var MegaMenu = ({
                 children: item.label
               }
             ),
-            item.children && item.children.length > 0 && /* @__PURE__ */ jsx48("ul", { className: "cria-mega-menu__mobile-sublist", children: item.children.map((child) => /* @__PURE__ */ jsx48("li", { className: "cria-mega-menu__mobile-subitem", children: /* @__PURE__ */ jsx48(
+            item.children && item.children.length > 0 && /* @__PURE__ */ jsx58("ul", { className: "cria-mega-menu__mobile-sublist", children: item.children.map((child) => /* @__PURE__ */ jsx58("li", { className: "cria-mega-menu__mobile-subitem", children: /* @__PURE__ */ jsx58(
               "a",
               {
                 href: child.href,
@@ -9590,7 +12080,7 @@ var MegaMenu = ({
               }
             ) }, child.label)) })
           ] }, item.label)) }),
-          showSearch && /* @__PURE__ */ jsx48("div", { className: "cria-mega-menu__mobile-search", children: /* @__PURE__ */ jsx48(
+          showSearch && /* @__PURE__ */ jsx58("div", { className: "cria-mega-menu__mobile-search", children: /* @__PURE__ */ jsx58(
             "input",
             {
               type: "text",
@@ -9600,7 +12090,7 @@ var MegaMenu = ({
               className: "cria-mega-menu__mobile-search-input"
             }
           ) }),
-          ctaButton && /* @__PURE__ */ jsx48("div", { className: "cria-mega-menu__mobile-cta", children: /* @__PURE__ */ jsx48(
+          ctaButton && /* @__PURE__ */ jsx58("div", { className: "cria-mega-menu__mobile-cta", children: /* @__PURE__ */ jsx58(
             "a",
             {
               href: ctaButton.href || "#",
@@ -9610,19 +12100,19 @@ var MegaMenu = ({
             }
           ) })
         ] }) }),
-        loading && /* @__PURE__ */ jsx48("div", { className: "cria-mega-menu__loading-overlay", children: /* @__PURE__ */ jsx48("div", { className: "cria-mega-menu__loading-spinner", "aria-label": "Loading", children: /* @__PURE__ */ jsx48("span", { children: "Loading..." }) }) }),
-        children && /* @__PURE__ */ jsx48("div", { className: "cria-mega-menu__content", children })
+        loading && /* @__PURE__ */ jsx58("div", { className: "cria-mega-menu__loading-overlay", children: /* @__PURE__ */ jsx58("div", { className: "cria-mega-menu__loading-spinner", "aria-label": "Loading", children: /* @__PURE__ */ jsx58("span", { children: "Loading..." }) }) }),
+        children && /* @__PURE__ */ jsx58("div", { className: "cria-mega-menu__content", children })
       ]
     }
   );
 };
 
 // src/components/Carousel/Carousel.tsx
-import { useCallback as useCallback27, useEffect as useEffect15, useState as useState23 } from "react";
+import { useCallback as useCallback29, useEffect as useEffect19, useState as useState29 } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { CaretLeft as CaretLeft4, CaretRight as CaretRight4, Circle, CircleDashed } from "phosphor-react";
-import { Fragment as Fragment6, jsx as jsx49, jsxs as jsxs39 } from "react/jsx-runtime";
+import { Fragment as Fragment7, jsx as jsx59, jsxs as jsxs50 } from "react/jsx-runtime";
 var Carousel = ({
   slides,
   children,
@@ -9656,23 +12146,23 @@ var Carousel = ({
     },
     autoPlay ? [Autoplay({ delay: autoPlayDelay })] : []
   );
-  const [selectedIndex, setSelectedIndex] = useState23(0);
-  const [scrollSnaps, setScrollSnaps] = useState23([]);
-  const scrollPrev = useCallback27(() => {
+  const [selectedIndex, setSelectedIndex] = useState29(0);
+  const [scrollSnaps, setScrollSnaps] = useState29([]);
+  const scrollPrev = useCallback29(() => {
     if (emblaApi) emblaApi.scrollPrev();
   }, [emblaApi]);
-  const scrollNext = useCallback27(() => {
+  const scrollNext = useCallback29(() => {
     if (emblaApi) emblaApi.scrollNext();
   }, [emblaApi]);
-  const scrollTo = useCallback27((index) => {
+  const scrollTo = useCallback29((index) => {
     if (emblaApi) emblaApi.scrollTo(index);
   }, [emblaApi]);
-  const onSelect = useCallback27(() => {
+  const onSelect = useCallback29(() => {
     if (!emblaApi) return;
     setSelectedIndex(emblaApi.selectedScrollSnap());
     onSlideChange?.(emblaApi.selectedScrollSnap());
   }, [emblaApi, onSlideChange]);
-  useEffect15(() => {
+  useEffect19(() => {
     if (!emblaApi) return;
     onSelect();
     setScrollSnaps(emblaApi.scrollSnapList());
@@ -9683,7 +12173,7 @@ var Carousel = ({
       emblaApi.off("reInit", onSelect);
     };
   }, [emblaApi, onSelect]);
-  const handleSlideClick = useCallback27((slide, index) => {
+  const handleSlideClick = useCallback29((slide, index) => {
     onSlideClick?.(slide, index);
   }, [onSlideClick]);
   const classes = [
@@ -9697,12 +12187,12 @@ var Carousel = ({
     className
   ].filter(Boolean).join(" ");
   if (loading) {
-    return /* @__PURE__ */ jsx49("div", { className: classes, style, ...props, children: /* @__PURE__ */ jsx49("div", { className: "cria-carousel__loading", children: /* @__PURE__ */ jsx49("div", { className: "cria-carousel__spinner" }) }) });
+    return /* @__PURE__ */ jsx59("div", { className: classes, style, ...props, children: /* @__PURE__ */ jsx59("div", { className: "cria-carousel__loading", children: /* @__PURE__ */ jsx59("div", { className: "cria-carousel__spinner" }) }) });
   }
-  return /* @__PURE__ */ jsxs39("div", { className: classes, style, ...props, children: [
-    header && /* @__PURE__ */ jsx49("div", { className: "cria-carousel__header", children: header }),
-    /* @__PURE__ */ jsxs39("div", { className: "cria-carousel__container", children: [
-      /* @__PURE__ */ jsx49("div", { className: "cria-carousel__viewport", ref: emblaRef, children: /* @__PURE__ */ jsx49("div", { className: "cria-carousel__container-inner", children: slides.map((slide, index) => /* @__PURE__ */ jsx49(
+  return /* @__PURE__ */ jsxs50("div", { className: classes, style, ...props, children: [
+    header && /* @__PURE__ */ jsx59("div", { className: "cria-carousel__header", children: header }),
+    /* @__PURE__ */ jsxs50("div", { className: "cria-carousel__container", children: [
+      /* @__PURE__ */ jsx59("div", { className: "cria-carousel__viewport", ref: emblaRef, children: /* @__PURE__ */ jsx59("div", { className: "cria-carousel__container-inner", children: slides.map((slide, index) => /* @__PURE__ */ jsx59(
         "div",
         {
           className: "cria-carousel__slide",
@@ -9711,45 +12201,45 @@ var Carousel = ({
         },
         slide.id
       )) }) }),
-      showArrows && /* @__PURE__ */ jsxs39(Fragment6, { children: [
-        /* @__PURE__ */ jsx49(
+      showArrows && /* @__PURE__ */ jsxs50(Fragment7, { children: [
+        /* @__PURE__ */ jsx59(
           "button",
           {
             className: "cria-carousel__arrow cria-carousel__arrow--prev",
             onClick: scrollPrev,
             "aria-label": "Previous slide",
-            children: /* @__PURE__ */ jsx49(CaretLeft4, { size: 24 })
+            children: /* @__PURE__ */ jsx59(CaretLeft4, { size: 24 })
           }
         ),
-        /* @__PURE__ */ jsx49(
+        /* @__PURE__ */ jsx59(
           "button",
           {
             className: "cria-carousel__arrow cria-carousel__arrow--next",
             onClick: scrollNext,
             "aria-label": "Next slide",
-            children: /* @__PURE__ */ jsx49(CaretRight4, { size: 24 })
+            children: /* @__PURE__ */ jsx59(CaretRight4, { size: 24 })
           }
         )
       ] })
     ] }),
-    showDots && scrollSnaps.length > 1 && /* @__PURE__ */ jsx49("div", { className: "cria-carousel__dots", children: scrollSnaps.map((_, index) => /* @__PURE__ */ jsx49(
+    showDots && scrollSnaps.length > 1 && /* @__PURE__ */ jsx59("div", { className: "cria-carousel__dots", children: scrollSnaps.map((_, index) => /* @__PURE__ */ jsx59(
       "button",
       {
         className: `cria-carousel__dot ${index === selectedIndex ? "cria-carousel__dot--active" : ""}`,
         onClick: () => scrollTo(index),
         "aria-label": `Go to slide ${index + 1}`,
-        children: index === selectedIndex ? /* @__PURE__ */ jsx49(Circle, { size: 12, weight: "fill" }) : /* @__PURE__ */ jsx49(CircleDashed, { size: 12, weight: "regular" })
+        children: index === selectedIndex ? /* @__PURE__ */ jsx59(Circle, { size: 12, weight: "fill" }) : /* @__PURE__ */ jsx59(CircleDashed, { size: 12, weight: "regular" })
       },
       index
     )) }),
-    footer && /* @__PURE__ */ jsx49("div", { className: "cria-carousel__footer", children: footer })
+    footer && /* @__PURE__ */ jsx59("div", { className: "cria-carousel__footer", children: footer })
   ] });
 };
 
 // src/components/Table/Table.tsx
-import { useState as useState24, useMemo as useMemo8, useCallback as useCallback28 } from "react";
-import { CaretUp as CaretUp2, CaretDown as CaretDown4, MagnifyingGlass as MagnifyingGlass2, Download, DotsThree as DotsThree2 } from "phosphor-react";
-import { jsx as jsx50, jsxs as jsxs40 } from "react/jsx-runtime";
+import { useState as useState30, useMemo as useMemo9, useCallback as useCallback30 } from "react";
+import { CaretUp as CaretUp2, CaretDown as CaretDown5, MagnifyingGlass as MagnifyingGlass3, Download, DotsThree as DotsThree2 } from "phosphor-react";
+import { jsx as jsx60, jsxs as jsxs51 } from "react/jsx-runtime";
 var Table = ({
   columns,
   data,
@@ -9786,15 +12276,15 @@ var Table = ({
   style = {},
   ...props
 }) => {
-  const [internalFilter, setInternalFilter] = useState24(filterValue || "");
-  const [showRowActions, setShowRowActions] = useState24({});
-  const getRowKey = useCallback28((row, index) => {
+  const [internalFilter, setInternalFilter] = useState30(filterValue || "");
+  const [showRowActions, setShowRowActions] = useState30({});
+  const getRowKey = useCallback30((row, index) => {
     if (typeof rowKey === "function") {
       return rowKey(row, index);
     }
     return row[rowKey] || index;
   }, [rowKey]);
-  const filteredData = useMemo8(() => {
+  const filteredData = useMemo9(() => {
     if (!data || !Array.isArray(data)) {
       return [];
     }
@@ -9809,7 +12299,7 @@ var Table = ({
       })
     );
   }, [data, columns, filterable, internalFilter, filterValue]);
-  const sortedData = useMemo8(() => {
+  const sortedData = useMemo9(() => {
     if (!sortBy || !sortDirection) {
       return filteredData;
     }
@@ -9821,7 +12311,7 @@ var Table = ({
       return sortDirection === "asc" ? comparison : -comparison;
     });
   }, [filteredData, sortBy, sortDirection]);
-  const paginatedData = useMemo8(() => {
+  const paginatedData = useMemo9(() => {
     if (!pagination) {
       return sortedData;
     }
@@ -9829,7 +12319,7 @@ var Table = ({
     const endIndex = startIndex + pagination.pageSize;
     return sortedData.slice(startIndex, endIndex);
   }, [sortedData, pagination]);
-  const handleSort = useCallback28((columnKey) => {
+  const handleSort = useCallback30((columnKey) => {
     if (!onSort) return;
     const column = columns.find((col) => col.key === columnKey);
     if (!column || !column.sortable) return;
@@ -9839,7 +12329,7 @@ var Table = ({
     }
     onSort(columnKey, newDirection);
   }, [columns, sortBy, sortDirection, onSort]);
-  const handleRowSelect = useCallback28((row, checked) => {
+  const handleRowSelect = useCallback30((row, checked) => {
     if (!selection || !onSelectionChange) return;
     const currentSelection = selection.selectedRows || [];
     let newSelection;
@@ -9852,47 +12342,47 @@ var Table = ({
     }
     onSelectionChange(newSelection);
   }, [selection, onSelectionChange, getRowKey]);
-  const handleSelectAll = useCallback28((checked) => {
+  const handleSelectAll = useCallback30((checked) => {
     if (!selection || !onSelectionChange) return;
     onSelectionChange(checked ? paginatedData : []);
   }, [selection, onSelectionChange, paginatedData]);
-  const handleFilterChange = useCallback28((value) => {
+  const handleFilterChange = useCallback30((value) => {
     setInternalFilter(value);
     onFilterChange?.(value);
   }, [onFilterChange]);
-  const handleRowClick = useCallback28((row, index) => {
+  const handleRowClick = useCallback30((row, index) => {
     if (rowClickable && onRowClick) {
       onRowClick(row, index);
     }
   }, [rowClickable, onRowClick]);
-  const handleRowActionClick = useCallback28((action, row, index) => {
+  const handleRowActionClick = useCallback30((action, row, index) => {
     action.onClick(row, index);
     onRowAction?.(action.label, row, index);
     setShowRowActions((prev) => ({ ...prev, [getRowKey(row, index)]: false }));
   }, [onRowAction, getRowKey]);
-  const renderSortIcon = useCallback28((columnKey) => {
+  const renderSortIcon = useCallback30((columnKey) => {
     if (!sortable) return null;
     if (sortBy === columnKey) {
-      return sortDirection === "asc" ? /* @__PURE__ */ jsx50(CaretUp2, { size: 16 }) : /* @__PURE__ */ jsx50(CaretDown4, { size: 16 });
+      return sortDirection === "asc" ? /* @__PURE__ */ jsx60(CaretUp2, { size: 16 }) : /* @__PURE__ */ jsx60(CaretDown5, { size: 16 });
     }
-    return /* @__PURE__ */ jsxs40("div", { style: { display: "flex", flexDirection: "column", alignItems: "center" }, children: [
-      /* @__PURE__ */ jsx50(CaretUp2, { size: 8 }),
-      /* @__PURE__ */ jsx50(CaretDown4, { size: 8 })
+    return /* @__PURE__ */ jsxs51("div", { style: { display: "flex", flexDirection: "column", alignItems: "center" }, children: [
+      /* @__PURE__ */ jsx60(CaretUp2, { size: 8 }),
+      /* @__PURE__ */ jsx60(CaretDown5, { size: 8 })
     ] });
   }, [sortable, sortBy, sortDirection]);
-  const renderPagination = useCallback28(() => {
+  const renderPagination = useCallback30(() => {
     if (!pagination) return null;
     const totalPages = Math.ceil(pagination.total / pagination.pageSize);
     const pageSizeOptions = pagination.pageSizeOptions || [10, 20, 50, 100];
-    return /* @__PURE__ */ jsxs40("div", { className: "cria-table__pagination", children: [
-      /* @__PURE__ */ jsxs40("div", { className: "cria-table__pagination-info", children: [
-        /* @__PURE__ */ jsxs40("span", { children: [
+    return /* @__PURE__ */ jsxs51("div", { className: "cria-table__pagination", children: [
+      /* @__PURE__ */ jsxs51("div", { className: "cria-table__pagination-info", children: [
+        /* @__PURE__ */ jsxs51("span", { children: [
           "Page ",
           pagination.page,
           " of ",
           totalPages
         ] }),
-        /* @__PURE__ */ jsxs40("span", { children: [
+        /* @__PURE__ */ jsxs51("span", { children: [
           "Showing ",
           (pagination.page - 1) * pagination.pageSize + 1,
           " to",
@@ -9904,21 +12394,21 @@ var Table = ({
           " entries"
         ] })
       ] }),
-      /* @__PURE__ */ jsxs40("div", { className: "cria-table__pagination-controls", children: [
-        pagination.showSizeChanger && /* @__PURE__ */ jsx50(
+      /* @__PURE__ */ jsxs51("div", { className: "cria-table__pagination-controls", children: [
+        pagination.showSizeChanger && /* @__PURE__ */ jsx60(
           "select",
           {
             value: pagination.pageSize,
             onChange: (e) => onPageSizeChange?.(Number(e.target.value)),
             className: "cria-table__page-size-select",
-            children: pageSizeOptions.map((size2) => /* @__PURE__ */ jsxs40("option", { value: size2, children: [
+            children: pageSizeOptions.map((size2) => /* @__PURE__ */ jsxs51("option", { value: size2, children: [
               size2,
               " per page"
             ] }, size2))
           }
         ),
-        /* @__PURE__ */ jsxs40("div", { className: "cria-table__page-buttons", children: [
-          /* @__PURE__ */ jsx50(
+        /* @__PURE__ */ jsxs51("div", { className: "cria-table__page-buttons", children: [
+          /* @__PURE__ */ jsx60(
             "button",
             {
               disabled: pagination.page <= 1,
@@ -9930,7 +12420,7 @@ var Table = ({
           Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
             const page = pagination.page <= 3 ? i + 1 : pagination.page - 2 + i;
             if (page > totalPages) return null;
-            return /* @__PURE__ */ jsx50(
+            return /* @__PURE__ */ jsx60(
               "button",
               {
                 onClick: () => onPageChange?.(page),
@@ -9940,7 +12430,7 @@ var Table = ({
               page
             );
           }),
-          /* @__PURE__ */ jsx50(
+          /* @__PURE__ */ jsx60(
             "button",
             {
               disabled: pagination.page >= totalPages,
@@ -9961,17 +12451,17 @@ var Table = ({
     className
   ].filter(Boolean).join(" ");
   if (loading) {
-    return /* @__PURE__ */ jsx50("div", { className: classes, style, ...props, children: /* @__PURE__ */ jsxs40("div", { className: "cria-table__loading", children: [
-      /* @__PURE__ */ jsx50("div", { className: "cria-table__spinner" }),
-      /* @__PURE__ */ jsx50("span", { children: loadingMessage })
+    return /* @__PURE__ */ jsx60("div", { className: classes, style, ...props, children: /* @__PURE__ */ jsxs51("div", { className: "cria-table__loading", children: [
+      /* @__PURE__ */ jsx60("div", { className: "cria-table__spinner" }),
+      /* @__PURE__ */ jsx60("span", { children: loadingMessage })
     ] }) });
   }
-  return /* @__PURE__ */ jsxs40("div", { className: classes, style, children: [
-    header && /* @__PURE__ */ jsx50("div", { className: "cria-table__header", children: header }),
-    /* @__PURE__ */ jsxs40("div", { className: "cria-table__toolbar", children: [
-      filterable && /* @__PURE__ */ jsxs40("div", { className: "cria-table__filter", children: [
-        /* @__PURE__ */ jsx50(MagnifyingGlass2, { size: 16 }),
-        /* @__PURE__ */ jsx50(
+  return /* @__PURE__ */ jsxs51("div", { className: classes, style, children: [
+    header && /* @__PURE__ */ jsx60("div", { className: "cria-table__header", children: header }),
+    /* @__PURE__ */ jsxs51("div", { className: "cria-table__toolbar", children: [
+      filterable && /* @__PURE__ */ jsxs51("div", { className: "cria-table__filter", children: [
+        /* @__PURE__ */ jsx60(MagnifyingGlass3, { size: 16 }),
+        /* @__PURE__ */ jsx60(
           "input",
           {
             type: "text",
@@ -9982,21 +12472,21 @@ var Table = ({
           }
         )
       ] }),
-      exportable && /* @__PURE__ */ jsx50("div", { className: "cria-table__export", children: /* @__PURE__ */ jsxs40(
+      exportable && /* @__PURE__ */ jsx60("div", { className: "cria-table__export", children: /* @__PURE__ */ jsxs51(
         "button",
         {
           onClick: () => onExport?.("csv"),
           className: "cria-table__export-button",
           children: [
-            /* @__PURE__ */ jsx50(Download, { size: 16 }),
+            /* @__PURE__ */ jsx60(Download, { size: 16 }),
             "Export CSV"
           ]
         }
       ) })
     ] }),
-    /* @__PURE__ */ jsx50("div", { className: "cria-table__container", children: /* @__PURE__ */ jsxs40("table", { className: "cria-table__table", role: "table", tabIndex: 0, ...props, children: [
-      /* @__PURE__ */ jsx50("thead", { className: "cria-table__thead", children: /* @__PURE__ */ jsxs40("tr", { className: "cria-table__tr", children: [
-        selection && selection.type === "checkbox" && /* @__PURE__ */ jsx50("th", { className: "cria-table__th", children: /* @__PURE__ */ jsx50(
+    /* @__PURE__ */ jsx60("div", { className: "cria-table__container", children: /* @__PURE__ */ jsxs51("table", { className: "cria-table__table", role: "table", tabIndex: 0, ...props, children: [
+      /* @__PURE__ */ jsx60("thead", { className: "cria-table__thead", children: /* @__PURE__ */ jsxs51("tr", { className: "cria-table__tr", children: [
+        selection && selection.type === "checkbox" && /* @__PURE__ */ jsx60("th", { className: "cria-table__th", children: /* @__PURE__ */ jsx60(
           "input",
           {
             type: "checkbox",
@@ -10009,7 +12499,7 @@ var Table = ({
             "aria-label": "Select all rows"
           }
         ) }),
-        columns.map((column) => /* @__PURE__ */ jsx50(
+        columns.map((column) => /* @__PURE__ */ jsx60(
           "th",
           {
             className: `cria-table__th ${column.headerClassName || ""}`,
@@ -10017,14 +12507,14 @@ var Table = ({
               width: column.width,
               textAlign: column.align || "left"
             },
-            children: /* @__PURE__ */ jsxs40(
+            children: /* @__PURE__ */ jsxs51(
               "div",
               {
                 className: `cria-table__header-cell ${column.sortable && sortable ? "cria-table__header-cell--sortable" : ""}`,
                 onClick: () => column.sortable && handleSort(column.key),
                 "aria-sort": sortBy === column.key ? sortDirection === "asc" ? "ascending" : "descending" : "none",
                 children: [
-                  /* @__PURE__ */ jsx50("span", { children: column.label }),
+                  /* @__PURE__ */ jsx60("span", { children: column.label }),
                   renderSortIcon(column.key)
                 ]
               }
@@ -10032,27 +12522,27 @@ var Table = ({
           },
           column.key
         )),
-        rowActions && /* @__PURE__ */ jsx50("th", { className: "cria-table__th cria-table__th--actions", children: "Actions" })
+        rowActions && /* @__PURE__ */ jsx60("th", { className: "cria-table__th cria-table__th--actions", children: "Actions" })
       ] }) }),
-      /* @__PURE__ */ jsx50("tbody", { className: "cria-table__tbody", children: paginatedData.length === 0 ? /* @__PURE__ */ jsx50("tr", { className: "cria-table__tr", children: /* @__PURE__ */ jsx50(
+      /* @__PURE__ */ jsx60("tbody", { className: "cria-table__tbody", children: paginatedData.length === 0 ? /* @__PURE__ */ jsx60("tr", { className: "cria-table__tr", children: /* @__PURE__ */ jsx60(
         "td",
         {
           className: "cria-table__td cria-table__td--empty",
           colSpan: columns.length + (selection ? 1 : 0) + (rowActions ? 1 : 0),
-          children: emptyComponent || /* @__PURE__ */ jsx50("div", { className: "cria-table__empty", children: /* @__PURE__ */ jsx50("span", { children: emptyMessage }) })
+          children: emptyComponent || /* @__PURE__ */ jsx60("div", { className: "cria-table__empty", children: /* @__PURE__ */ jsx60("span", { children: emptyMessage }) })
         }
       ) }) : paginatedData.map((row, index) => {
         const key = getRowKey(row, index);
         const isSelected = selection?.selectedRows?.some(
           (selected) => getRowKey(selected, 0) === key
         );
-        return /* @__PURE__ */ jsxs40(
+        return /* @__PURE__ */ jsxs51(
           "tr",
           {
             className: `cria-table__tr ${rowClassName ? rowClassName(row, index) : ""} ${rowClickable ? "cria-table__tr--clickable" : ""} ${isSelected ? "cria-table__tr--selected" : ""}`,
             onClick: () => handleRowClick(row, index),
             children: [
-              selection && selection.type === "checkbox" && /* @__PURE__ */ jsx50("td", { className: "cria-table__td", children: /* @__PURE__ */ jsx50(
+              selection && selection.type === "checkbox" && /* @__PURE__ */ jsx60("td", { className: "cria-table__td", children: /* @__PURE__ */ jsx60(
                 "input",
                 {
                   type: "checkbox",
@@ -10061,7 +12551,7 @@ var Table = ({
                   "aria-label": `Select row ${index + 1}`
                 }
               ) }),
-              selection && selection.type === "radio" && /* @__PURE__ */ jsx50("td", { className: "cria-table__td", children: /* @__PURE__ */ jsx50(
+              selection && selection.type === "radio" && /* @__PURE__ */ jsx60("td", { className: "cria-table__td", children: /* @__PURE__ */ jsx60(
                 "input",
                 {
                   type: "radio",
@@ -10071,7 +12561,7 @@ var Table = ({
                   "aria-label": `Select row ${index + 1}`
                 }
               ) }),
-              columns.map((column) => /* @__PURE__ */ jsx50(
+              columns.map((column) => /* @__PURE__ */ jsx60(
                 "td",
                 {
                   className: `cria-table__td ${column.className || ""}`,
@@ -10080,8 +12570,8 @@ var Table = ({
                 },
                 column.key
               )),
-              rowActions && /* @__PURE__ */ jsx50("td", { className: "cria-table__td cria-table__td--actions", children: /* @__PURE__ */ jsxs40("div", { className: "cria-table__row-actions", children: [
-                /* @__PURE__ */ jsx50(
+              rowActions && /* @__PURE__ */ jsx60("td", { className: "cria-table__td cria-table__td--actions", children: /* @__PURE__ */ jsxs51("div", { className: "cria-table__row-actions", children: [
+                /* @__PURE__ */ jsx60(
                   "button",
                   {
                     className: "cria-table__row-actions-button",
@@ -10093,10 +12583,10 @@ var Table = ({
                       }));
                     },
                     "aria-label": `Actions for row ${index + 1}`,
-                    children: /* @__PURE__ */ jsx50(DotsThree2, { size: 16 })
+                    children: /* @__PURE__ */ jsx60(DotsThree2, { size: 16 })
                   }
                 ),
-                showRowActions[key] && /* @__PURE__ */ jsx50("div", { className: "cria-table__row-actions-menu", children: rowActions(row, index).map((action, actionIndex) => /* @__PURE__ */ jsxs40(
+                showRowActions[key] && /* @__PURE__ */ jsx60("div", { className: "cria-table__row-actions-menu", children: rowActions(row, index).map((action, actionIndex) => /* @__PURE__ */ jsxs51(
                   "button",
                   {
                     className: `cria-table__row-action ${action.className || ""}`,
@@ -10120,12 +12610,12 @@ var Table = ({
       }) })
     ] }) }),
     renderPagination(),
-    footer && /* @__PURE__ */ jsx50("div", { className: "cria-table__footer", children: footer })
+    footer && /* @__PURE__ */ jsx60("div", { className: "cria-table__footer", children: footer })
   ] });
 };
 
 // src/components/EmptyState/EmptyState.tsx
-import { jsx as jsx51, jsxs as jsxs41 } from "react/jsx-runtime";
+import { jsx as jsx61, jsxs as jsxs52 } from "react/jsx-runtime";
 var EmptyState = ({
   icon,
   title,
@@ -10150,18 +12640,18 @@ var EmptyState = ({
   const renderTitle = () => {
     if (!title) return null;
     if (typeof title === "string") {
-      return /* @__PURE__ */ jsx51("h3", { className: "cria-empty-state__title", children: title });
+      return /* @__PURE__ */ jsx61("h3", { className: "cria-empty-state__title", children: title });
     }
-    return /* @__PURE__ */ jsx51("div", { className: "cria-empty-state__title", children: title });
+    return /* @__PURE__ */ jsx61("div", { className: "cria-empty-state__title", children: title });
   };
   const renderDescription = () => {
     if (!description) return null;
     if (typeof description === "string") {
-      return /* @__PURE__ */ jsx51("p", { className: "cria-empty-state__description", children: description });
+      return /* @__PURE__ */ jsx61("p", { className: "cria-empty-state__description", children: description });
     }
-    return /* @__PURE__ */ jsx51("div", { className: "cria-empty-state__description", children: description });
+    return /* @__PURE__ */ jsx61("div", { className: "cria-empty-state__description", children: description });
   };
-  return /* @__PURE__ */ jsx51(
+  return /* @__PURE__ */ jsx61(
     "div",
     {
       className: classes,
@@ -10169,20 +12659,20 @@ var EmptyState = ({
       role: "status",
       "aria-live": "polite",
       ...props,
-      children: /* @__PURE__ */ jsxs41("div", { className: "cria-empty-state__content", children: [
-        icon && /* @__PURE__ */ jsx51("div", { className: "cria-empty-state__icon", children: icon }),
+      children: /* @__PURE__ */ jsxs52("div", { className: "cria-empty-state__content", children: [
+        icon && /* @__PURE__ */ jsx61("div", { className: "cria-empty-state__icon", children: icon }),
         renderTitle(),
         renderDescription(),
-        action && /* @__PURE__ */ jsx51("div", { className: "cria-empty-state__action", children: action }),
-        additionalContent && /* @__PURE__ */ jsx51("div", { className: "cria-empty-state__additional", children: additionalContent }),
-        children && /* @__PURE__ */ jsx51("div", { className: "cria-empty-state__children", children })
+        action && /* @__PURE__ */ jsx61("div", { className: "cria-empty-state__action", children: action }),
+        additionalContent && /* @__PURE__ */ jsx61("div", { className: "cria-empty-state__additional", children: additionalContent }),
+        children && /* @__PURE__ */ jsx61("div", { className: "cria-empty-state__children", children })
       ] })
     }
   );
 };
 
 // src/components/Charts/BaseChart.tsx
-import { jsx as jsx52, jsxs as jsxs42 } from "react/jsx-runtime";
+import { jsx as jsx62, jsxs as jsxs53 } from "react/jsx-runtime";
 var BaseChart = ({
   title,
   children,
@@ -10190,9 +12680,9 @@ var BaseChart = ({
   style = {},
   height = 300
 }) => {
-  return /* @__PURE__ */ jsxs42(Card, { className: `cria-chart-card ${className}`, style, children: [
-    title && /* @__PURE__ */ jsx52(CardHeader, { children: /* @__PURE__ */ jsx52(Typography, { variant: "title2", style: { color: colors.text.primary }, children: title }) }),
-    /* @__PURE__ */ jsx52(CardContent, { style: { padding: spacing2[4] }, children: /* @__PURE__ */ jsx52("div", { style: { height: `${height}px`, width: "100%" }, children }) })
+  return /* @__PURE__ */ jsxs53(Card, { className: `cria-chart-card ${className}`, style, children: [
+    title && /* @__PURE__ */ jsx62(CardHeader, { children: /* @__PURE__ */ jsx62(Typography, { variant: "title2", style: { color: colors.text.primary }, children: title }) }),
+    /* @__PURE__ */ jsx62(CardContent, { style: { padding: spacing[6] }, children: /* @__PURE__ */ jsx62("div", { style: { height: `${height}px`, width: "100%" }, children }) })
   ] });
 };
 
@@ -10207,7 +12697,7 @@ import {
   ResponsiveContainer,
   Legend
 } from "recharts";
-import { jsx as jsx53, jsxs as jsxs43 } from "react/jsx-runtime";
+import { jsx as jsx63, jsxs as jsxs54 } from "react/jsx-runtime";
 var LineChart = ({
   data,
   title = "Line Chart",
@@ -10221,7 +12711,7 @@ var LineChart = ({
   style = {}
 }) => {
   const defaultColors = [colors.primary, colors.secondary, colors.accent, colors.warning, colors.success];
-  return /* @__PURE__ */ jsx53(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx53(ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs43(
+  return /* @__PURE__ */ jsx63(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx63(ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs54(
     RechartsLineChart,
     {
       data,
@@ -10232,7 +12722,7 @@ var LineChart = ({
         bottom: 20
       },
       children: [
-        showGrid && /* @__PURE__ */ jsx53(
+        showGrid && /* @__PURE__ */ jsx63(
           CartesianGrid,
           {
             strokeDasharray: "3 3",
@@ -10240,7 +12730,7 @@ var LineChart = ({
             opacity: 0.3
           }
         ),
-        /* @__PURE__ */ jsx53(
+        /* @__PURE__ */ jsx63(
           XAxis,
           {
             dataKey: "name",
@@ -10250,7 +12740,7 @@ var LineChart = ({
             axisLine: false
           }
         ),
-        /* @__PURE__ */ jsx53(
+        /* @__PURE__ */ jsx63(
           YAxis,
           {
             stroke: colors.text.secondary,
@@ -10259,7 +12749,7 @@ var LineChart = ({
             axisLine: false
           }
         ),
-        showTooltip && /* @__PURE__ */ jsx53(
+        showTooltip && /* @__PURE__ */ jsx63(
           Tooltip2,
           {
             contentStyle: {
@@ -10272,7 +12762,7 @@ var LineChart = ({
             labelStyle: { color: colors.text.primary, fontWeight: "600" }
           }
         ),
-        showLegend && /* @__PURE__ */ jsx53(
+        showLegend && /* @__PURE__ */ jsx63(
           Legend,
           {
             wrapperStyle: {
@@ -10282,7 +12772,7 @@ var LineChart = ({
             }
           }
         ),
-        lines.map((line, index) => /* @__PURE__ */ jsx53(
+        lines.map((line, index) => /* @__PURE__ */ jsx63(
           Line,
           {
             type: "monotone",
@@ -10311,7 +12801,7 @@ import {
   ResponsiveContainer as ResponsiveContainer2,
   Legend as Legend2
 } from "recharts";
-import { jsx as jsx54, jsxs as jsxs44 } from "react/jsx-runtime";
+import { jsx as jsx64, jsxs as jsxs55 } from "react/jsx-runtime";
 var BarChart = ({
   data,
   title = "Bar Chart",
@@ -10324,7 +12814,7 @@ var BarChart = ({
   style = {}
 }) => {
   const defaultColors = [colors.primary, colors.secondary, colors.accent, colors.warning, colors.success];
-  return /* @__PURE__ */ jsx54(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx54(ResponsiveContainer2, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs44(
+  return /* @__PURE__ */ jsx64(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx64(ResponsiveContainer2, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs55(
     RechartsBarChart,
     {
       data,
@@ -10335,7 +12825,7 @@ var BarChart = ({
         bottom: 20
       },
       children: [
-        showGrid && /* @__PURE__ */ jsx54(
+        showGrid && /* @__PURE__ */ jsx64(
           CartesianGrid2,
           {
             strokeDasharray: "3 3",
@@ -10343,7 +12833,7 @@ var BarChart = ({
             opacity: 0.3
           }
         ),
-        /* @__PURE__ */ jsx54(
+        /* @__PURE__ */ jsx64(
           XAxis2,
           {
             dataKey: "name",
@@ -10353,7 +12843,7 @@ var BarChart = ({
             axisLine: false
           }
         ),
-        /* @__PURE__ */ jsx54(
+        /* @__PURE__ */ jsx64(
           YAxis2,
           {
             stroke: colors.text.secondary,
@@ -10362,7 +12852,7 @@ var BarChart = ({
             axisLine: false
           }
         ),
-        showTooltip && /* @__PURE__ */ jsx54(
+        showTooltip && /* @__PURE__ */ jsx64(
           Tooltip3,
           {
             contentStyle: {
@@ -10375,7 +12865,7 @@ var BarChart = ({
             labelStyle: { color: colors.text.primary, fontWeight: "600" }
           }
         ),
-        showLegend && /* @__PURE__ */ jsx54(
+        showLegend && /* @__PURE__ */ jsx64(
           Legend2,
           {
             wrapperStyle: {
@@ -10385,7 +12875,7 @@ var BarChart = ({
             }
           }
         ),
-        bars.map((bar, index) => /* @__PURE__ */ jsx54(
+        bars.map((bar, index) => /* @__PURE__ */ jsx64(
           Bar,
           {
             dataKey: bar.dataKey,
@@ -10411,7 +12901,7 @@ import {
   ResponsiveContainer as ResponsiveContainer3,
   Legend as Legend3
 } from "recharts";
-import { jsx as jsx55, jsxs as jsxs45 } from "react/jsx-runtime";
+import { jsx as jsx65, jsxs as jsxs56 } from "react/jsx-runtime";
 var StackedBarChart = ({
   data,
   title = "Stacked Bar Chart",
@@ -10427,7 +12917,7 @@ var StackedBarChart = ({
   style = {}
 }) => {
   const defaultColors = [colors.primary, colors.secondary, colors.accent, colors.warning, colors.success];
-  return /* @__PURE__ */ jsx55(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx55(ResponsiveContainer3, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs45(
+  return /* @__PURE__ */ jsx65(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx65(ResponsiveContainer3, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs56(
     RechartsBarChart2,
     {
       data,
@@ -10438,7 +12928,7 @@ var StackedBarChart = ({
         bottom: 20
       },
       children: [
-        showGrid && /* @__PURE__ */ jsx55(
+        showGrid && /* @__PURE__ */ jsx65(
           CartesianGrid3,
           {
             strokeDasharray: "3 3",
@@ -10446,7 +12936,7 @@ var StackedBarChart = ({
             opacity: 0.3
           }
         ),
-        /* @__PURE__ */ jsx55(
+        /* @__PURE__ */ jsx65(
           XAxis3,
           {
             dataKey: "name",
@@ -10456,7 +12946,7 @@ var StackedBarChart = ({
             axisLine: false
           }
         ),
-        /* @__PURE__ */ jsx55(
+        /* @__PURE__ */ jsx65(
           YAxis3,
           {
             stroke: colors.text.secondary,
@@ -10465,7 +12955,7 @@ var StackedBarChart = ({
             axisLine: false
           }
         ),
-        showTooltip && /* @__PURE__ */ jsx55(
+        showTooltip && /* @__PURE__ */ jsx65(
           Tooltip4,
           {
             contentStyle: {
@@ -10478,7 +12968,7 @@ var StackedBarChart = ({
             labelStyle: { color: colors.text.primary, fontWeight: "600" }
           }
         ),
-        showLegend && /* @__PURE__ */ jsx55(
+        showLegend && /* @__PURE__ */ jsx65(
           Legend3,
           {
             wrapperStyle: {
@@ -10488,7 +12978,7 @@ var StackedBarChart = ({
             }
           }
         ),
-        bars.map((bar, index) => /* @__PURE__ */ jsx55(
+        bars.map((bar, index) => /* @__PURE__ */ jsx65(
           Bar2,
           {
             dataKey: bar.dataKey,
@@ -10515,7 +13005,7 @@ import {
   ResponsiveContainer as ResponsiveContainer4,
   Legend as Legend4
 } from "recharts";
-import { jsx as jsx56, jsxs as jsxs46 } from "react/jsx-runtime";
+import { jsx as jsx66, jsxs as jsxs57 } from "react/jsx-runtime";
 var AreaChart = ({
   data,
   title = "Area Chart",
@@ -10528,7 +13018,7 @@ var AreaChart = ({
   style = {}
 }) => {
   const defaultColors = [colors.primary, colors.secondary, colors.accent, colors.warning, colors.success];
-  return /* @__PURE__ */ jsx56(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx56(ResponsiveContainer4, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs46(
+  return /* @__PURE__ */ jsx66(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx66(ResponsiveContainer4, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs57(
     RechartsAreaChart,
     {
       data,
@@ -10539,7 +13029,7 @@ var AreaChart = ({
         bottom: 20
       },
       children: [
-        showGrid && /* @__PURE__ */ jsx56(
+        showGrid && /* @__PURE__ */ jsx66(
           CartesianGrid4,
           {
             strokeDasharray: "3 3",
@@ -10547,7 +13037,7 @@ var AreaChart = ({
             opacity: 0.3
           }
         ),
-        /* @__PURE__ */ jsx56(
+        /* @__PURE__ */ jsx66(
           XAxis4,
           {
             dataKey: "name",
@@ -10557,7 +13047,7 @@ var AreaChart = ({
             axisLine: false
           }
         ),
-        /* @__PURE__ */ jsx56(
+        /* @__PURE__ */ jsx66(
           YAxis4,
           {
             stroke: colors.text.secondary,
@@ -10566,7 +13056,7 @@ var AreaChart = ({
             axisLine: false
           }
         ),
-        showTooltip && /* @__PURE__ */ jsx56(
+        showTooltip && /* @__PURE__ */ jsx66(
           Tooltip5,
           {
             contentStyle: {
@@ -10579,7 +13069,7 @@ var AreaChart = ({
             labelStyle: { color: colors.text.primary, fontWeight: "600" }
           }
         ),
-        showLegend && /* @__PURE__ */ jsx56(
+        showLegend && /* @__PURE__ */ jsx66(
           Legend4,
           {
             wrapperStyle: {
@@ -10589,7 +13079,7 @@ var AreaChart = ({
             }
           }
         ),
-        areas.map((area, index) => /* @__PURE__ */ jsx56(
+        areas.map((area, index) => /* @__PURE__ */ jsx66(
           Area,
           {
             type: "monotone",
@@ -10616,7 +13106,7 @@ import {
   Tooltip as Tooltip6,
   Legend as Legend5
 } from "recharts";
-import { jsx as jsx57, jsxs as jsxs47 } from "react/jsx-runtime";
+import { jsx as jsx67, jsxs as jsxs58 } from "react/jsx-runtime";
 var PieChart = ({
   data,
   title = "Pie Chart",
@@ -10633,8 +13123,8 @@ var PieChart = ({
     ...item,
     color: item.color || defaultColors[index % defaultColors.length]
   }));
-  return /* @__PURE__ */ jsx57(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx57(ResponsiveContainer5, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs47(RechartsPieChart, { children: [
-    /* @__PURE__ */ jsx57(
+  return /* @__PURE__ */ jsx67(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx67(ResponsiveContainer5, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs58(RechartsPieChart, { children: [
+    /* @__PURE__ */ jsx67(
       Pie,
       {
         data: dataWithColors,
@@ -10646,10 +13136,10 @@ var PieChart = ({
         innerRadius,
         fill: "#8884d8",
         dataKey: "value",
-        children: dataWithColors.map((entry, index) => /* @__PURE__ */ jsx57(Cell, { fill: entry.color }, `cell-${index}`))
+        children: dataWithColors.map((entry, index) => /* @__PURE__ */ jsx67(Cell, { fill: entry.color }, `cell-${index}`))
       }
     ),
-    showTooltip && /* @__PURE__ */ jsx57(
+    showTooltip && /* @__PURE__ */ jsx67(
       Tooltip6,
       {
         contentStyle: {
@@ -10662,7 +13152,7 @@ var PieChart = ({
         formatter: (value, name) => [value, name]
       }
     ),
-    showLegend && /* @__PURE__ */ jsx57(
+    showLegend && /* @__PURE__ */ jsx67(
       Legend5,
       {
         wrapperStyle: {
@@ -10684,7 +13174,7 @@ import {
   Tooltip as Tooltip7,
   Legend as Legend6
 } from "recharts";
-import { jsx as jsx58, jsxs as jsxs48 } from "react/jsx-runtime";
+import { jsx as jsx68, jsxs as jsxs59 } from "react/jsx-runtime";
 var DonutChart = ({
   data,
   title = "Donut Chart",
@@ -10701,8 +13191,8 @@ var DonutChart = ({
     ...item,
     color: item.color || defaultColors[index % defaultColors.length]
   }));
-  return /* @__PURE__ */ jsx58(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx58(ResponsiveContainer6, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs48(RechartsPieChart2, { children: [
-    /* @__PURE__ */ jsx58(
+  return /* @__PURE__ */ jsx68(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx68(ResponsiveContainer6, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs59(RechartsPieChart2, { children: [
+    /* @__PURE__ */ jsx68(
       Pie2,
       {
         data: dataWithColors,
@@ -10714,10 +13204,10 @@ var DonutChart = ({
         innerRadius,
         fill: "#8884d8",
         dataKey: "value",
-        children: dataWithColors.map((entry, index) => /* @__PURE__ */ jsx58(Cell2, { fill: entry.color }, `cell-${index}`))
+        children: dataWithColors.map((entry, index) => /* @__PURE__ */ jsx68(Cell2, { fill: entry.color }, `cell-${index}`))
       }
     ),
-    showTooltip && /* @__PURE__ */ jsx58(
+    showTooltip && /* @__PURE__ */ jsx68(
       Tooltip7,
       {
         contentStyle: {
@@ -10730,7 +13220,7 @@ var DonutChart = ({
         formatter: (value, name) => [value, name]
       }
     ),
-    showLegend && /* @__PURE__ */ jsx58(
+    showLegend && /* @__PURE__ */ jsx68(
       Legend6,
       {
         wrapperStyle: {
@@ -10754,7 +13244,7 @@ import {
   Tooltip as Tooltip8,
   Legend as Legend7
 } from "recharts";
-import { jsx as jsx59, jsxs as jsxs49 } from "react/jsx-runtime";
+import { jsx as jsx69, jsxs as jsxs60 } from "react/jsx-runtime";
 var RadarChart = ({
   data,
   title = "Radar Chart",
@@ -10766,16 +13256,16 @@ var RadarChart = ({
   style = {}
 }) => {
   const defaultColors = [colors.primary, colors.secondary, colors.accent, colors.warning, colors.success];
-  return /* @__PURE__ */ jsx59(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx59(ResponsiveContainer7, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs49(RechartsRadarChart, { data, children: [
-    /* @__PURE__ */ jsx59(PolarGrid, { stroke: colors.border.light }),
-    /* @__PURE__ */ jsx59(
+  return /* @__PURE__ */ jsx69(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx69(ResponsiveContainer7, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs60(RechartsRadarChart, { data, children: [
+    /* @__PURE__ */ jsx69(PolarGrid, { stroke: colors.border.light }),
+    /* @__PURE__ */ jsx69(
       PolarAngleAxis,
       {
         dataKey: "subject",
         tick: { fontSize: 12, fill: colors.text.secondary }
       }
     ),
-    /* @__PURE__ */ jsx59(
+    /* @__PURE__ */ jsx69(
       PolarRadiusAxis,
       {
         angle: 90,
@@ -10783,7 +13273,7 @@ var RadarChart = ({
         tick: { fontSize: 12, fill: colors.text.secondary }
       }
     ),
-    showTooltip && /* @__PURE__ */ jsx59(
+    showTooltip && /* @__PURE__ */ jsx69(
       Tooltip8,
       {
         contentStyle: {
@@ -10796,7 +13286,7 @@ var RadarChart = ({
         labelStyle: { color: colors.text.primary, fontWeight: "600" }
       }
     ),
-    showLegend && /* @__PURE__ */ jsx59(
+    showLegend && /* @__PURE__ */ jsx69(
       Legend7,
       {
         wrapperStyle: {
@@ -10806,7 +13296,7 @@ var RadarChart = ({
         }
       }
     ),
-    radars.map((radar, index) => /* @__PURE__ */ jsx59(
+    radars.map((radar, index) => /* @__PURE__ */ jsx69(
       Radar,
       {
         name: radar.name || radar.dataKey,
@@ -10831,7 +13321,7 @@ import {
   ResponsiveContainer as ResponsiveContainer8,
   Legend as Legend8
 } from "recharts";
-import { jsx as jsx60, jsxs as jsxs50 } from "react/jsx-runtime";
+import { jsx as jsx70, jsxs as jsxs61 } from "react/jsx-runtime";
 var ScatterChart = ({
   data,
   title = "Scatter Chart",
@@ -10846,7 +13336,7 @@ var ScatterChart = ({
   style = {}
 }) => {
   const defaultColors = [colors.primary, colors.secondary, colors.accent, colors.warning, colors.success];
-  return /* @__PURE__ */ jsx60(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx60(ResponsiveContainer8, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs50(
+  return /* @__PURE__ */ jsx70(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx70(ResponsiveContainer8, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs61(
     RechartsScatterChart,
     {
       data,
@@ -10857,7 +13347,7 @@ var ScatterChart = ({
         bottom: 20
       },
       children: [
-        showGrid && /* @__PURE__ */ jsx60(
+        showGrid && /* @__PURE__ */ jsx70(
           CartesianGrid5,
           {
             strokeDasharray: "3 3",
@@ -10865,7 +13355,7 @@ var ScatterChart = ({
             opacity: 0.3
           }
         ),
-        /* @__PURE__ */ jsx60(
+        /* @__PURE__ */ jsx70(
           XAxis5,
           {
             dataKey: xAxisKey,
@@ -10875,7 +13365,7 @@ var ScatterChart = ({
             axisLine: false
           }
         ),
-        /* @__PURE__ */ jsx60(
+        /* @__PURE__ */ jsx70(
           YAxis5,
           {
             dataKey: yAxisKey,
@@ -10885,7 +13375,7 @@ var ScatterChart = ({
             axisLine: false
           }
         ),
-        showTooltip && /* @__PURE__ */ jsx60(
+        showTooltip && /* @__PURE__ */ jsx70(
           Tooltip9,
           {
             contentStyle: {
@@ -10898,7 +13388,7 @@ var ScatterChart = ({
             labelStyle: { color: colors.text.primary, fontWeight: "600" }
           }
         ),
-        showLegend && /* @__PURE__ */ jsx60(
+        showLegend && /* @__PURE__ */ jsx70(
           Legend8,
           {
             wrapperStyle: {
@@ -10908,7 +13398,7 @@ var ScatterChart = ({
             }
           }
         ),
-        scatters.map((scatter, index) => /* @__PURE__ */ jsx60(
+        scatters.map((scatter, index) => /* @__PURE__ */ jsx70(
           Scatter,
           {
             dataKey: scatter.dataKey,
@@ -10935,7 +13425,7 @@ import {
   ResponsiveContainer as ResponsiveContainer9,
   Legend as Legend9
 } from "recharts";
-import { jsx as jsx61, jsxs as jsxs51 } from "react/jsx-runtime";
+import { jsx as jsx71, jsxs as jsxs62 } from "react/jsx-runtime";
 var ComposedChart = ({
   data,
   title = "Composed Chart",
@@ -10949,7 +13439,7 @@ var ComposedChart = ({
   style = {}
 }) => {
   const defaultColors = [colors.primary, colors.secondary, colors.accent, colors.warning, colors.success];
-  return /* @__PURE__ */ jsx61(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx61(ResponsiveContainer9, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs51(
+  return /* @__PURE__ */ jsx71(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx71(ResponsiveContainer9, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs62(
     RechartsComposedChart,
     {
       data,
@@ -10960,7 +13450,7 @@ var ComposedChart = ({
         bottom: 20
       },
       children: [
-        showGrid && /* @__PURE__ */ jsx61(
+        showGrid && /* @__PURE__ */ jsx71(
           CartesianGrid6,
           {
             strokeDasharray: "3 3",
@@ -10968,7 +13458,7 @@ var ComposedChart = ({
             opacity: 0.3
           }
         ),
-        /* @__PURE__ */ jsx61(
+        /* @__PURE__ */ jsx71(
           XAxis6,
           {
             dataKey: "name",
@@ -10978,7 +13468,7 @@ var ComposedChart = ({
             axisLine: false
           }
         ),
-        /* @__PURE__ */ jsx61(
+        /* @__PURE__ */ jsx71(
           YAxis6,
           {
             stroke: colors.text.secondary,
@@ -10987,7 +13477,7 @@ var ComposedChart = ({
             axisLine: false
           }
         ),
-        showTooltip && /* @__PURE__ */ jsx61(
+        showTooltip && /* @__PURE__ */ jsx71(
           Tooltip10,
           {
             contentStyle: {
@@ -11000,7 +13490,7 @@ var ComposedChart = ({
             labelStyle: { color: colors.text.primary, fontWeight: "600" }
           }
         ),
-        showLegend && /* @__PURE__ */ jsx61(
+        showLegend && /* @__PURE__ */ jsx71(
           Legend9,
           {
             wrapperStyle: {
@@ -11010,7 +13500,7 @@ var ComposedChart = ({
             }
           }
         ),
-        bars.map((bar, index) => /* @__PURE__ */ jsx61(
+        bars.map((bar, index) => /* @__PURE__ */ jsx71(
           Bar3,
           {
             dataKey: bar.dataKey,
@@ -11020,7 +13510,7 @@ var ComposedChart = ({
           },
           bar.dataKey
         )),
-        lines.map((line, index) => /* @__PURE__ */ jsx61(
+        lines.map((line, index) => /* @__PURE__ */ jsx71(
           Line2,
           {
             type: "monotone",
@@ -11044,7 +13534,7 @@ import {
   ResponsiveContainer as ResponsiveContainer10,
   Legend as Legend10
 } from "recharts";
-import { jsx as jsx62, jsxs as jsxs52 } from "react/jsx-runtime";
+import { jsx as jsx72, jsxs as jsxs63 } from "react/jsx-runtime";
 var RadialProgressChart = ({
   data,
   title = "Radial Progress Chart",
@@ -11062,7 +13552,7 @@ var RadialProgressChart = ({
     ...item,
     fill: item.fill || defaultColors[index % defaultColors.length]
   }));
-  return /* @__PURE__ */ jsx62(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx62(ResponsiveContainer10, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs52(
+  return /* @__PURE__ */ jsx72(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx72(ResponsiveContainer10, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs63(
     RadialBarChart,
     {
       cx: "50%",
@@ -11073,7 +13563,7 @@ var RadialProgressChart = ({
       endAngle,
       data: dataWithColors,
       children: [
-        /* @__PURE__ */ jsx62(
+        /* @__PURE__ */ jsx72(
           RadialBar,
           {
             minAngle: 15,
@@ -11083,7 +13573,7 @@ var RadialProgressChart = ({
             dataKey: "value"
           }
         ),
-        showLegend && /* @__PURE__ */ jsx62(
+        showLegend && /* @__PURE__ */ jsx72(
           Legend10,
           {
             iconType: "circle",
@@ -11098,14 +13588,257 @@ var RadialProgressChart = ({
     }
   ) }) });
 };
+
+// src/components/StatisticMetricCard/StatisticMetricCard.tsx
+import { forwardRef as forwardRef15 } from "react";
+import { Fragment as Fragment8, jsx as jsx73, jsxs as jsxs64 } from "react/jsx-runtime";
+var StatisticMetricCard = forwardRef15(({
+  id,
+  value,
+  label,
+  icon,
+  color = "primary",
+  size = "md",
+  trend,
+  loading = false,
+  error,
+  onClick,
+  className = "",
+  style,
+  ...props
+}, ref) => {
+  const colorMap = {
+    primary: colors.primary,
+    secondary: colors.secondary,
+    success: colors.success,
+    warning: colors.warning,
+    error: colors.error,
+    info: colors.info
+  };
+  const trendColorMap = {
+    up: colors.success,
+    down: colors.error,
+    neutral: colors.gray[500]
+  };
+  const sizeConfig = {
+    sm: {
+      valueFontSize: typography.fontSize.h3,
+      labelFontSize: typography.fontSize.body2,
+      trendFontSize: typography.fontSize.caption,
+      iconSize: "1.5rem",
+      padding: spacing[3]
+    },
+    md: {
+      valueFontSize: typography.fontSize.h1,
+      labelFontSize: typography.fontSize.body,
+      trendFontSize: typography.fontSize.caption,
+      iconSize: "2rem",
+      padding: spacing[4]
+    },
+    lg: {
+      valueFontSize: typography.fontSize.display2,
+      labelFontSize: typography.fontSize.h3,
+      trendFontSize: typography.fontSize.body,
+      iconSize: "2.5rem",
+      padding: spacing[5]
+    }
+  };
+  const config = sizeConfig[size];
+  const selectedColor = colorMap[color];
+  const formatTrendValue = (trendValue, direction) => {
+    const sign = direction === "up" ? "+" : direction === "down" ? "-" : "+";
+    const absoluteValue = Math.abs(trendValue);
+    return `${sign}${absoluteValue.toFixed(1)}%`;
+  };
+  const trendId = `trend-${id}`;
+  const handleClick = (event) => {
+    if (onClick && !loading && !error) {
+      onClick({ id, value, label, icon, color, size, trend, loading, error });
+    }
+  };
+  const handleKeyDown = (event) => {
+    if ((event.key === "Enter" || event.key === " ") && onClick && !loading && !error) {
+      event.preventDefault();
+      onClick({ id, value, label, icon, color, size, trend, loading, error });
+    }
+  };
+  const Component = onClick ? "button" : "div";
+  const renderLoading = () => /* @__PURE__ */ jsxs64("div", { style: { display: "flex", flexDirection: "column", gap: spacing[2] }, children: [
+    icon && /* @__PURE__ */ jsx73(
+      ShimmerSkeleton,
+      {
+        variant: "circle",
+        width: config.iconSize,
+        height: config.iconSize,
+        style: { marginBottom: spacing[2] }
+      }
+    ),
+    /* @__PURE__ */ jsx73(
+      ShimmerSkeleton,
+      {
+        variant: "text",
+        width: "60%",
+        height: config.valueFontSize,
+        style: { marginBottom: spacing[1] }
+      }
+    ),
+    /* @__PURE__ */ jsx73(
+      ShimmerSkeleton,
+      {
+        variant: "text",
+        width: "80%",
+        height: config.labelFontSize,
+        style: { marginBottom: spacing[2] }
+      }
+    ),
+    trend && /* @__PURE__ */ jsx73(
+      ShimmerSkeleton,
+      {
+        variant: "text",
+        width: "40%",
+        height: config.trendFontSize
+      }
+    )
+  ] });
+  const renderError = () => /* @__PURE__ */ jsx73("div", { style: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: spacing[3],
+    color: colors.error,
+    textAlign: "center"
+  }, children: /* @__PURE__ */ jsx73(Typography, { variant: "body2", weight: "medium", children: error }) });
+  return /* @__PURE__ */ jsxs64(
+    Component,
+    {
+      ref,
+      className: `statistic-metric-card variant-${color} size-${size} ${className} ${onClick ? "clickable" : ""}`,
+      style: {
+        background: "transparent",
+        padding: "0",
+        cursor: onClick ? "pointer" : "default",
+        width: "100%",
+        textAlign: "left",
+        ...style
+      },
+      role: onClick ? "button" : "region",
+      "aria-label": `${label}: ${value}`,
+      "aria-describedby": trend ? trendId : void 0,
+      onClick: handleClick,
+      onKeyDown: handleKeyDown,
+      tabIndex: onClick ? 0 : void 0,
+      ...props,
+      children: [
+        /* @__PURE__ */ jsx73(
+          Card,
+          {
+            variant: "default",
+            size: "md",
+            style: {
+              borderRadius: radii.md,
+              overflow: "hidden",
+              position: "relative",
+              cursor: onClick ? "pointer" : "default",
+              transition: "all 0.2s ease",
+              backgroundColor: colors.white,
+              border: `1px solid ${colors.gray[200]}`,
+              padding: config.padding,
+              height: "100%"
+            },
+            children: /* @__PURE__ */ jsxs64(CardContent, { style: { padding: "0" }, children: [
+              loading ? renderLoading() : /* @__PURE__ */ jsxs64(Fragment8, { children: [
+                icon && /* @__PURE__ */ jsx73("div", { style: { display: "flex", alignItems: "center", justifyContent: "flex-start", marginBottom: spacing[3] }, children: /* @__PURE__ */ jsx73("span", { style: { fontSize: config.iconSize, display: "inline-block" }, children: icon }) }),
+                /* @__PURE__ */ jsx73("div", { style: { marginBottom: spacing[2] }, children: /* @__PURE__ */ jsx73(
+                  Typography,
+                  {
+                    variant: size === "sm" ? "h3" : size === "lg" ? "display2" : "h1",
+                    style: {
+                      fontWeight: typography.fontWeight.bold,
+                      color: selectedColor,
+                      lineHeight: typography.lineHeight.tight
+                    },
+                    children: value
+                  }
+                ) }),
+                /* @__PURE__ */ jsx73(
+                  Typography,
+                  {
+                    variant: size === "sm" ? "body2" : "body",
+                    style: {
+                      color: colors.gray[700],
+                      fontWeight: typography.fontWeight.medium,
+                      marginBottom: spacing[1]
+                    },
+                    children: label
+                  }
+                ),
+                trend && /* @__PURE__ */ jsx73("div", { id: trendId, children: /* @__PURE__ */ jsxs64("div", { style: { display: "flex", alignItems: "center", gap: spacing[1], marginTop: spacing[2] }, children: [
+                  /* @__PURE__ */ jsx73("span", { style: { color: trendColorMap[trend.direction], fontWeight: typography.fontWeight.semiBold }, children: trend.direction === "up" ? "\u2197" : trend.direction === "down" ? "\u2198" : "\u2192" }),
+                  /* @__PURE__ */ jsx73(
+                    Typography,
+                    {
+                      variant: "caption",
+                      style: {
+                        color: trendColorMap[trend.direction],
+                        fontSize: config.trendFontSize,
+                        fontWeight: typography.fontWeight.medium
+                      },
+                      children: formatTrendValue(trend.value, trend.direction)
+                    }
+                  ),
+                  /* @__PURE__ */ jsx73(
+                    Typography,
+                    {
+                      variant: "caption",
+                      style: {
+                        color: colors.gray[500],
+                        fontSize: config.trendFontSize
+                      },
+                      children: trend.period
+                    }
+                  )
+                ] }) })
+              ] }),
+              error && renderError()
+            ] })
+          }
+        ),
+        /* @__PURE__ */ jsx73("style", { children: `
+        @keyframes pulse {
+          0%, 100% {
+            opacity: 1;
+          }
+          50% {
+            opacity: 0.5;
+          }
+        }
+
+        .statistic-metric-card.clickable:focus {
+          outline: 2px solid ${selectedColor};
+          outline-offset: 2px;
+        }
+
+        .statistic-metric-card.clickable:focus-visible {
+          outline: 2px solid ${selectedColor};
+          outline-offset: 2px;
+        }
+      ` })
+      ]
+    }
+  );
+});
+StatisticMetricCard.displayName = "StatisticMetricCard";
 export {
   Accordion,
   AccordionContent,
   AccordionHeader,
   AccordionItem,
+  AgentDev_default as AgentDev,
   AreaChart,
   Avatar,
   AvatarUpload,
+  AvatarWithName,
+  Backgrounds,
   Badge,
   BarChart,
   BaseChart,
@@ -11117,6 +13850,7 @@ export {
   CardFooter,
   CardHeader,
   Carousel,
+  Changelog_default as Changelog,
   Chat,
   Checkbox,
   Column,
@@ -11139,10 +13873,12 @@ export {
   DatePicker,
   Divider,
   DonutChart,
+  Drawer,
   Dropdown,
   DropdownItem,
   EmptyState,
   FileUpload,
+  FilterDropdown,
   Footer,
   Grid,
   Input,
@@ -11151,6 +13887,8 @@ export {
   Modal,
   Navigation,
   Sidebar as NavigationSidebar,
+  Notification,
+  NotificationCenter,
   Pagination,
   PieChart,
   ProgressBar,
@@ -11169,24 +13907,29 @@ export {
   Sidebar2 as Sidebar,
   Snackbar,
   StackedBarChart,
+  StatisticMetricCard,
   Stepper,
+  StepperStep,
   Switch,
   Table,
   Tabs,
+  TagChip,
   TextBody,
   TextContent,
   TextContentImportant,
   TextContentTitle,
   Textarea,
+  Timeline,
+  TimelineItem,
   Tooltip,
-  Topbar,
   Typography,
   TypographyDemo,
+  Version,
   VerticalTabs,
   colors,
   cssVariables,
   radii,
   shadows,
-  spacing2 as spacing,
+  spacing,
   typography
 };

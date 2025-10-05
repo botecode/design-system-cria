@@ -36,8 +36,6 @@ import { VerticalTabsDemo } from './components/VerticalTabs/demo';
 import { DatePickerDemo } from './components/DatePicker/demo';
 import { FileUploadDemo } from './components/FileUpload/demo';
 import { ChatDemo } from './components/Chat/demo';
-import PieChartDemo from './components/PieChart/demo';
-import LineChartDemo from './components/LineChart/demo';
 import CommentsSectionDemo from './components/CommentsSection/demo';
 import SliderDemo from './components/Slider/demo';
 import ShimmerSkeletonDemo from './components/ShimmerSkeleton/demo';
@@ -64,16 +62,19 @@ import TrilhaCardsDemo from './components/TrilhaCards/demo';
 import StatisticMetricCardDemo from './components/StatisticMetricCard/demo';
 import CommandPaletteDemo from './components/CommandPalette/demo';
 import ChangelogDemo from './components/Changelog/demo';
+import AgentDevDemo from './components/AgentDev/demo';
+import { AgentDev } from './components/AgentDev';
 
 // Import Cartograph font
 import './fonts.css';
 
-type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'textarea' | 'avatar' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tag-chip' | 'timeline' | 'stepper' | 'notification-center' | 'topbar' | 'drawer' | 'backgrounds' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group' | 'breadcrumbs' | 'pagination' | 'progress-bar' | 'vertical-tabs' | 'date-picker' | 'file-upload' | 'chat' | 'pie-chart' | 'comments-section' | 'slider' | 'shimmer-skeleton' | 'pricing-page' | 'page-loading-progress' | 'card-selector' | 'floating-sidebar' | 'row-of-cards' | 'search-filters' | 'filter-dropdown' | 'divider' | 'grid' | 'container' | 'scrollbar' | 'footer' | 'mega-menu' | 'carousel' | 'table' | 'empty-state' | 'charts' | 'lesson-cards' | 'course-cards' | 'events-cards' | 'trilha-cards' | 'statistic-metric-card' | 'command-palette';
+type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'textarea' | 'avatar' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tag-chip' | 'timeline' | 'stepper' | 'notification-center' | 'topbar' | 'drawer' | 'backgrounds' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group' | 'breadcrumbs' | 'pagination' | 'progress-bar' | 'vertical-tabs' | 'date-picker' | 'file-upload' | 'chat' | 'pie-chart' | 'comments-section' | 'slider' | 'shimmer-skeleton' | 'pricing-page' | 'page-loading-progress' | 'card-selector' | 'floating-sidebar' | 'row-of-cards' | 'search-filters' | 'filter-dropdown' | 'divider' | 'grid' | 'container' | 'scrollbar' | 'footer' | 'mega-menu' | 'carousel' | 'table' | 'empty-state' | 'charts' | 'lesson-cards' | 'course-cards' | 'events-cards' | 'trilha-cards' | 'statistic-metric-card' | 'command-palette' | 'agent-dev';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<DemoSection>('overview');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [agentDevOpen, setAgentDevOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Initialize active section from URL hash
@@ -232,7 +233,7 @@ const App: React.FC = () => {
               <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
                 Welcome to CRIA_UI
               </Typography>
-              <Typography variant="h4" weight="medium" style={{ marginBottom: '24px' }}>
+              <Typography variant="h3" weight="medium" style={{ marginBottom: '24px' }}>
                 Getting Started
               </Typography>
             </div>
@@ -401,6 +402,8 @@ const App: React.FC = () => {
         return <StatisticMetricCardDemo />;
       case 'command-palette':
         return <CommandPaletteDemo />;
+      case 'agent-dev':
+        return <AgentDevDemo />;
       case 'comments-section':
         return <CommentsSectionDemo />;
       case 'slider':
@@ -551,16 +554,16 @@ const App: React.FC = () => {
                 },
                 subitems: item.subitems?.map(subitem => ({
                   ...subitem,
-                  onClick: subitem.subitems ? undefined : (e) => {
+                  onClick: subitem.subitems ? undefined : (e: React.MouseEvent) => {
                     e.preventDefault();
                     handleSectionChange(subitem.id as DemoSection);
                     if (isMobile) {
                       setMobileMenuOpen(false);
                     }
                   },
-                  subitems: subitem.subitems?.map(subsubitem => ({
+                  subitems: subitem.subitems?.map((subsubitem: any) => ({
                     ...subsubitem,
-                    onClick: (e) => {
+                    onClick: (e: React.MouseEvent) => {
                       e.preventDefault();
                       handleSectionChange(subsubitem.id as DemoSection);
                       if (isMobile) {
@@ -593,6 +596,44 @@ const App: React.FC = () => {
             boxSizing: 'border-box',
             zIndex: 1
           }}>
+            {/* Robot Icon - Top Right */}
+            <div style={{
+              position: 'fixed',
+              top: '20px',
+              right: '20px',
+              zIndex: 1000
+            }}>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setAgentDevOpen(true)}
+                style={{
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '50%',
+                  backgroundColor: 'var(--cria-primary)',
+                  color: 'white',
+                  border: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                  transition: 'all 0.2s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'scale(1.1)';
+                  e.currentTarget.style.boxShadow = '0 6px 16px rgba(0, 0, 0, 0.2)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'scale(1)';
+                  e.currentTarget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+                }}
+                title="Agent Dev - Desenvolvimento assistido por IA"
+              >
+                <Robot size={24} />
+              </Button>
+            </div>
+
             <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
               {renderContent()}
               <div style={{ marginTop: '32px', textAlign: 'center', color: 'var(--cria-text-secondary)' }}>
@@ -600,6 +641,14 @@ const App: React.FC = () => {
               </div>
             </div>
           </main>
+
+          {/* Agent Dev Drawer */}
+          <AgentDev
+            isOpen={agentDevOpen}
+            onClose={() => setAgentDevOpen(false)}
+            position="right"
+            size="lg"
+          />
         </div>
       );
 };
