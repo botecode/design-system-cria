@@ -38,6 +38,7 @@ export * from './components/Timeline';
 export * from './components/Stepper';
 export * from './components/NotificationCenter';
 export * from './components/Version';
+export * from './components/Topbar';
 export * from './components/Chat';
 export * from './components/TextTokens';
 export * from './components/FilterDropdown';
