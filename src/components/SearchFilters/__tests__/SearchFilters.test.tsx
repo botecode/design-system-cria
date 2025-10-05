@@ -212,7 +212,7 @@ describe('SearchFilters', () => {
       <SearchFilters {...defaultProps} style={customStyle} />
     );
     
-    expect(container.firstChild).toHaveStyle('background-color: red');
+    expect(container.firstChild).toHaveStyle('background-color: rgb(255, 0, 0)');
   });
 
   it('supports data attributes', () => {
@@ -253,7 +253,7 @@ describe('SearchFilters', () => {
   });
 
   it('handles empty filters array', () => {
-    render(<SearchFilters {...defaultProps} filters={[]} />);
+    render(<SearchFilters {...defaultProps} filters={[]} data-testid="search-filters" />);
     
     // Should still render the container
     expect(screen.getByTestId('search-filters')).toBeInTheDocument();

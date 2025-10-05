@@ -251,7 +251,7 @@ export function SearchFilters({
     return (
       <div
         className={`search-filters-container ${className || ''}`}
-        style={containerStyles}
+        style={getContainerStyles(style)}
         data-testid={dataTestId}
       >
         <Typography variant="body" color="secondary">
@@ -264,7 +264,7 @@ export function SearchFilters({
   return (
     <div
       className={`search-filters-container ${className || ''}`}
-      style={containerStyles}
+      style={getContainerStyles(style)}
       data-testid={dataTestId}
     >
       {/* Mobile Toggle Button */}
@@ -288,43 +288,40 @@ export function SearchFilters({
       )}
 
       {/* Filters Content */}
-      <div
-        className="search-filters-content"
-        style={{
-          ...filtersContentStyles,
-          ...(mobileCollapsed && !isMobileOpen && { display: 'none' }),
-        }}
-      >
-        <div style={filtersGridStyles}>
-          {filters.map(renderFilter)}
-        </div>
+      {(!mobileCollapsed || isMobileOpen) && (
+        <div className="search-filters-content" style={filtersContentStyles}>
+          <div style={filtersGridStyles}>
+            {filters.map(renderFilter)}
+          </div>
 
-        {/* Clear All Button */}
-        <div style={actionsStyles}>
-          <Button
-            variant="outlined"
-            size="small"
-            onClick={handleClearAll}
-            disabled={!hasActiveFilters}
-            style={clearButtonStyles}
-          >
-            <X size={16} />
-            Clear All
-          </Button>
+          {/* Clear All Button */}
+          <div style={actionsStyles}>
+            <Button
+              variant="outlined"
+              size="small"
+              onClick={handleClearAll}
+              disabled={!hasActiveFilters}
+              style={clearButtonStyles}
+            >
+              <X size={16} />
+              Clear All
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
 
 // Styles using design tokens
-const containerStyles: React.CSSProperties = {
+const getContainerStyles = (customStyle?: React.CSSProperties): React.CSSProperties => ({
   backgroundColor: colors.backgroundLight,
   border: `1px solid ${colors.border.light}`,
   borderRadius: radii.md,
   padding: spacing[6],
   boxShadow: shadows.sm,
-};
+  ...customStyle,
+});
 
 const mobileToggleStyles: React.CSSProperties = {
   width: '100%',
