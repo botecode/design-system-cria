@@ -8,7 +8,6 @@ import { Card } from '../Card';
 import { 
   House, 
   User, 
-  Settings, 
   Bell, 
   Search, 
   Menu, 
@@ -56,7 +55,7 @@ const TopbarDemo: React.FC = () => {
       id: 'settings', 
       label: 'Settings', 
       href: '/settings', 
-      icon: <Settings size={16} /> 
+      icon: <Gear size={16} /> 
     }
   ];
 

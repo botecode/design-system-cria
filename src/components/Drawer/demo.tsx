@@ -9,7 +9,7 @@ import { Switch } from '../Switch';
 import { Badge } from '../Badge';
 import { 
   Menu, 
-  Settings, 
+  Gear, 
   User, 
   ShoppingCart, 
   Heart, 
@@ -108,7 +108,7 @@ const DrawerDemo: React.FC = () => {
             Left Drawer
           </Button>
           <Button onClick={() => openDrawer('right')}>
-            <Settings size={16} />
+            <Gear size={16} />
             Right Drawer
           </Button>
           <Button onClick={() => openDrawer('top')}>
@@ -134,7 +134,7 @@ const DrawerDemo: React.FC = () => {
               Profile
             </Button>
             <Button variant="ghost" style={{ justifyContent: 'flex-start' }}>
-              <Settings size={16} />
+              <Gear size={16} />
               Settings
             </Button>
             <Button variant="ghost" style={{ justifyContent: 'flex-start' }}>
@@ -500,7 +500,7 @@ const DrawerDemo: React.FC = () => {
         </div>
         <div style={{ padding: '16px' }}>
           <Button onClick={() => openDrawer('settings')}>
-            <Settings size={16} />
+            <Gear size={16} />
             Open Settings
           </Button>
           

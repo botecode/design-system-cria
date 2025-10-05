@@ -9,7 +9,7 @@ import {
   User, 
   ChatCircle, 
   Bell, 
-  Settings, 
+  Gear, 
   FileText, 
   BarChart3, 
   Users,
@@ -100,7 +100,7 @@ export const SidebarDemo: React.FC = () => {
     {
       id: 'settings',
       label: 'Settings',
-      icon: <Settings size={20} />,
+      icon: <Gear size={20} />,
       content: (
         <div style={{ padding: '24px' }}>
           <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
@@ -224,7 +224,7 @@ export const SidebarDemo: React.FC = () => {
     {
       id: 'tools',
       label: 'Tools',
-      icon: <Settings size={20} />,
+      icon: <Gear size={20} />,
       expanded: false,
       children: [
         {
@@ -280,7 +280,7 @@ export const SidebarDemo: React.FC = () => {
     {
       id: 'enabled2',
       label: 'Enabled Item 2',
-      icon: <Settings size={20} />,
+      icon: <Gear size={20} />,
       content: (
         <div style={{ padding: '24px' }}>
           <Typography variant="h3" weight="semiBold">Enabled Item 2</Typography>

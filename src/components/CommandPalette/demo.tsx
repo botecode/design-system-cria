@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   FileText, 
   FolderOpen, 
-  Settings, 
+  Gear, 
   User, 
   Search, 
   Bell, 
