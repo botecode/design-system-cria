@@ -427,7 +427,7 @@ const CarouselDemo: React.FC = () => {
                   <div>const MyCarousel = () =&gt; {'{'} {'}'}</div>
                   <div>  return (</div>
                   <div>    &lt;Carousel slides={'{'}slides{'}'}&gt;</div>
-                  <div>      {'{'(slide) =&gt; ('}</div>
+                  <div>      {`(slide) => (`}</div>
                   <div>        &lt;div key={'{'}slide.id{'}'}&gt;</div>
                   <div>          {'{'}slide.content{'}'}</div>
                   <div>        &lt;/div&gt;</div>
@@ -460,11 +460,11 @@ const CarouselDemo: React.FC = () => {
                   <div>    tablet: 2,</div>
                   <div>    desktop: 3</div>
                   <div>  {'}'}</div>
-                  <div>  onSlideChange={'{'(index) =&gt; console.log(index){'}'}</div>
-                  <div>  onSlideClick={'{'(slide, index) =&gt; console.log(slide){'}'}</div>
+                  <div>  onSlideChange={`(index) => console.log(index)`}</div>
+                  <div>  onSlideClick={`(slide, index) => console.log(slide)`}</div>
                   <div>  slides={'{'}slides{'}'}</div>
                   <div>&gt;</div>
-                  <div>  {'{'(slide) =&gt; &lt;SlideContent slide={'{'}slide{'}'} /&gt;{'}'}</div>
+                  <div>  {`(slide) => <SlideContent slide={slide} />`}</div>
                   <div>&lt;/Carousel&gt;</div>
                 </div>
               </div>

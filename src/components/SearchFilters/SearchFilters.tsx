@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Input } from '../Input';
 import { Button } from '../Button';
 import { Typography } from '../Typography';
+import { FilterDropdown } from '../FilterDropdown';
 import { colors, spacing, radii, shadows, typography } from '../../tokens';
 import { FunnelSimple, X, CaretDown } from 'phosphor-react';
 
@@ -160,7 +161,7 @@ export function SearchFilters({
             <Input
               label={filter.label}
               placeholder={filter.placeholder}
-              value={value as string}
+              value={(value as string) || ''}
               onChange={(e) => handleFilterChange(filter.id, e.target.value)}
               style={filterInputStyles}
               aria-label={filter.label}
@@ -169,27 +170,20 @@ export function SearchFilters({
         );
 
       case 'select':
+        const selectOptions = [
+          { value: '', label: `All ${filter.label}s` },
+          ...(filter.options || [])
+        ];
+        
         return (
           <div key={filter.id} style={filterGroupStyles}>
-            <label style={filterLabelStyles}>
-              {filter.label}
-            </label>
-            <div style={selectContainerStyles}>
-              <select
-                value={value as string}
-                onChange={(e) => handleFilterChange(filter.id, e.target.value)}
-                style={selectStyles}
-                aria-label={filter.label}
-              >
-                <option value="">All {filter.label}s</option>
-                {filter.options?.map(option => (
-                  <option key={option.value} value={option.value}>
-                    {option.label}
-                  </option>
-                ))}
-              </select>
-              <CaretDown size={16} style={selectIconStyles} />
-            </div>
+            <FilterDropdown
+              label={filter.label}
+              options={selectOptions}
+              value={(value as string) || ''}
+              onChange={(newValue) => handleFilterChange(filter.id, newValue)}
+              style={filterInputStyles}
+            />
           </div>
         );
 

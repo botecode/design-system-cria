@@ -3,7 +3,7 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { EmptyState } from '../EmptyState';
 import { Button } from '../../Button';
-import { File, FolderOpen, Search, Plus } from 'phosphor-react';
+import { File, FolderOpen, MagnifyingGlass, Plus } from 'phosphor-react';
 
 describe('EmptyState', () => {
   const defaultProps = {

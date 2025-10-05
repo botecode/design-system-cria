@@ -56,9 +56,6 @@ export const FloatingSidebarDemo: React.FC = () => {
         padding: spacing.lg,
       }}>
         <Card>
-          <CardHeader>
-            <Typography variant="title2">Main Content Area</Typography>
-          </CardHeader>
           <CardContent>
             <div style={{ marginBottom: spacing.lg }}>
               <Typography variant="caption" style={{ color: '#666', marginBottom: spacing.sm }}>
@@ -156,6 +153,31 @@ export const FloatingSidebarDemo: React.FC = () => {
                 </Typography>
               </CardContent>
             </Card>
+
+            {/* Show Lorem Ipsum Section */}
+            <div style={{ marginTop: spacing.lg, textAlign: 'center' }}>
+              <button style={{
+                background: 'transparent',
+                color: '#7566A1',
+                border: '2px solid #7566A1',
+                padding: `${spacing.sm} ${spacing.lg}`,
+                borderRadius: spacing.sm,
+                cursor: 'pointer',
+                fontWeight: '500',
+                fontSize: '14px',
+                transition: 'all 0.2s ease',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = '#7566A1';
+                e.currentTarget.style.color = 'white';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.color = '#7566A1';
+              }}>
+                Show lorem ipsum
+              </button>
+            </div>
           </CardContent>
         </Card>
       </div>

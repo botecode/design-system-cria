@@ -4,7 +4,7 @@ import { Button } from '../Button';
 import { Card, CardHeader, CardContent } from '../Card';
 import Badge from '../Badge';
 import Modal from './Modal';
-import { WarningCircle, Info, CheckCircle, XCircle, Star, User, Settings, Trash } from 'phosphor-react';
+import { WarningCircle, Info, CheckCircle, XCircle, Star, User, Gear, Trash } from 'phosphor-react';
 
 export const ModalDemo: React.FC = () => {
   const [isBasicModalOpen, setIsBasicModalOpen] = useState(false);

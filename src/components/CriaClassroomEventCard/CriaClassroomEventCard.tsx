@@ -208,11 +208,12 @@ export const CriaClassroomEventCard: React.FC<CriaClassroomEventCardProps> = ({
           <Typography
             variant="h1"
             style={{
-              fontSize: '32px',
+              fontSize: '48px',
               fontFamily: typography.fontFamily.primary,
-              fontWeight: typography.fontWeight.semiBold,
+              fontWeight: typography.fontWeight.bold,
               color: colors.white,
               lineHeight: 1,
+              marginBottom: spacing[1],
             }}
           >
             {String(classroomItem.position || 1).padStart(2, '0')}

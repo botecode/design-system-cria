@@ -100,6 +100,8 @@ git push origin main
   • Scrollbar
   • Footer
   • Mega Menu
+  • Command Palette
+  • Statistic / Metric Card
 
 Input Demos  
   • Basic Inputs — Full Name, Email Address, Phone Number, Date (dd.mm.yyyy)  
@@ -107,28 +109,19 @@ Input Demos
 
 ⸻
 
-🚀 Next Component to Implement: Carrossel - Using Embla library
+🚀 Next Component to Implement: Tag / Chip — inline labels (e.g., "New", "Beta", "Music")
 
 ⸻
 
 ⬜ Upcoming Components
-
+• Topbar
 🧭 Navigation & Layout
-
-• Divider / Separator
 • Grid / Row / Column
 • Container / Section
-• Scrollbar (Custom Vertical Scrollbar)
-• Footer — global app/site footer
-• Mega Menu — expanded top navigation for marketing or dashboards
-• Carrossel - Using Embla library ✅
 
 📊 Data Display
 
-• Table / DataGrid — tabular data with sorting and pagination ✅ (Next to implement)
-• Empty State / Placeholder — communicates “no data yet”
-• Statistic / Metric Card — dashboard value + label + trend (reuses Card + Typography)
-• Tag / Chip — inline labels (e.g., “New”, “Beta”, “Music”)
+• Tag / Chip — inline labels (e.g., "New", "Beta", "Music")
 • Timeline / Activity Feed — sequential events or updates
 
 ✨ Interaction & Feedback

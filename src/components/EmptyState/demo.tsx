@@ -4,15 +4,14 @@ import { Button } from '../Button';
 import { 
   File, 
   FolderOpen, 
-  Search, 
-  Plus, 
   MagnifyingGlass, 
+  Plus, 
   Users, 
   ShoppingCart, 
   ChatCircle, 
   Image,
   MusicNote,
-  Video,
+  VideoCamera,
   Heart,
   Star,
   Trash,
@@ -20,7 +19,7 @@ import {
   Download,
   Upload,
   Share,
-  Settings
+  Gear
 } from 'phosphor-react';
 
 const EmptyStateDemo = () => {
@@ -51,7 +50,7 @@ const EmptyStateDemo = () => {
 
           <div className="bg-white rounded-lg border p-6">
             <EmptyState
-              icon={<Search size={48} />}
+              icon={<MagnifyingGlass size={48} />}
               title="No search results"
               description="Try adjusting your search criteria"
               action={<Button variant="outline">Clear Filters</Button>}
@@ -165,7 +164,7 @@ const EmptyStateDemo = () => {
             <h3 className="text-lg font-medium mb-2">Large</h3>
             <div className="bg-white rounded-lg border p-6">
               <EmptyState
-                icon={<Video size={64} />}
+                icon={<VideoCamera size={64} />}
                 title="No videos uploaded"
                 description="Share your first video with the community"
                 action={<Button size="lg">Upload Video</Button>}
@@ -299,7 +298,7 @@ const EmptyStateDemo = () => {
 
           <div className="bg-white rounded-lg border p-6">
             <EmptyState
-              icon={<Settings size={48} />}
+              icon={<Gear size={48} />}
               title="Configuration Required"
               description={
                 <div>

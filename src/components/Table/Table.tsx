@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback } from 'react';
-import { CaretUp, CaretDown, CaretUpDown, MagnifyingGlass, Funnel, Download, DotsThree } from 'phosphor-react';
+import { CaretUp, CaretDown, MagnifyingGlass, Funnel, Download, DotsThree } from 'phosphor-react';
 import { colors } from '../../tokens/colors';
 import { spacing } from '../../tokens/spacing';
 import { radii } from '../../tokens/radii';
@@ -348,7 +348,12 @@ export const Table = <T extends Record<string, any>>({
         <CaretDown size={16} />;
     }
 
-    return <CaretUpDown size={16} />;
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <CaretUp size={8} />
+        <CaretDown size={8} />
+      </div>
+    );
   }, [sortable, sortBy, sortDirection]);
 
   // Render pagination

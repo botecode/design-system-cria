@@ -144,7 +144,7 @@ export const ProgressBar = forwardRef<HTMLDivElement, ProgressBarProps>(({
       'aria-valuemin': min,
       'aria-valuemax': max,
       'aria-label': ariaLabel || (typeof label === 'string' ? label : 'Progress'),
-      'aria-disabled': disabled ? 'true' : undefined,
+      'aria-disabled': disabled || undefined,
     };
   }, [variant, normalizedValue, min, max, ariaLabel, label, disabled]);
   

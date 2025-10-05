@@ -7,7 +7,7 @@ export interface SliderMark {
   label?: string;
 }
 
-export interface SliderProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
+export interface SliderProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue'> {
   min?: number;
   max?: number;
   step?: number;
@@ -244,7 +244,7 @@ export const Slider: React.FC<SliderProps> = ({
               top: orientation === 'vertical' ? '100%' : 'auto',
               left: '50%',
               transform: 'translateX(-50%)',
-              backgroundColor: colors.background.dark,
+              backgroundColor: colors.backgroundDark,
               color: colors.white,
               padding: '4px 8px',
               borderRadius: 4,
