@@ -56,8 +56,7 @@ describe('RowOfCards', () => {
     render(<RowOfCards {...defaultProps} cardsPerPage={3} />);
     
     // Should show pagination controls since we have more than 3 cards
-    expect(screen.getByText('1')).toBeInTheDocument(); // Current page
-    expect(screen.getByText('3')).toBeInTheDocument(); // Total pages
+    expect(screen.getByText('Page 1 of 3')).toBeInTheDocument();
   });
 
   it('does not display pagination controls when not needed', () => {
@@ -135,7 +134,7 @@ describe('RowOfCards', () => {
       <RowOfCards {...defaultProps} style={customStyle} />
     );
     
-    expect(container.firstChild).toHaveStyle('background-color: red');
+    expect(container.firstChild).toHaveStyle('background-color: rgb(255, 0, 0)');
   });
 
   it('supports data attributes', () => {
