@@ -141,7 +141,6 @@ export const ChatDemo: React.FC = () => {
             background: '#2A1F3A', // primaryDark
             borderRadius: 12,
             padding: 12,
-            position: 'relative',
             overflow: 'hidden',
           }}
         >

@@ -17,7 +17,7 @@ import {
   Warning,
   Info,
   CheckCircle,
-  AlertCircle
+  WarningCircle
 } from 'phosphor-react';
 
 const TagChipDemo: React.FC = () => {
@@ -228,7 +228,7 @@ const TagChipDemo: React.FC = () => {
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
             <TagChip label="Completed" variant="success" icon={<CheckCircle />} />
             <TagChip label="In Progress" variant="warning" icon={<Clock />} />
-            <TagChip label="Pending" variant="info" icon={<AlertCircle />} />
+            <TagChip label="Pending" variant="info" icon={<WarningCircle />} />
             <TagChip label="Error" variant="error" icon={<Warning />} />
             <TagChip label="New" variant="primary" icon={<Info />} />
           </div>

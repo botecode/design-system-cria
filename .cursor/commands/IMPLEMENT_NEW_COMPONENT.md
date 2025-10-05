@@ -105,6 +105,7 @@ git push origin main
   • Tag / Chip
   • Timeline / Activity Feed
   • Stepper / Wizard
+  • Notification Center
 
 Input Demos  
   • Basic Inputs — Full Name, Email Address, Phone Number, Date (dd.mm.yyyy)  
@@ -112,12 +113,11 @@ Input Demos
 
 ⸻
 
-🚀 Next Component to Implement: Notification Center — stacked toasts and global alerts
+🚀 Next Component to Implement: Topbar — global navigation header
 
 ⸻
 
 ⬜ Upcoming Components
-• Topbar
 🧭 Navigation & Layout
 • Grid / Row / Column
 • Container / Section
