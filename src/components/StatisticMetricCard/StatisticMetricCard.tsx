@@ -81,9 +81,10 @@ export const StatisticMetricCard: React.FC<StatisticMetricCardProps> = ({
   const selectedColor = colorMap[color];
 
   // Format trend value
-  const formatTrendValue = (trendValue: number): string => {
-    const sign = trendValue >= 0 ? '+' : '';
-    return `${sign}${trendValue.toFixed(1)}%`;
+  const formatTrendValue = (trendValue: number, direction: 'up' | 'down'): string => {
+    const sign = direction === 'up' ? '+' : '-';
+    const absoluteValue = Math.abs(trendValue);
+    return `${sign}${absoluteValue.toFixed(1)}%`;
   };
 
   // Generate unique IDs for accessibility
@@ -167,7 +168,7 @@ export const StatisticMetricCard: React.FC<StatisticMetricCardProps> = ({
             fontWeight: typography.fontWeight.medium,
           }}
         >
-          {formatTrendValue(trend.value)}
+          {formatTrendValue(trend.value, trend.direction)}
         </Typography>
         <Typography
           variant="caption"
@@ -329,7 +330,7 @@ export const StatisticMetricCard: React.FC<StatisticMetricCardProps> = ({
         </CardContent>
       </Card>
 
-      <style jsx>{`
+      <style>{`
         @keyframes pulse {
           0%, 100% {
             opacity: 1;
