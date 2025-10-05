@@ -1,6 +1,6 @@
 {
   "name": "design-lib",
-  "version": "0.4.0",
+  "version": "0.4.001",
   "description": "CRIA_UI - A React + TypeScript design system for CR_IA applications",
   "type": "module",
   "main": "dist/index.cjs",
@@ -21,7 +21,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "version:patch": "npm version patch && git push --follow-tags",
+    "version:patch": "node scripts/version-patch.js && git push --follow-tags",
     "version:minor": "npm version minor && git push --follow-tags",
     "version:major": "npm version major && git push --follow-tags",
     "version:tag": "git tag -a v$(node -p \"require('./package.json').version\") -m \"Release v$(node -p \"require('./package.json').version\")\"",

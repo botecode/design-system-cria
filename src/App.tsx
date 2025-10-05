@@ -539,7 +539,7 @@ const App: React.FC = () => {
             sidebar={{
               title: 'CR_IA.UI',
               titleHref: '#overview',
-              subtitle: <Badge variant="secondary" size="lg">v0.4.0</Badge>,
+              subtitle: <Badge variant="secondary" size="lg">v0.4.001</Badge>,
               items: sidebarItems.map(item => ({
                 ...item,
                 onClick: item.subitems ? undefined : (e) => {

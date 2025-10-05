@@ -7,7 +7,7 @@ import { spacing } from '../../tokens';
 const sampleChangelogEntries: ChangelogEntry[] = [
   {
     id: '1',
-    version: 'v0.4.0',
+    version: 'v0.4.001',
     date: '2024-01-15',
     type: 'minor',
     author: 'Fernando Feitosa',
@@ -44,7 +44,7 @@ const sampleChangelogEntries: ChangelogEntry[] = [
   },
   {
     id: '2',
-    version: 'v0.3.2',
+    version: 'v0.3.002',
     date: '2024-01-10',
     type: 'patch',
     author: 'Fernando Feitosa',
@@ -71,7 +71,7 @@ const sampleChangelogEntries: ChangelogEntry[] = [
   },
   {
     id: '3',
-    version: 'v0.3.1',
+    version: 'v0.3.001',
     date: '2024-01-05',
     type: 'hotfix',
     author: 'Fernando Feitosa',
@@ -97,7 +97,7 @@ const sampleChangelogEntries: ChangelogEntry[] = [
   },
   {
     id: '4',
-    version: 'v0.3.0',
+    version: 'v0.3.000',
     date: '2024-01-01',
     type: 'minor',
     author: 'Fernando Feitosa',
@@ -130,7 +130,7 @@ const sampleChangelogEntries: ChangelogEntry[] = [
   },
   {
     id: '5',
-    version: 'v0.2.5',
+    version: 'v0.2.005',
     date: '2023-12-28',
     type: 'patch',
     author: 'Fernando Feitosa',
@@ -157,7 +157,7 @@ const sampleChangelogEntries: ChangelogEntry[] = [
   },
   {
     id: '6',
-    version: 'v0.2.4',
+    version: 'v0.2.004',
     date: '2023-12-20',
     type: 'patch',
     author: 'Fernando Feitosa',
@@ -184,7 +184,7 @@ const sampleChangelogEntries: ChangelogEntry[] = [
   },
   {
     id: '7',
-    version: 'v0.2.3',
+    version: 'v0.2.003',
     date: '2023-12-15',
     type: 'patch',
     author: 'Fernando Feitosa',
@@ -211,7 +211,7 @@ const sampleChangelogEntries: ChangelogEntry[] = [
   },
   {
     id: '8',
-    version: 'v0.2.2',
+    version: 'v0.2.002',
     date: '2023-12-10',
     type: 'patch',
     author: 'Fernando Feitosa',
