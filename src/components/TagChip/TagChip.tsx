@@ -265,7 +265,7 @@ export const TagChip = forwardRef<HTMLDivElement, TagChipProps>(({
     <Component
       ref={ref}
       className={`tag-chip variant-${variant} size-${size} style-${styleProp} ${className} ${clickable ? 'clickable' : ''} ${disabled ? 'disabled' : ''} ${loading ? 'loading' : ''} ${selected ? 'selected' : ''}`}
-      style={styleConfig}
+      style={{ ...styleConfig, ...style }}
       role={clickable ? "button" : "region"}
       aria-label={label}
       aria-pressed={clickable ? selected : undefined}
