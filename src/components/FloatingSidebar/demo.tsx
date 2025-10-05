@@ -57,127 +57,21 @@ export const FloatingSidebarDemo: React.FC = () => {
       }}>
         <Card>
           <CardContent>
-            <div style={{ marginBottom: spacing.lg }}>
-              <Typography variant="caption" style={{ color: '#666', marginBottom: spacing.sm }}>
-                TURMA #026
-              </Typography>
-              <Typography variant="title1" style={{ marginBottom: spacing.md }}>
-                VAMOS CRIAR, FERNANDO?
-              </Typography>
-              <Typography variant="body" style={{ color: '#666' }}>
-                Você tem acesso ao conteúdo através do menu lateral e aos cursos introdutórios abaixo.
-              </Typography>
-            </div>
-
-            {/* Course Cards */}
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: spacing.lg,
-              marginBottom: spacing.xl,
-            }}>
-              {[
-                {
-                  title: 'CURSO #01 INTRO À IA',
-                  description: 'Fundamentos da Inteligência Artificial e suas aplicações práticas.',
-                },
-                {
-                  title: 'CURSO #02 PRODUTIVIDADE',
-                  description: 'Técnicas avançadas para maximizar sua produtividade com IA.',
-                },
-                {
-                  title: 'CURSO #03 CRIAÇÃO',
-                  description: 'Crie conteúdo incrível usando ferramentas de IA generativa.',
-                },
-              ].map((course, index) => (
-                <Card key={index} style={{
-                  background: '#7566A1',
-                  color: 'white',
-                  border: 'none',
-                }}>
-                  <CardContent style={{ padding: spacing.lg }}>
-                    <Typography variant="title3" style={{ 
-                      color: 'white', 
-                      marginBottom: spacing.sm,
-                      fontWeight: 'bold',
-                    }}>
-                      {course.title}
-                    </Typography>
-                    <Typography variant="body" style={{ 
-                      color: 'rgba(255, 255, 255, 0.9)',
-                      marginBottom: spacing.md,
-                    }}>
-                      {course.description}
-                    </Typography>
-                    <button style={{
-                      background: 'rgba(255, 255, 255, 0.2)',
-                      color: 'white',
-                      border: 'none',
-                      padding: `${spacing.sm} ${spacing.md}`,
-                      borderRadius: spacing.sm,
-                      cursor: 'pointer',
-                      fontWeight: '500',
-                    }}>
-                      COMEÇAR
-                    </button>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            {/* Attention Section */}
-            <Card style={{
-              border: '2px solid #7566A1',
-              background: 'white',
-            }}>
-              <CardContent style={{ padding: spacing.lg }}>
-                <Typography variant="title2" style={{ 
-                  color: '#333',
-                  marginBottom: spacing.md,
-                  fontWeight: 'bold',
-                }}>
-                  ATENÇÃO!
-                </Typography>
-                <Typography variant="body" style={{ color: '#333', lineHeight: 1.6 }}>
-                  Os alunos da Turma #026 receberam uma aula extra ao vivo sobre IA em audiovisual e criação de imagens, 
-                  complementando o tutorial anterior. Enquanto a aula anterior focou em técnicas de prompt e chatbots, 
-                  esta nova aula cobrirá o workflow de criação de imagens e vídeos, ferramentas, referências visuais 
-                  e possibilidades reais de criação.
-                </Typography>
-                <Typography variant="body" style={{ 
-                  color: '#333', 
-                  marginTop: spacing.md,
-                  fontWeight: '500',
-                }}>
-                  O link pra aula está aqui embaixo:
-                </Typography>
-              </CardContent>
-            </Card>
-
-            {/* Show Lorem Ipsum Section */}
-            <div style={{ marginTop: spacing.lg, textAlign: 'center' }}>
-              <button style={{
-                background: 'transparent',
-                color: '#7566A1',
-                border: '2px solid #7566A1',
-                padding: `${spacing.sm} ${spacing.lg}`,
-                borderRadius: spacing.sm,
-                cursor: 'pointer',
-                fontWeight: '500',
-                fontSize: '14px',
-                transition: 'all 0.2s ease',
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.background = '#7566A1';
-                e.currentTarget.style.color = 'white';
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'transparent';
-                e.currentTarget.style.color = '#7566A1';
-              }}>
-                Show lorem ipsum
-              </button>
-            </div>
+            <Typography variant="title1" style={{ marginBottom: spacing.lg }}>
+              Lorem Ipsum Content
+            </Typography>
+            
+            <Typography variant="body" style={{ marginBottom: spacing.md, lineHeight: 1.6 }}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </Typography>
+            
+            <Typography variant="body" style={{ marginBottom: spacing.md, lineHeight: 1.6 }}>
+              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </Typography>
+            
+            <Typography variant="body" style={{ marginBottom: spacing.lg, lineHeight: 1.6 }}>
+              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+            </Typography>
           </CardContent>
         </Card>
       </div>
