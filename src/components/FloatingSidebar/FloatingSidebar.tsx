@@ -49,12 +49,12 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
       className={classes}
       style={{
         position: 'fixed',
-        left: spacing.lg,
-        top: spacing.lg,
+        left: spacing[6],
+        top: spacing[6],
         width: 280,
         backgroundColor: colors.primary,
-        borderRadius: spacing.xl,
-        padding: spacing.lg,
+        borderRadius: spacing[8],
+        padding: spacing[6],
         display: 'flex',
         flexDirection: 'column',
         zIndex: 1000,
@@ -66,7 +66,7 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
       {/* Emblem Image */}
       <div style={{
         position: 'relative',
-        marginBottom: spacing.lg,
+        marginBottom: spacing[6],
         display: 'flex',
         justifyContent: 'center',
       }}>
@@ -88,7 +88,7 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
       {/* Title */}
       <div style={{
         textAlign: 'center',
-        marginBottom: spacing.xl,
+        marginBottom: spacing[8],
         marginTop: -24, // Adjust for larger emblem overlap
       }}>
         <Typography
@@ -102,7 +102,7 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: spacing.sm,
+            gap: spacing[2],
           }}
         >
           {title}
@@ -111,6 +111,7 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
               fontSize: '14px',
               fontWeight: 'normal',
               opacity: 0.8,
+              color: colors.white,
             }}>
               {subtitle}
             </span>
@@ -122,7 +123,7 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
       <div style={{
         display: 'flex',
         flexDirection: 'column',
-        gap: spacing.sm,
+        gap: spacing[2],
       }}>
         {items.map((item) => (
           <Button
@@ -133,8 +134,8 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
             style={{
               width: '100%',
               justifyContent: 'flex-start',
-              padding: `${spacing.md} ${spacing.lg}`,
-              borderRadius: spacing.sm,
+              padding: `${spacing[4]} ${spacing[6]}`,
+              borderRadius: spacing[2],
               backgroundColor: item.active ? 'rgba(255, 255, 255, 0.15)' : 'transparent',
               color: colors.white,
               border: 'none',
@@ -145,7 +146,7 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
               transition: 'all 0.2s ease',
               display: 'flex',
               alignItems: 'center',
-              gap: spacing.sm,
+              gap: spacing[2],
             }}
             onMouseEnter={(e) => {
               if (!item.active) {
@@ -177,14 +178,14 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
       {/* User Profile Section */}
       {user && (
         <div style={{
-          marginTop: spacing.lg,
-          marginBottom: spacing.md,
-          paddingTop: spacing.lg,
-          paddingBottom: spacing.sm,
+          marginTop: spacing[6],
+          marginBottom: spacing[4],
+          paddingTop: spacing[6],
+          paddingBottom: spacing[2],
           borderTop: `1px solid rgba(255, 255, 255, 0.2)`,
           display: 'flex',
           alignItems: 'center',
-          gap: spacing.md,
+          gap: spacing[4],
         }}>
           <Avatar
             src={user.avatar}
@@ -230,9 +231,9 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
             size="sm"
             style={{
               color: colors.white,
-              padding: spacing.sm,
+              padding: spacing[2],
               minWidth: 'auto',
-              marginRight: spacing.sm,
+              marginRight: spacing[2],
             }}
             onClick={() => console.log('Analytics clicked')}
             aria-label="Analytics"
@@ -244,7 +245,7 @@ export const FloatingSidebar: React.FC<FloatingSidebarProps> = ({
             size="sm"
             style={{
               color: colors.white,
-              padding: spacing.sm,
+              padding: spacing[2],
               minWidth: 'auto',
             }}
             onClick={() => console.log('Settings clicked')}
