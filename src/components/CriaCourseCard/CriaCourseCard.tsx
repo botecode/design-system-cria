@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { Clock, UserCircle, Wrench } from 'phosphor-react';
 import { colors, spacing, radii, shadows, typography } from '../../tokens';
 import { Avatar } from '../Avatar';
+import { AvatarWithName } from '../Avatar';
 import { Typography } from '../Typography';
 
 export interface Instructor {
@@ -242,51 +243,25 @@ export const CriaCourseCard: React.FC<CriaCourseCardProps> = ({
               <div
                 style={{
                   display: 'flex',
-                  flexDirection: 'column',
-                  gap: spacing[1],
+                  flexDirection: 'row',
+                  flexWrap: 'wrap',
+                  gap: spacing[2],
                 }}
               >
                 {course.instructors?.map((instructor) => (
-                  <div
+                  <AvatarWithName
                     key={instructor.id}
+                    name={instructor.name}
+                    size="sm"
+                    variant="outlined"
+                    clickable
+                    avatarProps={{
+                      src: instructor.avatarUrl,
+                      alt: instructor.name,
+                      size: 'sm',
+                    }}
                     onClick={(e) => handleInstructorClick(instructor, e)}
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      padding: `${spacing[1]} ${spacing[2]}`,
-                      borderRadius: radii.full,
-                      fontSize: '12px',
-                      fontWeight: typography.fontWeight.semiBold,
-                      color: colors.primary,
-                      border: `1px solid ${colors.primary}20`,
-                      backgroundColor: colors.primary + '08',
-                      cursor: 'pointer',
-                      transition: 'all 0.2s ease',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = colors.primary + '15';
-                      e.currentTarget.style.borderColor = colors.primary + '40';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = colors.primary + '08';
-                      e.currentTarget.style.borderColor = colors.primary + '20';
-                    }}
-                  >
-                    {instructor.avatarUrl && (
-                      <Avatar
-                        src={instructor.avatarUrl}
-                        alt={instructor.name}
-                        size="sm"
-                        name={instructor.name}
-                        style={{
-                          width: '20px',
-                          height: '20px',
-                          marginRight: spacing[1],
-                        }}
-                      />
-                    )}
-                    {instructor.name}
-                  </div>
+                  />
                 ))}
               </div>
             </div>
@@ -334,8 +309,9 @@ export const CriaCourseCard: React.FC<CriaCourseCardProps> = ({
               <div
                 style={{
                   display: 'flex',
-                  flexDirection: 'column',
-                  gap: spacing[1],
+                  flexDirection: 'row',
+                  flexWrap: 'wrap',
+                  gap: spacing[2],
                 }}
               >
                 {course.tools?.map((tool) => (

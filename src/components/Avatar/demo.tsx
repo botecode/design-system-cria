@@ -706,7 +706,7 @@ export const AvatarDemo: React.FC = () => {
 
             <div>
               <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
-                Course Instructors Example
+                Generic Avatar with Name Examples
               </Typography>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 {[
