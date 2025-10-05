@@ -1,8 +1,8 @@
 /* Backgrounds Component Styles */
 .backgrounds {
-  --background-bg: var(--color-background);
-  --background-text: var(--color-text);
-  --background-border: var(--color-border);
+  --background-bg: var(--cria-background);
+  --background-text: var(--cria-text-primary);
+  --background-border: var(--cria-border-light);
   --background-overlay: rgba(0, 0, 0, 0.1);
   
   position: relative;
@@ -192,49 +192,49 @@
 
 /* Color Schemes */
 .backgrounds--color-primary {
-  --pattern-color: var(--color-primary);
-  --gradient-colors: var(--color-primary), var(--color-primary-dark);
+  --pattern-color: var(--cria-primary);
+  --gradient-colors: var(--cria-primary), var(--cria-primary-dark);
 }
 
 .backgrounds--color-secondary {
-  --pattern-color: var(--color-secondary);
-  --gradient-colors: var(--color-secondary), var(--color-secondary-dark);
+  --pattern-color: var(--cria-secondary);
+  --gradient-colors: var(--cria-secondary), var(--cria-secondary-dark);
 }
 
 .backgrounds--color-neutral {
-  --pattern-color: var(--color-neutral-500);
-  --gradient-colors: var(--color-neutral-100), var(--color-neutral-900);
+  --pattern-color: var(--cria-text-secondary);
+  --gradient-colors: var(--cria-background-light), var(--cria-background-dark);
 }
 
 .backgrounds--color-accent {
-  --pattern-color: var(--color-accent);
-  --gradient-colors: var(--color-accent), var(--color-accent-dark);
+  --pattern-color: var(--cria-primary-light);
+  --gradient-colors: var(--cria-primary-light), var(--cria-primary-darker);
 }
 
 /* Sizes */
 .backgrounds--sm {
   min-height: 100px;
-  padding: var(--spacing-sm);
+  padding: var(--cria-spacing-4);
 }
 
 .backgrounds--md {
   min-height: 200px;
-  padding: var(--spacing-md);
+  padding: var(--cria-spacing-6);
 }
 
 .backgrounds--lg {
   min-height: 300px;
-  padding: var(--spacing-lg);
+  padding: var(--cria-spacing-8);
 }
 
 .backgrounds--xl {
   min-height: 400px;
-  padding: var(--spacing-xl);
+  padding: var(--cria-spacing-10);
 }
 
 .backgrounds--full {
   min-height: 100vh;
-  padding: var(--spacing-xl);
+  padding: var(--cria-spacing-10);
 }
 
 /* Intensities */
@@ -305,54 +305,54 @@
   
   .backgrounds--sm {
     min-height: 80px;
-    padding: var(--spacing-xs);
+    padding: var(--cria-spacing-2);
   }
   
   .backgrounds--md {
     min-height: 150px;
-    padding: var(--spacing-sm);
+    padding: var(--cria-spacing-4);
   }
   
   .backgrounds--lg {
     min-height: 200px;
-    padding: var(--spacing-md);
+    padding: var(--cria-spacing-6);
   }
   
   .backgrounds--xl {
     min-height: 250px;
-    padding: var(--spacing-lg);
+    padding: var(--cria-spacing-8);
   }
   
   .backgrounds--full {
     min-height: 100vh;
-    padding: var(--spacing-md);
+    padding: var(--cria-spacing-6);
   }
 }
 
 @media (max-width: 480px) {
   .backgrounds--sm {
     min-height: 60px;
-    padding: var(--spacing-xs);
+    padding: var(--cria-spacing-2);
   }
   
   .backgrounds--md {
     min-height: 120px;
-    padding: var(--spacing-xs);
+    padding: var(--cria-spacing-2);
   }
   
   .backgrounds--lg {
     min-height: 150px;
-    padding: var(--spacing-sm);
+    padding: var(--cria-spacing-4);
   }
   
   .backgrounds--xl {
     min-height: 200px;
-    padding: var(--spacing-md);
+    padding: var(--cria-spacing-6);
   }
   
   .backgrounds--full {
     min-height: 100vh;
-    padding: var(--spacing-sm);
+    padding: var(--cria-spacing-4);
   }
 }
 
@@ -388,7 +388,7 @@
   .backgrounds--pattern,
   .backgrounds--texture {
     background: none !important;
-    background-color: var(--color-background) !important;
+    background-color: var(--cria-background) !important;
   }
   
   .backgrounds__overlay {
@@ -398,7 +398,7 @@
 
 /* Focus Styles */
 .backgrounds:focus {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--cria-primary);
   outline-offset: 2px;
 }
 
@@ -444,6 +444,6 @@
 }
 
 .backgrounds[role="region"]:focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--cria-primary);
   outline-offset: 2px;
 }

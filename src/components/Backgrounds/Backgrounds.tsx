@@ -340,15 +340,15 @@ export const Backgrounds: React.FC<BackgroundsProps> = ({
 function getDefaultGradientColors(colorScheme: string): string[] {
   switch (colorScheme) {
     case 'primary':
-      return ['var(--color-primary)', 'var(--color-primary-dark)'];
+      return ['var(--cria-primary)', 'var(--cria-primary-dark)'];
     case 'secondary':
-      return ['var(--color-secondary)', 'var(--color-secondary-dark)'];
+      return ['var(--cria-secondary)', 'var(--cria-secondary-dark)'];
     case 'neutral':
-      return ['var(--color-neutral-100)', 'var(--color-neutral-900)'];
+      return ['var(--cria-background-light)', 'var(--cria-background-dark)'];
     case 'accent':
-      return ['var(--color-accent)', 'var(--color-accent-dark)'];
+      return ['var(--cria-primary-light)', 'var(--cria-primary-darker)'];
     default:
-      return ['var(--color-primary)', 'var(--color-primary-dark)'];
+      return ['var(--cria-primary)', 'var(--cria-primary-dark)'];
   }
 }
 
@@ -363,15 +363,15 @@ function getDefaultGradientStops(count: number): string[] {
 function getDefaultPatternColor(colorScheme: string): string {
   switch (colorScheme) {
     case 'primary':
-      return 'var(--color-primary)';
+      return 'var(--cria-primary)';
     case 'secondary':
-      return 'var(--color-secondary)';
+      return 'var(--cria-secondary)';
     case 'neutral':
-      return 'var(--color-neutral-500)';
+      return 'var(--cria-text-secondary)';
     case 'accent':
-      return 'var(--color-accent)';
+      return 'var(--cria-primary-light)';
     default:
-      return 'var(--color-primary)';
+      return 'var(--cria-primary)';
   }
 }
 

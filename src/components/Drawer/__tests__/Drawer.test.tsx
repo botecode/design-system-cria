@@ -447,7 +447,7 @@ describe('Drawer', () => {
       render(<Drawer {...defaultProps} />);
       
       const drawer = screen.getByRole('dialog');
-      expect(drawer).toHaveStyle('z-index: 1000');
+      expect(drawer).toHaveStyle('z-index: 9999');
     });
   });
 });
