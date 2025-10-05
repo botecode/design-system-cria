@@ -148,9 +148,18 @@ Input Demos
 
 Output Policy
   • Output only succinct patch diffs or added snippets required to implement.  
-  • If a file doesn’t exist, create it. Prefer TypeScript.  
+  • If a file doesn't exist, create it. Prefer TypeScript.  
   • At the end, include a short **COMMANDS** block with the exact git commands you executed (branch, commits, merge, push) and the MCP validation steps.  
   • Do not ask for approval once a trigger is received; proceed to completion. Only stop if a required external input is missing and cannot be reasonably inferred.
+
+Versioning Policy
+  • After completing a component implementation, update the version using Semantic Versioning:
+    - **Patch** (0.1.0 → 0.1.1): Bug fixes, minor improvements
+    - **Minor** (0.1.0 → 0.2.0): New components, new features
+    - **Major** (0.1.0 → 1.0.0): Breaking changes, major refactors
+  • Use the provided npm scripts: `npm run release:patch`, `npm run release:minor`, or `npm run release:major`
+  • These scripts will automatically update package.json, create a git tag, and push to remote
+  • Include version update in the COMMANDS block: `npm run release:patch` (or appropriate level)
 
 
 ⸻

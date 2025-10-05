@@ -164,6 +164,12 @@ touch src/pages/CriaFlowEditor/index.ts
 - [ ] Page renders without errors
 - [ ] Navigation works correctly
 - [ ] State management functions properly
+
+### Versioning Requirements
+- [ ] Update version using Semantic Versioning after completion
+- [ ] Use appropriate version bump: patch (bug fixes), minor (new features), major (breaking changes)
+- [ ] Run `npm run release:patch` (or appropriate level) to update version and create git tag
+- [ ] Include version update in commit message
 - [ ] Accessibility standards met
 - [ ] Responsive design works
 
