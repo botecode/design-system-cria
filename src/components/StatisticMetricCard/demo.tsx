@@ -5,8 +5,8 @@ import { Button } from '../Button';
 import { Card, CardContent, CardHeader } from '../Card';
 import { 
   Users, 
-  TrendingUp, 
-  TrendingDown, 
+  TrendUp, 
+  TrendDown, 
   CurrencyDollar, 
   ShoppingCart, 
   Eye, 
@@ -122,7 +122,7 @@ const StatisticMetricCardDemo: React.FC = () => {
       id: 'bounce-rate',
       value: '32.1%',
       label: 'Bounce Rate',
-      icon: <TrendingDown size={20} />,
+      icon: <TrendDown size={20} />,
       color: 'warning' as const,
       size: 'sm' as const,
     },
@@ -141,7 +141,7 @@ const StatisticMetricCardDemo: React.FC = () => {
       id: 'revenue-growth',
       value: '+24.5%',
       label: 'Revenue Growth',
-      icon: <TrendingUp size={32} />,
+      icon: <TrendUp size={32} />,
       color: 'success' as const,
       size: 'lg' as const,
       trend: {
@@ -401,7 +401,7 @@ const StatisticMetricCardDemo: React.FC = () => {
               id="error-metric"
               value={0}
               label="Error State"
-              icon={<TrendingDown size={24} />}
+              icon={<TrendDown size={24} />}
               color="error"
               error="Failed to load data"
             />
