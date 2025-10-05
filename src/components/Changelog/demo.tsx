@@ -1,5 +1,6 @@
 import React from 'react';
-import { Changelog, ChangelogEntry } from './Changelog';
+import Changelog from './Changelog';
+import type { ChangelogEntry } from './Changelog';
 import { Typography } from '../Typography';
 import { spacing } from '../../tokens';
 
