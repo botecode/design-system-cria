@@ -41,6 +41,7 @@ export * from './components/Version';
 export * from './components/Topbar';
 export * from './components/Drawer';
 export * from './components/Backgrounds';
+export * from './components/Changelog';
 export * from './components/Chat';
 export * from './components/TextTokens';
 export * from './components/FilterDropdown';

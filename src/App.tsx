@@ -10,8 +10,6 @@ import TagChipDemo from './components/TagChip/demo';
 import TimelineDemo from './components/Timeline/demo';
 import StepperDemo from './components/Stepper/demo';
 import NotificationCenterDemo from './components/NotificationCenter/demo';
-import VersionDemo from './components/Version/demo';
-import { Version } from './components/Version';
 import { Badge } from './components/Badge';
 import TopbarDemo from './components/Topbar/demo';
 import DrawerDemo from './components/Drawer/demo';
@@ -65,11 +63,12 @@ import EventsCardsDemo from './components/EventsCards/demo';
 import TrilhaCardsDemo from './components/TrilhaCards/demo';
 import StatisticMetricCardDemo from './components/StatisticMetricCard/demo';
 import CommandPaletteDemo from './components/CommandPalette/demo';
+import ChangelogDemo from './components/Changelog/demo';
 
 // Import Cartograph font
 import './fonts.css';
 
-type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'textarea' | 'avatar' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tag-chip' | 'timeline' | 'stepper' | 'notification-center' | 'version' | 'topbar' | 'drawer' | 'backgrounds' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group' | 'breadcrumbs' | 'pagination' | 'progress-bar' | 'vertical-tabs' | 'date-picker' | 'file-upload' | 'chat' | 'pie-chart' | 'comments-section' | 'slider' | 'shimmer-skeleton' | 'pricing-page' | 'page-loading-progress' | 'card-selector' | 'floating-sidebar' | 'row-of-cards' | 'search-filters' | 'filter-dropdown' | 'divider' | 'grid' | 'container' | 'scrollbar' | 'footer' | 'mega-menu' | 'carousel' | 'table' | 'empty-state' | 'charts' | 'lesson-cards' | 'course-cards' | 'events-cards' | 'trilha-cards' | 'statistic-metric-card' | 'command-palette';
+type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'textarea' | 'avatar' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tag-chip' | 'timeline' | 'stepper' | 'notification-center' | 'topbar' | 'drawer' | 'backgrounds' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group' | 'breadcrumbs' | 'pagination' | 'progress-bar' | 'vertical-tabs' | 'date-picker' | 'file-upload' | 'chat' | 'pie-chart' | 'comments-section' | 'slider' | 'shimmer-skeleton' | 'pricing-page' | 'page-loading-progress' | 'card-selector' | 'floating-sidebar' | 'row-of-cards' | 'search-filters' | 'filter-dropdown' | 'divider' | 'grid' | 'container' | 'scrollbar' | 'footer' | 'mega-menu' | 'carousel' | 'table' | 'empty-state' | 'charts' | 'lesson-cards' | 'course-cards' | 'events-cards' | 'trilha-cards' | 'statistic-metric-card' | 'command-palette';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<DemoSection>('overview');
@@ -80,7 +79,7 @@ const App: React.FC = () => {
   // Initialize active section from URL hash
   React.useEffect(() => {
     const hash = window.location.hash.slice(1); // Remove the # symbol
-    const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tag-chip', 'timeline', 'stepper', 'notification-center', 'version', 'topbar', 'drawer', 'backgrounds', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'date-picker', 'file-upload', 'chat', 'pie-chart', 'comments-section', 'slider', 'shimmer-skeleton', 'pricing-page', 'page-loading-progress', 'card-selector', 'floating-sidebar', 'row-of-cards', 'search-filters', 'filter-dropdown', 'divider', 'grid', 'container', 'scrollbar', 'footer', 'mega-menu', 'carousel', 'table', 'empty-state', 'charts', 'lesson-cards', 'course-cards', 'events-cards', 'trilha-cards', 'statistic-metric-card', 'command-palette'];
+    const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tag-chip', 'timeline', 'stepper', 'notification-center',  'topbar', 'drawer', 'backgrounds', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'date-picker', 'file-upload', 'chat', 'pie-chart', 'comments-section', 'slider', 'shimmer-skeleton', 'pricing-page', 'page-loading-progress', 'card-selector', 'floating-sidebar', 'row-of-cards', 'search-filters', 'filter-dropdown', 'divider', 'grid', 'container', 'scrollbar', 'footer', 'mega-menu', 'carousel', 'table', 'empty-state', 'charts', 'lesson-cards', 'course-cards', 'events-cards', 'trilha-cards', 'statistic-metric-card', 'command-palette'];
     
     if (hash && validSections.includes(hash as DemoSection)) {
       setActiveSection(hash as DemoSection);
@@ -91,7 +90,7 @@ const App: React.FC = () => {
   React.useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.slice(1);
-      const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tag-chip', 'timeline', 'stepper', 'notification-center', 'version', 'topbar', 'drawer', 'backgrounds', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'date-picker', 'file-upload', 'chat', 'pie-chart', 'comments-section', 'slider', 'shimmer-skeleton', 'pricing-page', 'page-loading-progress', 'card-selector', 'floating-sidebar', 'row-of-cards', 'search-filters', 'filter-dropdown', 'divider', 'grid', 'container', 'scrollbar', 'footer', 'mega-menu', 'carousel', 'table', 'empty-state', 'charts', 'lesson-cards', 'course-cards', 'events-cards', 'trilha-cards', 'statistic-metric-card', 'command-palette'];
+      const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tag-chip', 'timeline', 'stepper', 'notification-center',  'topbar', 'drawer', 'backgrounds', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'date-picker', 'file-upload', 'chat', 'pie-chart', 'comments-section', 'slider', 'shimmer-skeleton', 'pricing-page', 'page-loading-progress', 'card-selector', 'floating-sidebar', 'row-of-cards', 'search-filters', 'filter-dropdown', 'divider', 'grid', 'container', 'scrollbar', 'footer', 'mega-menu', 'carousel', 'table', 'empty-state', 'charts', 'lesson-cards', 'course-cards', 'events-cards', 'trilha-cards', 'statistic-metric-card', 'command-palette'];
       
       if (hash && validSections.includes(hash as DemoSection)) {
         setActiveSection(hash as DemoSection);
@@ -209,7 +208,6 @@ const App: React.FC = () => {
         { id: 'timeline', label: 'Timeline / Activity Feed', href: '#timeline', icon: <List size={20} /> },
         { id: 'stepper', label: 'Stepper / Wizard', href: '#stepper', icon: <CheckSquare size={20} /> },
         { id: 'notification-center', label: 'Notification Center', href: '#notification-center', icon: <Bell size={20} /> },
-        { id: 'version', label: 'Version', href: '#version', icon: <Info size={20} /> },
         { id: 'topbar', label: 'Topbar', href: '#topbar', icon: <List size={20} /> },
         { id: 'drawer', label: 'Drawer', href: '#drawer', icon: <List size={20} /> }
       ]
@@ -306,6 +304,19 @@ const App: React.FC = () => {
                 </div>
               </div>
             </div>
+
+            {/* Changelog Section */}
+            <div style={{ marginTop: '48px' }}>
+              <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+                <Typography variant="title1" weight="bold" style={{ marginBottom: '8px' }}>
+                  📝 Changelog
+                </Typography>
+                <Typography variant="body" style={{ color: '#666' }}>
+                  Stay updated with the latest changes and improvements to CRIA_UI
+                </Typography>
+              </div>
+              <ChangelogDemo />
+            </div>
           </div>
         );
       case 'typography':
@@ -342,8 +353,6 @@ const App: React.FC = () => {
         return <StepperDemo />;
       case 'notification-center':
         return <NotificationCenterDemo />;
-      case 'version':
-        return <VersionDemo />;
       case 'topbar':
         return <TopbarDemo />;
       case 'drawer':
