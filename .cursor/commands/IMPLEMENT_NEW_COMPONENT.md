@@ -96,6 +96,7 @@ git push origin main
   • Search Filters
   • Divider
   • Grid
+  • Container
 
 Input Demos  
   • Basic Inputs — Full Name, Email Address, Phone Number, Date (dd.mm.yyyy)  
@@ -103,7 +104,7 @@ Input Demos
 
 ⸻
 
-🚀 Next Component to Implement: Container / Section
+🚀 Next Component to Implement: Scrollbar (Custom Vertical Scrollbar)
 
 ⸻
 
@@ -113,8 +114,8 @@ Input Demos
 
 • Divider / Separator
 • Grid / Row / Column
-• Container / Section ✅ (Next to implement) — controls max-width, padding, and responsive breakpoints
-• Scrollbar (Custom Vertical Scrollbar)
+• Container / Section
+• Scrollbar (Custom Vertical Scrollbar) ✅ (Next to implement)
 • Footer — global app/site footer
 • Mega Menu — expanded top navigation for marketing or dashboards
 • Carrossel - Using Embla library
