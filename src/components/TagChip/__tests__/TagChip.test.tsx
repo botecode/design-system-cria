@@ -52,16 +52,16 @@ describe('TagChip', () => {
   });
 
   it('renders with different styles', () => {
-    const { rerender } = render(<TagChip label="Filled" style="filled" />);
+    const { rerender } = render(<TagChip label="Filled" visualStyle="filled" />);
     expect(screen.getByText('Filled')).toBeInTheDocument();
 
-    rerender(<TagChip label="Outlined" style="outlined" />);
+    rerender(<TagChip label="Outlined" visualStyle="outlined" />);
     expect(screen.getByText('Outlined')).toBeInTheDocument();
 
-    rerender(<TagChip label="Soft" style="soft" />);
+    rerender(<TagChip label="Soft" visualStyle="soft" />);
     expect(screen.getByText('Soft')).toBeInTheDocument();
 
-    rerender(<TagChip label="Ghost" style="ghost" />);
+    rerender(<TagChip label="Ghost" visualStyle="ghost" />);
     expect(screen.getByText('Ghost')).toBeInTheDocument();
   });
 

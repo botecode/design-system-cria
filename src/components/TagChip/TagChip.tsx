@@ -24,7 +24,7 @@ export interface TagChipProps extends Omit<React.HTMLAttributes<HTMLDivElement>,
    * Visual style of the tag/chip
    * @default 'filled'
    */
-  style?: 'filled' | 'outlined' | 'soft' | 'ghost';
+  visualStyle?: 'filled' | 'outlined' | 'soft' | 'ghost';
   
   /**
    * Icon to display before the label
@@ -91,7 +91,7 @@ export const TagChip = forwardRef<HTMLDivElement, TagChipProps>(({
   label,
   variant = 'default',
   size = 'md',
-  style: styleProp = 'filled',
+  visualStyle: styleProp = 'filled',
   icon,
   clickable = false,
   removable = false,

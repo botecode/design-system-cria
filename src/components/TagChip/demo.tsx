@@ -91,9 +91,9 @@ const TagChipDemo: React.FC = () => {
               Filled (Default)
             </Typography>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
-              <TagChip label="Filled Primary" variant="primary" style="filled" />
-              <TagChip label="Filled Success" variant="success" style="filled" />
-              <TagChip label="Filled Warning" variant="warning" style="filled" />
+              <TagChip label="Filled Primary" variant="primary" visualStyle="filled" />
+              <TagChip label="Filled Success" variant="success" visualStyle="filled" />
+              <TagChip label="Filled Warning" variant="warning" visualStyle="filled" />
             </div>
           </div>
 
@@ -102,9 +102,9 @@ const TagChipDemo: React.FC = () => {
               Outlined
             </Typography>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
-              <TagChip label="Outlined Primary" variant="primary" style="outlined" />
-              <TagChip label="Outlined Success" variant="success" style="outlined" />
-              <TagChip label="Outlined Warning" variant="warning" style="outlined" />
+              <TagChip label="Outlined Primary" variant="primary" visualStyle="outlined" />
+              <TagChip label="Outlined Success" variant="success" visualStyle="outlined" />
+              <TagChip label="Outlined Warning" variant="warning" visualStyle="outlined" />
             </div>
           </div>
 
@@ -113,9 +113,9 @@ const TagChipDemo: React.FC = () => {
               Soft
             </Typography>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
-              <TagChip label="Soft Primary" variant="primary" style="soft" />
-              <TagChip label="Soft Success" variant="success" style="soft" />
-              <TagChip label="Soft Warning" variant="warning" style="soft" />
+              <TagChip label="Soft Primary" variant="primary" visualStyle="soft" />
+              <TagChip label="Soft Success" variant="success" visualStyle="soft" />
+              <TagChip label="Soft Warning" variant="warning" visualStyle="soft" />
             </div>
           </div>
 
@@ -124,9 +124,9 @@ const TagChipDemo: React.FC = () => {
               Ghost
             </Typography>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
-              <TagChip label="Ghost Primary" variant="primary" style="ghost" />
-              <TagChip label="Ghost Success" variant="success" style="ghost" />
-              <TagChip label="Ghost Warning" variant="warning" style="ghost" />
+              <TagChip label="Ghost Primary" variant="primary" visualStyle="ghost" />
+              <TagChip label="Ghost Success" variant="success" visualStyle="ghost" />
+              <TagChip label="Ghost Warning" variant="warning" visualStyle="ghost" />
             </div>
           </div>
         </CardContent>
@@ -182,7 +182,7 @@ const TagChipDemo: React.FC = () => {
                 key={tag}
                 label={tag}
                 variant="primary"
-                style="outlined"
+                visualStyle="outlined"
                 clickable
                 selected={selectedTags.includes(tag)}
                 onClick={() => handleTagClick(tag)}
@@ -263,10 +263,10 @@ const TagChipDemo: React.FC = () => {
               Blog Post Tags
             </Typography>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
-              <TagChip label="React" variant="info" style="soft" />
-              <TagChip label="JavaScript" variant="primary" style="soft" />
-              <TagChip label="Frontend" variant="secondary" style="soft" />
-              <TagChip label="Tutorial" variant="success" style="soft" />
+              <TagChip label="React" variant="info" visualStyle="soft" />
+              <TagChip label="JavaScript" variant="primary" visualStyle="soft" />
+              <TagChip label="Frontend" variant="secondary" visualStyle="soft" />
+              <TagChip label="Tutorial" variant="success" visualStyle="soft" />
             </div>
           </div>
 

@@ -124,6 +124,11 @@ export interface NavigationSidebarProps extends React.HTMLAttributes<HTMLDivElem
   titleHref?: string;
   
   /**
+   * Subtitle or additional content to display below the title
+   */
+  subtitle?: React.ReactNode;
+  
+  /**
    * Visual theme for the sidebar
    */
   theme?: 'default' | 'primary' | 'secondary';
@@ -186,6 +191,7 @@ const Sidebar: React.FC<NavigationSidebarProps> = ({
   showToggle = true,
   title,
   titleHref,
+  subtitle,
   className,
   style,
   theme = 'default',
@@ -288,6 +294,11 @@ const Sidebar: React.FC<NavigationSidebarProps> = ({
                 </Typography>
               )
             )}
+          </div>
+        )}
+        {subtitle && !collapsed && (
+          <div className="cria-sidebar__subtitle-section" style={{ marginTop: '0.5rem' }}>
+            {subtitle}
           </div>
         )}
         {showToggle && (
