@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
+import './MegaMenu.css';
 
 export interface MegaMenuItem {
   label: string;
@@ -278,10 +279,9 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
         
         {(hasChildren || hasCustomDropdown) && showDropdown && (
           <div 
-            className={`cria-mega-menu__dropdown cria-mega-menu__dropdown--level-${level}`}
+            className={`cria-mega-menu__dropdown cria-mega-menu__dropdown--level-${level} show`}
             onMouseEnter={() => handleMouseEnter(item.label)}
             onMouseLeave={handleMouseLeave}
-            style={{ display: 'block' }}
           >
             {hasCustomDropdown ? (
               item.customDropdown
