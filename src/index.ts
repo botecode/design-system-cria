@@ -56,3 +56,4 @@ export { CriaClassroomTrilhaCard } from './components/CriaClassroomTrilhaCard';
 export type { CustomLearning, ClassroomItem as CriaClassroomTrilhaCardItem } from './components/CriaClassroomTrilhaCard';
 export * from './components/RowOfCards';
 export * from './components/SearchFilters';
+export * from './components/Divider';
