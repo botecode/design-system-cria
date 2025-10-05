@@ -39,6 +39,7 @@ export * from './components/Stepper';
 export * from './components/NotificationCenter';
 export * from './components/Version';
 export * from './components/Topbar';
+export * from './components/Drawer';
 export * from './components/Chat';
 export * from './components/TextTokens';
 export * from './components/FilterDropdown';
