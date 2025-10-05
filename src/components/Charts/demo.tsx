@@ -88,51 +88,46 @@ export const ChartsDemo: React.FC = () => {
   ];
 
   return (
-    <div style={{ padding: spacing[6] }}>
-      <div style={{ marginBottom: spacing[8] }}>
-        <Typography variant="title1" style={{ marginBottom: spacing[4] }}>
+    <div style={{ padding: spacing[8] }}>
+      <div style={{ marginBottom: spacing[10] }}>
+        <Typography variant="title1" style={{ marginBottom: spacing[6] }}>
           Charts Components
         </Typography>
-        <Typography variant="body" style={{ color: '#666', marginBottom: spacing[6] }}>
+        <Typography variant="body" style={{ color: '#666', marginBottom: spacing[8] }}>
           Comprehensive chart components built with Recharts and styled with the CRIA design system.
         </Typography>
       </div>
 
-      <Grid>
-        {/* Line Chart */}
-        <Row>
-          <Column>
+      <Grid gap="lg">
+        {/* First Row - 3 Charts */}
+        <Row style={{ marginBottom: spacing[6] }}>
+          <Column span={{ sm: 12, md: 6, lg: 4 }}>
             <LineChart
               title="Sales Trend"
               data={lineData}
+              height={350}
               lines={[
                 { dataKey: 'value', stroke: '#0088FE', name: 'Sales' },
                 { dataKey: 'value2', stroke: '#00C49F', name: 'Revenue' },
               ]}
             />
           </Column>
-        </Row>
-
-        {/* Bar Chart */}
-        <Row>
-          <Column>
+          <Column span={{ sm: 12, md: 6, lg: 4 }}>
             <BarChart
               title="Quarterly Performance"
               data={barData}
+              height={350}
               bars={[
                 { dataKey: 'sales', fill: '#0088FE', name: 'Sales' },
                 { dataKey: 'profit', fill: '#00C49F', name: 'Profit' },
               ]}
             />
           </Column>
-        </Row>
-
-        {/* Stacked Bar Chart */}
-        <Row>
-          <Column>
+          <Column span={{ sm: 12, md: 6, lg: 4 }}>
             <StackedBarChart
               title="Product Usage by Platform"
               data={stackedBarData}
+              height={350}
               bars={[
                 { dataKey: 'desktop', fill: '#0088FE', name: 'Desktop', stackId: 'stack1' },
                 { dataKey: 'mobile', fill: '#00C49F', name: 'Mobile', stackId: 'stack1' },
@@ -141,86 +136,80 @@ export const ChartsDemo: React.FC = () => {
           </Column>
         </Row>
 
-        {/* Area Chart */}
-        <Row>
-          <Column>
+        {/* Second Row - 3 Charts */}
+        <Row style={{ marginBottom: spacing[6] }}>
+          <Column span={{ sm: 12, md: 6, lg: 4 }}>
             <AreaChart
               title="Revenue vs Expenses"
               data={areaData}
+              height={350}
               areas={[
                 { dataKey: 'revenue', fill: '#0088FE', stroke: '#0088FE', name: 'Revenue' },
                 { dataKey: 'expenses', fill: '#00C49F', stroke: '#00C49F', name: 'Expenses' },
               ]}
             />
           </Column>
-        </Row>
-
-        {/* Pie and Donut Charts */}
-        <Row>
-          <Column size={6}>
+          <Column span={{ sm: 12, md: 6, lg: 4 }}>
             <PieChart
               title="Device Distribution"
               data={pieData}
+              height={350}
             />
           </Column>
-          <Column size={6}>
+          <Column span={{ sm: 12, md: 6, lg: 4 }}>
             <DonutChart
               title="Market Share"
               data={pieData}
+              height={350}
             />
           </Column>
         </Row>
 
-        {/* Radar Chart */}
-        <Row>
-          <Column>
+        {/* Third Row - 3 Charts */}
+        <Row style={{ marginBottom: spacing[6] }}>
+          <Column span={{ sm: 12, md: 6, lg: 4 }}>
             <RadarChart
               title="Student Performance"
               data={radarData}
+              height={350}
               radars={[
                 { dataKey: 'A', fill: '#0088FE', stroke: '#0088FE', name: 'Student A' },
                 { dataKey: 'B', fill: '#00C49F', stroke: '#00C49F', name: 'Student B' },
               ]}
             />
           </Column>
-        </Row>
-
-        {/* Scatter Chart */}
-        <Row>
-          <Column>
+          <Column span={{ sm: 12, md: 6, lg: 4 }}>
             <ScatterChart
               title="Data Correlation"
               data={scatterData}
+              height={350}
               scatters={[
                 { dataKey: 'y', fill: '#0088FE', name: 'Data Points' },
               ]}
             />
           </Column>
+          <Column span={{ sm: 12, md: 6, lg: 4 }}>
+            <RadialProgressChart
+              title="Project Progress"
+              data={radialData}
+              height={350}
+            />
+          </Column>
         </Row>
 
-        {/* Composed Chart */}
+        {/* Fourth Row - 1 Full Width Chart */}
         <Row>
-          <Column>
+          <Column span={12}>
             <ComposedChart
               title="Combined Metrics"
               data={composedData}
+              height={400}
               bars={[
                 { dataKey: 'pv', fill: '#8884d8', name: 'Page Views' },
               ]}
               lines={[
                 { dataKey: 'uv', stroke: '#82ca9d', name: 'Unique Visitors' },
               ]}
-            />
-          </Column>
-        </Row>
-
-        {/* Radial Progress Chart */}
-        <Row>
-          <Column>
-            <RadialProgressChart
-              title="Project Progress"
-              data={radialData}
-              height={250}
             />
           </Column>
         </Row>

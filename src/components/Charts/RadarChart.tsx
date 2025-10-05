@@ -10,7 +10,7 @@ import {
   Legend,
 } from 'recharts';
 import { BaseChart } from './BaseChart';
-import { colors } from '../../tokens';
+import { colors, spacing } from '../../tokens';
 
 export interface RadarChartDataPoint {
   subject: string;

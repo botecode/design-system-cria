@@ -27,7 +27,7 @@ export const BaseChart: React.FC<BaseChartProps> = ({
           </Typography>
         </CardHeader>
       )}
-      <CardContent style={{ padding: spacing[4] }}>
+      <CardContent style={{ padding: spacing[6] }}>
         <div style={{ height: `${height}px`, width: '100%' }}>
           {children}
         </div>
