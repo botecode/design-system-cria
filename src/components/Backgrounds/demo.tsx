@@ -459,6 +459,89 @@ const BackgroundsDemo: React.FC = () => {
         </div>
       </Card>
 
+      {/* Modern Backgrounds */}
+      <Card style={{ marginBottom: '32px', padding: '0' }}>
+        <div style={{ padding: '16px', borderBottom: '1px solid var(--color-border)' }}>
+          <Typography variant="h3" weight="semibold">Modern Backgrounds</Typography>
+          <Typography variant="body" color="muted" size="sm">
+            Contemporary background patterns inspired by modern design trends
+          </Typography>
+        </div>
+        <div style={{ padding: '16px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '16px' }}>
+          <Backgrounds 
+            variant="modern" 
+            modernType="radial-glow" 
+            colorScheme="primary" 
+            size="md"
+          >
+            <div style={{ textAlign: 'center', padding: '40px' }}>
+              <Typography variant="h4" weight="semibold" color="white">Radial Glow</Typography>
+              <Typography variant="body" color="white" size="sm">Soft radial gradient</Typography>
+            </div>
+          </Backgrounds>
+          
+          <Backgrounds 
+            variant="modern" 
+            modernType="grid-dots" 
+            colorScheme="secondary" 
+            size="md"
+          >
+            <div style={{ textAlign: 'center', padding: '40px' }}>
+              <Typography variant="h4" weight="semibold" color="white">Grid Dots</Typography>
+              <Typography variant="body" color="white" size="sm">Grid with radial glow</Typography>
+            </div>
+          </Backgrounds>
+          
+          <Backgrounds 
+            variant="modern" 
+            modernType="mesh-gradient" 
+            colorScheme="accent" 
+            size="md"
+          >
+            <div style={{ textAlign: 'center', padding: '40px' }}>
+              <Typography variant="h4" weight="semibold" color="white">Mesh Gradient</Typography>
+              <Typography variant="body" color="white" size="sm">Modern mesh effect</Typography>
+            </div>
+          </Backgrounds>
+          
+          <Backgrounds 
+            variant="modern" 
+            modernType="noise" 
+            colorScheme="primary" 
+            size="md"
+          >
+            <div style={{ textAlign: 'center', padding: '40px' }}>
+              <Typography variant="h4" weight="semibold" color="white">Noise Texture</Typography>
+              <Typography variant="body" color="white" size="sm">Subtle noise pattern</Typography>
+            </div>
+          </Backgrounds>
+          
+          <Backgrounds 
+            variant="modern" 
+            modernType="aurora" 
+            colorScheme="secondary" 
+            size="md"
+          >
+            <div style={{ textAlign: 'center', padding: '40px' }}>
+              <Typography variant="h4" weight="semibold" color="white">Aurora Effect</Typography>
+              <Typography variant="body" color="white" size="sm">Northern lights style</Typography>
+            </div>
+          </Backgrounds>
+          
+          <Backgrounds 
+            variant="modern" 
+            modernType="waves" 
+            colorScheme="accent" 
+            size="md"
+          >
+            <div style={{ textAlign: 'center', padding: '40px' }}>
+              <Typography variant="h4" weight="semibold" color="white">Wave Pattern</Typography>
+              <Typography variant="body" color="white" size="sm">Flowing wave effect</Typography>
+            </div>
+          </Backgrounds>
+        </div>
+      </Card>
+
       {/* Real-world Examples */}
       <Card style={{ marginBottom: '32px', padding: '0' }}>
         <div style={{ padding: '16px', borderBottom: '1px solid var(--color-border)' }}>

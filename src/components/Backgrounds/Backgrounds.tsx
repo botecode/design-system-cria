@@ -9,7 +9,7 @@ export interface BackgroundsProps extends Omit<React.HTMLAttributes<HTMLDivEleme
   /**
    * Background variant
    */
-  variant?: 'plain' | 'gradient' | 'pattern' | 'texture';
+  variant?: 'plain' | 'gradient' | 'pattern' | 'texture' | 'modern';
   
   /**
    * Gradient type
@@ -70,6 +70,11 @@ export interface BackgroundsProps extends Omit<React.HTMLAttributes<HTMLDivEleme
    * Texture scale
    */
   textureScale?: number;
+  
+  /**
+   * Modern background type
+   */
+  modernType?: 'radial-glow' | 'grid-dots' | 'mesh-gradient' | 'noise' | 'aurora' | 'waves';
   
   /**
    * Color scheme
@@ -165,6 +170,7 @@ export const Backgrounds: React.FC<BackgroundsProps> = ({
   textureType = 'paper',
   textureIntensity = 0.5,
   textureScale = 1,
+  modernType = 'radial-glow',
   colorScheme = 'primary',
   size = 'md',
   intensity = 'medium',
@@ -256,6 +262,30 @@ export const Backgrounds: React.FC<BackgroundsProps> = ({
     }
   }, [variant, textureType, textureIntensity, textureScale]);
 
+  // Generate modern background
+  const modernBackground = useMemo(() => {
+    if (variant !== 'modern') return '';
+    
+    const colors = getDefaultGradientColors(colorScheme);
+    
+    switch (modernType) {
+      case 'radial-glow':
+        return `radial-gradient(60% 120% at 50% 50%, hsla(0,0%,100%,0) 0, ${colors[0]}50 100%)`;
+      case 'grid-dots':
+        return `linear-gradient(to right, #4f4f4f2e 1px, transparent 1px), linear-gradient(to bottom, #8080800a 1px, transparent 1px), radial-gradient(circle 400px at 50% 300px, ${colors[0]}36, #000)`;
+      case 'mesh-gradient':
+        return `radial-gradient(125% 125% at 50% 10%, #fff 40%, ${colors[0]} 100%)`;
+      case 'noise':
+        return `radial-gradient(#ffffff33 1px, #00091d 1px), url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`;
+      case 'aurora':
+        return `linear-gradient(45deg, ${colors[0]}20, ${colors[1]}20, ${colors[0]}20), radial-gradient(circle at 20% 50%, ${colors[0]}40, transparent 50%), radial-gradient(circle at 80% 20%, ${colors[1]}40, transparent 50%), radial-gradient(circle at 40% 80%, ${colors[0]}40, transparent 50%)`;
+      case 'waves':
+        return `radial-gradient(circle at 50% 50%, ${colors[0]}20, transparent 50%), radial-gradient(circle at 80% 20%, ${colors[1]}20, transparent 50%), radial-gradient(circle at 20% 80%, ${colors[0]}20, transparent 50%)`;
+      default:
+        return '';
+    }
+  }, [variant, modernType, colorScheme]);
+
   // Build class names
   const backgroundClasses = [
     'backgrounds',
@@ -264,6 +294,7 @@ export const Backgrounds: React.FC<BackgroundsProps> = ({
     variant === 'gradient' && `backgrounds--gradient-${gradientDirection}`,
     variant === 'pattern' && `backgrounds--pattern-${patternType}`,
     variant === 'texture' && `backgrounds--texture-${textureType}`,
+    variant === 'modern' && `backgrounds--modern-${modernType}`,
     `backgrounds--color-${colorScheme}`,
     `backgrounds--${size}`,
     `backgrounds--intensity-${intensity}`,
@@ -292,6 +323,12 @@ export const Backgrounds: React.FC<BackgroundsProps> = ({
       backgroundSize: `${100 * textureScale}%`,
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat'
+    }),
+    ...(variant === 'modern' && modernBackground && { 
+      background: modernBackground,
+      backgroundSize: modernType === 'noise' ? '20px 20px, 100% 100%' : 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: modernType === 'noise' ? 'repeat, no-repeat' : 'no-repeat'
     }),
     ...(animated && {
       animationDuration: `${animationDuration}ms`,
