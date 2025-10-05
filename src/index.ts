@@ -58,3 +58,4 @@ export * from './components/RowOfCards';
 export * from './components/SearchFilters';
 export * from './components/Divider';
 export * from './components/Grid';
+export * from './components/Container';

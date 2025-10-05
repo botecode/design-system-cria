@@ -41,11 +41,12 @@ import { RowOfCardsDemo } from './components/RowOfCards/demo';
 import SearchFiltersDemo from './components/SearchFilters/demo';
 import DividerDemo from './components/Divider/demo';
 import GridDemo from './components/Grid/demo';
+import ContainerDemo from './components/Container/demo';
 
 // Import Cartograph font
 import './fonts.css';
 
-type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'textarea' | 'avatar' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group' | 'breadcrumbs' | 'pagination' | 'progress-bar' | 'vertical-tabs' | 'stepper' | 'date-picker' | 'file-upload' | 'chat' | 'pie-chart' | 'comments-section' | 'slider' | 'shimmer-skeleton' | 'pricing-page' | 'page-loading-progress' | 'card-selector' | 'floating-sidebar' | 'row-of-cards' | 'search-filters' | 'divider' | 'grid';
+type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'textarea' | 'avatar' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group' | 'breadcrumbs' | 'pagination' | 'progress-bar' | 'vertical-tabs' | 'stepper' | 'date-picker' | 'file-upload' | 'chat' | 'pie-chart' | 'comments-section' | 'slider' | 'shimmer-skeleton' | 'pricing-page' | 'page-loading-progress' | 'card-selector' | 'floating-sidebar' | 'row-of-cards' | 'search-filters' | 'divider' | 'grid' | 'container';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<DemoSection>('overview');
@@ -56,7 +57,7 @@ const App: React.FC = () => {
   // Initialize active section from URL hash
   React.useEffect(() => {
     const hash = window.location.hash.slice(1); // Remove the # symbol
-    const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'stepper', 'date-picker', 'file-upload', 'chat', 'pie-chart', 'comments-section', 'slider', 'shimmer-skeleton', 'pricing-page', 'page-loading-progress', 'card-selector', 'floating-sidebar', 'row-of-cards', 'search-filters', 'divider', 'grid'];
+    const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'stepper', 'date-picker', 'file-upload', 'chat', 'pie-chart', 'comments-section', 'slider', 'shimmer-skeleton', 'pricing-page', 'page-loading-progress', 'card-selector', 'floating-sidebar', 'row-of-cards', 'search-filters', 'divider', 'grid', 'container'];
     
     if (hash && validSections.includes(hash as DemoSection)) {
       setActiveSection(hash as DemoSection);
@@ -67,7 +68,7 @@ const App: React.FC = () => {
   React.useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.slice(1);
-      const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'stepper', 'date-picker', 'file-upload', 'chat', 'pie-chart', 'comments-section', 'slider', 'shimmer-skeleton', 'pricing-page', 'page-loading-progress', 'card-selector', 'floating-sidebar', 'row-of-cards', 'search-filters', 'divider', 'grid'];
+      const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'stepper', 'date-picker', 'file-upload', 'chat', 'pie-chart', 'comments-section', 'slider', 'shimmer-skeleton', 'pricing-page', 'page-loading-progress', 'card-selector', 'floating-sidebar', 'row-of-cards', 'search-filters', 'divider', 'grid', 'container'];
       
       if (hash && validSections.includes(hash as DemoSection)) {
         setActiveSection(hash as DemoSection);
@@ -129,6 +130,7 @@ const App: React.FC = () => {
         ,{ id: 'search-filters', label: 'Search Filters', href: '#search-filters', icon: <CaretDown size={20} /> }
         ,{ id: 'divider', label: 'Divider', href: '#divider', icon: <Layout size={20} /> }
         ,{ id: 'grid', label: 'Grid', href: '#grid', icon: <Layout size={20} /> }
+        ,{ id: 'container', label: 'Container', href: '#container', icon: <Layout size={20} /> }
       ]
     },
     { 
@@ -339,6 +341,8 @@ const App: React.FC = () => {
         return <DividerDemo />;
       case 'grid':
         return <GridDemo />;
+      case 'container':
+        return <ContainerDemo />;
       default:
         return <TypographyDemo />;
     }

@@ -1,0 +1,659 @@
+/* Container Component Styles */
+.cria-container {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: var(--cria-spacing-md);
+  box-sizing: border-box;
+}
+
+/* Max width configurations */
+.cria-container--max-width-sm {
+  max-width: 640px;
+}
+
+.cria-container--max-width-md {
+  max-width: 768px;
+}
+
+.cria-container--max-width-lg {
+  max-width: 1024px;
+}
+
+.cria-container--max-width-xl {
+  max-width: 1280px;
+}
+
+.cria-container--max-width-2xl {
+  max-width: 1536px;
+}
+
+.cria-container--max-width-full {
+  max-width: 100%;
+}
+
+/* Padding sizes */
+.cria-container--padding-none {
+  padding: 0;
+}
+
+.cria-container--padding-sm {
+  padding: var(--cria-spacing-sm);
+}
+
+.cria-container--padding-md {
+  padding: var(--cria-spacing-md);
+}
+
+.cria-container--padding-lg {
+  padding: var(--cria-spacing-lg);
+}
+
+.cria-container--padding-xl {
+  padding: var(--cria-spacing-xl);
+}
+
+/* Margin sizes */
+.cria-container--margin-none {
+  margin: 0 auto;
+}
+
+.cria-container--margin-sm {
+  margin: var(--cria-spacing-sm) auto;
+}
+
+.cria-container--margin-md {
+  margin: var(--cria-spacing-md) auto;
+}
+
+.cria-container--margin-lg {
+  margin: var(--cria-spacing-lg) auto;
+}
+
+.cria-container--margin-xl {
+  margin: var(--cria-spacing-xl) auto;
+}
+
+/* Center alignment */
+.cria-container--center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+/* Fluid width */
+.cria-container--fluid {
+  max-width: 100%;
+}
+
+/* Responsive padding */
+.cria-container--padding-sm-sm {
+  padding: var(--cria-spacing-sm);
+}
+
+.cria-container--padding-sm-md {
+  padding: var(--cria-spacing-md);
+}
+
+.cria-container--padding-sm-lg {
+  padding: var(--cria-spacing-lg);
+}
+
+.cria-container--padding-sm-xl {
+  padding: var(--cria-spacing-xl);
+}
+
+.cria-container--padding-sm-none {
+  padding: 0;
+}
+
+.cria-container--padding-md-sm {
+  padding: var(--cria-spacing-sm);
+}
+
+.cria-container--padding-md-md {
+  padding: var(--cria-spacing-md);
+}
+
+.cria-container--padding-md-lg {
+  padding: var(--cria-spacing-lg);
+}
+
+.cria-container--padding-md-xl {
+  padding: var(--cria-spacing-xl);
+}
+
+.cria-container--padding-md-none {
+  padding: 0;
+}
+
+.cria-container--padding-lg-sm {
+  padding: var(--cria-spacing-sm);
+}
+
+.cria-container--padding-lg-md {
+  padding: var(--cria-spacing-md);
+}
+
+.cria-container--padding-lg-lg {
+  padding: var(--cria-spacing-lg);
+}
+
+.cria-container--padding-lg-xl {
+  padding: var(--cria-spacing-xl);
+}
+
+.cria-container--padding-lg-none {
+  padding: 0;
+}
+
+/* Responsive margin */
+.cria-container--margin-sm-none {
+  margin: 0 auto;
+}
+
+.cria-container--margin-sm-sm {
+  margin: var(--cria-spacing-sm) auto;
+}
+
+.cria-container--margin-sm-md {
+  margin: var(--cria-spacing-md) auto;
+}
+
+.cria-container--margin-sm-lg {
+  margin: var(--cria-spacing-lg) auto;
+}
+
+.cria-container--margin-sm-xl {
+  margin: var(--cria-spacing-xl) auto;
+}
+
+.cria-container--margin-md-none {
+  margin: 0 auto;
+}
+
+.cria-container--margin-md-sm {
+  margin: var(--cria-spacing-sm) auto;
+}
+
+.cria-container--margin-md-md {
+  margin: var(--cria-spacing-md) auto;
+}
+
+.cria-container--margin-md-lg {
+  margin: var(--cria-spacing-lg) auto;
+}
+
+.cria-container--margin-md-xl {
+  margin: var(--cria-spacing-xl) auto;
+}
+
+.cria-container--margin-lg-none {
+  margin: 0 auto;
+}
+
+.cria-container--margin-lg-sm {
+  margin: var(--cria-spacing-sm) auto;
+}
+
+.cria-container--margin-lg-md {
+  margin: var(--cria-spacing-md) auto;
+}
+
+.cria-container--margin-lg-lg {
+  margin: var(--cria-spacing-lg) auto;
+}
+
+.cria-container--margin-lg-xl {
+  margin: var(--cria-spacing-xl) auto;
+}
+
+/* Section Component Styles */
+.cria-section {
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* Section variants */
+.cria-section--default {
+  /* Default section styles */
+}
+
+.cria-section--hero {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(135deg, var(--cria-primary) 0%, var(--cria-primary-dark) 100%);
+  color: var(--cria-white);
+}
+
+.cria-section--content {
+  background-color: var(--cria-background);
+  border-radius: var(--cria-radius-lg);
+  box-shadow: var(--cria-shadow-md);
+}
+
+.cria-section--footer {
+  background-color: var(--cria-gray-900);
+  color: var(--cria-white);
+  margin-top: auto;
+}
+
+/* Section sizes */
+.cria-section--size-sm {
+  min-height: 200px;
+}
+
+.cria-section--size-md {
+  min-height: 400px;
+}
+
+.cria-section--size-lg {
+  min-height: 600px;
+}
+
+.cria-section--size-xl {
+  min-height: 800px;
+}
+
+/* Section padding */
+.cria-section--padding-none {
+  padding: 0;
+}
+
+.cria-section--padding-sm {
+  padding: var(--cria-spacing-sm);
+}
+
+.cria-section--padding-md {
+  padding: var(--cria-spacing-md);
+}
+
+.cria-section--padding-lg {
+  padding: var(--cria-spacing-lg);
+}
+
+.cria-section--padding-xl {
+  padding: var(--cria-spacing-xl);
+}
+
+/* Section margin */
+.cria-section--margin-none {
+  margin: 0;
+}
+
+.cria-section--margin-sm {
+  margin: var(--cria-spacing-sm);
+}
+
+.cria-section--margin-md {
+  margin: var(--cria-spacing-md);
+}
+
+.cria-section--margin-lg {
+  margin: var(--cria-spacing-lg);
+}
+
+.cria-section--margin-xl {
+  margin: var(--cria-spacing-xl);
+}
+
+/* Full height */
+.cria-section--full-height {
+  min-height: 100vh;
+}
+
+/* Background colors */
+.cria-section--bg-primary {
+  background-color: var(--cria-primary);
+  color: var(--cria-white);
+}
+
+.cria-section--bg-secondary {
+  background-color: var(--cria-secondary);
+  color: var(--cria-white);
+}
+
+.cria-section--bg-gray {
+  background-color: var(--cria-gray-100);
+  color: var(--cria-gray-900);
+}
+
+.cria-section--bg-white {
+  background-color: var(--cria-white);
+  color: var(--cria-gray-900);
+}
+
+.cria-section--bg-transparent {
+  background-color: transparent;
+}
+
+/* Responsive padding for sections */
+.cria-section--padding-sm-sm {
+  padding: var(--cria-spacing-sm);
+}
+
+.cria-section--padding-sm-md {
+  padding: var(--cria-spacing-md);
+}
+
+.cria-section--padding-sm-lg {
+  padding: var(--cria-spacing-lg);
+}
+
+.cria-section--padding-sm-xl {
+  padding: var(--cria-spacing-xl);
+}
+
+.cria-section--padding-sm-none {
+  padding: 0;
+}
+
+.cria-section--padding-md-sm {
+  padding: var(--cria-spacing-sm);
+}
+
+.cria-section--padding-md-md {
+  padding: var(--cria-spacing-md);
+}
+
+.cria-section--padding-md-lg {
+  padding: var(--cria-spacing-lg);
+}
+
+.cria-section--padding-md-xl {
+  padding: var(--cria-spacing-xl);
+}
+
+.cria-section--padding-md-none {
+  padding: 0;
+}
+
+.cria-section--padding-lg-sm {
+  padding: var(--cria-spacing-sm);
+}
+
+.cria-section--padding-lg-md {
+  padding: var(--cria-spacing-md);
+}
+
+.cria-section--padding-lg-lg {
+  padding: var(--cria-spacing-lg);
+}
+
+.cria-section--padding-lg-xl {
+  padding: var(--cria-spacing-xl);
+}
+
+.cria-section--padding-lg-none {
+  padding: 0;
+}
+
+/* Responsive margin for sections */
+.cria-section--margin-sm-none {
+  margin: 0;
+}
+
+.cria-section--margin-sm-sm {
+  margin: var(--cria-spacing-sm);
+}
+
+.cria-section--margin-sm-md {
+  margin: var(--cria-spacing-md);
+}
+
+.cria-section--margin-sm-lg {
+  margin: var(--cria-spacing-lg);
+}
+
+.cria-section--margin-sm-xl {
+  margin: var(--cria-spacing-xl);
+}
+
+.cria-section--margin-md-none {
+  margin: 0;
+}
+
+.cria-section--margin-md-sm {
+  margin: var(--cria-spacing-sm);
+}
+
+.cria-section--margin-md-md {
+  margin: var(--cria-spacing-md);
+}
+
+.cria-section--margin-md-lg {
+  margin: var(--cria-spacing-lg);
+}
+
+.cria-section--margin-md-xl {
+  margin: var(--cria-spacing-xl);
+}
+
+.cria-section--margin-lg-none {
+  margin: 0;
+}
+
+.cria-section--margin-lg-sm {
+  margin: var(--cria-spacing-sm);
+}
+
+.cria-section--margin-lg-md {
+  margin: var(--cria-spacing-md);
+}
+
+.cria-section--margin-lg-lg {
+  margin: var(--cria-spacing-lg);
+}
+
+.cria-section--margin-lg-xl {
+  margin: var(--cria-spacing-xl);
+}
+
+/* Responsive breakpoints */
+@media (max-width: 640px) {
+  .cria-container {
+    padding: var(--cria-spacing-sm);
+    max-width: 100%;
+  }
+  
+  .cria-container--max-width-sm,
+  .cria-container--max-width-md,
+  .cria-container--max-width-lg,
+  .cria-container--max-width-xl,
+  .cria-container--max-width-2xl {
+    max-width: 100%;
+    padding: var(--cria-spacing-sm);
+  }
+  
+  .cria-section {
+    padding: var(--cria-spacing-sm);
+  }
+  
+  .cria-section--size-sm {
+    min-height: 150px;
+  }
+  
+  .cria-section--size-md {
+    min-height: 250px;
+  }
+  
+  .cria-section--size-lg {
+    min-height: 350px;
+  }
+  
+  .cria-section--size-xl {
+    min-height: 450px;
+  }
+  
+  .cria-section--hero {
+    min-height: 50vh;
+    padding: var(--cria-spacing-md);
+  }
+  
+  /* Override responsive padding on mobile */
+  .cria-container--padding-sm-sm,
+  .cria-container--padding-sm-md,
+  .cria-container--padding-sm-lg,
+  .cria-container--padding-sm-xl,
+  .cria-container--padding-md-sm,
+  .cria-container--padding-md-md,
+  .cria-container--padding-md-lg,
+  .cria-container--padding-md-xl,
+  .cria-container--padding-lg-sm,
+  .cria-container--padding-lg-md,
+  .cria-container--padding-lg-lg,
+  .cria-container--padding-lg-xl {
+    padding: var(--cria-spacing-sm);
+  }
+  
+  .cria-section--padding-sm-sm,
+  .cria-section--padding-sm-md,
+  .cria-section--padding-sm-lg,
+  .cria-section--padding-sm-xl,
+  .cria-section--padding-md-sm,
+  .cria-section--padding-md-md,
+  .cria-section--padding-md-lg,
+  .cria-section--padding-md-xl,
+  .cria-section--padding-lg-sm,
+  .cria-section--padding-lg-md,
+  .cria-section--padding-lg-lg,
+  .cria-section--padding-lg-xl {
+    padding: var(--cria-spacing-sm);
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  .cria-container {
+    padding: var(--cria-spacing-md);
+  }
+  
+  .cria-container--max-width-md {
+    max-width: 100%;
+  }
+  
+  .cria-section {
+    padding: var(--cria-spacing-md);
+  }
+  
+  .cria-section--hero {
+    min-height: 55vh;
+  }
+  
+  /* Apply responsive padding for medium screens */
+  .cria-container--padding-sm-sm { padding: var(--cria-spacing-sm); }
+  .cria-container--padding-sm-md { padding: var(--cria-spacing-md); }
+  .cria-container--padding-sm-lg { padding: var(--cria-spacing-lg); }
+  .cria-container--padding-sm-xl { padding: var(--cria-spacing-xl); }
+  .cria-container--padding-md-sm { padding: var(--cria-spacing-sm); }
+  .cria-container--padding-md-md { padding: var(--cria-spacing-md); }
+  .cria-container--padding-md-lg { padding: var(--cria-spacing-lg); }
+  .cria-container--padding-md-xl { padding: var(--cria-spacing-xl); }
+  .cria-container--padding-lg-sm { padding: var(--cria-spacing-sm); }
+  .cria-container--padding-lg-md { padding: var(--cria-spacing-md); }
+  .cria-container--padding-lg-lg { padding: var(--cria-spacing-lg); }
+  .cria-container--padding-lg-xl { padding: var(--cria-spacing-xl); }
+  
+  .cria-section--padding-sm-sm { padding: var(--cria-spacing-sm); }
+  .cria-section--padding-sm-md { padding: var(--cria-spacing-md); }
+  .cria-section--padding-sm-lg { padding: var(--cria-spacing-lg); }
+  .cria-section--padding-sm-xl { padding: var(--cria-spacing-xl); }
+  .cria-section--padding-md-sm { padding: var(--cria-spacing-sm); }
+  .cria-section--padding-md-md { padding: var(--cria-spacing-md); }
+  .cria-section--padding-md-lg { padding: var(--cria-spacing-lg); }
+  .cria-section--padding-md-xl { padding: var(--cria-spacing-xl); }
+  .cria-section--padding-lg-sm { padding: var(--cria-spacing-sm); }
+  .cria-section--padding-lg-md { padding: var(--cria-spacing-md); }
+  .cria-section--padding-lg-lg { padding: var(--cria-spacing-lg); }
+  .cria-section--padding-lg-xl { padding: var(--cria-spacing-xl); }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .cria-container {
+    padding: var(--cria-spacing-md);
+  }
+  
+  .cria-container--max-width-lg {
+    max-width: 100%;
+  }
+  
+  .cria-section {
+    padding: var(--cria-spacing-lg);
+  }
+  
+  .cria-section--hero {
+    min-height: 60vh;
+  }
+  
+  /* Apply responsive padding for large screens */
+  .cria-container--padding-lg-sm { padding: var(--cria-spacing-sm); }
+  .cria-container--padding-lg-md { padding: var(--cria-spacing-md); }
+  .cria-container--padding-lg-lg { padding: var(--cria-spacing-lg); }
+  .cria-container--padding-lg-xl { padding: var(--cria-spacing-xl); }
+  
+  .cria-section--padding-lg-sm { padding: var(--cria-spacing-sm); }
+  .cria-section--padding-lg-md { padding: var(--cria-spacing-md); }
+  .cria-section--padding-lg-lg { padding: var(--cria-spacing-lg); }
+  .cria-section--padding-lg-xl { padding: var(--cria-spacing-xl); }
+}
+
+@media (min-width: 1025px) {
+  .cria-container {
+    padding: var(--cria-spacing-lg);
+  }
+  
+  .cria-section {
+    padding: var(--cria-spacing-xl);
+  }
+  
+  .cria-section--hero {
+    min-height: 70vh;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .cria-container,
+  .cria-section {
+    border: 1px solid var(--cria-gray-300);
+  }
+  
+  .cria-section--hero {
+    background: var(--cria-primary-dark);
+  }
+  
+  .cria-section--bg-primary {
+    background-color: var(--cria-primary-dark);
+  }
+  
+  .cria-section--bg-secondary {
+    background-color: var(--cria-secondary-dark);
+  }
+}
+
+/* Focus styles for accessibility */
+.cria-container:focus-visible,
+.cria-section:focus-visible {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+  .cria-container,
+  .cria-section {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+  
+  .cria-section--hero {
+    background: transparent !important;
+    color: var(--cria-gray-900) !important;
+  }
+}
