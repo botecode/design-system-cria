@@ -14,7 +14,7 @@ import {
   Star,
   Activity,
   Target,
-  Zap,
+  Lightning,
   Globe
 } from 'phosphor-react';
 
@@ -283,42 +283,42 @@ const StatisticMetricCardDemo: React.FC = () => {
               id="primary-metric"
               value="Primary"
               label="Primary Color"
-              icon={<Zap size={20} />}
+              icon={<Lightning size={20} />}
               color="primary"
             />
             <StatisticMetricCard
               id="secondary-metric"
               value="Secondary"
               label="Secondary Color"
-              icon={<Zap size={20} />}
+              icon={<Lightning size={20} />}
               color="secondary"
             />
             <StatisticMetricCard
               id="success-metric"
               value="Success"
               label="Success Color"
-              icon={<Zap size={20} />}
+              icon={<Lightning size={20} />}
               color="success"
             />
             <StatisticMetricCard
               id="warning-metric"
               value="Warning"
               label="Warning Color"
-              icon={<Zap size={20} />}
+              icon={<Lightning size={20} />}
               color="warning"
             />
             <StatisticMetricCard
               id="error-metric"
               value="Error"
               label="Error Color"
-              icon={<Zap size={20} />}
+              icon={<Lightning size={20} />}
               color="error"
             />
             <StatisticMetricCard
               id="info-metric"
               value="Info"
               label="Info Color"
-              icon={<Zap size={20} />}
+              icon={<Lightning size={20} />}
               color="info"
             />
           </div>
