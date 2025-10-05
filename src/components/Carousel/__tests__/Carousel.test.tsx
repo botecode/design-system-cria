@@ -17,9 +17,21 @@ const mockEmblaApi = {
   destroy: jest.fn(),
 };
 
-jest.mock('embla-carousel-react', () => ({
-  useEmblaCarousel: () => [jest.fn(), mockEmblaApi],
-}));
+// Mock the entire embla-carousel-react module
+jest.mock('embla-carousel-react', () => {
+  const mockEmblaRef = jest.fn();
+  return {
+    __esModule: true,
+    default: jest.fn(() => [mockEmblaRef, mockEmblaApi]),
+  };
+});
+
+jest.mock('embla-carousel-autoplay', () => {
+  return {
+    __esModule: true,
+    default: jest.fn(() => []),
+  };
+});
 
 // Mock Phosphor icons
 jest.mock('phosphor-react', () => ({
