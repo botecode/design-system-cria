@@ -116,6 +116,7 @@ Input Demos
 • Scrollbar (Custom Vertical Scrollbar)
 • Footer — global app/site footer
 • Mega Menu — expanded top navigation for marketing or dashboards
+• Carrossel - Using Embla library
 
 📊 Data Display
 
