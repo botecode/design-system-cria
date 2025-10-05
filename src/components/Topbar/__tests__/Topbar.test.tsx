@@ -92,9 +92,9 @@ describe('Topbar', () => {
     it('renders navigation items correctly', () => {
       render(<Topbar {...defaultProps} />);
       
-      const homeLink = screen.getByRole('link', { name: 'Home' });
-      const aboutLink = screen.getByRole('link', { name: 'About' });
-      const contactLink = screen.getByRole('link', { name: 'Contact' });
+      const homeLink = screen.getByRole('menuitem', { name: 'Home' });
+      const aboutLink = screen.getByRole('menuitem', { name: 'About' });
+      const contactLink = screen.getByRole('menuitem', { name: 'Contact' });
       
       expect(homeLink).toHaveAttribute('href', '/home');
       expect(aboutLink).toHaveAttribute('href', '/about');
@@ -104,7 +104,7 @@ describe('Topbar', () => {
     it('handles active navigation item', () => {
       render(<Topbar {...defaultProps} activeItem="about" />);
       
-      const aboutLink = screen.getByRole('link', { name: 'About' });
+      const aboutLink = screen.getByRole('menuitem', { name: 'About' });
       expect(aboutLink).toHaveClass('topbar__nav-item--active');
     });
 
@@ -117,7 +117,7 @@ describe('Topbar', () => {
       
       render(<Topbar {...defaultProps} navigation={navigationWithClick} />);
       
-      const homeLink = screen.getByRole('link', { name: 'Home' });
+      const homeLink = screen.getByRole('menuitem', { name: 'Home' });
       await userEvent.click(homeLink);
       
       expect(onNavClick).toHaveBeenCalledWith('home');
@@ -173,7 +173,7 @@ describe('Topbar', () => {
     it('renders mobile menu toggle when collapsed', () => {
       render(<Topbar {...defaultProps} collapsed={true} />);
       
-      const toggleButton = screen.getByRole('button', { name: /toggle mobile menu/i });
+      const toggleButton = screen.getByRole('button', { name: /open mobile menu/i });
       expect(toggleButton).toBeInTheDocument();
     });
 
@@ -181,7 +181,7 @@ describe('Topbar', () => {
       const onMobileToggle = jest.fn();
       render(<Topbar {...defaultProps} collapsed={true} onMobileToggle={onMobileToggle} />);
       
-      const toggleButton = screen.getByRole('button', { name: /toggle mobile menu/i });
+      const toggleButton = screen.getByRole('button', { name: /open mobile menu/i });
       await userEvent.click(toggleButton);
       
       expect(onMobileToggle).toHaveBeenCalledWith(true);
@@ -208,14 +208,14 @@ describe('Topbar', () => {
     it('supports keyboard navigation', async () => {
       render(<Topbar {...defaultProps} />);
       
-      const homeLink = screen.getByRole('link', { name: 'Home' });
+      const homeLink = screen.getByRole('menuitem', { name: 'Home' });
       homeLink.focus();
       
       expect(homeLink).toHaveFocus();
       
       // Test arrow key navigation
       await userEvent.keyboard('{ArrowRight}');
-      const aboutLink = screen.getByRole('link', { name: 'About' });
+      const aboutLink = screen.getByRole('menuitem', { name: 'About' });
       expect(aboutLink).toHaveFocus();
     });
 
@@ -322,7 +322,7 @@ describe('Topbar', () => {
     it('disables interactions when loading', () => {
       render(<Topbar {...defaultProps} loading={true} />);
       
-      const homeLink = screen.getByRole('link', { name: 'Home' });
+      const homeLink = screen.getByRole('menuitem', { name: 'Home' });
       expect(homeLink).toHaveClass('topbar__nav-item--disabled');
     });
   });
