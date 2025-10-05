@@ -7,7 +7,7 @@ describe('Phosphor React Icons', () => {
     // This test will fail if any of these icons don't exist in phosphor-react
     const icons = [
       'Gear', // Settings replacement
-      'Menu',
+      'List',
       'User',
       'Bell',
       'Search',
@@ -63,7 +63,7 @@ describe('Phosphor React Icons', () => {
     const deprecatedIcons = [
       'Settings', // Should use 'Gear' instead
       'Edit', // Should use 'Pencil' instead
-      'Menu', // Should use 'List' instead (but Menu is still valid)
+      'Menu', // Should use 'List' instead
       'AlertCircle', // Should use 'WarningCircle' instead
       'MessageCircle', // Should use 'ChatCircle' instead
       'DollarSign', // Should use 'CurrencyDollar' instead

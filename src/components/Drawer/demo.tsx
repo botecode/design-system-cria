@@ -8,7 +8,7 @@ import { Textarea } from '../Textarea';
 import { Switch } from '../Switch';
 import { Badge } from '../Badge';
 import { 
-  Menu, 
+  List, 
   Gear, 
   User, 
   ShoppingCart, 
@@ -104,7 +104,7 @@ const DrawerDemo: React.FC = () => {
         </div>
         <div style={{ padding: '16px', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           <Button onClick={() => openDrawer('left')}>
-            <Menu size={16} />
+            <List size={16} />
             Left Drawer
           </Button>
           <Button onClick={() => openDrawer('right')}>

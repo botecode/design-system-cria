@@ -10,7 +10,7 @@ import {
   User, 
   Bell, 
   Search, 
-  Menu, 
+  List, 
   X,
   Gear,
   UserCircle,
