@@ -15,20 +15,27 @@
 
 .pr-list__loading {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: var(--cria-spacing-8);
+}
+
+.pr-list__loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: var(--cria-spacing-4);
 }
 
 .pr-list__loading-spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid var(--agent-dev-border);
-  border-top: 3px solid var(--agent-dev-accent);
-  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pr-list__spinner-icon {
   animation: spin 1s linear infinite;
+  color: var(--agent-dev-accent);
 }
 
 @keyframes spin {

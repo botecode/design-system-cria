@@ -43,7 +43,7 @@ export * from './components/Drawer';
 export * from './components/Backgrounds';
 export * from './components/Changelog';
 export * from './components/Chat';
-export * from './components/AgentDev';
+export * from './app/views/AgentDev';
 export * from './components/TextTokens';
 export * from './components/FilterDropdown';
 // export * from './components/CommentsSection'; // Temporarily disabled due to build errors

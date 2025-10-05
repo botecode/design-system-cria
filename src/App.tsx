@@ -62,8 +62,8 @@ import TrilhaCardsDemo from './components/TrilhaCards/demo';
 import StatisticMetricCardDemo from './components/StatisticMetricCard/demo';
 import CommandPaletteDemo from './components/CommandPalette/demo';
 import ChangelogDemo from './components/Changelog/demo';
-import AgentDevDemo from './components/AgentDev/demo';
-import { AgentDev } from './components/AgentDev';
+import AgentDevDemo from './app/views/AgentDev/demo';
+import { AgentDev } from './app/views/AgentDev';
 
 // Import Cartograph font
 import './fonts.css';

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Typography } from '../../Typography';
-import { Badge } from '../../Badge';
-import { Button } from '../../Button';
+import { Typography } from '../../../components/Typography';
+import { Badge } from '../../../components/Badge';
+import { Button } from '../../../components/Button';
 import { GitHubPR } from '../hooks/useGitHubPRs';
 import { GitBranch, Calendar, User, ExternalLink, CheckCircle, XCircle, Clock } from 'phosphor-react';
 import { spacing } from '../../../tokens';
@@ -94,10 +94,14 @@ export const PRList: React.FC<PRListProps> = ({
           )}
         </div>
         <div className="pr-list__loading">
-          <div className="pr-list__loading-spinner"></div>
-          <Typography variant="body" color="muted">
-            Carregando PRs...
-          </Typography>
+          <div className="pr-list__loading-content">
+            <div className="pr-list__loading-spinner">
+              <Clock size={24} className="pr-list__spinner-icon" />
+            </div>
+            <Typography variant="body" color="muted">
+              Carregando PRs...
+            </Typography>
+          </div>
         </div>
       </div>
     );

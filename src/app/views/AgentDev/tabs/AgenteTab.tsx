@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { Typography } from '../../Typography';
-import { Button } from '../../Button';
-import { Badge } from '../../Badge';
+import { Typography } from '../../../components/Typography';
+import { Button } from '../../../components/Button';
+import { Badge } from '../../../components/Badge';
 import { PRList } from '../components/PRList';
 import { useGitHubPRs } from '../hooks/useGitHubPRs';
 import { Refresh, GithubLogo, AlertCircle, CheckCircle, XCircle } from 'phosphor-react';

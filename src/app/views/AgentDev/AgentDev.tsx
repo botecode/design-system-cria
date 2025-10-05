@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from 'react';
-import { Drawer } from '../Drawer';
-import { Typography } from '../Typography';
-import { Button } from '../Button';
-import { Badge } from '../Badge';
+import { Drawer } from '../../components/Drawer';
+import { Typography } from '../../components/Typography';
+import { Button } from '../../components/Button';
+import { Badge } from '../../components/Badge';
 import { AgenteTab } from './tabs';
 import { Robot, X, Plus, Wrench, Code } from 'phosphor-react';
 import { spacing } from '../../tokens';
