@@ -60,6 +60,8 @@ git push origin main
 
 ✅ Already Implemented
   • Typography  
+  Grid / Row / Column (For responsive content alignment
+
   • Colors  
   • Button  
   • Input  
@@ -90,6 +92,7 @@ git push origin main
   • Pricing Page
   • Page Loading Progress
   • Card Selector
+  • Row of Cards
 
 Input Demos  
   • Basic Inputs — Full Name, Email Address, Phone Number, Date (dd.mm.yyyy)  
@@ -97,30 +100,66 @@ Input Demos
 
 ⸻
 
-🚀 Next Component to Implement: Row of cards
+🚀 Next Component to Implement: Search Filters
 
-**Implement the Row of cards component immediately**, using **design tokens** and DS primitives.  
+**Implement the Search Filters component immediately**, using **design tokens** and DS primitives.  
 Include a **demo page** and **sidebar entry**. Validate with **Chrome MCP**. Commit on a **feature branch** and **merge into main** per Git rules above. Update this file afterward.
 
 Required Features
-  • Configurable per-page before pagination  
-  • Card-based layout with responsive design  
-  • Integration with existing Card component  
-  • Token-based colors, typography, and spacing  
-  • A11y: proper navigation and screen reader support  
+  • Multiple filter types (text, select, checkbox, date range)  
+  • Filter combination logic (AND/OR operations)  
+  • Clear all filters functionality  
+  • Responsive design with collapsible mobile layout  
+  • Token-based styling with design system integration  
+  • A11y: proper keyboard navigation and screen reader support  
 
 Required Tests
-  • Renders with correct card layout  
-  • Pagination functionality works properly  
-  • A11y: navigation information announced to screen readers
+  • Renders with different filter types  
+  • Filter logic works correctly  
+  • A11y: filter controls are accessible to screen readers
 
 ⸻
 
 ⬜ Upcoming Components
-  • Search Filters
-  • Vertical scrollbar
-  • Subscription Management (Web)
-  • Dark mode - foundation (with top-right toggle)
+
+🧭 Navigation & Layout
+
+• Divider / Separator
+• Grid / Row / Column — for responsive content alignment
+• Container / Section — controls max-width, padding, and responsive breakpoints
+• Scrollbar (Custom Vertical Scrollbar)
+• Tabs (Horizontal)
+• Footer — global app/site footer
+• Mega Menu — expanded top navigation for marketing or dashboards
+
+📊 Data Display
+
+• Table / DataGrid — tabular data with sorting and pagination
+• Empty State / Placeholder — communicates “no data yet”
+• Statistic / Metric Card — dashboard value + label + trend (reuses Card + Typography)
+• Tag / Chip — inline labels (e.g., “New”, “Beta”, “Music”)
+• Timeline / Activity Feed — sequential events or updates
+
+✨ Interaction & Feedback
+
+• Stepper / Wizard — guides users through multi-step flows
+• Notification Center — stacked toasts and global alerts
+
+🧱 Theming & Foundation
+
+• Dark Mode — foundation with top-right toggle
+• Dark Mode Provider — manages token/theme switching
+
+💰 Product & Subscription
+
+• Subscription Management (Web)
+• Subscription Management Page — unified page for plan and billing
+• Billing Summary / Payment Card — shows next payment or balance
+• Plan Selector — visual comparison between pricing tiers
+
+🧩 Marketing & Compositional
+
+• Hero Section — large title, subtitle, CTA, and optional image
 
 ⸻
 
