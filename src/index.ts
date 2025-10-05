@@ -65,3 +65,4 @@ export * from './components/MegaMenu';
 export * from './components/Carousel';
 export * from './components/Table';
 export * from './components/EmptyState';
+export * from './components/Charts';

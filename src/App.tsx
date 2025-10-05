@@ -48,11 +48,12 @@ import MegaMenuDemo from './components/MegaMenu/demo';
 import CarouselDemo from './components/Carousel/demo';
 import TableDemo from './components/Table/demo';
 import EmptyStateDemo from './components/EmptyState/demo';
+import ChartsDemo from './components/Charts/demo';
 
 // Import Cartograph font
 import './fonts.css';
 
-type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'textarea' | 'avatar' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group' | 'breadcrumbs' | 'pagination' | 'progress-bar' | 'vertical-tabs' | 'stepper' | 'date-picker' | 'file-upload' | 'chat' | 'pie-chart' | 'comments-section' | 'slider' | 'shimmer-skeleton' | 'pricing-page' | 'page-loading-progress' | 'card-selector' | 'floating-sidebar' | 'row-of-cards' | 'search-filters' | 'divider' | 'grid' | 'container' | 'scrollbar' | 'footer' | 'mega-menu' | 'carousel' | 'table' | 'empty-state';
+type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'textarea' | 'avatar' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group' | 'breadcrumbs' | 'pagination' | 'progress-bar' | 'vertical-tabs' | 'stepper' | 'date-picker' | 'file-upload' | 'chat' | 'pie-chart' | 'comments-section' | 'slider' | 'shimmer-skeleton' | 'pricing-page' | 'page-loading-progress' | 'card-selector' | 'floating-sidebar' | 'row-of-cards' | 'search-filters' | 'divider' | 'grid' | 'container' | 'scrollbar' | 'footer' | 'mega-menu' | 'carousel' | 'table' | 'empty-state' | 'charts';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<DemoSection>('overview');
@@ -63,7 +64,7 @@ const App: React.FC = () => {
   // Initialize active section from URL hash
   React.useEffect(() => {
     const hash = window.location.hash.slice(1); // Remove the # symbol
-    const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'stepper', 'date-picker', 'file-upload', 'chat', 'pie-chart', 'comments-section', 'slider', 'shimmer-skeleton', 'pricing-page', 'page-loading-progress', 'card-selector', 'floating-sidebar', 'row-of-cards', 'search-filters', 'divider', 'grid', 'container', 'scrollbar', 'footer', 'mega-menu', 'carousel', 'table', 'empty-state'];
+    const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'stepper', 'date-picker', 'file-upload', 'chat', 'pie-chart', 'comments-section', 'slider', 'shimmer-skeleton', 'pricing-page', 'page-loading-progress', 'card-selector', 'floating-sidebar', 'row-of-cards', 'search-filters', 'divider', 'grid', 'container', 'scrollbar', 'footer', 'mega-menu', 'carousel', 'table', 'empty-state', 'charts'];
     
     if (hash && validSections.includes(hash as DemoSection)) {
       setActiveSection(hash as DemoSection);
@@ -74,7 +75,7 @@ const App: React.FC = () => {
   React.useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.slice(1);
-      const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'stepper', 'date-picker', 'file-upload', 'chat', 'pie-chart', 'comments-section', 'slider', 'shimmer-skeleton', 'pricing-page', 'page-loading-progress', 'card-selector', 'floating-sidebar', 'row-of-cards', 'search-filters', 'divider', 'grid', 'container', 'scrollbar', 'footer', 'mega-menu', 'carousel', 'table', 'empty-state'];
+      const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'stepper', 'date-picker', 'file-upload', 'chat', 'pie-chart', 'comments-section', 'slider', 'shimmer-skeleton', 'pricing-page', 'page-loading-progress', 'card-selector', 'floating-sidebar', 'row-of-cards', 'search-filters', 'divider', 'grid', 'container', 'scrollbar', 'footer', 'mega-menu', 'carousel', 'table', 'empty-state', 'charts'];
       
       if (hash && validSections.includes(hash as DemoSection)) {
         setActiveSection(hash as DemoSection);
@@ -160,7 +161,7 @@ const App: React.FC = () => {
         { id: 'progress-bar', label: 'Progress Bar', href: '#progress-bar', icon: <List size={20} /> },
         { id: 'stepper', label: 'Stepper', href: '#stepper', icon: <List size={20} /> },
         { id: 'date-picker', label: 'Date Picker', href: '#date-picker', icon: <List size={20} /> },
-        { id: 'pie-chart', label: 'Charts', href: '#pie-chart', icon: <List size={20} /> }
+        { id: 'charts', label: 'Charts', href: '#charts', icon: <List size={20} /> }
       ]
     },
     { 
@@ -323,14 +324,8 @@ const App: React.FC = () => {
         return <FileUploadDemo />;
       case 'chat':
         return <ChatDemo />;
-      case 'pie-chart':
-        return (
-          <div>
-            <PieChartDemo />
-            <div style={{ height: 24 }} />
-            <LineChartDemo />
-          </div>
-        );
+      case 'charts':
+        return <ChartsDemo />;
       case 'comments-section':
         return <CommentsSectionDemo />;
       case 'slider':
