@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Typography } from '../Typography';
-import { Avatar, AvatarUpload } from './index';
+import { Avatar, AvatarUpload, AvatarWithName } from './index';
 import { Card, CardContent, CardHeader, CardFooter } from '../Card';
 import { User, UserCircle, UserMinus, UserPlus, CheckCircle, X } from 'phosphor-react';
 
@@ -562,6 +562,173 @@ export const AvatarDemo: React.FC = () => {
                       </Typography>
                     </div>
                   </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Avatar with Name */}
+      <Card style={{ marginBottom: '32px' }}>
+        <CardHeader>
+          <Typography variant="h3">Avatar with Name</Typography>
+        </CardHeader>
+        <CardContent>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+                Basic Examples
+              </Typography>
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+                <AvatarWithName
+                  name="Sarah Wilson"
+                  avatarProps={{
+                    src: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+                    alt: "Sarah Wilson"
+                  }}
+                />
+                <AvatarWithName
+                  name="David Brown"
+                  avatarProps={{
+                    src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+                    alt: "David Brown"
+                  }}
+                />
+                <AvatarWithName
+                  name="Emily Johnson"
+                  avatarProps={{
+                    initials: "EJ",
+                    backgroundColor: "#7566A1",
+                    textColor: "#ffffff"
+                  }}
+                />
+              </div>
+            </div>
+
+            <div>
+              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+                Size Variants
+              </Typography>
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+                <AvatarWithName
+                  name="Small Size"
+                  size="sm"
+                  avatarProps={{
+                    initials: "SM",
+                    backgroundColor: "#4ecdc4",
+                    textColor: "#ffffff"
+                  }}
+                />
+                <AvatarWithName
+                  name="Medium Size"
+                  size="md"
+                  avatarProps={{
+                    initials: "MD",
+                    backgroundColor: "#45b7d1",
+                    textColor: "#ffffff"
+                  }}
+                />
+                <AvatarWithName
+                  name="Large Size"
+                  size="lg"
+                  avatarProps={{
+                    initials: "LG",
+                    backgroundColor: "#f9ca24",
+                    textColor: "#333333"
+                  }}
+                />
+              </div>
+            </div>
+
+            <div>
+              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+                Style Variants
+              </Typography>
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+                <AvatarWithName
+                  name="Default Style"
+                  variant="default"
+                  avatarProps={{
+                    initials: "DF",
+                    backgroundColor: "#ff6b6b",
+                    textColor: "#ffffff"
+                  }}
+                />
+                <AvatarWithName
+                  name="Outlined Style"
+                  variant="outlined"
+                  avatarProps={{
+                    initials: "OL",
+                    backgroundColor: "#4ecdc4",
+                    textColor: "#ffffff"
+                  }}
+                />
+                <AvatarWithName
+                  name="Filled Style"
+                  variant="filled"
+                  avatarProps={{
+                    initials: "FL",
+                    backgroundColor: "#45b7d1",
+                    textColor: "#ffffff"
+                  }}
+                />
+              </div>
+            </div>
+
+            <div>
+              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+                Interactive Examples
+              </Typography>
+              <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+                <AvatarWithName
+                  name="Clickable User"
+                  clickable
+                  avatarProps={{
+                    src: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+                    alt: "Clickable User"
+                  }}
+                  onClick={() => alert('User clicked!')}
+                />
+                <AvatarWithName
+                  name="Team Member"
+                  clickable
+                  variant="outlined"
+                  avatarProps={{
+                    initials: "TM",
+                    backgroundColor: "#7566A1",
+                    textColor: "#ffffff"
+                  }}
+                  onClick={() => alert('Team member selected!')}
+                />
+              </div>
+            </div>
+
+            <div>
+              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+                Course Instructors Example
+              </Typography>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                {[
+                  { name: 'Dr. Sarah Wilson', image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face' },
+                  { name: 'Prof. David Brown', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face' },
+                  { name: 'Dr. Emily Johnson', initials: 'EJ' },
+                  { name: 'Prof. Michael Davis', initials: 'MD' },
+                ].map((instructor, index) => (
+                  <AvatarWithName
+                    key={index}
+                    name={instructor.name}
+                    variant="outlined"
+                    avatarProps={{
+                      src: instructor.image,
+                      initials: instructor.initials,
+                      backgroundColor: instructor.initials ? '#7566A1' : undefined,
+                      textColor: instructor.initials ? '#ffffff' : undefined,
+                      alt: instructor.name
+                    }}
+                    clickable
+                    onClick={() => alert(`Viewing ${instructor.name}'s profile`)}
+                  />
                 ))}
               </div>
             </div>
