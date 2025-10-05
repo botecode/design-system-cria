@@ -94,6 +94,7 @@ git push origin main
   • Card Selector
   • Row of Cards
   • Search Filters
+  • Divider
 
 Input Demos  
   • Basic Inputs — Full Name, Email Address, Phone Number, Date (dd.mm.yyyy)  
@@ -101,7 +102,7 @@ Input Demos
 
 ⸻
 
-🚀 Next Component to Implement: Divider / Separator
+🚀 Next Component to Implement: Grid / Row / Column
 
 ⸻
 
@@ -109,8 +110,8 @@ Input Demos
 
 🧭 Navigation & Layout
 
-• Divider / Separator ✅ (Next to implement)
-• Grid / Row / Column — for responsive content alignment
+• Divider / Separator
+• Grid / Row / Column ✅ (Next to implement) — for responsive content alignment
 • Container / Section — controls max-width, padding, and responsive breakpoints
 • Scrollbar (Custom Vertical Scrollbar)
 • Footer — global app/site footer
