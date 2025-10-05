@@ -209,7 +209,7 @@ const App: React.FC = () => {
         { id: 'stepper', label: 'Stepper / Wizard', href: '#stepper', icon: <CheckSquare size={20} /> },
         { id: 'notification-center', label: 'Notification Center', href: '#notification-center', icon: <Bell size={20} /> },
         { id: 'version', label: 'Version', href: '#version', icon: <Info size={20} /> },
-        { id: 'topbar', label: 'Topbar', href: '#topbar', icon: <Menu size={20} /> },
+        { id: 'topbar', label: 'Topbar', href: '#topbar', icon: <List size={20} /> },
         { id: 'drawer', label: 'Drawer', href: '#drawer', icon: <List size={20} /> }
       ]
     }
