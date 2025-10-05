@@ -49,3 +49,4 @@ export * from './components/CriaLessonCard';
 export * from './components/CriaCourseCard';
 export * from './components/CriaClassroomFutureEventCard';
 export * from './components/CriaClassroomTrilhaCard';
+export * from './components/RowOfCards';
