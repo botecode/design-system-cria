@@ -28,7 +28,7 @@ describe('Divider', () => {
     const customStyle = { backgroundColor: 'red', height: '10px' };
     render(<Divider style={customStyle} />);
     const divider = screen.getByRole('separator');
-    expect(divider).toHaveStyle('background-color: red');
+    expect(divider).toHaveStyle('background-color: rgb(255, 0, 0)');
     expect(divider).toHaveStyle('height: 10px');
   });
 
@@ -170,7 +170,8 @@ describe('Divider', () => {
     render(<Divider label="" />);
     const divider = screen.getByRole('separator');
     expect(divider).toBeInTheDocument();
-    expect(screen.queryByText('')).not.toBeInTheDocument();
+    // When label is empty, it should render as a simple divider without label structure
+    expect(divider).not.toHaveClass('cria-divider--with-label');
   });
 
   it('renders with label but no labelPosition defaults to center', () => {
