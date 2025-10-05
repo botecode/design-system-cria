@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Typography } from '../Typography';
 import { Button } from '../Button';
 import { Badge } from '../Badge';
-import { List, X, Search, Bell, User } from 'phosphor-react';
+import { List, X, MagnifyingGlass, Bell, User } from 'phosphor-react';
 
 export interface TopbarNavigationItem {
   id: string;

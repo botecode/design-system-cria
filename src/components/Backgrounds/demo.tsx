@@ -7,7 +7,7 @@ import { Badge } from '../Badge';
 import { 
   Palette, 
   Gradient, 
-  Grid, 
+  GridFour, 
   Texture, 
   Play, 
   Pause,
@@ -551,7 +551,7 @@ const BackgroundsDemo: React.FC = () => {
               <Card style={{ margin: '0', backgroundColor: 'transparent', border: 'none' }}>
                 <div style={{ textAlign: 'center', padding: '20px' }}>
                   <div style={{ width: '60px', height: '60px', backgroundColor: 'var(--color-accent)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
-                    <Grid size={24} color="white" />
+                    <GridFour size={24} color="white" />
                   </div>
                   <Typography variant="h4" weight="semibold" style={{ marginBottom: '8px' }}>
                     Responsive Design

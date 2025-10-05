@@ -42,7 +42,7 @@ describe('Phosphor React Icons', () => {
       'Robot',
       'Palette',
       'Gradient',
-      'Grid',
+      'GridFour',
       'Texture',
       'Play',
       'Pause'
