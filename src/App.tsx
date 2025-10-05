@@ -12,6 +12,7 @@ import StepperDemo from './components/Stepper/demo';
 import NotificationCenterDemo from './components/NotificationCenter/demo';
 import VersionDemo from './components/Version/demo';
 import { Version } from './components/Version';
+import { Badge } from './components/Badge';
 import TopbarDemo from './components/Topbar/demo';
 import DrawerDemo from './components/Drawer/demo';
 import BackgroundsDemo from './components/Backgrounds/demo';
@@ -529,7 +530,7 @@ const App: React.FC = () => {
             sidebar={{
               title: 'CR_IA.UI',
               titleHref: '#overview',
-              subtitle: <Version badge variant="secondary" size="caption" />,
+              subtitle: <Badge variant="secondary" size="lg">v0.4.0</Badge>,
               items: sidebarItems.map(item => ({
                 ...item,
                 onClick: item.subitems ? undefined : (e) => {
