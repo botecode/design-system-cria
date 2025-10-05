@@ -1,0 +1,279 @@
+/* Divider Component Styles */
+.cria-divider {
+  /* Base divider styles */
+  background-color: var(--cria-gray-300);
+  border: none;
+  outline: none;
+  
+  /* Default horizontal styles */
+  width: 100%;
+  height: 1px;
+  margin: var(--cria-spacing-md) 0;
+  
+  /* Smooth transitions */
+  transition: all 0.2s ease-in-out;
+}
+
+/* Vertical orientation */
+.cria-divider--vertical {
+  width: 1px;
+  height: 100%;
+  margin: 0 var(--cria-spacing-md);
+  min-height: 20px;
+}
+
+/* Variants */
+.cria-divider--solid {
+  /* Solid is the default, no additional styles needed */
+}
+
+.cria-divider--dashed {
+  background-color: transparent;
+  border-top: 1px dashed var(--cria-gray-300);
+  height: 0;
+}
+
+.cria-divider--vertical.cria-divider--dashed {
+  border-top: none;
+  border-left: 1px dashed var(--cria-gray-300);
+  width: 0;
+}
+
+.cria-divider--dotted {
+  background-color: transparent;
+  border-top: 1px dotted var(--cria-gray-300);
+  height: 0;
+}
+
+.cria-divider--vertical.cria-divider--dotted {
+  border-top: none;
+  border-left: 1px dotted var(--cria-gray-300);
+  width: 0;
+}
+
+/* Sizes */
+.cria-divider--sm {
+  height: 1px;
+  margin: var(--cria-spacing-sm) 0;
+}
+
+.cria-divider--vertical.cria-divider--sm {
+  width: 1px;
+  margin: 0 var(--cria-spacing-sm);
+}
+
+.cria-divider--md {
+  height: 2px;
+  margin: var(--cria-spacing-md) 0;
+}
+
+.cria-divider--vertical.cria-divider--md {
+  width: 2px;
+  margin: 0 var(--cria-spacing-md);
+}
+
+.cria-divider--lg {
+  height: 3px;
+  margin: var(--cria-spacing-lg) 0;
+}
+
+.cria-divider--vertical.cria-divider--lg {
+  width: 3px;
+  margin: 0 var(--cria-spacing-lg);
+}
+
+/* Colors */
+.cria-divider--primary {
+  background-color: var(--cria-primary);
+}
+
+.cria-divider--primary.cria-divider--dashed {
+  border-color: var(--cria-primary);
+}
+
+.cria-divider--primary.cria-divider--dotted {
+  border-color: var(--cria-primary);
+}
+
+.cria-divider--secondary {
+  background-color: var(--cria-secondary);
+}
+
+.cria-divider--secondary.cria-divider--dashed {
+  border-color: var(--cria-secondary);
+}
+
+.cria-divider--secondary.cria-divider--dotted {
+  border-color: var(--cria-secondary);
+}
+
+.cria-divider--gray {
+  background-color: var(--cria-gray-300);
+}
+
+.cria-divider--gray.cria-divider--dashed {
+  border-color: var(--cria-gray-300);
+}
+
+.cria-divider--gray.cria-divider--dotted {
+  border-color: var(--cria-gray-300);
+}
+
+/* Spacing */
+.cria-divider--spacing-sm {
+  margin: var(--cria-spacing-sm) 0;
+}
+
+.cria-divider--vertical.cria-divider--spacing-sm {
+  margin: 0 var(--cria-spacing-sm);
+}
+
+.cria-divider--spacing-md {
+  margin: var(--cria-spacing-md) 0;
+}
+
+.cria-divider--vertical.cria-divider--spacing-md {
+  margin: 0 var(--cria-spacing-md);
+}
+
+.cria-divider--spacing-lg {
+  margin: var(--cria-spacing-lg) 0;
+}
+
+.cria-divider--vertical.cria-divider--spacing-lg {
+  margin: 0 var(--cria-spacing-lg);
+}
+
+/* Divider with label */
+.cria-divider--with-label {
+  display: flex;
+  align-items: center;
+  height: auto;
+  margin: var(--cria-spacing-md) 0;
+  background-color: transparent;
+}
+
+.cria-divider--with-label .cria-divider__line {
+  flex: 1;
+  height: 1px;
+  background-color: var(--cria-gray-300);
+}
+
+.cria-divider--with-label.cria-divider--primary .cria-divider__line {
+  background-color: var(--cria-primary);
+}
+
+.cria-divider--with-label.cria-divider--secondary .cria-divider__line {
+  background-color: var(--cria-secondary);
+}
+
+.cria-divider--with-label .cria-divider__label {
+  padding: 0 var(--cria-spacing-md);
+  font-size: var(--cria-text-sm);
+  font-weight: var(--cria-font-weight-medium);
+  color: var(--cria-gray-600);
+  white-space: nowrap;
+  background-color: var(--cria-background);
+}
+
+.cria-divider--primary .cria-divider__label {
+  color: var(--cria-primary);
+}
+
+.cria-divider--secondary .cria-divider__label {
+  color: var(--cria-secondary);
+}
+
+/* Label positioning */
+.cria-divider__label--start {
+  order: 1;
+}
+
+.cria-divider__label--start ~ .cria-divider__line {
+  flex: 1;
+}
+
+.cria-divider__label--center {
+  order: 2;
+}
+
+.cria-divider__label--end {
+  order: 3;
+}
+
+.cria-divider__label--end ~ .cria-divider__line {
+  flex: 1;
+}
+
+/* Line positioning for different label positions */
+.cria-divider--with-label .cria-divider__line--before {
+  order: 1;
+}
+
+.cria-divider--with-label .cria-divider__line--after {
+  order: 3;
+}
+
+.cria-divider__label--start ~ .cria-divider__line--before {
+  display: none;
+}
+
+.cria-divider__label--end ~ .cria-divider__line--after {
+  display: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .cria-divider {
+    margin: var(--cria-spacing-sm) 0;
+  }
+  
+  .cria-divider--vertical {
+    margin: 0 var(--cria-spacing-sm);
+  }
+  
+  .cria-divider--with-label {
+    margin: var(--cria-spacing-sm) 0;
+  }
+  
+  .cria-divider--with-label .cria-divider__label {
+    padding: 0 var(--cria-spacing-sm);
+    font-size: var(--cria-text-xs);
+  }
+}
+
+/* Focus styles for accessibility */
+.cria-divider:focus-visible {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .cria-divider {
+    background-color: var(--cria-gray-900);
+  }
+  
+  .cria-divider--primary {
+    background-color: var(--cria-primary-dark);
+  }
+  
+  .cria-divider--secondary {
+    background-color: var(--cria-secondary-dark);
+  }
+  
+  .cria-divider--dashed,
+  .cria-divider--dotted {
+    border-color: var(--cria-gray-900);
+  }
+  
+  .cria-divider--primary.cria-divider--dashed,
+  .cria-divider--primary.cria-divider--dotted {
+    border-color: var(--cria-primary-dark);
+  }
+  
+  .cria-divider--secondary.cria-divider--dashed,
+  .cria-divider--secondary.cria-divider--dotted {
+    border-color: var(--cria-secondary-dark);
+  }
+}
