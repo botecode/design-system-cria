@@ -4,6 +4,7 @@ import { House, TextAa, Palette, Mouse, PencilSimple, CheckSquare, ToggleLeft, B
 import TypographyDemo from './components/Typography/demo';
 import ButtonDemo from './components/Button/demo';
 import CardDemo from './components/Card/demo';
+import BasicCardDemo from './components/Card/BasicCardDemo';
 import BadgeDemo from './components/Badge/demo';
 import TabsDemo from './components/Tabs/demo';
 import TooltipDemo from './components/Tooltip/demo';
@@ -39,6 +40,7 @@ import CardSelectorDemo from './components/CardSelector/demo';
 import FloatingSidebarDemo from './components/FloatingSidebar/demo';
 import { RowOfCardsDemo } from './components/RowOfCards/demo';
 import SearchFiltersDemo from './components/SearchFilters/demo';
+import FilterDropdownDemo from './components/FilterDropdown/demo';
 import DividerDemo from './components/Divider/demo';
 import GridDemo from './components/Grid/demo';
 import ContainerDemo from './components/Container/demo';
@@ -49,11 +51,15 @@ import CarouselDemo from './components/Carousel/demo';
 import TableDemo from './components/Table/demo';
 import EmptyStateDemo from './components/EmptyState/demo';
 import ChartsDemo from './components/Charts/demo';
+import CriaCourseCardDemo from './components/CriaCourseCard/demo';
+import EventsCardsDemo from './components/EventsCards/demo';
+import TrilhaCardsDemo from './components/TrilhaCards/demo';
+import StatisticMetricCardDemo from './components/StatisticMetricCard/demo';
 
 // Import Cartograph font
 import './fonts.css';
 
-type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'textarea' | 'avatar' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group' | 'breadcrumbs' | 'pagination' | 'progress-bar' | 'vertical-tabs' | 'stepper' | 'date-picker' | 'file-upload' | 'chat' | 'pie-chart' | 'comments-section' | 'slider' | 'shimmer-skeleton' | 'pricing-page' | 'page-loading-progress' | 'card-selector' | 'floating-sidebar' | 'row-of-cards' | 'search-filters' | 'divider' | 'grid' | 'container' | 'scrollbar' | 'footer' | 'mega-menu' | 'carousel' | 'table' | 'empty-state' | 'charts';
+type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'textarea' | 'avatar' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group' | 'breadcrumbs' | 'pagination' | 'progress-bar' | 'vertical-tabs' | 'stepper' | 'date-picker' | 'file-upload' | 'chat' | 'pie-chart' | 'comments-section' | 'slider' | 'shimmer-skeleton' | 'pricing-page' | 'page-loading-progress' | 'card-selector' | 'floating-sidebar' | 'row-of-cards' | 'search-filters' | 'filter-dropdown' | 'divider' | 'grid' | 'container' | 'scrollbar' | 'footer' | 'mega-menu' | 'carousel' | 'table' | 'empty-state' | 'charts' | 'lesson-cards' | 'course-cards' | 'events-cards' | 'trilha-cards' | 'statistic-metric-card';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState<DemoSection>('overview');
@@ -64,7 +70,7 @@ const App: React.FC = () => {
   // Initialize active section from URL hash
   React.useEffect(() => {
     const hash = window.location.hash.slice(1); // Remove the # symbol
-    const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'stepper', 'date-picker', 'file-upload', 'chat', 'pie-chart', 'comments-section', 'slider', 'shimmer-skeleton', 'pricing-page', 'page-loading-progress', 'card-selector', 'floating-sidebar', 'row-of-cards', 'search-filters', 'divider', 'grid', 'container', 'scrollbar', 'footer', 'mega-menu', 'carousel', 'table', 'empty-state', 'charts'];
+    const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'stepper', 'date-picker', 'file-upload', 'chat', 'pie-chart', 'comments-section', 'slider', 'shimmer-skeleton', 'pricing-page', 'page-loading-progress', 'card-selector', 'floating-sidebar', 'row-of-cards', 'search-filters', 'filter-dropdown', 'divider', 'grid', 'container', 'scrollbar', 'footer', 'mega-menu', 'carousel', 'table', 'empty-state', 'charts', 'lesson-cards', 'course-cards', 'events-cards', 'trilha-cards', 'statistic-metric-card'];
     
     if (hash && validSections.includes(hash as DemoSection)) {
       setActiveSection(hash as DemoSection);
@@ -75,7 +81,7 @@ const App: React.FC = () => {
   React.useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.slice(1);
-      const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'stepper', 'date-picker', 'file-upload', 'chat', 'pie-chart', 'comments-section', 'slider', 'shimmer-skeleton', 'pricing-page', 'page-loading-progress', 'card-selector', 'floating-sidebar', 'row-of-cards', 'search-filters', 'divider', 'grid', 'container', 'scrollbar', 'footer', 'mega-menu', 'carousel', 'table', 'empty-state', 'charts'];
+      const validSections: DemoSection[] = ['overview', 'typography', 'colors', 'button', 'input', 'textarea', 'avatar', 'checkbox', 'switch', 'snackbar', 'modal', 'tooltip', 'card', 'badge', 'tabs', 'navigation', 'accordion', 'text', 'dropdown', 'radio-group', 'breadcrumbs', 'pagination', 'progress-bar', 'vertical-tabs', 'stepper', 'date-picker', 'file-upload', 'chat', 'pie-chart', 'comments-section', 'slider', 'shimmer-skeleton', 'pricing-page', 'page-loading-progress', 'card-selector', 'floating-sidebar', 'row-of-cards', 'search-filters', 'filter-dropdown', 'divider', 'grid', 'container', 'scrollbar', 'footer', 'mega-menu', 'carousel', 'table', 'empty-state', 'charts', 'lesson-cards', 'course-cards', 'events-cards', 'trilha-cards', 'statistic-metric-card'];
       
       if (hash && validSections.includes(hash as DemoSection)) {
         setActiveSection(hash as DemoSection);
@@ -107,7 +113,8 @@ const App: React.FC = () => {
       subitems: [
         { id: 'typography', label: 'Typography', href: '#typography', icon: <TextAa size={20} /> },
         { id: 'colors', label: 'Colors', href: '#colors', icon: <Palette size={20} /> },
-        { id: 'text', label: 'Text', href: '#text', icon: <Article size={20} /> }
+        { id: 'text', label: 'Text', href: '#text', icon: <Article size={20} /> },
+        { id: 'grid', label: 'Grid', href: '#grid', icon: <Layout size={20} /> }
       ]
     },
     { 
@@ -133,10 +140,8 @@ const App: React.FC = () => {
         ,{ id: 'page-loading-progress', label: 'Page Loading Progress', href: '#page-loading-progress', icon: <List size={20} /> }
         ,{ id: 'card-selector', label: 'Card Selector', href: '#card-selector', icon: <List size={20} /> }
         ,{ id: 'floating-sidebar', label: 'Floating Sidebar', href: '#floating-sidebar', icon: <Layout size={20} /> }
-        ,{ id: 'row-of-cards', label: 'Row of Cards', href: '#row-of-cards', icon: <Square size={20} /> }
         ,{ id: 'search-filters', label: 'Search Filters', href: '#search-filters', icon: <CaretDown size={20} /> }
-        ,{ id: 'divider', label: 'Divider', href: '#divider', icon: <Layout size={20} /> }
-        ,{ id: 'grid', label: 'Grid', href: '#grid', icon: <Layout size={20} /> }
+        ,{ id: 'filter-dropdown', label: 'Filter Dropdown', href: '#filter-dropdown', icon: <CaretDown size={20} /> }
         ,{ id: 'container', label: 'Container', href: '#container', icon: <Layout size={20} /> }
         ,{ id: 'scrollbar', label: 'Scrollbar', href: '#scrollbar', icon: <Layout size={20} /> }
         ,{ id: 'footer', label: 'Footer', href: '#footer', icon: <Layout size={20} /> }
@@ -147,12 +152,23 @@ const App: React.FC = () => {
       ]
     },
     { 
+      id: 'content', 
+      label: 'Content', 
+      icon: <Article size={20} />,
+      defaultExpanded: true,
+      subitems: [
+        { id: 'lesson-cards', label: 'Lesson - Cards', href: '#lesson-cards', icon: <Square size={20} /> },
+        { id: 'course-cards', label: 'Course - Cards', href: '#course-cards', icon: <Square size={20} /> },
+        { id: 'events-cards', label: 'Events - Cards', href: '#events-cards', icon: <Square size={20} /> },
+        { id: 'trilha-cards', label: 'Trilha - Cards', href: '#trilha-cards', icon: <Square size={20} /> }
+      ]
+    },
+    { 
       id: 'layout', 
       label: 'Layout', 
       icon: <Layout size={20} />,
       defaultExpanded: true,
       subitems: [
-        { id: 'card', label: 'Card', href: '#card', icon: <Square size={20} /> },
         { id: 'tabs', label: 'Tabs', href: '#tabs', icon: <Tabs size={20} /> },
         { id: 'accordion', label: 'Accordion', href: '#accordion', icon: <CaretDown size={20} /> },
         { id: 'navigation', label: 'Navigation', href: '#navigation', icon: <List size={20} /> },
@@ -161,7 +177,10 @@ const App: React.FC = () => {
         { id: 'progress-bar', label: 'Progress Bar', href: '#progress-bar', icon: <List size={20} /> },
         { id: 'stepper', label: 'Stepper', href: '#stepper', icon: <List size={20} /> },
         { id: 'date-picker', label: 'Date Picker', href: '#date-picker', icon: <List size={20} /> },
-        { id: 'charts', label: 'Charts', href: '#charts', icon: <List size={20} /> }
+        { id: 'charts', label: 'Charts', href: '#charts', icon: <List size={20} /> },
+        { id: 'divider', label: 'Divider', href: '#divider', icon: <Layout size={20} /> },
+        { id: 'row-of-cards', label: 'Row of Cards', href: '#row-of-cards', icon: <Square size={20} /> },
+        { id: 'statistic-metric-card', label: 'Statistic / Metric Card', href: '#statistic-metric-card', icon: <Square size={20} /> }
       ]
     },
     { 
@@ -293,7 +312,7 @@ const App: React.FC = () => {
       case 'tooltip':
         return <TooltipDemo />;
       case 'card':
-        return <CardDemo />;
+        return <BasicCardDemo />;
       case 'badge':
         return <BadgeDemo />;
       case 'tabs':
@@ -326,6 +345,16 @@ const App: React.FC = () => {
         return <ChatDemo />;
       case 'charts':
         return <ChartsDemo />;
+      case 'lesson-cards':
+        return <CardDemo />;
+      case 'course-cards':
+        return <CriaCourseCardDemo />;
+      case 'events-cards':
+        return <EventsCardsDemo />;
+      case 'trilha-cards':
+        return <TrilhaCardsDemo />;
+      case 'statistic-metric-card':
+        return <StatisticMetricCardDemo />;
       case 'comments-section':
         return <CommentsSectionDemo />;
       case 'slider':
@@ -344,6 +373,8 @@ const App: React.FC = () => {
         return <RowOfCardsDemo />;
       case 'search-filters':
         return <SearchFiltersDemo />;
+      case 'filter-dropdown':
+        return <FilterDropdownDemo />;
       case 'divider':
         return <DividerDemo />;
       case 'grid':
@@ -411,13 +442,23 @@ const App: React.FC = () => {
                 },
                 subitems: item.subitems?.map(subitem => ({
                   ...subitem,
-                  onClick: (e) => {
+                  onClick: subitem.subitems ? undefined : (e) => {
                     e.preventDefault();
                     handleSectionChange(subitem.id as DemoSection);
                     if (isMobile) {
                       setMobileMenuOpen(false);
                     }
-                  }
+                  },
+                  subitems: subitem.subitems?.map(subsubitem => ({
+                    ...subsubitem,
+                    onClick: (e) => {
+                      e.preventDefault();
+                      handleSectionChange(subsubitem.id as DemoSection);
+                      if (isMobile) {
+                        setMobileMenuOpen(false);
+                      }
+                    }
+                  }))
                 }))
               })),
               activeRoute: `#${activeSection}`,
