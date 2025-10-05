@@ -138,29 +138,21 @@ export const AvatarWithName = forwardRef<HTMLDivElement, AvatarWithNameProps>(({
           ...baseStyles,
           border: `1px solid ${colors.gray[200]}`,
           backgroundColor: colors.white,
-          ':hover': clickable ? {
-            borderColor: colors.primary,
-            backgroundColor: colors.gray[50],
-          } : undefined,
+          // Hover styles handled by CSS classes
         };
       case 'filled':
         return {
           ...baseStyles,
           backgroundColor: colors.gray[50],
           border: `1px solid ${colors.gray[100]}`,
-          ':hover': clickable ? {
-            backgroundColor: colors.gray[100],
-            borderColor: colors.gray[200],
-          } : undefined,
+          // Hover styles handled by CSS classes
         };
       case 'default':
       default:
         return {
           ...baseStyles,
           backgroundColor: 'transparent',
-          ':hover': clickable ? {
-            backgroundColor: colors.gray[50],
-          } : undefined,
+          // Hover styles handled by CSS classes
         };
     }
   };

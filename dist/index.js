@@ -950,30 +950,22 @@ var AvatarWithName = forwardRef2(({
         return {
           ...baseStyles,
           border: `1px solid ${colors.gray[200]}`,
-          backgroundColor: colors.white,
-          ":hover": clickable ? {
-            borderColor: colors.primary,
-            backgroundColor: colors.gray[50]
-          } : void 0
+          backgroundColor: colors.white
+          // Hover styles handled by CSS classes
         };
       case "filled":
         return {
           ...baseStyles,
           backgroundColor: colors.gray[50],
-          border: `1px solid ${colors.gray[100]}`,
-          ":hover": clickable ? {
-            backgroundColor: colors.gray[100],
-            borderColor: colors.gray[200]
-          } : void 0
+          border: `1px solid ${colors.gray[100]}`
+          // Hover styles handled by CSS classes
         };
       case "default":
       default:
         return {
           ...baseStyles,
-          backgroundColor: "transparent",
-          ":hover": clickable ? {
-            backgroundColor: colors.gray[50]
-          } : void 0
+          backgroundColor: "transparent"
+          // Hover styles handled by CSS classes
         };
     }
   };
@@ -7643,16 +7635,11 @@ var Version = ({
 };
 Version.displayName = "Version";
 
-// src/components/Topbar/Topbar.tsx
-import { useState as useState17, useEffect as useEffect12, useCallback as useCallback19, useRef as useRef17 } from "react";
-import { List as List2, X as X7 } from "phosphor-react";
-import { jsx as jsx37, jsxs as jsxs34 } from "react/jsx-runtime";
-
 // src/components/Drawer/Drawer.tsx
-import { useEffect as useEffect13, useRef as useRef18, useCallback as useCallback20, useState as useState18 } from "react";
+import { useEffect as useEffect12, useRef as useRef17, useCallback as useCallback19, useState as useState17 } from "react";
 import { createPortal as createPortal3 } from "react-dom";
-import { X as X8, Spinner as Spinner2 } from "phosphor-react";
-import { Fragment as Fragment4, jsx as jsx38, jsxs as jsxs35 } from "react/jsx-runtime";
+import { X as X7, Spinner as Spinner2 } from "phosphor-react";
+import { Fragment as Fragment4, jsx as jsx37, jsxs as jsxs34 } from "react/jsx-runtime";
 var Drawer = ({
   isOpen,
   onClose,
@@ -7678,12 +7665,12 @@ var Drawer = ({
   style,
   ...props
 }) => {
-  const [isVisible, setIsVisible] = useState18(false);
-  const [isAnimating, setIsAnimating] = useState18(false);
-  const drawerRef = useRef18(null);
-  const previousActiveElement = useRef18(null);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState18(false);
-  useEffect13(() => {
+  const [isVisible, setIsVisible] = useState17(false);
+  const [isAnimating, setIsAnimating] = useState17(false);
+  const drawerRef = useRef17(null);
+  const previousActiveElement = useRef17(null);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState17(false);
+  useEffect12(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     setPrefersReducedMotion(mediaQuery.matches);
     const handleChange = (e) => {
@@ -7692,7 +7679,7 @@ var Drawer = ({
     mediaQuery.addEventListener("change", handleChange);
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
-  useEffect13(() => {
+  useEffect12(() => {
     if (isOpen) {
       setIsVisible(true);
       setIsAnimating(true);
@@ -7716,7 +7703,7 @@ var Drawer = ({
       }, animationDuration);
     }
   }, [isOpen, animationDuration]);
-  useEffect13(() => {
+  useEffect12(() => {
     if (isOpen && lockBodyScroll) {
       const originalOverflow = document.body.style.overflow;
       document.body.style.overflow = "hidden";
@@ -7725,7 +7712,7 @@ var Drawer = ({
       };
     }
   }, [isOpen, lockBodyScroll]);
-  useEffect13(() => {
+  useEffect12(() => {
     if (!isOpen || !closeOnEscape) return;
     const handleEscape = (event) => {
       if (event.key === "Escape") {
@@ -7735,12 +7722,12 @@ var Drawer = ({
     document.addEventListener("keydown", handleEscape);
     return () => document.removeEventListener("keydown", handleEscape);
   }, [isOpen, closeOnEscape, onClose]);
-  const handleOverlayClick = useCallback20((event) => {
+  const handleOverlayClick = useCallback19((event) => {
     if (closeOnOverlayClick && event.target === event.currentTarget) {
       onClose();
     }
   }, [closeOnOverlayClick, onClose]);
-  const handleKeyDown = useCallback20((event) => {
+  const handleKeyDown = useCallback19((event) => {
     if (event.key === "Tab") {
       const drawer = drawerRef.current;
       if (!drawer) return;
@@ -7793,8 +7780,8 @@ var Drawer = ({
   if (!isVisible) {
     return null;
   }
-  const drawerContent = /* @__PURE__ */ jsxs35(Fragment4, { children: [
-    showOverlay && /* @__PURE__ */ jsx38(
+  const drawerContent = /* @__PURE__ */ jsxs34(Fragment4, { children: [
+    showOverlay && /* @__PURE__ */ jsx37(
       "div",
       {
         className: overlayClasses,
@@ -7804,7 +7791,7 @@ var Drawer = ({
         "aria-hidden": "true"
       }
     ),
-    /* @__PURE__ */ jsxs35(
+    /* @__PURE__ */ jsxs34(
       "div",
       {
         ref: drawerRef,
@@ -7817,9 +7804,9 @@ var Drawer = ({
         onKeyDown: handleKeyDown,
         ...props,
         children: [
-          loading && /* @__PURE__ */ jsx38("div", { className: "drawer__loading", "data-testid": "drawer-loading", children: /* @__PURE__ */ jsx38(Spinner2, { size: 24, className: "animate-spin" }) }),
-          (title || header || showCloseButton) && /* @__PURE__ */ jsx38("div", { className: "drawer__header", children: header || /* @__PURE__ */ jsxs35(Fragment4, { children: [
-            title && /* @__PURE__ */ jsx38(
+          loading && /* @__PURE__ */ jsx37("div", { className: "drawer__loading", "data-testid": "drawer-loading", children: /* @__PURE__ */ jsx37(Spinner2, { size: 24, className: "animate-spin" }) }),
+          (title || header || showCloseButton) && /* @__PURE__ */ jsx37("div", { className: "drawer__header", children: header || /* @__PURE__ */ jsxs34(Fragment4, { children: [
+            title && /* @__PURE__ */ jsx37(
               Typography,
               {
                 id: "drawer-title",
@@ -7829,7 +7816,7 @@ var Drawer = ({
                 children: title
               }
             ),
-            showCloseButton && /* @__PURE__ */ jsx38(
+            showCloseButton && /* @__PURE__ */ jsx37(
               Button,
               {
                 variant: "ghost",
@@ -7837,12 +7824,12 @@ var Drawer = ({
                 onClick: onClose,
                 "aria-label": "Close drawer",
                 className: "drawer__close-button",
-                children: /* @__PURE__ */ jsx38(X8, { size: 20 })
+                children: /* @__PURE__ */ jsx37(X7, { size: 20 })
               }
             )
           ] }) }),
-          /* @__PURE__ */ jsx38("div", { className: "drawer__content", children }),
-          footer && /* @__PURE__ */ jsx38("div", { className: "drawer__footer", children: footer })
+          /* @__PURE__ */ jsx37("div", { className: "drawer__content", children }),
+          footer && /* @__PURE__ */ jsx37("div", { className: "drawer__footer", children: footer })
         ]
       }
     )
@@ -7855,7 +7842,7 @@ var Drawer = ({
 
 // src/components/Backgrounds/Backgrounds.tsx
 import { useMemo as useMemo5 } from "react";
-import { jsx as jsx39, jsxs as jsxs36 } from "react/jsx-runtime";
+import { jsx as jsx38, jsxs as jsxs35 } from "react/jsx-runtime";
 var Backgrounds = ({
   children,
   variant = "plain",
@@ -8019,7 +8006,7 @@ var Backgrounds = ({
     },
     ...style
   };
-  return /* @__PURE__ */ jsxs36(
+  return /* @__PURE__ */ jsxs35(
     "div",
     {
       className: backgroundClasses,
@@ -8030,7 +8017,7 @@ var Backgrounds = ({
       "aria-labelledby": ariaLabelledBy,
       ...props,
       children: [
-        showOverlay && /* @__PURE__ */ jsx39(
+        showOverlay && /* @__PURE__ */ jsx38(
           "div",
           {
             className: "backgrounds__overlay",
@@ -8047,7 +8034,7 @@ var Backgrounds = ({
             }
           }
         ),
-        /* @__PURE__ */ jsx39("div", { className: "backgrounds__content", style: { position: "relative", zIndex: 2 }, children })
+        /* @__PURE__ */ jsx38("div", { className: "backgrounds__content", style: { position: "relative", zIndex: 2 }, children })
       ]
     }
   );
@@ -8089,9 +8076,9 @@ function getDefaultPatternColor(colorScheme) {
 }
 
 // src/components/Changelog/Changelog.tsx
-import { useState as useState19, useMemo as useMemo6 } from "react";
-import { Calendar, Tag, User as User5, GitBranch, Wrench, Lock, Warning as Warning3, Plus, Minus, ArrowsClockwise } from "phosphor-react";
-import { jsx as jsx40, jsxs as jsxs37 } from "react/jsx-runtime";
+import { useState as useState18, useMemo as useMemo6 } from "react";
+import { Calendar, Tag, User as User4, GitBranch, Wrench, Lock, Warning as Warning3, Plus, Minus, ArrowsClockwise } from "phosphor-react";
+import { jsx as jsx39, jsxs as jsxs36 } from "react/jsx-runtime";
 var Changelog = ({
   entries,
   itemsPerPage = 5,
@@ -8100,7 +8087,7 @@ var Changelog = ({
   style,
   ...props
 }) => {
-  const [currentPage, setCurrentPage] = useState19(1);
+  const [currentPage, setCurrentPage] = useState18(1);
   const totalPages = Math.ceil(entries.length / itemsPerPage);
   const paginatedEntries = useMemo6(() => {
     const startIndex = (currentPage - 1) * itemsPerPage;
@@ -8143,19 +8130,19 @@ var Changelog = ({
     const iconProps = { size: 16, style: { marginRight: spacing[1] } };
     switch (type) {
       case "added":
-        return /* @__PURE__ */ jsx40(Plus, { ...iconProps });
+        return /* @__PURE__ */ jsx39(Plus, { ...iconProps });
       case "changed":
-        return /* @__PURE__ */ jsx40(ArrowsClockwise, { ...iconProps });
+        return /* @__PURE__ */ jsx39(ArrowsClockwise, { ...iconProps });
       case "deprecated":
-        return /* @__PURE__ */ jsx40(Warning3, { ...iconProps });
+        return /* @__PURE__ */ jsx39(Warning3, { ...iconProps });
       case "removed":
-        return /* @__PURE__ */ jsx40(Minus, { ...iconProps });
+        return /* @__PURE__ */ jsx39(Minus, { ...iconProps });
       case "fixed":
-        return /* @__PURE__ */ jsx40(Wrench, { ...iconProps });
+        return /* @__PURE__ */ jsx39(Wrench, { ...iconProps });
       case "security":
-        return /* @__PURE__ */ jsx40(Lock, { ...iconProps });
+        return /* @__PURE__ */ jsx39(Lock, { ...iconProps });
       default:
-        return /* @__PURE__ */ jsx40(Tag, { ...iconProps });
+        return /* @__PURE__ */ jsx39(Tag, { ...iconProps });
     }
   };
   const handlePageChange = (page) => {
@@ -8172,7 +8159,7 @@ var Changelog = ({
     }
     if (currentPage > 1) {
       pages.push(
-        /* @__PURE__ */ jsx40(
+        /* @__PURE__ */ jsx39(
           Button,
           {
             variant: "outline",
@@ -8187,7 +8174,7 @@ var Changelog = ({
     }
     for (let i = startPage; i <= endPage; i++) {
       pages.push(
-        /* @__PURE__ */ jsx40(
+        /* @__PURE__ */ jsx39(
           Button,
           {
             variant: i === currentPage ? "primary" : "outline",
@@ -8202,7 +8189,7 @@ var Changelog = ({
     }
     if (currentPage < totalPages) {
       pages.push(
-        /* @__PURE__ */ jsx40(
+        /* @__PURE__ */ jsx39(
           Button,
           {
             variant: "outline",
@@ -8215,7 +8202,7 @@ var Changelog = ({
         )
       );
     }
-    return /* @__PURE__ */ jsx40("div", { style: {
+    return /* @__PURE__ */ jsx39("div", { style: {
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
@@ -8223,7 +8210,7 @@ var Changelog = ({
       gap: spacing[2]
     }, children: pages });
   };
-  return /* @__PURE__ */ jsxs37(
+  return /* @__PURE__ */ jsxs36(
     "div",
     {
       className: `changelog ${className}`,
@@ -8233,96 +8220,96 @@ var Changelog = ({
       },
       ...props,
       children: [
-        paginatedEntries.map((entry) => /* @__PURE__ */ jsxs37(Card, { style: { marginBottom: spacing[6] }, children: [
-          /* @__PURE__ */ jsx40(CardHeader, { children: /* @__PURE__ */ jsxs37("div", { style: {
+        paginatedEntries.map((entry) => /* @__PURE__ */ jsxs36(Card, { style: { marginBottom: spacing[6] }, children: [
+          /* @__PURE__ */ jsx39(CardHeader, { children: /* @__PURE__ */ jsxs36("div", { style: {
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
             flexWrap: "wrap",
             gap: spacing[4]
           }, children: [
-            /* @__PURE__ */ jsxs37("div", { style: { display: "flex", alignItems: "center", gap: spacing[4] }, children: [
-              /* @__PURE__ */ jsx40(Typography, { variant: "title2", style: { margin: 0 }, children: entry.title }),
-              /* @__PURE__ */ jsx40(Badge, { variant: getTypeColor(entry.type), size: "sm", children: entry.version })
+            /* @__PURE__ */ jsxs36("div", { style: { display: "flex", alignItems: "center", gap: spacing[4] }, children: [
+              /* @__PURE__ */ jsx39(Typography, { variant: "title2", style: { margin: 0 }, children: entry.title }),
+              /* @__PURE__ */ jsx39(Badge, { variant: getTypeColor(entry.type), size: "sm", children: entry.version })
             ] }),
-            /* @__PURE__ */ jsxs37("div", { style: {
+            /* @__PURE__ */ jsxs36("div", { style: {
               display: "flex",
               alignItems: "center",
               gap: spacing[4],
               color: "#666",
               fontSize: "14px"
             }, children: [
-              /* @__PURE__ */ jsxs37("div", { style: { display: "flex", alignItems: "center", gap: spacing[1] }, children: [
-                /* @__PURE__ */ jsx40(Calendar, { size: 16 }),
-                /* @__PURE__ */ jsx40("span", { children: entry.date })
+              /* @__PURE__ */ jsxs36("div", { style: { display: "flex", alignItems: "center", gap: spacing[1] }, children: [
+                /* @__PURE__ */ jsx39(Calendar, { size: 16 }),
+                /* @__PURE__ */ jsx39("span", { children: entry.date })
               ] }),
-              /* @__PURE__ */ jsxs37("div", { style: { display: "flex", alignItems: "center", gap: spacing[1] }, children: [
-                /* @__PURE__ */ jsx40(User5, { size: 16 }),
-                /* @__PURE__ */ jsx40("span", { children: entry.author })
+              /* @__PURE__ */ jsxs36("div", { style: { display: "flex", alignItems: "center", gap: spacing[1] }, children: [
+                /* @__PURE__ */ jsx39(User4, { size: 16 }),
+                /* @__PURE__ */ jsx39("span", { children: entry.author })
               ] }),
-              entry.branch && /* @__PURE__ */ jsxs37("div", { style: { display: "flex", alignItems: "center", gap: spacing[1] }, children: [
-                /* @__PURE__ */ jsx40(GitBranch, { size: 16 }),
-                /* @__PURE__ */ jsx40("span", { children: entry.branch })
+              entry.branch && /* @__PURE__ */ jsxs36("div", { style: { display: "flex", alignItems: "center", gap: spacing[1] }, children: [
+                /* @__PURE__ */ jsx39(GitBranch, { size: 16 }),
+                /* @__PURE__ */ jsx39("span", { children: entry.branch })
               ] })
             ] })
           ] }) }),
-          /* @__PURE__ */ jsxs37(CardContent, { children: [
-            entry.description && /* @__PURE__ */ jsx40(Typography, { variant: "body", style: { marginBottom: spacing[4], color: "#666" }, children: entry.description }),
-            entry.changes.map((change, index) => /* @__PURE__ */ jsxs37("div", { style: { marginBottom: spacing[4] }, children: [
-              /* @__PURE__ */ jsxs37("div", { style: {
+          /* @__PURE__ */ jsxs36(CardContent, { children: [
+            entry.description && /* @__PURE__ */ jsx39(Typography, { variant: "body", style: { marginBottom: spacing[4], color: "#666" }, children: entry.description }),
+            entry.changes.map((change, index) => /* @__PURE__ */ jsxs36("div", { style: { marginBottom: spacing[4] }, children: [
+              /* @__PURE__ */ jsxs36("div", { style: {
                 display: "flex",
                 alignItems: "center",
                 gap: spacing[2],
                 marginBottom: spacing[2]
               }, children: [
-                /* @__PURE__ */ jsx40("div", { style: { display: "flex", alignItems: "center" }, children: getChangeTypeIcon(change.type) }),
-                /* @__PURE__ */ jsx40(Badge, { variant: getChangeTypeColor(change.type), size: "sm", children: change.type.charAt(0).toUpperCase() + change.type.slice(1) })
+                /* @__PURE__ */ jsx39("div", { style: { display: "flex", alignItems: "center" }, children: getChangeTypeIcon(change.type) }),
+                /* @__PURE__ */ jsx39(Badge, { variant: getChangeTypeColor(change.type), size: "sm", children: change.type.charAt(0).toUpperCase() + change.type.slice(1) })
               ] }),
-              /* @__PURE__ */ jsx40("ul", { style: {
+              /* @__PURE__ */ jsx39("ul", { style: {
                 margin: 0,
                 paddingLeft: spacing[6],
                 listStyle: "none"
-              }, children: change.items.map((item, itemIndex) => /* @__PURE__ */ jsxs37("li", { style: {
+              }, children: change.items.map((item, itemIndex) => /* @__PURE__ */ jsxs36("li", { style: {
                 marginBottom: spacing[1],
                 position: "relative"
               }, children: [
-                /* @__PURE__ */ jsx40("span", { style: {
+                /* @__PURE__ */ jsx39("span", { style: {
                   position: "absolute",
                   left: `-${spacing[4]}`,
                   color: "#666"
                 }, children: "\u2022" }),
-                /* @__PURE__ */ jsx40(Typography, { variant: "body", style: { margin: 0 }, children: item })
+                /* @__PURE__ */ jsx39(Typography, { variant: "body", style: { margin: 0 }, children: item })
               ] }, itemIndex)) })
             ] }, index)),
-            entry.breaking && entry.breaking.length > 0 && /* @__PURE__ */ jsxs37("div", { style: {
+            entry.breaking && entry.breaking.length > 0 && /* @__PURE__ */ jsxs36("div", { style: {
               marginTop: spacing[4],
               padding: spacing[4],
               backgroundColor: "#fef2f2",
               border: "1px solid #fecaca",
               borderRadius: spacing[2]
             }, children: [
-              /* @__PURE__ */ jsxs37(Typography, { variant: "title3", style: {
+              /* @__PURE__ */ jsxs36(Typography, { variant: "title3", style: {
                 color: "#dc2626",
                 marginBottom: spacing[2],
                 fontWeight: "bold"
               }, children: [
-                /* @__PURE__ */ jsx40(Warning3, { size: 16, style: { marginRight: spacing[1] } }),
+                /* @__PURE__ */ jsx39(Warning3, { size: 16, style: { marginRight: spacing[1] } }),
                 "Breaking Changes"
               ] }),
-              /* @__PURE__ */ jsx40("ul", { style: {
+              /* @__PURE__ */ jsx39("ul", { style: {
                 margin: 0,
                 paddingLeft: spacing[6],
                 listStyle: "none"
-              }, children: entry.breaking.map((item, index) => /* @__PURE__ */ jsxs37("li", { style: {
+              }, children: entry.breaking.map((item, index) => /* @__PURE__ */ jsxs36("li", { style: {
                 marginBottom: spacing[1],
                 position: "relative"
               }, children: [
-                /* @__PURE__ */ jsx40("span", { style: {
+                /* @__PURE__ */ jsx39("span", { style: {
                   position: "absolute",
                   left: `-${spacing[4]}`,
                   color: "#dc2626"
                 }, children: "\u2022" }),
-                /* @__PURE__ */ jsx40(Typography, { variant: "body", style: { margin: 0, color: "#dc2626" }, children: item })
+                /* @__PURE__ */ jsx39(Typography, { variant: "body", style: { margin: 0, color: "#dc2626" }, children: item })
               ] }, index)) })
             ] })
           ] })
@@ -8335,9 +8322,9 @@ var Changelog = ({
 var Changelog_default = Changelog;
 
 // src/components/Chat/Chat.tsx
-import { useCallback as useCallback21, useEffect as useEffect14, useMemo as useMemo7, useRef as useRef19, useState as useState20 } from "react";
+import { useCallback as useCallback20, useEffect as useEffect13, useMemo as useMemo7, useRef as useRef18, useState as useState19 } from "react";
 import { PaperPlaneRight, DotsThree, FileText, ArrowBendUpLeft } from "phosphor-react";
-import { jsx as jsx41, jsxs as jsxs38 } from "react/jsx-runtime";
+import { jsx as jsx40, jsxs as jsxs37 } from "react/jsx-runtime";
 var Chat = ({
   messages = [],
   onSend,
@@ -8350,20 +8337,20 @@ var Chat = ({
   style,
   ...props
 }) => {
-  const [text, setText] = useState20("");
-  const [replyingTo, setReplyingTo] = useState20(null);
-  const logRef = useRef19(null);
-  const [revealMsgId, setRevealMsgId] = useState20(null);
-  const [revealIndex, setRevealIndex] = useState20(0);
-  const revealTimer = useRef19(null);
-  const lastRevealedId = useRef19(null);
-  useEffect14(() => {
+  const [text, setText] = useState19("");
+  const [replyingTo, setReplyingTo] = useState19(null);
+  const logRef = useRef18(null);
+  const [revealMsgId, setRevealMsgId] = useState19(null);
+  const [revealIndex, setRevealIndex] = useState19(0);
+  const revealTimer = useRef18(null);
+  const lastRevealedId = useRef18(null);
+  useEffect13(() => {
     const el = logRef.current;
     if (el) {
       el.scrollTop = el.scrollHeight;
     }
   }, [messages, typing]);
-  useEffect14(() => {
+  useEffect13(() => {
     if (!revealThem) return;
     const last = messages[messages.length - 1];
     if (!last || last.author !== "them") return;
@@ -8386,7 +8373,7 @@ var Chat = ({
       if (revealTimer.current) window.clearInterval(revealTimer.current);
     };
   }, [messages, revealThem, revealSpeedMs]);
-  const handleSend = useCallback21(() => {
+  const handleSend = useCallback20(() => {
     if (!text.trim() || disabled) return;
     onSend?.(text.trim(), replyingTo?.id);
     setText("");
@@ -8410,8 +8397,8 @@ var Chat = ({
   const renderAttachment = (attachment) => {
     switch (attachment.type) {
       case "image":
-        return /* @__PURE__ */ jsxs38("div", { style: { marginTop: 8, borderRadius: 8, overflow: "hidden" }, children: [
-          /* @__PURE__ */ jsx41(
+        return /* @__PURE__ */ jsxs37("div", { style: { marginTop: 8, borderRadius: 8, overflow: "hidden" }, children: [
+          /* @__PURE__ */ jsx40(
             "img",
             {
               src: attachment.url,
@@ -8419,7 +8406,7 @@ var Chat = ({
               style: { maxWidth: "100%", height: "auto", display: "block" }
             }
           ),
-          attachment.title && /* @__PURE__ */ jsxs38("div", { style: {
+          attachment.title && /* @__PURE__ */ jsxs37("div", { style: {
             padding: 12,
             background: "rgba(0,0,0,0.05)",
             borderTop: "1px solid rgba(0,0,0,0.1)",
@@ -8427,11 +8414,11 @@ var Chat = ({
             flexDirection: "column",
             gap: 8
           }, children: [
-            /* @__PURE__ */ jsxs38("div", { children: [
-              /* @__PURE__ */ jsx41(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 4 }, children: attachment.title }),
-              attachment.description && /* @__PURE__ */ jsx41(Typography, { variant: "caption", color: "secondary", children: attachment.description })
+            /* @__PURE__ */ jsxs37("div", { children: [
+              /* @__PURE__ */ jsx40(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 4 }, children: attachment.title }),
+              attachment.description && /* @__PURE__ */ jsx40(Typography, { variant: "caption", color: "secondary", children: attachment.description })
             ] }),
-            /* @__PURE__ */ jsx41(
+            /* @__PURE__ */ jsx40(
               Button,
               {
                 variant: "primary",
@@ -8446,8 +8433,8 @@ var Chat = ({
           ] })
         ] });
       case "video":
-        return /* @__PURE__ */ jsxs38("div", { style: { marginTop: 8, borderRadius: 8, overflow: "hidden", position: "relative" }, children: [
-          /* @__PURE__ */ jsx41(
+        return /* @__PURE__ */ jsxs37("div", { style: { marginTop: 8, borderRadius: 8, overflow: "hidden", position: "relative" }, children: [
+          /* @__PURE__ */ jsx40(
             "video",
             {
               src: attachment.url,
@@ -8455,7 +8442,7 @@ var Chat = ({
               style: { maxWidth: "100%", height: "auto", display: "block" }
             }
           ),
-          attachment.duration && /* @__PURE__ */ jsx41("div", { style: {
+          attachment.duration && /* @__PURE__ */ jsx40("div", { style: {
             position: "absolute",
             bottom: 8,
             right: 8,
@@ -8467,8 +8454,8 @@ var Chat = ({
           }, children: attachment.duration })
         ] });
       case "card":
-        return /* @__PURE__ */ jsx41("div", { style: { marginTop: 8 }, children: /* @__PURE__ */ jsxs38(Card, { style: { padding: 12, maxWidth: 280 }, children: [
-          attachment.thumbnail && /* @__PURE__ */ jsx41(
+        return /* @__PURE__ */ jsx40("div", { style: { marginTop: 8 }, children: /* @__PURE__ */ jsxs37(Card, { style: { padding: 12, maxWidth: 280 }, children: [
+          attachment.thumbnail && /* @__PURE__ */ jsx40(
             "img",
             {
               src: attachment.thumbnail,
@@ -8476,11 +8463,11 @@ var Chat = ({
               style: { width: "100%", height: 120, objectFit: "cover", borderRadius: 4, marginBottom: 8 }
             }
           ),
-          attachment.title && /* @__PURE__ */ jsx41(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 4 }, children: attachment.title }),
-          attachment.description && /* @__PURE__ */ jsx41(Typography, { variant: "caption", color: "secondary", children: attachment.description })
+          attachment.title && /* @__PURE__ */ jsx40(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 4 }, children: attachment.title }),
+          attachment.description && /* @__PURE__ */ jsx40(Typography, { variant: "caption", color: "secondary", children: attachment.description })
         ] }) });
       case "file":
-        return /* @__PURE__ */ jsxs38("div", { style: {
+        return /* @__PURE__ */ jsxs37("div", { style: {
           marginTop: 8,
           padding: 8,
           background: "rgba(0,0,0,0.05)",
@@ -8489,16 +8476,16 @@ var Chat = ({
           alignItems: "center",
           gap: 8
         }, children: [
-          /* @__PURE__ */ jsx41(FileText, { size: 20 }),
-          /* @__PURE__ */ jsxs38("div", { style: { flex: 1, minWidth: 0 }, children: [
-            /* @__PURE__ */ jsx41(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 2 }, children: attachment.title || "File" }),
-            attachment.size && /* @__PURE__ */ jsx41(Typography, { variant: "caption", color: "secondary", children: attachment.size })
+          /* @__PURE__ */ jsx40(FileText, { size: 20 }),
+          /* @__PURE__ */ jsxs37("div", { style: { flex: 1, minWidth: 0 }, children: [
+            /* @__PURE__ */ jsx40(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 2 }, children: attachment.title || "File" }),
+            attachment.size && /* @__PURE__ */ jsx40(Typography, { variant: "caption", color: "secondary", children: attachment.size })
           ] })
         ] });
       case "course":
       case "lesson":
-        return /* @__PURE__ */ jsxs38("div", { style: { marginTop: 8, borderRadius: 8, overflow: "hidden", border: "1px solid var(--cria-gray-200)", position: "relative" }, children: [
-          attachment.thumbnail && /* @__PURE__ */ jsx41(
+        return /* @__PURE__ */ jsxs37("div", { style: { marginTop: 8, borderRadius: 8, overflow: "hidden", border: "1px solid var(--cria-gray-200)", position: "relative" }, children: [
+          attachment.thumbnail && /* @__PURE__ */ jsx40(
             "img",
             {
               src: attachment.thumbnail,
@@ -8506,7 +8493,7 @@ var Chat = ({
               style: { width: "100%", height: 200, objectFit: "cover", display: "block" }
             }
           ),
-          /* @__PURE__ */ jsxs38("div", { style: {
+          /* @__PURE__ */ jsxs37("div", { style: {
             position: "absolute",
             bottom: 0,
             left: 0,
@@ -8517,15 +8504,15 @@ var Chat = ({
             flexDirection: "column",
             gap: 12
           }, children: [
-            /* @__PURE__ */ jsxs38("div", { children: [
-              /* @__PURE__ */ jsx41(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 4, color: "var(--cria-white)" }, children: attachment.title }),
-              attachment.description && /* @__PURE__ */ jsx41(Typography, { variant: "caption", style: { color: "rgba(255,255,255,0.9)", marginBottom: 4, display: "block" }, children: attachment.description }),
-              attachment.duration && /* @__PURE__ */ jsxs38(Typography, { variant: "caption", style: { color: "rgba(255,255,255,0.8)", marginTop: 4, display: "block" }, children: [
+            /* @__PURE__ */ jsxs37("div", { children: [
+              /* @__PURE__ */ jsx40(Typography, { variant: "body", weight: "semiBold", style: { marginBottom: 4, color: "var(--cria-white)" }, children: attachment.title }),
+              attachment.description && /* @__PURE__ */ jsx40(Typography, { variant: "caption", style: { color: "rgba(255,255,255,0.9)", marginBottom: 4, display: "block" }, children: attachment.description }),
+              attachment.duration && /* @__PURE__ */ jsxs37(Typography, { variant: "caption", style: { color: "rgba(255,255,255,0.8)", marginTop: 4, display: "block" }, children: [
                 "Dura\xE7\xE3o: ",
                 attachment.duration
               ] })
             ] }),
-            /* @__PURE__ */ jsx41(
+            /* @__PURE__ */ jsx40(
               Button,
               {
                 variant: "primary",
@@ -8555,8 +8542,8 @@ var Chat = ({
     });
     return out;
   }, [messages]);
-  return /* @__PURE__ */ jsxs38("div", { className: ["cria-chat", className].filter(Boolean).join(" "), style, ...props, children: [
-    /* @__PURE__ */ jsxs38(
+  return /* @__PURE__ */ jsxs37("div", { className: ["cria-chat", className].filter(Boolean).join(" "), style, ...props, children: [
+    /* @__PURE__ */ jsxs37(
       "div",
       {
         ref: logRef,
@@ -8565,10 +8552,10 @@ var Chat = ({
         "aria-live": "polite",
         "aria-relevant": "additions",
         children: [
-          grouped.map((group) => /* @__PURE__ */ jsx41("div", { className: ["cria-chat__group", group.author === "me" ? "cria-chat__group--me" : "cria-chat__group--them"].join(" "), children: group.items.map((item) => {
+          grouped.map((group) => /* @__PURE__ */ jsx40("div", { className: ["cria-chat__group", group.author === "me" ? "cria-chat__group--me" : "cria-chat__group--them"].join(" "), children: group.items.map((item) => {
             const repliedMessage = item.replyTo ? findMessageById(item.replyTo) : null;
-            return /* @__PURE__ */ jsxs38("div", { className: "cria-chat__bubble", "aria-label": `${group.author === "me" ? "Me" : "Them"} said ${item.text}`, children: [
-              repliedMessage && /* @__PURE__ */ jsxs38("div", { style: {
+            return /* @__PURE__ */ jsxs37("div", { className: "cria-chat__bubble", "aria-label": `${group.author === "me" ? "Me" : "Them"} said ${item.text}`, children: [
+              repliedMessage && /* @__PURE__ */ jsxs37("div", { style: {
                 marginBottom: 8,
                 padding: 8,
                 background: "rgba(0,0,0,0.05)",
@@ -8577,28 +8564,28 @@ var Chat = ({
                 fontSize: "12px",
                 color: "var(--cria-gray-600)"
               }, children: [
-                /* @__PURE__ */ jsxs38("div", { style: { fontWeight: 500, marginBottom: 2 }, children: [
+                /* @__PURE__ */ jsxs37("div", { style: { fontWeight: 500, marginBottom: 2 }, children: [
                   "Replying to ",
                   repliedMessage.author === "me" ? "you" : "them"
                 ] }),
-                /* @__PURE__ */ jsx41("div", { style: {
+                /* @__PURE__ */ jsx40("div", { style: {
                   overflow: "hidden",
                   textOverflow: "ellipsis",
                   whiteSpace: "nowrap",
                   maxWidth: "200px"
                 }, children: repliedMessage.text })
               ] }),
-              /* @__PURE__ */ jsx41(Typography, { variant: "body", color: group.author === "me" ? "inverse" : "content", children: revealThem && group.author === "them" && item.id === revealMsgId ? item.text.slice(0, Math.max(0, revealIndex)) : item.text }),
-              item.attachments && item.attachments.map((attachment) => /* @__PURE__ */ jsx41("div", { children: renderAttachment(attachment) }, attachment.id)),
-              /* @__PURE__ */ jsxs38("div", { style: {
+              /* @__PURE__ */ jsx40(Typography, { variant: "body", color: group.author === "me" ? "inverse" : "content", children: revealThem && group.author === "them" && item.id === revealMsgId ? item.text.slice(0, Math.max(0, revealIndex)) : item.text }),
+              item.attachments && item.attachments.map((attachment) => /* @__PURE__ */ jsx40("div", { children: renderAttachment(attachment) }, attachment.id)),
+              /* @__PURE__ */ jsxs37("div", { style: {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-between",
                 marginTop: 4,
                 gap: 8
               }, children: [
-                /* @__PURE__ */ jsx41(Typography, { variant: "caption", color: group.author === "me" ? "inverse" : "secondary", children: item.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) }),
-                /* @__PURE__ */ jsxs38(
+                /* @__PURE__ */ jsx40(Typography, { variant: "caption", color: group.author === "me" ? "inverse" : "secondary", children: item.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }) }),
+                /* @__PURE__ */ jsxs37(
                   "button",
                   {
                     onClick: () => handleReply(item),
@@ -8616,7 +8603,7 @@ var Chat = ({
                     },
                     title: "Reply to this message",
                     children: [
-                      /* @__PURE__ */ jsx41(ArrowBendUpLeft, { size: 12 }),
+                      /* @__PURE__ */ jsx40(ArrowBendUpLeft, { size: 12 }),
                       "Reply"
                     ]
                   }
@@ -8624,11 +8611,11 @@ var Chat = ({
               ] })
             ] }, item.id);
           }) }, group.key)),
-          typing && /* @__PURE__ */ jsx41("div", { className: "cria-chat__group cria-chat__group--them", "aria-live": "polite", children: /* @__PURE__ */ jsx41("div", { className: "cria-chat__bubble cria-chat__bubble--typing", "aria-label": "Typing", children: /* @__PURE__ */ jsx41(DotsThree, { size: 24, weight: "bold" }) }) })
+          typing && /* @__PURE__ */ jsx40("div", { className: "cria-chat__group cria-chat__group--them", "aria-live": "polite", children: /* @__PURE__ */ jsx40("div", { className: "cria-chat__bubble cria-chat__bubble--typing", "aria-label": "Typing", children: /* @__PURE__ */ jsx40(DotsThree, { size: 24, weight: "bold" }) }) })
         ]
       }
     ),
-    replyingTo && /* @__PURE__ */ jsxs38("div", { style: {
+    replyingTo && /* @__PURE__ */ jsxs37("div", { style: {
       padding: 8,
       background: "rgba(117, 102, 161, 0.1)",
       borderRadius: 6,
@@ -8639,12 +8626,12 @@ var Chat = ({
       justifyContent: "space-between",
       gap: 8
     }, children: [
-      /* @__PURE__ */ jsxs38("div", { style: { flex: 1, minWidth: 0 }, children: [
-        /* @__PURE__ */ jsxs38("div", { style: { fontSize: "12px", fontWeight: 500, color: "var(--cria-primary)", marginBottom: 2 }, children: [
+      /* @__PURE__ */ jsxs37("div", { style: { flex: 1, minWidth: 0 }, children: [
+        /* @__PURE__ */ jsxs37("div", { style: { fontSize: "12px", fontWeight: 500, color: "var(--cria-primary)", marginBottom: 2 }, children: [
           "Replying to ",
           replyingTo.author === "me" ? "your message" : "their message"
         ] }),
-        /* @__PURE__ */ jsx41("div", { style: {
+        /* @__PURE__ */ jsx40("div", { style: {
           fontSize: "12px",
           color: "var(--cria-gray-600)",
           overflow: "hidden",
@@ -8652,7 +8639,7 @@ var Chat = ({
           whiteSpace: "nowrap"
         }, children: replyingTo.text })
       ] }),
-      /* @__PURE__ */ jsx41(
+      /* @__PURE__ */ jsx40(
         "button",
         {
           onClick: cancelReply,
@@ -8670,8 +8657,8 @@ var Chat = ({
         }
       )
     ] }),
-    /* @__PURE__ */ jsxs38("div", { className: "cria-chat__composer", children: [
-      /* @__PURE__ */ jsx41(
+    /* @__PURE__ */ jsxs37("div", { className: "cria-chat__composer", children: [
+      /* @__PURE__ */ jsx40(
         "textarea",
         {
           className: "cria-chat__textarea",
@@ -8684,15 +8671,502 @@ var Chat = ({
           rows: 1
         }
       ),
-      /* @__PURE__ */ jsx41(Button, { variant: "secondary", size: "sm", onClick: handleSend, disabled: disabled || !text.trim(), "aria-label": "Send message", children: /* @__PURE__ */ jsx41(PaperPlaneRight, { size: 18 }) })
+      /* @__PURE__ */ jsx40(Button, { variant: "secondary", size: "sm", onClick: handleSend, disabled: disabled || !text.trim(), "aria-label": "Send message", children: /* @__PURE__ */ jsx40(PaperPlaneRight, { size: 18 }) })
     ] })
   ] });
 };
 
-// src/components/AgentDev/AgentDev.tsx
-import { useState as useState21, useCallback as useCallback22 } from "react";
-import { Robot, X as X9, Plus as Plus2, Wrench as Wrench2, Code } from "phosphor-react";
+// src/app/views/AgentDev/AgentDev.tsx
+import { useState as useState22, useCallback as useCallback22 } from "react";
+
+// src/app/views/AgentDev/tabs/AgenteTab.tsx
+import { useState as useState21 } from "react";
+
+// src/app/views/AgentDev/components/PRList.tsx
+import { GitBranch as GitBranch2, Calendar as Calendar2, User as User5, ExternalLink, CheckCircle as CheckCircle2, XCircle as XCircle2, Clock as Clock3 } from "phosphor-react";
+import { jsx as jsx41, jsxs as jsxs38 } from "react/jsx-runtime";
+var PRList = ({
+  prs,
+  title,
+  emptyMessage,
+  loading = false,
+  onRefresh,
+  className = ""
+}) => {
+  const getStatusIcon = (state) => {
+    switch (state) {
+      case "merged":
+        return /* @__PURE__ */ jsx41(CheckCircle2, { size: 16, className: "pr-list__status-icon pr-list__status-icon--merged" });
+      case "closed":
+        return /* @__PURE__ */ jsx41(XCircle2, { size: 16, className: "pr-list__status-icon pr-list__status-icon--closed" });
+      case "open":
+        return /* @__PURE__ */ jsx41(Clock3, { size: 16, className: "pr-list__status-icon pr-list__status-icon--open" });
+      default:
+        return /* @__PURE__ */ jsx41(Clock3, { size: 16, className: "pr-list__status-icon" });
+    }
+  };
+  const getStatusBadge = (state) => {
+    switch (state) {
+      case "merged":
+        return /* @__PURE__ */ jsx41(Badge, { variant: "success", size: "sm", children: "Merged" });
+      case "closed":
+        return /* @__PURE__ */ jsx41(Badge, { variant: "danger", size: "sm", children: "Closed" });
+      case "open":
+        return /* @__PURE__ */ jsx41(Badge, { variant: "info", size: "sm", children: "Open" });
+      default:
+        return /* @__PURE__ */ jsx41(Badge, { variant: "secondary", size: "sm", children: state });
+    }
+  };
+  const formatDate2 = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("pt-BR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit"
+    });
+  };
+  const getLabelBadge = (label) => {
+    const isAgentLabel = ["agent-create", "agent-fix"].includes(label.name);
+    return /* @__PURE__ */ jsx41(
+      Badge,
+      {
+        variant: isAgentLabel ? "primary" : "secondary",
+        size: "sm",
+        style: {
+          backgroundColor: isAgentLabel ? void 0 : `#${label.color}20`,
+          color: isAgentLabel ? void 0 : `#${label.color}`,
+          borderColor: `#${label.color}40`
+        },
+        children: label.name
+      },
+      label.name
+    );
+  };
+  if (loading) {
+    return /* @__PURE__ */ jsxs38("div", { className: `pr-list ${className}`, children: [
+      /* @__PURE__ */ jsxs38("div", { className: "pr-list__header", children: [
+        /* @__PURE__ */ jsx41(Typography, { variant: "h4", weight: "medium", children: title }),
+        onRefresh && /* @__PURE__ */ jsxs38(Button, { variant: "ghost", size: "sm", onClick: onRefresh, disabled: true, children: [
+          /* @__PURE__ */ jsx41(Clock3, { size: 16 }),
+          "Atualizando..."
+        ] })
+      ] }),
+      /* @__PURE__ */ jsx41("div", { className: "pr-list__loading", children: /* @__PURE__ */ jsxs38("div", { className: "pr-list__loading-content", children: [
+        /* @__PURE__ */ jsx41("div", { className: "pr-list__loading-spinner", children: /* @__PURE__ */ jsx41(Clock3, { size: 24, className: "pr-list__spinner-icon" }) }),
+        /* @__PURE__ */ jsx41(Typography, { variant: "body", color: "muted", children: "Carregando PRs..." })
+      ] }) })
+    ] });
+  }
+  if (prs.length === 0) {
+    return /* @__PURE__ */ jsxs38("div", { className: `pr-list ${className}`, children: [
+      /* @__PURE__ */ jsxs38("div", { className: "pr-list__header", children: [
+        /* @__PURE__ */ jsx41(Typography, { variant: "h4", weight: "medium", children: title }),
+        onRefresh && /* @__PURE__ */ jsxs38(Button, { variant: "ghost", size: "sm", onClick: onRefresh, children: [
+          /* @__PURE__ */ jsx41(Clock3, { size: 16 }),
+          "Atualizar"
+        ] })
+      ] }),
+      /* @__PURE__ */ jsx41("div", { className: "pr-list__empty", children: /* @__PURE__ */ jsx41(Typography, { variant: "body", color: "muted", children: emptyMessage }) })
+    ] });
+  }
+  return /* @__PURE__ */ jsxs38("div", { className: `pr-list ${className}`, children: [
+    /* @__PURE__ */ jsxs38("div", { className: "pr-list__header", children: [
+      /* @__PURE__ */ jsxs38(Typography, { variant: "h4", weight: "medium", children: [
+        title,
+        " (",
+        prs.length,
+        ")"
+      ] }),
+      onRefresh && /* @__PURE__ */ jsxs38(Button, { variant: "ghost", size: "sm", onClick: onRefresh, children: [
+        /* @__PURE__ */ jsx41(Clock3, { size: 16 }),
+        "Atualizar"
+      ] })
+    ] }),
+    /* @__PURE__ */ jsx41("div", { className: "pr-list__items", children: prs.map((pr) => /* @__PURE__ */ jsxs38("div", { className: "pr-list__item", children: [
+      /* @__PURE__ */ jsxs38("div", { className: "pr-list__item-header", children: [
+        /* @__PURE__ */ jsxs38("div", { className: "pr-list__item-title", children: [
+          getStatusIcon(pr.state),
+          /* @__PURE__ */ jsx41(Typography, { variant: "h5", weight: "medium", className: "pr-list__item-title-text", children: pr.title })
+        ] }),
+        /* @__PURE__ */ jsxs38("div", { className: "pr-list__item-actions", children: [
+          getStatusBadge(pr.state),
+          /* @__PURE__ */ jsx41(
+            Button,
+            {
+              variant: "ghost",
+              size: "sm",
+              onClick: () => window.open(pr.html_url, "_blank"),
+              title: "Ver no GitHub",
+              children: /* @__PURE__ */ jsx41(ExternalLink, { size: 16 })
+            }
+          )
+        ] })
+      ] }),
+      pr.body && /* @__PURE__ */ jsx41("div", { className: "pr-list__item-body", children: /* @__PURE__ */ jsx41(Typography, { variant: "body", color: "muted", children: pr.body.length > 200 ? `${pr.body.substring(0, 200)}...` : pr.body }) }),
+      /* @__PURE__ */ jsx41("div", { className: "pr-list__item-labels", children: pr.labels.map(getLabelBadge) }),
+      /* @__PURE__ */ jsxs38("div", { className: "pr-list__item-meta", children: [
+        /* @__PURE__ */ jsxs38("div", { className: "pr-list__item-meta-item", children: [
+          /* @__PURE__ */ jsx41(User5, { size: 14 }),
+          /* @__PURE__ */ jsx41(Typography, { variant: "caption", color: "muted", children: pr.user.login })
+        ] }),
+        /* @__PURE__ */ jsxs38("div", { className: "pr-list__item-meta-item", children: [
+          /* @__PURE__ */ jsx41(GitBranch2, { size: 14 }),
+          /* @__PURE__ */ jsxs38(Typography, { variant: "caption", color: "muted", children: [
+            pr.head.ref,
+            " \u2192 ",
+            pr.base.ref
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxs38("div", { className: "pr-list__item-meta-item", children: [
+          /* @__PURE__ */ jsx41(Calendar2, { size: 14 }),
+          /* @__PURE__ */ jsx41(Typography, { variant: "caption", color: "muted", children: formatDate2(pr.created_at) })
+        ] }),
+        pr.merged_at && /* @__PURE__ */ jsxs38("div", { className: "pr-list__item-meta-item", children: [
+          /* @__PURE__ */ jsx41(CheckCircle2, { size: 14 }),
+          /* @__PURE__ */ jsxs38(Typography, { variant: "caption", color: "muted", children: [
+            "Merged: ",
+            formatDate2(pr.merged_at)
+          ] })
+        ] }),
+        pr.closed_at && !pr.merged_at && /* @__PURE__ */ jsxs38("div", { className: "pr-list__item-meta-item", children: [
+          /* @__PURE__ */ jsx41(XCircle2, { size: 14 }),
+          /* @__PURE__ */ jsxs38(Typography, { variant: "caption", color: "muted", children: [
+            "Closed: ",
+            formatDate2(pr.closed_at)
+          ] })
+        ] })
+      ] })
+    ] }, pr.id)) })
+  ] });
+};
+
+// src/app/views/AgentDev/hooks/useGitHubPRs.ts
+import { useState as useState20, useEffect as useEffect14, useCallback as useCallback21 } from "react";
+var GitHubAPIClient = class {
+  constructor() {
+    this.baseURL = "https://api.github.com";
+    this.owner = "fernandofeitosa";
+    // Replace with actual repo owner
+    this.repo = "design-system-cria";
+  }
+  // Replace with actual repo name
+  async fetchPRs() {
+    const mockPRs = [
+      {
+        id: 1,
+        number: 123,
+        title: "feat: implement AgentDev interface with enhanced styling",
+        body: "This PR implements the AgentDev interface with improved styling and functionality.\n\n- Enhanced drawer styling with white background\n- Improved component type mapping\n- Better form validation\n- Responsive design improvements",
+        state: "merged",
+        labels: [
+          { name: "agent-create", color: "0e8a16" },
+          { name: "enhancement", color: "a2eeef" }
+        ],
+        user: {
+          login: "fernandofeitosa",
+          avatar_url: "https://github.com/fernandofeitosa.png"
+        },
+        created_at: "2024-01-15T10:30:00Z",
+        updated_at: "2024-01-15T14:45:00Z",
+        merged_at: "2024-01-15T14:45:00Z",
+        html_url: "https://github.com/fernandofeitosa/design-system-cria/pull/123",
+        head: { ref: "feature/agent-dev-interface" },
+        base: { ref: "main" }
+      },
+      {
+        id: 2,
+        number: 124,
+        title: "fix: resolve AgentDev export issue and improve component functionality",
+        body: "Fixed import path issues and improved component functionality.\n\n- Fixed import path in demo.tsx\n- Improved component exports\n- Enhanced form validation\n- Better error handling",
+        state: "merged",
+        labels: [
+          { name: "agent-fix", color: "d73a4a" },
+          { name: "bug", color: "d73a4a" }
+        ],
+        user: {
+          login: "fernandofeitosa",
+          avatar_url: "https://github.com/fernandofeitosa.png"
+        },
+        created_at: "2024-01-16T09:15:00Z",
+        updated_at: "2024-01-16T11:30:00Z",
+        merged_at: "2024-01-16T11:30:00Z",
+        html_url: "https://github.com/fernandofeitosa/design-system-cria/pull/124",
+        head: { ref: "fix/agent-dev-exports" },
+        base: { ref: "main" }
+      },
+      {
+        id: 3,
+        number: 125,
+        title: "feat: add new Button component variants",
+        body: "Added new button variants for better design system coverage.\n\n- Added ghost variant\n- Added outline variant\n- Improved accessibility\n- Added comprehensive tests",
+        state: "open",
+        labels: [
+          { name: "agent-create", color: "0e8a16" },
+          { name: "component", color: "7057ff" }
+        ],
+        user: {
+          login: "fernandofeitosa",
+          avatar_url: "https://github.com/fernandofeitosa.png"
+        },
+        created_at: "2024-01-17T08:20:00Z",
+        updated_at: "2024-01-17T08:20:00Z",
+        html_url: "https://github.com/fernandofeitosa/design-system-cria/pull/125",
+        head: { ref: "feature/button-variants" },
+        base: { ref: "main" }
+      },
+      {
+        id: 4,
+        number: 126,
+        title: "fix: improve Modal component accessibility",
+        body: "Fixed accessibility issues in Modal component.\n\n- Added proper ARIA attributes\n- Improved keyboard navigation\n- Fixed focus management\n- Added screen reader support",
+        state: "closed",
+        labels: [
+          { name: "agent-fix", color: "d73a4a" },
+          { name: "accessibility", color: "1d76db" }
+        ],
+        user: {
+          login: "fernandofeitosa",
+          avatar_url: "https://github.com/fernandofeitosa.png"
+        },
+        created_at: "2024-01-18T13:45:00Z",
+        updated_at: "2024-01-18T16:20:00Z",
+        closed_at: "2024-01-18T16:20:00Z",
+        html_url: "https://github.com/fernandofeitosa/design-system-cria/pull/126",
+        head: { ref: "fix/modal-accessibility" },
+        base: { ref: "main" }
+      }
+    ];
+    await new Promise((resolve) => setTimeout(resolve, 1e3));
+    return mockPRs;
+  }
+  async fetchPRsByLabels(labels) {
+    const allPRs = await this.fetchPRs();
+    return allPRs.filter(
+      (pr) => pr.labels.some((label) => labels.includes(label.name))
+    );
+  }
+};
+var useGitHubPRs = () => {
+  const [state, setState] = useState20({
+    prs: [],
+    mergedPRs: [],
+    closedPRs: [],
+    loading: false,
+    error: null,
+    lastUpdated: null
+  });
+  const fetchPRs = useCallback21(async () => {
+    setState((prev) => ({ ...prev, loading: true, error: null }));
+    try {
+      const client = new GitHubAPIClient();
+      const allPRs = await client.fetchPRs();
+      const agentPRs = allPRs.filter(
+        (pr) => pr.labels.some((label) => ["agent-create", "agent-fix"].includes(label.name))
+      );
+      const mergedPRs = agentPRs.filter((pr) => pr.state === "merged");
+      const closedPRs = agentPRs.filter((pr) => pr.state === "closed");
+      const openPRs = agentPRs.filter((pr) => pr.state === "open");
+      setState({
+        prs: openPRs,
+        mergedPRs,
+        closedPRs,
+        loading: false,
+        error: null,
+        lastUpdated: /* @__PURE__ */ new Date()
+      });
+    } catch (error) {
+      setState((prev) => ({
+        ...prev,
+        loading: false,
+        error: error instanceof Error ? error.message : "Failed to fetch PRs"
+      }));
+    }
+  }, []);
+  const refreshPRs = useCallback21(() => {
+    fetchPRs();
+  }, [fetchPRs]);
+  useEffect14(() => {
+    fetchPRs();
+    const interval = setInterval(fetchPRs, 5 * 60 * 1e3);
+    return () => clearInterval(interval);
+  }, [fetchPRs]);
+  return {
+    ...state,
+    refreshPRs,
+    fetchPRs
+  };
+};
+
+// src/app/views/AgentDev/tabs/AgenteTab.tsx
+import { Refresh, GithubLogo, AlertCircle, CheckCircle as CheckCircle3, XCircle as XCircle3 } from "phosphor-react";
 import { jsx as jsx42, jsxs as jsxs39 } from "react/jsx-runtime";
+var AgenteTab = ({ className = "" }) => {
+  const [activeSubTab, setActiveSubTab] = useState21("em-andamento");
+  const { prs, mergedPRs, closedPRs, loading, error, lastUpdated, refreshPRs } = useGitHubPRs();
+  const subTabs = [
+    {
+      id: "em-andamento",
+      label: "Em Andamento",
+      icon: /* @__PURE__ */ jsx42(AlertCircle, { size: 16 }),
+      count: prs.length,
+      description: "PRs abertos e em desenvolvimento"
+    },
+    {
+      id: "em-producao",
+      label: "Em Produ\xE7\xE3o",
+      icon: /* @__PURE__ */ jsx42(CheckCircle3, { size: 16 }),
+      count: mergedPRs.length,
+      description: "PRs merged e em produ\xE7\xE3o"
+    },
+    {
+      id: "recusado",
+      label: "Recusado",
+      icon: /* @__PURE__ */ jsx42(XCircle3, { size: 16 }),
+      count: closedPRs.length,
+      description: "PRs fechados sem merge"
+    }
+  ];
+  const getCurrentPRs = () => {
+    switch (activeSubTab) {
+      case "em-andamento":
+        return prs;
+      case "em-producao":
+        return mergedPRs;
+      case "recusado":
+        return closedPRs;
+      default:
+        return [];
+    }
+  };
+  const getEmptyMessage = () => {
+    switch (activeSubTab) {
+      case "em-andamento":
+        return "Nenhuma tarefa em andamento. Todas as PRs foram processadas!";
+      case "em-producao":
+        return "Nenhuma tarefa em produ\xE7\xE3o ainda. PRs merged aparecer\xE3o aqui.";
+      case "recusado":
+        return "Nenhuma tarefa recusada. Todas as PRs foram aceitas!";
+      default:
+        return "Nenhuma tarefa encontrada.";
+    }
+  };
+  const formatLastUpdated = () => {
+    if (!lastUpdated) return "Nunca";
+    const now = /* @__PURE__ */ new Date();
+    const diff = now.getTime() - lastUpdated.getTime();
+    const minutes = Math.floor(diff / 6e4);
+    if (minutes < 1) return "Agora mesmo";
+    if (minutes < 60) return `${minutes} min atr\xE1s`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return `${hours}h atr\xE1s`;
+    const days = Math.floor(hours / 24);
+    return `${days}d atr\xE1s`;
+  };
+  return /* @__PURE__ */ jsxs39("div", { className: `agente-tab ${className}`, children: [
+    /* @__PURE__ */ jsxs39("div", { className: "agente-tab__header", children: [
+      /* @__PURE__ */ jsxs39("div", { className: "agente-tab__header-content", children: [
+        /* @__PURE__ */ jsx42(Typography, { variant: "h3", weight: "semibold", style: { marginBottom: spacing[2] }, children: "Status do Agente" }),
+        /* @__PURE__ */ jsx42(Typography, { variant: "body", color: "muted", style: { marginBottom: spacing[4] }, children: "Acompanhe o status das suas solicita\xE7\xF5es de cria\xE7\xE3o e corre\xE7\xE3o." }),
+        /* @__PURE__ */ jsxs39("div", { className: "agente-tab__stats", children: [
+          /* @__PURE__ */ jsx42("div", { className: "agente-tab__stat", children: /* @__PURE__ */ jsxs39(Badge, { variant: "info", size: "md", children: [
+            prs.length,
+            " Em Andamento"
+          ] }) }),
+          /* @__PURE__ */ jsx42("div", { className: "agente-tab__stat", children: /* @__PURE__ */ jsxs39(Badge, { variant: "success", size: "md", children: [
+            mergedPRs.length,
+            " Em Produ\xE7\xE3o"
+          ] }) }),
+          /* @__PURE__ */ jsx42("div", { className: "agente-tab__stat", children: /* @__PURE__ */ jsxs39(Badge, { variant: "danger", size: "md", children: [
+            closedPRs.length,
+            " Recusado"
+          ] }) })
+        ] })
+      ] }),
+      /* @__PURE__ */ jsxs39("div", { className: "agente-tab__header-actions", children: [
+        /* @__PURE__ */ jsxs39(
+          Button,
+          {
+            variant: "outline",
+            size: "sm",
+            onClick: refreshPRs,
+            disabled: loading,
+            title: "Atualizar PRs",
+            children: [
+              /* @__PURE__ */ jsx42(Refresh, { size: 16, className: loading ? "agente-tab__refresh-icon--spinning" : "" }),
+              "Atualizar"
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxs39(
+          Button,
+          {
+            variant: "ghost",
+            size: "sm",
+            onClick: () => window.open("https://github.com/fernandofeitosa/design-system-cria/pulls", "_blank"),
+            title: "Ver no GitHub",
+            children: [
+              /* @__PURE__ */ jsx42(GithubLogo, { size: 16 }),
+              "GitHub"
+            ]
+          }
+        )
+      ] })
+    ] }),
+    error && /* @__PURE__ */ jsxs39("div", { className: "agente-tab__error", children: [
+      /* @__PURE__ */ jsx42(AlertCircle, { size: 20 }),
+      /* @__PURE__ */ jsxs39("div", { children: [
+        /* @__PURE__ */ jsx42(Typography, { variant: "h5", weight: "medium", children: "Erro ao carregar PRs" }),
+        /* @__PURE__ */ jsx42(Typography, { variant: "body", color: "muted", children: error })
+      ] }),
+      /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", onClick: refreshPRs, children: "Tentar Novamente" })
+    ] }),
+    /* @__PURE__ */ jsx42("div", { className: "agente-tab__sub-tabs", children: subTabs.map((tab) => /* @__PURE__ */ jsxs39(
+      Button,
+      {
+        variant: activeSubTab === tab.id ? "primary" : "ghost",
+        size: "sm",
+        onClick: () => setActiveSubTab(tab.id),
+        className: `agente-tab__sub-tab ${activeSubTab === tab.id ? "agente-tab__sub-tab--active" : ""}`,
+        title: tab.description,
+        children: [
+          tab.icon,
+          /* @__PURE__ */ jsx42("span", { children: tab.label }),
+          tab.count > 0 && /* @__PURE__ */ jsx42(
+            Badge,
+            {
+              variant: activeSubTab === tab.id ? "secondary" : "primary",
+              size: "sm",
+              className: "agente-tab__sub-tab-badge",
+              children: tab.count
+            }
+          )
+        ]
+      },
+      tab.id
+    )) }),
+    /* @__PURE__ */ jsx42("div", { className: "agente-tab__content", children: /* @__PURE__ */ jsx42(
+      PRList,
+      {
+        prs: getCurrentPRs(),
+        title: subTabs.find((tab) => tab.id === activeSubTab)?.label || "PRs",
+        emptyMessage: getEmptyMessage(),
+        loading,
+        onRefresh: refreshPRs
+      }
+    ) }),
+    lastUpdated && /* @__PURE__ */ jsx42("div", { className: "agente-tab__footer", children: /* @__PURE__ */ jsxs39(Typography, { variant: "caption", color: "muted", children: [
+      "\xDAltima atualiza\xE7\xE3o: ",
+      formatLastUpdated()
+    ] }) })
+  ] });
+};
+var AgenteTab_default = AgenteTab;
+
+// src/app/views/AgentDev/AgentDev.tsx
+import { Robot, X as X8, Plus as Plus2, Wrench as Wrench2, Code } from "phosphor-react";
+import { jsx as jsx43, jsxs as jsxs40 } from "react/jsx-runtime";
 var AgentDev = ({
   isOpen,
   onClose,
@@ -8702,11 +9176,12 @@ var AgentDev = ({
   style,
   ...props
 }) => {
-  const [activeTab, setActiveTab] = useState21("criar");
-  const [tabState, setTabState] = useState21({
+  const [activeTab, setActiveTab] = useState22("criar");
+  const [tabState, setTabState] = useState22({
     activeTab: "criar",
     criar: {
       selectedType: null,
+      selectedComponent: null,
       prompt: "",
       images: []
     },
@@ -8736,42 +9211,60 @@ var AgentDev = ({
     {
       id: "criar",
       label: "Criar",
-      icon: /* @__PURE__ */ jsx42(Plus2, { size: 20 }),
+      icon: /* @__PURE__ */ jsx43(Plus2, { size: 20 }),
       description: "Create new components"
     },
     {
       id: "consertar",
       label: "Consertar",
-      icon: /* @__PURE__ */ jsx42(Wrench2, { size: 20 }),
+      icon: /* @__PURE__ */ jsx43(Wrench2, { size: 20 }),
       description: "Fix existing components"
     },
     {
       id: "agente",
       label: "Agente",
-      icon: /* @__PURE__ */ jsx42(Code, { size: 20 }),
+      icon: /* @__PURE__ */ jsx43(Code, { size: 20 }),
       description: "Manage agent tasks"
     }
   ];
   const renderTabContent = () => {
     switch (activeTab) {
       case "criar":
-        return /* @__PURE__ */ jsxs39("div", { className: "agent-dev__tab-content", children: [
-          /* @__PURE__ */ jsx42(Typography, { variant: "h3", weight: "semibold", style: { marginBottom: spacing[4] }, children: "Criar Componente" }),
-          /* @__PURE__ */ jsx42(Typography, { variant: "body", color: "muted", style: { marginBottom: spacing[6] }, children: "Selecione o tipo de componente e descreva o que voc\xEA gostaria de criar." }),
-          /* @__PURE__ */ jsxs39("div", { className: "agent-dev__section", children: [
-            /* @__PURE__ */ jsx42(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Tipo de Componente" }),
-            /* @__PURE__ */ jsxs39("div", { className: "agent-dev__type-selector", children: [
-              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Layout" }),
-              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Forms" }),
-              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Navigation" }),
-              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Feedback" }),
-              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Data Display" }),
-              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Content" })
-            ] })
+        return /* @__PURE__ */ jsxs40("div", { className: "agent-dev__tab-content", children: [
+          /* @__PURE__ */ jsx43(Typography, { variant: "h3", weight: "semibold", style: { marginBottom: spacing[4] }, children: "Criar Componente" }),
+          /* @__PURE__ */ jsx43(Typography, { variant: "body", color: "muted", style: { marginBottom: spacing[6] }, children: "Selecione o tipo de componente e descreva o que voc\xEA gostaria de criar." }),
+          /* @__PURE__ */ jsxs40("div", { className: "agent-dev__section", children: [
+            /* @__PURE__ */ jsx43(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Tipo de Componente" }),
+            /* @__PURE__ */ jsx43("div", { className: "agent-dev__type-selector", children: Object.entries(componentTypes).map(([category, types]) => /* @__PURE__ */ jsxs40("div", { style: { marginBottom: spacing[3] }, children: [
+              /* @__PURE__ */ jsx43(
+                Button,
+                {
+                  variant: tabState.criar.selectedType === category ? "primary" : "outline",
+                  size: "sm",
+                  style: { marginBottom: spacing[2] },
+                  onClick: () => updateTabState("criar", { selectedType: category }),
+                  children: category
+                }
+              ),
+              tabState.criar.selectedType === category && /* @__PURE__ */ jsx43("div", { style: { marginLeft: spacing[4], display: "flex", flexWrap: "wrap", gap: spacing[2] }, children: types.map((type) => /* @__PURE__ */ jsx43(
+                Button,
+                {
+                  variant: "ghost",
+                  size: "sm",
+                  onClick: () => updateTabState("criar", { selectedComponent: type }),
+                  style: {
+                    backgroundColor: tabState.criar.selectedComponent === type ? "var(--agent-dev-hover)" : "transparent",
+                    color: tabState.criar.selectedComponent === type ? "var(--agent-dev-accent)" : "var(--agent-dev-text)"
+                  },
+                  children: type
+                },
+                type
+              )) })
+            ] }, category)) })
           ] }),
-          /* @__PURE__ */ jsxs39("div", { className: "agent-dev__section", children: [
-            /* @__PURE__ */ jsx42(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Descri\xE7\xE3o do Componente" }),
-            /* @__PURE__ */ jsx42(
+          /* @__PURE__ */ jsxs40("div", { className: "agent-dev__section", children: [
+            /* @__PURE__ */ jsx43(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Descri\xE7\xE3o do Componente" }),
+            /* @__PURE__ */ jsx43(
               "textarea",
               {
                 className: "agent-dev__textarea",
@@ -8782,10 +9275,10 @@ var AgentDev = ({
               }
             )
           ] }),
-          /* @__PURE__ */ jsxs39("div", { className: "agent-dev__section", children: [
-            /* @__PURE__ */ jsx42(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Imagens de Refer\xEAncia (Opcional)" }),
-            /* @__PURE__ */ jsxs39("div", { className: "agent-dev__image-upload", children: [
-              /* @__PURE__ */ jsx42(
+          /* @__PURE__ */ jsxs40("div", { className: "agent-dev__section", children: [
+            /* @__PURE__ */ jsx43(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Imagens de Refer\xEAncia (Opcional)" }),
+            /* @__PURE__ */ jsxs40("div", { className: "agent-dev__image-upload", children: [
+              /* @__PURE__ */ jsx43(
                 "input",
                 {
                   type: "file",
@@ -8795,63 +9288,65 @@ var AgentDev = ({
                   id: "image-upload"
                 }
               ),
-              /* @__PURE__ */ jsxs39("label", { htmlFor: "image-upload", className: "agent-dev__file-label", children: [
-                /* @__PURE__ */ jsx42(Plus2, { size: 24 }),
-                /* @__PURE__ */ jsx42("span", { children: "Adicionar Imagens" })
+              /* @__PURE__ */ jsxs40("label", { htmlFor: "image-upload", className: "agent-dev__file-label", children: [
+                /* @__PURE__ */ jsx43(Plus2, { size: 24 }),
+                /* @__PURE__ */ jsx43("span", { children: "Adicionar Imagens" })
               ] })
             ] })
           ] }),
-          /* @__PURE__ */ jsx42("div", { className: "agent-dev__actions", children: /* @__PURE__ */ jsxs39(
+          /* @__PURE__ */ jsx43("div", { className: "agent-dev__actions", children: /* @__PURE__ */ jsxs40(
             Button,
             {
               variant: "primary",
               size: "lg",
-              disabled: !tabState.criar.selectedType || !tabState.criar.prompt.trim(),
+              disabled: !tabState.criar.selectedType || !tabState.criar.selectedComponent || !tabState.criar.prompt.trim(),
               onClick: () => {
                 console.log("Creating component:", tabState.criar);
               },
               children: [
-                /* @__PURE__ */ jsx42(Plus2, { size: 16 }),
+                /* @__PURE__ */ jsx43(Plus2, { size: 16 }),
                 "Criar Componente"
               ]
             }
           ) })
         ] });
       case "consertar":
-        return /* @__PURE__ */ jsxs39("div", { className: "agent-dev__tab-content", children: [
-          /* @__PURE__ */ jsx42(Typography, { variant: "h3", weight: "semibold", style: { marginBottom: spacing[4] }, children: "Consertar Componentes" }),
-          /* @__PURE__ */ jsx42(Typography, { variant: "body", color: "muted", style: { marginBottom: spacing[6] }, children: "Selecione os componentes que precisam ser corrigidos e descreva os problemas." }),
-          /* @__PURE__ */ jsxs39("div", { className: "agent-dev__section", children: [
-            /* @__PURE__ */ jsx42(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Tipo de Componente" }),
-            /* @__PURE__ */ jsxs39("div", { className: "agent-dev__type-selector", children: [
-              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Layout" }),
-              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Forms" }),
-              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Navigation" }),
-              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Feedback" }),
-              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Data Display" }),
-              /* @__PURE__ */ jsx42(Button, { variant: "outline", size: "sm", style: { marginBottom: spacing[2] }, children: "Content" })
-            ] })
+        return /* @__PURE__ */ jsxs40("div", { className: "agent-dev__tab-content", children: [
+          /* @__PURE__ */ jsx43(Typography, { variant: "h3", weight: "semibold", style: { marginBottom: spacing[4] }, children: "Consertar Componentes" }),
+          /* @__PURE__ */ jsx43(Typography, { variant: "body", color: "muted", style: { marginBottom: spacing[6] }, children: "Selecione os componentes que precisam ser corrigidos e descreva os problemas." }),
+          /* @__PURE__ */ jsxs40("div", { className: "agent-dev__section", children: [
+            /* @__PURE__ */ jsx43(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Tipo de Componente" }),
+            /* @__PURE__ */ jsx43("div", { className: "agent-dev__type-selector", children: Object.entries(componentTypes).map(([category, types]) => /* @__PURE__ */ jsxs40("div", { style: { marginBottom: spacing[3] }, children: [
+              /* @__PURE__ */ jsx43(
+                Button,
+                {
+                  variant: tabState.consertar.selectedType === category ? "primary" : "outline",
+                  size: "sm",
+                  style: { marginBottom: spacing[2] },
+                  onClick: () => updateTabState("consertar", { selectedType: category }),
+                  children: category
+                }
+              ),
+              tabState.consertar.selectedType === category && /* @__PURE__ */ jsx43("div", { className: "agent-dev__component-list", children: types.map((type) => /* @__PURE__ */ jsxs40("div", { className: "agent-dev__component-item", children: [
+                /* @__PURE__ */ jsx43(
+                  "input",
+                  {
+                    type: "checkbox",
+                    id: `consertar-${type}`,
+                    checked: tabState.consertar.selectedComponents.includes(type),
+                    onChange: (e) => {
+                      const newSelected = e.target.checked ? [...tabState.consertar.selectedComponents, type] : tabState.consertar.selectedComponents.filter((c) => c !== type);
+                      updateTabState("consertar", { selectedComponents: newSelected });
+                    }
+                  }
+                ),
+                /* @__PURE__ */ jsx43("label", { htmlFor: `consertar-${type}`, children: type })
+              ] }, type)) })
+            ] }, category)) })
           ] }),
-          /* @__PURE__ */ jsxs39("div", { className: "agent-dev__section", children: [
-            /* @__PURE__ */ jsx42(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Componentes Dispon\xEDveis" }),
-            /* @__PURE__ */ jsxs39("div", { className: "agent-dev__component-list", children: [
-              /* @__PURE__ */ jsxs39("div", { className: "agent-dev__component-item", children: [
-                /* @__PURE__ */ jsx42("input", { type: "checkbox", id: "comp-1" }),
-                /* @__PURE__ */ jsx42("label", { htmlFor: "comp-1", children: "Button" })
-              ] }),
-              /* @__PURE__ */ jsxs39("div", { className: "agent-dev__component-item", children: [
-                /* @__PURE__ */ jsx42("input", { type: "checkbox", id: "comp-2" }),
-                /* @__PURE__ */ jsx42("label", { htmlFor: "comp-2", children: "Input" })
-              ] }),
-              /* @__PURE__ */ jsxs39("div", { className: "agent-dev__component-item", children: [
-                /* @__PURE__ */ jsx42("input", { type: "checkbox", id: "comp-3" }),
-                /* @__PURE__ */ jsx42("label", { htmlFor: "comp-3", children: "Card" })
-              ] })
-            ] })
-          ] }),
-          /* @__PURE__ */ jsxs39("div", { className: "agent-dev__section", children: [
-            /* @__PURE__ */ jsx42(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Descri\xE7\xE3o do Problema" }),
-            /* @__PURE__ */ jsx42(
+          /* @__PURE__ */ jsxs40("div", { className: "agent-dev__section", children: [
+            /* @__PURE__ */ jsx43(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Descri\xE7\xE3o do Problema" }),
+            /* @__PURE__ */ jsx43(
               "textarea",
               {
                 className: "agent-dev__textarea",
@@ -8862,7 +9357,7 @@ var AgentDev = ({
               }
             )
           ] }),
-          /* @__PURE__ */ jsx42("div", { className: "agent-dev__actions", children: /* @__PURE__ */ jsxs39(
+          /* @__PURE__ */ jsx43("div", { className: "agent-dev__actions", children: /* @__PURE__ */ jsxs40(
             Button,
             {
               variant: "primary",
@@ -8872,66 +9367,19 @@ var AgentDev = ({
                 console.log("Fixing components:", tabState.consertar);
               },
               children: [
-                /* @__PURE__ */ jsx42(Wrench2, { size: 16 }),
+                /* @__PURE__ */ jsx43(Wrench2, { size: 16 }),
                 "Consertar Componentes"
               ]
             }
           ) })
         ] });
       case "agente":
-        return /* @__PURE__ */ jsxs39("div", { className: "agent-dev__tab-content", children: [
-          /* @__PURE__ */ jsx42(Typography, { variant: "h3", weight: "semibold", style: { marginBottom: spacing[4] }, children: "Agente de Desenvolvimento" }),
-          /* @__PURE__ */ jsx42(Typography, { variant: "body", color: "muted", style: { marginBottom: spacing[6] }, children: "Gerencie tarefas do agente e acompanhe o progresso das implementa\xE7\xF5es." }),
-          /* @__PURE__ */ jsxs39("div", { className: "agent-dev__pr-tabs", children: [
-            /* @__PURE__ */ jsx42(
-              Button,
-              {
-                variant: "ghost",
-                size: "sm",
-                className: activeTab === "agente" ? "agent-dev__pr-tab--active" : "",
-                children: "Em Produ\xE7\xE3o"
-              }
-            ),
-            /* @__PURE__ */ jsx42(
-              Button,
-              {
-                variant: "ghost",
-                size: "sm",
-                className: activeTab === "agente" ? "agent-dev__pr-tab--active" : "",
-                children: "Recusado"
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxs39("div", { className: "agent-dev__pr-list", children: [
-            /* @__PURE__ */ jsxs39("div", { className: "agent-dev__pr-item", children: [
-              /* @__PURE__ */ jsxs39("div", { className: "agent-dev__pr-header", children: [
-                /* @__PURE__ */ jsx42(Typography, { variant: "h5", weight: "medium", children: "feat: implement Button component" }),
-                /* @__PURE__ */ jsx42(Badge, { variant: "success", size: "sm", children: "Merged" })
-              ] }),
-              /* @__PURE__ */ jsx42(Typography, { variant: "body", color: "muted", size: "sm", children: "Implemented new Button component with all variants and states" }),
-              /* @__PURE__ */ jsxs39("div", { className: "agent-dev__pr-meta", children: [
-                /* @__PURE__ */ jsx42("span", { children: "#123" }),
-                /* @__PURE__ */ jsx42("span", { children: "2 days ago" })
-              ] })
-            ] }),
-            /* @__PURE__ */ jsxs39("div", { className: "agent-dev__pr-item", children: [
-              /* @__PURE__ */ jsxs39("div", { className: "agent-dev__pr-header", children: [
-                /* @__PURE__ */ jsx42(Typography, { variant: "h5", weight: "medium", children: "fix: resolve Input validation issues" }),
-                /* @__PURE__ */ jsx42(Badge, { variant: "warning", size: "sm", children: "In Progress" })
-              ] }),
-              /* @__PURE__ */ jsx42(Typography, { variant: "body", color: "muted", size: "sm", children: "Fixed validation logic and error handling in Input component" }),
-              /* @__PURE__ */ jsxs39("div", { className: "agent-dev__pr-meta", children: [
-                /* @__PURE__ */ jsx42("span", { children: "#124" }),
-                /* @__PURE__ */ jsx42("span", { children: "1 day ago" })
-              ] })
-            ] })
-          ] })
-        ] });
+        return /* @__PURE__ */ jsx43(AgenteTab_default, {});
       default:
         return null;
     }
   };
-  return /* @__PURE__ */ jsx42(
+  return /* @__PURE__ */ jsx43(
     Drawer,
     {
       isOpen,
@@ -8941,27 +9389,27 @@ var AgentDev = ({
       className: `agent-dev ${className}`,
       style,
       ...props,
-      children: /* @__PURE__ */ jsxs39("div", { className: "agent-dev__container", children: [
-        /* @__PURE__ */ jsxs39("div", { className: "agent-dev__header", children: [
-          /* @__PURE__ */ jsxs39("div", { className: "agent-dev__header-content", children: [
-            /* @__PURE__ */ jsx42("div", { className: "agent-dev__header-icon", children: /* @__PURE__ */ jsx42(Robot, { size: 24 }) }),
-            /* @__PURE__ */ jsxs39("div", { className: "agent-dev__header-text", children: [
-              /* @__PURE__ */ jsx42(Typography, { variant: "h2", weight: "bold", children: "Agent Dev" }),
-              /* @__PURE__ */ jsx42(Typography, { variant: "body", color: "muted", size: "sm", children: "Desenvolvimento assistido por IA" })
+      children: /* @__PURE__ */ jsxs40("div", { className: "agent-dev__container", children: [
+        /* @__PURE__ */ jsxs40("div", { className: "agent-dev__header", children: [
+          /* @__PURE__ */ jsxs40("div", { className: "agent-dev__header-content", children: [
+            /* @__PURE__ */ jsx43("div", { className: "agent-dev__header-icon", children: /* @__PURE__ */ jsx43(Robot, { size: 24 }) }),
+            /* @__PURE__ */ jsxs40("div", { className: "agent-dev__header-text", children: [
+              /* @__PURE__ */ jsx43(Typography, { variant: "h2", weight: "bold", children: "Agent Dev" }),
+              /* @__PURE__ */ jsx43(Typography, { variant: "body", color: "muted", size: "sm", children: "Desenvolvimento assistido por IA" })
             ] })
           ] }),
-          /* @__PURE__ */ jsx42(
+          /* @__PURE__ */ jsx43(
             Button,
             {
               variant: "ghost",
               size: "sm",
               onClick: onClose,
               className: "agent-dev__close-button",
-              children: /* @__PURE__ */ jsx42(X9, { size: 20 })
+              children: /* @__PURE__ */ jsx43(X8, { size: 20 })
             }
           )
         ] }),
-        /* @__PURE__ */ jsx42("div", { className: "agent-dev__tabs", children: tabs.map((tab) => /* @__PURE__ */ jsxs39(
+        /* @__PURE__ */ jsx43("div", { className: "agent-dev__tabs", children: tabs.map((tab) => /* @__PURE__ */ jsxs40(
           "button",
           {
             className: `agent-dev__tab ${activeTab === tab.id ? "agent-dev__tab--active" : ""}`,
@@ -8969,265 +9417,77 @@ var AgentDev = ({
             title: tab.description,
             children: [
               tab.icon,
-              /* @__PURE__ */ jsx42("span", { children: tab.label })
+              /* @__PURE__ */ jsx43("span", { children: tab.label })
             ]
           },
           tab.id
         )) }),
-        /* @__PURE__ */ jsx42("div", { className: "agent-dev__content", children: renderTabContent() })
+        /* @__PURE__ */ jsx43("div", { className: "agent-dev__content", children: renderTabContent() })
       ] })
     }
   );
 };
-var AgentDev_default = AgentDev;
-
-// src/components/FilterDropdown/FilterDropdown.tsx
-import { useState as useState22, useRef as useRef20, useEffect as useEffect15 } from "react";
-import { Check as Check8, CaretDown as CaretDown3 } from "phosphor-react";
-import { jsx as jsx43, jsxs as jsxs40 } from "react/jsx-runtime";
-var FilterDropdown = ({
-  label,
-  options,
-  value,
-  onChange,
-  placeholder = "Select an option",
-  disabled = false,
-  style,
-  className = "",
-  ...props
-}) => {
-  const [isOpen, setIsOpen] = useState22(false);
-  const [selectedOption, setSelectedOption] = useState22(null);
-  const dropdownRef = useRef20(null);
-  const triggerRef = useRef20(null);
-  useEffect15(() => {
-    const option = options.find((opt) => opt.value === value);
-    setSelectedOption(option || null);
-  }, [value, options]);
-  useEffect15(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-  const handleKeyDown = (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      setIsOpen(!isOpen);
-    } else if (event.key === "Escape") {
-      setIsOpen(false);
-    } else if (event.key === "ArrowDown" && !isOpen) {
-      event.preventDefault();
-      setIsOpen(true);
-    }
-  };
-  const handleOptionSelect = (option) => {
-    setSelectedOption(option);
-    onChange(option.value);
-    setIsOpen(false);
-    triggerRef.current?.focus();
-  };
-  const handleOptionKeyDown = (event, option) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      handleOptionSelect(option);
-    } else if (event.key === "Escape") {
-      setIsOpen(false);
-      triggerRef.current?.focus();
-    }
-  };
-  const containerStyles = {
-    position: "relative",
-    display: "inline-block",
-    width: "100%",
-    ...style
-  };
-  const labelStyles = {
-    display: "block",
-    fontSize: typography.fontSize.body,
-    fontWeight: typography.fontWeight.medium,
-    color: colors.text.primary,
-    marginBottom: spacing[2]
-  };
-  const triggerStyles = {
-    width: "100%",
-    padding: `${spacing[3]} ${spacing[4]}`,
-    paddingRight: spacing[10],
-    border: `1px solid ${colors.border.medium}`,
-    borderRadius: radii.md,
-    backgroundColor: colors.background.light,
-    color: colors.text.primary,
-    fontSize: typography.fontSize.body,
-    cursor: disabled ? "not-allowed" : "pointer",
-    outline: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    opacity: disabled ? 0.6 : 1,
-    transition: "all 0.2s ease",
-    boxShadow: "none"
-  };
-  const triggerHoverStyles = {
-    borderColor: colors.primary,
-    boxShadow: `0 0 0 1px ${colors.primary}`
-  };
-  const triggerOpenStyles = {
-    borderColor: colors.primary,
-    boxShadow: `0 0 0 1px ${colors.primary}`
-  };
-  const dropdownStyles = {
-    position: "absolute",
-    top: "100%",
-    left: 0,
-    right: 0,
-    zIndex: 1e3,
-    backgroundColor: colors.background.elevated,
-    border: `1px solid ${colors.border.medium}`,
-    borderRadius: radii.md,
-    boxShadow: shadows.lg,
-    marginTop: spacing[1],
-    maxHeight: "200px",
-    overflowY: "auto",
-    display: isOpen ? "block" : "none"
-  };
-  const optionStyles = {
-    padding: `${spacing[3]} ${spacing[4]}`,
-    cursor: "pointer",
-    display: "flex",
-    alignItems: "center",
-    gap: spacing[3],
-    borderBottom: `1px solid ${colors.border.light}`,
-    transition: "background-color 0.2s ease"
-  };
-  const optionHoverStyles = {
-    backgroundColor: colors.background.hover
-  };
-  const optionSelectedStyles = {
-    backgroundColor: colors.primary,
-    color: colors.white
-  };
-  const iconStyles = {
-    position: "absolute",
-    right: spacing[4],
-    top: "50%",
-    transform: "translateY(-50%)",
-    color: colors.text.secondary,
-    transition: "transform 0.2s ease"
-  };
-  const iconOpenStyles = {
-    transform: "translateY(-50%) rotate(180deg)"
-  };
-  const checkIconStyles = {
-    width: "16px",
-    height: "16px",
-    flexShrink: 0
-  };
-  return /* @__PURE__ */ jsxs40(
-    "div",
-    {
-      ref: dropdownRef,
-      className: `cria-filter-dropdown ${className}`,
-      style: containerStyles,
-      ...props,
-      children: [
-        /* @__PURE__ */ jsx43("label", { style: labelStyles, children: label }),
-        /* @__PURE__ */ jsxs40(
-          "button",
-          {
-            ref: triggerRef,
-            type: "button",
-            disabled,
-            onClick: () => setIsOpen(!isOpen),
-            onKeyDown: handleKeyDown,
-            style: {
-              ...triggerStyles,
-              ...isOpen ? triggerOpenStyles : {}
-            },
-            onMouseEnter: (e) => {
-              if (!disabled && !isOpen) {
-                Object.assign(e.currentTarget.style, triggerHoverStyles);
-              }
-            },
-            onMouseLeave: (e) => {
-              if (!disabled && !isOpen) {
-                e.currentTarget.style.borderColor = colors.border.medium;
-                e.currentTarget.style.boxShadow = "none";
-              }
-            },
-            "aria-haspopup": "listbox",
-            "aria-expanded": isOpen,
-            "aria-label": `${label} dropdown`,
-            children: [
-              /* @__PURE__ */ jsx43("span", { children: selectedOption ? selectedOption.label : placeholder }),
-              /* @__PURE__ */ jsx43(
-                CaretDown3,
-                {
-                  size: 16,
-                  style: {
-                    ...iconStyles,
-                    ...isOpen ? iconOpenStyles : {}
-                  }
-                }
-              )
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsx43(
-          "div",
-          {
-            role: "listbox",
-            "aria-label": `${label} options`,
-            style: dropdownStyles,
-            children: options.map((option, index) => {
-              const isSelected = selectedOption?.value === option.value;
-              return /* @__PURE__ */ jsxs40(
-                "div",
-                {
-                  role: "option",
-                  tabIndex: 0,
-                  "aria-selected": isSelected,
-                  onClick: () => handleOptionSelect(option),
-                  onKeyDown: (e) => handleOptionKeyDown(e, option),
-                  style: {
-                    ...optionStyles,
-                    ...isSelected ? optionSelectedStyles : {},
-                    borderBottom: index === options.length - 1 ? "none" : optionStyles.borderBottom
-                  },
-                  onMouseEnter: (e) => {
-                    if (!isSelected) {
-                      Object.assign(e.currentTarget.style, optionHoverStyles);
-                    }
-                  },
-                  onMouseLeave: (e) => {
-                    if (!isSelected) {
-                      e.currentTarget.style.backgroundColor = "transparent";
-                    }
-                  },
-                  children: [
-                    isSelected && /* @__PURE__ */ jsx43(
-                      Check8,
-                      {
-                        size: 16,
-                        style: checkIconStyles
-                      }
-                    ),
-                    /* @__PURE__ */ jsx43("span", { children: option.label })
-                  ]
-                },
-                option.value
-              );
-            })
-          }
-        )
-      ]
-    }
-  );
+var componentTypes = {
+  "Foundations": ["Typography", "Colors", "Text", "Grid"],
+  "Components": [
+    "Button",
+    "Input",
+    "Textarea",
+    "Avatar",
+    "Checkbox",
+    "Switch",
+    "Radio Group",
+    "Dropdown",
+    "File Upload",
+    "Chat",
+    "Comments Section",
+    "Slider",
+    "Shimmer Skeleton",
+    "Pricing Page",
+    "Page Loading Progress",
+    "Card Selector",
+    "Floating Sidebar",
+    "Search Filters",
+    "Filter Dropdown",
+    "Container",
+    "Scrollbar",
+    "Footer",
+    "Mega Menu",
+    "Command Palette",
+    "Carousel",
+    "Table",
+    "Empty State"
+  ],
+  "Content": ["Lesson - Cards", "Course - Cards", "Events - Cards", "Trilha - Cards"],
+  "Layout": [
+    "Tabs",
+    "Accordion",
+    "Navigation",
+    "Breadcrumbs",
+    "Pagination",
+    "Progress Bar",
+    "Stepper",
+    "Date Picker",
+    "Charts",
+    "Divider",
+    "Row of Cards",
+    "Statistic / Metric Card",
+    "Backgrounds"
+  ],
+  "Feedback": [
+    "Snackbar",
+    "Modal",
+    "Tooltip",
+    "Badge",
+    "Tag / Chip",
+    "Timeline / Activity Feed",
+    "Stepper / Wizard",
+    "Notification Center",
+    "Topbar",
+    "Drawer"
+  ]
 };
+var AgentDev_default = AgentDev;
 
 // src/components/ShimmerSkeleton/ShimmerSkeleton.tsx
 import { Fragment as Fragment5, jsx as jsx44, jsxs as jsxs41 } from "react/jsx-runtime";
@@ -9473,7 +9733,7 @@ var ShimmerSkeleton = ({
 
 // src/components/CriaCourseCard/CriaCourseCard.tsx
 import { useState as useState23, useCallback as useCallback23 } from "react";
-import { Clock as Clock3, UserCircle, Wrench as Wrench3 } from "phosphor-react";
+import { Clock as Clock4, UserCircle, Wrench as Wrench3 } from "phosphor-react";
 import { jsx as jsx45, jsxs as jsxs42 } from "react/jsx-runtime";
 var CriaCourseCard = ({
   course,
@@ -9668,7 +9928,7 @@ var CriaCourseCard = ({
                           },
                           children: [
                             /* @__PURE__ */ jsx45(
-                              Clock3,
+                              Clock4,
                               {
                                 size: 20,
                                 color: colors.primary,
@@ -9780,8 +10040,8 @@ var CriaCourseCard = ({
 };
 
 // src/components/CriaClassroomFutureEventCard/CriaClassroomFutureEventCard.tsx
-import { useState as useState24, useEffect as useEffect16, useCallback as useCallback24 } from "react";
-import { Calendar as Calendar2 } from "phosphor-react";
+import { useState as useState24, useEffect as useEffect15, useCallback as useCallback24 } from "react";
+import { Calendar as Calendar3 } from "phosphor-react";
 import { jsx as jsx46, jsxs as jsxs43 } from "react/jsx-runtime";
 var CriaClassroomFutureEventCard = ({
   event,
@@ -9809,7 +10069,7 @@ var CriaClassroomFutureEventCard = ({
       setIsLive(true);
     }
   }, [event.startDate]);
-  useEffect16(() => {
+  useEffect15(() => {
     calculateTimeLeft();
     const interval = setInterval(calculateTimeLeft, 6e4);
     return () => clearInterval(interval);
@@ -10301,7 +10561,7 @@ var CriaClassroomFutureEventCard = ({
                     gap: spacing[1]
                   },
                   children: [
-                    /* @__PURE__ */ jsx46(Calendar2, { size: 16 }),
+                    /* @__PURE__ */ jsx46(Calendar3, { size: 16 }),
                     "SALVAR NA AGENDA"
                   ]
                 }
@@ -10326,7 +10586,7 @@ var CriaClassroomFutureEventCard = ({
 
 // src/components/CriaClassroomTrilhaCard/CriaClassroomTrilhaCard.tsx
 import { useState as useState25, useCallback as useCallback25 } from "react";
-import { Clock as Clock4, Wrench as Wrench4 } from "phosphor-react";
+import { Clock as Clock5, Wrench as Wrench4 } from "phosphor-react";
 import { Fragment as Fragment6, jsx as jsx47, jsxs as jsxs44 } from "react/jsx-runtime";
 var CriaClassroomTrilhaCard = ({
   customLearning,
@@ -10738,7 +10998,7 @@ var CriaClassroomTrilhaCard = ({
                   },
                   children: [
                     /* @__PURE__ */ jsxs44("div", { style: { display: "flex", alignItems: "center" }, children: [
-                      /* @__PURE__ */ jsx47(Clock4, { size: 16, color: colors.primary, style: { marginRight: spacing[1] } }),
+                      /* @__PURE__ */ jsx47(Clock5, { size: 16, color: colors.primary, style: { marginRight: spacing[1] } }),
                       /* @__PURE__ */ jsx47(
                         Typography,
                         {
@@ -10963,9 +11223,259 @@ var navButtonStyles = {
 };
 
 // src/components/SearchFilters/SearchFilters.tsx
-import { useState as useState27, useEffect as useEffect17 } from "react";
-import { FunnelSimple, X as X10, CaretDown as CaretDown4 } from "phosphor-react";
+import { useState as useState28, useEffect as useEffect17 } from "react";
+
+// src/components/FilterDropdown/FilterDropdown.tsx
+import { useState as useState27, useRef as useRef19, useEffect as useEffect16 } from "react";
+import { Check as Check8, CaretDown as CaretDown3 } from "phosphor-react";
 import { jsx as jsx49, jsxs as jsxs46 } from "react/jsx-runtime";
+var FilterDropdown = ({
+  label,
+  options,
+  value,
+  onChange,
+  placeholder = "Select an option",
+  disabled = false,
+  style,
+  className = "",
+  ...props
+}) => {
+  const [isOpen, setIsOpen] = useState27(false);
+  const [selectedOption, setSelectedOption] = useState27(null);
+  const dropdownRef = useRef19(null);
+  const triggerRef = useRef19(null);
+  useEffect16(() => {
+    const option = options.find((opt) => opt.value === value);
+    setSelectedOption(option || null);
+  }, [value, options]);
+  useEffect16(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setIsOpen(!isOpen);
+    } else if (event.key === "Escape") {
+      setIsOpen(false);
+    } else if (event.key === "ArrowDown" && !isOpen) {
+      event.preventDefault();
+      setIsOpen(true);
+    }
+  };
+  const handleOptionSelect = (option) => {
+    setSelectedOption(option);
+    onChange(option.value);
+    setIsOpen(false);
+    triggerRef.current?.focus();
+  };
+  const handleOptionKeyDown = (event, option) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleOptionSelect(option);
+    } else if (event.key === "Escape") {
+      setIsOpen(false);
+      triggerRef.current?.focus();
+    }
+  };
+  const containerStyles = {
+    position: "relative",
+    display: "inline-block",
+    width: "100%",
+    ...style
+  };
+  const labelStyles = {
+    display: "block",
+    fontSize: typography.fontSize.body,
+    fontWeight: typography.fontWeight.medium,
+    color: colors.text.primary,
+    marginBottom: spacing[2]
+  };
+  const triggerStyles = {
+    width: "100%",
+    padding: `${spacing[3]} ${spacing[4]}`,
+    paddingRight: spacing[10],
+    border: `1px solid ${colors.border.medium}`,
+    borderRadius: radii.md,
+    backgroundColor: colors.background.light,
+    color: colors.text.primary,
+    fontSize: typography.fontSize.body,
+    cursor: disabled ? "not-allowed" : "pointer",
+    outline: "none",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    opacity: disabled ? 0.6 : 1,
+    transition: "all 0.2s ease",
+    boxShadow: "none"
+  };
+  const triggerHoverStyles = {
+    borderColor: colors.primary,
+    boxShadow: `0 0 0 1px ${colors.primary}`
+  };
+  const triggerOpenStyles = {
+    borderColor: colors.primary,
+    boxShadow: `0 0 0 1px ${colors.primary}`
+  };
+  const dropdownStyles = {
+    position: "absolute",
+    top: "100%",
+    left: 0,
+    right: 0,
+    zIndex: 1e3,
+    backgroundColor: colors.background.elevated,
+    border: `1px solid ${colors.border.medium}`,
+    borderRadius: radii.md,
+    boxShadow: shadows.lg,
+    marginTop: spacing[1],
+    maxHeight: "200px",
+    overflowY: "auto",
+    display: isOpen ? "block" : "none"
+  };
+  const optionStyles = {
+    padding: `${spacing[3]} ${spacing[4]}`,
+    cursor: "pointer",
+    display: "flex",
+    alignItems: "center",
+    gap: spacing[3],
+    borderBottom: `1px solid ${colors.border.light}`,
+    transition: "background-color 0.2s ease"
+  };
+  const optionHoverStyles = {
+    backgroundColor: colors.background.hover
+  };
+  const optionSelectedStyles = {
+    backgroundColor: colors.primary,
+    color: colors.white
+  };
+  const iconStyles = {
+    position: "absolute",
+    right: spacing[4],
+    top: "50%",
+    transform: "translateY(-50%)",
+    color: colors.text.secondary,
+    transition: "transform 0.2s ease"
+  };
+  const iconOpenStyles = {
+    transform: "translateY(-50%) rotate(180deg)"
+  };
+  const checkIconStyles = {
+    width: "16px",
+    height: "16px",
+    flexShrink: 0
+  };
+  return /* @__PURE__ */ jsxs46(
+    "div",
+    {
+      ref: dropdownRef,
+      className: `cria-filter-dropdown ${className}`,
+      style: containerStyles,
+      ...props,
+      children: [
+        /* @__PURE__ */ jsx49("label", { style: labelStyles, children: label }),
+        /* @__PURE__ */ jsxs46(
+          "button",
+          {
+            ref: triggerRef,
+            type: "button",
+            disabled,
+            onClick: () => setIsOpen(!isOpen),
+            onKeyDown: handleKeyDown,
+            style: {
+              ...triggerStyles,
+              ...isOpen ? triggerOpenStyles : {}
+            },
+            onMouseEnter: (e) => {
+              if (!disabled && !isOpen) {
+                Object.assign(e.currentTarget.style, triggerHoverStyles);
+              }
+            },
+            onMouseLeave: (e) => {
+              if (!disabled && !isOpen) {
+                e.currentTarget.style.borderColor = colors.border.medium;
+                e.currentTarget.style.boxShadow = "none";
+              }
+            },
+            "aria-haspopup": "listbox",
+            "aria-expanded": isOpen,
+            "aria-label": `${label} dropdown`,
+            children: [
+              /* @__PURE__ */ jsx49("span", { children: selectedOption ? selectedOption.label : placeholder }),
+              /* @__PURE__ */ jsx49(
+                CaretDown3,
+                {
+                  size: 16,
+                  style: {
+                    ...iconStyles,
+                    ...isOpen ? iconOpenStyles : {}
+                  }
+                }
+              )
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsx49(
+          "div",
+          {
+            role: "listbox",
+            "aria-label": `${label} options`,
+            style: dropdownStyles,
+            children: options.map((option, index) => {
+              const isSelected = selectedOption?.value === option.value;
+              return /* @__PURE__ */ jsxs46(
+                "div",
+                {
+                  role: "option",
+                  tabIndex: 0,
+                  "aria-selected": isSelected,
+                  onClick: () => handleOptionSelect(option),
+                  onKeyDown: (e) => handleOptionKeyDown(e, option),
+                  style: {
+                    ...optionStyles,
+                    ...isSelected ? optionSelectedStyles : {},
+                    borderBottom: index === options.length - 1 ? "none" : optionStyles.borderBottom
+                  },
+                  onMouseEnter: (e) => {
+                    if (!isSelected) {
+                      Object.assign(e.currentTarget.style, optionHoverStyles);
+                    }
+                  },
+                  onMouseLeave: (e) => {
+                    if (!isSelected) {
+                      e.currentTarget.style.backgroundColor = "transparent";
+                    }
+                  },
+                  children: [
+                    isSelected && /* @__PURE__ */ jsx49(
+                      Check8,
+                      {
+                        size: 16,
+                        style: checkIconStyles
+                      }
+                    ),
+                    /* @__PURE__ */ jsx49("span", { children: option.label })
+                  ]
+                },
+                option.value
+              );
+            })
+          }
+        )
+      ]
+    }
+  );
+};
+
+// src/components/SearchFilters/SearchFilters.tsx
+import { FunnelSimple, X as X9, CaretDown as CaretDown4 } from "phosphor-react";
+import { jsx as jsx50, jsxs as jsxs47 } from "react/jsx-runtime";
 function SearchFilters({
   filters,
   values = {},
@@ -10975,8 +11485,8 @@ function SearchFilters({
   style,
   "data-testid": dataTestId
 }) {
-  const [isMobileOpen, setIsMobileOpen] = useState27(false);
-  const [filterValues, setFilterValues] = useState27(values);
+  const [isMobileOpen, setIsMobileOpen] = useState28(false);
+  const [filterValues, setFilterValues] = useState28(values);
   useEffect17(() => {
     const initialValues = {};
     filters.forEach((filter) => {
@@ -11043,7 +11553,7 @@ function SearchFilters({
     const value = filterValues[filter.id];
     switch (filter.type) {
       case "text":
-        return /* @__PURE__ */ jsx49("div", { style: filterGroupStyles, children: /* @__PURE__ */ jsx49(
+        return /* @__PURE__ */ jsx50("div", { style: filterGroupStyles, children: /* @__PURE__ */ jsx50(
           Input,
           {
             label: filter.label,
@@ -11059,7 +11569,7 @@ function SearchFilters({
           { value: "", label: `All ${filter.label}s` },
           ...filter.options || []
         ];
-        return /* @__PURE__ */ jsx49("div", { style: filterGroupStyles, children: /* @__PURE__ */ jsx49(
+        return /* @__PURE__ */ jsx50("div", { style: filterGroupStyles, children: /* @__PURE__ */ jsx50(
           FilterDropdown,
           {
             label: filter.label,
@@ -11070,10 +11580,10 @@ function SearchFilters({
           }
         ) }, filter.id);
       case "checkbox":
-        return /* @__PURE__ */ jsxs46("div", { style: filterGroupStyles, children: [
-          /* @__PURE__ */ jsx49(Typography, { variant: "bodySmall", weight: "medium", style: filterLabelStyles, children: filter.label }),
-          /* @__PURE__ */ jsx49("div", { style: checkboxContainerStyles, children: filter.options?.map((option) => /* @__PURE__ */ jsxs46("label", { style: checkboxLabelStyles, children: [
-            /* @__PURE__ */ jsx49(
+        return /* @__PURE__ */ jsxs47("div", { style: filterGroupStyles, children: [
+          /* @__PURE__ */ jsx50(Typography, { variant: "bodySmall", weight: "medium", style: filterLabelStyles, children: filter.label }),
+          /* @__PURE__ */ jsx50("div", { style: checkboxContainerStyles, children: filter.options?.map((option) => /* @__PURE__ */ jsxs47("label", { style: checkboxLabelStyles, children: [
+            /* @__PURE__ */ jsx50(
               "input",
               {
                 type: "checkbox",
@@ -11082,14 +11592,14 @@ function SearchFilters({
                 style: checkboxInputStyles
               }
             ),
-            /* @__PURE__ */ jsx49("span", { style: checkboxTextStyles, children: option.label })
+            /* @__PURE__ */ jsx50("span", { style: checkboxTextStyles, children: option.label })
           ] }, option.value)) })
         ] }, filter.id);
       case "dateRange":
-        return /* @__PURE__ */ jsxs46("div", { style: filterGroupStyles, children: [
-          /* @__PURE__ */ jsx49(Typography, { variant: "bodySmall", weight: "medium", style: filterLabelStyles, children: filter.label }),
-          /* @__PURE__ */ jsxs46("div", { style: dateRangeContainerStyles, children: [
-            /* @__PURE__ */ jsx49(
+        return /* @__PURE__ */ jsxs47("div", { style: filterGroupStyles, children: [
+          /* @__PURE__ */ jsx50(Typography, { variant: "bodySmall", weight: "medium", style: filterLabelStyles, children: filter.label }),
+          /* @__PURE__ */ jsxs47("div", { style: dateRangeContainerStyles, children: [
+            /* @__PURE__ */ jsx50(
               Input,
               {
                 type: "date",
@@ -11100,7 +11610,7 @@ function SearchFilters({
                 "aria-label": filter.startLabel || "Start Date"
               }
             ),
-            /* @__PURE__ */ jsx49(
+            /* @__PURE__ */ jsx50(
               Input,
               {
                 type: "date",
@@ -11118,24 +11628,24 @@ function SearchFilters({
     }
   };
   if (filters.length === 0) {
-    return /* @__PURE__ */ jsx49(
+    return /* @__PURE__ */ jsx50(
       "div",
       {
         className: `search-filters-container ${className || ""}`,
         style: getContainerStyles(style),
         "data-testid": dataTestId,
-        children: /* @__PURE__ */ jsx49(Typography, { variant: "body", color: "secondary", children: "No filters configured" })
+        children: /* @__PURE__ */ jsx50(Typography, { variant: "body", color: "secondary", children: "No filters configured" })
       }
     );
   }
-  return /* @__PURE__ */ jsxs46(
+  return /* @__PURE__ */ jsxs47(
     "div",
     {
       className: `search-filters-container ${className || ""}`,
       style: getContainerStyles(style),
       "data-testid": dataTestId,
       children: [
-        mobileCollapsed && /* @__PURE__ */ jsxs46(
+        mobileCollapsed && /* @__PURE__ */ jsxs47(
           Button,
           {
             variant: "outlined",
@@ -11143,9 +11653,9 @@ function SearchFilters({
             "aria-label": "Toggle filters",
             style: mobileToggleStyles,
             children: [
-              /* @__PURE__ */ jsx49(FunnelSimple, { size: 16 }),
+              /* @__PURE__ */ jsx50(FunnelSimple, { size: 16 }),
               "Filters",
-              /* @__PURE__ */ jsx49(
+              /* @__PURE__ */ jsx50(
                 CaretDown4,
                 {
                   size: 16,
@@ -11158,9 +11668,9 @@ function SearchFilters({
             ]
           }
         ),
-        (!mobileCollapsed || isMobileOpen) && /* @__PURE__ */ jsxs46("div", { className: "search-filters-content", style: filtersContentStyles, children: [
-          /* @__PURE__ */ jsx49("div", { style: filtersGridStyles, children: filters.map(renderFilter) }),
-          /* @__PURE__ */ jsx49("div", { style: actionsStyles, children: /* @__PURE__ */ jsxs46(
+        (!mobileCollapsed || isMobileOpen) && /* @__PURE__ */ jsxs47("div", { className: "search-filters-content", style: filtersContentStyles, children: [
+          /* @__PURE__ */ jsx50("div", { style: filtersGridStyles, children: filters.map(renderFilter) }),
+          /* @__PURE__ */ jsx50("div", { style: actionsStyles, children: /* @__PURE__ */ jsxs47(
             Button,
             {
               variant: "outlined",
@@ -11169,7 +11679,7 @@ function SearchFilters({
               disabled: !hasActiveFilters,
               style: clearButtonStyles,
               children: [
-                /* @__PURE__ */ jsx49(X10, { size: 16 }),
+                /* @__PURE__ */ jsx50(X9, { size: 16 }),
                 "Clear All"
               ]
             }
@@ -11283,7 +11793,7 @@ var clearButtonStyles = {
 };
 
 // src/components/Divider/Divider.tsx
-import { jsx as jsx50, jsxs as jsxs47 } from "react/jsx-runtime";
+import { jsx as jsx51, jsxs as jsxs48 } from "react/jsx-runtime";
 var Divider = ({
   orientation = "horizontal",
   variant = "solid",
@@ -11332,7 +11842,7 @@ var Divider = ({
     }
   });
   if (label && orientation === "horizontal") {
-    return /* @__PURE__ */ jsxs47(
+    return /* @__PURE__ */ jsxs48(
       "div",
       {
         className: `${classes} cria-divider--with-label`,
@@ -11341,14 +11851,14 @@ var Divider = ({
         "aria-orientation": orientation,
         ...dataProps,
         children: [
-          /* @__PURE__ */ jsx50("div", { className: "cria-divider__line cria-divider__line--before" }),
-          /* @__PURE__ */ jsx50("span", { className: `cria-divider__label cria-divider__label--${labelPosition}`, children: label }),
-          /* @__PURE__ */ jsx50("div", { className: "cria-divider__line cria-divider__line--after" })
+          /* @__PURE__ */ jsx51("div", { className: "cria-divider__line cria-divider__line--before" }),
+          /* @__PURE__ */ jsx51("span", { className: `cria-divider__label cria-divider__label--${labelPosition}`, children: label }),
+          /* @__PURE__ */ jsx51("div", { className: "cria-divider__line cria-divider__line--after" })
         ]
       }
     );
   }
-  return /* @__PURE__ */ jsx50(
+  return /* @__PURE__ */ jsx51(
     "div",
     {
       className: classes,
@@ -11361,7 +11871,7 @@ var Divider = ({
 };
 
 // src/components/Grid/Grid.tsx
-import { jsx as jsx51 } from "react/jsx-runtime";
+import { jsx as jsx52 } from "react/jsx-runtime";
 var Grid = ({
   columns = 12,
   gap = "md",
@@ -11415,7 +11925,7 @@ var Grid = ({
   if (!autoFit && !autoFill && minColumnWidth !== "250px") {
     inlineStyles.gridTemplateColumns = `repeat(auto-fit, minmax(${minColumnWidth}, 1fr))`;
   }
-  return /* @__PURE__ */ jsx51(
+  return /* @__PURE__ */ jsx52(
     "div",
     {
       className: classes,
@@ -11427,7 +11937,7 @@ var Grid = ({
 };
 
 // src/components/Grid/Row.tsx
-import { jsx as jsx52 } from "react/jsx-runtime";
+import { jsx as jsx53 } from "react/jsx-runtime";
 var Row = ({
   gap = "md",
   align = "stretch",
@@ -11453,7 +11963,7 @@ var Row = ({
     baseClasses.push(className);
   }
   const classes = baseClasses.join(" ");
-  return /* @__PURE__ */ jsx52(
+  return /* @__PURE__ */ jsx53(
     "div",
     {
       className: classes,
@@ -11465,7 +11975,7 @@ var Row = ({
 };
 
 // src/components/Grid/Column.tsx
-import { jsx as jsx53 } from "react/jsx-runtime";
+import { jsx as jsx54 } from "react/jsx-runtime";
 var Column = ({
   span = 12,
   offset = 0,
@@ -11523,7 +12033,7 @@ var Column = ({
     baseClasses.push(className);
   }
   const classes = baseClasses.join(" ");
-  return /* @__PURE__ */ jsx53(
+  return /* @__PURE__ */ jsx54(
     "div",
     {
       className: classes,
@@ -11535,7 +12045,7 @@ var Column = ({
 };
 
 // src/components/Container/Container.tsx
-import { jsx as jsx54 } from "react/jsx-runtime";
+import { jsx as jsx55 } from "react/jsx-runtime";
 var Container = ({
   maxWidth = "lg",
   padding = "md",
@@ -11594,7 +12104,7 @@ var Container = ({
   if (typeof maxWidth === "string" && !["sm", "md", "lg", "xl", "2xl", "full"].includes(maxWidth)) {
     inlineStyles.maxWidth = maxWidth;
   }
-  return /* @__PURE__ */ jsx54(
+  return /* @__PURE__ */ jsx55(
     "div",
     {
       className: classes,
@@ -11606,7 +12116,7 @@ var Container = ({
 };
 
 // src/components/Container/Section.tsx
-import { jsx as jsx55 } from "react/jsx-runtime";
+import { jsx as jsx56 } from "react/jsx-runtime";
 var Section = ({
   variant = "default",
   size = "md",
@@ -11664,7 +12174,7 @@ var Section = ({
   if (!["primary", "secondary", "gray", "white", "transparent"].includes(backgroundColor)) {
     inlineStyles.backgroundColor = backgroundColor;
   }
-  return /* @__PURE__ */ jsx55(
+  return /* @__PURE__ */ jsx56(
     "section",
     {
       className: classes,
@@ -11677,7 +12187,7 @@ var Section = ({
 
 // src/components/Scrollbar/Scrollbar.tsx
 import { useCallback as useCallback26 } from "react";
-import { jsx as jsx56 } from "react/jsx-runtime";
+import { jsx as jsx57 } from "react/jsx-runtime";
 var Scrollbar = ({
   size = "md",
   theme = "light",
@@ -11742,7 +12252,7 @@ var Scrollbar = ({
       onScroll(event);
     }
   }, [onScroll]);
-  return /* @__PURE__ */ jsx56(
+  return /* @__PURE__ */ jsx57(
     "div",
     {
       className: classes,
@@ -11756,7 +12266,7 @@ var Scrollbar = ({
 
 // src/components/Footer/Footer.tsx
 import React45, { useCallback as useCallback27 } from "react";
-import { jsx as jsx57, jsxs as jsxs48 } from "react/jsx-runtime";
+import { jsx as jsx58, jsxs as jsxs49 } from "react/jsx-runtime";
 var Footer = ({
   variant = "default",
   size = "md",
@@ -11819,7 +12329,7 @@ var Footer = ({
       return links;
     }
     if (Array.isArray(links)) {
-      return /* @__PURE__ */ jsx57("nav", { className: "cria-footer__links", "aria-label": "Footer navigation", children: /* @__PURE__ */ jsx57("ul", { children: links.map((link, index) => /* @__PURE__ */ jsx57("li", { children: /* @__PURE__ */ jsx57(
+      return /* @__PURE__ */ jsx58("nav", { className: "cria-footer__links", "aria-label": "Footer navigation", children: /* @__PURE__ */ jsx58("ul", { children: links.map((link, index) => /* @__PURE__ */ jsx58("li", { children: /* @__PURE__ */ jsx58(
         "a",
         {
           href: link.href,
@@ -11839,7 +12349,7 @@ var Footer = ({
       return socialLinks;
     }
     if (Array.isArray(socialLinks)) {
-      return /* @__PURE__ */ jsx57("nav", { className: "cria-footer__social", "aria-label": "Social media links", children: /* @__PURE__ */ jsx57("ul", { children: socialLinks.map((socialLink, index) => /* @__PURE__ */ jsx57("li", { children: /* @__PURE__ */ jsx57(
+      return /* @__PURE__ */ jsx58("nav", { className: "cria-footer__social", "aria-label": "Social media links", children: /* @__PURE__ */ jsx58("ul", { children: socialLinks.map((socialLink, index) => /* @__PURE__ */ jsx58("li", { children: /* @__PURE__ */ jsx58(
         "a",
         {
           href: socialLink.href,
@@ -11848,7 +12358,7 @@ var Footer = ({
           onClick: (e) => handleSocialClick(socialLink.href, socialLink.label, socialLink.icon, e),
           className: "cria-footer__social-link",
           "aria-label": socialLink.label,
-          children: /* @__PURE__ */ jsx57("span", { className: `cria-footer__social-icon cria-footer__social-icon--${socialLink.icon}`, children: socialLink.icon })
+          children: /* @__PURE__ */ jsx58("span", { className: `cria-footer__social-icon cria-footer__social-icon--${socialLink.icon}`, children: socialLink.icon })
         }
       ) }, index)) }) });
     }
@@ -11857,22 +12367,22 @@ var Footer = ({
   const renderCopyright = () => {
     if (!copyright) return null;
     if (React45.isValidElement(copyright)) {
-      return /* @__PURE__ */ jsx57("div", { className: "cria-footer__copyright", children: copyright });
+      return /* @__PURE__ */ jsx58("div", { className: "cria-footer__copyright", children: copyright });
     }
     if (typeof copyright === "string") {
-      return /* @__PURE__ */ jsx57("div", { className: "cria-footer__copyright", children: /* @__PURE__ */ jsx57("span", { children: copyright }) });
+      return /* @__PURE__ */ jsx58("div", { className: "cria-footer__copyright", children: /* @__PURE__ */ jsx58("span", { children: copyright }) });
     }
     return null;
   };
-  return /* @__PURE__ */ jsxs48(
+  return /* @__PURE__ */ jsxs49(
     "footer",
     {
       className: classes,
       style,
       ...props,
       children: [
-        children && /* @__PURE__ */ jsx57("div", { className: "cria-footer__content", children }),
-        /* @__PURE__ */ jsxs48("div", { className: "cria-footer__sections", children: [
+        children && /* @__PURE__ */ jsx58("div", { className: "cria-footer__content", children }),
+        /* @__PURE__ */ jsxs49("div", { className: "cria-footer__sections", children: [
           renderLinks(),
           renderSocialLinks(),
           renderCopyright()
@@ -11883,8 +12393,8 @@ var Footer = ({
 };
 
 // src/components/MegaMenu/MegaMenu.tsx
-import { useState as useState28, useCallback as useCallback28, useRef as useRef21, useEffect as useEffect18 } from "react";
-import { jsx as jsx58, jsxs as jsxs49 } from "react/jsx-runtime";
+import { useState as useState29, useCallback as useCallback28, useRef as useRef20, useEffect as useEffect18 } from "react";
+import { jsx as jsx59, jsxs as jsxs50 } from "react/jsx-runtime";
 var MegaMenu = ({
   variant = "default",
   position = "static",
@@ -11908,11 +12418,11 @@ var MegaMenu = ({
   children,
   ...props
 }) => {
-  const [activeDropdown, setActiveDropdown] = useState28(null);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState28(false);
-  const [searchQuery, setSearchQuery] = useState28("");
-  const megaMenuRef = useRef21(null);
-  const timeoutRef = useRef21(null);
+  const [activeDropdown, setActiveDropdown] = useState29(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState29(false);
+  const [searchQuery, setSearchQuery] = useState29("");
+  const megaMenuRef = useRef20(null);
+  const timeoutRef = useRef20(null);
   const baseClasses = ["cria-mega-menu"];
   baseClasses.push(`cria-mega-menu--${variant}`);
   baseClasses.push(`cria-mega-menu--position-${position}`);
@@ -11985,8 +12495,8 @@ var MegaMenu = ({
     const hasChildren = item.children && item.children.length > 0;
     const hasCustomDropdown = !!item.customDropdown;
     const showDropdown = activeDropdown === item.label && (hasChildren || hasCustomDropdown);
-    return /* @__PURE__ */ jsxs49("li", { className: `cria-mega-menu__item cria-mega-menu__item--level-${level}`, children: [
-      /* @__PURE__ */ jsxs49(
+    return /* @__PURE__ */ jsxs50("li", { className: `cria-mega-menu__item cria-mega-menu__item--level-${level}`, children: [
+      /* @__PURE__ */ jsxs50(
         "a",
         {
           href: item.href,
@@ -11998,22 +12508,22 @@ var MegaMenu = ({
           className: `cria-mega-menu__link ${hasChildren || hasCustomDropdown ? "cria-mega-menu__link--has-dropdown" : ""}`,
           children: [
             item.label,
-            (hasChildren || hasCustomDropdown) && /* @__PURE__ */ jsx58("span", { className: "cria-mega-menu__dropdown-arrow", "aria-hidden": "true", children: "\u25BC" })
+            (hasChildren || hasCustomDropdown) && /* @__PURE__ */ jsx59("span", { className: "cria-mega-menu__dropdown-arrow", "aria-hidden": "true", children: "\u25BC" })
           ]
         }
       ),
-      (hasChildren || hasCustomDropdown) && showDropdown && /* @__PURE__ */ jsx58(
+      (hasChildren || hasCustomDropdown) && showDropdown && /* @__PURE__ */ jsx59(
         "div",
         {
           className: `cria-mega-menu__dropdown cria-mega-menu__dropdown--level-${level} show`,
           onMouseEnter: () => handleMouseEnter(item.label),
           onMouseLeave: handleMouseLeave,
-          children: hasCustomDropdown ? item.customDropdown : /* @__PURE__ */ jsx58("ul", { className: "cria-mega-menu__dropdown-list", children: item.children?.map((child) => renderMenuItem(child, level + 1)) })
+          children: hasCustomDropdown ? item.customDropdown : /* @__PURE__ */ jsx59("ul", { className: "cria-mega-menu__dropdown-list", children: item.children?.map((child) => renderMenuItem(child, level + 1)) })
         }
       )
     ] }, item.label);
   };
-  return /* @__PURE__ */ jsxs49(
+  return /* @__PURE__ */ jsxs50(
     "nav",
     {
       ref: megaMenuRef,
@@ -12021,11 +12531,11 @@ var MegaMenu = ({
       style,
       ...props,
       children: [
-        /* @__PURE__ */ jsxs49("div", { className: "cria-mega-menu__container", children: [
-          logo && /* @__PURE__ */ jsx58("div", { className: "cria-mega-menu__logo", children: logo }),
-          trigger && /* @__PURE__ */ jsx58("div", { className: "cria-mega-menu__trigger", children: trigger }),
-          items.length > 0 && /* @__PURE__ */ jsx58("ul", { className: "cria-mega-menu__list", children: items.map((item) => renderMenuItem(item)) }),
-          showSearch && /* @__PURE__ */ jsx58("div", { className: "cria-mega-menu__search", children: /* @__PURE__ */ jsx58(
+        /* @__PURE__ */ jsxs50("div", { className: "cria-mega-menu__container", children: [
+          logo && /* @__PURE__ */ jsx59("div", { className: "cria-mega-menu__logo", children: logo }),
+          trigger && /* @__PURE__ */ jsx59("div", { className: "cria-mega-menu__trigger", children: trigger }),
+          items.length > 0 && /* @__PURE__ */ jsx59("ul", { className: "cria-mega-menu__list", children: items.map((item) => renderMenuItem(item)) }),
+          showSearch && /* @__PURE__ */ jsx59("div", { className: "cria-mega-menu__search", children: /* @__PURE__ */ jsx59(
             "input",
             {
               type: "text",
@@ -12035,7 +12545,7 @@ var MegaMenu = ({
               className: "cria-mega-menu__search-input"
             }
           ) }),
-          ctaButton && /* @__PURE__ */ jsx58("div", { className: "cria-mega-menu__cta", children: /* @__PURE__ */ jsx58(
+          ctaButton && /* @__PURE__ */ jsx59("div", { className: "cria-mega-menu__cta", children: /* @__PURE__ */ jsx59(
             "a",
             {
               href: ctaButton.href || "#",
@@ -12044,20 +12554,20 @@ var MegaMenu = ({
               children: ctaButton.label
             }
           ) }),
-          showMobileToggle && /* @__PURE__ */ jsx58(
+          showMobileToggle && /* @__PURE__ */ jsx59(
             "button",
             {
               onClick: handleMobileToggle,
               className: "cria-mega-menu__mobile-toggle",
               "aria-label": mobileMenuOpen ? "Close menu" : "Open menu",
               "aria-expanded": mobileMenuOpen,
-              children: /* @__PURE__ */ jsx58("span", { className: "cria-mega-menu__mobile-toggle-icon", children: mobileMenuOpen ? "\u2715" : "\u2630" })
+              children: /* @__PURE__ */ jsx59("span", { className: "cria-mega-menu__mobile-toggle-icon", children: mobileMenuOpen ? "\u2715" : "\u2630" })
             }
           )
         ] }),
-        showMobileToggle && mobileMenuOpen && /* @__PURE__ */ jsx58("div", { className: "cria-mega-menu__mobile-menu", children: /* @__PURE__ */ jsxs49("div", { className: "cria-mega-menu__mobile-menu-content", children: [
-          items.length > 0 && /* @__PURE__ */ jsx58("ul", { className: "cria-mega-menu__mobile-list", children: items.map((item) => /* @__PURE__ */ jsxs49("li", { className: "cria-mega-menu__mobile-item", children: [
-            /* @__PURE__ */ jsx58(
+        showMobileToggle && mobileMenuOpen && /* @__PURE__ */ jsx59("div", { className: "cria-mega-menu__mobile-menu", children: /* @__PURE__ */ jsxs50("div", { className: "cria-mega-menu__mobile-menu-content", children: [
+          items.length > 0 && /* @__PURE__ */ jsx59("ul", { className: "cria-mega-menu__mobile-list", children: items.map((item) => /* @__PURE__ */ jsxs50("li", { className: "cria-mega-menu__mobile-item", children: [
+            /* @__PURE__ */ jsx59(
               "a",
               {
                 href: item.href,
@@ -12068,7 +12578,7 @@ var MegaMenu = ({
                 children: item.label
               }
             ),
-            item.children && item.children.length > 0 && /* @__PURE__ */ jsx58("ul", { className: "cria-mega-menu__mobile-sublist", children: item.children.map((child) => /* @__PURE__ */ jsx58("li", { className: "cria-mega-menu__mobile-subitem", children: /* @__PURE__ */ jsx58(
+            item.children && item.children.length > 0 && /* @__PURE__ */ jsx59("ul", { className: "cria-mega-menu__mobile-sublist", children: item.children.map((child) => /* @__PURE__ */ jsx59("li", { className: "cria-mega-menu__mobile-subitem", children: /* @__PURE__ */ jsx59(
               "a",
               {
                 href: child.href,
@@ -12080,7 +12590,7 @@ var MegaMenu = ({
               }
             ) }, child.label)) })
           ] }, item.label)) }),
-          showSearch && /* @__PURE__ */ jsx58("div", { className: "cria-mega-menu__mobile-search", children: /* @__PURE__ */ jsx58(
+          showSearch && /* @__PURE__ */ jsx59("div", { className: "cria-mega-menu__mobile-search", children: /* @__PURE__ */ jsx59(
             "input",
             {
               type: "text",
@@ -12090,7 +12600,7 @@ var MegaMenu = ({
               className: "cria-mega-menu__mobile-search-input"
             }
           ) }),
-          ctaButton && /* @__PURE__ */ jsx58("div", { className: "cria-mega-menu__mobile-cta", children: /* @__PURE__ */ jsx58(
+          ctaButton && /* @__PURE__ */ jsx59("div", { className: "cria-mega-menu__mobile-cta", children: /* @__PURE__ */ jsx59(
             "a",
             {
               href: ctaButton.href || "#",
@@ -12100,19 +12610,19 @@ var MegaMenu = ({
             }
           ) })
         ] }) }),
-        loading && /* @__PURE__ */ jsx58("div", { className: "cria-mega-menu__loading-overlay", children: /* @__PURE__ */ jsx58("div", { className: "cria-mega-menu__loading-spinner", "aria-label": "Loading", children: /* @__PURE__ */ jsx58("span", { children: "Loading..." }) }) }),
-        children && /* @__PURE__ */ jsx58("div", { className: "cria-mega-menu__content", children })
+        loading && /* @__PURE__ */ jsx59("div", { className: "cria-mega-menu__loading-overlay", children: /* @__PURE__ */ jsx59("div", { className: "cria-mega-menu__loading-spinner", "aria-label": "Loading", children: /* @__PURE__ */ jsx59("span", { children: "Loading..." }) }) }),
+        children && /* @__PURE__ */ jsx59("div", { className: "cria-mega-menu__content", children })
       ]
     }
   );
 };
 
 // src/components/Carousel/Carousel.tsx
-import { useCallback as useCallback29, useEffect as useEffect19, useState as useState29 } from "react";
+import { useCallback as useCallback29, useEffect as useEffect19, useState as useState30 } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
 import { CaretLeft as CaretLeft4, CaretRight as CaretRight4, Circle, CircleDashed } from "phosphor-react";
-import { Fragment as Fragment7, jsx as jsx59, jsxs as jsxs50 } from "react/jsx-runtime";
+import { Fragment as Fragment7, jsx as jsx60, jsxs as jsxs51 } from "react/jsx-runtime";
 var Carousel = ({
   slides,
   children,
@@ -12146,8 +12656,8 @@ var Carousel = ({
     },
     autoPlay ? [Autoplay({ delay: autoPlayDelay })] : []
   );
-  const [selectedIndex, setSelectedIndex] = useState29(0);
-  const [scrollSnaps, setScrollSnaps] = useState29([]);
+  const [selectedIndex, setSelectedIndex] = useState30(0);
+  const [scrollSnaps, setScrollSnaps] = useState30([]);
   const scrollPrev = useCallback29(() => {
     if (emblaApi) emblaApi.scrollPrev();
   }, [emblaApi]);
@@ -12187,12 +12697,12 @@ var Carousel = ({
     className
   ].filter(Boolean).join(" ");
   if (loading) {
-    return /* @__PURE__ */ jsx59("div", { className: classes, style, ...props, children: /* @__PURE__ */ jsx59("div", { className: "cria-carousel__loading", children: /* @__PURE__ */ jsx59("div", { className: "cria-carousel__spinner" }) }) });
+    return /* @__PURE__ */ jsx60("div", { className: classes, style, ...props, children: /* @__PURE__ */ jsx60("div", { className: "cria-carousel__loading", children: /* @__PURE__ */ jsx60("div", { className: "cria-carousel__spinner" }) }) });
   }
-  return /* @__PURE__ */ jsxs50("div", { className: classes, style, ...props, children: [
-    header && /* @__PURE__ */ jsx59("div", { className: "cria-carousel__header", children: header }),
-    /* @__PURE__ */ jsxs50("div", { className: "cria-carousel__container", children: [
-      /* @__PURE__ */ jsx59("div", { className: "cria-carousel__viewport", ref: emblaRef, children: /* @__PURE__ */ jsx59("div", { className: "cria-carousel__container-inner", children: slides.map((slide, index) => /* @__PURE__ */ jsx59(
+  return /* @__PURE__ */ jsxs51("div", { className: classes, style, ...props, children: [
+    header && /* @__PURE__ */ jsx60("div", { className: "cria-carousel__header", children: header }),
+    /* @__PURE__ */ jsxs51("div", { className: "cria-carousel__container", children: [
+      /* @__PURE__ */ jsx60("div", { className: "cria-carousel__viewport", ref: emblaRef, children: /* @__PURE__ */ jsx60("div", { className: "cria-carousel__container-inner", children: slides.map((slide, index) => /* @__PURE__ */ jsx60(
         "div",
         {
           className: "cria-carousel__slide",
@@ -12201,45 +12711,45 @@ var Carousel = ({
         },
         slide.id
       )) }) }),
-      showArrows && /* @__PURE__ */ jsxs50(Fragment7, { children: [
-        /* @__PURE__ */ jsx59(
+      showArrows && /* @__PURE__ */ jsxs51(Fragment7, { children: [
+        /* @__PURE__ */ jsx60(
           "button",
           {
             className: "cria-carousel__arrow cria-carousel__arrow--prev",
             onClick: scrollPrev,
             "aria-label": "Previous slide",
-            children: /* @__PURE__ */ jsx59(CaretLeft4, { size: 24 })
+            children: /* @__PURE__ */ jsx60(CaretLeft4, { size: 24 })
           }
         ),
-        /* @__PURE__ */ jsx59(
+        /* @__PURE__ */ jsx60(
           "button",
           {
             className: "cria-carousel__arrow cria-carousel__arrow--next",
             onClick: scrollNext,
             "aria-label": "Next slide",
-            children: /* @__PURE__ */ jsx59(CaretRight4, { size: 24 })
+            children: /* @__PURE__ */ jsx60(CaretRight4, { size: 24 })
           }
         )
       ] })
     ] }),
-    showDots && scrollSnaps.length > 1 && /* @__PURE__ */ jsx59("div", { className: "cria-carousel__dots", children: scrollSnaps.map((_, index) => /* @__PURE__ */ jsx59(
+    showDots && scrollSnaps.length > 1 && /* @__PURE__ */ jsx60("div", { className: "cria-carousel__dots", children: scrollSnaps.map((_, index) => /* @__PURE__ */ jsx60(
       "button",
       {
         className: `cria-carousel__dot ${index === selectedIndex ? "cria-carousel__dot--active" : ""}`,
         onClick: () => scrollTo(index),
         "aria-label": `Go to slide ${index + 1}`,
-        children: index === selectedIndex ? /* @__PURE__ */ jsx59(Circle, { size: 12, weight: "fill" }) : /* @__PURE__ */ jsx59(CircleDashed, { size: 12, weight: "regular" })
+        children: index === selectedIndex ? /* @__PURE__ */ jsx60(Circle, { size: 12, weight: "fill" }) : /* @__PURE__ */ jsx60(CircleDashed, { size: 12, weight: "regular" })
       },
       index
     )) }),
-    footer && /* @__PURE__ */ jsx59("div", { className: "cria-carousel__footer", children: footer })
+    footer && /* @__PURE__ */ jsx60("div", { className: "cria-carousel__footer", children: footer })
   ] });
 };
 
 // src/components/Table/Table.tsx
-import { useState as useState30, useMemo as useMemo9, useCallback as useCallback30 } from "react";
-import { CaretUp as CaretUp2, CaretDown as CaretDown5, MagnifyingGlass as MagnifyingGlass3, Download, DotsThree as DotsThree2 } from "phosphor-react";
-import { jsx as jsx60, jsxs as jsxs51 } from "react/jsx-runtime";
+import { useState as useState31, useMemo as useMemo9, useCallback as useCallback30 } from "react";
+import { CaretUp as CaretUp2, CaretDown as CaretDown5, MagnifyingGlass as MagnifyingGlass2, Download, DotsThree as DotsThree2 } from "phosphor-react";
+import { jsx as jsx61, jsxs as jsxs52 } from "react/jsx-runtime";
 var Table = ({
   columns,
   data,
@@ -12276,8 +12786,8 @@ var Table = ({
   style = {},
   ...props
 }) => {
-  const [internalFilter, setInternalFilter] = useState30(filterValue || "");
-  const [showRowActions, setShowRowActions] = useState30({});
+  const [internalFilter, setInternalFilter] = useState31(filterValue || "");
+  const [showRowActions, setShowRowActions] = useState31({});
   const getRowKey = useCallback30((row, index) => {
     if (typeof rowKey === "function") {
       return rowKey(row, index);
@@ -12363,26 +12873,26 @@ var Table = ({
   const renderSortIcon = useCallback30((columnKey) => {
     if (!sortable) return null;
     if (sortBy === columnKey) {
-      return sortDirection === "asc" ? /* @__PURE__ */ jsx60(CaretUp2, { size: 16 }) : /* @__PURE__ */ jsx60(CaretDown5, { size: 16 });
+      return sortDirection === "asc" ? /* @__PURE__ */ jsx61(CaretUp2, { size: 16 }) : /* @__PURE__ */ jsx61(CaretDown5, { size: 16 });
     }
-    return /* @__PURE__ */ jsxs51("div", { style: { display: "flex", flexDirection: "column", alignItems: "center" }, children: [
-      /* @__PURE__ */ jsx60(CaretUp2, { size: 8 }),
-      /* @__PURE__ */ jsx60(CaretDown5, { size: 8 })
+    return /* @__PURE__ */ jsxs52("div", { style: { display: "flex", flexDirection: "column", alignItems: "center" }, children: [
+      /* @__PURE__ */ jsx61(CaretUp2, { size: 8 }),
+      /* @__PURE__ */ jsx61(CaretDown5, { size: 8 })
     ] });
   }, [sortable, sortBy, sortDirection]);
   const renderPagination = useCallback30(() => {
     if (!pagination) return null;
     const totalPages = Math.ceil(pagination.total / pagination.pageSize);
     const pageSizeOptions = pagination.pageSizeOptions || [10, 20, 50, 100];
-    return /* @__PURE__ */ jsxs51("div", { className: "cria-table__pagination", children: [
-      /* @__PURE__ */ jsxs51("div", { className: "cria-table__pagination-info", children: [
-        /* @__PURE__ */ jsxs51("span", { children: [
+    return /* @__PURE__ */ jsxs52("div", { className: "cria-table__pagination", children: [
+      /* @__PURE__ */ jsxs52("div", { className: "cria-table__pagination-info", children: [
+        /* @__PURE__ */ jsxs52("span", { children: [
           "Page ",
           pagination.page,
           " of ",
           totalPages
         ] }),
-        /* @__PURE__ */ jsxs51("span", { children: [
+        /* @__PURE__ */ jsxs52("span", { children: [
           "Showing ",
           (pagination.page - 1) * pagination.pageSize + 1,
           " to",
@@ -12394,21 +12904,21 @@ var Table = ({
           " entries"
         ] })
       ] }),
-      /* @__PURE__ */ jsxs51("div", { className: "cria-table__pagination-controls", children: [
-        pagination.showSizeChanger && /* @__PURE__ */ jsx60(
+      /* @__PURE__ */ jsxs52("div", { className: "cria-table__pagination-controls", children: [
+        pagination.showSizeChanger && /* @__PURE__ */ jsx61(
           "select",
           {
             value: pagination.pageSize,
             onChange: (e) => onPageSizeChange?.(Number(e.target.value)),
             className: "cria-table__page-size-select",
-            children: pageSizeOptions.map((size2) => /* @__PURE__ */ jsxs51("option", { value: size2, children: [
+            children: pageSizeOptions.map((size2) => /* @__PURE__ */ jsxs52("option", { value: size2, children: [
               size2,
               " per page"
             ] }, size2))
           }
         ),
-        /* @__PURE__ */ jsxs51("div", { className: "cria-table__page-buttons", children: [
-          /* @__PURE__ */ jsx60(
+        /* @__PURE__ */ jsxs52("div", { className: "cria-table__page-buttons", children: [
+          /* @__PURE__ */ jsx61(
             "button",
             {
               disabled: pagination.page <= 1,
@@ -12420,7 +12930,7 @@ var Table = ({
           Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
             const page = pagination.page <= 3 ? i + 1 : pagination.page - 2 + i;
             if (page > totalPages) return null;
-            return /* @__PURE__ */ jsx60(
+            return /* @__PURE__ */ jsx61(
               "button",
               {
                 onClick: () => onPageChange?.(page),
@@ -12430,7 +12940,7 @@ var Table = ({
               page
             );
           }),
-          /* @__PURE__ */ jsx60(
+          /* @__PURE__ */ jsx61(
             "button",
             {
               disabled: pagination.page >= totalPages,
@@ -12451,17 +12961,17 @@ var Table = ({
     className
   ].filter(Boolean).join(" ");
   if (loading) {
-    return /* @__PURE__ */ jsx60("div", { className: classes, style, ...props, children: /* @__PURE__ */ jsxs51("div", { className: "cria-table__loading", children: [
-      /* @__PURE__ */ jsx60("div", { className: "cria-table__spinner" }),
-      /* @__PURE__ */ jsx60("span", { children: loadingMessage })
+    return /* @__PURE__ */ jsx61("div", { className: classes, style, ...props, children: /* @__PURE__ */ jsxs52("div", { className: "cria-table__loading", children: [
+      /* @__PURE__ */ jsx61("div", { className: "cria-table__spinner" }),
+      /* @__PURE__ */ jsx61("span", { children: loadingMessage })
     ] }) });
   }
-  return /* @__PURE__ */ jsxs51("div", { className: classes, style, children: [
-    header && /* @__PURE__ */ jsx60("div", { className: "cria-table__header", children: header }),
-    /* @__PURE__ */ jsxs51("div", { className: "cria-table__toolbar", children: [
-      filterable && /* @__PURE__ */ jsxs51("div", { className: "cria-table__filter", children: [
-        /* @__PURE__ */ jsx60(MagnifyingGlass3, { size: 16 }),
-        /* @__PURE__ */ jsx60(
+  return /* @__PURE__ */ jsxs52("div", { className: classes, style, children: [
+    header && /* @__PURE__ */ jsx61("div", { className: "cria-table__header", children: header }),
+    /* @__PURE__ */ jsxs52("div", { className: "cria-table__toolbar", children: [
+      filterable && /* @__PURE__ */ jsxs52("div", { className: "cria-table__filter", children: [
+        /* @__PURE__ */ jsx61(MagnifyingGlass2, { size: 16 }),
+        /* @__PURE__ */ jsx61(
           "input",
           {
             type: "text",
@@ -12472,21 +12982,21 @@ var Table = ({
           }
         )
       ] }),
-      exportable && /* @__PURE__ */ jsx60("div", { className: "cria-table__export", children: /* @__PURE__ */ jsxs51(
+      exportable && /* @__PURE__ */ jsx61("div", { className: "cria-table__export", children: /* @__PURE__ */ jsxs52(
         "button",
         {
           onClick: () => onExport?.("csv"),
           className: "cria-table__export-button",
           children: [
-            /* @__PURE__ */ jsx60(Download, { size: 16 }),
+            /* @__PURE__ */ jsx61(Download, { size: 16 }),
             "Export CSV"
           ]
         }
       ) })
     ] }),
-    /* @__PURE__ */ jsx60("div", { className: "cria-table__container", children: /* @__PURE__ */ jsxs51("table", { className: "cria-table__table", role: "table", tabIndex: 0, ...props, children: [
-      /* @__PURE__ */ jsx60("thead", { className: "cria-table__thead", children: /* @__PURE__ */ jsxs51("tr", { className: "cria-table__tr", children: [
-        selection && selection.type === "checkbox" && /* @__PURE__ */ jsx60("th", { className: "cria-table__th", children: /* @__PURE__ */ jsx60(
+    /* @__PURE__ */ jsx61("div", { className: "cria-table__container", children: /* @__PURE__ */ jsxs52("table", { className: "cria-table__table", role: "table", tabIndex: 0, ...props, children: [
+      /* @__PURE__ */ jsx61("thead", { className: "cria-table__thead", children: /* @__PURE__ */ jsxs52("tr", { className: "cria-table__tr", children: [
+        selection && selection.type === "checkbox" && /* @__PURE__ */ jsx61("th", { className: "cria-table__th", children: /* @__PURE__ */ jsx61(
           "input",
           {
             type: "checkbox",
@@ -12499,7 +13009,7 @@ var Table = ({
             "aria-label": "Select all rows"
           }
         ) }),
-        columns.map((column) => /* @__PURE__ */ jsx60(
+        columns.map((column) => /* @__PURE__ */ jsx61(
           "th",
           {
             className: `cria-table__th ${column.headerClassName || ""}`,
@@ -12507,14 +13017,14 @@ var Table = ({
               width: column.width,
               textAlign: column.align || "left"
             },
-            children: /* @__PURE__ */ jsxs51(
+            children: /* @__PURE__ */ jsxs52(
               "div",
               {
                 className: `cria-table__header-cell ${column.sortable && sortable ? "cria-table__header-cell--sortable" : ""}`,
                 onClick: () => column.sortable && handleSort(column.key),
                 "aria-sort": sortBy === column.key ? sortDirection === "asc" ? "ascending" : "descending" : "none",
                 children: [
-                  /* @__PURE__ */ jsx60("span", { children: column.label }),
+                  /* @__PURE__ */ jsx61("span", { children: column.label }),
                   renderSortIcon(column.key)
                 ]
               }
@@ -12522,27 +13032,27 @@ var Table = ({
           },
           column.key
         )),
-        rowActions && /* @__PURE__ */ jsx60("th", { className: "cria-table__th cria-table__th--actions", children: "Actions" })
+        rowActions && /* @__PURE__ */ jsx61("th", { className: "cria-table__th cria-table__th--actions", children: "Actions" })
       ] }) }),
-      /* @__PURE__ */ jsx60("tbody", { className: "cria-table__tbody", children: paginatedData.length === 0 ? /* @__PURE__ */ jsx60("tr", { className: "cria-table__tr", children: /* @__PURE__ */ jsx60(
+      /* @__PURE__ */ jsx61("tbody", { className: "cria-table__tbody", children: paginatedData.length === 0 ? /* @__PURE__ */ jsx61("tr", { className: "cria-table__tr", children: /* @__PURE__ */ jsx61(
         "td",
         {
           className: "cria-table__td cria-table__td--empty",
           colSpan: columns.length + (selection ? 1 : 0) + (rowActions ? 1 : 0),
-          children: emptyComponent || /* @__PURE__ */ jsx60("div", { className: "cria-table__empty", children: /* @__PURE__ */ jsx60("span", { children: emptyMessage }) })
+          children: emptyComponent || /* @__PURE__ */ jsx61("div", { className: "cria-table__empty", children: /* @__PURE__ */ jsx61("span", { children: emptyMessage }) })
         }
       ) }) : paginatedData.map((row, index) => {
         const key = getRowKey(row, index);
         const isSelected = selection?.selectedRows?.some(
           (selected) => getRowKey(selected, 0) === key
         );
-        return /* @__PURE__ */ jsxs51(
+        return /* @__PURE__ */ jsxs52(
           "tr",
           {
             className: `cria-table__tr ${rowClassName ? rowClassName(row, index) : ""} ${rowClickable ? "cria-table__tr--clickable" : ""} ${isSelected ? "cria-table__tr--selected" : ""}`,
             onClick: () => handleRowClick(row, index),
             children: [
-              selection && selection.type === "checkbox" && /* @__PURE__ */ jsx60("td", { className: "cria-table__td", children: /* @__PURE__ */ jsx60(
+              selection && selection.type === "checkbox" && /* @__PURE__ */ jsx61("td", { className: "cria-table__td", children: /* @__PURE__ */ jsx61(
                 "input",
                 {
                   type: "checkbox",
@@ -12551,7 +13061,7 @@ var Table = ({
                   "aria-label": `Select row ${index + 1}`
                 }
               ) }),
-              selection && selection.type === "radio" && /* @__PURE__ */ jsx60("td", { className: "cria-table__td", children: /* @__PURE__ */ jsx60(
+              selection && selection.type === "radio" && /* @__PURE__ */ jsx61("td", { className: "cria-table__td", children: /* @__PURE__ */ jsx61(
                 "input",
                 {
                   type: "radio",
@@ -12561,7 +13071,7 @@ var Table = ({
                   "aria-label": `Select row ${index + 1}`
                 }
               ) }),
-              columns.map((column) => /* @__PURE__ */ jsx60(
+              columns.map((column) => /* @__PURE__ */ jsx61(
                 "td",
                 {
                   className: `cria-table__td ${column.className || ""}`,
@@ -12570,8 +13080,8 @@ var Table = ({
                 },
                 column.key
               )),
-              rowActions && /* @__PURE__ */ jsx60("td", { className: "cria-table__td cria-table__td--actions", children: /* @__PURE__ */ jsxs51("div", { className: "cria-table__row-actions", children: [
-                /* @__PURE__ */ jsx60(
+              rowActions && /* @__PURE__ */ jsx61("td", { className: "cria-table__td cria-table__td--actions", children: /* @__PURE__ */ jsxs52("div", { className: "cria-table__row-actions", children: [
+                /* @__PURE__ */ jsx61(
                   "button",
                   {
                     className: "cria-table__row-actions-button",
@@ -12583,10 +13093,10 @@ var Table = ({
                       }));
                     },
                     "aria-label": `Actions for row ${index + 1}`,
-                    children: /* @__PURE__ */ jsx60(DotsThree2, { size: 16 })
+                    children: /* @__PURE__ */ jsx61(DotsThree2, { size: 16 })
                   }
                 ),
-                showRowActions[key] && /* @__PURE__ */ jsx60("div", { className: "cria-table__row-actions-menu", children: rowActions(row, index).map((action, actionIndex) => /* @__PURE__ */ jsxs51(
+                showRowActions[key] && /* @__PURE__ */ jsx61("div", { className: "cria-table__row-actions-menu", children: rowActions(row, index).map((action, actionIndex) => /* @__PURE__ */ jsxs52(
                   "button",
                   {
                     className: `cria-table__row-action ${action.className || ""}`,
@@ -12610,12 +13120,12 @@ var Table = ({
       }) })
     ] }) }),
     renderPagination(),
-    footer && /* @__PURE__ */ jsx60("div", { className: "cria-table__footer", children: footer })
+    footer && /* @__PURE__ */ jsx61("div", { className: "cria-table__footer", children: footer })
   ] });
 };
 
 // src/components/EmptyState/EmptyState.tsx
-import { jsx as jsx61, jsxs as jsxs52 } from "react/jsx-runtime";
+import { jsx as jsx62, jsxs as jsxs53 } from "react/jsx-runtime";
 var EmptyState = ({
   icon,
   title,
@@ -12640,18 +13150,18 @@ var EmptyState = ({
   const renderTitle = () => {
     if (!title) return null;
     if (typeof title === "string") {
-      return /* @__PURE__ */ jsx61("h3", { className: "cria-empty-state__title", children: title });
+      return /* @__PURE__ */ jsx62("h3", { className: "cria-empty-state__title", children: title });
     }
-    return /* @__PURE__ */ jsx61("div", { className: "cria-empty-state__title", children: title });
+    return /* @__PURE__ */ jsx62("div", { className: "cria-empty-state__title", children: title });
   };
   const renderDescription = () => {
     if (!description) return null;
     if (typeof description === "string") {
-      return /* @__PURE__ */ jsx61("p", { className: "cria-empty-state__description", children: description });
+      return /* @__PURE__ */ jsx62("p", { className: "cria-empty-state__description", children: description });
     }
-    return /* @__PURE__ */ jsx61("div", { className: "cria-empty-state__description", children: description });
+    return /* @__PURE__ */ jsx62("div", { className: "cria-empty-state__description", children: description });
   };
-  return /* @__PURE__ */ jsx61(
+  return /* @__PURE__ */ jsx62(
     "div",
     {
       className: classes,
@@ -12659,20 +13169,20 @@ var EmptyState = ({
       role: "status",
       "aria-live": "polite",
       ...props,
-      children: /* @__PURE__ */ jsxs52("div", { className: "cria-empty-state__content", children: [
-        icon && /* @__PURE__ */ jsx61("div", { className: "cria-empty-state__icon", children: icon }),
+      children: /* @__PURE__ */ jsxs53("div", { className: "cria-empty-state__content", children: [
+        icon && /* @__PURE__ */ jsx62("div", { className: "cria-empty-state__icon", children: icon }),
         renderTitle(),
         renderDescription(),
-        action && /* @__PURE__ */ jsx61("div", { className: "cria-empty-state__action", children: action }),
-        additionalContent && /* @__PURE__ */ jsx61("div", { className: "cria-empty-state__additional", children: additionalContent }),
-        children && /* @__PURE__ */ jsx61("div", { className: "cria-empty-state__children", children })
+        action && /* @__PURE__ */ jsx62("div", { className: "cria-empty-state__action", children: action }),
+        additionalContent && /* @__PURE__ */ jsx62("div", { className: "cria-empty-state__additional", children: additionalContent }),
+        children && /* @__PURE__ */ jsx62("div", { className: "cria-empty-state__children", children })
       ] })
     }
   );
 };
 
 // src/components/Charts/BaseChart.tsx
-import { jsx as jsx62, jsxs as jsxs53 } from "react/jsx-runtime";
+import { jsx as jsx63, jsxs as jsxs54 } from "react/jsx-runtime";
 var BaseChart = ({
   title,
   children,
@@ -12680,9 +13190,9 @@ var BaseChart = ({
   style = {},
   height = 300
 }) => {
-  return /* @__PURE__ */ jsxs53(Card, { className: `cria-chart-card ${className}`, style, children: [
-    title && /* @__PURE__ */ jsx62(CardHeader, { children: /* @__PURE__ */ jsx62(Typography, { variant: "title2", style: { color: colors.text.primary }, children: title }) }),
-    /* @__PURE__ */ jsx62(CardContent, { style: { padding: spacing[6] }, children: /* @__PURE__ */ jsx62("div", { style: { height: `${height}px`, width: "100%" }, children }) })
+  return /* @__PURE__ */ jsxs54(Card, { className: `cria-chart-card ${className}`, style, children: [
+    title && /* @__PURE__ */ jsx63(CardHeader, { children: /* @__PURE__ */ jsx63(Typography, { variant: "title2", style: { color: colors.text.primary }, children: title }) }),
+    /* @__PURE__ */ jsx63(CardContent, { style: { padding: spacing[6] }, children: /* @__PURE__ */ jsx63("div", { style: { height: `${height}px`, width: "100%" }, children }) })
   ] });
 };
 
@@ -12697,7 +13207,7 @@ import {
   ResponsiveContainer,
   Legend
 } from "recharts";
-import { jsx as jsx63, jsxs as jsxs54 } from "react/jsx-runtime";
+import { jsx as jsx64, jsxs as jsxs55 } from "react/jsx-runtime";
 var LineChart = ({
   data,
   title = "Line Chart",
@@ -12711,7 +13221,7 @@ var LineChart = ({
   style = {}
 }) => {
   const defaultColors = [colors.primary, colors.secondary, colors.accent, colors.warning, colors.success];
-  return /* @__PURE__ */ jsx63(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx63(ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs54(
+  return /* @__PURE__ */ jsx64(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx64(ResponsiveContainer, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs55(
     RechartsLineChart,
     {
       data,
@@ -12722,7 +13232,7 @@ var LineChart = ({
         bottom: 20
       },
       children: [
-        showGrid && /* @__PURE__ */ jsx63(
+        showGrid && /* @__PURE__ */ jsx64(
           CartesianGrid,
           {
             strokeDasharray: "3 3",
@@ -12730,7 +13240,7 @@ var LineChart = ({
             opacity: 0.3
           }
         ),
-        /* @__PURE__ */ jsx63(
+        /* @__PURE__ */ jsx64(
           XAxis,
           {
             dataKey: "name",
@@ -12740,7 +13250,7 @@ var LineChart = ({
             axisLine: false
           }
         ),
-        /* @__PURE__ */ jsx63(
+        /* @__PURE__ */ jsx64(
           YAxis,
           {
             stroke: colors.text.secondary,
@@ -12749,7 +13259,7 @@ var LineChart = ({
             axisLine: false
           }
         ),
-        showTooltip && /* @__PURE__ */ jsx63(
+        showTooltip && /* @__PURE__ */ jsx64(
           Tooltip2,
           {
             contentStyle: {
@@ -12762,7 +13272,7 @@ var LineChart = ({
             labelStyle: { color: colors.text.primary, fontWeight: "600" }
           }
         ),
-        showLegend && /* @__PURE__ */ jsx63(
+        showLegend && /* @__PURE__ */ jsx64(
           Legend,
           {
             wrapperStyle: {
@@ -12772,7 +13282,7 @@ var LineChart = ({
             }
           }
         ),
-        lines.map((line, index) => /* @__PURE__ */ jsx63(
+        lines.map((line, index) => /* @__PURE__ */ jsx64(
           Line,
           {
             type: "monotone",
@@ -12801,7 +13311,7 @@ import {
   ResponsiveContainer as ResponsiveContainer2,
   Legend as Legend2
 } from "recharts";
-import { jsx as jsx64, jsxs as jsxs55 } from "react/jsx-runtime";
+import { jsx as jsx65, jsxs as jsxs56 } from "react/jsx-runtime";
 var BarChart = ({
   data,
   title = "Bar Chart",
@@ -12814,7 +13324,7 @@ var BarChart = ({
   style = {}
 }) => {
   const defaultColors = [colors.primary, colors.secondary, colors.accent, colors.warning, colors.success];
-  return /* @__PURE__ */ jsx64(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx64(ResponsiveContainer2, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs55(
+  return /* @__PURE__ */ jsx65(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx65(ResponsiveContainer2, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs56(
     RechartsBarChart,
     {
       data,
@@ -12825,7 +13335,7 @@ var BarChart = ({
         bottom: 20
       },
       children: [
-        showGrid && /* @__PURE__ */ jsx64(
+        showGrid && /* @__PURE__ */ jsx65(
           CartesianGrid2,
           {
             strokeDasharray: "3 3",
@@ -12833,7 +13343,7 @@ var BarChart = ({
             opacity: 0.3
           }
         ),
-        /* @__PURE__ */ jsx64(
+        /* @__PURE__ */ jsx65(
           XAxis2,
           {
             dataKey: "name",
@@ -12843,7 +13353,7 @@ var BarChart = ({
             axisLine: false
           }
         ),
-        /* @__PURE__ */ jsx64(
+        /* @__PURE__ */ jsx65(
           YAxis2,
           {
             stroke: colors.text.secondary,
@@ -12852,7 +13362,7 @@ var BarChart = ({
             axisLine: false
           }
         ),
-        showTooltip && /* @__PURE__ */ jsx64(
+        showTooltip && /* @__PURE__ */ jsx65(
           Tooltip3,
           {
             contentStyle: {
@@ -12865,7 +13375,7 @@ var BarChart = ({
             labelStyle: { color: colors.text.primary, fontWeight: "600" }
           }
         ),
-        showLegend && /* @__PURE__ */ jsx64(
+        showLegend && /* @__PURE__ */ jsx65(
           Legend2,
           {
             wrapperStyle: {
@@ -12875,7 +13385,7 @@ var BarChart = ({
             }
           }
         ),
-        bars.map((bar, index) => /* @__PURE__ */ jsx64(
+        bars.map((bar, index) => /* @__PURE__ */ jsx65(
           Bar,
           {
             dataKey: bar.dataKey,
@@ -12901,7 +13411,7 @@ import {
   ResponsiveContainer as ResponsiveContainer3,
   Legend as Legend3
 } from "recharts";
-import { jsx as jsx65, jsxs as jsxs56 } from "react/jsx-runtime";
+import { jsx as jsx66, jsxs as jsxs57 } from "react/jsx-runtime";
 var StackedBarChart = ({
   data,
   title = "Stacked Bar Chart",
@@ -12917,7 +13427,7 @@ var StackedBarChart = ({
   style = {}
 }) => {
   const defaultColors = [colors.primary, colors.secondary, colors.accent, colors.warning, colors.success];
-  return /* @__PURE__ */ jsx65(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx65(ResponsiveContainer3, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs56(
+  return /* @__PURE__ */ jsx66(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx66(ResponsiveContainer3, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs57(
     RechartsBarChart2,
     {
       data,
@@ -12928,7 +13438,7 @@ var StackedBarChart = ({
         bottom: 20
       },
       children: [
-        showGrid && /* @__PURE__ */ jsx65(
+        showGrid && /* @__PURE__ */ jsx66(
           CartesianGrid3,
           {
             strokeDasharray: "3 3",
@@ -12936,7 +13446,7 @@ var StackedBarChart = ({
             opacity: 0.3
           }
         ),
-        /* @__PURE__ */ jsx65(
+        /* @__PURE__ */ jsx66(
           XAxis3,
           {
             dataKey: "name",
@@ -12946,7 +13456,7 @@ var StackedBarChart = ({
             axisLine: false
           }
         ),
-        /* @__PURE__ */ jsx65(
+        /* @__PURE__ */ jsx66(
           YAxis3,
           {
             stroke: colors.text.secondary,
@@ -12955,7 +13465,7 @@ var StackedBarChart = ({
             axisLine: false
           }
         ),
-        showTooltip && /* @__PURE__ */ jsx65(
+        showTooltip && /* @__PURE__ */ jsx66(
           Tooltip4,
           {
             contentStyle: {
@@ -12968,7 +13478,7 @@ var StackedBarChart = ({
             labelStyle: { color: colors.text.primary, fontWeight: "600" }
           }
         ),
-        showLegend && /* @__PURE__ */ jsx65(
+        showLegend && /* @__PURE__ */ jsx66(
           Legend3,
           {
             wrapperStyle: {
@@ -12978,7 +13488,7 @@ var StackedBarChart = ({
             }
           }
         ),
-        bars.map((bar, index) => /* @__PURE__ */ jsx65(
+        bars.map((bar, index) => /* @__PURE__ */ jsx66(
           Bar2,
           {
             dataKey: bar.dataKey,
@@ -13005,7 +13515,7 @@ import {
   ResponsiveContainer as ResponsiveContainer4,
   Legend as Legend4
 } from "recharts";
-import { jsx as jsx66, jsxs as jsxs57 } from "react/jsx-runtime";
+import { jsx as jsx67, jsxs as jsxs58 } from "react/jsx-runtime";
 var AreaChart = ({
   data,
   title = "Area Chart",
@@ -13018,7 +13528,7 @@ var AreaChart = ({
   style = {}
 }) => {
   const defaultColors = [colors.primary, colors.secondary, colors.accent, colors.warning, colors.success];
-  return /* @__PURE__ */ jsx66(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx66(ResponsiveContainer4, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs57(
+  return /* @__PURE__ */ jsx67(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx67(ResponsiveContainer4, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs58(
     RechartsAreaChart,
     {
       data,
@@ -13029,7 +13539,7 @@ var AreaChart = ({
         bottom: 20
       },
       children: [
-        showGrid && /* @__PURE__ */ jsx66(
+        showGrid && /* @__PURE__ */ jsx67(
           CartesianGrid4,
           {
             strokeDasharray: "3 3",
@@ -13037,7 +13547,7 @@ var AreaChart = ({
             opacity: 0.3
           }
         ),
-        /* @__PURE__ */ jsx66(
+        /* @__PURE__ */ jsx67(
           XAxis4,
           {
             dataKey: "name",
@@ -13047,7 +13557,7 @@ var AreaChart = ({
             axisLine: false
           }
         ),
-        /* @__PURE__ */ jsx66(
+        /* @__PURE__ */ jsx67(
           YAxis4,
           {
             stroke: colors.text.secondary,
@@ -13056,7 +13566,7 @@ var AreaChart = ({
             axisLine: false
           }
         ),
-        showTooltip && /* @__PURE__ */ jsx66(
+        showTooltip && /* @__PURE__ */ jsx67(
           Tooltip5,
           {
             contentStyle: {
@@ -13069,7 +13579,7 @@ var AreaChart = ({
             labelStyle: { color: colors.text.primary, fontWeight: "600" }
           }
         ),
-        showLegend && /* @__PURE__ */ jsx66(
+        showLegend && /* @__PURE__ */ jsx67(
           Legend4,
           {
             wrapperStyle: {
@@ -13079,7 +13589,7 @@ var AreaChart = ({
             }
           }
         ),
-        areas.map((area, index) => /* @__PURE__ */ jsx66(
+        areas.map((area, index) => /* @__PURE__ */ jsx67(
           Area,
           {
             type: "monotone",
@@ -13106,7 +13616,7 @@ import {
   Tooltip as Tooltip6,
   Legend as Legend5
 } from "recharts";
-import { jsx as jsx67, jsxs as jsxs58 } from "react/jsx-runtime";
+import { jsx as jsx68, jsxs as jsxs59 } from "react/jsx-runtime";
 var PieChart = ({
   data,
   title = "Pie Chart",
@@ -13123,8 +13633,8 @@ var PieChart = ({
     ...item,
     color: item.color || defaultColors[index % defaultColors.length]
   }));
-  return /* @__PURE__ */ jsx67(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx67(ResponsiveContainer5, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs58(RechartsPieChart, { children: [
-    /* @__PURE__ */ jsx67(
+  return /* @__PURE__ */ jsx68(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx68(ResponsiveContainer5, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs59(RechartsPieChart, { children: [
+    /* @__PURE__ */ jsx68(
       Pie,
       {
         data: dataWithColors,
@@ -13136,10 +13646,10 @@ var PieChart = ({
         innerRadius,
         fill: "#8884d8",
         dataKey: "value",
-        children: dataWithColors.map((entry, index) => /* @__PURE__ */ jsx67(Cell, { fill: entry.color }, `cell-${index}`))
+        children: dataWithColors.map((entry, index) => /* @__PURE__ */ jsx68(Cell, { fill: entry.color }, `cell-${index}`))
       }
     ),
-    showTooltip && /* @__PURE__ */ jsx67(
+    showTooltip && /* @__PURE__ */ jsx68(
       Tooltip6,
       {
         contentStyle: {
@@ -13152,7 +13662,7 @@ var PieChart = ({
         formatter: (value, name) => [value, name]
       }
     ),
-    showLegend && /* @__PURE__ */ jsx67(
+    showLegend && /* @__PURE__ */ jsx68(
       Legend5,
       {
         wrapperStyle: {
@@ -13174,7 +13684,7 @@ import {
   Tooltip as Tooltip7,
   Legend as Legend6
 } from "recharts";
-import { jsx as jsx68, jsxs as jsxs59 } from "react/jsx-runtime";
+import { jsx as jsx69, jsxs as jsxs60 } from "react/jsx-runtime";
 var DonutChart = ({
   data,
   title = "Donut Chart",
@@ -13191,8 +13701,8 @@ var DonutChart = ({
     ...item,
     color: item.color || defaultColors[index % defaultColors.length]
   }));
-  return /* @__PURE__ */ jsx68(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx68(ResponsiveContainer6, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs59(RechartsPieChart2, { children: [
-    /* @__PURE__ */ jsx68(
+  return /* @__PURE__ */ jsx69(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx69(ResponsiveContainer6, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs60(RechartsPieChart2, { children: [
+    /* @__PURE__ */ jsx69(
       Pie2,
       {
         data: dataWithColors,
@@ -13204,10 +13714,10 @@ var DonutChart = ({
         innerRadius,
         fill: "#8884d8",
         dataKey: "value",
-        children: dataWithColors.map((entry, index) => /* @__PURE__ */ jsx68(Cell2, { fill: entry.color }, `cell-${index}`))
+        children: dataWithColors.map((entry, index) => /* @__PURE__ */ jsx69(Cell2, { fill: entry.color }, `cell-${index}`))
       }
     ),
-    showTooltip && /* @__PURE__ */ jsx68(
+    showTooltip && /* @__PURE__ */ jsx69(
       Tooltip7,
       {
         contentStyle: {
@@ -13220,7 +13730,7 @@ var DonutChart = ({
         formatter: (value, name) => [value, name]
       }
     ),
-    showLegend && /* @__PURE__ */ jsx68(
+    showLegend && /* @__PURE__ */ jsx69(
       Legend6,
       {
         wrapperStyle: {
@@ -13244,7 +13754,7 @@ import {
   Tooltip as Tooltip8,
   Legend as Legend7
 } from "recharts";
-import { jsx as jsx69, jsxs as jsxs60 } from "react/jsx-runtime";
+import { jsx as jsx70, jsxs as jsxs61 } from "react/jsx-runtime";
 var RadarChart = ({
   data,
   title = "Radar Chart",
@@ -13256,16 +13766,16 @@ var RadarChart = ({
   style = {}
 }) => {
   const defaultColors = [colors.primary, colors.secondary, colors.accent, colors.warning, colors.success];
-  return /* @__PURE__ */ jsx69(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx69(ResponsiveContainer7, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs60(RechartsRadarChart, { data, children: [
-    /* @__PURE__ */ jsx69(PolarGrid, { stroke: colors.border.light }),
-    /* @__PURE__ */ jsx69(
+  return /* @__PURE__ */ jsx70(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx70(ResponsiveContainer7, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs61(RechartsRadarChart, { data, children: [
+    /* @__PURE__ */ jsx70(PolarGrid, { stroke: colors.border.light }),
+    /* @__PURE__ */ jsx70(
       PolarAngleAxis,
       {
         dataKey: "subject",
         tick: { fontSize: 12, fill: colors.text.secondary }
       }
     ),
-    /* @__PURE__ */ jsx69(
+    /* @__PURE__ */ jsx70(
       PolarRadiusAxis,
       {
         angle: 90,
@@ -13273,7 +13783,7 @@ var RadarChart = ({
         tick: { fontSize: 12, fill: colors.text.secondary }
       }
     ),
-    showTooltip && /* @__PURE__ */ jsx69(
+    showTooltip && /* @__PURE__ */ jsx70(
       Tooltip8,
       {
         contentStyle: {
@@ -13286,7 +13796,7 @@ var RadarChart = ({
         labelStyle: { color: colors.text.primary, fontWeight: "600" }
       }
     ),
-    showLegend && /* @__PURE__ */ jsx69(
+    showLegend && /* @__PURE__ */ jsx70(
       Legend7,
       {
         wrapperStyle: {
@@ -13296,7 +13806,7 @@ var RadarChart = ({
         }
       }
     ),
-    radars.map((radar, index) => /* @__PURE__ */ jsx69(
+    radars.map((radar, index) => /* @__PURE__ */ jsx70(
       Radar,
       {
         name: radar.name || radar.dataKey,
@@ -13321,7 +13831,7 @@ import {
   ResponsiveContainer as ResponsiveContainer8,
   Legend as Legend8
 } from "recharts";
-import { jsx as jsx70, jsxs as jsxs61 } from "react/jsx-runtime";
+import { jsx as jsx71, jsxs as jsxs62 } from "react/jsx-runtime";
 var ScatterChart = ({
   data,
   title = "Scatter Chart",
@@ -13336,7 +13846,7 @@ var ScatterChart = ({
   style = {}
 }) => {
   const defaultColors = [colors.primary, colors.secondary, colors.accent, colors.warning, colors.success];
-  return /* @__PURE__ */ jsx70(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx70(ResponsiveContainer8, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs61(
+  return /* @__PURE__ */ jsx71(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx71(ResponsiveContainer8, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs62(
     RechartsScatterChart,
     {
       data,
@@ -13347,7 +13857,7 @@ var ScatterChart = ({
         bottom: 20
       },
       children: [
-        showGrid && /* @__PURE__ */ jsx70(
+        showGrid && /* @__PURE__ */ jsx71(
           CartesianGrid5,
           {
             strokeDasharray: "3 3",
@@ -13355,7 +13865,7 @@ var ScatterChart = ({
             opacity: 0.3
           }
         ),
-        /* @__PURE__ */ jsx70(
+        /* @__PURE__ */ jsx71(
           XAxis5,
           {
             dataKey: xAxisKey,
@@ -13365,7 +13875,7 @@ var ScatterChart = ({
             axisLine: false
           }
         ),
-        /* @__PURE__ */ jsx70(
+        /* @__PURE__ */ jsx71(
           YAxis5,
           {
             dataKey: yAxisKey,
@@ -13375,7 +13885,7 @@ var ScatterChart = ({
             axisLine: false
           }
         ),
-        showTooltip && /* @__PURE__ */ jsx70(
+        showTooltip && /* @__PURE__ */ jsx71(
           Tooltip9,
           {
             contentStyle: {
@@ -13388,7 +13898,7 @@ var ScatterChart = ({
             labelStyle: { color: colors.text.primary, fontWeight: "600" }
           }
         ),
-        showLegend && /* @__PURE__ */ jsx70(
+        showLegend && /* @__PURE__ */ jsx71(
           Legend8,
           {
             wrapperStyle: {
@@ -13398,7 +13908,7 @@ var ScatterChart = ({
             }
           }
         ),
-        scatters.map((scatter, index) => /* @__PURE__ */ jsx70(
+        scatters.map((scatter, index) => /* @__PURE__ */ jsx71(
           Scatter,
           {
             dataKey: scatter.dataKey,
@@ -13425,7 +13935,7 @@ import {
   ResponsiveContainer as ResponsiveContainer9,
   Legend as Legend9
 } from "recharts";
-import { jsx as jsx71, jsxs as jsxs62 } from "react/jsx-runtime";
+import { jsx as jsx72, jsxs as jsxs63 } from "react/jsx-runtime";
 var ComposedChart = ({
   data,
   title = "Composed Chart",
@@ -13439,7 +13949,7 @@ var ComposedChart = ({
   style = {}
 }) => {
   const defaultColors = [colors.primary, colors.secondary, colors.accent, colors.warning, colors.success];
-  return /* @__PURE__ */ jsx71(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx71(ResponsiveContainer9, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs62(
+  return /* @__PURE__ */ jsx72(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx72(ResponsiveContainer9, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs63(
     RechartsComposedChart,
     {
       data,
@@ -13450,7 +13960,7 @@ var ComposedChart = ({
         bottom: 20
       },
       children: [
-        showGrid && /* @__PURE__ */ jsx71(
+        showGrid && /* @__PURE__ */ jsx72(
           CartesianGrid6,
           {
             strokeDasharray: "3 3",
@@ -13458,7 +13968,7 @@ var ComposedChart = ({
             opacity: 0.3
           }
         ),
-        /* @__PURE__ */ jsx71(
+        /* @__PURE__ */ jsx72(
           XAxis6,
           {
             dataKey: "name",
@@ -13468,7 +13978,7 @@ var ComposedChart = ({
             axisLine: false
           }
         ),
-        /* @__PURE__ */ jsx71(
+        /* @__PURE__ */ jsx72(
           YAxis6,
           {
             stroke: colors.text.secondary,
@@ -13477,7 +13987,7 @@ var ComposedChart = ({
             axisLine: false
           }
         ),
-        showTooltip && /* @__PURE__ */ jsx71(
+        showTooltip && /* @__PURE__ */ jsx72(
           Tooltip10,
           {
             contentStyle: {
@@ -13490,7 +14000,7 @@ var ComposedChart = ({
             labelStyle: { color: colors.text.primary, fontWeight: "600" }
           }
         ),
-        showLegend && /* @__PURE__ */ jsx71(
+        showLegend && /* @__PURE__ */ jsx72(
           Legend9,
           {
             wrapperStyle: {
@@ -13500,7 +14010,7 @@ var ComposedChart = ({
             }
           }
         ),
-        bars.map((bar, index) => /* @__PURE__ */ jsx71(
+        bars.map((bar, index) => /* @__PURE__ */ jsx72(
           Bar3,
           {
             dataKey: bar.dataKey,
@@ -13510,7 +14020,7 @@ var ComposedChart = ({
           },
           bar.dataKey
         )),
-        lines.map((line, index) => /* @__PURE__ */ jsx71(
+        lines.map((line, index) => /* @__PURE__ */ jsx72(
           Line2,
           {
             type: "monotone",
@@ -13534,7 +14044,7 @@ import {
   ResponsiveContainer as ResponsiveContainer10,
   Legend as Legend10
 } from "recharts";
-import { jsx as jsx72, jsxs as jsxs63 } from "react/jsx-runtime";
+import { jsx as jsx73, jsxs as jsxs64 } from "react/jsx-runtime";
 var RadialProgressChart = ({
   data,
   title = "Radial Progress Chart",
@@ -13552,7 +14062,7 @@ var RadialProgressChart = ({
     ...item,
     fill: item.fill || defaultColors[index % defaultColors.length]
   }));
-  return /* @__PURE__ */ jsx72(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx72(ResponsiveContainer10, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs63(
+  return /* @__PURE__ */ jsx73(BaseChart, { title, height, className, style, children: /* @__PURE__ */ jsx73(ResponsiveContainer10, { width: "100%", height: "100%", children: /* @__PURE__ */ jsxs64(
     RadialBarChart,
     {
       cx: "50%",
@@ -13563,7 +14073,7 @@ var RadialProgressChart = ({
       endAngle,
       data: dataWithColors,
       children: [
-        /* @__PURE__ */ jsx72(
+        /* @__PURE__ */ jsx73(
           RadialBar,
           {
             minAngle: 15,
@@ -13573,7 +14083,7 @@ var RadialProgressChart = ({
             dataKey: "value"
           }
         ),
-        showLegend && /* @__PURE__ */ jsx72(
+        showLegend && /* @__PURE__ */ jsx73(
           Legend10,
           {
             iconType: "circle",
@@ -13591,7 +14101,7 @@ var RadialProgressChart = ({
 
 // src/components/StatisticMetricCard/StatisticMetricCard.tsx
 import { forwardRef as forwardRef15 } from "react";
-import { Fragment as Fragment8, jsx as jsx73, jsxs as jsxs64 } from "react/jsx-runtime";
+import { Fragment as Fragment8, jsx as jsx74, jsxs as jsxs65 } from "react/jsx-runtime";
 var StatisticMetricCard = forwardRef15(({
   id,
   value,
@@ -13663,8 +14173,8 @@ var StatisticMetricCard = forwardRef15(({
     }
   };
   const Component = onClick ? "button" : "div";
-  const renderLoading = () => /* @__PURE__ */ jsxs64("div", { style: { display: "flex", flexDirection: "column", gap: spacing[2] }, children: [
-    icon && /* @__PURE__ */ jsx73(
+  const renderLoading = () => /* @__PURE__ */ jsxs65("div", { style: { display: "flex", flexDirection: "column", gap: spacing[2] }, children: [
+    icon && /* @__PURE__ */ jsx74(
       ShimmerSkeleton,
       {
         variant: "circle",
@@ -13673,7 +14183,7 @@ var StatisticMetricCard = forwardRef15(({
         style: { marginBottom: spacing[2] }
       }
     ),
-    /* @__PURE__ */ jsx73(
+    /* @__PURE__ */ jsx74(
       ShimmerSkeleton,
       {
         variant: "text",
@@ -13682,7 +14192,7 @@ var StatisticMetricCard = forwardRef15(({
         style: { marginBottom: spacing[1] }
       }
     ),
-    /* @__PURE__ */ jsx73(
+    /* @__PURE__ */ jsx74(
       ShimmerSkeleton,
       {
         variant: "text",
@@ -13691,7 +14201,7 @@ var StatisticMetricCard = forwardRef15(({
         style: { marginBottom: spacing[2] }
       }
     ),
-    trend && /* @__PURE__ */ jsx73(
+    trend && /* @__PURE__ */ jsx74(
       ShimmerSkeleton,
       {
         variant: "text",
@@ -13700,15 +14210,15 @@ var StatisticMetricCard = forwardRef15(({
       }
     )
   ] });
-  const renderError = () => /* @__PURE__ */ jsx73("div", { style: {
+  const renderError = () => /* @__PURE__ */ jsx74("div", { style: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     padding: spacing[3],
     color: colors.error,
     textAlign: "center"
-  }, children: /* @__PURE__ */ jsx73(Typography, { variant: "body2", weight: "medium", children: error }) });
-  return /* @__PURE__ */ jsxs64(
+  }, children: /* @__PURE__ */ jsx74(Typography, { variant: "body2", weight: "medium", children: error }) });
+  return /* @__PURE__ */ jsxs65(
     Component,
     {
       ref,
@@ -13729,7 +14239,7 @@ var StatisticMetricCard = forwardRef15(({
       tabIndex: onClick ? 0 : void 0,
       ...props,
       children: [
-        /* @__PURE__ */ jsx73(
+        /* @__PURE__ */ jsx74(
           Card,
           {
             variant: "default",
@@ -13745,10 +14255,10 @@ var StatisticMetricCard = forwardRef15(({
               padding: config.padding,
               height: "100%"
             },
-            children: /* @__PURE__ */ jsxs64(CardContent, { style: { padding: "0" }, children: [
-              loading ? renderLoading() : /* @__PURE__ */ jsxs64(Fragment8, { children: [
-                icon && /* @__PURE__ */ jsx73("div", { style: { display: "flex", alignItems: "center", justifyContent: "flex-start", marginBottom: spacing[3] }, children: /* @__PURE__ */ jsx73("span", { style: { fontSize: config.iconSize, display: "inline-block" }, children: icon }) }),
-                /* @__PURE__ */ jsx73("div", { style: { marginBottom: spacing[2] }, children: /* @__PURE__ */ jsx73(
+            children: /* @__PURE__ */ jsxs65(CardContent, { style: { padding: "0" }, children: [
+              loading ? renderLoading() : /* @__PURE__ */ jsxs65(Fragment8, { children: [
+                icon && /* @__PURE__ */ jsx74("div", { style: { display: "flex", alignItems: "center", justifyContent: "flex-start", marginBottom: spacing[3] }, children: /* @__PURE__ */ jsx74("span", { style: { fontSize: config.iconSize, display: "inline-block" }, children: icon }) }),
+                /* @__PURE__ */ jsx74("div", { style: { marginBottom: spacing[2] }, children: /* @__PURE__ */ jsx74(
                   Typography,
                   {
                     variant: size === "sm" ? "h3" : size === "lg" ? "display2" : "h1",
@@ -13760,7 +14270,7 @@ var StatisticMetricCard = forwardRef15(({
                     children: value
                   }
                 ) }),
-                /* @__PURE__ */ jsx73(
+                /* @__PURE__ */ jsx74(
                   Typography,
                   {
                     variant: size === "sm" ? "body2" : "body",
@@ -13772,9 +14282,9 @@ var StatisticMetricCard = forwardRef15(({
                     children: label
                   }
                 ),
-                trend && /* @__PURE__ */ jsx73("div", { id: trendId, children: /* @__PURE__ */ jsxs64("div", { style: { display: "flex", alignItems: "center", gap: spacing[1], marginTop: spacing[2] }, children: [
-                  /* @__PURE__ */ jsx73("span", { style: { color: trendColorMap[trend.direction], fontWeight: typography.fontWeight.semiBold }, children: trend.direction === "up" ? "\u2197" : trend.direction === "down" ? "\u2198" : "\u2192" }),
-                  /* @__PURE__ */ jsx73(
+                trend && /* @__PURE__ */ jsx74("div", { id: trendId, children: /* @__PURE__ */ jsxs65("div", { style: { display: "flex", alignItems: "center", gap: spacing[1], marginTop: spacing[2] }, children: [
+                  /* @__PURE__ */ jsx74("span", { style: { color: trendColorMap[trend.direction], fontWeight: typography.fontWeight.semiBold }, children: trend.direction === "up" ? "\u2197" : trend.direction === "down" ? "\u2198" : "\u2192" }),
+                  /* @__PURE__ */ jsx74(
                     Typography,
                     {
                       variant: "caption",
@@ -13786,7 +14296,7 @@ var StatisticMetricCard = forwardRef15(({
                       children: formatTrendValue(trend.value, trend.direction)
                     }
                   ),
-                  /* @__PURE__ */ jsx73(
+                  /* @__PURE__ */ jsx74(
                     Typography,
                     {
                       variant: "caption",
@@ -13803,7 +14313,7 @@ var StatisticMetricCard = forwardRef15(({
             ] })
           }
         ),
-        /* @__PURE__ */ jsx73("style", { children: `
+        /* @__PURE__ */ jsx74("style", { children: `
         @keyframes pulse {
           0%, 100% {
             opacity: 1;
@@ -13878,7 +14388,6 @@ export {
   DropdownItem,
   EmptyState,
   FileUpload,
-  FilterDropdown,
   Footer,
   Grid,
   Input,
@@ -13922,6 +14431,7 @@ export {
   Timeline,
   TimelineItem,
   Tooltip,
+  Topbar,
   Typography,
   TypographyDemo,
   Version,

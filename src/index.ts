@@ -38,14 +38,12 @@ export * from './components/Timeline';
 export * from './components/Stepper';
 export * from './components/NotificationCenter';
 export * from './components/Version';
-export * from './components/Topbar';
 export * from './components/Drawer';
 export * from './components/Backgrounds';
 export * from './components/Changelog';
 export * from './components/Chat';
 export * from './app/views/AgentDev';
 export * from './components/TextTokens';
-export * from './components/FilterDropdown';
 // export * from './components/CommentsSection'; // Temporarily disabled due to build errors
 // export * from './components/Slider'; // Temporarily disabled due to build errors
 export * from './components/ShimmerSkeleton';

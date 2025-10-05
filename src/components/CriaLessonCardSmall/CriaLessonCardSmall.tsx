@@ -15,6 +15,8 @@ export interface Lesson {
   categories?: string[];
   categoryNames?: string[];
   tools?: string[];
+  progress?: number;
+  completed?: boolean;
   instructor?: {
     id: string;
     name: string;

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Typography } from '../../../components/Typography';
-import { Badge } from '../../../components/Badge';
-import { Button } from '../../../components/Button';
-import { GitHubPR } from '../hooks/useGitHubPRs';
-import { GitBranch, Calendar, User, ExternalLink, CheckCircle, XCircle, Clock } from 'phosphor-react';
-import { spacing } from '../../../tokens';
+import { Typography } from '../../../../components/Typography';
+import { Badge } from '../../../../components/Badge';
+import { Button } from '../../../../components/Button';
+import { GitHubPR } from '../../hooks/useGitHubPRs';
+import { GitBranch, Calendar, User, ArrowSquareOut, CheckCircle, XCircle, Clock } from 'phosphor-react';
+import { spacing } from '../../../../tokens';
 import './PRList.css';
 
 export interface PRListProps {
@@ -162,7 +162,7 @@ export const PRList: React.FC<PRListProps> = ({
                   onClick={() => window.open(pr.html_url, '_blank')}
                   title="Ver no GitHub"
                 >
-                  <ExternalLink size={16} />
+                  <ArrowSquareOut size={16} />
                 </Button>
               </div>
             </div>

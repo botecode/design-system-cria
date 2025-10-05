@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Typography } from '../../../components/Typography';
-import { Button } from '../../../components/Button';
-import { Badge } from '../../../components/Badge';
+import { Typography } from '../../../../components/Typography';
+import { Button } from '../../../../components/Button';
+import { Badge } from '../../../../components/Badge';
 import { PRList } from '../components/PRList';
 import { useGitHubPRs } from '../hooks/useGitHubPRs';
-import { Refresh, GithubLogo, AlertCircle, CheckCircle, XCircle } from 'phosphor-react';
-import { spacing } from '../../../tokens';
+import { Refresh, GithubLogo, WarningCircle, CheckCircle, XCircle } from 'phosphor-react';
+import { spacing } from '../../../../tokens';
 import './AgenteTab.css';
 
 export interface AgenteTabProps {
@@ -20,7 +20,7 @@ export const AgenteTab: React.FC<AgenteTabProps> = ({ className = '' }) => {
     {
       id: 'em-andamento' as const,
       label: 'Em Andamento',
-      icon: <AlertCircle size={16} />,
+      icon: <WarningCircle size={16} />,
       count: prs.length,
       description: 'PRs abertos e em desenvolvimento'
     },
@@ -135,7 +135,7 @@ export const AgenteTab: React.FC<AgenteTabProps> = ({ className = '' }) => {
 
       {error && (
         <div className="agente-tab__error">
-          <AlertCircle size={20} />
+          <WarningCircle size={20} />
           <div>
             <Typography variant="h5" weight="medium">
               Erro ao carregar PRs
