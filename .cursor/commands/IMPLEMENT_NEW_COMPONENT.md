@@ -118,6 +118,7 @@ Required Tests
 
 ⬜ Upcoming Components
   • Search Filters
+  • Vertical scrollbar
   • Subscription Management (Web)
   • Dark mode - foundation (with top-right toggle)
 

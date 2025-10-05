@@ -393,7 +393,7 @@ export const TabsDemo: React.FC = () => {
             💡 Tip: Use Sidebar for navigation menus, Tabs for content organization
           </Typography>
           <Typography variant="bodySmall">
-            Import: <code>import { Sidebar } from 'design-system-cria';</code>
+            Import: <code>import {'{'} Sidebar {'}'} from 'design-system-cria';</code>
           </Typography>
         </div>
       </section>

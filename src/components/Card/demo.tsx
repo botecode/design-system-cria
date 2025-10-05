@@ -6,6 +6,7 @@ import { CriaLessonCardSmall, Lesson } from '../CriaLessonCardSmall';
 import { CriaLessonCard, Lesson as CriaLessonCardLesson } from '../CriaLessonCard';
 import { CriaCourseCard, Course, Instructor, Tool } from '../CriaCourseCard';
 import { CriaClassroomFutureEventCard, ClassroomEvent, ClassroomItem } from '../CriaClassroomFutureEventCard';
+import { CriaClassroomTrilhaCard, CustomLearning, ClassroomItem as TrilhaClassroomItem } from '../CriaClassroomTrilhaCard';
 
 /**
  * Card component demo
@@ -397,6 +398,152 @@ export const CardDemo: React.FC = () => {
     alert(`Adding to calendar: ${event.name}`);
   };
 
+  // Sample classroom trilha data for CriaClassroomTrilhaCard
+  const sampleClassroomTrilhas: { customLearning: CustomLearning; classroomItem: TrilhaClassroomItem }[] = [
+    {
+      customLearning: {
+        id: '1',
+        slug: 'react-complete-path',
+        title: 'React Complete Learning Path',
+        description: 'Master React from basics to advanced concepts with comprehensive lessons and courses.',
+        duration: '12 hours',
+        imageUrl: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=300&fit=crop',
+        lessons: [
+          {
+            id: '1',
+            title: 'React Fundamentals',
+            instructors: ['John Doe', 'Jane Smith'],
+            tools: ['React', 'JavaScript', 'JSX'],
+          },
+          {
+            id: '2',
+            title: 'Advanced React Patterns',
+            instructors: ['Mike Johnson'],
+            tools: ['React', 'TypeScript', 'Hooks'],
+          },
+        ],
+        courses: [
+          {
+            id: '1',
+            title: 'React Complete Course',
+            instructors: [
+              { id: '1', name: 'John Doe', avatarUrl: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face' },
+              { id: '2', name: 'Jane Smith', avatarUrl: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face' },
+            ],
+            tools: [
+              { id: '1', name: 'React', icon: '⚛️' },
+              { id: '2', name: 'TypeScript', icon: '🔷' },
+            ],
+          },
+        ],
+      },
+      classroomItem: {
+        id: '1',
+        position: 1,
+        customTitle: 'React Complete Path - Advanced',
+        customSubtitle: 'From beginner to expert with hands-on projects and real-world applications',
+        imageUrl: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=400&h=300&fit=crop',
+      },
+    },
+    {
+      customLearning: {
+        id: '2',
+        slug: 'fullstack-javascript-path',
+        title: 'Full-Stack JavaScript Learning Path',
+        description: 'Learn to build complete web applications with JavaScript, Node.js, and modern frameworks.',
+        duration: '16 hours',
+        imageUrl: 'https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=400&h=300&fit=crop',
+        lessons: [
+          {
+            id: '1',
+            title: 'JavaScript Fundamentals',
+            instructors: ['Alice Brown', 'Bob Wilson', 'Charlie Davis'],
+            tools: ['JavaScript', 'ES6', 'DOM'],
+          },
+          {
+            id: '2',
+            title: 'Node.js Backend',
+            instructors: ['David Miller'],
+            tools: ['Node.js', 'Express', 'MongoDB'],
+          },
+        ],
+        courses: [
+          {
+            id: '1',
+            title: 'Full-Stack JavaScript Course',
+            instructors: [
+              { id: '3', name: 'Alice Brown', avatarUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face' },
+              { id: '4', name: 'Bob Wilson', avatarUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face' },
+            ],
+            tools: [
+              { id: '3', name: 'Node.js', icon: '🟢' },
+              { id: '4', name: 'Express', icon: '🚀' },
+              { id: '5', name: 'MongoDB', icon: '🍃' },
+            ],
+          },
+        ],
+      },
+      classroomItem: {
+        id: '2',
+        position: 2,
+        customTitle: 'Full-Stack JavaScript Path',
+        customSubtitle: 'Build complete web applications from frontend to backend',
+      },
+    },
+    {
+      customLearning: {
+        id: '3',
+        slug: 'ui-ux-design-path',
+        title: 'UI/UX Design Learning Path',
+        description: 'Master the principles of user interface and user experience design for modern applications.',
+        duration: '8 hours',
+        imageUrl: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=400&h=300&fit=crop',
+        lessons: [
+          {
+            id: '1',
+            title: 'Design Principles',
+            instructors: ['Sarah Wilson'],
+            tools: ['Figma', 'Design Thinking'],
+          },
+        ],
+        courses: [
+          {
+            id: '1',
+            title: 'UI/UX Design Course',
+            instructors: [
+              { id: '5', name: 'Sarah Wilson', avatarUrl: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face' },
+            ],
+            tools: [
+              { id: '6', name: 'Figma', icon: '🎨' },
+              { id: '7', name: 'Adobe XD', icon: '📐' },
+            ],
+          },
+        ],
+      },
+      classroomItem: {
+        id: '3',
+        position: 3,
+        customTitle: 'UI/UX Design Mastery',
+        customSubtitle: 'Create beautiful and intuitive user experiences',
+      },
+    },
+  ];
+
+  const handleClassroomTrilhaClick = (customLearning: CustomLearning) => {
+    console.log('Classroom trilha clicked:', customLearning.title);
+    alert(`Opening learning path: ${customLearning.title}`);
+  };
+
+  const handleClassroomTrilhaInstructorClick = (instructor: any) => {
+    console.log('Classroom trilha instructor clicked:', instructor.name);
+    alert(`Viewing instructor: ${instructor.name}`);
+  };
+
+  const handleClassroomTrilhaToolClick = (tool: any) => {
+    console.log('Classroom trilha tool clicked:', tool.name);
+    alert(`Learning about: ${tool.name}`);
+  };
+
   return (
     <div style={{ padding: '24px', maxWidth: '1000px' }}>
       <Typography variant="title1" weight="bold" style={{ marginBottom: '32px' }}>
@@ -546,6 +693,36 @@ export const CardDemo: React.FC = () => {
         </div>
       </section>
 
+      {/* CriaClassroomTrilhaCard Component */}
+      <section style={{ marginBottom: '32px' }}>
+        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+          CriaClassroomTrilhaCard - Learning Path Cards
+        </Typography>
+        <Typography variant="body" style={{ marginBottom: '24px', color: '#6b7280' }}>
+          Custom learning path cards with aggregated instructors and tools from lessons and courses. 
+          Features comprehensive learning content display, instructor overflow handling, and interactive tool badges.
+        </Typography>
+        
+        <div style={{ 
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '24px',
+          marginBottom: '24px',
+          maxWidth: '1200px'
+        }}>
+          {sampleClassroomTrilhas.map(({ customLearning, classroomItem }) => (
+            <CriaClassroomTrilhaCard
+              key={customLearning.id}
+              customLearning={customLearning}
+              classroomItem={classroomItem}
+              onCardClick={handleClassroomTrilhaClick}
+              onInstructorClick={handleClassroomTrilhaInstructorClick}
+              onToolClick={handleClassroomTrilhaToolClick}
+            />
+          ))}
+        </div>
+      </section>
+
       {/* Variants */}
       <section style={{ marginBottom: '32px' }}>
         <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
@@ -587,6 +764,19 @@ export const CardDemo: React.FC = () => {
             <CardContent>
               <Typography variant="body">
                 Este card tem uma borda proeminente e fundo transparente.
+              </Typography>
+            </CardContent>
+          </Card>
+
+          <Card variant="outlined" style={{ borderColor: '#28DDB9' }}>
+            <CardHeader>
+              <Typography variant="h3" weight="medium" style={{ color: '#6B7280' }}>
+                Card com Contorno - Texto Secundário
+              </Typography>
+            </CardHeader>
+            <CardContent>
+              <Typography variant="body" style={{ color: '#6B7280' }}>
+                Este card tem uma borda proeminente, fundo transparente e texto em cor secundária.
               </Typography>
             </CardContent>
           </Card>

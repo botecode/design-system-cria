@@ -1,0 +1,127 @@
+/* CriaClassroomTrilhaCard Component Styles */
+
+.cria-classroom-trilha-card {
+  /* Base card styles are handled inline for better performance */
+  /* This file can be used for additional CSS-only styles if needed */
+  border-radius: var(--cria-radius-lg);
+}
+
+.cria-classroom-trilha-card:hover {
+  /* Hover effects are handled inline for better performance */
+  /* Additional hover styles can be added here if needed */
+  box-shadow: var(--cria-shadow-xl);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .cria-classroom-trilha-card {
+    flex-direction: column;
+    height: auto !important;
+  }
+  
+  .cria-classroom-trilha-card > div:first-child {
+    width: 100% !important;
+    height: 200px;
+  }
+  
+  .cria-classroom-trilha-card > div:last-child {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .cria-classroom-trilha-card {
+    /* Mobile-specific styles can be added here */
+    height: auto !important;
+  }
+  
+  .cria-classroom-trilha-card > div:first-child {
+    height: 150px;
+  }
+  
+  .cria-classroom-trilha-card > div:last-child {
+    padding: 1rem;
+  }
+}
+
+/* Focus styles for accessibility */
+.cria-classroom-trilha-card:focus {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+
+.cria-classroom-trilha-card:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.cria-classroom-trilha-card:focus-visible {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+
+/* Image hover effects */
+.cria-classroom-trilha-card img {
+  transition: transform 0.3s ease;
+}
+
+.cria-classroom-trilha-card:hover img {
+  transform: scale(1.1);
+}
+
+/* Position number styling */
+.cria-classroom-trilha-card .learning-position {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Learning path position styling to match future event card */
+.cria-classroom-trilha-card .learning-path-position {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Instructor and tool pill hover effects */
+.cria-classroom-trilha-card .instructor-pill:hover,
+.cria-classroom-trilha-card .tool-pill:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--cria-shadow-sm);
+}
+
+/* Title hover effects */
+.cria-classroom-trilha-card .learning-title:hover {
+  text-decoration-color: var(--cria-primary) !important;
+}
+
+/* Duration and category styling */
+.cria-classroom-trilha-card .duration-info {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Tool icon styling */
+.cria-classroom-trilha-card .tool-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+/* Instructor avatar styling */
+.cria-classroom-trilha-card .instructor-avatar {
+  border: 2px solid var(--cria-white);
+  box-shadow: var(--cria-shadow-sm);
+}
+
+/* Overflow count styling */
+.cria-classroom-trilha-card .overflow-count {
+  font-weight: var(--cria-font-weight-medium);
+  background-color: var(--cria-gray-100);
+  color: var(--cria-gray-600);
+}
+
+/* Empty state styling */
+.cria-classroom-trilha-card .empty-state {
+  background-color: var(--cria-gray-100);
+  color: var(--cria-gray-600);
+  border: 1px solid var(--cria-gray-300);
+}
