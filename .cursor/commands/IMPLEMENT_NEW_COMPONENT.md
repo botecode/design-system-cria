@@ -109,7 +109,7 @@ Input Demos
 
 ⸻
 
-🚀 Next Component to Implement: Tag / Chip — inline labels (e.g., "New", "Beta", "Music")
+🚀 Next Component to Implement: Timeline / Activity Feed — sequential events or updates
 
 ⸻
 
@@ -121,7 +121,6 @@ Input Demos
 
 📊 Data Display
 
-• Tag / Chip — inline labels (e.g., "New", "Beta", "Music")
 • Timeline / Activity Feed — sequential events or updates
 
 ✨ Interaction & Feedback

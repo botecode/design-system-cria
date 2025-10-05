@@ -34,6 +34,7 @@ export * from './components/Tooltip';
 export * from './components/Typography';
 export * from './components/FileUpload';
 export * from './components/TagChip';
+export * from './components/Timeline';
 export * from './components/Chat';
 export * from './components/TextTokens';
 export * from './components/FilterDropdown';
