@@ -1,0 +1,100 @@
+/* Search Filters Component Styles */
+
+.search-filters-container {
+  width: 100%;
+}
+
+.search-filters-content {
+  /* Content styles */
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .search-filters-container {
+    padding: var(--cria-spacing-4);
+  }
+  
+  .search-filters-content .search-filters-grid {
+    grid-template-columns: 1fr;
+    gap: var(--cria-spacing-4);
+  }
+  
+  .search-filters-content .date-range-container {
+    flex-direction: column;
+    gap: var(--cria-spacing-2);
+  }
+  
+  .search-filters-content .actions {
+    justify-content: center;
+  }
+}
+
+/* Tablet responsiveness */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .search-filters-content .search-filters-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--cria-spacing-5);
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1025px) {
+  .search-filters-content .search-filters-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--cria-spacing-6);
+  }
+}
+
+/* Focus styles for accessibility */
+.search-filters-container input:focus,
+.search-filters-container select:focus {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+
+/* Hover effects */
+.search-filters-container button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  transition: transform 0.2s ease;
+}
+
+/* Disabled state */
+.search-filters-container button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Checkbox styling improvements */
+.search-filters-container input[type="checkbox"] {
+  border-radius: var(--cria-radius-sm);
+}
+
+/* Select dropdown improvements */
+.search-filters-container select {
+  background-image: none; /* Remove default arrow */
+}
+
+.search-filters-container select:hover {
+  border-color: var(--cria-primary);
+}
+
+/* Mobile toggle button animations */
+.search-filters-container .mobile-toggle {
+  transition: all 0.3s ease;
+}
+
+/* Filter group spacing */
+.search-filters-content .filter-group {
+  min-height: 60px;
+}
+
+/* Date range responsive behavior */
+@media (max-width: 480px) {
+  .search-filters-content .date-range-container {
+    flex-direction: column;
+  }
+  
+  .search-filters-content .date-input {
+    width: 100%;
+  }
+}
