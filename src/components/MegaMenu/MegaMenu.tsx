@@ -221,6 +221,9 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
   
   // Handle dropdown mouse leave
   const handleMouseLeave = useCallback(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
     timeoutRef.current = setTimeout(() => {
       setActiveDropdown(null);
     }, 150);
@@ -284,51 +287,7 @@ export const MegaMenu: React.FC<MegaMenuProps> = ({
               item.customDropdown
             ) : (
               <ul className="cria-mega-menu__dropdown-list">
-                {item.children?.map((child) => (
-                  <li key={child.label} className={`cria-mega-menu__item cria-mega-menu__item--level-${level + 1}`}>
-                    <a
-                      href={child.href}
-                      target={child.target || '_self'}
-                      rel={child.rel}
-                      onClick={(e) => handleItemClick(child, e)}
-                      onMouseEnter={() => (child.children && child.children.length > 0) && handleMouseEnter(child.label)}
-                      onMouseLeave={(child.children && child.children.length > 0) ? handleMouseLeave : undefined}
-                      className={`cria-mega-menu__link cria-mega-menu__link--level-${level + 1} ${(child.children && child.children.length > 0) ? 'cria-mega-menu__link--has-dropdown' : ''}`}
-                    >
-                      {child.label}
-                      {(child.children && child.children.length > 0) && (
-                        <span className="cria-mega-menu__dropdown-arrow" aria-hidden="true">
-                          ▼
-                        </span>
-                      )}
-                    </a>
-                    
-                    {(child.children && child.children.length > 0) && activeDropdown === child.label && (
-                      <div 
-                        className={`cria-mega-menu__dropdown cria-mega-menu__dropdown--level-${level + 1}`}
-                        onMouseEnter={() => handleMouseEnter(child.label)}
-                        onMouseLeave={handleMouseLeave}
-                        style={{ display: 'block' }}
-                      >
-                        <ul className="cria-mega-menu__dropdown-list">
-                          {child.children.map((grandChild) => (
-                            <li key={grandChild.label} className={`cria-mega-menu__item cria-mega-menu__item--level-${level + 2}`}>
-                              <a
-                                href={grandChild.href}
-                                target={grandChild.target || '_self'}
-                                rel={grandChild.rel}
-                                onClick={(e) => handleItemClick(grandChild, e)}
-                                className={`cria-mega-menu__link cria-mega-menu__link--level-${level + 2}`}
-                              >
-                                {grandChild.label}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                  </li>
-                ))}
+                {item.children?.map((child) => renderMenuItem(child, level + 1))}
               </ul>
             )}
           </div>
