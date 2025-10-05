@@ -22,11 +22,15 @@ fs.writeFileSync(packagePath, JSON.stringify(packageJson, null, 2) + '\n');
 const appPath = path.join(__dirname, '..', 'src', 'App.tsx');
 let appContent = fs.readFileSync(appPath, 'utf8');
 
+// Create display version (trim last two digits for cleaner display)
+const displayVersion = `${major}.${minor.toString().padStart(2, '0')}`;
+
 // Replace version in sidebar
-const versionRegex = /v\d+\.\d+\.\d+/g;
-appContent = appContent.replace(versionRegex, `v${newVersion}`);
+const versionRegex = /v\d+\.\d+/g;
+appContent = appContent.replace(versionRegex, `v${displayVersion}`);
 
 fs.writeFileSync(appPath, appContent);
 
 console.log(`Version updated to ${newVersion}`);
+console.log(`Display version: v${displayVersion}`);
 console.log(`Updated package.json and App.tsx`);
