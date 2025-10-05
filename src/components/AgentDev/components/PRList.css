@@ -1,0 +1,207 @@
+/* PR List Component Styles */
+.pr-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cria-spacing-4);
+}
+
+.pr-list__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--cria-spacing-3);
+  border-bottom: 1px solid var(--agent-dev-border);
+}
+
+.pr-list__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--cria-spacing-8);
+  gap: var(--cria-spacing-4);
+}
+
+.pr-list__loading-spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid var(--agent-dev-border);
+  border-top: 3px solid var(--agent-dev-accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.pr-list__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--cria-spacing-8);
+  text-align: center;
+  background: var(--agent-dev-surface);
+  border-radius: var(--cria-radius-md);
+  border: 1px dashed var(--agent-dev-border);
+}
+
+.pr-list__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cria-spacing-4);
+}
+
+.pr-list__item {
+  background: var(--agent-dev-bg);
+  border: 1px solid var(--agent-dev-border);
+  border-radius: var(--cria-radius-md);
+  padding: var(--cria-spacing-4);
+  transition: all 0.2s ease;
+}
+
+.pr-list__item:hover {
+  border-color: var(--agent-dev-accent);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.pr-list__item-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--cria-spacing-3);
+  margin-bottom: var(--cria-spacing-3);
+}
+
+.pr-list__item-title {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--cria-spacing-2);
+  flex: 1;
+  min-width: 0;
+}
+
+.pr-list__item-title-text {
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.pr-list__item-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--cria-spacing-2);
+  flex-shrink: 0;
+}
+
+.pr-list__item-body {
+  margin-bottom: var(--cria-spacing-3);
+  padding: var(--cria-spacing-3);
+  background: var(--agent-dev-surface);
+  border-radius: var(--cria-radius-sm);
+  border-left: 3px solid var(--agent-dev-accent);
+}
+
+.pr-list__item-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cria-spacing-2);
+  margin-bottom: var(--cria-spacing-3);
+}
+
+.pr-list__item-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--cria-spacing-4);
+  padding-top: var(--cria-spacing-3);
+  border-top: 1px solid var(--agent-dev-border);
+}
+
+.pr-list__item-meta-item {
+  display: flex;
+  align-items: center;
+  gap: var(--cria-spacing-1);
+  color: var(--agent-dev-text-muted);
+}
+
+.pr-list__item-meta-item svg {
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+/* Status Icons */
+.pr-list__status-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.pr-list__status-icon--merged {
+  color: var(--cria-success);
+}
+
+.pr-list__status-icon--closed {
+  color: var(--cria-danger);
+}
+
+.pr-list__status-icon--open {
+  color: var(--cria-info);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .pr-list__item-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--cria-spacing-2);
+  }
+  
+  .pr-list__item-actions {
+    align-self: flex-end;
+  }
+  
+  .pr-list__item-meta {
+    flex-direction: column;
+    gap: var(--cria-spacing-2);
+  }
+  
+  .pr-list__item-meta-item {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pr-list__item {
+    padding: var(--cria-spacing-3);
+  }
+  
+  .pr-list__item-title {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--cria-spacing-1);
+  }
+  
+  .pr-list__item-title-text {
+    font-size: 14px;
+  }
+  
+  .pr-list__item-labels {
+    gap: var(--cria-spacing-1);
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .pr-list__item {
+    background: var(--agent-dev-bg);
+    border-color: var(--agent-dev-border);
+  }
+  
+  .pr-list__item:hover {
+    background: var(--agent-dev-hover);
+  }
+  
+  .pr-list__item-body {
+    background: var(--agent-dev-surface);
+  }
+}

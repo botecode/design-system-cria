@@ -3,6 +3,7 @@ import { Drawer } from '../Drawer';
 import { Typography } from '../Typography';
 import { Button } from '../Button';
 import { Badge } from '../Badge';
+import { AgenteTab } from './tabs';
 import { Robot, X, Plus, Wrench, Code } from 'phosphor-react';
 import { spacing } from '../../tokens';
 import './AgentDev.css';
@@ -290,69 +291,7 @@ const AgentDev: React.FC<AgentDevProps> = ({
         );
 
       case 'agente':
-        return (
-          <div className="agent-dev__tab-content">
-            <Typography variant="h3" weight="semibold" style={{ marginBottom: spacing[4] }}>
-              Agente de Desenvolvimento
-            </Typography>
-            <Typography variant="body" color="muted" style={{ marginBottom: spacing[6] }}>
-              Gerencie tarefas do agente e acompanhe o progresso das implementações.
-            </Typography>
-            
-            {/* PR Status Tabs */}
-            <div className="agent-dev__pr-tabs">
-              <Button
-                variant="ghost"
-                size="sm"
-                className={activeTab === 'agente' ? 'agent-dev__pr-tab--active' : ''}
-              >
-                Em Produção
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                className={activeTab === 'agente' ? 'agent-dev__pr-tab--active' : ''}
-              >
-                Recusado
-              </Button>
-            </div>
-
-            {/* PR List */}
-            <div className="agent-dev__pr-list">
-              <div className="agent-dev__pr-item">
-                <div className="agent-dev__pr-header">
-                  <Typography variant="h5" weight="medium">
-                    feat: implement Button component
-                  </Typography>
-                  <Badge variant="success" size="sm">Merged</Badge>
-                </div>
-                <Typography variant="body" color="muted" size="sm">
-                  Implemented new Button component with all variants and states
-                </Typography>
-                <div className="agent-dev__pr-meta">
-                  <span>#123</span>
-                  <span>2 days ago</span>
-                </div>
-              </div>
-
-              <div className="agent-dev__pr-item">
-                <div className="agent-dev__pr-header">
-                  <Typography variant="h5" weight="medium">
-                    fix: resolve Input validation issues
-                  </Typography>
-                  <Badge variant="warning" size="sm">In Progress</Badge>
-                </div>
-                <Typography variant="body" color="muted" size="sm">
-                  Fixed validation logic and error handling in Input component
-                </Typography>
-                <div className="agent-dev__pr-meta">
-                  <span>#124</span>
-                  <span>1 day ago</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        );
+        return <AgenteTab />;
 
       default:
         return null;
