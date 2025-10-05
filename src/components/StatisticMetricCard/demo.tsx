@@ -7,7 +7,7 @@ import {
   Users, 
   TrendingUp, 
   TrendingDown, 
-  DollarSign, 
+  CurrencyDollar, 
   ShoppingCart, 
   Eye, 
   Heart,
@@ -43,7 +43,7 @@ const StatisticMetricCardDemo: React.FC = () => {
       id: 'revenue',
       value: '$45.2K',
       label: 'Monthly Revenue',
-      icon: <DollarSign size={24} />,
+      icon: <CurrencyDollar size={24} />,
       color: 'success' as const,
       trend: {
         value: 8.3,
