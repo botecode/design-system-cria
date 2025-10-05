@@ -1,0 +1,338 @@
+/* Scrollbar Component Styles */
+.cria-scrollbar {
+  position: relative;
+  overflow: auto;
+  width: 100%;
+  height: 300px;
+  box-sizing: border-box;
+}
+
+/* Size configurations */
+.cria-scrollbar--size-sm {
+  --scrollbar-width: 8px;
+}
+
+.cria-scrollbar--size-md {
+  --scrollbar-width: 12px;
+}
+
+.cria-scrollbar--size-lg {
+  --scrollbar-width: 16px;
+}
+
+/* Theme configurations */
+.cria-scrollbar--theme-light {
+  --scrollbar-track-color: #f1f1f1;
+  --scrollbar-thumb-color: #c1c1c1;
+  --scrollbar-hover-color: #a8a8a8;
+}
+
+.cria-scrollbar--theme-dark {
+  --scrollbar-track-color: #2a2a2a;
+  --scrollbar-thumb-color: #555555;
+  --scrollbar-hover-color: #777777;
+}
+
+.cria-scrollbar--theme-auto {
+  --scrollbar-track-color: rgba(0, 0, 0, 0.1);
+  --scrollbar-thumb-color: rgba(0, 0, 0, 0.3);
+  --scrollbar-hover-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Smooth scrolling */
+.cria-scrollbar--smooth {
+  scroll-behavior: smooth;
+}
+
+/* Auto height */
+.cria-scrollbar--auto-height {
+  height: auto;
+  max-height: 300px;
+}
+
+/* Fade effect */
+.cria-scrollbar--fade {
+  --scrollbar-fade-opacity: 0.3;
+  --scrollbar-fade-transition: opacity 0.3s ease;
+}
+
+.cria-scrollbar--fade::-webkit-scrollbar {
+  opacity: var(--scrollbar-fade-opacity);
+  transition: var(--scrollbar-fade-transition);
+}
+
+.cria-scrollbar--fade:hover::-webkit-scrollbar {
+  opacity: 1;
+}
+
+/* WebKit scrollbar styles */
+.cria-scrollbar::-webkit-scrollbar {
+  width: var(--scrollbar-width, 12px);
+  height: var(--scrollbar-width, 12px);
+}
+
+.cria-scrollbar::-webkit-scrollbar-track {
+  background: var(--scrollbar-track-color, #f1f1f1);
+  border-radius: 10px;
+}
+
+.cria-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb-color, #c1c1c1);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: background-color 0.2s ease;
+}
+
+.cria-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-hover-color, #a8a8a8);
+  background-clip: content-box;
+}
+
+.cria-scrollbar::-webkit-scrollbar-corner {
+  background: var(--scrollbar-track-color, #f1f1f1);
+}
+
+/* Horizontal scrollbar */
+.cria-scrollbar--horizontal {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.cria-scrollbar--horizontal::-webkit-scrollbar {
+  height: var(--scrollbar-width, 12px);
+  width: 0;
+}
+
+/* Vertical scrollbar */
+.cria-scrollbar--vertical {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.cria-scrollbar--vertical::-webkit-scrollbar {
+  width: var(--scrollbar-width, 12px);
+  height: 0;
+}
+
+/* Both horizontal and vertical */
+.cria-scrollbar--horizontal.cria-scrollbar--vertical {
+  overflow: auto;
+}
+
+.cria-scrollbar--horizontal.cria-scrollbar--vertical::-webkit-scrollbar {
+  width: var(--scrollbar-width, 12px);
+  height: var(--scrollbar-width, 12px);
+}
+
+/* Firefox scrollbar styles */
+.cria-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb-color, #c1c1c1) var(--scrollbar-track-color, #f1f1f1);
+}
+
+.cria-scrollbar--size-sm {
+  scrollbar-width: thin;
+}
+
+.cria-scrollbar--size-md {
+  scrollbar-width: auto;
+}
+
+.cria-scrollbar--size-lg {
+  scrollbar-width: auto;
+}
+
+/* Focus styles for accessibility */
+.cria-scrollbar:focus-visible {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .cria-scrollbar--theme-light {
+    --scrollbar-track-color: #000000;
+    --scrollbar-thumb-color: #666666;
+    --scrollbar-hover-color: #333333;
+  }
+  
+  .cria-scrollbar--theme-dark {
+    --scrollbar-track-color: #ffffff;
+    --scrollbar-thumb-color: #cccccc;
+    --scrollbar-hover-color: #999999;
+  }
+  
+  .cria-scrollbar--theme-auto {
+    --scrollbar-track-color: #000000;
+    --scrollbar-thumb-color: #666666;
+    --scrollbar-hover-color: #333333;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .cria-scrollbar--smooth {
+    scroll-behavior: auto;
+  }
+  
+  .cria-scrollbar::-webkit-scrollbar-thumb {
+    transition: none;
+  }
+  
+  .cria-scrollbar--fade::-webkit-scrollbar {
+    transition: none;
+  }
+}
+
+/* Print styles */
+@media print {
+  .cria-scrollbar {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
+  }
+  
+  .cria-scrollbar::-webkit-scrollbar {
+    display: none !important;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .cria-scrollbar--size-sm {
+    --scrollbar-width: 6px;
+  }
+  
+  .cria-scrollbar--size-md {
+    --scrollbar-width: 8px;
+  }
+  
+  .cria-scrollbar--size-lg {
+    --scrollbar-width: 10px;
+  }
+  
+  /* Hide scrollbars on mobile by default but keep functionality */
+  .cria-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .cria-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Show scrollbars on hover for touch devices */
+  .cria-scrollbar:hover::-webkit-scrollbar {
+    display: block;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .cria-scrollbar {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .cria-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Custom scrollbar animations */
+@keyframes scrollbar-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scrollbar-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.cria-scrollbar--fade {
+  animation: scrollbar-fade-out 0.3s ease forwards;
+}
+
+.cria-scrollbar--fade:hover {
+  animation: scrollbar-fade-in 0.3s ease forwards;
+}
+
+/* Scrollbar thumb active state */
+.cria-scrollbar::-webkit-scrollbar-thumb:active {
+  background: var(--scrollbar-hover-color, #a8a8a8);
+  background-clip: content-box;
+}
+
+/* Custom scrollbar for specific content types */
+.cria-scrollbar[data-content="code"] {
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.cria-scrollbar[data-content="list"] {
+  padding: 0;
+}
+
+.cria-scrollbar[data-content="table"] {
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+/* Scrollbar with custom border radius */
+.cria-scrollbar--rounded::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+}
+
+.cria-scrollbar--rounded::-webkit-scrollbar-track {
+  border-radius: 20px;
+}
+
+/* Scrollbar with custom padding */
+.cria-scrollbar--padded {
+  padding: 8px;
+}
+
+/* Scrollbar with custom margins */
+.cria-scrollbar--margined {
+  margin: 8px;
+}
+
+/* Scrollbar with custom background */
+.cria-scrollbar--background {
+  background-color: var(--cria-background, #ffffff);
+  border: 1px solid var(--cria-border, #e5e5e5);
+  border-radius: var(--cria-radius-md, 8px);
+}
+
+/* Scrollbar with shadow */
+.cria-scrollbar--shadow {
+  box-shadow: var(--cria-shadow-md, 0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+/* Scrollbar with custom overflow behavior */
+.cria-scrollbar--overflow-hidden {
+  overflow: hidden;
+}
+
+.cria-scrollbar--overflow-visible {
+  overflow: visible;
+}
+
+/* Scrollbar with custom scroll snap */
+.cria-scrollbar--scroll-snap {
+  scroll-snap-type: y mandatory;
+}
+
+.cria-scrollbar--scroll-snap > * {
+  scroll-snap-align: start;
+}
