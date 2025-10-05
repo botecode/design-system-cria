@@ -4,7 +4,7 @@ import { Button } from '../Button';
 import { Card, CardContent, CardHeader } from '../Card';
 import { Badge } from '../Badge';
 import { spacing } from '../../tokens';
-import { Calendar, Tag, User, GitBranch } from 'phosphor-react';
+import { Calendar, Tag, User, GitBranch, Wrench, Lock, Warning, Plus, Minus, ArrowsClockwise } from 'phosphor-react';
 
 export interface ChangelogEntry {
   id: string;
@@ -70,14 +70,15 @@ const Changelog: React.FC<ChangelogProps> = ({
   };
 
   const getChangeTypeIcon = (type: string) => {
+    const iconProps = { size: 16, style: { marginRight: spacing[1] } };
     switch (type) {
-      case 'added': return '+';
-      case 'changed': return '~';
-      case 'deprecated': return '⚠';
-      case 'removed': return '-';
-      case 'fixed': return '🔧';
-      case 'security': return '🔒';
-      default: return '•';
+      case 'added': return <Plus {...iconProps} />;
+      case 'changed': return <ArrowsClockwise {...iconProps} />;
+      case 'deprecated': return <Warning {...iconProps} />;
+      case 'removed': return <Minus {...iconProps} />;
+      case 'fixed': return <Wrench {...iconProps} />;
+      case 'security': return <Lock {...iconProps} />;
+      default: return <Tag {...iconProps} />;
     }
   };
 
@@ -223,9 +224,9 @@ const Changelog: React.FC<ChangelogProps> = ({
                   gap: spacing[2],
                   marginBottom: spacing[2],
                 }}>
-                  <span style={{ fontSize: '16px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center' }}>
                     {getChangeTypeIcon(change.type)}
-                  </span>
+                  </div>
                   <Badge variant={getChangeTypeColor(change.type)} size="sm">
                     {change.type.charAt(0).toUpperCase() + change.type.slice(1)}
                   </Badge>
@@ -270,7 +271,8 @@ const Changelog: React.FC<ChangelogProps> = ({
                   marginBottom: spacing[2],
                   fontWeight: 'bold',
                 }}>
-                  ⚠️ Breaking Changes
+                  <Warning size={16} style={{ marginRight: spacing[1] }} />
+                  Breaking Changes
                 </Typography>
                 <ul style={{
                   margin: 0,
