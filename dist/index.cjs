@@ -47,7 +47,9 @@ __export(index_exports, {
   CardSelector: () => CardSelector,
   Chat: () => Chat,
   Checkbox: () => Checkbox,
+  Column: () => Column,
   CommentsSection: () => CommentsSection,
+  Container: () => Container,
   CriaClassroomFutureEventCard: () => CriaClassroomFutureEventCard,
   CriaClassroomTrilhaCard: () => CriaClassroomTrilhaCard,
   CriaCourseCard: () => CriaCourseCard,
@@ -63,12 +65,16 @@ __export(index_exports, {
   CriaTextTitle1: () => CriaTextTitle1,
   CriaTextTitle2: () => CriaTextTitle2,
   DatePicker: () => DatePicker,
+  Divider: () => Divider,
   Dropdown: () => Dropdown,
   DropdownItem: () => DropdownItem,
   FileUpload: () => FileUpload,
   FloatingSidebar: () => FloatingSidebar,
+  Footer: () => Footer,
+  Grid: () => Grid,
   Input: () => Input,
   LineChart: () => LineChart,
+  MegaMenu: () => MegaMenu,
   Modal: () => Modal,
   Navigation: () => Navigation,
   NavigationSidebar: () => Sidebar,
@@ -80,8 +86,11 @@ __export(index_exports, {
   RadioGroup: () => RadioGroup,
   RadioGroupItem: () => RadioGroupItem,
   RadioGroupLabel: () => RadioGroupLabel,
+  Row: () => Row,
   RowOfCards: () => RowOfCards,
+  Scrollbar: () => Scrollbar,
   SearchFilters: () => SearchFilters,
+  Section: () => Section,
   ShimmerSkeleton: () => ShimmerSkeleton,
   Sidebar: () => Sidebar2,
   Slider: () => Slider,
@@ -10828,6 +10837,832 @@ var clearButtonStyles = {
   alignItems: "center",
   gap: spacing[2]
 };
+
+// src/components/Divider/Divider.tsx
+var import_jsx_runtime48 = require("react/jsx-runtime");
+var Divider = ({
+  orientation = "horizontal",
+  variant = "solid",
+  size = "md",
+  color = "gray",
+  label,
+  labelPosition = "center",
+  width,
+  height,
+  spacing: spacingProp = "md",
+  className = "",
+  style = {},
+  "data-testid": dataTestId,
+  ...dataAttributes
+}) => {
+  const baseClasses = ["cria-divider"];
+  if (orientation === "vertical") {
+    baseClasses.push("cria-divider--vertical");
+  }
+  baseClasses.push(`cria-divider--${variant}`);
+  baseClasses.push(`cria-divider--${size}`);
+  baseClasses.push(`cria-divider--${color}`);
+  baseClasses.push(`cria-divider--spacing-${spacingProp}`);
+  if (className) {
+    baseClasses.push(className);
+  }
+  const classes = baseClasses.join(" ");
+  const inlineStyles = {
+    ...style
+  };
+  if (orientation === "horizontal") {
+    if (width !== void 0) {
+      inlineStyles.width = typeof width === "number" ? `${width}px` : width;
+    }
+  } else {
+    if (height !== void 0) {
+      inlineStyles.height = typeof height === "number" ? `${height}px` : height;
+    }
+  }
+  const dataProps = {
+    "data-testid": dataTestId
+  };
+  Object.entries(dataAttributes).forEach(([key, value]) => {
+    if (key.startsWith("data-")) {
+      dataProps[key] = value;
+    }
+  });
+  if (label && orientation === "horizontal") {
+    return /* @__PURE__ */ (0, import_jsx_runtime48.jsxs)(
+      "div",
+      {
+        className: `${classes} cria-divider--with-label`,
+        style: inlineStyles,
+        role: "separator",
+        "aria-orientation": orientation,
+        ...dataProps,
+        children: [
+          /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("div", { className: "cria-divider__line cria-divider__line--before" }),
+          /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("span", { className: `cria-divider__label cria-divider__label--${labelPosition}`, children: label }),
+          /* @__PURE__ */ (0, import_jsx_runtime48.jsx)("div", { className: "cria-divider__line cria-divider__line--after" })
+        ]
+      }
+    );
+  }
+  return /* @__PURE__ */ (0, import_jsx_runtime48.jsx)(
+    "div",
+    {
+      className: classes,
+      style: inlineStyles,
+      role: "separator",
+      "aria-orientation": orientation,
+      ...dataProps
+    }
+  );
+};
+
+// src/components/Grid/Grid.tsx
+var import_jsx_runtime49 = require("react/jsx-runtime");
+var Grid = ({
+  columns = 12,
+  gap = "md",
+  align = "stretch",
+  justify = "start",
+  autoFit = false,
+  autoFill = false,
+  minColumnWidth = "250px",
+  className = "",
+  style = {},
+  children,
+  ...props
+}) => {
+  const baseClasses = ["cria-grid"];
+  baseClasses.push(`cria-grid--gap-${gap}`);
+  baseClasses.push(`cria-grid--align-${align}`);
+  baseClasses.push(`cria-grid--justify-${justify}`);
+  if (typeof columns === "number") {
+    baseClasses.push(`cria-grid--cols-${columns}`);
+  } else {
+    if (columns.sm !== void 0) {
+      baseClasses.push(`cria-grid--cols-sm-${columns.sm}`);
+    }
+    if (columns.md !== void 0) {
+      baseClasses.push(`cria-grid--cols-md-${columns.md}`);
+    }
+    if (columns.lg !== void 0) {
+      baseClasses.push(`cria-grid--cols-lg-${columns.lg}`);
+    }
+    if (columns.xl !== void 0) {
+      baseClasses.push(`cria-grid--cols-xl-${columns.xl}`);
+    }
+  }
+  if (autoFit) {
+    baseClasses.push("cria-grid--auto-fit");
+  }
+  if (autoFill) {
+    baseClasses.push("cria-grid--auto-fill");
+  }
+  if (className) {
+    baseClasses.push(className);
+  }
+  const classes = baseClasses.join(" ");
+  const inlineStyles = {
+    ...style
+  };
+  if (autoFit || autoFill) {
+    const templateType = autoFit ? "auto-fit" : "auto-fill";
+    inlineStyles.gridTemplateColumns = `repeat(${templateType}, minmax(${minColumnWidth}, 1fr))`;
+  }
+  if (!autoFit && !autoFill && minColumnWidth !== "250px") {
+    inlineStyles.gridTemplateColumns = `repeat(auto-fit, minmax(${minColumnWidth}, 1fr))`;
+  }
+  return /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(
+    "div",
+    {
+      className: classes,
+      style: inlineStyles,
+      ...props,
+      children
+    }
+  );
+};
+
+// src/components/Grid/Row.tsx
+var import_jsx_runtime50 = require("react/jsx-runtime");
+var Row = ({
+  gap = "md",
+  align = "stretch",
+  justify = "start",
+  wrap = true,
+  direction = "row",
+  className = "",
+  style = {},
+  children,
+  ...props
+}) => {
+  const baseClasses = ["cria-row"];
+  baseClasses.push(`cria-row--gap-${gap}`);
+  baseClasses.push(`cria-row--align-${align}`);
+  baseClasses.push(`cria-row--justify-${justify}`);
+  if (wrap) {
+    baseClasses.push("cria-row--wrap");
+  } else {
+    baseClasses.push("cria-row--no-wrap");
+  }
+  baseClasses.push(`cria-row--direction-${direction}`);
+  if (className) {
+    baseClasses.push(className);
+  }
+  const classes = baseClasses.join(" ");
+  return /* @__PURE__ */ (0, import_jsx_runtime50.jsx)(
+    "div",
+    {
+      className: classes,
+      style,
+      ...props,
+      children
+    }
+  );
+};
+
+// src/components/Grid/Column.tsx
+var import_jsx_runtime51 = require("react/jsx-runtime");
+var Column = ({
+  span = 12,
+  offset = 0,
+  align = "stretch",
+  justify = "start",
+  auto = false,
+  full = false,
+  className = "",
+  style = {},
+  children,
+  ...props
+}) => {
+  const baseClasses = ["cria-column"];
+  if (typeof span === "number") {
+    baseClasses.push(`cria-column--span-${span}`);
+  } else {
+    if (span.sm !== void 0) {
+      baseClasses.push(`cria-column--span-sm-${span.sm}`);
+    }
+    if (span.md !== void 0) {
+      baseClasses.push(`cria-column--span-md-${span.md}`);
+    }
+    if (span.lg !== void 0) {
+      baseClasses.push(`cria-column--span-lg-${span.lg}`);
+    }
+    if (span.xl !== void 0) {
+      baseClasses.push(`cria-column--span-xl-${span.xl}`);
+    }
+  }
+  if (typeof offset === "number" && offset > 0) {
+    baseClasses.push(`cria-column--offset-${offset}`);
+  } else if (typeof offset === "object") {
+    if (offset.sm !== void 0) {
+      baseClasses.push(`cria-column--offset-sm-${offset.sm}`);
+    }
+    if (offset.md !== void 0) {
+      baseClasses.push(`cria-column--offset-md-${offset.md}`);
+    }
+    if (offset.lg !== void 0) {
+      baseClasses.push(`cria-column--offset-lg-${offset.lg}`);
+    }
+    if (offset.xl !== void 0) {
+      baseClasses.push(`cria-column--offset-xl-${offset.xl}`);
+    }
+  }
+  baseClasses.push(`cria-column--align-${align}`);
+  baseClasses.push(`cria-column--justify-${justify}`);
+  if (auto) {
+    baseClasses.push("cria-column--auto");
+  }
+  if (full) {
+    baseClasses.push("cria-column--full");
+  }
+  if (className) {
+    baseClasses.push(className);
+  }
+  const classes = baseClasses.join(" ");
+  return /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(
+    "div",
+    {
+      className: classes,
+      style,
+      ...props,
+      children
+    }
+  );
+};
+
+// src/components/Container/Container.tsx
+var import_jsx_runtime52 = require("react/jsx-runtime");
+var Container = ({
+  maxWidth = "lg",
+  padding = "md",
+  margin = "none",
+  center = false,
+  fluid = false,
+  className = "",
+  style = {},
+  children,
+  ...props
+}) => {
+  const baseClasses = ["cria-container"];
+  if (typeof maxWidth === "string" && !["sm", "md", "lg", "xl", "2xl", "full"].includes(maxWidth)) {
+  } else {
+    baseClasses.push(`cria-container--max-width-${maxWidth}`);
+  }
+  if (typeof padding === "string") {
+    baseClasses.push(`cria-container--padding-${padding}`);
+  } else {
+    if (padding.sm !== void 0) {
+      baseClasses.push(`cria-container--padding-sm-${padding.sm}`);
+    }
+    if (padding.md !== void 0) {
+      baseClasses.push(`cria-container--padding-md-${padding.md}`);
+    }
+    if (padding.lg !== void 0) {
+      baseClasses.push(`cria-container--padding-lg-${padding.lg}`);
+    }
+  }
+  if (typeof margin === "string") {
+    baseClasses.push(`cria-container--margin-${margin}`);
+  } else {
+    if (margin.sm !== void 0) {
+      baseClasses.push(`cria-container--margin-sm-${margin.sm}`);
+    }
+    if (margin.md !== void 0) {
+      baseClasses.push(`cria-container--margin-md-${margin.md}`);
+    }
+    if (margin.lg !== void 0) {
+      baseClasses.push(`cria-container--margin-lg-${margin.lg}`);
+    }
+  }
+  if (center) {
+    baseClasses.push("cria-container--center");
+  }
+  if (fluid) {
+    baseClasses.push("cria-container--fluid");
+  }
+  if (className) {
+    baseClasses.push(className);
+  }
+  const classes = baseClasses.join(" ");
+  const inlineStyles = {
+    ...style
+  };
+  if (typeof maxWidth === "string" && !["sm", "md", "lg", "xl", "2xl", "full"].includes(maxWidth)) {
+    inlineStyles.maxWidth = maxWidth;
+  }
+  return /* @__PURE__ */ (0, import_jsx_runtime52.jsx)(
+    "div",
+    {
+      className: classes,
+      style: inlineStyles,
+      ...props,
+      children
+    }
+  );
+};
+
+// src/components/Container/Section.tsx
+var import_jsx_runtime53 = require("react/jsx-runtime");
+var Section = ({
+  variant = "default",
+  size = "md",
+  padding = "lg",
+  margin = "md",
+  fullHeight = false,
+  backgroundColor = "transparent",
+  className = "",
+  style = {},
+  children,
+  ...props
+}) => {
+  const baseClasses = ["cria-section"];
+  baseClasses.push(`cria-section--${variant}`);
+  baseClasses.push(`cria-section--size-${size}`);
+  if (typeof padding === "string") {
+    baseClasses.push(`cria-section--padding-${padding}`);
+  } else {
+    if (padding.sm !== void 0) {
+      baseClasses.push(`cria-section--padding-sm-${padding.sm}`);
+    }
+    if (padding.md !== void 0) {
+      baseClasses.push(`cria-section--padding-md-${padding.md}`);
+    }
+    if (padding.lg !== void 0) {
+      baseClasses.push(`cria-section--padding-lg-${padding.lg}`);
+    }
+  }
+  if (typeof margin === "string") {
+    baseClasses.push(`cria-section--margin-${margin}`);
+  } else {
+    if (margin.sm !== void 0) {
+      baseClasses.push(`cria-section--margin-sm-${margin.sm}`);
+    }
+    if (margin.md !== void 0) {
+      baseClasses.push(`cria-section--margin-md-${margin.md}`);
+    }
+    if (margin.lg !== void 0) {
+      baseClasses.push(`cria-section--margin-lg-${margin.lg}`);
+    }
+  }
+  if (fullHeight) {
+    baseClasses.push("cria-section--full-height");
+  }
+  if (["primary", "secondary", "gray", "white", "transparent"].includes(backgroundColor)) {
+    baseClasses.push(`cria-section--bg-${backgroundColor}`);
+  }
+  if (className) {
+    baseClasses.push(className);
+  }
+  const classes = baseClasses.join(" ");
+  const inlineStyles = {
+    ...style
+  };
+  if (!["primary", "secondary", "gray", "white", "transparent"].includes(backgroundColor)) {
+    inlineStyles.backgroundColor = backgroundColor;
+  }
+  return /* @__PURE__ */ (0, import_jsx_runtime53.jsx)(
+    "section",
+    {
+      className: classes,
+      style: inlineStyles,
+      ...props,
+      children
+    }
+  );
+};
+
+// src/components/Scrollbar/Scrollbar.tsx
+var import_react39 = require("react");
+var import_jsx_runtime54 = require("react/jsx-runtime");
+var Scrollbar = ({
+  size = "md",
+  theme = "light",
+  smooth = false,
+  horizontal = false,
+  vertical = true,
+  height,
+  width,
+  autoHeight = false,
+  trackColor,
+  thumbColor,
+  hoverColor,
+  fade = false,
+  onScroll,
+  className = "",
+  style = {},
+  children,
+  ...props
+}) => {
+  const baseClasses = ["cria-scrollbar"];
+  baseClasses.push(`cria-scrollbar--size-${size}`);
+  baseClasses.push(`cria-scrollbar--theme-${theme}`);
+  if (smooth) {
+    baseClasses.push("cria-scrollbar--smooth");
+  }
+  if (horizontal) {
+    baseClasses.push("cria-scrollbar--horizontal");
+  }
+  if (vertical) {
+    baseClasses.push("cria-scrollbar--vertical");
+  }
+  if (autoHeight) {
+    baseClasses.push("cria-scrollbar--auto-height");
+  }
+  if (fade) {
+    baseClasses.push("cria-scrollbar--fade");
+  }
+  if (className) {
+    baseClasses.push(className);
+  }
+  const classes = baseClasses.join(" ");
+  const inlineStyles = {
+    ...style
+  };
+  if (height !== void 0) {
+    inlineStyles.height = typeof height === "number" ? `${height}px` : height;
+  }
+  if (width !== void 0) {
+    inlineStyles.width = typeof width === "number" ? `${width}px` : width;
+  }
+  if (trackColor) {
+    inlineStyles["--scrollbar-track-color"] = trackColor;
+  }
+  if (thumbColor) {
+    inlineStyles["--scrollbar-thumb-color"] = thumbColor;
+  }
+  if (hoverColor) {
+    inlineStyles["--scrollbar-hover-color"] = hoverColor;
+  }
+  const handleScroll = (0, import_react39.useCallback)((event) => {
+    if (onScroll) {
+      onScroll(event);
+    }
+  }, [onScroll]);
+  return /* @__PURE__ */ (0, import_jsx_runtime54.jsx)(
+    "div",
+    {
+      className: classes,
+      style: inlineStyles,
+      onScroll: handleScroll,
+      ...props,
+      children
+    }
+  );
+};
+
+// src/components/Footer/Footer.tsx
+var import_react40 = __toESM(require("react"), 1);
+var import_jsx_runtime55 = require("react/jsx-runtime");
+var Footer = ({
+  variant = "default",
+  size = "md",
+  sticky = false,
+  fixed = false,
+  border = false,
+  shadow = false,
+  fullWidth = false,
+  responsive = false,
+  copyright,
+  links,
+  socialLinks,
+  onLinkClick,
+  onSocialClick,
+  className = "",
+  style = {},
+  children,
+  ...props
+}) => {
+  const baseClasses = ["cria-footer"];
+  baseClasses.push(`cria-footer--${variant}`);
+  baseClasses.push(`cria-footer--size-${size}`);
+  if (sticky) {
+    baseClasses.push("cria-footer--sticky");
+  }
+  if (fixed) {
+    baseClasses.push("cria-footer--fixed");
+  }
+  if (border) {
+    baseClasses.push("cria-footer--border");
+  }
+  if (shadow) {
+    baseClasses.push("cria-footer--shadow");
+  }
+  if (fullWidth) {
+    baseClasses.push("cria-footer--full-width");
+  }
+  if (responsive) {
+    baseClasses.push("cria-footer--responsive");
+  }
+  if (className) {
+    baseClasses.push(className);
+  }
+  const classes = baseClasses.join(" ");
+  const handleLinkClick = (0, import_react40.useCallback)((href, label, event) => {
+    if (onLinkClick) {
+      event.preventDefault();
+      onLinkClick(href, label);
+    }
+  }, [onLinkClick]);
+  const handleSocialClick = (0, import_react40.useCallback)((href, label, icon, event) => {
+    if (onSocialClick) {
+      event.preventDefault();
+      onSocialClick(href, label, icon);
+    }
+  }, [onSocialClick]);
+  const renderLinks = () => {
+    if (!links) return null;
+    if (import_react40.default.isValidElement(links)) {
+      return links;
+    }
+    if (Array.isArray(links)) {
+      return /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("nav", { className: "cria-footer__links", "aria-label": "Footer navigation", children: /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("ul", { children: links.map((link, index) => /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime55.jsx)(
+        "a",
+        {
+          href: link.href,
+          target: link.target || "_self",
+          rel: link.rel,
+          onClick: (e) => handleLinkClick(link.href, link.label, e),
+          className: "cria-footer__link",
+          children: link.label
+        }
+      ) }, index)) }) });
+    }
+    return null;
+  };
+  const renderSocialLinks = () => {
+    if (!socialLinks) return null;
+    if (import_react40.default.isValidElement(socialLinks)) {
+      return socialLinks;
+    }
+    if (Array.isArray(socialLinks)) {
+      return /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("nav", { className: "cria-footer__social", "aria-label": "Social media links", children: /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("ul", { children: socialLinks.map((socialLink, index) => /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime55.jsx)(
+        "a",
+        {
+          href: socialLink.href,
+          target: socialLink.target || "_blank",
+          rel: socialLink.rel || "noopener noreferrer",
+          onClick: (e) => handleSocialClick(socialLink.href, socialLink.label, socialLink.icon, e),
+          className: "cria-footer__social-link",
+          "aria-label": socialLink.label,
+          children: /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("span", { className: `cria-footer__social-icon cria-footer__social-icon--${socialLink.icon}`, children: socialLink.icon })
+        }
+      ) }, index)) }) });
+    }
+    return null;
+  };
+  const renderCopyright = () => {
+    if (!copyright) return null;
+    if (import_react40.default.isValidElement(copyright)) {
+      return /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("div", { className: "cria-footer__copyright", children: copyright });
+    }
+    if (typeof copyright === "string") {
+      return /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("div", { className: "cria-footer__copyright", children: /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("span", { children: copyright }) });
+    }
+    return null;
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime55.jsxs)(
+    "footer",
+    {
+      className: classes,
+      style,
+      ...props,
+      children: [
+        children && /* @__PURE__ */ (0, import_jsx_runtime55.jsx)("div", { className: "cria-footer__content", children }),
+        /* @__PURE__ */ (0, import_jsx_runtime55.jsxs)("div", { className: "cria-footer__sections", children: [
+          renderLinks(),
+          renderSocialLinks(),
+          renderCopyright()
+        ] })
+      ]
+    }
+  );
+};
+
+// src/components/MegaMenu/MegaMenu.tsx
+var import_react41 = require("react");
+var import_jsx_runtime56 = require("react/jsx-runtime");
+var MegaMenu = ({
+  variant = "default",
+  position = "static",
+  size = "md",
+  alignment = "left",
+  border = false,
+  shadow = false,
+  fullWidth = false,
+  loading = false,
+  items = [],
+  logo,
+  showSearch = false,
+  searchPlaceholder = "Search...",
+  onSearch,
+  ctaButton,
+  showMobileToggle = false,
+  trigger,
+  onItemClick,
+  className = "",
+  style = {},
+  children,
+  ...props
+}) => {
+  const [activeDropdown, setActiveDropdown] = (0, import_react41.useState)(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = (0, import_react41.useState)(false);
+  const [searchQuery, setSearchQuery] = (0, import_react41.useState)("");
+  const megaMenuRef = (0, import_react41.useRef)(null);
+  const timeoutRef = (0, import_react41.useRef)(null);
+  const baseClasses = ["cria-mega-menu"];
+  baseClasses.push(`cria-mega-menu--${variant}`);
+  baseClasses.push(`cria-mega-menu--position-${position}`);
+  baseClasses.push(`cria-mega-menu--size-${size}`);
+  baseClasses.push(`cria-mega-menu--alignment-${alignment}`);
+  if (border) {
+    baseClasses.push("cria-mega-menu--border");
+  }
+  if (shadow) {
+    baseClasses.push("cria-mega-menu--shadow");
+  }
+  if (fullWidth) {
+    baseClasses.push("cria-mega-menu--full-width");
+  }
+  if (loading) {
+    baseClasses.push("cria-mega-menu--loading");
+  }
+  if (mobileMenuOpen) {
+    baseClasses.push("cria-mega-menu--mobile-open");
+  }
+  if (className) {
+    baseClasses.push(className);
+  }
+  const classes = baseClasses.join(" ");
+  const handleItemClick = (0, import_react41.useCallback)((item, event) => {
+    if (onItemClick) {
+      event.preventDefault();
+      onItemClick(item.href, item.label, item);
+    }
+  }, [onItemClick]);
+  const handleSearchChange = (0, import_react41.useCallback)((event) => {
+    const query = event.target.value;
+    setSearchQuery(query);
+    if (onSearch) {
+      onSearch(query);
+    }
+  }, [onSearch]);
+  const handleMouseEnter = (0, import_react41.useCallback)((itemLabel) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    setActiveDropdown(itemLabel);
+  }, []);
+  const handleMouseLeave = (0, import_react41.useCallback)(() => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    timeoutRef.current = setTimeout(() => {
+      setActiveDropdown(null);
+    }, 150);
+  }, []);
+  const handleMobileToggle = (0, import_react41.useCallback)(() => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  }, [mobileMenuOpen]);
+  const handleCtaClick = (0, import_react41.useCallback)((event) => {
+    if (ctaButton?.onClick) {
+      event.preventDefault();
+      ctaButton.onClick();
+    }
+  }, [ctaButton]);
+  (0, import_react41.useEffect)(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+  const renderMenuItem = (item, level = 0) => {
+    const hasChildren = item.children && item.children.length > 0;
+    const hasCustomDropdown = !!item.customDropdown;
+    const showDropdown = activeDropdown === item.label && (hasChildren || hasCustomDropdown);
+    return /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("li", { className: `cria-mega-menu__item cria-mega-menu__item--level-${level}`, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)(
+        "a",
+        {
+          href: item.href,
+          target: item.target || "_self",
+          rel: item.rel,
+          onClick: (e) => handleItemClick(item, e),
+          onMouseEnter: () => (hasChildren || hasCustomDropdown) && handleMouseEnter(item.label),
+          onMouseLeave: hasChildren || hasCustomDropdown ? handleMouseLeave : void 0,
+          className: `cria-mega-menu__link ${hasChildren || hasCustomDropdown ? "cria-mega-menu__link--has-dropdown" : ""}`,
+          children: [
+            item.label,
+            (hasChildren || hasCustomDropdown) && /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("span", { className: "cria-mega-menu__dropdown-arrow", "aria-hidden": "true", children: "\u25BC" })
+          ]
+        }
+      ),
+      (hasChildren || hasCustomDropdown) && showDropdown && /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(
+        "div",
+        {
+          className: `cria-mega-menu__dropdown cria-mega-menu__dropdown--level-${level}`,
+          onMouseEnter: () => handleMouseEnter(item.label),
+          onMouseLeave: handleMouseLeave,
+          style: { display: "block" },
+          children: hasCustomDropdown ? item.customDropdown : /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("ul", { className: "cria-mega-menu__dropdown-list", children: item.children?.map((child) => renderMenuItem(child, level + 1)) })
+        }
+      )
+    ] }, item.label);
+  };
+  return /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)(
+    "nav",
+    {
+      ref: megaMenuRef,
+      className: classes,
+      style,
+      ...props,
+      children: [
+        /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "cria-mega-menu__container", children: [
+          logo && /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("div", { className: "cria-mega-menu__logo", children: logo }),
+          trigger && /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("div", { className: "cria-mega-menu__trigger", children: trigger }),
+          items.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("ul", { className: "cria-mega-menu__list", children: items.map((item) => renderMenuItem(item)) }),
+          showSearch && /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("div", { className: "cria-mega-menu__search", children: /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(
+            "input",
+            {
+              type: "text",
+              placeholder: searchPlaceholder,
+              value: searchQuery,
+              onChange: handleSearchChange,
+              className: "cria-mega-menu__search-input"
+            }
+          ) }),
+          ctaButton && /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("div", { className: "cria-mega-menu__cta", children: /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(
+            "a",
+            {
+              href: ctaButton.href || "#",
+              onClick: handleCtaClick,
+              className: `cria-mega-menu__cta-button cria-mega-menu__cta-button--${ctaButton.variant || "primary"} cria-mega-menu__cta-button--${ctaButton.size || "md"}`,
+              children: ctaButton.label
+            }
+          ) }),
+          showMobileToggle && /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(
+            "button",
+            {
+              onClick: handleMobileToggle,
+              className: "cria-mega-menu__mobile-toggle",
+              "aria-label": mobileMenuOpen ? "Close menu" : "Open menu",
+              "aria-expanded": mobileMenuOpen,
+              children: /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("span", { className: "cria-mega-menu__mobile-toggle-icon", children: mobileMenuOpen ? "\u2715" : "\u2630" })
+            }
+          )
+        ] }),
+        showMobileToggle && mobileMenuOpen && /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("div", { className: "cria-mega-menu__mobile-menu", children: /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("div", { className: "cria-mega-menu__mobile-menu-content", children: [
+          items.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("ul", { className: "cria-mega-menu__mobile-list", children: items.map((item) => /* @__PURE__ */ (0, import_jsx_runtime56.jsxs)("li", { className: "cria-mega-menu__mobile-item", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(
+              "a",
+              {
+                href: item.href,
+                target: item.target || "_self",
+                rel: item.rel,
+                onClick: (e) => handleItemClick(item, e),
+                className: "cria-mega-menu__mobile-link",
+                children: item.label
+              }
+            ),
+            item.children && item.children.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("ul", { className: "cria-mega-menu__mobile-sublist", children: item.children.map((child) => /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("li", { className: "cria-mega-menu__mobile-subitem", children: /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(
+              "a",
+              {
+                href: child.href,
+                target: child.target || "_self",
+                rel: child.rel,
+                onClick: (e) => handleItemClick(child, e),
+                className: "cria-mega-menu__mobile-sublink",
+                children: child.label
+              }
+            ) }, child.label)) })
+          ] }, item.label)) }),
+          showSearch && /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("div", { className: "cria-mega-menu__mobile-search", children: /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(
+            "input",
+            {
+              type: "text",
+              placeholder: searchPlaceholder,
+              value: searchQuery,
+              onChange: handleSearchChange,
+              className: "cria-mega-menu__mobile-search-input"
+            }
+          ) }),
+          ctaButton && /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("div", { className: "cria-mega-menu__mobile-cta", children: /* @__PURE__ */ (0, import_jsx_runtime56.jsx)(
+            "a",
+            {
+              href: ctaButton.href || "#",
+              onClick: handleCtaClick,
+              className: "cria-mega-menu__mobile-cta-button",
+              children: ctaButton.label
+            }
+          ) })
+        ] }) }),
+        loading && /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("div", { className: "cria-mega-menu__loading-overlay", children: /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("div", { className: "cria-mega-menu__loading-spinner", "aria-label": "Loading", children: /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("span", { children: "Loading..." }) }) }),
+        children && /* @__PURE__ */ (0, import_jsx_runtime56.jsx)("div", { className: "cria-mega-menu__content", children })
+      ]
+    }
+  );
+};
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   Accordion,
@@ -10847,7 +11682,9 @@ var clearButtonStyles = {
   CardSelector,
   Chat,
   Checkbox,
+  Column,
   CommentsSection,
+  Container,
   CriaClassroomFutureEventCard,
   CriaClassroomTrilhaCard,
   CriaCourseCard,
@@ -10863,12 +11700,16 @@ var clearButtonStyles = {
   CriaTextTitle1,
   CriaTextTitle2,
   DatePicker,
+  Divider,
   Dropdown,
   DropdownItem,
   FileUpload,
   FloatingSidebar,
+  Footer,
+  Grid,
   Input,
   LineChart,
+  MegaMenu,
   Modal,
   Navigation,
   NavigationSidebar,
@@ -10880,8 +11721,11 @@ var clearButtonStyles = {
   RadioGroup,
   RadioGroupItem,
   RadioGroupLabel,
+  Row,
   RowOfCards,
+  Scrollbar,
   SearchFilters,
+  Section,
   ShimmerSkeleton,
   Sidebar,
   Slider,

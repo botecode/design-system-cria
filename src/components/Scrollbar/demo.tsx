@@ -335,7 +335,7 @@ const ScrollbarDemo: React.FC = () => {
                 <div>import React from 'react';</div>
                 <div>import { Scrollbar } from './Scrollbar';</div>
                 <div></div>
-                <div>const MyComponent = () => {'{'}</div>
+                <div>const MyComponent = () =&gt; {'{'} {'}'}</div>
                 <div>  return (</div>
                 <div>    &lt;Scrollbar height="300px"&gt;</div>
                 <div>      &lt;div&gt;Content here&lt;/div&gt;</div>

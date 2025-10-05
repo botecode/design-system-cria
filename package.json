@@ -21,6 +21,7 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
+    "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "phosphor-react": "^1.4.1",
     "react": ">=17",
