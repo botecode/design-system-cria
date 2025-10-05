@@ -1,0 +1,104 @@
+/**
+ * CriaLessonCardSmall Component Styles
+ * 
+ * Component-specific styles for the lesson card component
+ */
+
+.cria-lesson-card-small {
+  /* Base styles are handled inline for better performance and flexibility */
+}
+
+.cria-lesson-card-small--completed {
+  /* Completed state styles */
+  border-color: var(--cria-secondary);
+}
+
+.cria-lesson-card-small--in-progress {
+  /* In-progress state styles */
+  border-color: var(--cria-primary);
+  box-shadow: 0 0 0 2px rgba(117, 102, 161, 0.1);
+}
+
+/* Hover animations */
+@keyframes lesson-card-hover {
+  from {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+  to {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+}
+
+.cria-lesson-card-small:hover {
+  animation: lesson-card-hover 0.3s ease forwards;
+}
+
+/* Image hover effect */
+.cria-lesson-card-small img {
+  transition: transform 0.3s ease-out;
+}
+
+.cria-lesson-card-small:hover img {
+  transform: scale(1.1);
+}
+
+/* Completion checkbox animations */
+.cria-lesson-card-small button[aria-label*="completion"] {
+  transition: all 0.2s ease;
+}
+
+.cria-lesson-card-small button[aria-label*="completion"]:hover {
+  transform: scale(1.1);
+}
+
+/* Loading state for images */
+.cria-lesson-card-small img {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cria-lesson-card-small img[src] {
+  opacity: 1;
+}
+
+/* Focus styles for accessibility */
+.cria-lesson-card-small:focus-within {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+
+.cria-lesson-card-small button:focus {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .cria-lesson-card-small {
+    max-width: 100%;
+    height: auto;
+    min-height: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cria-lesson-card-small {
+    min-height: 260px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .cria-lesson-card-small {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  
+  .cria-lesson-card-small button[aria-label*="completion"] {
+    display: none;
+  }
+}
+

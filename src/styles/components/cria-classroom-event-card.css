@@ -1,0 +1,87 @@
+/* CriaClassroomEventCard Component Styles */
+
+.cria-classroom-event-card {
+  /* Base card styles are handled inline for better performance */
+  /* This file can be used for additional CSS-only styles if needed */
+}
+
+.cria-classroom-event-card:hover {
+  /* Hover effects are handled inline for better performance */
+  /* Additional hover styles can be added here if needed */
+  box-shadow: var(--cria-shadow-xl);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .cria-classroom-event-card {
+    flex-direction: column;
+    height: auto !important;
+  }
+  
+  .cria-classroom-event-card > div:first-child {
+    width: 100% !important;
+    height: 200px;
+  }
+  
+  .cria-classroom-event-card > div:last-child {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .cria-classroom-event-card {
+    /* Mobile-specific styles can be added here */
+    height: auto !important;
+  }
+  
+  .cria-classroom-event-card > div:first-child {
+    height: 150px;
+  }
+  
+  .cria-classroom-event-card > div:last-child {
+    padding: 1rem;
+  }
+}
+
+/* Focus styles for accessibility */
+.cria-classroom-event-card:focus {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+
+.cria-classroom-event-card:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.cria-classroom-event-card:focus-visible {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+
+/* Image hover effects */
+.cria-classroom-event-card img {
+  transition: transform 0.3s ease;
+}
+
+.cria-classroom-event-card:hover img {
+  transform: scale(1.1);
+}
+
+/* Position number styling */
+.cria-classroom-event-card .event-position {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Button hover effects */
+.cria-classroom-event-card button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--cria-shadow-lg);
+}
+
+/* Date and time styling */
+.cria-classroom-event-card .event-datetime {
+  font-variant-numeric: tabular-nums;
+}
+

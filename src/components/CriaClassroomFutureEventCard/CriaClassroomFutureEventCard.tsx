@@ -181,7 +181,7 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
           position: 'relative',
           overflow: 'hidden',
           minHeight: '200px',
-          padding: spacing.lg,
+          padding: spacing[8],
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'space-between',
@@ -271,8 +271,8 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
           <div
             style={{
               position: 'absolute',
-              top: spacing.md,
-              left: spacing.md,
+              top: spacing[4],
+              left: spacing[4],
               width: '64px',
               height: '64px',
               background: 'rgba(0, 221, 185, 0.3)',
@@ -284,8 +284,8 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
           <div
             style={{
               position: 'absolute',
-              bottom: spacing.md,
-              right: spacing.md,
+              bottom: spacing[4],
+              right: spacing[4],
               width: '48px',
               height: '48px',
               background: 'rgba(255, 255, 255, 0.5)',
@@ -305,7 +305,7 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
               fontWeight: typography.fontWeight.bold,
               color: colors.white,
               lineHeight: 1,
-              marginBottom: spacing.xs,
+              marginBottom: spacing[1],
             }}
           >
             {String(classroomItem.position || 1).padStart(2, '0')}
@@ -331,7 +331,7 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
               display: 'flex',
               alignItems: 'flex-end',
               justifyContent: 'space-between',
-              marginBottom: spacing.xs,
+              marginBottom: spacing[1],
             }}
           >
             <div style={{ textAlign: 'center' }}>
@@ -422,7 +422,7 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
         <div style={{ position: 'relative', zIndex: 10, display: 'flex', justifyContent: 'center' }}>
           <div
             style={{
-              padding: `${spacing.xs} ${spacing.md}`,
+              padding: `${spacing[1]} ${spacing[4]}`,
               border: `2px solid ${colors.white}`,
               borderRadius: radii.full,
               color: colors.white,
@@ -441,7 +441,7 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
       {/* Right Section - Content */}
       <div
         style={{
-          padding: `${spacing.lg} ${spacing.xl} ${spacing.xl} ${spacing.lg}`,
+          padding: `${spacing[8]} ${spacing[8]} ${spacing[8]} ${spacing[8]}`,
           flex: 1,
           display: 'flex',
           flexDirection: 'column',
@@ -451,7 +451,7 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
         }}
       >
         {/* Event Title and Description */}
-        <div style={{ marginBottom: spacing.md }}>
+        <div style={{ marginBottom: spacing[4] }}>
           <Typography
             variant="h2"
             style={{
@@ -460,7 +460,7 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
               fontWeight: typography.fontWeight.bold,
               fontSize: '24px',
               lineHeight: 1.2,
-              marginBottom: spacing.sm,
+              marginBottom: spacing[2],
               cursor: 'pointer',
               textDecoration: 'none',
             }}
@@ -484,8 +484,8 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
         <div
           style={{
             display: 'flex',
-            gap: spacing.xl,
-            marginBottom: spacing.lg,
+            gap: spacing[8],
+            marginBottom: spacing[6],
           }}
         >
           <div>
@@ -497,7 +497,7 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
                 color: colors.primary,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                marginBottom: spacing.xs,
+                marginBottom: spacing[1],
               }}
             >
               Data
@@ -523,7 +523,7 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
                 color: colors.primary,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                marginBottom: spacing.xs,
+                marginBottom: spacing[1],
               }}
             >
               Horário
@@ -549,7 +549,7 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
                 color: colors.primary,
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
-                marginBottom: spacing.xs,
+                marginBottom: spacing[1],
               }}
             >
               Duração
@@ -569,7 +569,7 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
         </div>
 
         {/* Calendar Button */}
-        <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: spacing[4] }}>
           {event.gcalendarUrl ? (
             <Button
               variant="primary"
@@ -577,7 +577,7 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: spacing.xs,
+                gap: spacing[1],
               }}
             >
               <Calendar size={16} />
@@ -599,3 +599,4 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
     </div>
   );
 };
+

@@ -18,3 +18,8 @@
 @import "./components/page-loading-progress.css";
 @import "./components/card-selector.css";
 @import "./components/floating-sidebar.css";
+@import "./components/cria-lesson-card-small.css";
+@import "./components/cria-lesson-card.css";
+@import "./components/cria-course-card.css";
+@import "./components/cria-classroom-future-event-card.css";
+@import "./components/cria-classroom-event-card.css";

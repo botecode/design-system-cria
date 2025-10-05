@@ -1,0 +1,34 @@
+/* CriaLessonCard Component Styles */
+
+.cria-lesson-card {
+  /* Base card styles are handled inline for better performance */
+  /* This file can be used for additional CSS-only styles if needed */
+}
+
+.cria-lesson-card:hover {
+  /* Hover effects are handled inline for better performance */
+  /* Additional hover styles can be added here if needed */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .cria-lesson-card {
+    /* Mobile-specific styles can be added here */
+  }
+}
+
+/* Focus styles for accessibility */
+.cria-lesson-card:focus {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+
+.cria-lesson-card:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.cria-lesson-card:focus-visible {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+

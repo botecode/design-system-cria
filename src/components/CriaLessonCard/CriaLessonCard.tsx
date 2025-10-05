@@ -153,7 +153,7 @@ export const CriaLessonCard: React.FC<CriaLessonCardProps> = ({
         <div
           style={{
             position: 'absolute',
-            left: spacing.md,
+            left: spacing[4],
             top: '120px',
             width: '48px',
             height: '48px',
@@ -194,7 +194,7 @@ export const CriaLessonCard: React.FC<CriaLessonCardProps> = ({
           left: 0,
           right: 0,
           background: colors.white,
-          padding: `${spacing.xl} ${spacing.xl}`,
+          padding: `${spacing[8]} ${spacing[8]} ${spacing[6]} ${spacing[8]}`,
           height: '134px',
           display: 'flex',
           flexDirection: 'column',
@@ -212,7 +212,7 @@ export const CriaLessonCard: React.FC<CriaLessonCardProps> = ({
             fontSize: '14px',
             lineHeight: 1.4,
             textTransform: 'uppercase',
-            marginBottom: spacing.sm,
+            marginBottom: spacing[2],
             display: '-webkit-box',
             WebkitLineClamp: 3,
             WebkitBoxOrient: 'vertical',
@@ -230,7 +230,7 @@ export const CriaLessonCard: React.FC<CriaLessonCardProps> = ({
             width: '100%',
             height: '1px',
             background: colors.gray[200],
-            marginBottom: spacing.sm,
+            marginBottom: spacing[2],
           }}
         />
 
@@ -265,7 +265,7 @@ export const CriaLessonCard: React.FC<CriaLessonCardProps> = ({
           height: '46px',
           background: colors.white,
           borderRadius: `0 0 ${radii.lg} ${radii.lg}`,
-          padding: `0 ${spacing.xl}`,
+          padding: `${spacing[2]} ${spacing[8]}`,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
@@ -275,7 +275,7 @@ export const CriaLessonCard: React.FC<CriaLessonCardProps> = ({
       >
         {/* Duration with clock icon */}
         <div style={{ display: 'flex', alignItems: 'center' }}>
-          <Clock size={16} color={colors.gray[600]} style={{ marginRight: spacing.xs }} />
+          <Clock size={16} color={colors.gray[600]} style={{ marginRight: spacing[1] }} />
           <Typography
             variant="caption"
             style={{

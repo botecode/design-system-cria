@@ -44,3 +44,7 @@ export * from './components/PricingPage';
 export * from './components/PageLoadingProgress';
 export * from './components/CardSelector';
 export * from './components/FloatingSidebar';
+export * from './components/CriaLessonCardSmall';
+export * from './components/CriaLessonCard';
+export * from './components/CriaCourseCard';
+export * from './components/CriaClassroomFutureEventCard';

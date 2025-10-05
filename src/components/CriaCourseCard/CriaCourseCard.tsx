@@ -170,7 +170,7 @@ export const CriaCourseCard: React.FC<CriaCourseCardProps> = ({
       {/* Content Section (Right 2/3) */}
       <div
         style={{
-          padding: `${spacing.xl} ${spacing.xl} ${spacing.xl} ${spacing.lg}`,
+          padding: `${spacing[8]} ${spacing[8]} ${spacing[8]} ${spacing[12]}`,
           flex: 1,
           display: 'flex',
           flexDirection: 'column',
@@ -186,7 +186,7 @@ export const CriaCourseCard: React.FC<CriaCourseCardProps> = ({
               color: colors.primary,
               fontWeight: typography.fontWeight.bold,
               letterSpacing: '0.1em',
-              marginBottom: spacing.sm,
+              marginBottom: spacing[2],
               textTransform: 'uppercase',
               transition: 'color 0.3s ease',
               cursor: 'pointer',
@@ -208,7 +208,7 @@ export const CriaCourseCard: React.FC<CriaCourseCardProps> = ({
               color: colors.gray[600],
               fontSize: '14px',
               lineHeight: 1.6,
-              marginBottom: spacing.lg,
+              marginBottom: spacing[6],
             }}
           >
             {course.description || 'A comprehensive course designed to help you master the fundamentals and advanced concepts.'}
@@ -220,7 +220,7 @@ export const CriaCourseCard: React.FC<CriaCourseCardProps> = ({
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-            gap: spacing.xl,
+            gap: spacing[8],
           }}
         >
           {/* Instructors Section */}
@@ -229,8 +229,8 @@ export const CriaCourseCard: React.FC<CriaCourseCardProps> = ({
               style={{
                 display: 'flex',
                 alignItems: 'flex-start',
-                gap: spacing.sm,
-                marginBottom: spacing.md,
+                gap: spacing[2],
+                marginBottom: spacing[4],
               }}
             >
               <UserCircle
@@ -243,7 +243,7 @@ export const CriaCourseCard: React.FC<CriaCourseCardProps> = ({
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: spacing.xs,
+                  gap: spacing[1],
                 }}
               >
                 {course.instructors?.map((instructor) => (
@@ -253,7 +253,7 @@ export const CriaCourseCard: React.FC<CriaCourseCardProps> = ({
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
-                      padding: `${spacing.xs} ${spacing.sm}`,
+                      padding: `${spacing[1]} ${spacing[2]}`,
                       borderRadius: radii.full,
                       fontSize: '12px',
                       fontWeight: typography.fontWeight.semiBold,
@@ -281,7 +281,7 @@ export const CriaCourseCard: React.FC<CriaCourseCardProps> = ({
                         style={{
                           width: '20px',
                           height: '20px',
-                          marginRight: spacing.xs,
+                          marginRight: spacing[1],
                         }}
                       />
                     )}
@@ -296,7 +296,7 @@ export const CriaCourseCard: React.FC<CriaCourseCardProps> = ({
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: spacing.sm,
+                gap: spacing[2],
               }}
             >
               <Clock
@@ -322,7 +322,7 @@ export const CriaCourseCard: React.FC<CriaCourseCardProps> = ({
               style={{
                 display: 'flex',
                 alignItems: 'flex-start',
-                gap: spacing.sm,
+                gap: spacing[2],
               }}
             >
               <Wrench
@@ -335,7 +335,7 @@ export const CriaCourseCard: React.FC<CriaCourseCardProps> = ({
                 style={{
                   display: 'flex',
                   flexDirection: 'column',
-                  gap: spacing.xs,
+                  gap: spacing[1],
                 }}
               >
                 {course.tools?.map((tool) => (
@@ -345,7 +345,7 @@ export const CriaCourseCard: React.FC<CriaCourseCardProps> = ({
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
-                      padding: `${spacing.xs} ${spacing.sm}`,
+                      padding: `${spacing[1]} ${spacing[2]}`,
                       borderRadius: radii.full,
                       fontSize: '12px',
                       fontWeight: typography.fontWeight.semiBold,
@@ -369,7 +369,7 @@ export const CriaCourseCard: React.FC<CriaCourseCardProps> = ({
                         style={{
                           width: '20px',
                           height: '20px',
-                          marginRight: spacing.xs,
+                          marginRight: spacing[1],
                           display: 'flex',
                           alignItems: 'center',
                           justifyContent: 'center',
@@ -390,3 +390,4 @@ export const CriaCourseCard: React.FC<CriaCourseCardProps> = ({
     </div>
   );
 };
+

@@ -1,0 +1,46 @@
+/* CriaCourseCard Component Styles */
+
+.cria-course-card {
+  /* Base card styles are handled inline for better performance */
+  /* This file can be used for additional CSS-only styles if needed */
+}
+
+.cria-course-card:hover {
+  /* Hover effects are handled inline for better performance */
+  /* Additional hover styles can be added here if needed */
+  box-shadow: var(--cria-shadow-lg);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .cria-course-card {
+    flex-direction: column;
+  }
+  
+  .cria-course-card > div:first-child {
+    width: 100% !important;
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cria-course-card {
+    /* Mobile-specific styles can be added here */
+  }
+}
+
+/* Focus styles for accessibility */
+.cria-course-card:focus {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+
+.cria-course-card:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.cria-course-card:focus-visible {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+

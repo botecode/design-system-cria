@@ -1,0 +1,96 @@
+/* CriaClassroomFutureEventCard Component Styles */
+
+.cria-classroom-future-event-card {
+  /* Base card styles are handled inline for better performance */
+  /* This file can be used for additional CSS-only styles if needed */
+}
+
+.cria-classroom-future-event-card:hover {
+  /* Hover effects are handled inline for better performance */
+  /* Additional hover styles can be added here if needed */
+  box-shadow: var(--cria-shadow-xl);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .cria-classroom-future-event-card {
+    flex-direction: column;
+  }
+  
+  .cria-classroom-future-event-card > div:first-child {
+    width: 100% !important;
+    height: 200px;
+  }
+  
+  .cria-classroom-future-event-card > div:last-child {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .cria-classroom-future-event-card {
+    /* Mobile-specific styles can be added here */
+    min-height: auto;
+  }
+  
+  .cria-classroom-future-event-card > div:first-child {
+    min-height: 150px;
+    padding: 1rem;
+  }
+  
+  .cria-classroom-future-event-card > div:last-child {
+    padding: 1rem;
+  }
+}
+
+/* Focus styles for accessibility */
+.cria-classroom-future-event-card:focus {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+
+.cria-classroom-future-event-card:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.cria-classroom-future-event-card:focus-visible {
+  outline: 2px solid var(--cria-primary);
+  outline-offset: 2px;
+}
+
+/* Animation for countdown updates */
+@keyframes countdown-update {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.cria-classroom-future-event-card .countdown-number {
+  animation: countdown-update 0.3s ease-in-out;
+}
+
+/* Live indicator pulse animation */
+@keyframes live-pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.cria-classroom-future-event-card .live-indicator {
+  animation: live-pulse 2s ease-in-out infinite;
+}
+
