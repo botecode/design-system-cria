@@ -29,7 +29,8 @@ export default defineConfig({
     }
   },
   server: {
-    port: 3033,
+    port: 3003,
+    strictPort: true,
     open: true
   }
 })

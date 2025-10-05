@@ -11,7 +11,9 @@
   ],
   "scripts": {
     "build": "tsup src/index.ts --dts --format cjs,esm --out-dir dist",
-    "dev": "vite --port 3033",
+    "dev": "vite --port 3003 --strictPort",
+    "dev:force": "lsof -ti:3003 | xargs kill -9 2>/dev/null || true && vite --port 3003 --strictPort",
+    "dev:clean": "./scripts/dev.sh",
     "dev:watch": "tsup src/index.ts --watch",
     "preview": "vite preview",
     "type-check": "tsc --noEmit",
