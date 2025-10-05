@@ -5,36 +5,48 @@ A webflow-like visual page builder for CRIA applications that allows dynamic pag
 ## 🎯 Project Overview
 
 The CRIA Flow Editor enables administrators to create dynamic pages by:
-- Selecting sidebar layouts from a modal carousel
-- Configuring page margins with visual feedback
-- Adding footer components with sticky positioning
-- Building content areas with drag-and-drop component blocks
-- Linking filters and tabs between components
-- Exporting page configurations as JSON
+- **Parent Layout Configuration**: Selecting sidebar layouts, margins, and footer components that save to `parent_layout_schema.json`
+- **Page-Specific Editing**: Clicking sidebar tabs opens specific page editors (e.g., "Cursos" → `courses_layout_schema.json`)
+- **Visual Page Building**: Building content areas with drag-and-drop component blocks
+- **Component Linking**: Linking filters and tabs between components
+- **JSON Export System**: Exporting page configurations as structured JSON files
+
+### 📋 Fixed Sidebar Structure
+The editor will have a fixed sidebar with these main sections:
+- **Home** - Main dashboard/overview page
+- **Courses & Trilhas** (CURSOS & TRILHAS) - Courses and learning paths
+- **Lessons** (AULAS-TUTORIAIS) - Individual lessons and tutorials
+- **My Lessons** (MINHAS AULAS) - User's personal lessons
+- **Events** (EVENTOS) - Events and live sessions
+- **Prompts** (CATÁLOGO DE PROMPTS) - AI prompts catalog
+- **Tools** (CAIXA DE FERRAMENTAS) - Tools and utilities
 
 ## 📋 Implementation Checklist
 
 ### Phase 1: Foundation & Core Structure
 - [ ] **1.1** Create CRIA Flow Editor page structure and routing
-- [ ] **1.2** Implement top navigation bar with all controls
-- [ ] **1.3** Create page state management system
-- [ ] **1.4** Set up JSON schema for page configurations
-- [ ] **1.5** Implement basic drag-and-drop functionality
+- [ ] **1.2** Implement fixed sidebar with main navigation sections
+- [ ] **1.3** Create parent layout configuration system
+- [ ] **1.4** Set up JSON schema for parent_layout_schema.json
+- [ ] **1.5** Implement page-specific routing and state management
 
-### Phase 2: Top Navigation Bar
+### Phase 2: Parent Layout Configuration
 - [ ] **2.1** Implement "Voltar" (Back) button with navigation
-- [ ] **2.2** Create sidebar dropdown with modal carousel
+- [ ] **2.2** Create sidebar dropdown with modal carousel for parent layout
 - [ ] **2.3** Build margins configuration with visual feedback
-- [ ] **2.4** Implement footer selection modal
+- [ ] **2.4** Implement footer selection modal for parent layout
 - [ ] **2.5** Add Robot icon functionality (placeholder)
-- [ ] **2.6** Create Save button with JSON export
+- [ ] **2.6** Create Save button that exports to parent_layout_schema.json
 
-### Phase 3: Sidebar Selection System
-- [ ] **3.1** Create sidebar modal with carousel/selection interface
-- [ ] **3.2** Implement sidebar preview functionality
-- [ ] **3.3** Add sidebar integration with page layout
-- [ ] **3.4** Handle sidebar responsive behavior
-- [ ] **3.5** Test sidebar switching and persistence
+### Phase 3: Page-Specific Editors
+- [ ] **3.1** Create Home page editor (home_layout_schema.json)
+- [ ] **3.2** Create Courses & Trilhas page editor (courses_layout_schema.json)
+- [ ] **3.3** Create Lessons page editor (lessons_layout_schema.json)
+- [ ] **3.4** Create My Lessons page editor (my_lessons_layout_schema.json)
+- [ ] **3.5** Create Events page editor (events_layout_schema.json)
+- [ ] **3.6** Create Prompts page editor (prompts_layout_schema.json)
+- [ ] **3.7** Create Tools page editor (tools_layout_schema.json)
+- [ ] **3.8** Implement page-specific routing and navigation
 
 ### Phase 4: Margins Configuration
 - [ ] **4.1** Create margins control interface
@@ -92,11 +104,11 @@ The CRIA Flow Editor enables administrators to create dynamic pages by:
 ## 🚀 Current Task: Phase 1.1 - Create CRIA Flow Editor page structure and routing
 
 ### Task Description
-Set up the basic page structure for the CRIA Flow Editor with proper routing and navigation.
+Set up the basic page structure for the CRIA Flow Editor with proper routing, fixed sidebar navigation, and parent layout configuration system.
 
 ### Implementation Steps
 
-#### Step 1: Create CRIA Flow Editor Page
+#### Step 1: Create CRIA Flow Editor Page Structure
 ```bash
 # Create the main editor page
 mkdir -p src/pages/CriaFlowEditor
@@ -107,35 +119,43 @@ touch src/pages/CriaFlowEditor/index.ts
 #### Step 2: Add Routing to App.tsx
 - Add new route for `/cria-flow-editor`
 - Create navigation link in sidebar
-- Add proper TypeScript types
+- Add proper TypeScript types for all page routes
 
-#### Step 3: Create Basic Page Structure
-- Top navigation bar placeholder
-- Content area placeholder
-- State management setup
-- Basic styling with design tokens
+#### Step 3: Create Fixed Sidebar Navigation
+- Implement fixed sidebar with 7 main sections
+- Add navigation between parent layout and page-specific editors
+- Create proper routing for each page type
 
-#### Step 4: Write Tests
+#### Step 4: Create Parent Layout Configuration
+- Top navigation bar with sidebar, margins, footer controls
+- Save functionality for parent_layout_schema.json
+- Visual feedback for layout changes
+
+#### Step 5: Write Tests
 - Component rendering tests
-- Routing tests
+- Routing tests for all page types
+- Parent layout configuration tests
 - State management tests
 - Accessibility tests
 
-#### Step 5: Create Demo Page
-- Basic editor interface
-- Navigation examples
-- State demonstration
+#### Step 6: Create Demo Page
+- Basic editor interface with fixed sidebar
+- Parent layout configuration demo
+- Navigation between different page editors
 
 ### Expected Output
 - Functional CRIA Flow Editor page accessible via `/cria-flow-editor`
-- Basic page structure with top bar and content area
-- Proper routing and navigation
+- Fixed sidebar with 7 navigation sections
+- Parent layout configuration system
+- Proper routing for all page types
 - Test coverage for core functionality
 - Demo page showcasing the editor
 
 ### Files to Create/Modify
 - `src/pages/CriaFlowEditor/CriaFlowEditor.tsx` (new)
 - `src/pages/CriaFlowEditor/index.ts` (new)
+- `src/pages/CriaFlowEditor/ParentLayoutEditor.tsx` (new)
+- `src/pages/CriaFlowEditor/PageEditor.tsx` (new)
 - `src/App.tsx` (modify - add routing)
 - `src/pages/CriaFlowEditor/__tests__/CriaFlowEditor.test.tsx` (new)
 - `src/pages/CriaFlowEditor/demo.tsx` (new)
@@ -157,13 +177,14 @@ touch src/pages/CriaFlowEditor/index.ts
 
 ---
 
-## 📝 JSON Schema Design (Preview)
+## 📝 JSON Schema Design
 
+### Parent Layout Schema (parent_layout_schema.json)
 ```json
 {
-  "pageId": "string",
-  "pageName": "string",
-  "pageDescription": "string",
+  "parentLayoutId": "string",
+  "parentLayoutName": "string",
+  "parentLayoutDescription": "string",
   "sidebar": {
     "type": "string",
     "config": {}
@@ -178,6 +199,21 @@ touch src/pages/CriaFlowEditor/index.ts
     "type": "string",
     "config": {}
   },
+  "metadata": {
+    "createdAt": "string",
+    "updatedAt": "string",
+    "version": "string"
+  }
+}
+```
+
+### Page-Specific Layout Schema (e.g., courses_layout_schema.json)
+```json
+{
+  "pageId": "string",
+  "pageName": "string",
+  "pageDescription": "string",
+  "parentLayoutId": "string",
   "content": [
     {
       "id": "string",
@@ -195,6 +231,20 @@ touch src/pages/CriaFlowEditor/index.ts
   }
 }
 ```
+
+---
+
+## 🗂️ Page-to-JSON Mapping
+
+| Sidebar Section | JSON File | Description |
+|----------------|-----------|-------------|
+| **Home** | `home_layout_schema.json` | Main dashboard/overview page |
+| **Courses & Trilhas** | `courses_layout_schema.json` | Courses and learning paths |
+| **Lessons** | `lessons_layout_schema.json` | Individual lessons and tutorials |
+| **My Lessons** | `my_lessons_layout_schema.json` | User's personal lessons |
+| **Events** | `events_layout_schema.json` | Events and live sessions |
+| **Prompts** | `prompts_layout_schema.json` | AI prompts catalog |
+| **Tools** | `tools_layout_schema.json` | Tools and utilities |
 
 ---
 
