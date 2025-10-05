@@ -93,6 +93,7 @@ git push origin main
   • Page Loading Progress
   • Card Selector
   • Row of Cards
+  • Search Filters
 
 Input Demos  
   • Basic Inputs — Full Name, Email Address, Phone Number, Date (dd.mm.yyyy)  
@@ -100,23 +101,7 @@ Input Demos
 
 ⸻
 
-🚀 Next Component to Implement: Search Filters
-
-**Implement the Search Filters component immediately**, using **design tokens** and DS primitives.  
-Include a **demo page** and **sidebar entry**. Validate with **Chrome MCP**. Commit on a **feature branch** and **merge into main** per Git rules above. Update this file afterward.
-
-Required Features
-  • Multiple filter types (text, select, checkbox, date range)  
-  • Filter combination logic (AND/OR operations)  
-  • Clear all filters functionality  
-  • Responsive design with collapsible mobile layout  
-  • Token-based styling with design system integration  
-  • A11y: proper keyboard navigation and screen reader support  
-
-Required Tests
-  • Renders with different filter types  
-  • Filter logic works correctly  
-  • A11y: filter controls are accessible to screen readers
+🚀 Next Component to Implement: Divider / Separator
 
 ⸻
 
@@ -124,11 +109,10 @@ Required Tests
 
 🧭 Navigation & Layout
 
-• Divider / Separator
+• Divider / Separator ✅ (Next to implement)
 • Grid / Row / Column — for responsive content alignment
 • Container / Section — controls max-width, padding, and responsive breakpoints
 • Scrollbar (Custom Vertical Scrollbar)
-• Tabs (Horizontal)
 • Footer — global app/site footer
 • Mega Menu — expanded top navigation for marketing or dashboards
 
