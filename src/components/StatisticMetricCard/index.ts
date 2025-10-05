@@ -1,1 +1,2 @@
-export { StatisticMetricCard, type StatisticMetricCardProps, type TrendData } from './StatisticMetricCard';
+export { StatisticMetricCard } from './StatisticMetricCard';
+export type { StatisticMetricCardProps } from './StatisticMetricCard';

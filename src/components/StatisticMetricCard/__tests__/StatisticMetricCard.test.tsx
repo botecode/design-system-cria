@@ -2,14 +2,14 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { StatisticMetricCard } from '../StatisticMetricCard';
-import { TrendingUp, TrendingDown, Minus } from 'phosphor-react';
+import { ArrowUp, ArrowDown, Minus } from 'phosphor-react';
 
 describe('StatisticMetricCard', () => {
   const mockStatistic = {
     id: 'test-statistic',
     value: 1234,
     label: 'Total Users',
-    icon: <TrendingUp data-testid="trending-icon" />,
+    icon: <ArrowUp data-testid="trending-icon" />,
     color: 'primary' as const,
     size: 'md' as const,
   };
@@ -128,7 +128,7 @@ describe('StatisticMetricCard', () => {
     
     const card = screen.getByRole('region');
     expect(card).toHaveClass('custom-class');
-    expect(card).toHaveStyle('background-color: red');
+    expect(card).toHaveStyle('background-color: rgb(255, 0, 0)');
   });
 
   it('has proper accessibility attributes', () => {

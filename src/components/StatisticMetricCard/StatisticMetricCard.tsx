@@ -1,48 +1,79 @@
-import React from 'react';
-import { colors, spacing, typography, radii, shadows } from '../../tokens';
+import React, { forwardRef } from 'react';
 import { Card, CardContent } from '../Card';
-import Typography from '../Typography/Typography';
+import { Typography } from '../Typography';
+import { ShimmerSkeleton } from '../ShimmerSkeleton';
+import { colors, spacing, typography, shadows, radii } from '../../tokens';
 
-export interface TrendData {
-  value: number;
-  direction: 'up' | 'down';
-  period: string;
-}
-
-export interface StatisticMetricCardProps {
+export interface StatisticMetricCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * Unique identifier for the statistic
+   */
   id: string;
-  value: string;
+  /**
+   * The main value to display (number or string)
+   */
+  value: number | string;
+  /**
+   * Label describing what the value represents
+   */
   label: string;
-  trend?: TrendData;
-  icon?: string;
+  /**
+   * Optional icon to display
+   */
+  icon?: React.ReactNode;
+  /**
+   * Color theme for the statistic
+   */
   color?: 'primary' | 'secondary' | 'success' | 'warning' | 'error' | 'info';
-  size?: 'small' | 'medium' | 'large';
+  /**
+   * Size variant of the card
+   */
+  size?: 'sm' | 'md' | 'lg';
+  /**
+   * Trend information to display
+   */
+  trend?: {
+    value: number;
+    direction: 'up' | 'down' | 'neutral';
+    period: string;
+  };
+  /**
+   * Loading state
+   */
   loading?: boolean;
+  /**
+   * Error message to display
+   */
   error?: string;
+  /**
+   * Click handler for interactive cards
+   */
   onClick?: (statistic: StatisticMetricCardProps) => void;
+  /**
+   * Custom class name
+   */
   className?: string;
+  /**
+   * Custom styles
+   */
   style?: React.CSSProperties;
-  'data-testid'?: string;
-  [key: string]: any; // For additional data attributes
 }
 
-export const StatisticMetricCard: React.FC<StatisticMetricCardProps> = ({
+export const StatisticMetricCard = forwardRef<HTMLDivElement, StatisticMetricCardProps>(({
   id,
   value,
   label,
-  trend,
   icon,
   color = 'primary',
-  size = 'medium',
+  size = 'md',
+  trend,
   loading = false,
-  error = '',
+  error,
   onClick,
-  className,
+  className = '',
   style,
-  'data-testid': dataTestId,
-  ...dataAttributes
-}) => {
-  // Color mapping
+  ...props
+}, ref) => {
   const colorMap = {
     primary: colors.primary,
     secondary: colors.secondary,
@@ -52,28 +83,33 @@ export const StatisticMetricCard: React.FC<StatisticMetricCardProps> = ({
     info: colors.info,
   };
 
-  // Size configurations
+  const trendColorMap = {
+    up: colors.success,
+    down: colors.error,
+    neutral: colors.gray[500],
+  };
+
   const sizeConfig = {
-    small: {
-      padding: spacing[3],
+    sm: {
+      valueFontSize: typography.fontSize.h3,
+      labelFontSize: typography.fontSize.body2,
+      trendFontSize: typography.fontSize.caption,
       iconSize: '1.5rem',
-      valueFontSize: typography.fontSize['2xl'],
-      labelFontSize: typography.fontSize.sm,
-      trendFontSize: typography.fontSize.xs,
+      padding: spacing[3],
     },
-    medium: {
-      padding: spacing[4],
+    md: {
+      valueFontSize: typography.fontSize.h1,
+      labelFontSize: typography.fontSize.body,
+      trendFontSize: typography.fontSize.caption,
       iconSize: '2rem',
-      valueFontSize: typography.fontSize['3xl'],
-      labelFontSize: typography.fontSize.base,
-      trendFontSize: typography.fontSize.sm,
+      padding: spacing[4],
     },
-    large: {
-      padding: spacing[6],
+    lg: {
+      valueFontSize: typography.fontSize.display2,
+      labelFontSize: typography.fontSize.h3,
+      trendFontSize: typography.fontSize.body,
       iconSize: '2.5rem',
-      valueFontSize: typography.fontSize['4xl'],
-      labelFontSize: typography.fontSize.lg,
-      trendFontSize: typography.fontSize.base,
+      padding: spacing[5],
     },
   };
 
@@ -81,8 +117,8 @@ export const StatisticMetricCard: React.FC<StatisticMetricCardProps> = ({
   const selectedColor = colorMap[color];
 
   // Format trend value
-  const formatTrendValue = (trendValue: number, direction: 'up' | 'down'): string => {
-    const sign = direction === 'up' ? '+' : '-';
+  const formatTrendValue = (trendValue: number, direction: 'up' | 'down' | 'neutral'): string => {
+    const sign = direction === 'up' ? '+' : (direction === 'down' ? '-' : '+');
     const absoluteValue = Math.abs(trendValue);
     return `${sign}${absoluteValue.toFixed(1)}%`;
   };
@@ -91,238 +127,169 @@ export const StatisticMetricCard: React.FC<StatisticMetricCardProps> = ({
   const trendId = `trend-${id}`;
 
   // Handle click events
-  const handleClick = () => {
-    if (onClick) {
-      onClick({ id, value, label, trend, icon, color, size, loading, error, onClick, className, style });
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (onClick && !loading && !error) {
+      onClick({ id, value, label, icon, color, size, trend, loading, error });
     }
   };
 
-  // Handle keyboard events
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (onClick && (event.key === 'Enter' || event.key === ' ')) {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if ((event.key === 'Enter' || event.key === ' ') && onClick && !loading && !error) {
       event.preventDefault();
-      handleClick();
+      onClick({ id, value, label, icon, color, size, trend, loading, error });
     }
   };
-
-  // Render loading skeleton
-  const renderLoadingSkeleton = () => (
-    <div
-      data-testid="loading-skeleton"
-      style={{
-        width: '60%',
-        height: config.valueFontSize,
-        backgroundColor: colors.gray[200],
-        borderRadius: radii.sm,
-        marginBottom: spacing[2],
-        animation: 'pulse 1.5s ease-in-out infinite',
-      }}
-    />
-  );
-
-  // Render error state
-  const renderError = () => (
-    <Typography
-      variant="body"
-      style={{
-        color: colors.error,
-        fontSize: config.trendFontSize,
-        marginTop: spacing[2],
-      }}
-    >
-      {error}
-    </Typography>
-  );
-
-  // Render trend indicator
-  const renderTrend = () => {
-    if (!trend) return null;
-
-    const isPositive = trend.direction === 'up';
-    const trendColor = isPositive ? colors.success : colors.error;
-    const trendIcon = isPositive ? '↗' : '↘';
-
-    return (
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: spacing[1],
-          marginTop: spacing[2],
-        }}
-      >
-        <span
-          style={{
-            fontSize: config.trendFontSize,
-            color: trendColor,
-            fontWeight: typography.fontWeight.semiBold,
-          }}
-        >
-          {trendIcon}
-        </span>
-        <Typography
-          variant="caption"
-          style={{
-            color: trendColor,
-            fontSize: config.trendFontSize,
-            fontWeight: typography.fontWeight.medium,
-          }}
-        >
-          {formatTrendValue(trend.value, trend.direction)}
-        </Typography>
-        <Typography
-          variant="caption"
-          style={{
-            color: colors.gray[500],
-            fontSize: config.trendFontSize,
-          }}
-        >
-          {trend.period}
-        </Typography>
-      </div>
-    );
-  };
-
-  // Build component classes
-  const componentClasses = [
-    'statistic-metric-card',
-    `variant-${color}`,
-    `size-${size}`,
-    onClick ? 'clickable' : '',
-    loading ? 'loading' : '',
-    error ? 'error' : '',
-    className || '',
-  ].filter(Boolean).join(' ');
-
-  // Build data attributes
-  const dataProps = Object.keys(dataAttributes).reduce((acc, key) => {
-    if (key.startsWith('data-')) {
-      acc[key] = dataAttributes[key];
-    }
-    return acc;
-  }, {} as Record<string, any>);
 
   const Component = onClick ? 'button' : 'div';
-  const role = onClick ? 'button' : 'region';
+
+  const renderLoading = () => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[2] }}>
+      {icon && (
+        <ShimmerSkeleton
+          variant="circle"
+          width={config.iconSize}
+          height={config.iconSize}
+          style={{ marginBottom: spacing[2] }}
+        />
+      )}
+      <ShimmerSkeleton
+        variant="text"
+        width="60%"
+        height={config.valueFontSize}
+        style={{ marginBottom: spacing[1] }}
+      />
+      <ShimmerSkeleton
+        variant="text"
+        width="80%"
+        height={config.labelFontSize}
+        style={{ marginBottom: spacing[2] }}
+      />
+      {trend && (
+        <ShimmerSkeleton
+          variant="text"
+          width="40%"
+          height={config.trendFontSize}
+        />
+      )}
+    </div>
+  );
+
+  const renderError = () => (
+    <div style={{ 
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'center',
+      padding: spacing[3],
+      color: colors.error,
+      textAlign: 'center',
+    }}>
+      <Typography variant="body2" weight="medium">
+        {error}
+      </Typography>
+    </div>
+  );
 
   return (
     <Component
-      role={role}
-      className={componentClasses}
-      onClick={onClick ? handleClick : undefined}
-      onKeyDown={onClick ? handleKeyDown : undefined}
-      tabIndex={onClick ? 0 : undefined}
+      ref={ref}
+      className={`statistic-metric-card variant-${color} size-${size} ${className} ${onClick ? 'clickable' : ''}`}
       style={{
-        border: 'none',
         background: 'transparent',
-        padding: 0,
+        padding: '0',
         cursor: onClick ? 'pointer' : 'default',
         width: '100%',
         textAlign: 'left',
         ...style,
       }}
-      aria-label={`${label}: ${loading ? 'Loading' : error ? 'Error' : value}`}
+      role={onClick ? "button" : "region"}
+      aria-label={`${label}: ${value}`}
       aria-describedby={trend ? trendId : undefined}
-      data-testid={dataTestId}
-      {...dataProps}
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
+      tabIndex={onClick ? 0 : undefined}
+      {...props}
     >
       <Card
+        variant="default"
+        size="md"
         style={{
+          borderRadius: radii.md,
+          overflow: 'hidden',
+          position: 'relative',
+          cursor: onClick ? 'pointer' : 'default',
+          transition: 'all 0.2s ease',
+          backgroundColor: colors.white,
+          border: `1px solid ${colors.gray[200]}`,
           padding: config.padding,
           height: '100%',
-          transition: 'all 0.2s ease',
-          border: `1px solid ${colors.gray[200]}`,
-          backgroundColor: colors.white,
-          ...(onClick && {
-            ':hover': {
-              boxShadow: shadows.lg,
-              transform: 'translateY(-2px)',
-            },
-          }),
-        }}
-        onMouseEnter={(e) => {
-          if (onClick) {
-            e.currentTarget.style.boxShadow = shadows.lg;
-            e.currentTarget.style.transform = 'translateY(-2px)';
-          }
-        }}
-        onMouseLeave={(e) => {
-          if (onClick) {
-            e.currentTarget.style.boxShadow = shadows.sm;
-            e.currentTarget.style.transform = 'translateY(0)';
-          }
         }}
       >
-        <CardContent style={{ padding: 0 }}>
-          {/* Icon */}
-          {icon && (
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                marginBottom: spacing[3],
-              }}
-            >
-              <span
-                style={{
-                  fontSize: config.iconSize,
-                  display: 'inline-block',
-                }}
-              >
-                {icon}
-              </span>
-            </div>
-          )}
+        <CardContent style={{ padding: '0' }}>
+          {loading ? renderLoading() : (
+            <>
+              {/* Icon */}
+              {icon && (
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start', marginBottom: spacing[3] }}>
+                  <span style={{ fontSize: config.iconSize, display: 'inline-block' }}>{icon}</span>
+                </div>
+              )}
 
-          {/* Value */}
-          <div style={{ marginBottom: spacing[2] }}>
-            {loading ? (
-              renderLoadingSkeleton()
-            ) : error ? (
+              {/* Value */}
+              <div style={{ marginBottom: spacing[2] }}>
+                <Typography
+                  variant={size === 'sm' ? 'h3' : (size === 'lg' ? 'display2' : 'h1')}
+                  style={{
+                    fontWeight: typography.fontWeight.bold,
+                    color: selectedColor,
+                    lineHeight: typography.lineHeight.tight,
+                  }}
+                >
+                  {value}
+                </Typography>
+              </div>
+
+              {/* Label */}
               <Typography
-                variant="h1"
+                variant={size === 'sm' ? 'body2' : 'body'}
                 style={{
-                  fontSize: config.valueFontSize,
-                  fontWeight: typography.fontWeight.bold,
-                  color: colors.error,
+                  color: colors.gray[700],
+                  fontWeight: typography.fontWeight.medium,
+                  marginBottom: spacing[1],
                 }}
               >
-                —
+                {label}
               </Typography>
-            ) : (
-              <Typography
-                variant="h1"
-                style={{
-                  fontSize: config.valueFontSize,
-                  fontWeight: typography.fontWeight.bold,
-                  color: selectedColor,
-                  lineHeight: 1.2,
-                }}
-              >
-                {value}
-              </Typography>
-            )}
-          </div>
 
-          {/* Label */}
-          <Typography
-            variant="body"
-            style={{
-              fontSize: config.labelFontSize,
-              color: colors.gray[600],
-              fontWeight: typography.fontWeight.medium,
-              marginBottom: spacing[1],
-            }}
-          >
-            {label}
-          </Typography>
-
-          {/* Trend */}
-          {trend && !loading && !error && (
-            <div id={trendId}>
-              {renderTrend()}
-            </div>
+              {/* Trend */}
+              {trend && (
+                <div id={trendId}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: spacing[1], marginTop: spacing[2] }}>
+                    <span style={{ color: trendColorMap[trend.direction], fontWeight: typography.fontWeight.semiBold }}>
+                      {trend.direction === 'up' ? '↗' : (trend.direction === 'down' ? '↘' : '→')}
+                    </span>
+                    <Typography
+                      variant="caption"
+                      style={{
+                        color: trendColorMap[trend.direction],
+                        fontSize: config.trendFontSize,
+                        fontWeight: typography.fontWeight.medium,
+                      }}
+                    >
+                      {formatTrendValue(trend.value, trend.direction)}
+                    </Typography>
+                    <Typography
+                      variant="caption"
+                      style={{
+                        color: colors.gray[500],
+                        fontSize: config.trendFontSize,
+                      }}
+                    >
+                      {trend.period}
+                    </Typography>
+                  </div>
+                </div>
+              )}
+            </>
           )}
 
           {/* Error message */}
@@ -352,6 +319,8 @@ export const StatisticMetricCard: React.FC<StatisticMetricCardProps> = ({
       `}</style>
     </Component>
   );
-};
+});
+
+StatisticMetricCard.displayName = 'StatisticMetricCard';
 
 export default StatisticMetricCard;
