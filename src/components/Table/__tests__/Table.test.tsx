@@ -74,7 +74,7 @@ describe('Table', () => {
         />
       );
 
-      expect(container.firstChild).toHaveStyle('background-color: red');
+      expect(container.firstChild).toHaveStyle('background-color: rgb(255, 0, 0)');
     });
 
     it('renders with data attributes', () => {
@@ -87,8 +87,8 @@ describe('Table', () => {
         />
       );
 
-      expect(container.firstChild).toHaveAttribute('data-testid', 'test-table');
-      expect(container.firstChild).toHaveAttribute('data-custom', 'value');
+      expect(screen.getByRole('table')).toHaveAttribute('data-testid', 'test-table');
+      expect(screen.getByRole('table')).toHaveAttribute('data-custom', 'value');
     });
   });
 
@@ -158,7 +158,7 @@ describe('Table', () => {
         <Table columns={mockColumns} data={mockData} />
       );
 
-      expect(screen.getByTestId('caret-up-down')).toBeInTheDocument();
+      expect(screen.getAllByTestId('caret-up-down')).toHaveLength(5);
     });
 
     it('handles column sorting', () => {
@@ -249,12 +249,12 @@ describe('Table', () => {
         <Table 
           columns={mockColumns} 
           data={mockData} 
-          pagination={{ page: 1, pageSize: 10, total: 25 }}
+          pagination={{ page: 1, pageSize: 10, total: 25, showSizeChanger: true }}
           onPageSizeChange={onPageSizeChange}
         />
       );
 
-      const pageSizeSelect = screen.getByDisplayValue('10');
+      const pageSizeSelect = screen.getByRole('combobox');
       fireEvent.change(pageSizeSelect, { target: { value: '20' } });
 
       expect(onPageSizeChange).toHaveBeenCalledWith(20);
@@ -460,7 +460,9 @@ describe('Table', () => {
   describe('Column Configuration', () => {
     it('renders custom column renderer', () => {
       const customColumns = [
-        ...mockColumns.slice(0, -1),
+        { key: 'id', label: 'ID', sortable: true },
+        { key: 'name', label: 'Name', sortable: true },
+        { key: 'email', label: 'Email', sortable: false },
         { 
           key: 'status', 
           label: 'Status', 
@@ -476,8 +478,8 @@ describe('Table', () => {
         <Table columns={customColumns} data={mockData} />
       );
 
-      const activeStatus = screen.getByText('Active');
-      expect(activeStatus).toHaveStyle('color: green');
+      const activeStatuses = screen.getAllByText('Active');
+      expect(activeStatuses[0]).toHaveStyle('color: rgb(0, 128, 0)');
     });
 
     it('renders column with custom width', () => {
@@ -538,7 +540,7 @@ describe('Table', () => {
         <Table columns={mockColumns} data={mockData} />
       );
 
-      const sortableHeader = screen.getByText('ID');
+      const sortableHeader = screen.getByText('ID').closest('.cria-table__header-cell');
       expect(sortableHeader).toHaveAttribute('aria-sort');
     });
   });
@@ -627,8 +629,8 @@ describe('Table', () => {
       expect(container.firstChild).toHaveClass('custom-class');
       expect(container.firstChild).toHaveClass('cria-table--striped');
       expect(container.firstChild).toHaveClass('cria-table--size-lg');
-      expect(container.firstChild).toHaveStyle('background-color: blue');
-      expect(container.firstChild).toHaveAttribute('data-testid', 'combined-table');
+      expect(container.firstChild).toHaveStyle('background-color: rgb(0, 0, 255)');
+      expect(screen.getByRole('table')).toHaveAttribute('data-testid', 'combined-table');
     });
   });
 });

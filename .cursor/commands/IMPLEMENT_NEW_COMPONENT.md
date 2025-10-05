@@ -121,11 +121,11 @@ Input Demos
 • Scrollbar (Custom Vertical Scrollbar)
 • Footer — global app/site footer
 • Mega Menu — expanded top navigation for marketing or dashboards
-• Carrossel - Using Embla library ✅ (Next to implement)
+• Carrossel - Using Embla library ✅
 
 📊 Data Display
 
-• Table / DataGrid — tabular data with sorting and pagination
+• Table / DataGrid — tabular data with sorting and pagination ✅ (Next to implement)
 • Empty State / Placeholder — communicates “no data yet”
 • Statistic / Metric Card — dashboard value + label + trend (reuses Card + Typography)
 • Tag / Chip — inline labels (e.g., “New”, “Beta”, “Music”)
