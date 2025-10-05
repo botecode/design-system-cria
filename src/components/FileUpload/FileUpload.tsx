@@ -1,7 +1,7 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { Typography } from '../Typography';
 
-export interface FileUploadProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface FileUploadProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onError'> {
   label?: string;
   description?: string;
   accept?: string;
