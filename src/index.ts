@@ -63,3 +63,5 @@ export * from './components/Scrollbar';
 export * from './components/Footer';
 export * from './components/MegaMenu';
 export * from './components/Carousel';
+export * from './components/Table';
+export * from './components/EmptyState';
