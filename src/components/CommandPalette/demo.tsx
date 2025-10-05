@@ -11,7 +11,7 @@ import {
   Download,
   Upload,
   Trash,
-  Edit,
+  Pencil,
   Copy,
   Share,
   Globe,

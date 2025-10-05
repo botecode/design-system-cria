@@ -19,7 +19,7 @@ import {
   Download,
   Upload,
   Share,
-  Edit,
+  Pencil,
   Trash,
   Plus,
   Check,
@@ -365,7 +365,7 @@ const DrawerDemo: React.FC = () => {
         </div>
         <div style={{ padding: '16px' }}>
           <Button onClick={() => openDrawer('form')}>
-            <Edit size={16} />
+            <Pencil size={16} />
             Open Form Drawer
           </Button>
           

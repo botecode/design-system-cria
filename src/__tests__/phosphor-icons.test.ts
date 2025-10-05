@@ -14,7 +14,7 @@ describe('Phosphor React Icons', () => {
       'X',
       'Plus',
       'Check',
-      'Edit',
+      'Pencil',
       'Trash',
       'Download',
       'Upload',
@@ -62,6 +62,7 @@ describe('Phosphor React Icons', () => {
     // These icons should NOT be used as they don't exist or are deprecated
     const deprecatedIcons = [
       'Settings', // Should use 'Gear' instead
+      'Edit', // Should use 'Pencil' instead
       'Menu', // Should use 'List' instead (but Menu is still valid)
       'AlertCircle', // Should use 'WarningCircle' instead
       'MessageCircle', // Should use 'ChatCircle' instead
