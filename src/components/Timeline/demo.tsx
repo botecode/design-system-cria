@@ -4,7 +4,7 @@ import { Typography } from '../Typography';
 import { Card, CardContent, CardHeader } from '../Card';
 import { Grid, Row, Column } from '../Grid';
 import { Button } from '../Button';
-import { User, CheckCircle, Warning, Info, Clock, Calendar, Star, Heart, ThumbsUp, MessageCircle, Share, Download } from 'phosphor-react';
+import { User, CheckCircle, Warning, Info, Clock, Calendar, Star, Heart, ThumbsUp, ChatCircle, Share, Download } from 'phosphor-react';
 import { spacing, colors } from '../../tokens';
 
 const TimelineDemo: React.FC = () => {
@@ -82,7 +82,7 @@ const TimelineDemo: React.FC = () => {
       title: 'Code Review',
       description: 'First code review completed with minor feedback addressed',
       timestamp: '2024-01-20T16:00:00Z',
-      icon: <MessageCircle />,
+      icon: <ChatCircle />,
       variant: 'info' as const,
     },
   ];
@@ -101,7 +101,7 @@ const TimelineDemo: React.FC = () => {
       title: 'Comment Received',
       description: 'John commented on your tutorial: "Great explanation!"',
       timestamp: '2024-01-15T13:30:00Z',
-      icon: <MessageCircle />,
+      icon: <ChatCircle />,
       variant: 'primary' as const,
     },
     {
