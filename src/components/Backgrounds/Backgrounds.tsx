@@ -275,12 +275,24 @@ export const Backgrounds: React.FC<BackgroundsProps> = ({
 
   // Build styles
   const backgroundStyles: React.CSSProperties = {
-    backgroundSize: variant === 'pattern' ? patternSize : variant === 'texture' ? `${100 * textureScale}%` : 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: variant === 'pattern' ? 'repeat' : 'no-repeat',
-    ...(variant === 'gradient' && gradientBackground && { background: gradientBackground }),
-    ...(variant === 'pattern' && patternBackground && { backgroundImage: patternBackground }),
-    ...(variant === 'texture' && textureBackground && { backgroundImage: textureBackground }),
+    ...(variant === 'gradient' && gradientBackground && { 
+      background: gradientBackground,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
+    }),
+    ...(variant === 'pattern' && patternBackground && { 
+      backgroundImage: patternBackground,
+      backgroundSize: patternSize,
+      backgroundPosition: 'center',
+      backgroundRepeat: 'repeat'
+    }),
+    ...(variant === 'texture' && textureBackground && { 
+      backgroundImage: textureBackground,
+      backgroundSize: `${100 * textureScale}%`,
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat'
+    }),
     ...(animated && {
       animationDuration: `${animationDuration}ms`,
       animationDelay: `${animationDelay}ms`

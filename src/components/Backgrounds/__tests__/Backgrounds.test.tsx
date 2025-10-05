@@ -49,58 +49,58 @@ describe('Backgrounds', () => {
     });
 
     it('renders with different gradient types', () => {
-      const { rerender } = render(<Backgrounds {...defaultProps} gradientType="linear" />);
+      const { rerender } = render(<Backgrounds {...defaultProps} variant="gradient" gradientType="linear" />);
       expect(screen.getByRole('region')).toHaveClass('backgrounds--gradient-linear');
 
-      rerender(<Backgrounds {...defaultProps} gradientType="radial" />);
+      rerender(<Backgrounds {...defaultProps} variant="gradient" gradientType="radial" />);
       expect(screen.getByRole('region')).toHaveClass('backgrounds--gradient-radial');
 
-      rerender(<Backgrounds {...defaultProps} gradientType="conic" />);
+      rerender(<Backgrounds {...defaultProps} variant="gradient" gradientType="conic" />);
       expect(screen.getByRole('region')).toHaveClass('backgrounds--gradient-conic');
     });
 
     it('renders with different gradient directions', () => {
-      const { rerender } = render(<Backgrounds {...defaultProps} gradientDirection="to-right" />);
+      const { rerender } = render(<Backgrounds {...defaultProps} variant="gradient" gradientDirection="to-right" />);
       expect(screen.getByRole('region')).toHaveClass('backgrounds--gradient-to-right');
 
-      rerender(<Backgrounds {...defaultProps} gradientDirection="to-bottom" />);
+      rerender(<Backgrounds {...defaultProps} variant="gradient" gradientDirection="to-bottom" />);
       expect(screen.getByRole('region')).toHaveClass('backgrounds--gradient-to-bottom');
 
-      rerender(<Backgrounds {...defaultProps} gradientDirection="to-bottom-right" />);
+      rerender(<Backgrounds {...defaultProps} variant="gradient" gradientDirection="to-bottom-right" />);
       expect(screen.getByRole('region')).toHaveClass('backgrounds--gradient-to-bottom-right');
 
-      rerender(<Backgrounds {...defaultProps} gradientDirection="45deg" />);
+      rerender(<Backgrounds {...defaultProps} variant="gradient" gradientDirection="45deg" />);
       expect(screen.getByRole('region')).toHaveClass('backgrounds--gradient-45deg');
     });
 
     it('renders with different pattern types', () => {
-      const { rerender } = render(<Backgrounds {...defaultProps} patternType="dots" />);
+      const { rerender } = render(<Backgrounds {...defaultProps} variant="pattern" patternType="dots" />);
       expect(screen.getByRole('region')).toHaveClass('backgrounds--pattern-dots');
 
-      rerender(<Backgrounds {...defaultProps} patternType="grid" />);
+      rerender(<Backgrounds {...defaultProps} variant="pattern" patternType="grid" />);
       expect(screen.getByRole('region')).toHaveClass('backgrounds--pattern-grid');
 
-      rerender(<Backgrounds {...defaultProps} patternType="lines" />);
+      rerender(<Backgrounds {...defaultProps} variant="pattern" patternType="lines" />);
       expect(screen.getByRole('region')).toHaveClass('backgrounds--pattern-lines');
 
-      rerender(<Backgrounds {...defaultProps} patternType="waves" />);
+      rerender(<Backgrounds {...defaultProps} variant="pattern" patternType="waves" />);
       expect(screen.getByRole('region')).toHaveClass('backgrounds--pattern-waves');
 
-      rerender(<Backgrounds {...defaultProps} patternType="geometric" />);
+      rerender(<Backgrounds {...defaultProps} variant="pattern" patternType="geometric" />);
       expect(screen.getByRole('region')).toHaveClass('backgrounds--pattern-geometric');
     });
 
     it('renders with different texture types', () => {
-      const { rerender } = render(<Backgrounds {...defaultProps} textureType="paper" />);
+      const { rerender } = render(<Backgrounds {...defaultProps} variant="texture" textureType="paper" />);
       expect(screen.getByRole('region')).toHaveClass('backgrounds--texture-paper');
 
-      rerender(<Backgrounds {...defaultProps} textureType="fabric" />);
+      rerender(<Backgrounds {...defaultProps} variant="texture" textureType="fabric" />);
       expect(screen.getByRole('region')).toHaveClass('backgrounds--texture-fabric');
 
-      rerender(<Backgrounds {...defaultProps} textureType="metal" />);
+      rerender(<Backgrounds {...defaultProps} variant="texture" textureType="metal" />);
       expect(screen.getByRole('region')).toHaveClass('backgrounds--texture-metal');
 
-      rerender(<Backgrounds {...defaultProps} textureType="wood" />);
+      rerender(<Backgrounds {...defaultProps} variant="texture" textureType="wood" />);
       expect(screen.getByRole('region')).toHaveClass('backgrounds--texture-wood');
     });
 
@@ -273,14 +273,14 @@ describe('Backgrounds', () => {
     });
 
     it('renders with custom animation duration', () => {
-      render(<Backgrounds {...defaultProps} animationDuration={2000} />);
+      render(<Backgrounds {...defaultProps} animated={true} animationDuration={2000} />);
       
       const background = screen.getByRole('region');
       expect(background).toHaveClass('backgrounds--animated');
     });
 
     it('renders with custom animation delay', () => {
-      render(<Backgrounds {...defaultProps} animationDelay={500} />);
+      render(<Backgrounds {...defaultProps} animated={true} animationDelay={500} />);
       
       const background = screen.getByRole('region');
       expect(background).toHaveClass('backgrounds--animated');
@@ -488,7 +488,7 @@ describe('Backgrounds', () => {
     });
 
     it('handles invalid variant gracefully', () => {
-      render(<Backgrounds {...defaultProps} variant="invalid" as any />);
+      render(<Backgrounds {...defaultProps} variant={"invalid" as any} />);
       
       const background = screen.getByRole('region');
       expect(background).toBeInTheDocument();
