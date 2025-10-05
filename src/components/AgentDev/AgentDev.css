@@ -1,17 +1,22 @@
 /* AgentDev Component Styles */
 .agent-dev {
-  --agent-dev-bg: var(--cria-background);
-  --agent-dev-text: var(--cria-text-primary);
-  --agent-dev-border: var(--cria-border-light);
+  --agent-dev-bg: #ffffff;
+  --agent-dev-bg-secondary: #f8f9fa;
+  --agent-dev-text: #1a1a1a;
+  --agent-dev-text-muted: #6b7280;
+  --agent-dev-border: #e1e5e9;
   --agent-dev-accent: var(--cria-primary);
-  --agent-dev-surface: var(--cria-background-light);
-  --agent-dev-muted: var(--cria-text-secondary);
+  --agent-dev-surface: #f8f9fa;
+  --agent-dev-hover: #f3f4f6;
+  --agent-dev-active: #e5e7eb;
   
   background: var(--agent-dev-bg);
   color: var(--agent-dev-text);
   height: 100%;
   display: flex;
   flex-direction: column;
+  border-radius: var(--cria-radius-lg);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .agent-dev__container {
@@ -55,7 +60,7 @@
 }
 
 .agent-dev__close-button {
-  color: var(--agent-dev-muted);
+  color: var(--agent-dev-text-muted);
   transition: color 0.2s ease;
 }
 
@@ -78,7 +83,7 @@
   padding: var(--cria-spacing-4) var(--cria-spacing-6);
   background: none;
   border: none;
-  color: var(--agent-dev-muted);
+  color: var(--agent-dev-text-muted);
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
@@ -89,7 +94,7 @@
 
 .agent-dev__tab:hover {
   color: var(--agent-dev-text);
-  background: var(--agent-dev-bg);
+  background: var(--agent-dev-hover);
 }
 
 .agent-dev__tab--active {
@@ -156,7 +161,7 @@
 }
 
 .agent-dev__textarea::placeholder {
-  color: var(--agent-dev-muted);
+  color: var(--agent-dev-text-muted);
 }
 
 /* Image Upload */
@@ -178,7 +183,7 @@
   border: 2px dashed var(--agent-dev-border);
   border-radius: var(--cria-radius-md);
   background: var(--agent-dev-surface);
-  color: var(--agent-dev-muted);
+  color: var(--agent-dev-text-muted);
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: center;
@@ -214,7 +219,7 @@
 }
 
 .agent-dev__component-item:hover {
-  background: var(--agent-dev-bg);
+  background: var(--agent-dev-hover);
 }
 
 .agent-dev__component-item input[type="checkbox"] {
@@ -284,7 +289,7 @@
   gap: var(--cria-spacing-4);
   margin-top: var(--cria-spacing-2);
   font-size: 12px;
-  color: var(--agent-dev-muted);
+  color: var(--agent-dev-text-muted);
 }
 
 /* Responsive Design */
@@ -385,7 +390,7 @@
   align-items: center;
   justify-content: center;
   padding: var(--cria-spacing-8);
-  color: var(--agent-dev-muted);
+  color: var(--agent-dev-text-muted);
 }
 
 /* Empty States */
@@ -396,7 +401,7 @@
   justify-content: center;
   padding: var(--cria-spacing-8);
   text-align: center;
-  color: var(--agent-dev-muted);
+  color: var(--agent-dev-text-muted);
 }
 
 .agent-dev__empty svg {

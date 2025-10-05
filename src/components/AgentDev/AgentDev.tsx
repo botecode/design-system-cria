@@ -22,6 +22,7 @@ export interface TabState {
   activeTab: TabType;
   criar: {
     selectedType: string | null;
+    selectedComponent: string | null;
     prompt: string;
     images: File[];
   };
@@ -52,6 +53,7 @@ const AgentDev: React.FC<AgentDevProps> = ({
     activeTab: 'criar',
     criar: {
       selectedType: null,
+      selectedComponent: null,
       prompt: '',
       images: []
     },
@@ -119,24 +121,36 @@ const AgentDev: React.FC<AgentDevProps> = ({
                 Tipo de Componente
               </Typography>
               <div className="agent-dev__type-selector">
-                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
-                  Layout
-                </Button>
-                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
-                  Forms
-                </Button>
-                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
-                  Navigation
-                </Button>
-                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
-                  Feedback
-                </Button>
-                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
-                  Data Display
-                </Button>
-                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
-                  Content
-                </Button>
+                {Object.entries(componentTypes).map(([category, types]) => (
+                  <div key={category} style={{ marginBottom: spacing[3] }}>
+                    <Button 
+                      variant={tabState.criar.selectedType === category ? 'primary' : 'outline'} 
+                      size="sm" 
+                      style={{ marginBottom: spacing[2] }}
+                      onClick={() => updateTabState('criar', { selectedType: category })}
+                    >
+                      {category}
+                    </Button>
+                    {tabState.criar.selectedType === category && (
+                      <div style={{ marginLeft: spacing[4], display: 'flex', flexWrap: 'wrap', gap: spacing[2] }}>
+                        {types.map((type) => (
+                          <Button
+                            key={type}
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => updateTabState('criar', { selectedComponent: type })}
+                            style={{ 
+                              backgroundColor: tabState.criar.selectedComponent === type ? 'var(--agent-dev-hover)' : 'transparent',
+                              color: tabState.criar.selectedComponent === type ? 'var(--agent-dev-accent)' : 'var(--agent-dev-text)'
+                            }}
+                          >
+                            {type}
+                          </Button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -179,7 +193,7 @@ const AgentDev: React.FC<AgentDevProps> = ({
               <Button
                 variant="primary"
                 size="lg"
-                disabled={!tabState.criar.selectedType || !tabState.criar.prompt.trim()}
+                disabled={!tabState.criar.selectedType || !tabState.criar.selectedComponent || !tabState.criar.prompt.trim()}
                 onClick={() => {
                   // TODO: Implement create functionality
                   console.log('Creating component:', tabState.criar);
@@ -208,45 +222,38 @@ const AgentDev: React.FC<AgentDevProps> = ({
                 Tipo de Componente
               </Typography>
               <div className="agent-dev__type-selector">
-                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
-                  Layout
-                </Button>
-                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
-                  Forms
-                </Button>
-                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
-                  Navigation
-                </Button>
-                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
-                  Feedback
-                </Button>
-                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
-                  Data Display
-                </Button>
-                <Button variant="outline" size="sm" style={{ marginBottom: spacing[2] }}>
-                  Content
-                </Button>
-              </div>
-            </div>
-
-            {/* Component List */}
-            <div className="agent-dev__section">
-              <Typography variant="h4" weight="medium" style={{ marginBottom: spacing[3] }}>
-                Componentes Disponíveis
-              </Typography>
-              <div className="agent-dev__component-list">
-                <div className="agent-dev__component-item">
-                  <input type="checkbox" id="comp-1" />
-                  <label htmlFor="comp-1">Button</label>
-                </div>
-                <div className="agent-dev__component-item">
-                  <input type="checkbox" id="comp-2" />
-                  <label htmlFor="comp-2">Input</label>
-                </div>
-                <div className="agent-dev__component-item">
-                  <input type="checkbox" id="comp-3" />
-                  <label htmlFor="comp-3">Card</label>
-                </div>
+                {Object.entries(componentTypes).map(([category, types]) => (
+                  <div key={category} style={{ marginBottom: spacing[3] }}>
+                    <Button 
+                      variant={tabState.consertar.selectedType === category ? 'primary' : 'outline'} 
+                      size="sm" 
+                      style={{ marginBottom: spacing[2] }}
+                      onClick={() => updateTabState('consertar', { selectedType: category })}
+                    >
+                      {category}
+                    </Button>
+                    {tabState.consertar.selectedType === category && (
+                      <div className="agent-dev__component-list">
+                        {types.map((type) => (
+                          <div key={type} className="agent-dev__component-item">
+                            <input 
+                              type="checkbox" 
+                              id={`consertar-${type}`}
+                              checked={tabState.consertar.selectedComponents.includes(type)}
+                              onChange={(e) => {
+                                const newSelected = e.target.checked
+                                  ? [...tabState.consertar.selectedComponents, type]
+                                  : tabState.consertar.selectedComponents.filter(c => c !== type);
+                                updateTabState('consertar', { selectedComponents: newSelected });
+                              }}
+                            />
+                            <label htmlFor={`consertar-${type}`}>{type}</label>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -410,6 +417,30 @@ const AgentDev: React.FC<AgentDevProps> = ({
       </div>
     </Drawer>
   );
+};
+
+// Component type mapping matching the sidebar structure
+const componentTypes = {
+  'Foundations': ['Typography', 'Colors', 'Text', 'Grid'],
+  'Components': [
+    'Button', 'Input', 'Textarea', 'Avatar', 'Checkbox', 'Switch', 'Radio Group', 
+    'Dropdown', 'File Upload', 'Chat', 'Comments Section', 'Slider', 
+    'Shimmer Skeleton', 'Pricing Page', 'Page Loading Progress', 'Card Selector',
+    'Floating Sidebar', 'Search Filters', 'Filter Dropdown', 'Container', 
+    'Scrollbar', 'Footer', 'Mega Menu', 'Command Palette', 'Carousel', 
+    'Table', 'Empty State'
+  ],
+  'Content': ['Lesson - Cards', 'Course - Cards', 'Events - Cards', 'Trilha - Cards'],
+  'Layout': [
+    'Tabs', 'Accordion', 'Navigation', 'Breadcrumbs', 'Pagination', 
+    'Progress Bar', 'Stepper', 'Date Picker', 'Charts', 'Divider', 
+    'Row of Cards', 'Statistic / Metric Card', 'Backgrounds'
+  ],
+  'Feedback': [
+    'Snackbar', 'Modal', 'Tooltip', 'Badge', 'Tag / Chip', 
+    'Timeline / Activity Feed', 'Stepper / Wizard', 'Notification Center', 
+    'Topbar', 'Drawer'
+  ]
 };
 
 export default AgentDev;
