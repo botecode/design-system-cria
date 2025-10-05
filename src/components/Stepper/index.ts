@@ -1,3 +1,2 @@
-export { Stepper } from './Stepper';
-export type { StepperProps, StepItem } from './Stepper';
-export { default } from './Stepper';
+export { Stepper, StepperStep } from './Stepper';
+export type { StepperProps, StepperStepProps, StepperStepData } from './Stepper';

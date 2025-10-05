@@ -102,6 +102,8 @@ git push origin main
   • Mega Menu
   • Command Palette
   • Statistic / Metric Card
+  • Tag / Chip
+  • Timeline / Activity Feed
 
 Input Demos  
   • Basic Inputs — Full Name, Email Address, Phone Number, Date (dd.mm.yyyy)  
@@ -109,7 +111,7 @@ Input Demos
 
 ⸻
 
-🚀 Next Component to Implement: Timeline / Activity Feed — sequential events or updates
+🚀 Next Component to Implement: Stepper / Wizard — guides users through multi-step flows
 
 ⸻
 
@@ -121,11 +123,9 @@ Input Demos
 
 📊 Data Display
 
-• Timeline / Activity Feed — sequential events or updates
 
 ✨ Interaction & Feedback
 
-• Stepper / Wizard — guides users through multi-step flows
 • Notification Center — stacked toasts and global alerts
 
 🧱 Theming & Foundation
