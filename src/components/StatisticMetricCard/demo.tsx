@@ -1,326 +1,450 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { StatisticMetricCard } from './StatisticMetricCard';
-import Typography from '../Typography/Typography';
-import { spacing } from '../../tokens';
+import { Typography } from '../Typography';
+import { Button } from '../Button';
+import { Card, CardContent, CardHeader } from '../Card';
+import { 
+  Users, 
+  TrendingUp, 
+  TrendingDown, 
+  DollarSign, 
+  ShoppingCart, 
+  Eye, 
+  Heart,
+  Star,
+  Activity,
+  Target,
+  Zap,
+  Globe
+} from 'phosphor-react';
 
-// Sample data for different metric types
-const sampleMetrics = [
-  {
-    id: '1',
-    value: '1,234',
-    label: 'Total Users',
-    trend: {
-      value: 12.5,
-      direction: 'up' as const,
-      period: 'vs last month'
-    },
-    icon: '👥',
-    color: 'primary' as const,
-  },
-  {
-    id: '2',
-    value: '$45,678',
-    label: 'Revenue',
-    trend: {
-      value: 8.2,
-      direction: 'up' as const,
-      period: 'vs last month'
-    },
-    icon: '💰',
-    color: 'secondary' as const,
-  },
-  {
-    id: '3',
-    value: '89.2%',
-    label: 'Conversion Rate',
-    trend: {
-      value: 5.3,
-      direction: 'down' as const,
-      period: 'vs last week'
-    },
-    icon: '📊',
-    color: 'warning' as const,
-  },
-  {
-    id: '4',
-    value: '2,456',
-    label: 'Active Sessions',
-    trend: {
-      value: 23.1,
-      direction: 'up' as const,
-      period: 'vs last hour'
-    },
-    icon: '⚡',
-    color: 'success' as const,
-  },
-  {
-    id: '5',
-    value: '98.5%',
-    label: 'Uptime',
-    icon: '🟢',
-    color: 'success' as const,
-  },
-  {
-    id: '6',
-    value: '156',
-    label: 'Support Tickets',
-    trend: {
-      value: 3.7,
-      direction: 'down' as const,
-      period: 'vs last day'
-    },
-    icon: '🎫',
-    color: 'error' as const,
-  },
-];
+const StatisticMetricCardDemo: React.FC = () => {
+  const [clickedStatistic, setClickedStatistic] = useState<string | null>(null);
 
-const handleMetricClick = (metric: any) => {
-  console.log('Metric clicked:', metric.label);
-  alert(`Viewing details for: ${metric.label}`);
-};
+  const handleStatisticClick = useCallback((statistic: any) => {
+    setClickedStatistic(`${statistic.label}: ${statistic.value}`);
+    console.log('Statistic clicked:', statistic);
+  }, []);
 
-export const StatisticMetricCardDemo: React.FC = () => {
-  const [selectedSize, setSelectedSize] = useState<'small' | 'medium' | 'large'>('medium');
+  const sampleStatistics = [
+    {
+      id: 'users',
+      value: 1234,
+      label: 'Total Users',
+      icon: <Users size={24} />,
+      color: 'primary' as const,
+      trend: {
+        value: 12.5,
+        direction: 'up' as const,
+        period: 'vs last month',
+      },
+    },
+    {
+      id: 'revenue',
+      value: '$45.2K',
+      label: 'Monthly Revenue',
+      icon: <DollarSign size={24} />,
+      color: 'success' as const,
+      trend: {
+        value: 8.3,
+        direction: 'up' as const,
+        period: 'vs last month',
+      },
+    },
+    {
+      id: 'orders',
+      value: 892,
+      label: 'Orders',
+      icon: <ShoppingCart size={24} />,
+      color: 'secondary' as const,
+      trend: {
+        value: 3.2,
+        direction: 'down' as const,
+        period: 'vs last week',
+      },
+    },
+    {
+      id: 'conversion',
+      value: '3.4%',
+      label: 'Conversion Rate',
+      icon: <Target size={24} />,
+      color: 'warning' as const,
+      trend: {
+        value: 0.5,
+        direction: 'up' as const,
+        period: 'vs last month',
+      },
+    },
+    {
+      id: 'views',
+      value: '12.5K',
+      label: 'Page Views',
+      icon: <Eye size={24} />,
+      color: 'info' as const,
+      trend: {
+        value: 15.7,
+        direction: 'up' as const,
+        period: 'vs last month',
+      },
+    },
+    {
+      id: 'satisfaction',
+      value: 4.8,
+      label: 'User Satisfaction',
+      icon: <Heart size={24} />,
+      color: 'error' as const,
+      trend: {
+        value: 0.2,
+        direction: 'down' as const,
+        period: 'vs last quarter',
+      },
+    },
+  ];
+
+  const dashboardMetrics = [
+    {
+      id: 'active-users',
+      value: '2.1K',
+      label: 'Active Users',
+      icon: <Users size={20} />,
+      color: 'primary' as const,
+      size: 'sm' as const,
+    },
+    {
+      id: 'page-views',
+      value: '45.2K',
+      label: 'Page Views',
+      icon: <Eye size={20} />,
+      color: 'info' as const,
+      size: 'sm' as const,
+    },
+    {
+      id: 'bounce-rate',
+      value: '32.1%',
+      label: 'Bounce Rate',
+      icon: <TrendingDown size={20} />,
+      color: 'warning' as const,
+      size: 'sm' as const,
+    },
+    {
+      id: 'session-duration',
+      value: '4m 32s',
+      label: 'Avg. Session',
+      icon: <Activity size={20} />,
+      color: 'success' as const,
+      size: 'sm' as const,
+    },
+  ];
+
+  const kpiMetrics = [
+    {
+      id: 'revenue-growth',
+      value: '+24.5%',
+      label: 'Revenue Growth',
+      icon: <TrendingUp size={32} />,
+      color: 'success' as const,
+      size: 'lg' as const,
+      trend: {
+        value: 24.5,
+        direction: 'up' as const,
+        period: 'YoY',
+      },
+    },
+    {
+      id: 'customer-acquisition',
+      value: '1,247',
+      label: 'New Customers',
+      icon: <Users size={32} />,
+      color: 'primary' as const,
+      size: 'lg' as const,
+      trend: {
+        value: 18.3,
+        direction: 'up' as const,
+        period: 'this quarter',
+      },
+    },
+    {
+      id: 'market-share',
+      value: '12.8%',
+      label: 'Market Share',
+      icon: <Globe size={32} />,
+      color: 'info' as const,
+      size: 'lg' as const,
+      trend: {
+        value: 2.1,
+        direction: 'up' as const,
+        period: 'vs competitors',
+      },
+    },
+  ];
 
   return (
-    <div style={{ padding: '24px', maxWidth: '1200px' }}>
-      <Typography variant="title1" weight="bold" style={{ marginBottom: '32px' }}>
+    <div style={{ padding: '2rem', minHeight: '100vh' }}>
+      <Typography variant="h1" weight="bold" style={{ marginBottom: '2rem' }}>
         Statistic / Metric Card
       </Typography>
 
-      <section style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
-          Dashboard Metrics
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px', color: '#6b7280' }}>
-          Display key performance indicators and statistics with trend data, icons, and interactive states.
-          Perfect for dashboards, analytics pages, and data visualization interfaces.
-        </Typography>
+      <Typography variant="body" style={{ marginBottom: '2rem' }}>
+        Dashboard components for displaying values, labels, and trends with comprehensive state management.
+      </Typography>
 
-        {/* Size Selector */}
-        <div style={{ marginBottom: '24px' }}>
-          <Typography variant="h3" weight="medium" style={{ marginBottom: '12px' }}>
-            Size Variants
+      {clickedStatistic && (
+        <Card style={{ marginBottom: '2rem', backgroundColor: '#e0f7fa', border: '1px solid #00bcd4' }}>
+          <CardContent>
+            <Typography variant="bodySmall" weight="medium" style={{ color: '#006064' }}>
+              Last clicked: {clickedStatistic}
+            </Typography>
+          </CardContent>
+        </Card>
+      )}
+
+      {/* Basic Examples */}
+      <Card style={{ marginBottom: '2rem' }}>
+        <CardHeader>
+          <Typography variant="h2" weight="semibold">
+            Basic Examples
           </Typography>
-          <div style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
-            {(['small', 'medium', 'large'] as const).map((size) => (
-              <button
-                key={size}
-                onClick={() => setSelectedSize(size)}
-                style={{
-                  padding: '8px 16px',
-                  border: `2px solid ${selectedSize === size ? '#7566A1' : '#e5e7eb'}`,
-                  borderRadius: '6px',
-                  backgroundColor: selectedSize === size ? '#7566A1' : 'white',
-                  color: selectedSize === size ? 'white' : '#374151',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  cursor: 'pointer',
-                  textTransform: 'capitalize',
-                }}
-              >
-                {size}
-              </button>
+        </CardHeader>
+        <CardContent>
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
+            gap: '1rem',
+            marginBottom: '2rem'
+          }}>
+            {sampleStatistics.map((stat) => (
+              <StatisticMetricCard
+                key={stat.id}
+                {...stat}
+                onClick={handleStatisticClick}
+              />
             ))}
           </div>
-        </div>
+        </CardContent>
+      </Card>
 
-        {/* Metrics Grid */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-          gap: '16px',
-          marginBottom: '32px'
-        }}>
-          {sampleMetrics.map((metric) => (
+      {/* Size Variants */}
+      <Card style={{ marginBottom: '2rem' }}>
+        <CardHeader>
+          <Typography variant="h2" weight="semibold">
+            Size Variants
+          </Typography>
+        </CardHeader>
+        <CardContent>
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+            gap: '1rem',
+            marginBottom: '1rem'
+          }}>
             <StatisticMetricCard
-              key={metric.id}
-              {...metric}
-              size={selectedSize}
-              onClick={handleMetricClick}
+              id="small-metric"
+              value="1.2K"
+              label="Small Metric"
+              icon={<Star size={16} />}
+              size="sm"
+              color="primary"
             />
-          ))}
-        </div>
-      </section>
-
-      <section style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
-          Different Color Variants
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px', color: '#6b7280' }}>
-          Various color schemes for different types of metrics and data categories.
-        </Typography>
-
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-          gap: '16px',
-          marginBottom: '32px'
-        }}>
-          {(['primary', 'secondary', 'success', 'warning', 'error', 'info'] as const).map((color) => (
             <StatisticMetricCard
-              key={color}
-              id={`color-${color}`}
-              value={color === 'primary' ? '1,234' : color === 'secondary' ? '$45K' : color === 'success' ? '98.5%' : color === 'warning' ? '156' : color === 'error' ? '2.3%' : '89'}
-              label={`${color.charAt(0).toUpperCase() + color.slice(1)} Metric`}
-              trend={{
-                value: Math.random() * 20 - 10,
-                direction: Math.random() > 0.5 ? 'up' : 'down',
-                period: 'vs last month'
-              }}
-              icon={color === 'primary' ? '📊' : color === 'secondary' ? '💰' : color === 'success' ? '✅' : color === 'warning' ? '⚠️' : color === 'error' ? '❌' : 'ℹ️'}
-              color={color}
-              size="medium"
+              id="medium-metric"
+              value="5.4K"
+              label="Medium Metric"
+              icon={<Star size={24} />}
+              size="md"
+              color="primary"
             />
-          ))}
-        </div>
-      </section>
+            <StatisticMetricCard
+              id="large-metric"
+              value="12.8K"
+              label="Large Metric"
+              icon={<Star size={32} />}
+              size="lg"
+              color="primary"
+            />
+          </div>
+        </CardContent>
+      </Card>
 
-      <section style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
-          Loading and Error States
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px', color: '#6b7280' }}>
-          Handle loading states and error conditions gracefully with appropriate visual feedback.
-        </Typography>
+      {/* Color Variants */}
+      <Card style={{ marginBottom: '2rem' }}>
+        <CardHeader>
+          <Typography variant="h2" weight="semibold">
+            Color Variants
+          </Typography>
+        </CardHeader>
+        <CardContent>
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+            gap: '1rem',
+            marginBottom: '1rem'
+          }}>
+            <StatisticMetricCard
+              id="primary-metric"
+              value="Primary"
+              label="Primary Color"
+              icon={<Zap size={20} />}
+              color="primary"
+            />
+            <StatisticMetricCard
+              id="secondary-metric"
+              value="Secondary"
+              label="Secondary Color"
+              icon={<Zap size={20} />}
+              color="secondary"
+            />
+            <StatisticMetricCard
+              id="success-metric"
+              value="Success"
+              label="Success Color"
+              icon={<Zap size={20} />}
+              color="success"
+            />
+            <StatisticMetricCard
+              id="warning-metric"
+              value="Warning"
+              label="Warning Color"
+              icon={<Zap size={20} />}
+              color="warning"
+            />
+            <StatisticMetricCard
+              id="error-metric"
+              value="Error"
+              label="Error Color"
+              icon={<Zap size={20} />}
+              color="error"
+            />
+            <StatisticMetricCard
+              id="info-metric"
+              value="Info"
+              label="Info Color"
+              icon={<Zap size={20} />}
+              color="info"
+            />
+          </div>
+        </CardContent>
+      </Card>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-          gap: '16px',
-          marginBottom: '32px'
-        }}>
-          <StatisticMetricCard
-            id="loading-example"
-            value="1,234"
-            label="Loading Metric"
-            icon="⏳"
-            color="primary"
-            loading
-          />
-          
-          <StatisticMetricCard
-            id="error-example"
-            value="1,234"
-            label="Error Metric"
-            icon="❌"
-            color="error"
-            error="Failed to load data"
-          />
-          
-          <StatisticMetricCard
-            id="no-trend-example"
-            value="98.5%"
-            label="Uptime"
-            icon="🟢"
-            color="success"
-          />
-        </div>
-      </section>
+      {/* Dashboard Layout */}
+      <Card style={{ marginBottom: '2rem' }}>
+        <CardHeader>
+          <Typography variant="h2" weight="semibold">
+            Dashboard Layout
+          </Typography>
+        </CardHeader>
+        <CardContent>
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', 
+            gap: '1rem',
+            marginBottom: '2rem'
+          }}>
+            {dashboardMetrics.map((metric) => (
+              <StatisticMetricCard
+                key={metric.id}
+                {...metric}
+                onClick={handleStatisticClick}
+              />
+            ))}
+          </div>
+        </CardContent>
+      </Card>
 
-      <section style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
-          Non-Interactive vs Interactive
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px', color: '#6b7280' }}>
-          Cards can be static display elements or interactive components with click handlers.
-        </Typography>
+      {/* KPI Layout */}
+      <Card style={{ marginBottom: '2rem' }}>
+        <CardHeader>
+          <Typography variant="h2" weight="semibold">
+            KPI Layout (Large)
+          </Typography>
+        </CardHeader>
+        <CardContent>
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+            gap: '1.5rem',
+            marginBottom: '1rem'
+          }}>
+            {kpiMetrics.map((metric) => (
+              <StatisticMetricCard
+                key={metric.id}
+                {...metric}
+                onClick={handleStatisticClick}
+              />
+            ))}
+          </div>
+        </CardContent>
+      </Card>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-          gap: '16px',
-          marginBottom: '32px'
-        }}>
-          <StatisticMetricCard
-            id="static-example"
-            value="1,234"
-            label="Static Metric"
-            trend={{
-              value: 12.5,
-              direction: 'up',
-              period: 'vs last month'
-            }}
-            icon="📊"
-            color="primary"
-          />
-          
-          <StatisticMetricCard
-            id="interactive-example"
-            value="2,456"
-            label="Clickable Metric"
-            trend={{
-              value: 8.2,
-              direction: 'up',
-              period: 'vs last month'
-            }}
-            icon="👆"
-            color="secondary"
-            onClick={handleMetricClick}
-          />
-        </div>
-      </section>
+      {/* States */}
+      <Card style={{ marginBottom: '2rem' }}>
+        <CardHeader>
+          <Typography variant="h2" weight="semibold">
+            States
+          </Typography>
+        </CardHeader>
+        <CardContent>
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
+            gap: '1rem',
+            marginBottom: '1rem'
+          }}>
+            <StatisticMetricCard
+              id="loading-metric"
+              value={0}
+              label="Loading State"
+              icon={<Activity size={24} />}
+              color="primary"
+              loading
+            />
+            <StatisticMetricCard
+              id="error-metric"
+              value={0}
+              label="Error State"
+              icon={<TrendingDown size={24} />}
+              color="error"
+              error="Failed to load data"
+            />
+            <StatisticMetricCard
+              id="static-metric"
+              value="Static"
+              label="Static (No Click)"
+              icon={<Target size={24} />}
+              color="info"
+            />
+          </div>
+        </CardContent>
+      </Card>
 
-      <section style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
-          Features
-        </Typography>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '16px' }}>
-          <div style={{ padding: '16px', backgroundColor: '#f8fafc', borderRadius: '8px' }}>
-            <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
-              📊 Trend Indicators
-            </Typography>
-            <Typography variant="body" style={{ color: '#6b7280' }}>
-              Display positive and negative trends with percentage changes and comparison periods.
-            </Typography>
+      {/* Interactive Controls */}
+      <Card>
+        <CardHeader>
+          <Typography variant="h2" weight="semibold">
+            Interactive Controls
+          </Typography>
+        </CardHeader>
+        <CardContent>
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+            <Button 
+              variant="outline" 
+              onClick={() => setClickedStatistic(null)}
+            >
+              Clear Selection
+            </Button>
+            <Button 
+              variant="primary" 
+              onClick={() => setClickedStatistic('Manual selection: Test Value')}
+            >
+              Set Test Value
+            </Button>
           </div>
           
-          <div style={{ padding: '16px', backgroundColor: '#f8fafc', borderRadius: '8px' }}>
-            <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
-              🎨 Color Variants
-            </Typography>
-            <Typography variant="body" style={{ color: '#6b7280' }}>
-              Six semantic color variants (primary, secondary, success, warning, error, info) for different metric types.
-            </Typography>
-          </div>
-          
-          <div style={{ padding: '16px', backgroundColor: '#f8fafc', borderRadius: '8px' }}>
-            <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
-              📏 Size Options
-            </Typography>
-            <Typography variant="body" style={{ color: '#6b7280' }}>
-              Three size variants (small, medium, large) with proportional scaling of text and spacing.
-            </Typography>
-          </div>
-          
-          <div style={{ padding: '16px', backgroundColor: '#f8fafc', borderRadius: '8px' }}>
-            <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
-              ⚡ Interactive States
-            </Typography>
-            <Typography variant="body" style={{ color: '#6b7280' }}>
-              Optional click handlers with hover effects, focus management, and keyboard navigation support.
-            </Typography>
-          </div>
-          
-          <div style={{ padding: '16px', backgroundColor: '#f8fafc', borderRadius: '8px' }}>
-            <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
-              🔄 Loading & Error States
-            </Typography>
-            <Typography variant="body" style={{ color: '#6b7280' }}>
-              Built-in loading skeletons and error message display for robust user experience.
-            </Typography>
-          </div>
-          
-          <div style={{ padding: '16px', backgroundColor: '#f8fafc', borderRadius: '8px' }}>
-            <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
-              ♿ Accessibility
-            </Typography>
-            <Typography variant="body" style={{ color: '#6b7280' }}>
-              WCAG 2.1 AA compliant with proper ARIA labels, keyboard navigation, and screen reader support.
-            </Typography>
-          </div>
-        </div>
-      </section>
+          <Typography variant="body2" style={{ color: '#6b7280' }}>
+            Click on any statistic card above to see it logged in the console and displayed above.
+            Cards with onClick handlers are keyboard accessible and support Enter/Space key activation.
+          </Typography>
+        </CardContent>
+      </Card>
     </div>
   );
 };
