@@ -23,6 +23,10 @@ each component must:
 
 You will analyze component dependency graphs, detect unlinked children, and refactor them to reuse the proper DS components.
 
+CRITICAL TYPOGRAPHY RULE
+- Always use the semantic text primitives from `src/components/TextTokens/CriaText.tsx` (e.g., `CriaTextHeadline1`, `CriaTextTitle1`, `CriaTextBody1`, etc.).
+- Do NOT use the low-level `Typography` primitive directly in product code or demos; it exists only to power `CriaText` wrappers.
+
 ---
 
 ## 📦 **REAL COMPONENT DIRECTORY**
@@ -35,7 +39,7 @@ Below are all CRIA DS components to use as the **valid source of truth** for reu
 `Scrollbar`, `SearchFilters`, `ShimmerSkeleton`, `Sidebar`, `Slider`, `Snackbar`, `StatisticMetricCard`, `Stepper`, `Switch`, `Table`, `Tabs`,  
 `TagChip`, `Text`, `TextTokens`, `Textarea`, `Timeline`, `Tooltip`, `Topbar`, `TrilhaCards`, `Typography`, `Version`, `VerticalTabs`
 
-All replacements or imports must come from these directories.
+All replacements or imports must come from these directories. For text, prefer `TextTokens/CriaText` exports over `Typography`.
 
 ---
 
