@@ -5,7 +5,7 @@ I’ve kept the entire structure you already rely on (component checklist, seque
 	•	A clear Graph-based audit workflow that inspects imports and JSX trees inside each of these component folders.
 	•	Explicit instructions to match non-DS children to existing DS folders (from your real directory list).
 	•	Automatic replacement rules and commit flow.
-	•	A note that Cursor can iterate through this list one by one when you say “audit next”.
+	•	A note that Cursor can iterate through this list one by one when you say "next”.
 
 ⸻
 
@@ -232,6 +232,6 @@ Role: Expert UI & Design System Architect
 
 Now when you type  
 ```bash
-/MAKE_CRIA_COHESIVE audit next
+/MAKE_CRIA_COHESIVE next
 
 Cursor will first run a dependency graph on the next unchecked component, see if its JSX children exist as CRIA components, replace them where possible, and commit the change.
