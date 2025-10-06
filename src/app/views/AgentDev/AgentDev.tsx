@@ -3,6 +3,8 @@ import { Drawer } from '../../../components/Drawer';
 import { Typography } from '../../../components/Typography';
 import { Button } from '../../../components/Button';
 import { Badge } from '../../../components/Badge';
+import { Switch } from '../../../components/Switch';
+import { Checkbox as DSCheckbox } from '../../../components/Checkbox';
 import { AgenteTab } from './tabs';
 import Tabs from '../../../components/Tabs';
 import { Textarea } from '../../../components/Textarea/Textarea';
@@ -73,6 +75,26 @@ const AgentDev: React.FC<AgentDevProps> = ({
     }
   });
 
+  // Detect current component from URL hash (e.g., #checkbox)
+  const getCurrentComponentId = useCallback((): string => {
+    if (typeof window === 'undefined') return '';
+    const hash = window.location.hash || '';
+    return hash.replace('#', '').trim();
+  }, []);
+
+  const getCurrentComponentLabel = useCallback((): string => {
+    const id = getCurrentComponentId();
+    if (!id) return 'Componente atual';
+    // Convert kebab/camel to Title Case for display
+    const words = id
+      .replace(/([a-z])([A-Z])/g, '$1 $2')
+      .replace(/[-_]/g, ' ')
+      .split(' ')
+      .filter(Boolean)
+      .map(w => w.charAt(0).toUpperCase() + w.slice(1));
+    return words.join(' ');
+  }, [getCurrentComponentId]);
+
   const handleTabChange = useCallback((tab: TabType) => {
     setActiveTab(tab);
     setTabState(prev => ({ ...prev, activeTab: tab }));
@@ -118,42 +140,12 @@ const AgentDev: React.FC<AgentDevProps> = ({
               Selecione o tipo de componente e descreva o que você gostaria de criar.
             </Typography>
             
-            {/* Component Type Selection */}
-            <div className="agent-dev__section">
-              <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
-                Tipo de Componente
-              </Typography>
-              <div className="agent-dev__type-selector">
-                {Object.entries(componentTypes).map(([category, types]) => (
-                  <div key={category} style={{ marginBottom: spacing[3] }}>
-                    <Button 
-                      variant={tabState.criar.selectedType === category ? 'primary' : 'outline'} 
-                      size="sm" 
-                      style={{ marginBottom: spacing[2] }}
-                      onClick={() => updateTabState('criar', { selectedType: category })}
-                    >
-                      {category}
-                    </Button>
-                    {tabState.criar.selectedType === category && (
-                      <div style={{ marginLeft: spacing[4], display: 'flex', flexWrap: 'wrap', gap: spacing[2] }}>
-                        {types.map((type) => (
-                          <Button
-                            key={type}
-                            variant="ghost"
-                            size="sm"
-                            onClick={() => updateTabState('criar', { selectedComponent: type })}
-                            style={{ 
-                              backgroundColor: tabState.criar.selectedComponent === type ? 'var(--agent-dev-hover)' : 'transparent',
-                              color: tabState.criar.selectedComponent === type ? 'var(--agent-dev-accent)' : 'var(--agent-dev-text)'
-                            }}
-                          >
-                            {type}
-                          </Button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
+            {/* Current Component Context */}
+            <div className="agent-dev__section" style={{ display: 'flex', alignItems: 'center', gap: spacing[3], marginBottom: spacing[6] }}>
+              <Badge variant="secondary">{getCurrentComponentLabel()}</Badge>
+              <div style={{ display: 'flex', alignItems: 'center', gap: spacing[2] }}>
+                <Typography variant="body">Criar variação</Typography>
+                <Switch checked={Boolean(tabState.criar.selectedComponent)} onChange={(checked) => updateTabState('criar', { selectedComponent: checked ? getCurrentComponentLabel() : null })} />
               </div>
             </div>
 
@@ -190,7 +182,7 @@ const AgentDev: React.FC<AgentDevProps> = ({
               <Button
                 variant="primary"
                 size="lg"
-                disabled={!tabState.criar.selectedType || !tabState.criar.selectedComponent || !tabState.criar.prompt.trim()}
+                disabled={!getCurrentComponentId() || !tabState.criar.prompt.trim()}
                 onClick={() => {
                   // TODO: Implement create functionality
                   console.log('Creating component:', tabState.criar);
@@ -213,44 +205,23 @@ const AgentDev: React.FC<AgentDevProps> = ({
               Selecione os componentes que precisam ser corrigidos e descreva os problemas.
             </Typography>
             
-            {/* Component Type Selection */}
+            {/* Component List For Current Tab */}
             <div className="agent-dev__section">
-              <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
-                Tipo de Componente
-              </Typography>
-              <div className="agent-dev__type-selector">
-                {Object.entries(componentTypes).map(([category, types]) => (
-                  <div key={category} style={{ marginBottom: spacing[3] }}>
-                    <Button 
-                      variant={tabState.consertar.selectedType === category ? 'primary' : 'outline'} 
-                      size="sm" 
-                      style={{ marginBottom: spacing[2] }}
-                      onClick={() => updateTabState('consertar', { selectedType: category })}
-                    >
-                      {category}
-                    </Button>
-                    {tabState.consertar.selectedType === category && (
-                      <div className="agent-dev__component-list">
-                        {types.map((type) => (
-                          <div key={type} className="agent-dev__component-item">
-                            <input 
-                              type="checkbox" 
-                              id={`consertar-${type}`}
-                              checked={tabState.consertar.selectedComponents.includes(type)}
-                              onChange={(e) => {
-                                const newSelected = e.target.checked
-                                  ? [...tabState.consertar.selectedComponents, type]
-                                  : tabState.consertar.selectedComponents.filter(c => c !== type);
-                                updateTabState('consertar', { selectedComponents: newSelected });
-                              }}
-                            />
-                            <label htmlFor={`consertar-${type}`}>{type}</label>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
+              <div className="agent-dev__component-list">
+                <div className="agent-dev__component-item" style={{ display: 'flex', alignItems: 'center', gap: spacing[3] }}>
+                  <DSCheckbox
+                    id={`consertar-${getCurrentComponentId() || 'atual'}`}
+                    checked={tabState.consertar.selectedComponents.includes(getCurrentComponentLabel())}
+                    label={getCurrentComponentLabel()}
+                    onChange={(checked: boolean) => {
+                      const type = getCurrentComponentLabel();
+                      const newSelected = checked
+                        ? [...tabState.consertar.selectedComponents, type]
+                        : tabState.consertar.selectedComponents.filter(c => c !== type);
+                      updateTabState('consertar', { selectedComponents: newSelected });
+                    }}
+                  />
+                </div>
               </div>
             </div>
 
@@ -329,28 +300,6 @@ const AgentDev: React.FC<AgentDevProps> = ({
   );
 };
 
-// Component type mapping matching the sidebar structure
-const componentTypes = {
-  'Foundations': ['Typography', 'Colors', 'Text', 'Grid'],
-  'Components': [
-    'Button', 'Input', 'Textarea', 'Avatar', 'Checkbox', 'Switch', 'Radio Group', 
-    'Dropdown', 'File Upload', 'Chat', 'Comments Section', 'Slider', 
-    'Shimmer Skeleton', 'Pricing Page', 'Page Loading Progress', 'Card Selector',
-    'Floating Sidebar', 'Search Filters', 'Filter Dropdown', 'Container', 
-    'Scrollbar', 'Footer', 'Mega Menu', 'Command Palette', 'Carousel', 
-    'Table', 'Empty State'
-  ],
-  'Content': ['Lesson - Cards', 'Course - Cards', 'Events - Cards', 'Trilha - Cards'],
-  'Layout': [
-    'Tabs', 'Accordion', 'Navigation', 'Breadcrumbs', 'Pagination', 
-    'Progress Bar', 'Stepper', 'Date Picker', 'Charts', 'Divider', 
-    'Row of Cards', 'Statistic / Metric Card', 'Backgrounds'
-  ],
-  'Feedback': [
-    'Snackbar', 'Modal', 'Tooltip', 'Badge', 'Tag / Chip', 
-    'Timeline / Activity Feed', 'Stepper / Wizard', 'Notification Center', 
-    'Topbar', 'Drawer'
-  ]
-};
+// Removed legacy componentTypes mapping in favor of URL-hash-based context
 
 export default AgentDev;
