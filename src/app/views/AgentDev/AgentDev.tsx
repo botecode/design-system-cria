@@ -109,16 +109,16 @@ const AgentDev: React.FC<AgentDevProps> = ({
       case 'criar':
         return (
           <div className="agent-dev__tab-content">
-            <Typography variant="h3" weight="semibold" style={{ marginBottom: spacing[4] }}>
+            <Typography variant="h3" weight="semiBold" style={{ marginBottom: spacing[4] }}>
               Criar Componente
             </Typography>
-            <Typography variant="body" color="muted" style={{ marginBottom: spacing[6] }}>
+            <Typography variant="body" color="disabled" style={{ marginBottom: spacing[6] }}>
               Selecione o tipo de componente e descreva o que você gostaria de criar.
             </Typography>
             
             {/* Component Type Selection */}
             <div className="agent-dev__section">
-              <Typography variant="h4" weight="medium" style={{ marginBottom: spacing[3] }}>
+              <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
                 Tipo de Componente
               </Typography>
               <div className="agent-dev__type-selector">
@@ -157,7 +157,7 @@ const AgentDev: React.FC<AgentDevProps> = ({
 
             {/* Prompt Input */}
             <div className="agent-dev__section">
-              <Typography variant="h4" weight="medium" style={{ marginBottom: spacing[3] }}>
+              <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
                 Descrição do Componente
               </Typography>
               <textarea
@@ -171,7 +171,7 @@ const AgentDev: React.FC<AgentDevProps> = ({
 
             {/* Image Upload */}
             <div className="agent-dev__section">
-              <Typography variant="h4" weight="medium" style={{ marginBottom: spacing[3] }}>
+              <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
                 Imagens de Referência (Opcional)
               </Typography>
               <div className="agent-dev__image-upload">
@@ -210,16 +210,16 @@ const AgentDev: React.FC<AgentDevProps> = ({
       case 'consertar':
         return (
           <div className="agent-dev__tab-content">
-            <Typography variant="h3" weight="semibold" style={{ marginBottom: spacing[4] }}>
+            <Typography variant="h3" weight="semiBold" style={{ marginBottom: spacing[4] }}>
               Consertar Componentes
             </Typography>
-            <Typography variant="body" color="muted" style={{ marginBottom: spacing[6] }}>
+            <Typography variant="body" color="disabled" style={{ marginBottom: spacing[6] }}>
               Selecione os componentes que precisam ser corrigidos e descreva os problemas.
             </Typography>
             
             {/* Component Type Selection */}
             <div className="agent-dev__section">
-              <Typography variant="h4" weight="medium" style={{ marginBottom: spacing[3] }}>
+              <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
                 Tipo de Componente
               </Typography>
               <div className="agent-dev__type-selector">
@@ -260,7 +260,7 @@ const AgentDev: React.FC<AgentDevProps> = ({
 
             {/* Fix Description */}
             <div className="agent-dev__section">
-              <Typography variant="h4" weight="medium" style={{ marginBottom: spacing[3] }}>
+              <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
                 Descrição do Problema
               </Typography>
               <textarea
@@ -304,6 +304,7 @@ const AgentDev: React.FC<AgentDevProps> = ({
       onClose={onClose}
       position={position}
       size={size}
+      variant="default"
       className={`agent-dev ${className}`}
       style={style}
       {...props}
@@ -319,7 +320,7 @@ const AgentDev: React.FC<AgentDevProps> = ({
               <Typography variant="h2" weight="bold">
                 Agent Dev
               </Typography>
-              <Typography variant="body" color="muted" size="sm">
+              <Typography variant="body" color="disabled" size="sm">
                 Desenvolvimento assistido por IA
               </Typography>
             </div>

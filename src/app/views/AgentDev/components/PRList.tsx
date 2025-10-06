@@ -2,9 +2,8 @@ import React from 'react';
 import { Typography } from '../../../../components/Typography';
 import { Badge } from '../../../../components/Badge';
 import { Button } from '../../../../components/Button';
-import { GitHubPR } from '../../hooks/useGitHubPRs';
+import { GitHubPR } from '../hooks/useGitHubPRs';
 import { GitBranch, Calendar, User, ArrowSquareOut, CheckCircle, XCircle, Clock } from 'phosphor-react';
-import { spacing } from '../../../../tokens';
 import './PRList.css';
 
 export interface PRListProps {
@@ -42,7 +41,7 @@ export const PRList: React.FC<PRListProps> = ({
       case 'merged':
         return <Badge variant="success" size="sm">Merged</Badge>;
       case 'closed':
-        return <Badge variant="danger" size="sm">Closed</Badge>;
+        return <Badge variant="error" size="sm">Closed</Badge>;
       case 'open':
         return <Badge variant="info" size="sm">Open</Badge>;
       default:
@@ -83,7 +82,7 @@ export const PRList: React.FC<PRListProps> = ({
     return (
       <div className={`pr-list ${className}`}>
         <div className="pr-list__header">
-          <Typography variant="h4" weight="medium">
+          <Typography variant="h3" weight="medium">
             {title}
           </Typography>
           {onRefresh && (
@@ -98,7 +97,7 @@ export const PRList: React.FC<PRListProps> = ({
             <div className="pr-list__loading-spinner">
               <Clock size={24} className="pr-list__spinner-icon" />
             </div>
-            <Typography variant="body" color="muted">
+            <Typography variant="body" color="disabled">
               Carregando PRs...
             </Typography>
           </div>
@@ -111,7 +110,7 @@ export const PRList: React.FC<PRListProps> = ({
     return (
       <div className={`pr-list ${className}`}>
         <div className="pr-list__header">
-          <Typography variant="h4" weight="medium">
+          <Typography variant="h3" weight="medium">
             {title}
           </Typography>
           {onRefresh && (
@@ -122,7 +121,7 @@ export const PRList: React.FC<PRListProps> = ({
           )}
         </div>
         <div className="pr-list__empty">
-          <Typography variant="body" color="muted">
+          <Typography variant="body" color="disabled">
             {emptyMessage}
           </Typography>
         </div>
@@ -133,7 +132,7 @@ export const PRList: React.FC<PRListProps> = ({
   return (
     <div className={`pr-list ${className}`}>
       <div className="pr-list__header">
-        <Typography variant="h4" weight="medium">
+        <Typography variant="h3" weight="medium">
           {title} ({prs.length})
         </Typography>
         {onRefresh && (
@@ -150,7 +149,7 @@ export const PRList: React.FC<PRListProps> = ({
             <div className="pr-list__item-header">
               <div className="pr-list__item-title">
                 {getStatusIcon(pr.state)}
-                <Typography variant="h5" weight="medium" className="pr-list__item-title-text">
+                <Typography variant="title3" weight="medium" className="pr-list__item-title-text">
                   {pr.title}
                 </Typography>
               </div>
@@ -169,7 +168,7 @@ export const PRList: React.FC<PRListProps> = ({
             
             {pr.body && (
               <div className="pr-list__item-body">
-                <Typography variant="body" color="muted">
+                <Typography variant="body" color="disabled">
                   {pr.body.length > 200 ? `${pr.body.substring(0, 200)}...` : pr.body}
                 </Typography>
               </div>
@@ -182,26 +181,26 @@ export const PRList: React.FC<PRListProps> = ({
             <div className="pr-list__item-meta">
               <div className="pr-list__item-meta-item">
                 <User size={14} />
-                <Typography variant="caption" color="muted">
+                <Typography variant="caption" color="disabled">
                   {pr.user.login}
                 </Typography>
               </div>
               <div className="pr-list__item-meta-item">
                 <GitBranch size={14} />
-                <Typography variant="caption" color="muted">
+                <Typography variant="caption" color="disabled">
                   {pr.head.ref} → {pr.base.ref}
                 </Typography>
               </div>
               <div className="pr-list__item-meta-item">
                 <Calendar size={14} />
-                <Typography variant="caption" color="muted">
+                <Typography variant="caption" color="disabled">
                   {formatDate(pr.created_at)}
                 </Typography>
               </div>
               {pr.merged_at && (
                 <div className="pr-list__item-meta-item">
                   <CheckCircle size={14} />
-                  <Typography variant="caption" color="muted">
+                  <Typography variant="caption" color="disabled">
                     Merged: {formatDate(pr.merged_at)}
                   </Typography>
                 </div>
@@ -209,7 +208,7 @@ export const PRList: React.FC<PRListProps> = ({
               {pr.closed_at && !pr.merged_at && (
                 <div className="pr-list__item-meta-item">
                   <XCircle size={14} />
-                  <Typography variant="caption" color="muted">
+                  <Typography variant="caption" color="disabled">
                     Closed: {formatDate(pr.closed_at)}
                   </Typography>
                 </div>

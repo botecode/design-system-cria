@@ -4,7 +4,7 @@ import { Button } from '../../../../components/Button';
 import { Badge } from '../../../../components/Badge';
 import { PRList } from '../components/PRList';
 import { useGitHubPRs } from '../hooks/useGitHubPRs';
-import { Refresh, GithubLogo, WarningCircle, CheckCircle, XCircle } from 'phosphor-react';
+import { ArrowsClockwise, GithubLogo, WarningCircle, CheckCircle, XCircle } from 'phosphor-react';
 import { spacing } from '../../../../tokens';
 import './AgenteTab.css';
 
@@ -84,10 +84,10 @@ export const AgenteTab: React.FC<AgenteTabProps> = ({ className = '' }) => {
     <div className={`agente-tab ${className}`}>
       <div className="agente-tab__header">
         <div className="agente-tab__header-content">
-          <Typography variant="h3" weight="semibold" style={{ marginBottom: spacing[2] }}>
+          <Typography variant="h3" weight="semiBold" style={{ marginBottom: spacing[2] }}>
             Status do Agente
           </Typography>
-          <Typography variant="body" color="muted" style={{ marginBottom: spacing[4] }}>
+          <Typography variant="body" color="disabled" style={{ marginBottom: spacing[4] }}>
             Acompanhe o status das suas solicitações de criação e correção.
           </Typography>
           
@@ -103,7 +103,7 @@ export const AgenteTab: React.FC<AgenteTabProps> = ({ className = '' }) => {
               </Badge>
             </div>
             <div className="agente-tab__stat">
-              <Badge variant="danger" size="md">
+              <Badge variant="error" size="md">
                 {closedPRs.length} Recusado
               </Badge>
             </div>
@@ -118,7 +118,7 @@ export const AgenteTab: React.FC<AgenteTabProps> = ({ className = '' }) => {
             disabled={loading}
             title="Atualizar PRs"
           >
-            <Refresh size={16} className={loading ? 'agente-tab__refresh-icon--spinning' : ''} />
+            <ArrowsClockwise size={16} className={loading ? 'agente-tab__refresh-icon--spinning' : ''} />
             Atualizar
           </Button>
           <Button
@@ -134,13 +134,13 @@ export const AgenteTab: React.FC<AgenteTabProps> = ({ className = '' }) => {
       </div>
 
       {error && (
-        <div className="agente-tab__error">
+          <div className="agente-tab__error">
           <WarningCircle size={20} />
           <div>
-            <Typography variant="h5" weight="medium">
+            <Typography variant="title3" weight="medium">
               Erro ao carregar PRs
             </Typography>
-            <Typography variant="body" color="muted">
+            <Typography variant="body" color="disabled">
               {error}
             </Typography>
           </div>
@@ -187,7 +187,7 @@ export const AgenteTab: React.FC<AgenteTabProps> = ({ className = '' }) => {
 
       {lastUpdated && (
         <div className="agente-tab__footer">
-          <Typography variant="caption" color="muted">
+          <Typography variant="caption" color="disabled">
             Última atualização: {formatLastUpdated()}
           </Typography>
         </div>
