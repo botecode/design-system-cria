@@ -325,7 +325,7 @@ const AgentDev: React.FC<AgentDevProps> = ({
           {tabs.map((tab) => (
             <Button
               key={tab.id}
-              variant={activeTab === tab.id ? 'primary' : 'ghost'}
+              variant={activeTab === tab.id ? 'primary' : 'outline'}
               size="sm"
               onClick={() => handleTabChange(tab.id)}
               title={tab.description}
