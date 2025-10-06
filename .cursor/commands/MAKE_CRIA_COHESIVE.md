@@ -68,7 +68,7 @@ Step 2: Match & Replace
 
 For each ⚠️ child:
 	1.	Check if a relative DS component exists (match by name or semantics).
-	•	<div class="card"> → <Card>
+	•	<div class="card"> → <CriaCard>
 	•	<p> / <span> → <Text>
 	•	<img> → <Avatar>
 	•	<ul> → <List> (if exists, else document missing primitive)

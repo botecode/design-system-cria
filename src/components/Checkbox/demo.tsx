@@ -3,7 +3,7 @@ import { Typography } from '../Typography';
 import { Button } from '../Button';
 import { Card, CardHeader, CardContent } from '../Card';
 import { Checkbox } from './Checkbox';
-import { colors } from '../../tokens';
+import { colors, spacing } from '../../tokens';
 // import { Check, WarningCircle, Info } from 'phosphor-react';
 
 export const CheckboxDemo: React.FC = () => {
@@ -50,22 +50,22 @@ export const CheckboxDemo: React.FC = () => {
   const isSomeSelected = Object.values(formData).some(Boolean);
 
   return (
-    <div style={{ padding: '24px', maxWidth: '1200px', margin: '0 auto' }}>
-      <Typography variant="title1" style={{ marginBottom: '32px' }}>
+    <div style={{ padding: spacing[6], maxWidth: '1200px', margin: '0 auto' }}>
+      <Typography variant="title1" style={{ marginBottom: spacing[8] }}>
         CHECKBOX DEMO
       </Typography>
 
       {/* Basic Checkboxes */}
-      <Card variant="elevated" style={{ marginBottom: '32px' }}>
+      <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
           <Typography variant="h3">Basic Checkboxes</Typography>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" style={{ marginBottom: '24px', color: colors.gray[700] }}>
+          <Typography variant="body" style={{ marginBottom: spacing[6], color: colors.gray[700] }}>
             Simple checkboxes for basic selection functionality. They provide clear visual feedback and support all standard states.
           </Typography>
           
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Checkbox
               label="Basic checkbox"
               checked={basicChecked}
@@ -101,16 +101,16 @@ export const CheckboxDemo: React.FC = () => {
       </Card>
 
       {/* Checkbox Sizes */}
-      <Card variant="elevated" style={{ marginBottom: '32px' }}>
+      <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
           <Typography variant="h3">Checkbox Sizes</Typography>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" style={{ marginBottom: '24px', color: colors.gray[700] }}>
+          <Typography variant="body" style={{ marginBottom: spacing[6], color: colors.gray[700] }}>
             Different sizes for different contexts and design requirements.
           </Typography>
           
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Checkbox
               size="sm"
               label="Small checkbox"
@@ -133,16 +133,16 @@ export const CheckboxDemo: React.FC = () => {
       </Card>
 
       {/* Checkbox Variants */}
-      <Card variant="elevated" style={{ marginBottom: '32px' }}>
+      <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
           <Typography variant="h3">Checkbox Variants</Typography>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" style={{ marginBottom: '24px', color: colors.gray[700] }}>
+          <Typography variant="body" style={{ marginBottom: spacing[6], color: colors.gray[700] }}>
             Different visual styles to match your design system.
           </Typography>
           
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Checkbox
               variant="default"
               label="Default variant"
@@ -165,16 +165,16 @@ export const CheckboxDemo: React.FC = () => {
       </Card>
 
       {/* Checkbox Colors */}
-      <Card variant="elevated" style={{ marginBottom: '32px' }}>
+      <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
           <Typography variant="h3">Checkbox Colors</Typography>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" style={{ marginBottom: '24px', color: colors.gray[700] }}>
+          <Typography variant="body" style={{ marginBottom: spacing[6], color: colors.gray[700] }}>
             Different color themes for different types of actions and states.
           </Typography>
           
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Checkbox
               color="primary"
               label="Primary color"
@@ -209,16 +209,16 @@ export const CheckboxDemo: React.FC = () => {
       </Card>
 
       {/* Indeterminate State */}
-      <Card variant="elevated" style={{ marginBottom: '32px' }}>
+      <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
           <Typography variant="h3">Indeterminate State</Typography>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" style={{ marginBottom: '24px', color: colors.gray[700] }}>
+          <Typography variant="body" style={{ marginBottom: spacing[6], color: colors.gray[700] }}>
             Indeterminate state is useful for "select all" functionality or when some items in a group are selected.
           </Typography>
           
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Checkbox
               label="Select all items"
               checked={isAllSelected}
@@ -226,7 +226,7 @@ export const CheckboxDemo: React.FC = () => {
               onChange={handleSelectAll}
             />
             
-            <div style={{ marginLeft: '24px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div style={{ marginLeft: spacing[6], display: 'flex', flexDirection: 'column', gap: spacing[3] }}>
               <Checkbox
                 label="Terms and conditions"
                 checked={formData.terms}
@@ -253,16 +253,16 @@ export const CheckboxDemo: React.FC = () => {
       </Card>
 
       {/* Validation States */}
-      <Card variant="elevated" style={{ marginBottom: '32px' }}>
+      <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
           <Typography variant="h3">Validation States</Typography>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" style={{ marginBottom: '24px', color: colors.gray[700] }}>
+          <Typography variant="body" style={{ marginBottom: spacing[6], color: colors.gray[700] }}>
             Checkboxes can display validation states with appropriate messaging.
           </Typography>
           
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Checkbox
               label="Required field"
               required
@@ -289,22 +289,22 @@ export const CheckboxDemo: React.FC = () => {
       </Card>
 
       {/* Form Example */}
-      <Card variant="elevated" style={{ marginBottom: '32px' }}>
+      <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
           <Typography variant="h3">Form Example</Typography>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" style={{ marginBottom: '24px', color: colors.gray[700] }}>
+          <Typography variant="body" style={{ marginBottom: spacing[6], color: colors.gray[700] }}>
             A complete form example showing checkboxes in a real-world scenario.
           </Typography>
           
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[5] }}>
             <div>
               <Typography variant="h3" style={{ marginBottom: '16px' }}>
                 Account Settings
               </Typography>
               
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[3] }}>
                 <Checkbox
                   label="Email notifications"
                   checked={formData.newsletter}
@@ -328,12 +328,12 @@ export const CheckboxDemo: React.FC = () => {
               </div>
             </div>
             
-            <div style={{ borderTop: `1px solid ${colors.border.light}`, paddingTop: '20px' }}>
+            <div style={{ borderTop: `1px solid ${colors.border.light}`, paddingTop: spacing[5] }}>
               <Typography variant="h3" style={{ marginBottom: '16px' }}>
                 Legal Agreements
               </Typography>
               
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[3] }}>
                 <Checkbox
                   label="I agree to the Terms of Service"
                   required
@@ -351,7 +351,7 @@ export const CheckboxDemo: React.FC = () => {
               </div>
             </div>
             
-            <div style={{ display: 'flex', gap: '12px', marginTop: '24px' }}>
+            <div style={{ display: 'flex', gap: spacing[3], marginTop: spacing[6] }}>
               <Button 
                 variant="primary" 
                 disabled={!formData.terms}
