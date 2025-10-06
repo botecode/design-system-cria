@@ -178,7 +178,7 @@ const AgentDev: React.FC<AgentDevProps> = ({
             </div>
 
             {/* Create Button */}
-            <div className="agent-dev__actions">
+            <div className="agent-dev__actions" style={{ marginTop: spacing[4] }}>
               <Button
                 variant="primary"
                 size="lg"
@@ -266,7 +266,7 @@ const AgentDev: React.FC<AgentDevProps> = ({
             </div>
 
             {/* Fix Button */}
-            <div className="agent-dev__actions">
+            <div className="agent-dev__actions" style={{ marginTop: spacing[4] }}>
               <Button
                 variant="primary"
                 size="lg"
