@@ -4,6 +4,7 @@ import { Button } from '../Button';
 import { Card, CardHeader, CardContent } from '../Card';
 import Input from './Input';
 import { User, Envelope, Lock, Phone, MagnifyingGlass, Calendar, MapPin, CreditCard, WarningCircle } from 'phosphor-react';
+import { spacing } from '../../tokens';
 
 export const InputDemo: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -32,20 +33,20 @@ export const InputDemo: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '24px', maxWidth: '1000px' }}>
-      <Typography variant="title1" weight="bold" style={{ marginBottom: '32px' }}>
+    <div style={{ padding: spacing[6], maxWidth: '1000px' }}>
+      <Typography variant="title1" weight="bold" style={{ marginBottom: spacing[8] }}>
         Input Demo
       </Typography>
 
       {/* Basic Inputs */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[4] }}>
           Basic Inputs
         </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
           Simple text inputs with labels and placeholders.
         </Typography>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[6] }}>
           <Input
             label="Full Name"
             placeholder="Enter your full name"
@@ -76,14 +77,14 @@ export const InputDemo: React.FC = () => {
       </section>
 
       {/* Input Sizes */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[4] }}>
           Input Sizes
         </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
           Different sizes for different contexts and use cases.
         </Typography>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', maxWidth: '400px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4], maxWidth: '400px' }}>
           <Input
             label="Small Input"
             placeholder="Small size input"
@@ -103,14 +104,14 @@ export const InputDemo: React.FC = () => {
       </section>
 
       {/* Input Variants */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[4] }}>
           Input Variants
         </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
           Different visual styles for different design contexts.
         </Typography>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[6] }}>
           <Input
             label="Default Variant"
             placeholder="Default style input"
@@ -135,14 +136,14 @@ export const InputDemo: React.FC = () => {
       </section>
 
       {/* Input States */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[4] }}>
           Input States
         </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
           Different states for validation and user feedback.
         </Typography>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[6] }}>
           <Input
             label="Default State"
             placeholder="Normal input"
@@ -170,14 +171,14 @@ export const InputDemo: React.FC = () => {
       </section>
 
       {/* Inputs with Icons */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[4] }}>
           Inputs with Icons
         </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
           Icons can be added to provide visual context and improve usability.
         </Typography>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[6] }}>
           <Input
             label="Username"
             placeholder="Enter your username"
@@ -206,14 +207,14 @@ export const InputDemo: React.FC = () => {
       </section>
 
       {/* Special Input Types */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[4] }}>
           Special Input Types
         </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
           Different input types for specific data formats.
         </Typography>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[6] }}>
           <Input
             label="Password"
             type="password"
@@ -243,14 +244,14 @@ export const InputDemo: React.FC = () => {
       </section>
 
       {/* Input Features */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[4] }}>
           Input Features
         </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
           Advanced features like character count, clear button, and validation.
         </Typography>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[6] }}>
           <Input
             label="With Clear Button"
             placeholder="Type something..."
@@ -283,14 +284,14 @@ export const InputDemo: React.FC = () => {
       </section>
 
       {/* Disabled Inputs */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[4] }}>
           Disabled Inputs
         </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
           Disabled inputs for inactive or unavailable fields.
         </Typography>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[6] }}>
           <Input
             label="Disabled Input"
             placeholder="This input is disabled"
@@ -308,11 +309,11 @@ export const InputDemo: React.FC = () => {
       </section>
 
       {/* Form Example */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[4] }}>
           Form Example
         </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
           A complete form example showing how inputs work together.
         </Typography>
         <Card variant="elevated">
@@ -320,8 +321,8 @@ export const InputDemo: React.FC = () => {
             <Typography variant="h3" weight="medium">User Registration</Typography>
           </CardHeader>
           <CardContent>
-            <form style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '20px' }}>
+            <form style={{ display: 'flex', flexDirection: 'column', gap: spacing[5] }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: spacing[5] }}>
                 <Input
                   label="Full Name"
                   placeholder="Enter your full name"
@@ -375,7 +376,7 @@ export const InputDemo: React.FC = () => {
                   onChange={handleInputChange('card')}
                 />
               </div>
-              <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
+              <div style={{ display: 'flex', gap: spacing[3], justifyContent: 'flex-end' }}>
                 <Button variant="outline" type="button">
                   Cancel
                 </Button>
@@ -389,14 +390,14 @@ export const InputDemo: React.FC = () => {
       </section>
 
       {/* Accessibility */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[4] }}>
           Accessibility Features
         </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
+        <Typography variant="body" style={{ marginBottom: spacing[4] }}>
           The Input component includes comprehensive accessibility features:
         </Typography>
-        <ul style={{ marginLeft: '24px', marginBottom: '16px' }}>
+        <ul style={{ marginLeft: spacing[6], marginBottom: spacing[4] }}>
           <li>
             <Typography variant="body">
               <strong>Labels:</strong> Proper label association with inputs
@@ -423,7 +424,7 @@ export const InputDemo: React.FC = () => {
             </Typography>
           </li>
         </ul>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[6] }}>
           <Input
             label="Accessible Input"
             placeholder="This input is fully accessible"
