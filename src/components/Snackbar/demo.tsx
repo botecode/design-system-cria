@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextBody1 } from '../TextTokens/CriaText';
+import { spacing } from '../../tokens';
 import { Button } from '../Button';
 import { Card, CardHeader, CardContent } from '../Card';
 import { Snackbar } from './Snackbar';
@@ -34,22 +35,20 @@ export const SnackbarDemo: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '24px', maxWidth: '1200px', margin: '0 auto' }}>
-      <Typography variant="title1" weight="bold" style={{ marginBottom: '32px' }}>
-        Snackbar Demo
-      </Typography>
+    <div style={{ padding: spacing[6], maxWidth: '1200px', margin: '0 auto' }}>
+      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>Snackbar Demo</CriaTextHeadline1>
 
-      <Typography variant="body" style={{ marginBottom: '32px' }}>
+      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
         Snackbars provide brief messages about app processes at the bottom of the screen. 
         They can be dismissed manually or auto-dismiss after a timeout.
-      </Typography>
+      </CriaTextBody1>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px', marginBottom: '32px' }}>
         <Card variant="elevated">
           <CardHeader>
-            <Typography variant="h3" weight="medium">
+          <CriaTextBody1 style={{ fontWeight: 600 }}>
               Basic Variants
-            </Typography>
+          </CriaTextBody1>
           </CardHeader>
           <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -87,7 +86,7 @@ export const SnackbarDemo: React.FC = () => {
               </Button>
               
               <Button 
-                variant="warning" 
+                variant="outline" 
                 onClick={() => showSnackbar({
                   message: 'Please check your input before proceeding.',
                   variant: 'warning',
@@ -113,9 +112,9 @@ export const SnackbarDemo: React.FC = () => {
 
         <Card variant="elevated">
           <CardHeader>
-            <Typography variant="h3" weight="medium">
+            <CriaTextBody1 style={{ fontWeight: 600 }}>
               With Actions
-            </Typography>
+            </CriaTextBody1>
           </CardHeader>
           <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -154,9 +153,9 @@ export const SnackbarDemo: React.FC = () => {
 
         <Card variant="elevated">
           <CardHeader>
-            <Typography variant="h3" weight="medium">
+            <CriaTextBody1 style={{ fontWeight: 600 }}>
               With Titles
-            </Typography>
+            </CriaTextBody1>
           </CardHeader>
           <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -189,9 +188,9 @@ export const SnackbarDemo: React.FC = () => {
 
         <Card variant="elevated">
           <CardHeader>
-            <Typography variant="h3" weight="medium">
+            <CriaTextBody1 style={{ fontWeight: 600 }}>
               Positioning
-            </Typography>
+            </CriaTextBody1>
           </CardHeader>
           <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -244,9 +243,9 @@ export const SnackbarDemo: React.FC = () => {
 
         <Card variant="elevated">
           <CardHeader>
-            <Typography variant="h3" weight="medium">
+            <CriaTextBody1 style={{ fontWeight: 600 }}>
               Auto-dismiss Options
-            </Typography>
+            </CriaTextBody1>
           </CardHeader>
           <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -291,9 +290,9 @@ export const SnackbarDemo: React.FC = () => {
 
         <Card variant="elevated">
           <CardHeader>
-            <Typography variant="h3" weight="medium">
+            <CriaTextBody1 style={{ fontWeight: 600 }}>
               Dismissible Options
-            </Typography>
+            </CriaTextBody1>
           </CardHeader>
           <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
