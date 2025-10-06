@@ -5,8 +5,7 @@ import { Button } from '../../../components/Button';
 import { Badge } from '../../../components/Badge';
 import { AgenteTab } from './tabs';
 import { Robot, X, Plus, Wrench, Code } from 'phosphor-react';
-import { spacing } from '../../../tokens';
-import './AgentDev.css';
+import { spacing, colors, radii } from '../../../tokens';
 
 export interface AgentDevProps {
   isOpen: boolean;
@@ -309,49 +308,42 @@ const AgentDev: React.FC<AgentDevProps> = ({
       style={style}
       {...props}
     >
-      <div className="agent-dev__container">
+      <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
         {/* Header */}
-        <div className="agent-dev__header">
-          <div className="agent-dev__header-content">
-            <div className="agent-dev__header-icon">
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: spacing[6], borderBottom: '1px solid #E5E7EB', background: '#F8F9FA' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: spacing[3] }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 48, height: 48, background: '#7566A1', borderRadius: 8, color: '#FFFFFF' }}>
               <Robot size={24} />
             </div>
-            <div className="agent-dev__header-text">
-              <Typography variant="h2" weight="bold">
-                Agent Dev
-              </Typography>
-              <Typography variant="body" color="disabled" size="sm">
-                Desenvolvimento assistido por IA
-              </Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[1] }}>
+              <Typography variant="h2" weight="bold">Agent Dev</Typography>
+              <Typography variant="caption" color="disabled">Desenvolvimento assistido por IA</Typography>
             </div>
           </div>
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={onClose}
-            className="agent-dev__close-button"
-          >
+          <Button variant="ghost" size="sm" onClick={onClose} aria-label="Close Agent Dev">
             <X size={20} />
           </Button>
         </div>
 
         {/* Tab Navigation */}
-        <div className="agent-dev__tabs">
+        <div style={{ display: 'flex', background: '#F8F9FA', borderBottom: '1px solid #E5E7EB', padding: `0 ${spacing[6]}` }}>
           {tabs.map((tab) => (
-            <button
+            <Button
               key={tab.id}
-              className={`agent-dev__tab ${activeTab === tab.id ? 'agent-dev__tab--active' : ''}`}
+              variant={activeTab === tab.id ? 'primary' : 'ghost'}
+              size="sm"
               onClick={() => handleTabChange(tab.id)}
               title={tab.description}
+              style={{ borderBottom: activeTab === tab.id ? '2px solid #7566A1' : '2px solid transparent', borderRadius: 0, padding: `${spacing[4]} ${spacing[6]}` }}
             >
               {tab.icon}
-              <span>{tab.label}</span>
-            </button>
+              <span style={{ marginLeft: spacing[2] }}>{tab.label}</span>
+            </Button>
           ))}
         </div>
 
         {/* Tab Content */}
-        <div className="agent-dev__content">
+        <div style={{ flex: 1, overflowY: 'auto', padding: spacing[6] }}>
           {renderTabContent()}
         </div>
       </div>
