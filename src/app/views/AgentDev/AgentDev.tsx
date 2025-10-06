@@ -256,8 +256,8 @@ const AgentDev: React.FC<AgentDevProps> = ({
               <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
                 Descrição do Problema
               </Typography>
-              <textarea
-                className="agent-dev__textarea"
+              <Textarea
+                label={undefined}
                 placeholder="Descreva os problemas que precisam ser corrigidos..."
                 value={tabState.consertar.description}
                 onChange={(e) => updateTabState('consertar', { description: e.target.value })}
