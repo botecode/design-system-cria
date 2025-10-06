@@ -312,8 +312,7 @@ const AgentDev: React.FC<AgentDevProps> = ({
               <Robot size={24} />
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[1] }}>
-              <Typography variant="h2" weight="bold">Agent Dev</Typography>
-              <Typography variant="caption" color="disabled">Desenvolvimento assistido por IA</Typography>
+              <Typography variant="h2" weight="bold">Fefo Bot</Typography>
             </div>
           </div>
           <Button variant="ghost" size="sm" onClick={onClose} aria-label="Close Agent Dev">
