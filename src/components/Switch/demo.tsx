@@ -4,6 +4,7 @@ import { Button } from '../Button';
 import { Card, CardHeader, CardContent } from '../Card';
 import { Switch } from './Switch';
 // import { Bell, Shield, Moon, Lock, Eye } from 'phosphor-react';
+import { spacing } from '../../tokens';
 
 export const SwitchDemo: React.FC = () => {
   const [basicSwitch, setBasicSwitch] = useState(false);
@@ -41,22 +42,22 @@ export const SwitchDemo: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '24px', maxWidth: '1200px', margin: '0 auto' }}>
-      <Typography variant="title1" style={{ marginBottom: '32px' }}>
+    <div style={{ padding: spacing[6], maxWidth: '1200px', margin: '0 auto' }}>
+      <Typography variant="title1" style={{ marginBottom: spacing[8] }}>
         SWITCH DEMO
       </Typography>
 
       {/* Basic Switches */}
-      <Card variant="elevated" style={{ marginBottom: '32px' }}>
+      <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
           <Typography variant="h3">Basic Switches</Typography>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" color="secondary" style={{ marginBottom: '24px' }}>
+          <Typography variant="body" color="secondary" style={{ marginBottom: spacing[6] }}>
             Simple toggle switches for binary choices. They provide clear visual feedback and support all standard states.
           </Typography>
           
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Switch
               label="Basic switch"
               checked={basicSwitch}
@@ -98,16 +99,16 @@ export const SwitchDemo: React.FC = () => {
       </Card>
 
       {/* Switch Sizes */}
-      <Card variant="elevated" style={{ marginBottom: '32px' }}>
+      <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
           <Typography variant="h3">Switch Sizes</Typography>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" color="secondary" style={{ marginBottom: '24px' }}>
+          <Typography variant="body" color="secondary" style={{ marginBottom: spacing[6] }}>
             Different sizes for different contexts and design requirements.
           </Typography>
           
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Switch
               size="sm"
               label="Small switch"
@@ -130,16 +131,16 @@ export const SwitchDemo: React.FC = () => {
       </Card>
 
       {/* Switch Variants */}
-      <Card variant="elevated" style={{ marginBottom: '32px' }}>
+      <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
           <Typography variant="h3">Switch Variants</Typography>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" color="secondary" style={{ marginBottom: '24px' }}>
+          <Typography variant="body" color="secondary" style={{ marginBottom: spacing[6] }}>
             Different visual styles to match your design system.
           </Typography>
           
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Switch
               variant="default"
               label="Default variant"
@@ -162,16 +163,16 @@ export const SwitchDemo: React.FC = () => {
       </Card>
 
       {/* Switch Colors */}
-      <Card variant="elevated" style={{ marginBottom: '32px' }}>
+      <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
           <Typography variant="h3">Switch Colors</Typography>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" color="secondary" style={{ marginBottom: '24px' }}>
+          <Typography variant="body" color="secondary" style={{ marginBottom: spacing[6] }}>
             Different color themes for different types of actions and states.
           </Typography>
           
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Switch
               color="primary"
               label="Primary color"
@@ -206,16 +207,16 @@ export const SwitchDemo: React.FC = () => {
       </Card>
 
       {/* Validation States */}
-      <Card variant="elevated" style={{ marginBottom: '32px' }}>
+      <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
           <Typography variant="h3">Validation States</Typography>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" color="secondary" style={{ marginBottom: '24px' }}>
+          <Typography variant="body" color="secondary" style={{ marginBottom: spacing[6] }}>
             Switches can display validation states with appropriate messaging.
           </Typography>
           
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Switch
               label="Required field"
               required
@@ -242,22 +243,22 @@ export const SwitchDemo: React.FC = () => {
       </Card>
 
       {/* Settings Example */}
-      <Card variant="elevated" style={{ marginBottom: '32px' }}>
+      <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
           <Typography variant="h3">Settings Example</Typography>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" color="secondary" style={{ marginBottom: '24px' }}>
+          <Typography variant="body" color="secondary" style={{ marginBottom: spacing[6] }}>
             A complete settings panel example showing switches in a real-world scenario.
           </Typography>
           
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[5] }}>
             <div>
-              <Typography variant="h3" style={{ marginBottom: '16px' }}>
+              <Typography variant="h3" style={{ marginBottom: spacing[4] }}>
                 Notification Settings
               </Typography>
               
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[3] }}>
                 <Switch
                   label="Push notifications"
                   checked={settingsData.notifications}
@@ -274,12 +275,12 @@ export const SwitchDemo: React.FC = () => {
               </div>
             </div>
             
-            <div style={{ borderTop: '1px solid var(--cria-gray-200)', paddingTop: '20px' }}>
-              <Typography variant="h3" style={{ marginBottom: '16px' }}>
+            <div style={{ borderTop: '1px solid var(--cria-gray-200)', paddingTop: spacing[5] }}>
+              <Typography variant="h3" style={{ marginBottom: spacing[4] }}>
                 Appearance
               </Typography>
               
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[3] }}>
                 <Switch
                   label="Dark mode"
                   checked={settingsData.darkMode}
@@ -289,12 +290,12 @@ export const SwitchDemo: React.FC = () => {
               </div>
             </div>
             
-            <div style={{ borderTop: '1px solid var(--cria-gray-200)', paddingTop: '20px' }}>
-              <Typography variant="h3" style={{ marginBottom: '16px' }}>
+            <div style={{ borderTop: '1px solid var(--cria-gray-200)', paddingTop: spacing[5] }}>
+              <Typography variant="h3" style={{ marginBottom: spacing[4] }}>
                 Connectivity
               </Typography>
               
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[3] }}>
                 <Switch
                   label="Wi-Fi"
                   checked={settingsData.wifi}
@@ -318,7 +319,7 @@ export const SwitchDemo: React.FC = () => {
               </div>
             </div>
             
-            <div style={{ display: 'flex', gap: '12px', marginTop: '24px' }}>
+            <div style={{ display: 'flex', gap: spacing[3], marginTop: spacing[6] }}>
               <Button 
                 variant="primary" 
                 onClick={() => console.log('Settings saved:', settingsData)}
@@ -334,16 +335,16 @@ export const SwitchDemo: React.FC = () => {
       </Card>
 
       {/* Accessibility Features */}
-      <Card variant="elevated" style={{ marginBottom: '32px' }}>
+      <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
           <Typography variant="h3">Accessibility Features</Typography>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" color="secondary" style={{ marginBottom: '24px' }}>
+          <Typography variant="body" color="secondary" style={{ marginBottom: spacing[6] }}>
             Switches include comprehensive accessibility features for screen readers and keyboard navigation.
           </Typography>
           
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Switch
               label="Keyboard accessible"
               helperText="Use Tab to focus, Space to toggle"
