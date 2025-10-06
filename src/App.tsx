@@ -121,7 +121,7 @@ const App: React.FC = () => {
       icon: <Square size={20} />,
       defaultExpanded: true,
       subitems: [
-        { id: 'typography', label: 'Typography', href: '#typography', icon: <TextAa size={20} /> },
+        // Typography is a low-level primitive powering CriaText; hide from sidebar to reduce confusion
         { id: 'colors', label: 'Colors', href: '#colors', icon: <Square size={20} /> },
         { id: 'text', label: 'Text', href: '#text', icon: <Article size={20} /> },
         { id: 'grid', label: 'Grid', href: '#grid', icon: <Layout size={20} /> }
