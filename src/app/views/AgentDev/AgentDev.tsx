@@ -4,6 +4,7 @@ import { Typography } from '../../../components/Typography';
 import { Button } from '../../../components/Button';
 import { Badge } from '../../../components/Badge';
 import { AgenteTab } from './tabs';
+import Tabs from '../../../components/Tabs';
 import { Textarea } from '../../../components/Textarea/Textarea';
 import { FileUpload } from '../../../components/FileUpload/FileUpload';
 import { Robot, X, Plus, Wrench, Code } from 'phosphor-react';
@@ -307,26 +308,17 @@ const AgentDev: React.FC<AgentDevProps> = ({
     >
       <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
 
-        {/* Tab Navigation */}
-        <div style={{ display: 'flex', background: '#F8F9FA', borderBottom: '1px solid #E5E7EB', padding: `0 ${spacing[6]}` }}>
-          {tabs.map((tab) => (
-            <Button
-              key={tab.id}
-              variant={activeTab === tab.id ? 'primary' : 'outline'}
-              size="sm"
-              onClick={() => handleTabChange(tab.id)}
-              title={tab.description}
-              style={{ borderBottom: activeTab === tab.id ? '2px solid #7566A1' : '2px solid transparent', borderRadius: 0, padding: `${spacing[4]} ${spacing[6]}` }}
-            >
-              {tab.icon}
-              <span style={{ marginLeft: spacing[2] }}>{tab.label}</span>
-            </Button>
-          ))}
-        </div>
-
-        {/* Tab Content */}
-        <div style={{ flex: 1, overflowY: 'auto', padding: spacing[6] }}>
-          {renderTabContent()}
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+          <Tabs
+            items={[
+              { id: 'criar', label: 'Criar', content: <div style={{ padding: spacing[6] }}>{renderTabContent()}</div> },
+              { id: 'consertar', label: 'Consertar', content: <div style={{ padding: spacing[6] }}>{(() => { const prev = activeTab; const content = (() => { setActiveTab('consertar'); return renderTabContent(); })(); setActiveTab(prev); return content; })()}</div> },
+              { id: 'agente', label: 'Agente', content: <div style={{ padding: spacing[6] }}><AgenteTab /></div> },
+            ]}
+            activeTab={activeTab}
+            onChange={(id) => handleTabChange(id as TabType)}
+            variant="underline"
+          />
         </div>
       </div>
     </Drawer>
