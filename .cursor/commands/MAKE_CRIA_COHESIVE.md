@@ -233,5 +233,13 @@ Role: Expert UI & Design System Architect
 Now when you type  
 ```bash
 /MAKE_CRIA_COHESIVE next
+```
 
-Cursor will first run a dependency graph on the next unchecked component, see if its JSX children exist as CRIA components, replace them where possible, and commit the change.
+This runs the entire pipeline on the next unchecked component without any additional prompt:
+
+- Build dependency graph
+- Audit and match non-DS children to DS primitives
+- Apply fixes (tokenize colors/spacing/radii/typography; replace raw HTML with DS components)
+- Validate (tests/visual checks)
+- Commit with a conventional message
+- Advance to the subsequent component and repeat on each invocation
