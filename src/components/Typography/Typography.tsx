@@ -1,5 +1,5 @@
 import React from 'react';
-import { typography, TypographyVariant } from '../../tokens';
+import { typography, TypographyVariant, colors } from '../../tokens';
 
 export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
   /**
@@ -101,29 +101,29 @@ export const Typography: React.FC<TypographyProps> = ({
   const getColorStyles = (color: string): React.CSSProperties => {
     switch (color) {
       case 'primary':
-        return { color: '#7566A1' }; // Main brand purple
+        return { color: colors.primary };
       case 'primaryLight':
-        return { color: '#3A2E52' }; // Primary light/darker
+        return { color: colors.primaryLight };
       case 'content':
-        return { color: '#3A2E52' }; // Primary light/darker for content text
+        return { color: colors.text.content };
       case 'secondary':
-        return { color: '#28DDB9' }; // Secondary brand teal
+        return { color: colors.secondary };
       case 'secondaryDark':
-        return { color: '#167B7A' }; // Secondary dark
+        return { color: colors.secondaryDark };
       case 'disabled':
-        return { color: '#9CA3AF' };
+        return { color: colors.text.disabled };
       case 'inverse':
-        return { color: '#FFFFFF' };
+        return { color: colors.white };
       case 'success':
-        return { color: '#10B981' };
+        return { color: colors.success };
       case 'warning':
-        return { color: '#F59E0B' };
+        return { color: colors.warning };
       case 'error':
-        return { color: '#EF4444' };
+        return { color: colors.error };
       case 'info':
-        return { color: '#3B82F6' };
+        return { color: colors.info };
       default:
-        return { color: '#374151' }; // ALL TEXT uses dark gray by default
+        return { color: colors.text.primary };
     }
   };
 
@@ -139,12 +139,12 @@ export const Typography: React.FC<TypographyProps> = ({
     letterSpacing: typography.letterSpacing[letterSpacing],
     textAlign: align,
     margin: 0,
-    textTransform: isTitleVariant ? 'uppercase' : 'none',
+    // Uppercase for title variants should be handled by CSS class for consistency
     ...getColorStyles(isTitleVariant ? 'primary' : (color || 'default')),
   };
 
   return (
-    <Element className={classes} style={styles} {...(props as any)}>
+    <Element className={`${classes} ${isTitleVariant ? 'cria-typography--title' : ''}`} style={styles} {...(props as any)}>
       {children}
     </Element>
   );
