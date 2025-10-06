@@ -311,6 +311,9 @@ const AgentDev: React.FC<AgentDevProps> = ({
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 48, height: 48, background: '#7566A1', borderRadius: 8, color: '#FFFFFF' }}>
               <Robot size={24} />
             </div>
+            <Button variant="ghost" size="sm" aria-label="Tools">
+              <Wrench size={18} />
+            </Button>
             <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[1] }}>
               <Typography variant="h2" weight="bold">Fefo Bot</Typography>
             </div>
