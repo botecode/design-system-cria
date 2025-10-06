@@ -1,6 +1,6 @@
 # CRIA Flow Editor Implementation Guide
 
-A webflow-like visual page builder for CRIA applications that allows dynamic page creation using our design system components.
+A webflow-like visual page builder for CRIA applications that allows dynamic page creation using our design system components. Accessible via the "Wrench" icon in the top-right corner of the application.
 
 ## 🎯 Project Overview
 

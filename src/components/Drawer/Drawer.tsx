@@ -21,6 +21,11 @@ export interface DrawerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
   title?: React.ReactNode;
   
   /**
+   * Optional icon to render next to the title
+   */
+  titleIcon?: React.ReactNode;
+  
+  /**
    * Drawer content
    */
   children: React.ReactNode;
@@ -123,6 +128,7 @@ export const Drawer: React.FC<DrawerProps> = ({
   isOpen,
   onClose,
   title,
+  titleIcon,
   children,
   header,
   footer,
@@ -335,14 +341,19 @@ export const Drawer: React.FC<DrawerProps> = ({
             {header || (
               <>
                 {title && (
-                  <Typography 
-                    id="drawer-title"
-                    variant="h3" 
-                    weight="semibold" 
-                    className="drawer__title"
-                  >
-                    {title}
-                  </Typography>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                    {titleIcon && (
+                      <span className="drawer__title-icon" aria-hidden="true">{titleIcon}</span>
+                    )}
+                    <Typography 
+                      id="drawer-title"
+                      variant="h3" 
+                      weight="semibold" 
+                      className="drawer__title"
+                    >
+                      {title}
+                    </Typography>
+                  </div>
                 )}
                 {showCloseButton && (
                   <Button

@@ -299,6 +299,7 @@ const AgentDev: React.FC<AgentDevProps> = ({
       size={size}
       variant="default"
       title="Fefo Bot"
+      titleIcon={<Robot size={20} />}
       className={`agent-dev ${className}`}
       style={style}
       {...props}
