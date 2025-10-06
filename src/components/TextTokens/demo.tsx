@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardContent } from '../Card';
-import { CriaTextBody1, CriaTextBody2, CriaTextBody1Inverse, CriaTextTitle1, CriaTextTitle2, CriaTextImportant, CriaTextAlert } from './CriaText';
+import { CriaTextBody1, CriaTextBody2, CriaTextBody1Inverse, CriaTextTitle1, CriaTextTitle2, CriaTextImportant, CriaTextAlert, CriaTextHeadline1, CriaTextHeadline2, CriaTextSuccess } from './CriaText';
 
 export const CriaTextDemo: React.FC = () => {
   return (
@@ -8,12 +8,15 @@ export const CriaTextDemo: React.FC = () => {
       <Card>
         <CardContent>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-            <CriaTextTitle1>Title 1 – Big page headline</CriaTextTitle1>
-            <CriaTextTitle2>Title 2 – Section headline</CriaTextTitle2>
-            <CriaTextBody1>This is the standard body text</CriaTextBody1>
-            <CriaTextBody2>This is smaller body text</CriaTextBody2>
-            <CriaTextImportant>Important inline emphasis</CriaTextImportant>
-            <CriaTextAlert>Error or alert text in red</CriaTextAlert>
+            <CriaTextHeadline1>CriaTextHeadline1 - Main page headline (Headline1)</CriaTextHeadline1>
+            <CriaTextHeadline2>CriaTextHeadline2 - Section headline (Headline2)</CriaTextHeadline2>
+            <CriaTextTitle1>CriaTextTitle1 - Content title (Title1)</CriaTextTitle1>
+            <CriaTextTitle2>CriaTextTitle2 - Smaller section title (Title2)</CriaTextTitle2>
+            <CriaTextBody1>CriaTextBody1 - This is the standard body text (Body1)</CriaTextBody1>
+            <CriaTextBody2>CriaTextBody2 - This is smaller body text (Body2)</CriaTextBody2>
+            <CriaTextImportant>CriaTextImportant - Important inline emphasis with body copy.</CriaTextImportant>
+            <CriaTextAlert>CriaTextAlert - Inline alert or error text adjacent to content.</CriaTextAlert>
+            <CriaTextSuccess>CriaTextSuccess - Inline success text adjacent to content.</CriaTextSuccess>
           </div>
         </CardContent>
       </Card>
