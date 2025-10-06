@@ -1,5 +1,7 @@
 import React from 'react';
-import { Typography, Button, Badge } from '../../index';
+import { Typography } from '../../components/Typography';
+import { Button } from '../../components/Button';
+import { Badge } from '../../components/Badge';
 
 const CriaFlowEditor: React.FC = () => {
   return (
