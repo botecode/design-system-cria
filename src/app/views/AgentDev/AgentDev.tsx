@@ -311,14 +311,18 @@ const AgentDev: React.FC<AgentDevProps> = ({
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
           <Tabs
             items={[
-              { id: 'criar', label: 'Criar', content: <div style={{ padding: spacing[6] }}>{renderTabContent()}</div> },
-              { id: 'consertar', label: 'Consertar', content: <div style={{ padding: spacing[6] }}>{(() => { const prev = activeTab; const content = (() => { setActiveTab('consertar'); return renderTabContent(); })(); setActiveTab(prev); return content; })()}</div> },
-              { id: 'agente', label: 'Agente', content: <div style={{ padding: spacing[6] }}><AgenteTab /></div> },
+              { id: 'criar', label: 'Criar', content: null },
+              { id: 'consertar', label: 'Consertar', content: null },
+              { id: 'agente', label: 'Agente', content: null },
             ]}
             activeTab={activeTab}
             onChange={(id) => handleTabChange(id as TabType)}
             variant="underline"
+            showContent={false}
           />
+          <div style={{ padding: spacing[6], flex: 1, overflowY: 'auto' }}>
+            {renderTabContent()}
+          </div>
         </div>
       </div>
     </Drawer>
