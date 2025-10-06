@@ -1,26 +1,27 @@
 import React from 'react';
 import { Typography } from '../Typography/Typography';
+import { colors, spacing, radii } from '../../tokens';
 
 export const ColorsDemo: React.FC = () => {
   const colorPalette = [
-    { name: 'Primary', value: '#7566A1', description: 'Main brand color' },
-    { name: 'Content Text', value: '#3A2E52', description: 'Primary dark for content text' },
-    { name: 'Default Text', value: '#374151', description: 'Dark gray for default text' },
-    { name: 'Secondary', value: '#28DDB9', description: 'Secondary brand color' },
-    { name: 'Secondary Dark', value: '#167B7A', description: 'Secondary variant for darker contexts' },
-    { name: 'Success', value: '#10B981', description: 'Success states and positive actions' },
-    { name: 'Warning', value: '#F59E0B', description: 'Warning states and caution' },
-    { name: 'Error', value: '#EF4444', description: 'Error states and destructive actions' },
-    { name: 'Info', value: '#3B82F6', description: 'Informational content' },
-    { name: 'Disabled', value: '#9CA3AF', description: 'Disabled states' },
-    { name: 'Inverse', value: '#FFFFFF', description: 'Text on dark backgrounds' },
+    { name: 'Primary', value: colors.primary, description: 'Main brand color' },
+    { name: 'Content Text', value: colors.text.content, description: 'Primary dark for content text' },
+    { name: 'Default Text', value: colors.text.primary, description: 'Dark gray for default text' },
+    { name: 'Secondary', value: colors.secondary, description: 'Secondary brand color' },
+    { name: 'Secondary Dark', value: colors.secondaryDark, description: 'Secondary variant for darker contexts' },
+    { name: 'Success', value: colors.success, description: 'Success states and positive actions' },
+    { name: 'Warning', value: colors.warning, description: 'Warning states and caution' },
+    { name: 'Error', value: colors.error, description: 'Error states and destructive actions' },
+    { name: 'Info', value: colors.info, description: 'Informational content' },
+    { name: 'Disabled', value: colors.text.disabled, description: 'Disabled states' },
+    { name: 'Inverse', value: colors.white, description: 'Text on dark backgrounds' },
   ];
 
   const backgroundColors = [
-    { name: 'Background Primary', value: '#FFFFFF', description: 'Main background' },
-    { name: 'Background Secondary', value: '#F9FAFB', description: 'Secondary background' },
-    { name: 'Background Tertiary', value: '#F3F4F6', description: 'Tertiary background' },
-    { name: 'Background Dark', value: '#111827', description: 'Dark background' },
+    { name: 'Background Primary', value: colors.backgroundLight, description: 'Main background' },
+    { name: 'Background Secondary', value: colors.gray[50], description: 'Secondary background' },
+    { name: 'Background Tertiary', value: colors.gray[100], description: 'Tertiary background' },
+    { name: 'Background Dark', value: colors.gray[900], description: 'Dark background' },
   ];
 
   const ColorSwatch: React.FC<{ name: string; value: string; description: string }> = ({ 
@@ -31,19 +32,19 @@ export const ColorsDemo: React.FC = () => {
     <div style={{ 
       display: 'flex', 
       alignItems: 'center', 
-      gap: '16px', 
-      padding: '12px',
-      border: '1px solid #E5E7EB',
-      borderRadius: '8px',
-      backgroundColor: '#FFFFFF'
+      gap: spacing[4], 
+      padding: spacing[3],
+      border: `1px solid ${colors.border.light}`,
+      borderRadius: radii.md,
+      backgroundColor: colors.backgroundLight
     }}>
       <div 
         style={{ 
           width: '48px', 
           height: '48px', 
           backgroundColor: value, 
-          borderRadius: '8px',
-          border: '1px solid #E5E7EB',
+          borderRadius: radii.md,
+          border: `1px solid ${colors.border.light}`,
           flexShrink: 0
         }} 
       />
@@ -51,10 +52,10 @@ export const ColorsDemo: React.FC = () => {
         <Typography variant="body" weight="medium" color="primary">
           {name}
         </Typography>
-        <Typography variant="bodySmall" style={{ marginTop: '4px' }}>
+        <Typography variant="bodySmall" style={{ marginTop: spacing[1] }}>
           {value}
         </Typography>
-        <Typography variant="caption" style={{ marginTop: '2px' }}>
+        <Typography variant="caption" style={{ marginTop: spacing[1] }}>
           {description}
         </Typography>
       </div>
@@ -69,19 +70,19 @@ export const ColorsDemo: React.FC = () => {
     <div style={{ 
       display: 'flex', 
       alignItems: 'center', 
-      gap: '16px', 
-      padding: '12px',
-      border: '1px solid #374151',
-      borderRadius: '8px',
+      gap: spacing[4], 
+      padding: spacing[3],
+      border: `1px solid ${colors.text.primary}`,
+      borderRadius: radii.md,
       backgroundColor: value
     }}>
       <div 
         style={{ 
           width: '48px', 
           height: '48px', 
-          backgroundColor: '#FFFFFF', 
-          borderRadius: '8px',
-          border: '1px solid #374151',
+          backgroundColor: colors.white, 
+          borderRadius: radii.md,
+          border: `1px solid ${colors.text.primary}`,
           flexShrink: 0
         }} 
       />
@@ -89,10 +90,10 @@ export const ColorsDemo: React.FC = () => {
         <Typography variant="body" weight="medium" color="inverse">
           {name}
         </Typography>
-        <Typography variant="bodySmall" color="inverse" style={{ marginTop: '4px' }}>
+        <Typography variant="bodySmall" color="inverse" style={{ marginTop: spacing[1] }}>
           {value}
         </Typography>
-        <Typography variant="caption" color="inverse" style={{ marginTop: '2px' }}>
+        <Typography variant="caption" color="inverse" style={{ marginTop: spacing[1] }}>
           {description}
         </Typography>
       </div>
@@ -100,27 +101,27 @@ export const ColorsDemo: React.FC = () => {
   );
 
   return (
-    <div style={{ padding: '24px', maxWidth: '1200px', margin: '0 auto' }}>
-      <Typography variant="title1" weight="bold" style={{ marginBottom: '32px' }}>
+    <div style={{ padding: spacing[6], maxWidth: '1200px', margin: '0 auto' }}>
+      <Typography variant="title1" weight="bold" style={{ marginBottom: spacing[8] }}>
         Colors
       </Typography>
       
-      <Typography variant="body" style={{ marginBottom: '32px' }}>
+      <Typography variant="body" style={{ marginBottom: spacing[8] }}>
         The CRIA UI color palette provides a comprehensive set of colors for building consistent and accessible interfaces.
       </Typography>
 
       {/* Semantic Colors */}
-      <div style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '24px' }}>
+      <div style={{ marginBottom: spacing[12] }}>
+        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[6] }}>
           Semantic Colors
         </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
           These colors have semantic meaning and should be used consistently across the application.
         </Typography>
         <div style={{ 
           display: 'grid', 
           gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-          gap: '16px' 
+          gap: spacing[4] 
         }}>
           {colorPalette.map((color) => (
             <ColorSwatch
@@ -134,17 +135,17 @@ export const ColorsDemo: React.FC = () => {
       </div>
 
       {/* Background Colors */}
-      <div style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '24px' }}>
+      <div style={{ marginBottom: spacing[12] }}>
+        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[6] }}>
           Background Colors
         </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
           Background colors for different surface levels and contexts.
         </Typography>
         <div style={{ 
           display: 'grid', 
           gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-          gap: '16px' 
+          gap: spacing[4] 
         }}>
           {backgroundColors.map((color) => (
             color.name === 'Background Dark' ? (
@@ -167,25 +168,25 @@ export const ColorsDemo: React.FC = () => {
       </div>
 
       {/* Color Usage Examples */}
-      <div style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '24px' }}>
+      <div style={{ marginBottom: spacing[12] }}>
+        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[6] }}>
           Color Usage Examples
         </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
           Examples of how colors are used in different contexts.
         </Typography>
         
         <div style={{ 
           display: 'grid', 
           gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-          gap: '24px' 
+          gap: spacing[6] 
         }}>
           {/* Success Example */}
           <div style={{ 
-            padding: '20px', 
-            border: '1px solid #10B981', 
-            borderRadius: '8px',
-            backgroundColor: '#ECFDF5'
+            padding: spacing[5], 
+            border: `1px solid ${colors.success}`, 
+            borderRadius: radii.md,
+            backgroundColor: colors.gray[50]
           }}>
             <Typography variant="h3" color="success" style={{ marginBottom: '8px' }}>
               Success Message
@@ -197,10 +198,10 @@ export const ColorsDemo: React.FC = () => {
 
           {/* Warning Example */}
           <div style={{ 
-            padding: '20px', 
-            border: '1px solid #F59E0B', 
-            borderRadius: '8px',
-            backgroundColor: '#FFFBEB'
+            padding: spacing[5], 
+            border: `1px solid ${colors.warning}`, 
+            borderRadius: radii.md,
+            backgroundColor: colors.gray[50]
           }}>
             <Typography variant="h3" color="warning" style={{ marginBottom: '8px' }}>
               Warning Message
@@ -212,10 +213,10 @@ export const ColorsDemo: React.FC = () => {
 
           {/* Error Example */}
           <div style={{ 
-            padding: '20px', 
-            border: '1px solid #EF4444', 
-            borderRadius: '8px',
-            backgroundColor: '#FEF2F2'
+            padding: spacing[5], 
+            border: `1px solid ${colors.error}`, 
+            borderRadius: radii.md,
+            backgroundColor: colors.gray[50]
           }}>
             <Typography variant="h3" color="error" style={{ marginBottom: '8px' }}>
               Error Message
@@ -227,10 +228,10 @@ export const ColorsDemo: React.FC = () => {
 
           {/* Info Example */}
           <div style={{ 
-            padding: '20px', 
-            border: '1px solid #3B82F6', 
-            borderRadius: '8px',
-            backgroundColor: '#EFF6FF'
+            padding: spacing[5], 
+            border: `1px solid ${colors.info}`, 
+            borderRadius: radii.md,
+            backgroundColor: colors.gray[50]
           }}>
             <Typography variant="h3" color="info" style={{ marginBottom: '8px' }}>
               Information
@@ -244,18 +245,18 @@ export const ColorsDemo: React.FC = () => {
 
       {/* Accessibility Notes */}
       <div style={{ 
-        padding: '20px', 
-        backgroundColor: '#F9FAFB', 
-        borderRadius: '8px',
-        border: '1px solid #E5E7EB'
+        padding: spacing[5], 
+        backgroundColor: colors.gray[50], 
+        borderRadius: radii.md,
+        border: `1px solid ${colors.border.light}`
       }}>
-        <Typography variant="h3" weight="medium" style={{ marginBottom: '12px' }}>
+        <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
           Accessibility Guidelines
         </Typography>
-        <Typography variant="body" style={{ marginBottom: '8px' }}>
+        <Typography variant="body" style={{ marginBottom: spacing[2] }}>
           • Ensure sufficient color contrast ratios (4.5:1 for normal text, 3:1 for large text)
         </Typography>
-        <Typography variant="body" style={{ marginBottom: '8px' }}>
+        <Typography variant="body" style={{ marginBottom: spacing[2] }}>
           • Don't rely solely on color to convey information
         </Typography>
         <Typography variant="body">
