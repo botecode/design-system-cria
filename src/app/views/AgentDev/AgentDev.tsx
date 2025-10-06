@@ -207,21 +207,47 @@ const AgentDev: React.FC<AgentDevProps> = ({
             
             {/* Component List For Current Tab */}
             <div className="agent-dev__section">
-              <div className="agent-dev__component-list">
-                <div className="agent-dev__component-item" style={{ display: 'flex', alignItems: 'center', gap: spacing[3] }}>
-                  <DSCheckbox
-                    id={`consertar-${getCurrentComponentId() || 'atual'}`}
-                    checked={tabState.consertar.selectedComponents.includes(getCurrentComponentLabel())}
-                    label={getCurrentComponentLabel()}
-                    onChange={(checked: boolean) => {
-                      const type = getCurrentComponentLabel();
-                      const newSelected = checked
-                        ? [...tabState.consertar.selectedComponents, type]
-                        : tabState.consertar.selectedComponents.filter(c => c !== type);
-                      updateTabState('consertar', { selectedComponents: newSelected });
-                    }}
-                  />
-                </div>
+              <div className="agent-dev__component-list" style={{ display: 'flex', flexDirection: 'column', gap: spacing[3] }}>
+                {getCurrentComponentId().toLowerCase() === 'button' ? (
+                  (() => {
+                    const variants: Array<'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'> = ['primary','secondary','outline','ghost','danger'];
+                    return variants.map((variantKey) => {
+                      const label = `Button — ${variantKey}`;
+                      const checked = tabState.consertar.selectedComponents.includes(label);
+                      return (
+                        <div key={variantKey} className="agent-dev__component-item" style={{ display: 'flex', alignItems: 'center', gap: spacing[3] }}>
+                          <DSCheckbox
+                            id={`consertar-button-${variantKey}`}
+                            checked={checked}
+                            label={label}
+                            onChange={(checkedNext: boolean) => {
+                              const newSelected = checkedNext
+                                ? [...tabState.consertar.selectedComponents, label]
+                                : tabState.consertar.selectedComponents.filter(c => c !== label);
+                              updateTabState('consertar', { selectedComponents: newSelected });
+                            }}
+                          />
+                          <Button variant={variantKey} size="md">Exemplo</Button>
+                        </div>
+                      );
+                    });
+                  })()
+                ) : (
+                  <div className="agent-dev__component-item" style={{ display: 'flex', alignItems: 'center', gap: spacing[3] }}>
+                    <DSCheckbox
+                      id={`consertar-${getCurrentComponentId() || 'atual'}`}
+                      checked={tabState.consertar.selectedComponents.includes(getCurrentComponentLabel())}
+                      label={getCurrentComponentLabel()}
+                      onChange={(checked: boolean) => {
+                        const type = getCurrentComponentLabel();
+                        const newSelected = checked
+                          ? [...tabState.consertar.selectedComponents, type]
+                          : tabState.consertar.selectedComponents.filter(c => c !== type);
+                        updateTabState('consertar', { selectedComponents: newSelected });
+                      }}
+                    />
+                  </div>
+                )}
               </div>
             </div>
 
