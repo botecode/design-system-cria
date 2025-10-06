@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Typography, Button, Navigation } from './index.ts';
-import { House, TextAa, Mouse, PencilSimple, CheckSquare, ToggleLeft, Bell, ChatCircle, Info, Square, Tag, Tabs, List, CaretDown, Article, Layout, User, Robot } from 'phosphor-react';
+import { House, TextAa, Mouse, PencilSimple, CheckSquare, ToggleLeft, Bell, ChatCircle, Info, Square, Tag, Tabs, List, CaretDown, Article, Layout, User, Robot, Wrench } from 'phosphor-react';
 import TypographyDemo from './components/Typography/demo';
 import ButtonDemo from './components/Button/demo';
 import CardDemo from './components/Card/demo';
@@ -61,6 +61,7 @@ import EventsCardsDemo from './components/EventsCards/demo';
 import TrilhaCardsDemo from './components/TrilhaCards/demo';
 import StatisticMetricCardDemo from './components/StatisticMetricCard/demo';
 import CommandPaletteDemo from './components/CommandPalette/demo';
+import CriaFlowEditor from './pages/CriaFlowEditor/CriaFlowEditor';
 import ChangelogDemo from './components/Changelog/demo';
 import AgentDevDemo from './app/views/AgentDev/demo';
 import { AgentDev } from './app/views/AgentDev';
@@ -482,16 +483,16 @@ const App: React.FC = () => {
               title: 'CR_IA.UI',
               titleHref: '#overview',
               subtitle: <Badge variant="secondary" size="lg">v0.40</Badge>,
-              items: sidebarItems.map(item => ({
+              items: sidebarItems.map((item: any) => ({
                 ...item,
-                onClick: item.subitems ? undefined : (e) => {
+                onClick: item.subitems ? undefined : (e: React.MouseEvent) => {
                   e.preventDefault();
                   handleSectionChange(item.id as DemoSection);
                   if (isMobile) {
                     setMobileMenuOpen(false);
                   }
                 },
-                subitems: item.subitems?.map(subitem => ({
+                subitems: item.subitems?.map((subitem: any) => ({
                   ...subitem,
                   onClick: subitem.subitems ? undefined : (e: React.MouseEvent) => {
                     e.preventDefault();
@@ -536,12 +537,7 @@ const App: React.FC = () => {
             zIndex: 1
           }}>
             {/* Robot Icon - Top Right */}
-            <div style={{
-              position: 'fixed',
-              top: '20px',
-              right: '20px',
-              zIndex: 1000
-            }}>
+            <div style={{ position: 'fixed', top: '20px', right: '20px', zIndex: 1000, display: 'flex', gap: '10px' }}>
               <Button
                 variant="ghost"
                 size="sm"
@@ -571,10 +567,41 @@ const App: React.FC = () => {
               >
                 <Robot size={24} />
               </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                style={{
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '50%',
+                  backgroundColor: 'var(--cria-primary)',
+                  color: 'white',
+                  border: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
+                  transition: 'all 0.2s ease'
+                }}
+                onClick={() => {
+                  window.history.pushState(null, '', `/cria-flow-editor`);
+                  // rudimentary navigation: replace main content with editor
+                  // optionally, could use a Router; keeping simple per current app structure
+                  // We render editor below the top content area for now
+                  setActiveSection('overview');
+                }}
+                title="CRIA Flow Editor"
+              >
+                <Wrench size={24} />
+              </Button>
             </div>
 
             <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-              {renderContent()}
+              {window.location.pathname === '/cria-flow-editor' ? (
+                <CriaFlowEditor />
+              ) : (
+                renderContent()
+              )}
               <div style={{ marginTop: '32px', textAlign: 'center', color: 'var(--cria-text-secondary)' }}>
                 Built with ❤️ for CR_IA applications
               </div>
