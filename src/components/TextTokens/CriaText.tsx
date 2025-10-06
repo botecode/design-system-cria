@@ -150,6 +150,53 @@ export const CriaTextAlert: React.FC<CriaTextBaseProps> = ({ as, children, class
   );
 };
 
+export const CriaTextSuccess: React.FC<CriaTextBaseProps> = ({ as, children, className = '', ...props }) => {
+  const Element = (as || 'span') as keyof JSX.IntrinsicElements;
+  return (
+    <Typography
+      as={Element}
+      variant="body"
+      color="success"
+      weight="medium"
+      className={className}
+      {...(props as any)}
+    >
+      {children}
+    </Typography>
+  );
+};
+
+export const CriaTextInvert: React.FC<CriaTextBaseProps> = ({ as, children, className = '', ...props }) => {
+  const Element = (as || 'span') as keyof JSX.IntrinsicElements;
+  return (
+    <Typography
+      as={Element}
+      variant="body"
+      color="inverse"
+      className={className}
+      {...(props as any)}
+    >
+      {children}
+    </Typography>
+  );
+};
+
+export const CriaTextLearningTitle: React.FC<CriaTextBaseProps> = ({ as, children, className = '', ...props }) => {
+  const Element = (as || 'h2') as keyof JSX.IntrinsicElements;
+  return (
+    <Typography
+      as={Element}
+      variant="h2"
+      color="primary"
+      weight="bold"
+      className={className}
+      {...(props as any)}
+    >
+      {children}
+    </Typography>
+  );
+};
+
 export default CriaTextBody1;
 
 

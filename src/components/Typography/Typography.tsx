@@ -38,6 +38,13 @@ export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
 
 /**
  * Typography component for consistent text styling across the design system
+ *
+ * IMPORTANT: This is a low-level primitive used internally by semantic text
+ * components in `TextTokens/CriaText`. Prefer using `CriaText*` wrappers
+ * (e.g., `CriaTextHeadline1`, `CriaTextTitle1`, `CriaTextBody1`, etc.) in
+ * product code and demos. The `Typography` primitive exists to feed and power
+ * `CriaText` and should not be used directly except when building new
+ * semantic wrappers.
  * 
  * @example
  * ```tsx
