@@ -167,7 +167,7 @@ const AgentDev: React.FC<AgentDevProps> = ({
                 value={tabState.criar.prompt}
                 onChange={(e) => updateTabState('criar', { prompt: e.target.value })}
                 rows={6}
-                helperText="Seja específico e inclua requisitos de acessibilidade e testes."
+                helperText="Seja específico, cuidaremos do resto!"
               />
             </div>
 
@@ -300,28 +300,12 @@ const AgentDev: React.FC<AgentDevProps> = ({
       position={position}
       size={size}
       variant="default"
+      title="Fefo Bot"
       className={`agent-dev ${className}`}
       style={style}
       {...props}
     >
       <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-        {/* Header */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: spacing[6], borderBottom: '1px solid #E5E7EB', background: '#F8F9FA' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: spacing[3] }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 48, height: 48, background: '#7566A1', borderRadius: 8, color: '#FFFFFF' }}>
-              <Robot size={24} />
-            </div>
-            <Button variant="ghost" size="sm" aria-label="Tools">
-              <Wrench size={18} />
-            </Button>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[1] }}>
-              <Typography variant="h2" weight="bold">Fefo Bot</Typography>
-            </div>
-          </div>
-          <Button variant="ghost" size="sm" onClick={onClose} aria-label="Close Agent Dev">
-            <X size={20} />
-          </Button>
-        </div>
 
         {/* Tab Navigation */}
         <div style={{ display: 'flex', background: '#F8F9FA', borderBottom: '1px solid #E5E7EB', padding: `0 ${spacing[6]}` }}>
