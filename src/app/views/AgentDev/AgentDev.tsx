@@ -4,6 +4,8 @@ import { Typography } from '../../../components/Typography';
 import { Button } from '../../../components/Button';
 import { Badge } from '../../../components/Badge';
 import { AgenteTab } from './tabs';
+import { Textarea } from '../../../components/Textarea/Textarea';
+import { FileUpload } from '../../../components/FileUpload/FileUpload';
 import { Robot, X, Plus, Wrench, Code } from 'phosphor-react';
 import { spacing, colors, radii } from '../../../tokens';
 
@@ -155,37 +157,31 @@ const AgentDev: React.FC<AgentDevProps> = ({
             </div>
 
             {/* Prompt Input */}
-            <div className="agent-dev__section">
+            <div>
               <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
                 Descrição do Componente
               </Typography>
-              <textarea
-                className="agent-dev__textarea"
+              <Textarea
+                label={undefined}
                 placeholder="Descreva o componente que você gostaria de criar..."
                 value={tabState.criar.prompt}
                 onChange={(e) => updateTabState('criar', { prompt: e.target.value })}
                 rows={6}
+                helperText="Seja específico e inclua requisitos de acessibilidade e testes."
               />
             </div>
 
             {/* Image Upload */}
-            <div className="agent-dev__section">
+            <div>
               <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
                 Imagens de Referência (Opcional)
               </Typography>
-              <div className="agent-dev__image-upload">
-                <input
-                  type="file"
-                  accept="image/*"
-                  multiple
-                  className="agent-dev__file-input"
-                  id="image-upload"
-                />
-                <label htmlFor="image-upload" className="agent-dev__file-label">
-                  <Plus size={24} />
-                  <span>Adicionar Imagens</span>
-                </label>
-              </div>
+              <FileUpload
+                label="Imagens"
+                description="PNG, JPG, SVG"
+                accept="image/*"
+                onFilesChange={() => {}}
+              />
             </div>
 
             {/* Create Button */}
