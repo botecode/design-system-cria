@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { colors, spacing, typography } from '../../tokens';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextTitle1, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { Button } from '../Button';
 import { Avatar } from '../Avatar';
 import { Textarea } from '../Textarea';
@@ -123,8 +123,8 @@ export const CommentsSection: React.FC<CommentsSectionProps> = ({
         key={comment.id}
         className="cria-comment"
       style={{
-        marginLeft: depth * 20,
-        marginBottom: depth > 0 ? 8 : 16,
+        marginLeft: depth * spacing[5],
+        marginBottom: depth > 0 ? spacing[2] : spacing[4],
         display: 'flex',
         flexDirection: 'column',
         alignItems: depth > 0 ? 'flex-end' : 'flex-start'
@@ -135,7 +135,7 @@ export const CommentsSection: React.FC<CommentsSectionProps> = ({
             backgroundColor: colors.background.primary,
             border: `1px solid ${colors.border.medium}`,
             borderRadius: 12,
-            padding: 12,
+            padding: spacing[3],
             width: '100%'
           }}>
             <Textarea
@@ -164,8 +164,8 @@ export const CommentsSection: React.FC<CommentsSectionProps> = ({
             <div className="cria-comment__header" style={{
               display: 'flex',
               alignItems: 'center',
-              gap: 8,
-              marginBottom: 8,
+              gap: spacing[2],
+              marginBottom: spacing[2],
               padding: '0 4px'
             }}>
               <Avatar
@@ -175,26 +175,25 @@ export const CommentsSection: React.FC<CommentsSectionProps> = ({
                 style={{ flexShrink: 0 }}
               />
               <div style={{ flex: 1, minWidth: 0 }}>
-                <Typography variant="body2" weight="bold" style={{ color: colors.text.primary, marginBottom: 2 }}>
+                <CriaTextBody1 style={{ color: colors.text.primary, marginBottom: 2 }}>
                   {comment.author}
-                </Typography>
-                <Typography variant="caption" style={{ color: colors.text.secondary }}>
+                </CriaTextBody1>
+                <CriaTextBody2 style={{ color: colors.text.secondary }}>
                   {formatTimestamp(comment.timestamp)}
-                </Typography>
+                </CriaTextBody2>
               </div>
             </div>
             <>
               <div className="cria-comment__content" style={{
-                backgroundColor: depth > 0 ? colors.primaryDarker : colors.primary,
+                backgroundColor: depth > 0 ? colors.primary[700] : colors.primary[500],
                 color: depth > 0 ? colors.white : colors.white,
-                padding: '12px 16px',
+                padding: `${spacing[3]} ${spacing[4]}`,
                 borderRadius: 16,
                 position: 'relative',
-                marginBottom: 8,
+                marginBottom: spacing[2],
                 wordWrap: 'break-word'
               }}>
-                <Typography 
-                  variant="body2" 
+                <CriaTextBody2 
                   style={{ 
                     color: depth > 0 ? colors.white : colors.white, 
                     whiteSpace: 'pre-wrap',
@@ -202,7 +201,7 @@ export const CommentsSection: React.FC<CommentsSectionProps> = ({
                   }}
                 >
                   {comment.content}
-                </Typography>
+                </CriaTextBody2>
                 {/* Speech bubble tail - only for main comments */}
                 {depth === 0 && (
                   <div style={{
@@ -213,14 +212,14 @@ export const CommentsSection: React.FC<CommentsSectionProps> = ({
                     height: 0,
                     borderLeft: '6px solid transparent',
                     borderRight: '6px solid transparent',
-                    borderBottom: `6px solid ${colors.primary}`
+                    borderBottom: `6px solid ${colors.primary[500]}`
                   }} />
                 )}
               </div>
 
               <div className="cria-comment__actions" style={{ 
                 display: 'flex', 
-                gap: 8, 
+                gap: spacing[2], 
                 padding: '0 4px',
                 justifyContent: 'flex-end'
               }}>
@@ -260,16 +259,16 @@ export const CommentsSection: React.FC<CommentsSectionProps> = ({
 
           {isReplying && (
             <div className="cria-comment__reply" style={{ 
-              marginTop: 12, 
-              padding: 12, 
+              marginTop: spacing[3], 
+              padding: spacing[3], 
               backgroundColor: colors.background.primary, 
               borderRadius: 12,
               border: `1px solid ${colors.border.light}`,
               maxWidth: '100%'
             }}>
-              <Typography variant="body2" weight="semiBold" style={{ marginBottom: 8, color: colors.text.primary }}>
+              <CriaTextBody1 style={{ marginBottom: 8, color: colors.text.primary }}>
                 Reply to {comment.author}
-              </Typography>
+              </CriaTextBody1>
               <Textarea
                 ref={replyTextareaRef}
                 value={replyContent}
@@ -307,9 +306,9 @@ export const CommentsSection: React.FC<CommentsSectionProps> = ({
       {...props}
     >
       <div className="cria-comments-section__header" style={{ marginBottom: spacing[4] }}>
-        <Typography variant="h3" weight="semiBold" style={{ color: colors.text.primary }}>
+        <CriaTextTitle1 style={{ color: colors.text.primary }}>
           Comments ({comments.length})
-        </Typography>
+        </CriaTextTitle1>
       </div>
 
       <div className="cria-comments-section__composer" style={{ marginBottom: spacing[6] }}>
@@ -324,9 +323,9 @@ export const CommentsSection: React.FC<CommentsSectionProps> = ({
           aria-label="Add a comment"
         />
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <Typography variant="caption" style={{ color: colors.text.secondary }}>
+          <CriaTextBody2 style={{ color: colors.text.secondary }}>
             {newComment.length}/{maxLength} characters
-          </Typography>
+          </CriaTextBody2>
           <Button onClick={handleSendComment} disabled={!newComment.trim()}>
             Send
           </Button>
@@ -336,7 +335,7 @@ export const CommentsSection: React.FC<CommentsSectionProps> = ({
       <div className="cria-comments-section__thread">
         {comments.length === 0 ? (
           <div style={{ textAlign: 'center', padding: spacing[6], color: colors.text.secondary }}>
-            <Typography variant="body2">No comments yet. Be the first to comment!</Typography>
+            <CriaTextBody2>No comments yet. Be the first to comment!</CriaTextBody2>
           </div>
         ) : (
           comments.map(comment => renderComment(comment))
@@ -350,9 +349,9 @@ export const CommentsSection: React.FC<CommentsSectionProps> = ({
           title="Delete Comment"
           size="sm"
         >
-          <Typography variant="body2" style={{ marginBottom: spacing[4] }}>
+          <CriaTextBody2 style={{ marginBottom: spacing[4] }}>
             Are you sure you want to delete this comment? This action cannot be undone.
-          </Typography>
+          </CriaTextBody2>
           <div style={{ display: 'flex', gap: spacing[2], justifyContent: 'flex-end' }}>
             <Button variant="secondary" onClick={() => setDeleteConfirm(null)}>
               Cancel

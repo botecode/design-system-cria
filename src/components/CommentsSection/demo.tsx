@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CommentsSection, Comment } from './CommentsSection';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1 } from '../TextTokens';
+import { spacing } from '../../tokens';
 import { Card } from '../Card';
 
 export const CommentsSectionDemo: React.FC = () => {
@@ -119,12 +120,12 @@ export const CommentsSectionDemo: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '24px', maxWidth: '800px' }}>
-      <Typography variant="title1" weight="bold" style={{ marginBottom: '16px' }}>
+    <div style={{ padding: spacing[6], maxWidth: '800px' }}>
+      <CriaTextHeadline1 style={{ marginBottom: spacing[4] }}>
         Comments Section Demo
-      </Typography>
+      </CriaTextHeadline1>
       
-      <Card style={{ padding: '24px' }}>
+      <Card style={{ padding: spacing[6] }}>
         <CommentsSection
           comments={comments}
           onAddComment={handleAddComment}
