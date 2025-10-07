@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { Card, CardContent } from '../Card';
-import { Typography } from '../Typography';
+import { CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { ShimmerSkeleton } from '../ShimmerSkeleton';
 import { colors, spacing, typography, shadows, radii } from '../../tokens';
 
@@ -183,9 +183,9 @@ export const StatisticMetricCard = forwardRef<HTMLDivElement, StatisticMetricCar
       color: colors.error,
       textAlign: 'center',
     }}>
-      <Typography variant="body2" weight="medium">
+      <CriaTextBody2 style={{ fontWeight: typography.fontWeight.medium }}>
         {error}
-      </Typography>
+      </CriaTextBody2>
     </div>
   );
 
@@ -236,29 +236,40 @@ export const StatisticMetricCard = forwardRef<HTMLDivElement, StatisticMetricCar
 
               {/* Value */}
               <div style={{ marginBottom: spacing[2] }}>
-                <Typography
-                  variant={size === 'sm' ? 'h3' : (size === 'lg' ? 'display2' : 'h1')}
+                <div
                   style={{
+                    fontSize: config.valueFontSize,
                     fontWeight: typography.fontWeight.bold,
                     color: selectedColor,
                     lineHeight: typography.lineHeight.tight,
                   }}
                 >
                   {value}
-                </Typography>
+                </div>
               </div>
 
               {/* Label */}
-              <Typography
-                variant={size === 'sm' ? 'body2' : 'body'}
-                style={{
-                  color: colors.gray[700],
-                  fontWeight: typography.fontWeight.medium,
-                  marginBottom: spacing[1],
-                }}
-              >
-                {label}
-              </Typography>
+              {size === 'sm' ? (
+                <CriaTextBody2
+                  style={{
+                    color: colors.gray[700],
+                    fontWeight: typography.fontWeight.medium,
+                    marginBottom: spacing[1],
+                  }}
+                >
+                  {label}
+                </CriaTextBody2>
+              ) : (
+                <CriaTextBody1
+                  style={{
+                    color: colors.gray[700],
+                    fontWeight: typography.fontWeight.medium,
+                    marginBottom: spacing[1],
+                  }}
+                >
+                  {label}
+                </CriaTextBody1>
+              )}
 
               {/* Trend */}
               {trend && (
@@ -267,8 +278,7 @@ export const StatisticMetricCard = forwardRef<HTMLDivElement, StatisticMetricCar
                     <span style={{ color: trendColorMap[trend.direction], fontWeight: typography.fontWeight.semiBold }}>
                       {trend.direction === 'up' ? '↗' : (trend.direction === 'down' ? '↘' : '→')}
                     </span>
-                    <Typography
-                      variant="caption"
+                    <CriaTextBody2
                       style={{
                         color: trendColorMap[trend.direction],
                         fontSize: config.trendFontSize,
@@ -276,16 +286,15 @@ export const StatisticMetricCard = forwardRef<HTMLDivElement, StatisticMetricCar
                       }}
                     >
                       {formatTrendValue(trend.value, trend.direction)}
-                    </Typography>
-                    <Typography
-                      variant="caption"
+                    </CriaTextBody2>
+                    <CriaTextBody2
                       style={{
                         color: colors.gray[500],
                         fontSize: config.trendFontSize,
                       }}
                     >
                       {trend.period}
-                    </Typography>
+                    </CriaTextBody2>
                   </div>
                 </div>
               )}

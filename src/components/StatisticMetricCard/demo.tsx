@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { StatisticMetricCard } from './StatisticMetricCard';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextTitle1, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { Button } from '../Button';
 import { Card, CardContent, CardHeader } from '../Card';
 import { 
@@ -17,6 +17,7 @@ import {
   Lightning,
   Globe
 } from 'phosphor-react';
+import { spacing, colors, radii } from '../../tokens';
 
 const StatisticMetricCardDemo: React.FC = () => {
   const [clickedStatistic, setClickedStatistic] = useState<string | null>(null);
@@ -179,38 +180,38 @@ const StatisticMetricCardDemo: React.FC = () => {
   ];
 
   return (
-    <div style={{ padding: '2rem', minHeight: '100vh' }}>
-      <Typography variant="h1" weight="bold" style={{ marginBottom: '2rem' }}>
+    <div style={{ padding: spacing[8], minHeight: '100vh' }}>
+      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
         Statistic / Metric Card
-      </Typography>
+      </CriaTextHeadline1>
 
-      <Typography variant="body" style={{ marginBottom: '2rem' }}>
+      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
         Dashboard components for displaying values, labels, and trends with comprehensive state management.
-      </Typography>
+      </CriaTextBody1>
 
       {clickedStatistic && (
-        <Card style={{ marginBottom: '2rem', backgroundColor: '#e0f7fa', border: '1px solid #00bcd4' }}>
+        <Card style={{ marginBottom: spacing[8], backgroundColor: colors.primary[50], border: `1px solid ${colors.primary[500]}` }}>
           <CardContent>
-            <Typography variant="bodySmall" weight="medium" style={{ color: '#006064' }}>
+            <CriaTextBody2 style={{ fontWeight: typography.fontWeight.medium, color: colors.primary[800] }}>
               Last clicked: {clickedStatistic}
-            </Typography>
+            </CriaTextBody2>
           </CardContent>
         </Card>
       )}
 
       {/* Basic Examples */}
-      <Card style={{ marginBottom: '2rem' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Basic Examples
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <div style={{ 
             display: 'grid', 
             gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-            gap: '1rem',
-            marginBottom: '2rem'
+            gap: spacing[4],
+            marginBottom: spacing[8]
           }}>
             {sampleStatistics.map((stat) => (
               <StatisticMetricCard
@@ -224,18 +225,18 @@ const StatisticMetricCardDemo: React.FC = () => {
       </Card>
 
       {/* Size Variants */}
-      <Card style={{ marginBottom: '2rem' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Size Variants
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <div style={{ 
             display: 'grid', 
             gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-            gap: '1rem',
-            marginBottom: '1rem'
+            gap: spacing[4],
+            marginBottom: spacing[4]
           }}>
             <StatisticMetricCard
               id="small-metric"
@@ -266,18 +267,18 @@ const StatisticMetricCardDemo: React.FC = () => {
       </Card>
 
       {/* Color Variants */}
-      <Card style={{ marginBottom: '2rem' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Color Variants
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <div style={{ 
             display: 'grid', 
             gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-            gap: '1rem',
-            marginBottom: '1rem'
+            gap: spacing[4],
+            marginBottom: spacing[4]
           }}>
             <StatisticMetricCard
               id="primary-metric"
@@ -326,18 +327,18 @@ const StatisticMetricCardDemo: React.FC = () => {
       </Card>
 
       {/* Dashboard Layout */}
-      <Card style={{ marginBottom: '2rem' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Dashboard Layout
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <div style={{ 
             display: 'grid', 
             gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', 
-            gap: '1rem',
-            marginBottom: '2rem'
+            gap: spacing[4],
+            marginBottom: spacing[8]
           }}>
             {dashboardMetrics.map((metric) => (
               <StatisticMetricCard
@@ -351,18 +352,18 @@ const StatisticMetricCardDemo: React.FC = () => {
       </Card>
 
       {/* KPI Layout */}
-      <Card style={{ marginBottom: '2rem' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             KPI Layout (Large)
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <div style={{ 
             display: 'grid', 
             gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-            gap: '1.5rem',
-            marginBottom: '1rem'
+            gap: spacing[6],
+            marginBottom: spacing[4]
           }}>
             {kpiMetrics.map((metric) => (
               <StatisticMetricCard
@@ -376,18 +377,18 @@ const StatisticMetricCardDemo: React.FC = () => {
       </Card>
 
       {/* States */}
-      <Card style={{ marginBottom: '2rem' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             States
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <div style={{ 
             display: 'grid', 
             gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-            gap: '1rem',
-            marginBottom: '1rem'
+            gap: spacing[4],
+            marginBottom: spacing[4]
           }}>
             <StatisticMetricCard
               id="loading-metric"
@@ -419,12 +420,12 @@ const StatisticMetricCardDemo: React.FC = () => {
       {/* Interactive Controls */}
       <Card>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Interactive Controls
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1rem' }}>
+          <div style={{ display: 'flex', gap: spacing[4], flexWrap: 'wrap', marginBottom: spacing[4] }}>
             <Button 
               variant="outline" 
               onClick={() => setClickedStatistic(null)}
@@ -439,10 +440,10 @@ const StatisticMetricCardDemo: React.FC = () => {
             </Button>
           </div>
           
-          <Typography variant="body2" style={{ color: '#6b7280' }}>
+          <CriaTextBody2 style={{ color: colors.gray[500] }}>
             Click on any statistic card above to see it logged in the console and displayed above.
             Cards with onClick handlers are keyboard accessible and support Enter/Space key activation.
-          </Typography>
+          </CriaTextBody2>
         </CardContent>
       </Card>
     </div>
