@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { TagChip } from './TagChip';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextTitle1, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { Card, CardContent, CardHeader } from '../Card';
 import { Grid, Row, Column } from '../Grid';
 import { Button } from '../Button';
@@ -19,6 +19,7 @@ import {
   CheckCircle,
   WarningCircle
 } from 'phosphor-react';
+import { spacing, colors, radii } from '../../tokens';
 
 const TagChipDemo: React.FC = () => {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
@@ -51,23 +52,23 @@ const TagChipDemo: React.FC = () => {
   }, [removableTags]);
 
   return (
-    <div style={{ padding: '2rem', minHeight: '100vh' }}>
-      <Typography variant="h1" weight="bold" style={{ marginBottom: '2rem' }}>
+    <div style={{ padding: spacing[8], minHeight: '100vh' }}>
+      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
         Tag / Chip
-      </Typography>
+      </CriaTextHeadline1>
 
-      <Typography variant="body" style={{ marginBottom: '2rem' }}>
+      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
         Versatile tag and chip components for labels, categories, and interactive elements with multiple variants, sizes, and styles.
-      </Typography>
+      </CriaTextBody1>
 
-      <Card style={{ marginBottom: '2rem' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Basic Variants
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', marginBottom: '1.5rem' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[3], marginBottom: spacing[6] }}>
             <TagChip label="Default" variant="default" />
             <TagChip label="Primary" variant="primary" />
             <TagChip label="Secondary" variant="secondary" />
@@ -79,40 +80,40 @@ const TagChipDemo: React.FC = () => {
         </CardContent>
       </Card>
 
-      <Card style={{ marginBottom: '2rem' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Different Styles
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
-          <div style={{ marginBottom: '1.5rem' }}>
-            <Typography variant="h3" weight="medium" style={{ marginBottom: '0.75rem' }}>
+          <div style={{ marginBottom: spacing[6] }}>
+            <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
               Filled (Default)
-            </Typography>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+            </CriaTextTitle1>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[3] }}>
               <TagChip label="Filled Primary" variant="primary" visualStyle="filled" />
               <TagChip label="Filled Success" variant="success" visualStyle="filled" />
               <TagChip label="Filled Warning" variant="warning" visualStyle="filled" />
             </div>
           </div>
 
-          <div style={{ marginBottom: '1.5rem' }}>
-            <Typography variant="h3" weight="medium" style={{ marginBottom: '0.75rem' }}>
+          <div style={{ marginBottom: spacing[6] }}>
+            <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
               Outlined
-            </Typography>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+            </CriaTextTitle1>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[3] }}>
               <TagChip label="Outlined Primary" variant="primary" visualStyle="outlined" />
               <TagChip label="Outlined Success" variant="success" visualStyle="outlined" />
               <TagChip label="Outlined Warning" variant="warning" visualStyle="outlined" />
             </div>
           </div>
 
-          <div style={{ marginBottom: '1.5rem' }}>
-            <Typography variant="h3" weight="medium" style={{ marginBottom: '0.75rem' }}>
+          <div style={{ marginBottom: spacing[6] }}>
+            <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
               Soft
-            </Typography>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+            </CriaTextTitle1>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[3] }}>
               <TagChip label="Soft Primary" variant="primary" visualStyle="soft" />
               <TagChip label="Soft Success" variant="success" visualStyle="soft" />
               <TagChip label="Soft Warning" variant="warning" visualStyle="soft" />
@@ -120,10 +121,10 @@ const TagChipDemo: React.FC = () => {
           </div>
 
           <div>
-            <Typography variant="h3" weight="medium" style={{ marginBottom: '0.75rem' }}>
+            <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
               Ghost
-            </Typography>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+            </CriaTextTitle1>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[3] }}>
               <TagChip label="Ghost Primary" variant="primary" visualStyle="ghost" />
               <TagChip label="Ghost Success" variant="success" visualStyle="ghost" />
               <TagChip label="Ghost Warning" variant="warning" visualStyle="ghost" />
@@ -132,14 +133,14 @@ const TagChipDemo: React.FC = () => {
         </CardContent>
       </Card>
 
-      <Card style={{ marginBottom: '2rem' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Different Sizes
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[3], alignItems: 'center' }}>
             <TagChip label="Small" variant="primary" size="sm" />
             <TagChip label="Medium (Default)" variant="primary" size="md" />
             <TagChip label="Large" variant="primary" size="lg" />
@@ -147,14 +148,14 @@ const TagChipDemo: React.FC = () => {
         </CardContent>
       </Card>
 
-      <Card style={{ marginBottom: '2rem' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             With Icons
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[3] }}>
             <TagChip label="Starred" variant="warning" icon={<Star weight="fill" />} />
             <TagChip label="Liked" variant="error" icon={<Heart weight="fill" />} />
             <TagChip label="Tagged" variant="info" icon={<Tag />} />
@@ -166,17 +167,17 @@ const TagChipDemo: React.FC = () => {
         </CardContent>
       </Card>
 
-      <Card style={{ marginBottom: '2rem' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Clickable Tags
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" style={{ marginBottom: '1rem', color: '#666' }}>
+          <CriaTextBody1 style={{ marginBottom: spacing[4], color: colors.gray[500] }}>
             Click tags to select/deselect them. Selected: {selectedTags.join(', ') || 'None'}
-          </Typography>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+          </CriaTextBody1>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[3] }}>
             {['JavaScript', 'React', 'TypeScript', 'CSS', 'HTML', 'Node.js', 'Python', 'Go'].map(tag => (
               <TagChip
                 key={tag}
@@ -192,19 +193,19 @@ const TagChipDemo: React.FC = () => {
         </CardContent>
       </Card>
 
-      <Card style={{ marginBottom: '2rem' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Removable Tags
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center', marginBottom: '1rem' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[3], alignItems: 'center', marginBottom: spacing[4] }}>
             <Button onClick={addRandomTag} size="sm">
               Add Random Tag
             </Button>
           </div>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[3] }}>
             {removableTags.map(tag => (
               <TagChip
                 key={tag}
@@ -218,14 +219,14 @@ const TagChipDemo: React.FC = () => {
         </CardContent>
       </Card>
 
-      <Card style={{ marginBottom: '2rem' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Status Indicators
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[3] }}>
             <TagChip label="Completed" variant="success" icon={<CheckCircle />} />
             <TagChip label="In Progress" variant="warning" icon={<Clock />} />
             <TagChip label="Pending" variant="info" icon={<WarningCircle />} />
@@ -235,14 +236,14 @@ const TagChipDemo: React.FC = () => {
         </CardContent>
       </Card>
 
-      <Card style={{ marginBottom: '2rem' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             States
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[3], alignItems: 'center' }}>
             <TagChip label="Normal" variant="primary" />
             <TagChip label="Selected" variant="primary" selected />
             <TagChip label="Disabled" variant="primary" disabled />
@@ -251,18 +252,18 @@ const TagChipDemo: React.FC = () => {
         </CardContent>
       </Card>
 
-      <Card style={{ marginBottom: '2rem' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Real-World Examples
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
-          <div style={{ marginBottom: '1.5rem' }}>
-            <Typography variant="h3" weight="medium" style={{ marginBottom: '0.75rem' }}>
+          <div style={{ marginBottom: spacing[6] }}>
+            <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
               Blog Post Tags
-            </Typography>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+            </CriaTextTitle1>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[3] }}>
               <TagChip label="React" variant="info" visualStyle="soft" />
               <TagChip label="JavaScript" variant="primary" visualStyle="soft" />
               <TagChip label="Frontend" variant="secondary" visualStyle="soft" />
@@ -270,11 +271,11 @@ const TagChipDemo: React.FC = () => {
             </div>
           </div>
 
-          <div style={{ marginBottom: '1.5rem' }}>
-            <Typography variant="h3" weight="medium" style={{ marginBottom: '0.75rem' }}>
+          <div style={{ marginBottom: spacing[6] }}>
+            <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
               User Skills
-            </Typography>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+            </CriaTextTitle1>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[3] }}>
               <TagChip label="Frontend Development" variant="primary" icon={<User />} />
               <TagChip label="UI/UX Design" variant="secondary" icon={<Heart />} />
               <TagChip label="Project Management" variant="success" icon={<Check />} />
@@ -282,10 +283,10 @@ const TagChipDemo: React.FC = () => {
           </div>
 
           <div>
-            <Typography variant="h3" weight="medium" style={{ marginBottom: '0.75rem' }}>
+            <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
               Filter Options
-            </Typography>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+            </CriaTextTitle1>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[3] }}>
               <TagChip label="Price: $0-$50" variant="info" removable />
               <TagChip label="Category: Electronics" variant="info" removable />
               <TagChip label="Brand: Apple" variant="info" removable />
