@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import { colors, spacing, typography } from '../../tokens';
-import { Typography } from '../Typography';
+import { CriaTextBody2 } from '../TextTokens';
 
 export interface SliderMark {
   value: number;
@@ -63,13 +63,13 @@ export const Slider: React.FC<SliderProps> = ({
 
   const getColorValue = (colorName: string) => {
     const colorMap: Record<string, string> = {
-      primary: colors.primary,
-      secondary: colors.secondary,
-      success: colors.success,
-      warning: colors.warning,
-      error: colors.error,
+      primary: colors.primary[500],
+      secondary: colors.secondary[500],
+      success: colors.success[500],
+      warning: colors.warning[500],
+      error: colors.error[500],
     };
-    return colorMap[colorName] || colors.primary;
+    return colorMap[colorName] || colors.primary[500];
   };
 
   const getSizeValue = (sizeName: string) => {
@@ -220,7 +220,7 @@ export const Slider: React.FC<SliderProps> = ({
           border: `2px solid ${colors.white}`,
           borderRadius: '50%',
           cursor: disabled ? 'not-allowed' : 'pointer',
-          boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
+          boxShadow: `0 2px 4px ${colors.black}20`,
           transition: 'all 0.2s ease',
           zIndex: activeThumb === thumbIndex ? 2 : 1,
           opacity: disabled ? 0.5 : 1,
@@ -246,12 +246,12 @@ export const Slider: React.FC<SliderProps> = ({
               transform: 'translateX(-50%)',
               backgroundColor: colors.backgroundDark,
               color: colors.white,
-              padding: '4px 8px',
+              padding: `${spacing[1]} ${spacing[2]}`,
               borderRadius: 4,
               fontSize: '12px',
               whiteSpace: 'nowrap',
-              marginBottom: orientation === 'horizontal' ? 8 : 0,
-              marginTop: orientation === 'vertical' ? 8 : 0,
+              marginBottom: orientation === 'horizontal' ? spacing[2] : 0,
+              marginTop: orientation === 'vertical' ? spacing[2] : 0,
               zIndex: 3,
             }}
           >
@@ -375,8 +375,8 @@ export const Slider: React.FC<SliderProps> = ({
                 transform: orientation === 'horizontal' 
                   ? 'translateX(-50%)' 
                   : 'translateY(-50%)',
-                marginTop: orientation === 'horizontal' ? 8 : 0,
-                marginLeft: orientation === 'vertical' ? 8 : 0,
+                marginTop: orientation === 'horizontal' ? spacing[2] : 0,
+                marginLeft: orientation === 'vertical' ? spacing[2] : 0,
                 fontSize: '12px',
                 color: colors.text.secondary,
                 whiteSpace: 'nowrap',

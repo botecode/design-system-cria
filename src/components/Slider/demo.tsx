@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Slider } from './Slider';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextTitle1, CriaTextTitle2, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
+import { spacing, colors, radii } from '../../tokens';
 import { Card } from '../Card';
 
 export const SliderDemo: React.FC = () => {
@@ -67,21 +68,21 @@ export const SliderDemo: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '24px', maxWidth: '800px' }}>
-      <Typography variant="title1" weight="bold" style={{ marginBottom: '16px' }}>
+    <div style={{ padding: spacing[6], maxWidth: '800px' }}>
+      <CriaTextHeadline1 style={{ marginBottom: spacing[4] }}>
         Slider Demo
-      </Typography>
+      </CriaTextHeadline1>
       
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[8] }}>
         {/* Basic Single Slider */}
-        <Card style={{ padding: '24px' }}>
-          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+        <Card style={{ padding: spacing[6] }}>
+          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
             Basic Single Slider
-          </Typography>
-          <div style={{ marginBottom: '16px' }}>
-            <Typography variant="body2" style={{ marginBottom: '8px' }}>
+          </CriaTextTitle1>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
               Value: {singleValue}
-            </Typography>
+            </CriaTextBody2>
             <Slider
               min={0}
               max={100}
@@ -94,14 +95,14 @@ export const SliderDemo: React.FC = () => {
         </Card>
 
         {/* Zero to Ten Slider */}
-        <Card style={{ padding: '24px' }}>
-          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+        <Card style={{ padding: spacing[6] }}>
+          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
             Zero to Ten Slider
-          </Typography>
-          <div style={{ marginBottom: '16px' }}>
-            <Typography variant="body2" style={{ marginBottom: '8px' }}>
+          </CriaTextTitle1>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
               Value: {zeroToTenValue}
-            </Typography>
+            </CriaTextBody2>
             <Slider
               min={0}
               max={10}
@@ -114,13 +115,13 @@ export const SliderDemo: React.FC = () => {
         </Card>
 
         {/* Interactive Text Slider */}
-        <Card style={{ padding: '24px' }}>
-          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+        <Card style={{ padding: spacing[6] }}>
+          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
             Interactive Text Slider
-          </Typography>
-          <Typography variant="body2" style={{ marginBottom: '16px', color: '#666' }}>
+          </CriaTextBody2>
+          <CriaTextBody2 style={{ marginBottom: spacing[4], color: colors.text.secondary }}>
             How much does this apply to you?
-          </Typography>
+          </CriaTextBody2>
           
           <div style={{ marginBottom: '24px' }}>
             <Slider
@@ -136,10 +137,10 @@ export const SliderDemo: React.FC = () => {
 
           {/* Text Display Container */}
           <div style={{
-            backgroundColor: '#f8f9fa',
-            border: '2px solid #e9ecef',
-            borderRadius: '12px',
-            padding: '20px',
+            backgroundColor: colors.gray[50],
+            border: `2px solid ${colors.gray[200]}`,
+            borderRadius: radii.lg,
+            padding: spacing[5],
             textAlign: 'center',
             transition: 'all 0.3s ease',
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
@@ -147,35 +148,34 @@ export const SliderDemo: React.FC = () => {
           }}>
             <Typography 
               variant="h2" 
-              weight="bold" 
               style={{ 
-                marginBottom: '8px',
+                marginBottom: spacing[2],
                 color: textSliderValue >= 7 ? 'var(--cria-primary)' : textSliderValue <= 3 ? 'var(--cria-secondary)' : '#495057'
               }}
             >
               {getTextForValue(textSliderValue).text}
-            </Typography>
+            </CriaTextBody2>
             <Typography 
               variant="body1" 
               style={{ 
-                color: '#6c757d',
+                color: colors.text.secondary,
                 fontStyle: 'italic'
               }}
             >
               {getTextForValue(textSliderValue).description}
-            </Typography>
+            </CriaTextBody2>
           </div>
         </Card>
 
         {/* Range Slider */}
-        <Card style={{ padding: '24px' }}>
-          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+        <Card style={{ padding: spacing[6] }}>
+          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
             Range Slider
-          </Typography>
-          <div style={{ marginBottom: '16px' }}>
-            <Typography variant="body2" style={{ marginBottom: '8px' }}>
+          </CriaTextBody2>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
               Range: {rangeValue[0]} - {rangeValue[1]}
-            </Typography>
+            </CriaTextBody2>
             <Slider
               min={0}
               max={100}
@@ -189,14 +189,14 @@ export const SliderDemo: React.FC = () => {
         </Card>
 
         {/* Step Control */}
-        <Card style={{ padding: '24px' }}>
-          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+        <Card style={{ padding: spacing[6] }}>
+          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
             Step Control (Step: 5)
-          </Typography>
-          <div style={{ marginBottom: '16px' }}>
-            <Typography variant="body2" style={{ marginBottom: '8px' }}>
+          </CriaTextBody2>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
               Value: {stepValue} (step: 5)
-            </Typography>
+            </CriaTextBody2>
             <Slider
               min={0}
               max={100}
@@ -217,15 +217,15 @@ export const SliderDemo: React.FC = () => {
         </Card>
 
         {/* Different Colors */}
-        <Card style={{ padding: '24px' }}>
-          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+        <Card style={{ padding: spacing[6] }}>
+          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
             Different Colors
-          </Typography>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          </CriaTextBody2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <div>
-              <Typography variant="body2" style={{ marginBottom: '8px' }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
                 Primary Color
-              </Typography>
+              </CriaTextBody2>
               <Slider
                 min={0}
                 max={100}
@@ -237,9 +237,9 @@ export const SliderDemo: React.FC = () => {
               />
             </div>
             <div>
-              <Typography variant="body2" style={{ marginBottom: '8px' }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
                 Secondary Color
-              </Typography>
+              </CriaTextBody2>
               <Slider
                 min={0}
                 max={100}
@@ -251,9 +251,9 @@ export const SliderDemo: React.FC = () => {
               />
             </div>
             <div>
-              <Typography variant="body2" style={{ marginBottom: '8px' }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
                 Success Color
-              </Typography>
+              </CriaTextBody2>
               <Slider
                 min={0}
                 max={100}
@@ -265,9 +265,9 @@ export const SliderDemo: React.FC = () => {
               />
             </div>
             <div>
-              <Typography variant="body2" style={{ marginBottom: '8px' }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
                 Warning Color
-              </Typography>
+              </CriaTextBody2>
               <Slider
                 min={0}
                 max={100}
@@ -279,9 +279,9 @@ export const SliderDemo: React.FC = () => {
               />
             </div>
             <div>
-              <Typography variant="body2" style={{ marginBottom: '8px' }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
                 Error Color
-              </Typography>
+              </CriaTextBody2>
               <Slider
                 min={0}
                 max={100}
@@ -296,15 +296,15 @@ export const SliderDemo: React.FC = () => {
         </Card>
 
         {/* Different Sizes */}
-        <Card style={{ padding: '24px' }}>
-          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+        <Card style={{ padding: spacing[6] }}>
+          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
             Different Sizes
-          </Typography>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          </CriaTextBody2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             <div>
-              <Typography variant="body2" style={{ marginBottom: '8px' }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
                 Small Size
-              </Typography>
+              </CriaTextBody2>
               <Slider
                 min={0}
                 max={100}
@@ -316,9 +316,9 @@ export const SliderDemo: React.FC = () => {
               />
             </div>
             <div>
-              <Typography variant="body2" style={{ marginBottom: '8px' }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
                 Medium Size (Default)
-              </Typography>
+              </CriaTextBody2>
               <Slider
                 min={0}
                 max={100}
@@ -330,9 +330,9 @@ export const SliderDemo: React.FC = () => {
               />
             </div>
             <div>
-              <Typography variant="body2" style={{ marginBottom: '8px' }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
                 Large Size
-              </Typography>
+              </CriaTextBody2>
               <Slider
                 min={0}
                 max={100}
@@ -347,15 +347,15 @@ export const SliderDemo: React.FC = () => {
         </Card>
 
         {/* Disabled State */}
-        <Card style={{ padding: '24px' }}>
-          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+        <Card style={{ padding: spacing[6] }}>
+          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
             Disabled State
-          </Typography>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          </CriaTextBody2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <div>
-              <Typography variant="body2" style={{ marginBottom: '8px' }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
                 Disabled Single Slider
-              </Typography>
+              </CriaTextBody2>
               <Slider
                 min={0}
                 max={100}
@@ -367,9 +367,9 @@ export const SliderDemo: React.FC = () => {
               />
             </div>
             <div>
-              <Typography variant="body2" style={{ marginBottom: '8px' }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
                 Disabled Range Slider
-              </Typography>
+              </CriaTextBody2>
               <Slider
                 min={0}
                 max={100}
