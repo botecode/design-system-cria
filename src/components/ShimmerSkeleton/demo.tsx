@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ShimmerSkeleton } from './ShimmerSkeleton';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextTitle1, CriaTextTitle2, CriaTextBody1, CriaTextBody2, CriaTextCaption } from '../TextTokens';
+import { spacing, colors, radii } from '../../tokens';
 import { Card } from '../Card';
 import { Button } from '../Button';
 
@@ -12,109 +13,109 @@ export const ShimmerSkeletonDemo: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '24px', maxWidth: '800px' }}>
-      <Typography variant="title1" weight="bold" style={{ marginBottom: '16px' }}>
+    <div style={{ padding: spacing[6], maxWidth: '800px' }}>
+      <CriaTextHeadline1 style={{ marginBottom: spacing[4] }}>
         Shimmer Skeleton Demo
-      </Typography>
+      </CriaTextHeadline1>
       
-      <Typography variant="body" style={{ marginBottom: '32px' }}>
+      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
         The Shimmer Skeleton component provides animated loading placeholders for various content types. 
         Perfect for improving perceived performance and user experience during data loading.
-      </Typography>
+      </CriaTextBody1>
 
       {/* Controls */}
-      <Card style={{ marginBottom: '32px', padding: '16px' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+      <Card style={{ marginBottom: spacing[8], padding: spacing[4] }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: spacing[4] }}>
           <Button onClick={toggleLoading} variant={isLoading ? 'secondary' : 'primary'}>
             {isLoading ? 'Show Content' : 'Show Loading'}
           </Button>
-          <Typography variant="body2" color="secondary">
+          <CriaTextBody2 style={{ color: colors.text.secondary }}>
             Toggle between loading and content states
-          </Typography>
+          </CriaTextBody2>
         </div>
       </Card>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[8] }}>
         {/* Basic Shapes */}
-        <Card style={{ padding: '24px' }}>
-          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+        <Card style={{ padding: spacing[6] }}>
+          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
             Basic Shapes
-          </Typography>
+          </CriaTextBody2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
-              <Typography variant="body2" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody2  style={{ marginBottom: spacing[3] }}>
                 Rectangle (Default)
-              </Typography>
+              </CriaTextBody2>
               <ShimmerSkeleton />
             </div>
 
             <div>
-              <Typography variant="body2" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody2  style={{ marginBottom: spacing[3] }}>
                 Circle
-              </Typography>
+              </CriaTextBody2>
               <ShimmerSkeleton variant="circle" size="lg" />
             </div>
 
             <div>
-              <Typography variant="body2" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody2  style={{ marginBottom: spacing[3] }}>
                 Custom Dimensions
-              </Typography>
+              </CriaTextBody2>
               <ShimmerSkeleton width="200px" height="50px" />
             </div>
           </div>
         </Card>
 
         {/* Text Skeleton */}
-        <Card style={{ padding: '24px' }}>
-          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+        <Card style={{ padding: spacing[6] }}>
+          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
             Text Skeleton
-          </Typography>
+          </CriaTextBody2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
-              <Typography variant="body2" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody2  style={{ marginBottom: spacing[3] }}>
                 Single Line
-              </Typography>
+              </CriaTextBody2>
               <ShimmerSkeleton variant="text" lines={1} />
             </div>
 
             <div>
-              <Typography variant="body2" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody2  style={{ marginBottom: spacing[3] }}>
                 Multiple Lines
-              </Typography>
+              </CriaTextBody2>
               <ShimmerSkeleton variant="text" lines={3} />
             </div>
 
             <div>
-              <Typography variant="body2" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody2  style={{ marginBottom: spacing[3] }}>
                 Paragraph (5 lines)
-              </Typography>
+              </CriaTextBody2>
               <ShimmerSkeleton variant="text" lines={5} />
             </div>
           </div>
         </Card>
 
         {/* Avatar Skeleton */}
-        <Card style={{ padding: '24px' }}>
-          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+        <Card style={{ padding: spacing[6] }}>
+          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
             Avatar Skeleton
-          </Typography>
+          </CriaTextBody2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
-              <Typography variant="body2" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody2  style={{ marginBottom: spacing[3] }}>
                 Different Sizes
-              </Typography>
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              </CriaTextBody2>
+              <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: spacing[2] }}>
                   <ShimmerSkeleton variant="avatar" size="sm" />
-                  <Typography variant="caption">Small</Typography>
+                  <CriaTextCaption>Small</CriaTextBody2>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: spacing[2] }}>
                   <ShimmerSkeleton variant="avatar" size="md" />
-                  <Typography variant="caption">Medium</Typography>
+                  <CriaTextCaption>Medium</CriaTextBody2>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: spacing[2] }}>
                   <ShimmerSkeleton variant="avatar" size="lg" />
-                  <Typography variant="caption">Large</Typography>
+                  <CriaTextCaption>Large</CriaTextBody2>
                 </div>
               </div>
             </div>
@@ -122,11 +123,11 @@ export const ShimmerSkeletonDemo: React.FC = () => {
         </Card>
 
         {/* Button Skeleton */}
-        <Card style={{ padding: '24px' }}>
-          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+        <Card style={{ padding: spacing[6] }}>
+          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
             Button Skeleton
-          </Typography>
-          <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+          </CriaTextBody2>
+          <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center', flexWrap: 'wrap' }}>
             <ShimmerSkeleton variant="button" width="80px" />
             <ShimmerSkeleton variant="button" width="120px" />
             <ShimmerSkeleton variant="button" width="160px" />
@@ -134,41 +135,41 @@ export const ShimmerSkeletonDemo: React.FC = () => {
         </Card>
 
         {/* Card Skeleton */}
-        <Card style={{ padding: '24px' }}>
-          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+        <Card style={{ padding: spacing[6] }}>
+          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
             Card Skeleton
-          </Typography>
+          </CriaTextBody2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
-              <Typography variant="body2" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody2  style={{ marginBottom: spacing[3] }}>
                 Standard Card
-              </Typography>
+              </CriaTextBody2>
               <ShimmerSkeleton variant="card" height="150px" />
             </div>
 
             <div>
-              <Typography variant="body2" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody2  style={{ marginBottom: spacing[3] }}>
                 Large Card
-              </Typography>
+              </CriaTextBody2>
               <ShimmerSkeleton variant="card" height="250px" />
             </div>
           </div>
         </Card>
 
         {/* Real-world Examples */}
-        <Card style={{ padding: '24px' }}>
-          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+        <Card style={{ padding: spacing[6] }}>
+          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
             Real-world Examples
-          </Typography>
+          </CriaTextBody2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             {/* User Profile Loading */}
             <div>
-              <Typography variant="body2" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody2  style={{ marginBottom: spacing[3] }}>
                 User Profile Loading
-              </Typography>
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+              </CriaTextBody2>
+              <div style={{ display: 'flex', gap: spacing[4], alignItems: 'flex-start' }}>
                 <ShimmerSkeleton variant="avatar" size="lg" />
-                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: spacing[2] }}>
                   <ShimmerSkeleton variant="text" lines={2} />
                   <ShimmerSkeleton width="60%" height="16px" />
                 </div>
@@ -177,14 +178,14 @@ export const ShimmerSkeletonDemo: React.FC = () => {
 
             {/* List Item Loading */}
             <div>
-              <Typography variant="body2" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody2  style={{ marginBottom: spacing[3] }}>
                 List Item Loading
-              </Typography>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              </CriaTextBody2>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[3] }}>
                 {[1, 2, 3].map((item) => (
-                  <div key={item} style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                  <div key={item} style={{ display: 'flex', gap: spacing[3], alignItems: 'center' }}>
                     <ShimmerSkeleton variant="avatar" size="md" />
-                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: spacing[1] }}>
                       <ShimmerSkeleton width="40%" height="16px" />
                       <ShimmerSkeleton width="70%" height="14px" />
                     </div>
@@ -196,10 +197,10 @@ export const ShimmerSkeletonDemo: React.FC = () => {
 
             {/* Content Card Loading */}
             <div>
-              <Typography variant="body2" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody2  style={{ marginBottom: spacing[3] }}>
                 Content Card Loading
-              </Typography>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '16px' }}>
+              </CriaTextBody2>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: spacing[4] }}>
                 {[1, 2, 3].map((item) => (
                   <ShimmerSkeleton key={item} variant="card" height="200px" />
                 ))}
@@ -209,37 +210,37 @@ export const ShimmerSkeletonDemo: React.FC = () => {
         </Card>
 
         {/* Animation Control */}
-        <Card style={{ padding: '24px' }}>
-          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+        <Card style={{ padding: spacing[6] }}>
+          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
             Animation Control
-          </Typography>
+          </CriaTextBody2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
-              <Typography variant="body2" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody2  style={{ marginBottom: spacing[3] }}>
                 With Animation (Default)
-              </Typography>
+              </CriaTextBody2>
               <ShimmerSkeleton variant="text" lines={3} />
             </div>
 
             <div>
-              <Typography variant="body2" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody2  style={{ marginBottom: spacing[3] }}>
                 Without Animation
-              </Typography>
+              </CriaTextBody2>
               <ShimmerSkeleton variant="text" lines={3} animated={false} />
             </div>
           </div>
         </Card>
 
         {/* Interactive Example */}
-        <Card style={{ padding: '24px' }}>
-          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+        <Card style={{ padding: spacing[6] }}>
+          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
             Interactive Example
-          </Typography>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          </CriaTextBody2>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             {isLoading ? (
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+              <div style={{ display: 'flex', gap: spacing[4], alignItems: 'flex-start' }}>
                 <ShimmerSkeleton variant="avatar" size="lg" />
-                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: spacing[2] }}>
                   <ShimmerSkeleton variant="text" lines={2} />
                   <ShimmerSkeleton width="60%" height="16px" />
                   <div style={{ marginTop: '8px' }}>
@@ -248,13 +249,13 @@ export const ShimmerSkeletonDemo: React.FC = () => {
                 </div>
               </div>
             ) : (
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'flex-start' }}>
+              <div style={{ display: 'flex', gap: spacing[4], alignItems: 'flex-start' }}>
                 <div
                   style={{
                     width: '48px',
                     height: '48px',
                     borderRadius: '50%',
-                    backgroundColor: '#7566A1',
+                    backgroundColor: colors.primary[500],
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -265,16 +266,16 @@ export const ShimmerSkeletonDemo: React.FC = () => {
                   JD
                 </div>
                 <div style={{ flex: 1 }}>
-                  <Typography variant="h4" weight="semiBold" style={{ marginBottom: '4px' }}>
+                  <CriaTextTitle2  style={{ marginBottom: '4px' }}>
                     John Doe
-                  </Typography>
-                  <Typography variant="body2" color="secondary" style={{ marginBottom: '12px' }}>
+                  </CriaTextBody2>
+                  <CriaTextBody2 style={{ color: colors.text.secondary }} style={{ marginBottom: spacing[3] }}>
                     Software Engineer
-                  </Typography>
-                  <Typography variant="body">
+                  </CriaTextBody2>
+                  <CriaTextBody1>
                     This is the actual content that would be displayed after loading. 
                     The shimmer skeleton provides a smooth transition from loading state to content.
-                  </Typography>
+                  </CriaTextBody2>
                 </div>
               </div>
             )}

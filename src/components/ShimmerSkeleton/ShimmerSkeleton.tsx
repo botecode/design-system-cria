@@ -1,5 +1,5 @@
 import React from 'react';
-import { colors, spacing, typography } from '../../tokens';
+import { colors, spacing, typography, radii } from '../../tokens';
 
 export type ShimmerSkeletonVariant = 
   | 'text' 
@@ -52,7 +52,7 @@ export const ShimmerSkeleton: React.FC<ShimmerSkeletonProps> = ({
           height: height || 'auto',
           display: 'flex',
           flexDirection: 'column' as const,
-          gap: '8px',
+          gap: spacing[2],
         };
       
       case 'avatar':
@@ -66,18 +66,18 @@ export const ShimmerSkeleton: React.FC<ShimmerSkeletonProps> = ({
         return {
           width: width || '100%',
           height: height || '200px',
-          borderRadius: '12px',
-          padding: '16px',
+          borderRadius: radii.lg,
+          padding: spacing[4],
           display: 'flex',
           flexDirection: 'column' as const,
-          gap: '12px',
+          gap: spacing[3],
         };
       
       case 'button':
         return {
           width: width || '120px',
           height: height || '36px',
-          borderRadius: '6px',
+          borderRadius: radii.md,
         };
       
       case 'circle':
@@ -92,7 +92,7 @@ export const ShimmerSkeleton: React.FC<ShimmerSkeletonProps> = ({
         return {
           width: width || '100%',
           height: height || '20px',
-          borderRadius: '4px',
+          borderRadius: radii.sm,
         };
     }
   };
@@ -107,7 +107,7 @@ export const ShimmerSkeleton: React.FC<ShimmerSkeletonProps> = ({
         style={{
           width: index === lines - 1 ? '75%' : '100%',
           height: '16px',
-          borderRadius: '4px',
+          borderRadius: radii.sm,
           backgroundColor: colors.gray[200],
           position: 'relative',
           overflow: 'hidden',
@@ -141,7 +141,7 @@ export const ShimmerSkeleton: React.FC<ShimmerSkeletonProps> = ({
           style={{
             width: '60%',
             height: '20px',
-            borderRadius: '4px',
+            borderRadius: radii.sm,
             backgroundColor: colors.gray[200],
             position: 'relative',
             overflow: 'hidden',
@@ -167,7 +167,7 @@ export const ShimmerSkeleton: React.FC<ShimmerSkeletonProps> = ({
           style={{
             width: '100%',
             height: '16px',
-            borderRadius: '4px',
+            borderRadius: radii.sm,
             backgroundColor: colors.gray[200],
             position: 'relative',
             overflow: 'hidden',
@@ -193,7 +193,7 @@ export const ShimmerSkeleton: React.FC<ShimmerSkeletonProps> = ({
           style={{
             width: '80%',
             height: '16px',
-            borderRadius: '4px',
+            borderRadius: radii.sm,
             backgroundColor: colors.gray[200],
             position: 'relative',
             overflow: 'hidden',
