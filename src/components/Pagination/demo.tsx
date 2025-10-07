@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextBody1, CriaTextBody2, CriaTextTitle1, CriaTextTitle2 } from '../TextTokens';
 import { Pagination } from './index';
 import { Card, CardContent, CardHeader } from '../Card';
 import { List, Database, FileText, Users, Package } from 'phosphor-react';
@@ -18,23 +18,23 @@ export const PaginationDemo: React.FC = () => {
 
   return (
     <div className="pagination-demo">
-      <Typography variant="h2" className="demo-title">
+      <CriaTextHeadline1 className="demo-title">
         Pagination Component
-      </Typography>
+      </CriaTextHeadline1>
       
-      <Typography variant="body" className="demo-description">
+      <CriaTextBody1 className="demo-description">
         Navigate through paged content with accessible pagination controls.
-      </Typography>
+      </CriaTextBody1>
 
       {/* Basic Pagination */}
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">Basic Pagination</Typography>
+          <CriaTextTitle1>Basic Pagination</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" className="demo-description">
+          <CriaTextBody1 className="demo-description">
             Standard pagination with previous/next buttons and numbered pages.
-          </Typography>
+          </CriaTextBody1>
           
           <div className="demo-content">
             <Pagination
@@ -44,9 +44,9 @@ export const PaginationDemo: React.FC = () => {
             />
             
             <div className="demo-info">
-              <Typography variant="caption">
+              <CriaTextBody2>
                 Current page: {currentPage} of {totalPages}
-              </Typography>
+              </CriaTextBody2>
             </div>
           </div>
         </CardContent>
@@ -55,12 +55,12 @@ export const PaginationDemo: React.FC = () => {
       {/* Compact Pagination */}
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">Compact Pagination</Typography>
+          <CriaTextTitle1>Compact Pagination</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" className="demo-description">
+          <CriaTextBody1 className="demo-description">
             Compact variant with reduced spacing for tight layouts.
-          </Typography>
+          </CriaTextBody1>
           
           <div className="demo-content">
             <Pagination
@@ -71,9 +71,9 @@ export const PaginationDemo: React.FC = () => {
             />
             
             <div className="demo-info">
-              <Typography variant="caption">
+              <CriaTextBody2>
                 Compact variant with reduced padding and spacing
-              </Typography>
+              </CriaTextBody2>
             </div>
           </div>
         </CardContent>
@@ -82,12 +82,12 @@ export const PaginationDemo: React.FC = () => {
       {/* Minimal Pagination */}
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">Minimal Pagination</Typography>
+          <CriaTextTitle1>Minimal Pagination</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" className="demo-description">
+          <CriaTextBody1 className="demo-description">
             Minimal variant showing only page numbers and navigation arrows.
-          </Typography>
+          </CriaTextBody1>
           
           <div className="demo-content">
             <Pagination
@@ -98,9 +98,9 @@ export const PaginationDemo: React.FC = () => {
             />
             
             <div className="demo-info">
-              <Typography variant="caption">
+              <CriaTextBody2>
                 Minimal variant with icons only
-              </Typography>
+              </CriaTextBody2>
             </div>
           </div>
         </CardContent>
@@ -109,12 +109,12 @@ export const PaginationDemo: React.FC = () => {
       {/* Large Page Count */}
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">Large Page Count</Typography>
+          <CriaTextTitle1>Large Page Count</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" className="demo-description">
+          <CriaTextBody1 className="demo-description">
             Pagination with many pages showing ellipsis for efficient navigation.
-          </Typography>
+          </CriaTextBody1>
           
           <div className="demo-content">
             <Pagination
@@ -125,9 +125,9 @@ export const PaginationDemo: React.FC = () => {
             />
             
             <div className="demo-info">
-              <Typography variant="caption">
+              <CriaTextBody2>
                 Large page count with ellipsis (Page {largePage} of 50)
-              </Typography>
+              </CriaTextBody2>
             </div>
           </div>
         </CardContent>
@@ -136,12 +136,12 @@ export const PaginationDemo: React.FC = () => {
       {/* With Page Size Selector */}
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">With Page Size Selector</Typography>
+          <CriaTextTitle1>With Page Size Selector</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" className="demo-description">
+          <CriaTextBody1 className="demo-description">
             Pagination with page size selector to control items per page.
-          </Typography>
+          </CriaTextBody1>
           
           <div className="demo-content">
             <Pagination
@@ -158,9 +158,9 @@ export const PaginationDemo: React.FC = () => {
             />
             
             <div className="demo-info">
-              <Typography variant="caption">
+              <CriaTextBody2>
                 Page {pageWithSize} of {Math.ceil(totalItems / pageSize)} with {pageSize} items per page
-              </Typography>
+              </CriaTextBody2>
             </div>
           </div>
         </CardContent>
@@ -169,12 +169,12 @@ export const PaginationDemo: React.FC = () => {
       {/* With Page Info */}
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">With Page Information</Typography>
+          <CriaTextTitle1>With Page Information</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" className="demo-description">
+          <CriaTextBody1 className="demo-description">
             Pagination showing detailed information about current page and total items.
-          </Typography>
+          </CriaTextBody1>
           
           <div className="demo-content">
             <Pagination
@@ -187,9 +187,9 @@ export const PaginationDemo: React.FC = () => {
             />
             
             <div className="demo-info">
-              <Typography variant="caption">
+              <CriaTextBody2>
                 Shows "Showing X-Y of Z" information
-              </Typography>
+              </CriaTextBody2>
             </div>
           </div>
         </CardContent>
@@ -198,12 +198,12 @@ export const PaginationDemo: React.FC = () => {
       {/* With First/Last Buttons */}
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">With First/Last Buttons</Typography>
+          <CriaTextTitle1>With First/Last Buttons</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" className="demo-description">
+          <CriaTextBody1 className="demo-description">
             Pagination with first and last page buttons for quick navigation.
-          </Typography>
+          </CriaTextBody1>
           
           <div className="demo-content">
             <Pagination
@@ -216,9 +216,9 @@ export const PaginationDemo: React.FC = () => {
             />
             
             <div className="demo-info">
-              <Typography variant="caption">
+              <CriaTextBody2>
                 Includes first and last page navigation buttons
-              </Typography>
+              </CriaTextBody2>
             </div>
           </div>
         </CardContent>
@@ -227,17 +227,17 @@ export const PaginationDemo: React.FC = () => {
       {/* Edge Cases */}
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">Edge Cases</Typography>
+          <CriaTextTitle1>Edge Cases</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" className="demo-description">
+          <CriaTextBody1 className="demo-description">
             Handling edge cases like single page, two pages, and disabled states.
-          </Typography>
+          </CriaTextBody1>
           
           <div className="demo-content">
             <div className="demo-grid">
               <div className="demo-item">
-                <Typography variant="h4">Single Page</Typography>
+                <CriaTextTitle2>Single Page</CriaTextTitle2>
                 <Pagination
                   currentPage={1}
                   totalPages={1}
@@ -246,7 +246,7 @@ export const PaginationDemo: React.FC = () => {
               </div>
               
               <div className="demo-item">
-                <Typography variant="h4">Two Pages</Typography>
+                <CriaTextTitle2>Two Pages</CriaTextTitle2>
                 <Pagination
                   currentPage={1}
                   totalPages={2}
@@ -255,7 +255,7 @@ export const PaginationDemo: React.FC = () => {
               </div>
               
               <div className="demo-item">
-                <Typography variant="h4">First Page</Typography>
+                <CriaTextTitle2>First Page</CriaTextTitle2>
                 <Pagination
                   currentPage={1}
                   totalPages={10}
@@ -264,7 +264,7 @@ export const PaginationDemo: React.FC = () => {
               </div>
               
               <div className="demo-item">
-                <Typography variant="h4">Last Page</Typography>
+                <CriaTextTitle2>Last Page</CriaTextTitle2>
                 <Pagination
                   currentPage={10}
                   totalPages={10}
@@ -279,23 +279,23 @@ export const PaginationDemo: React.FC = () => {
       {/* Usage Examples */}
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">Usage Examples</Typography>
+          <CriaTextTitle1>Usage Examples</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" className="demo-description">
+          <CriaTextBody1 className="demo-description">
             Real-world examples of pagination in different contexts.
-          </Typography>
+          </CriaTextBody1>
           
           <div className="demo-content">
             <div className="usage-examples">
               <div className="usage-example">
                 <div className="usage-header">
                   <Database size={20} />
-                  <Typography variant="h4">Data Table</Typography>
+                  <CriaTextTitle2>Data Table</CriaTextTitle2>
                 </div>
-                <Typography variant="caption">
+                <CriaTextBody2>
                   Navigate through large datasets with page size control
-                </Typography>
+                </CriaTextBody2>
                 <Pagination
                   currentPage={1}
                   totalPages={25}
@@ -312,11 +312,11 @@ export const PaginationDemo: React.FC = () => {
               <div className="usage-example">
                 <div className="usage-header">
                   <FileText size={20} />
-                  <Typography variant="h4">Document List</Typography>
+                  <CriaTextTitle2>Document List</CriaTextTitle2>
                 </div>
-                <Typography variant="caption">
+                <CriaTextBody2>
                   Browse through documents with compact pagination
-                </Typography>
+                </CriaTextBody2>
                 <Pagination
                   currentPage={5}
                   totalPages={15}
@@ -328,11 +328,11 @@ export const PaginationDemo: React.FC = () => {
               <div className="usage-example">
                 <div className="usage-header">
                   <Users size={20} />
-                  <Typography variant="h4">User Directory</Typography>
+                  <CriaTextTitle2>User Directory</CriaTextTitle2>
                 </div>
-                <Typography variant="caption">
+                <CriaTextBody2>
                   Navigate user profiles with minimal pagination
-                </Typography>
+                </CriaTextBody2>
                 <Pagination
                   currentPage={8}
                   totalPages={30}
@@ -344,11 +344,11 @@ export const PaginationDemo: React.FC = () => {
               <div className="usage-example">
                 <div className="usage-header">
                   <Package size={20} />
-                  <Typography variant="h4">Product Catalog</Typography>
+                  <CriaTextTitle2>Product Catalog</CriaTextTitle2>
                 </div>
-                <Typography variant="caption">
+                <CriaTextBody2>
                   Browse products with full pagination controls
-                </Typography>
+                </CriaTextBody2>
                 <Pagination
                   currentPage={3}
                   totalPages={12}
@@ -370,37 +370,37 @@ export const PaginationDemo: React.FC = () => {
       {/* Accessibility Features */}
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">Accessibility Features</Typography>
+          <CriaTextTitle1>Accessibility Features</CriaTextTitle1>
         </CardHeader>
         <CardContent>
           <div className="demo-content">
             <div className="accessibility-features">
               <div className="feature">
-                <Typography variant="h4">Keyboard Navigation</Typography>
-                <Typography variant="body">
+                <CriaTextTitle2>Keyboard Navigation</CriaTextTitle2>
+                <CriaTextBody1>
                   Use Tab to navigate between pagination controls. Press Enter or Space to activate buttons.
-                </Typography>
+                </CriaTextBody1>
               </div>
               
               <div className="feature">
-                <Typography variant="h4">Screen Reader Support</Typography>
-                <Typography variant="body">
+                <CriaTextTitle2>Screen Reader Support</CriaTextTitle2>
+                <CriaTextBody1>
                   Current page is announced with aria-current="page" and descriptive labels for all buttons.
-                </Typography>
+                </CriaTextBody1>
               </div>
               
               <div className="feature">
-                <Typography variant="h4">ARIA Labels</Typography>
-                <Typography variant="body">
+                <CriaTextTitle2>ARIA Labels</CriaTextTitle2>
+                <CriaTextBody1>
                   All pagination controls have proper ARIA labels and roles for assistive technologies.
-                </Typography>
+                </CriaTextBody1>
               </div>
               
               <div className="feature">
-                <Typography variant="h4">Focus Management</Typography>
-                <Typography variant="body">
+                <CriaTextTitle2>Focus Management</CriaTextTitle2>
+                <CriaTextBody1>
                   Disabled buttons are properly marked with aria-disabled and excluded from tab order.
-                </Typography>
+                </CriaTextBody1>
               </div>
             </div>
           </div>
