@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { colors, spacing, typography } from '../../tokens';
+import { colors, spacing, typography, radii } from '../../tokens';
 
 export type ProgressColor = 'primary' | 'secondary' | 'success' | 'warning' | 'error';
 export type ProgressSize = 'sm' | 'md' | 'lg';
@@ -105,7 +105,7 @@ export const PageLoadingProgress: React.FC<PageLoadingProgressProps> = ({
     right: 0,
     [position]: 0,
     zIndex,
-    height: thickness === 'thin' ? '2px' : thickness === 'thick' ? '6px' : '4px',
+    height: thickness === 'thin' ? spacing[0.5] : thickness === 'thick' ? spacing[1.5] : spacing[1],
     backgroundColor: colors.background.primary,
     border: 'none',
     outline: 'none',
@@ -124,15 +124,15 @@ export const PageLoadingProgress: React.FC<PageLoadingProgressProps> = ({
     height: '100%',
     width: indeterminate ? '100%' : `${displayProgress}%`,
     backgroundColor: 
-      color === 'primary' ? colors.primary :
-      color === 'secondary' ? colors.secondary :
-      color === 'success' ? colors.success :
-      color === 'warning' ? colors.warning :
-      color === 'error' ? colors.error :
-      colors.primary,
+      color === 'primary' ? colors.primary[500] :
+      color === 'secondary' ? colors.secondary[500] :
+      color === 'success' ? colors.success[500] :
+      color === 'warning' ? colors.warning[500] :
+      color === 'error' ? colors.error[500] :
+      colors.primary[500],
     transition: smooth ? `width ${duration}ms ease-out` : 'none',
     ...(animated && {
-      background: `linear-gradient(90deg, transparent, ${colors.primary}, transparent)`,
+      background: `linear-gradient(90deg, transparent, ${colors.primary[500]}, transparent)`,
       backgroundSize: '200% 100%',
       animation: 'cria-progress-shimmer 1.5s infinite',
     }),
@@ -165,7 +165,7 @@ export const PageLoadingProgress: React.FC<PageLoadingProgressProps> = ({
             color: colors.text.primary,
             fontSize: typography.fontSize.caption,
             fontWeight: typography.fontWeight.medium,
-            borderRadius: '4px',
+            borderRadius: radii.sm,
             boxShadow: `0 2px 8px ${colors.border.light}`,
             whiteSpace: 'nowrap',
             zIndex: zIndex + 1,
