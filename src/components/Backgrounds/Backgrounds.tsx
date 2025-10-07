@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { colors } from '../../tokens';
 
 export interface BackgroundsProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   /**
@@ -179,7 +180,7 @@ export const Backgrounds: React.FC<BackgroundsProps> = ({
   animationDelay = 0,
   showOverlay = false,
   overlayOpacity = 0.1,
-  overlayColor = '#000000',
+  overlayColor = colors.black,
   responsive = true,
   className = '',
   style,
@@ -377,15 +378,15 @@ export const Backgrounds: React.FC<BackgroundsProps> = ({
 function getDefaultGradientColors(colorScheme: string): string[] {
   switch (colorScheme) {
     case 'primary':
-      return ['var(--cria-primary)', 'var(--cria-primary-dark)'];
+      return [colors.primary[500], colors.primary[700]];
     case 'secondary':
-      return ['var(--cria-secondary)', 'var(--cria-secondary-dark)'];
+      return [colors.secondary[500], colors.secondary[700]];
     case 'neutral':
-      return ['var(--cria-background-light)', 'var(--cria-background-dark)'];
+      return [colors.gray[100], colors.gray[800]];
     case 'accent':
-      return ['var(--cria-primary-light)', 'var(--cria-primary-darker)'];
+      return [colors.primary[300], colors.primary[900]];
     default:
-      return ['var(--cria-primary)', 'var(--cria-primary-dark)'];
+      return [colors.primary[500], colors.primary[700]];
   }
 }
 
@@ -400,15 +401,15 @@ function getDefaultGradientStops(count: number): string[] {
 function getDefaultPatternColor(colorScheme: string): string {
   switch (colorScheme) {
     case 'primary':
-      return 'var(--cria-primary)';
+      return colors.primary[500];
     case 'secondary':
-      return 'var(--cria-secondary)';
+      return colors.secondary[500];
     case 'neutral':
-      return 'var(--cria-text-secondary)';
+      return colors.text.secondary;
     case 'accent':
-      return 'var(--cria-primary-light)';
+      return colors.primary[300];
     default:
-      return 'var(--cria-primary)';
+      return colors.primary[500];
   }
 }
 
