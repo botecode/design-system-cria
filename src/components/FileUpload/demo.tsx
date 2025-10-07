@@ -2,15 +2,16 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardHeader } from '../Card';
 import { FileUpload } from './FileUpload';
 import { CriaTextHeadline2, CriaTextTitle2, CriaTextBody1 } from '../TextTokens';
+import { spacing } from '../../tokens';
 
 export const FileUploadDemo: React.FC = () => {
   const [files, setFiles] = useState<File[]>([]);
   return (
-    <div style={{ padding: '24px', maxWidth: 900 }}>
-      <CriaTextHeadline2 as="h2" style={{ marginBottom: 16 }}>File Upload</CriaTextHeadline2>
-      <CriaTextBody1 style={{ marginBottom: 24 }}>Upload files via click or drag-and-drop. Accessible and keyboard friendly.</CriaTextBody1>
+    <div style={{ padding: spacing[6], maxWidth: 900 }}>
+      <CriaTextHeadline2 as="h2" style={{ marginBottom: spacing[4] }}>File Upload</CriaTextHeadline2>
+      <CriaTextBody1 style={{ marginBottom: spacing[6] }}>Upload files via click or drag-and-drop. Accessible and keyboard friendly.</CriaTextBody1>
 
-      <Card style={{ marginBottom: 24 }}>
+      <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
           <CriaTextTitle2 as="h3">Basic</CriaTextTitle2>
         </CardHeader>
@@ -19,7 +20,7 @@ export const FileUploadDemo: React.FC = () => {
         </CardContent>
       </Card>
 
-      <Card style={{ marginBottom: 24 }}>
+      <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
           <CriaTextTitle2 as="h3">Controlled with max size</CriaTextTitle2>
         </CardHeader>

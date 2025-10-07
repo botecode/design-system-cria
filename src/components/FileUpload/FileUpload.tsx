@@ -1,5 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
-import { Typography } from '../Typography';
+import { CriaTextBody1, CriaTextBody2 } from '../TextTokens';
+import { spacing } from '../../tokens';
 
 export interface FileUploadProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onError'> {
   label?: string;
@@ -100,10 +101,10 @@ export const FileUpload: React.FC<FileUploadProps> = ({
     >
       {label && (
         <label htmlFor={`file-input-${id}`} className="cria-file-upload__label">
-          <Typography variant="body" weight="medium" color={disabled ? 'secondary' : 'content'}>
+          <CriaTextBody1 style={{ fontWeight: 'medium', color: disabled ? 'secondary' : 'content' }}>
             {label}
             {required && <span aria-label="required"> *</span>}
-          </Typography>
+          </CriaTextBody1>
         </label>
       )}
 
@@ -138,21 +139,21 @@ export const FileUpload: React.FC<FileUploadProps> = ({
         aria-label={label}
       >
         <div className="cria-file-upload__dropzone-inner">
-          <Typography variant="body" color="secondary">
+          <CriaTextBody1 color="secondary">
             Drag & drop files here, or click to select
-          </Typography>
+          </CriaTextBody1>
           {accept && (
-            <Typography variant="caption" color="secondary">
+            <CriaTextBody2 color="secondary">
               Accepted: {accept}
-            </Typography>
+            </CriaTextBody2>
           )}
         </div>
       </div>
 
       {description && (
-        <Typography id={`file-desc-${id}`} variant="caption" color="secondary" style={{ marginTop: 8 }}>
+        <CriaTextBody2 id={`file-desc-${id}`} color="secondary" style={{ marginTop: spacing[2] }}>
           {description}
-        </Typography>
+        </CriaTextBody2>
       )}
 
       {files.length > 0 && (
