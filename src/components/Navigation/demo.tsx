@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { ChartBar, Folder, CheckSquare, Users, ChatCircle, Gear, Question } from 'phosphor-react';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextBody1, CriaTextBody2, CriaTextTitle1, CriaTextTitle2 } from '../TextTokens';
 import { Button } from '../Button';
 import { Card, CardHeader, CardContent } from '../Card';
 import { Navigation, Sidebar, Topbar } from './Navigation';
+import { spacing, colors, radii } from '../../tokens';
 
 export const NavigationDemo: React.FC = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -61,26 +62,26 @@ export const NavigationDemo: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '24px', maxWidth: '1200px', margin: '0 auto' }}>
-      <Typography variant="title1" weight="bold" style={{ marginBottom: '32px' }}>
+    <div style={{ padding: spacing[6], maxWidth: '1200px', margin: '0 auto' }}>
+      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
         Navigation Demo
-      </Typography>
+      </CriaTextHeadline1>
 
-      <Typography variant="body" style={{ marginBottom: '32px' }}>
+      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
         Navigation components provide consistent and accessible navigation patterns for your application.
         Includes sidebar navigation with collapse/expand functionality, hierarchical subitems for grouping related navigation items,
         and topbar navigation with responsive mobile menu.
-      </Typography>
+      </CriaTextBody1>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px', marginBottom: '32px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[6], marginBottom: spacing[8] }}>
         <Card variant="elevated">
           <CardHeader>
-            <Typography variant="h3" weight="medium">
+            <CriaTextTitle1>
               Sidebar Navigation
-            </Typography>
+            </CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[3] }}>
               <Button 
                 variant="outline" 
                 onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
@@ -89,8 +90,8 @@ export const NavigationDemo: React.FC = () => {
               </Button>
               
               <div style={{ 
-                border: '1px solid var(--cria-gray-200)', 
-                borderRadius: 'var(--cria-radius-md)',
+                border: `1px solid ${colors.border.light}`, 
+                borderRadius: radii.md,
                 overflow: 'hidden',
                 height: '400px',
                 position: 'relative'
@@ -110,24 +111,24 @@ export const NavigationDemo: React.FC = () => {
                 />
                 <div style={{ 
                   marginLeft: sidebarCollapsed ? '64px' : '256px',
-                  padding: '24px',
+                  padding: spacing[6],
                   height: '100%',
-                  backgroundColor: 'var(--cria-gray-50)',
+                  backgroundColor: colors.gray[50],
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center'
                 }}>
-                  <Typography variant="body" color="secondary">
+                  <CriaTextBody1>
                     Main content area
-                  </Typography>
+                  </CriaTextBody1>
                 </div>
               </div>
 
               {/* Themed variations */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '16px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: spacing[4] }}>
                 <div style={{ 
-                  border: '1px solid var(--cria-gray-200)', 
-                  borderRadius: 'var(--cria-radius-md)',
+                  border: `1px solid ${colors.border.light}`, 
+                  borderRadius: radii.md,
                   overflow: 'hidden',
                   height: '300px',
                   position: 'relative'
@@ -149,15 +150,15 @@ export const NavigationDemo: React.FC = () => {
                   />
                   <div style={{ 
                     marginLeft: '256px',
-                    padding: '16px',
+                    padding: spacing[4],
                     height: '100%',
-                    backgroundColor: 'var(--cria-gray-50)'
+                    backgroundColor: colors.gray[50]
                   }} />
                 </div>
 
                 <div style={{ 
-                  border: '1px solid var(--cria-gray-200)', 
-                  borderRadius: 'var(--cria-radius-md)',
+                  border: `1px solid ${colors.border.light}`, 
+                  borderRadius: radii.md,
                   overflow: 'hidden',
                   height: '300px',
                   position: 'relative'
@@ -179,9 +180,9 @@ export const NavigationDemo: React.FC = () => {
                   />
                   <div style={{ 
                     marginLeft: '256px',
-                    padding: '16px',
+                    padding: spacing[4],
                     height: '100%',
-                    backgroundColor: 'var(--cria-gray-50)'
+                    backgroundColor: colors.gray[50]
                   }} />
                 </div>
               </div>
@@ -191,12 +192,12 @@ export const NavigationDemo: React.FC = () => {
 
         <Card variant="elevated">
           <CardHeader>
-            <Typography variant="h3" weight="medium">
+            <CriaTextTitle1>
               Topbar Navigation
-            </Typography>
+            </CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[3] }}>
               <Button 
                 variant="outline" 
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -205,8 +206,8 @@ export const NavigationDemo: React.FC = () => {
               </Button>
               
               <div style={{ 
-                border: '1px solid var(--cria-gray-200)', 
-                borderRadius: 'var(--cria-radius-md)',
+                border: `1px solid ${colors.border.light}`, 
+                borderRadius: radii.md,
                 overflow: 'hidden'
               }}>
                 <Topbar
@@ -218,16 +219,16 @@ export const NavigationDemo: React.FC = () => {
                   onMobileMenuToggle={setMobileMenuOpen}
                 />
                 <div style={{ 
-                  padding: '24px',
-                  backgroundColor: 'var(--cria-gray-50)',
+                  padding: spacing[6],
+                  backgroundColor: colors.gray[50],
                   minHeight: '200px',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center'
                 }}>
-                  <Typography variant="body" color="secondary">
+                  <CriaTextBody1>
                     Page content
-                  </Typography>
+                  </CriaTextBody1>
                 </div>
               </div>
             </div>
@@ -236,14 +237,14 @@ export const NavigationDemo: React.FC = () => {
 
         <Card variant="elevated">
           <CardHeader>
-            <Typography variant="h3" weight="medium">
+            <CriaTextTitle1>
               Combined Navigation
-            </Typography>
+            </CriaTextTitle1>
           </CardHeader>
           <CardContent>
             <div style={{ 
-              border: '1px solid var(--cria-gray-200)', 
-              borderRadius: 'var(--cria-radius-md)',
+              border: `1px solid ${colors.border.light}`, 
+              borderRadius: radii.md,
               overflow: 'hidden',
               height: '400px',
               position: 'relative'
@@ -274,16 +275,16 @@ export const NavigationDemo: React.FC = () => {
               <div style={{ 
                 marginLeft: sidebarCollapsed ? '64px' : '256px',
                 marginTop: '64px',
-                padding: '24px',
+                padding: spacing[6],
                 height: 'calc(100% - 64px)',
-                backgroundColor: 'var(--cria-gray-50)',
+                backgroundColor: colors.gray[50],
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center'
               }}>
-                <Typography variant="body" color="secondary">
+                <CriaTextBody1>
                   Application content
-                </Typography>
+                </CriaTextBody1>
               </div>
             </div>
           </CardContent>
@@ -291,47 +292,47 @@ export const NavigationDemo: React.FC = () => {
 
         <Card variant="elevated">
           <CardHeader>
-            <Typography variant="h3" weight="medium">
+            <CriaTextTitle1>
               Navigation Features
-            </Typography>
+            </CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
               <div>
-                <Typography variant="h4" weight="medium" style={{ marginBottom: '8px' }}>
+                <CriaTextTitle2 style={{ marginBottom: spacing[2] }}>
                   Sidebar Features
-                </Typography>
-                <ul style={{ margin: 0, paddingLeft: '20px' }}>
-                  <li><Typography variant="body">Collapse/expand functionality</Typography></li>
-                  <li><Typography variant="body">Active route highlighting</Typography></li>
-                  <li><Typography variant="body">Icon and badge support</Typography></li>
-                  <li><Typography variant="body">Keyboard navigation (arrow keys)</Typography></li>
-                  <li><Typography variant="body">Mobile responsive</Typography></li>
+                </CriaTextTitle2>
+                <ul style={{ margin: 0, paddingLeft: spacing[5] }}>
+                  <li><CriaTextBody1>Collapse/expand functionality</CriaTextBody1></li>
+                  <li><CriaTextBody1>Active route highlighting</CriaTextBody1></li>
+                  <li><CriaTextBody1>Icon and badge support</CriaTextBody1></li>
+                  <li><CriaTextBody1>Keyboard navigation (arrow keys)</CriaTextBody1></li>
+                  <li><CriaTextBody1>Mobile responsive</CriaTextBody1></li>
                 </ul>
               </div>
               
               <div>
-                <Typography variant="h4" weight="medium" style={{ marginBottom: '8px' }}>
+                <CriaTextTitle2 style={{ marginBottom: spacing[2] }}>
                   Topbar Features
-                </Typography>
-                <ul style={{ margin: 0, paddingLeft: '20px' }}>
-                  <li><Typography variant="body">Responsive mobile menu</Typography></li>
-                  <li><Typography variant="body">Brand/logo support</Typography></li>
-                  <li><Typography variant="body">Active route highlighting</Typography></li>
-                  <li><Typography variant="body">Keyboard navigation (arrow keys)</Typography></li>
-                  <li><Typography variant="body">Hamburger menu on mobile</Typography></li>
+                </CriaTextTitle2>
+                <ul style={{ margin: 0, paddingLeft: spacing[5] }}>
+                  <li><CriaTextBody1>Responsive mobile menu</CriaTextBody1></li>
+                  <li><CriaTextBody1>Brand/logo support</CriaTextBody1></li>
+                  <li><CriaTextBody1>Active route highlighting</CriaTextBody1></li>
+                  <li><CriaTextBody1>Keyboard navigation (arrow keys)</CriaTextBody1></li>
+                  <li><CriaTextBody1>Hamburger menu on mobile</CriaTextBody1></li>
                 </ul>
               </div>
               
               <div>
-                <Typography variant="h4" weight="medium" style={{ marginBottom: '8px' }}>
+                <CriaTextTitle2 style={{ marginBottom: spacing[2] }}>
                   Accessibility
-                </Typography>
-                <ul style={{ margin: 0, paddingLeft: '20px' }}>
-                  <li><Typography variant="body">ARIA navigation roles</Typography></li>
-                  <li><Typography variant="body">Keyboard focus management</Typography></li>
-                  <li><Typography variant="body">Screen reader support</Typography></li>
-                  <li><Typography variant="body">Discernible link text</Typography></li>
+                </CriaTextTitle2>
+                <ul style={{ margin: 0, paddingLeft: spacing[5] }}>
+                  <li><CriaTextBody1>ARIA navigation roles</CriaTextBody1></li>
+                  <li><CriaTextBody1>Keyboard focus management</CriaTextBody1></li>
+                  <li><CriaTextBody1>Screen reader support</CriaTextBody1></li>
+                  <li><CriaTextBody1>Discernible link text</CriaTextBody1></li>
                 </ul>
               </div>
             </div>
@@ -339,14 +340,14 @@ export const NavigationDemo: React.FC = () => {
         </Card>
       </div>
 
-      <div style={{ marginTop: '32px' }}>
-        <Typography variant="h3" weight="medium" style={{ marginBottom: '16px' }}>
+      <div style={{ marginTop: spacing[8] }}>
+        <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
           Current Active Route
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
+        </CriaTextTitle1>
+        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
           Active route: <strong>{activeRoute}</strong>
-        </Typography>
-        <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+        </CriaTextBody1>
+        <div style={{ display: 'flex', gap: spacing[2], flexWrap: 'wrap' }}>
           {[...sidebarItems, ...topbarItems].map((item) => (
             <Button
               key={item.id}

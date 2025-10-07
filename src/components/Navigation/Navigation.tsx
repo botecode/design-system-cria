@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { House, Folder, CheckSquare, Users, ChatCircle, Gear, Question, ArrowLeft, ArrowRight, List, CaretDown, CaretRight, CaretLeft, CaretUp } from 'phosphor-react';
-import { Typography } from '../Typography';
+import { CriaTextTitle1 } from '../TextTokens';
 import { Button } from '../Button';
 
 export interface NavigationSubItem {
@@ -273,26 +273,14 @@ const Sidebar: React.FC<NavigationSidebarProps> = ({
           <div className="cria-sidebar__title-section">
             {titleHref ? (
               <a href={titleHref} className="cria-sidebar__title-link">
-                {theme !== 'default' ? (
-                  <Typography variant="h3" weight="bold">
-                    {title}
-                  </Typography>
-                ) : (
-                  <Typography variant="h3" weight="bold" color="primary">
-                    {title}
-                  </Typography>
-                )}
+                <CriaTextTitle1>
+                  {title}
+                </CriaTextTitle1>
               </a>
             ) : (
-              theme !== 'default' ? (
-                <Typography variant="h3" weight="bold">
-                  {title}
-                </Typography>
-              ) : (
-                <Typography variant="h3" weight="bold" color="primary">
-                  {title}
-                </Typography>
-              )
+              <CriaTextTitle1>
+                {title}
+              </CriaTextTitle1>
             )}
           </div>
         )}
@@ -522,14 +510,14 @@ const Topbar: React.FC<TopbarProps> = ({
           <div className="cria-topbar__brand">
             {brandHref ? (
               <a href={brandHref} className="cria-topbar__brand-link">
-                <Typography variant="h3" weight="bold" color="primary">
+                <CriaTextTitle1>
                   {brand}
-                </Typography>
+                </CriaTextTitle1>
               </a>
             ) : (
-              <Typography variant="h3" weight="bold" color="primary">
+              <CriaTextTitle1>
                 {brand}
-              </Typography>
+              </CriaTextTitle1>
             )}
           </div>
         )}
