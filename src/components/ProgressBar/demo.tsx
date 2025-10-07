@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextBody1, CriaTextBody2, CriaTextTitle1, CriaTextTitle2 } from '../TextTokens';
 import { ProgressBar } from './index';
 import { Card, CardContent, CardHeader } from '../Card';
 import { Button } from '../Button';
+import { spacing } from '../../tokens';
 import { Download, Upload, Database, FileText, CheckCircle, WarningCircle } from 'phosphor-react';
 
 export const ProgressBarDemo: React.FC = () => {
@@ -60,23 +61,23 @@ export const ProgressBarDemo: React.FC = () => {
 
   return (
     <div className="progress-bar-demo">
-      <Typography variant="h2" className="demo-title">
+      <CriaTextHeadline1 className="demo-title">
         Progress Bar Component
-      </Typography>
+      </CriaTextHeadline1>
       
-      <Typography variant="body" className="demo-description">
+      <CriaTextBody1 className="demo-description">
         Display task completion and loading states with accessible progress indicators.
-      </Typography>
+      </CriaTextBody1>
 
       {/* Basic Progress Bars */}
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">Basic Progress Bars</Typography>
+          <CriaTextTitle1>Basic Progress Bars</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" className="demo-description">
+          <CriaTextBody1 className="demo-description">
             Standard progress bars with different completion levels.
-          </Typography>
+          </CriaTextBody1>
           
           <div className="demo-content">
             <div className="demo-item">
@@ -101,12 +102,12 @@ export const ProgressBarDemo: React.FC = () => {
       {/* With Percentage */}
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">With Percentage Display</Typography>
+          <CriaTextTitle1>With Percentage Display</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" className="demo-description">
+          <CriaTextBody1 className="demo-description">
             Progress bars showing completion percentage.
-          </Typography>
+          </CriaTextBody1>
           
           <div className="demo-content">
             <div className="demo-item">
@@ -127,12 +128,12 @@ export const ProgressBarDemo: React.FC = () => {
       {/* Color Variants */}
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">Color Variants</Typography>
+          <CriaTextTitle1>Color Variants</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" className="demo-description">
+          <CriaTextBody1 className="demo-description">
             Different color variants for various states and contexts.
-          </Typography>
+          </CriaTextBody1>
           
           <div className="demo-content">
             <div className="demo-item">
@@ -157,26 +158,26 @@ export const ProgressBarDemo: React.FC = () => {
       {/* Sizes */}
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">Different Sizes</Typography>
+          <CriaTextTitle1>Different Sizes</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" className="demo-description">
+          <CriaTextBody1 className="demo-description">
             Progress bars in different sizes for various use cases.
-          </Typography>
+          </CriaTextBody1>
           
           <div className="demo-content">
             <div className="demo-item">
-              <Typography variant="h4">Small</Typography>
+              <CriaTextTitle2>Small</CriaTextTitle2>
               <ProgressBar value={45} size="sm" label="Small Progress" />
             </div>
             
             <div className="demo-item">
-              <Typography variant="h4">Medium (Default)</Typography>
+              <CriaTextTitle2>Medium (Default)</CriaTextTitle2>
               <ProgressBar value={65} size="md" label="Medium Progress" />
             </div>
             
             <div className="demo-item">
-              <Typography variant="h4">Large</Typography>
+              <CriaTextTitle2>Large</CriaTextTitle2>
               <ProgressBar value={85} size="lg" label="Large Progress" />
             </div>
           </div>
@@ -186,12 +187,12 @@ export const ProgressBarDemo: React.FC = () => {
       {/* Indeterminate Progress */}
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">Indeterminate Progress</Typography>
+          <CriaTextTitle1>Indeterminate Progress</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" className="demo-description">
+          <CriaTextBody1 className="demo-description">
             Loading indicators for unknown completion times.
-          </Typography>
+          </CriaTextBody1>
           
           <div className="demo-content">
             <div className="demo-item">
@@ -216,12 +217,12 @@ export const ProgressBarDemo: React.FC = () => {
       {/* Striped and Animated */}
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">Striped and Animated</Typography>
+          <CriaTextTitle1>Striped and Animated</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" className="demo-description">
+          <CriaTextBody1 className="demo-description">
             Progress bars with striped patterns and animations.
-          </Typography>
+          </CriaTextBody1>
           
           <div className="demo-content">
             <div className="demo-item">
@@ -242,18 +243,18 @@ export const ProgressBarDemo: React.FC = () => {
       {/* Interactive Examples */}
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">Interactive Examples</Typography>
+          <CriaTextTitle1>Interactive Examples</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" className="demo-description">
+          <CriaTextBody1 className="demo-description">
             Real-world examples with simulated progress.
-          </Typography>
+          </CriaTextBody1>
           
           <div className="demo-content">
             <div className="demo-item">
               <div className="demo-header">
                 <Upload size={20} />
-                <Typography variant="h4">File Upload</Typography>
+                <CriaTextTitle2>File Upload</CriaTextTitle2>
               </div>
               <ProgressBar 
                 value={uploadProgress} 
@@ -265,7 +266,7 @@ export const ProgressBarDemo: React.FC = () => {
                 onClick={simulateUpload} 
                 disabled={isUploading}
                 size="sm"
-                style={{ marginTop: '8px' }}
+                style={{ marginTop: spacing[2] }}
               >
                 {isUploading ? 'Uploading...' : 'Start Upload'}
               </Button>
@@ -274,7 +275,7 @@ export const ProgressBarDemo: React.FC = () => {
             <div className="demo-item">
               <div className="demo-header">
                 <Download size={20} />
-                <Typography variant="h4">File Download</Typography>
+                <CriaTextTitle2>File Download</CriaTextTitle2>
               </div>
               <ProgressBar 
                 value={downloadProgress} 
@@ -286,7 +287,7 @@ export const ProgressBarDemo: React.FC = () => {
                 onClick={simulateDownload} 
                 disabled={isDownloading}
                 size="sm"
-                style={{ marginTop: '8px' }}
+                style={{ marginTop: spacing[2] }}
               >
                 {isDownloading ? 'Downloading...' : 'Start Download'}
               </Button>
@@ -298,12 +299,12 @@ export const ProgressBarDemo: React.FC = () => {
       {/* Custom Min/Max Values */}
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">Custom Min/Max Values</Typography>
+          <CriaTextTitle1>Custom Min/Max Values</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" className="demo-description">
+          <CriaTextBody1 className="demo-description">
             Progress bars with custom value ranges.
-          </Typography>
+          </CriaTextBody1>
           
           <div className="demo-content">
             <div className="demo-item">
@@ -342,12 +343,12 @@ export const ProgressBarDemo: React.FC = () => {
       {/* Disabled State */}
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">Disabled State</Typography>
+          <CriaTextTitle1>Disabled State</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" className="demo-description">
+          <CriaTextBody1 className="demo-description">
             Progress bars in disabled state.
-          </Typography>
+          </CriaTextBody1>
           
           <div className="demo-content">
             <div className="demo-item">
@@ -364,23 +365,23 @@ export const ProgressBarDemo: React.FC = () => {
       {/* Usage Examples */}
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">Usage Examples</Typography>
+          <CriaTextTitle1>Usage Examples</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" className="demo-description">
+          <CriaTextBody1 className="demo-description">
             Common use cases for progress bars in applications.
-          </Typography>
+          </CriaTextBody1>
           
           <div className="demo-content">
             <div className="usage-examples">
               <div className="usage-example">
                 <div className="usage-header">
                   <Database size={20} />
-                  <Typography variant="h4">Database Migration</Typography>
+                  <CriaTextTitle2>Database Migration</CriaTextTitle2>
                 </div>
-                <Typography variant="caption">
+                <CriaTextBody2>
                   Migrating user data to new schema
-                </Typography>
+                </CriaTextBody2>
                 <ProgressBar 
                   value={progress} 
                   label="Migration Progress" 
@@ -392,11 +393,11 @@ export const ProgressBarDemo: React.FC = () => {
               <div className="usage-example">
                 <div className="usage-header">
                   <FileText size={20} />
-                  <Typography variant="h4">Document Processing</Typography>
+                  <CriaTextTitle2>Document Processing</CriaTextTitle2>
                 </div>
-                <Typography variant="caption">
+                <CriaTextBody2>
                   Converting PDF documents to text
-                </Typography>
+                </CriaTextBody2>
                 <ProgressBar 
                   value={progress * 0.8} 
                   label="Processing Documents" 
@@ -408,11 +409,11 @@ export const ProgressBarDemo: React.FC = () => {
               <div className="usage-example">
                 <div className="usage-header">
                   <CheckCircle size={20} />
-                  <Typography variant="h4">Task Completion</Typography>
+                  <CriaTextTitle2>Task Completion</CriaTextTitle2>
                 </div>
-                <Typography variant="caption">
+                <CriaTextBody2>
                   User onboarding checklist
-                </Typography>
+                </CriaTextBody2>
                 <ProgressBar 
                   value={85} 
                   label="Onboarding Progress" 
@@ -424,11 +425,11 @@ export const ProgressBarDemo: React.FC = () => {
               <div className="usage-example">
                 <div className="usage-header">
                   <WarningCircle size={20} />
-                  <Typography variant="h4">Error Recovery</Typography>
+                  <CriaTextTitle2>Error Recovery</CriaTextTitle2>
                 </div>
-                <Typography variant="caption">
+                <CriaTextBody2>
                   Retrying failed operations
-                </Typography>
+                </CriaTextBody2>
                 <ProgressBar 
                   variant="indeterminate" 
                   label="Retrying Connection" 
@@ -443,37 +444,37 @@ export const ProgressBarDemo: React.FC = () => {
       {/* Accessibility Features */}
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">Accessibility Features</Typography>
+          <CriaTextTitle1>Accessibility Features</CriaTextTitle1>
         </CardHeader>
         <CardContent>
           <div className="demo-content">
             <div className="accessibility-features">
               <div className="feature">
-                <Typography variant="h4">Screen Reader Support</Typography>
-                <Typography variant="body">
+                <CriaTextTitle2>Screen Reader Support</CriaTextTitle2>
+                <CriaTextBody1>
                   Progress bars announce current progress with proper ARIA attributes.
-                </Typography>
+                </CriaTextBody1>
               </div>
               
               <div className="feature">
-                <Typography variant="h4">Keyboard Navigation</Typography>
-                <Typography variant="body">
+                <CriaTextTitle2>Keyboard Navigation</CriaTextTitle2>
+                <CriaTextBody1>
                   All progress bars are accessible via keyboard and assistive technologies.
-                </Typography>
+                </CriaTextBody1>
               </div>
               
               <div className="feature">
-                <Typography variant="h4">ARIA Attributes</Typography>
-                <Typography variant="body">
+                <CriaTextTitle2>ARIA Attributes</CriaTextTitle2>
+                <CriaTextBody1>
                   Proper role, aria-valuenow, aria-valuemin, and aria-valuemax attributes.
-                </Typography>
+                </CriaTextBody1>
               </div>
               
               <div className="feature">
-                <Typography variant="h4">Visual Indicators</Typography>
-                <Typography variant="body">
+                <CriaTextTitle2>Visual Indicators</CriaTextTitle2>
+                <CriaTextBody1>
                   Clear visual progress indication with color coding and percentage display.
-                </Typography>
+                </CriaTextBody1>
               </div>
             </div>
           </div>
