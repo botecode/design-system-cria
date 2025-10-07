@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextBody1, CriaTextBody2, CriaTextTitle1, CriaTextTitle2 } from '../TextTokens';
 import { Button } from '../Button';
 import { Card, CardHeader, CardContent } from '../Card';
+import { Input } from '../Input';
+import { Textarea } from '../Textarea';
 import Badge from '../Badge';
 import Modal from './Modal';
+import { spacing, colors, radii } from '../../tokens';
 import { WarningCircle, Info, CheckCircle, XCircle, Star, User, Gear, Trash } from 'phosphor-react';
 
 export const ModalDemo: React.FC = () => {
@@ -24,19 +27,19 @@ export const ModalDemo: React.FC = () => {
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
 
   return (
-    <div style={{ padding: '24px', maxWidth: '1000px' }}>
-      <Typography variant="title1" weight="bold" style={{ marginBottom: '32px' }}>
+    <div style={{ padding: spacing[6], maxWidth: '1000px' }}>
+      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
         Modal Demo
-      </Typography>
+      </CriaTextHeadline1>
 
       {/* Basic Modal */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Basic Modal
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
           A simple modal with title, content, and close button. Click the button to open it.
-        </Typography>
+        </CriaTextBody1>
         <Button variant="primary" onClick={() => setIsBasicModalOpen(true)}>
           Open Basic Modal
         </Button>
@@ -46,25 +49,25 @@ export const ModalDemo: React.FC = () => {
           onClose={() => setIsBasicModalOpen(false)}
           title="Basic Modal"
         >
-          <Typography variant="body" style={{ marginBottom: '16px' }}>
+          <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
             This is a basic modal with a title and content. You can close it by clicking the X button,
             clicking outside the modal, or pressing the Escape key.
-          </Typography>
-          <Typography variant="body">
+          </CriaTextBody1>
+          <CriaTextBody1>
             The modal includes proper focus management and accessibility features.
-          </Typography>
+          </CriaTextBody1>
         </Modal>
       </section>
 
       {/* Modal Sizes */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2  style={{ marginBottom: spacing[4] }}>
           Modal Sizes
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
           Different sizes for different content types and use cases.
-        </Typography>
-        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+        </CriaTextBody1>
+        <div style={{ display: 'flex', gap: spacing[3], flexWrap: 'wrap' }}>
           <Button variant="outline" onClick={() => setIsSmallModalOpen(true)}>
             Small Modal
           </Button>
@@ -85,9 +88,9 @@ export const ModalDemo: React.FC = () => {
           title="Small Modal"
           size="sm"
         >
-          <Typography variant="body">
+          <CriaTextBody1>
             This is a small modal, perfect for simple confirmations or brief messages.
-          </Typography>
+          </CriaTextBody1>
         </Modal>
         
         <Modal
@@ -96,17 +99,17 @@ export const ModalDemo: React.FC = () => {
           title="Large Modal"
           size="lg"
         >
-          <Typography variant="body" style={{ marginBottom: '16px' }}>
+          <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
             This is a large modal, ideal for forms, detailed content, or complex interactions.
-          </Typography>
+          </CriaTextBody1>
           <Card variant="elevated">
             <CardHeader>
-              <Typography variant="h3" weight="medium">Example Card</Typography>
+              <CriaTextTitle1 >Example Card</CriaTextTitle1>
             </CardHeader>
             <CardContent>
-              <Typography variant="body">
+              <CriaTextBody1>
                 Large modals provide more space for content while maintaining good proportions.
-              </Typography>
+              </CriaTextBody1>
             </CardContent>
           </Card>
         </Modal>
@@ -117,15 +120,15 @@ export const ModalDemo: React.FC = () => {
           title="Full Screen Modal"
           size="full"
         >
-          <Typography variant="body" style={{ marginBottom: '16px' }}>
+          <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
             This is a full-screen modal that takes up the entire viewport. Perfect for immersive experiences
             or when you need maximum space for content.
-          </Typography>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
+          </CriaTextBody1>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: spacing[4] }}>
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <Card key={i} variant="elevated">
                 <CardContent>
-                  <Typography variant="body">Card {i}</Typography>
+                  <CriaTextBody1>Card {i}</CriaTextBody1>
                 </CardContent>
               </Card>
             ))}
@@ -134,14 +137,14 @@ export const ModalDemo: React.FC = () => {
       </section>
 
       {/* Modal Variants */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2  style={{ marginBottom: spacing[4] }}>
           Modal Variants
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
           Different modal configurations for various use cases.
-        </Typography>
-        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+        </CriaTextBody1>
+        <div style={{ display: 'flex', gap: spacing[3], flexWrap: 'wrap' }}>
           <Button variant="outline" onClick={() => setIsNoHeaderModalOpen(true)}>
             No Header
           </Button>
@@ -161,9 +164,9 @@ export const ModalDemo: React.FC = () => {
           onClose={() => setIsNoHeaderModalOpen(false)}
           showHeader={false}
         >
-          <Typography variant="body" style={{ marginBottom: '16px' }}>
+          <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
             This modal has no header, giving you more space for content.
-          </Typography>
+          </CriaTextBody1>
           <Button variant="primary" onClick={() => setIsNoHeaderModalOpen(false)}>
             Close Modal
           </Button>
@@ -175,9 +178,9 @@ export const ModalDemo: React.FC = () => {
           title="No Close Button"
           showCloseButton={false}
         >
-          <Typography variant="body" style={{ marginBottom: '16px' }}>
+          <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
             This modal has no close button in the header. Users must use other methods to close it.
-          </Typography>
+          </CriaTextBody1>
           <Button variant="primary" onClick={() => setIsNoCloseModalOpen(false)}>
             Close Modal
           </Button>
@@ -189,9 +192,9 @@ export const ModalDemo: React.FC = () => {
           title="No Overlay Click"
           closeOnOverlayClick={false}
         >
-          <Typography variant="body" style={{ marginBottom: '16px' }}>
+          <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
             This modal cannot be closed by clicking the overlay. Users must use the close button or Escape key.
-          </Typography>
+          </CriaTextBody1>
           <Button variant="primary" onClick={() => setIsNoOverlayModalOpen(false)}>
             Close Modal
           </Button>
@@ -203,9 +206,9 @@ export const ModalDemo: React.FC = () => {
           title="Centered Modal"
           centered={true}
         >
-          <Typography variant="body" style={{ marginBottom: '16px' }}>
+          <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
             This modal is centered vertically on the screen, providing a balanced appearance.
-          </Typography>
+          </CriaTextBody1>
           <Button variant="primary" onClick={() => setIsCenteredModalOpen(false)}>
             Close Modal
           </Button>
@@ -213,13 +216,13 @@ export const ModalDemo: React.FC = () => {
       </section>
 
       {/* Scrollable Modal */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2  style={{ marginBottom: spacing[4] }}>
           Scrollable Modal
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
           Modals with scrollable content for long forms or extensive information.
-        </Typography>
+        </CriaTextBody1>
         <Button variant="outline" onClick={() => setIsScrollableModalOpen(true)}>
           Open Scrollable Modal
         </Button>
@@ -231,19 +234,19 @@ export const ModalDemo: React.FC = () => {
           size="lg"
           scrollable={true}
         >
-          <Typography variant="body" style={{ marginBottom: '16px' }}>
+          <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
             This modal contains a lot of content that can be scrolled through.
-          </Typography>
+          </CriaTextBody1>
           {Array.from({ length: 20 }, (_, i) => (
-            <Card key={i} variant="elevated" style={{ marginBottom: '16px' }}>
+            <Card key={i} variant="elevated" style={{ marginBottom: spacing[4] }}>
               <CardHeader>
-                <Typography variant="h3" weight="medium">Section {i + 1}</Typography>
+                <CriaTextTitle1 >Section {i + 1}</CriaTextTitle1>
               </CardHeader>
               <CardContent>
-                <Typography variant="body">
+                <CriaTextBody1>
                   This is section {i + 1} of the scrollable content. Each section contains
                   different information and can be scrolled through independently.
-                </Typography>
+                </CriaTextBody1>
               </CardContent>
             </Card>
           ))}
@@ -251,13 +254,13 @@ export const ModalDemo: React.FC = () => {
       </section>
 
       {/* Form Modal */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2  style={{ marginBottom: spacing[4] }}>
           Form Modal
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
           A modal containing a form with proper footer and button layout.
-        </Typography>
+        </CriaTextBody1>
         <Button variant="outline" onClick={() => setIsFormModalOpen(true)}>
           Open Form Modal
         </Button>
@@ -269,7 +272,7 @@ export const ModalDemo: React.FC = () => {
           size="md"
           showFooter={true}
           footer={
-            <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
+            <div style={{ display: 'flex', gap: spacing[3], justifyContent: 'flex-end' }}>
               <Button variant="outline" onClick={() => setIsFormModalOpen(false)}>
                 Cancel
               </Button>
@@ -279,57 +282,35 @@ export const ModalDemo: React.FC = () => {
             </div>
           }
         >
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '8px' }}>
+              <CriaTextBody1  style={{ marginBottom: spacing[2] }}>
                 Display Name
-              </Typography>
-              <input
+              </CriaTextBody1>
+              <Input
                 type="text"
                 placeholder="Enter your display name"
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  border: '1px solid var(--cria-gray-300)',
-                  borderRadius: 'var(--cria-radius-md)',
-                  fontSize: 'var(--cria-font-size-body)',
-                  fontFamily: 'var(--cria-font-family)'
-                }}
+                style={{ width: '100%' }}
               />
             </div>
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '8px' }}>
+              <CriaTextBody1  style={{ marginBottom: spacing[2] }}>
                 Email
-              </Typography>
-              <input
+              </CriaTextBody1>
+              <Input
                 type="email"
                 placeholder="Enter your email"
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  border: '1px solid var(--cria-gray-300)',
-                  borderRadius: 'var(--cria-radius-md)',
-                  fontSize: 'var(--cria-font-size-body)',
-                  fontFamily: 'var(--cria-font-family)'
-                }}
+                style={{ width: '100%' }}
               />
             </div>
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '8px' }}>
+              <CriaTextBody1  style={{ marginBottom: spacing[2] }}>
                 Bio
-              </Typography>
-              <textarea
+              </CriaTextBody1>
+              <Textarea
                 placeholder="Tell us about yourself"
                 rows={4}
-                style={{
-                  width: '100%',
-                  padding: '8px 12px',
-                  border: '1px solid var(--cria-gray-300)',
-                  borderRadius: 'var(--cria-radius-md)',
-                  fontSize: 'var(--cria-font-size-body)',
-                  fontFamily: 'var(--cria-font-family)',
-                  resize: 'vertical'
-                }}
+                style={{ width: '100%' }}
               />
             </div>
           </div>
@@ -337,13 +318,13 @@ export const ModalDemo: React.FC = () => {
       </section>
 
       {/* Confirmation Modal */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2  style={{ marginBottom: spacing[4] }}>
           Confirmation Modal
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
           A modal for confirming destructive actions or important decisions.
-        </Typography>
+        </CriaTextBody1>
         <Button variant="danger" onClick={() => setIsConfirmationModalOpen(true)}>
           Delete Item
         </Button>
@@ -355,7 +336,7 @@ export const ModalDemo: React.FC = () => {
           size="sm"
           showFooter={true}
           footer={
-            <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
+            <div style={{ display: 'flex', gap: spacing[3], justifyContent: 'flex-end' }}>
               <Button variant="outline" onClick={() => setIsConfirmationModalOpen(false)}>
                 Cancel
               </Button>
@@ -365,27 +346,27 @@ export const ModalDemo: React.FC = () => {
             </div>
           }
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: spacing[3], marginBottom: spacing[4] }}>
             <WarningCircle size={24} color="var(--cria-warning)" />
-            <Typography variant="body" weight="medium">
+            <CriaTextBody1 >
               Are you sure you want to delete this item?
-            </Typography>
+            </CriaTextBody1>
           </div>
-          <Typography variant="body" color="secondary">
+          <CriaTextBody2>
             This action cannot be undone. The item will be permanently removed from your account.
-          </Typography>
+          </CriaTextBody2>
         </Modal>
       </section>
 
       {/* Status Modals */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2  style={{ marginBottom: spacing[4] }}>
           Status Modals
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
           Modals for displaying different types of status messages and information.
-        </Typography>
-        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+        </CriaTextBody1>
+        <div style={{ display: 'flex', gap: spacing[3], flexWrap: 'wrap' }}>
           <Button variant="outline" onClick={() => setIsInfoModalOpen(true)}>
             Info Modal
           </Button>
@@ -406,15 +387,15 @@ export const ModalDemo: React.FC = () => {
           title="Information"
           size="sm"
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: spacing[3], marginBottom: spacing[4] }}>
             <Info size={24} color="var(--cria-info)" />
-            <Typography variant="body" weight="medium">
+            <CriaTextBody1 >
               Here's some important information
-            </Typography>
+            </CriaTextBody1>
           </div>
-          <Typography variant="body" color="secondary">
+          <CriaTextBody2>
             This modal provides additional context or helpful information about a feature or action.
-          </Typography>
+          </CriaTextBody2>
         </Modal>
         
         <Modal
@@ -423,15 +404,15 @@ export const ModalDemo: React.FC = () => {
           title="Success"
           size="sm"
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: spacing[3], marginBottom: spacing[4] }}>
             <CheckCircle size={24} color="var(--cria-success)" />
-            <Typography variant="body" weight="medium">
+            <CriaTextBody1 >
               Operation completed successfully
-            </Typography>
+            </CriaTextBody1>
           </div>
-          <Typography variant="body" color="secondary">
+          <CriaTextBody2>
             Your changes have been saved and are now active.
-          </Typography>
+          </CriaTextBody2>
         </Modal>
         
         <Modal
@@ -440,15 +421,15 @@ export const ModalDemo: React.FC = () => {
           title="Warning"
           size="sm"
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: spacing[3], marginBottom: spacing[4] }}>
             <WarningCircle size={24} color="var(--cria-warning)" />
-            <Typography variant="body" weight="medium">
+            <CriaTextBody1 >
               Please review your settings
-            </Typography>
+            </CriaTextBody1>
           </div>
-          <Typography variant="body" color="secondary">
+          <CriaTextBody2>
             Some of your current settings may cause issues. Please review and update them as needed.
-          </Typography>
+          </CriaTextBody2>
         </Modal>
         
         <Modal
@@ -457,51 +438,51 @@ export const ModalDemo: React.FC = () => {
           title="Error"
           size="sm"
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '16px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: spacing[3], marginBottom: spacing[4] }}>
             <XCircle size={24} color="var(--cria-error)" />
-            <Typography variant="body" weight="medium">
+            <CriaTextBody1 >
               Something went wrong
-            </Typography>
+            </CriaTextBody1>
           </div>
-          <Typography variant="body" color="secondary">
+          <CriaTextBody2>
             We encountered an error while processing your request. Please try again later.
-          </Typography>
+          </CriaTextBody2>
         </Modal>
       </section>
 
       {/* Accessibility */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2  style={{ marginBottom: spacing[4] }}>
           Accessibility Features
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
           The Modal component includes comprehensive accessibility features:
-        </Typography>
-        <ul style={{ marginLeft: '24px', marginBottom: '16px' }}>
+        </CriaTextBody1>
+        <ul style={{ marginLeft: spacing[6], marginBottom: spacing[4] }}>
           <li>
-            <Typography variant="body">
+            <CriaTextBody1>
               <strong>Focus Management:</strong> Automatically focuses the first focusable element when opened
-            </Typography>
+            </CriaTextBody1>
           </li>
           <li>
-            <Typography variant="body">
+            <CriaTextBody1>
               <strong>Keyboard Navigation:</strong> Supports Escape key to close modal
-            </Typography>
+            </CriaTextBody1>
           </li>
           <li>
-            <Typography variant="body">
+            <CriaTextBody1>
               <strong>ARIA Attributes:</strong> Proper role="dialog", aria-modal, aria-labelledby, and aria-describedby
-            </Typography>
+            </CriaTextBody1>
           </li>
           <li>
-            <Typography variant="body">
+            <CriaTextBody1>
               <strong>Screen Reader Support:</strong> Modal content is properly announced to screen readers
-            </Typography>
+            </CriaTextBody1>
           </li>
           <li>
-            <Typography variant="body">
+            <CriaTextBody1>
               <strong>Body Scroll Lock:</strong> Prevents background scrolling when modal is open
-            </Typography>
+            </CriaTextBody1>
           </li>
         </ul>
         <Button variant="outline" onClick={() => setIsBasicModalOpen(true)}>

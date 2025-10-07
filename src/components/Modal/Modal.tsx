@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useCallback } from 'react';
-import { Typography } from '../Typography';
+import { CriaTextTitle1 } from '../TextTokens';
 import { Button } from '../Button';
 import { X } from 'phosphor-react';
 
@@ -250,14 +250,12 @@ export const Modal: React.FC<ModalProps> = ({
         {showHeader && (
           <div className="cria-modal__header">
             {title && (
-              <Typography
+              <CriaTextTitle1
                 id="modal-title"
-                variant="h3"
-                weight="semiBold"
                 className="cria-modal__title"
               >
                 {title}
-              </Typography>
+              </CriaTextTitle1>
             )}
             {showCloseButton && (
               <Button
