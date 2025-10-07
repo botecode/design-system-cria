@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { Footer, FooterLink, FooterSocialLink } from './index';
+import { Footer, FooterLink, FooterSocialLink } from './Footer';
 import { Card, CardContent, CardHeader } from '../Card';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextTitle1, CriaTextTitle2, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { Button } from '../Button';
 import { Divider } from '../Divider';
+import { Input } from '../Input';
+import { spacing, colors, radii } from '../../tokens';
 
 const FooterDemo: React.FC = () => {
   const [clickedLink, setClickedLink] = useState<string>('');
@@ -38,41 +40,41 @@ const FooterDemo: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '2rem', minHeight: '100vh' }}>
-      <Typography variant="h1" weight="bold" style={{ marginBottom: '2rem' }}>
+    <div style={{ padding: spacing[8], minHeight: '100vh' }}>
+      <CriaTextHeadline1  style={{ marginBottom: spacing[8] }}>
         Footer Component
-      </Typography>
+      </CriaTextHeadline1>
 
-      <Typography variant="body" style={{ marginBottom: '2rem' }}>
+      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
         Global app/site footer component with customizable variants, positioning, and content sections.
-      </Typography>
+      </CriaTextBody1>
 
       {/* Click feedback */}
       {(clickedLink || clickedSocial) && (
-        <Card style={{ marginBottom: '2rem', backgroundColor: '#f0f9ff', border: '1px solid #0ea5e9' }}>
+        <Card style={{ marginBottom: spacing[8], backgroundColor: colors.primary[50], border: `1px solid ${colors.primary[500]}` }}>
           <CardContent>
-            <Typography variant="bodySmall" weight="medium" style={{ color: '#0369a1' }}>
+            <CriaTextBody2  style={{ color: colors.primary[700] }}>
               {clickedLink || clickedSocial}
-            </Typography>
+            </CriaTextBody2>
           </CardContent>
         </Card>
       )}
 
-      <div style={{ display: 'grid', gap: '2rem' }}>
+      <div style={{ display: 'grid', gap: spacing[8] }}>
         {/* Basic Footer Examples */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Basic Footer Variants
-            </Typography>
+            </CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
+            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
               Different footer variants:
-            </Typography>
+            </CriaTextBody1>
             
-            <div style={{ marginBottom: '2rem' }}>
-              <Typography variant="bodySmall" style={{ marginBottom: '0.5rem', fontWeight: '600' }}>Default Variant:</Typography>
+            <div style={{ marginBottom: spacing[8] }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2], fontWeight: '600' }}>Default Variant:</CriaTextBody2>
               <Footer
                 variant="default"
                 copyright="© 2024 CR_IA.UI Design System"
@@ -80,12 +82,12 @@ const FooterDemo: React.FC = () => {
                 socialLinks={sampleSocialLinks.slice(0, 3)}
                 onLinkClick={handleLinkClick}
                 onSocialClick={handleSocialClick}
-                style={{ border: '1px solid #e5e7eb', borderRadius: '8px' }}
+                style={{ border: `1px solid ${colors.gray[200]}`, borderRadius: radii.md }}
               />
             </div>
 
-            <div style={{ marginBottom: '2rem' }}>
-              <Typography variant="bodySmall" style={{ marginBottom: '0.5rem', fontWeight: '600' }}>Dark Variant:</Typography>
+            <div style={{ marginBottom: spacing[8] }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2], fontWeight: '600' }}>Dark Variant:</CriaTextBody2>
               <Footer
                 variant="dark"
                 copyright="© 2024 CR_IA.UI Design System"
@@ -93,12 +95,12 @@ const FooterDemo: React.FC = () => {
                 socialLinks={sampleSocialLinks.slice(0, 3)}
                 onLinkClick={handleLinkClick}
                 onSocialClick={handleSocialClick}
-                style={{ borderRadius: '8px' }}
+                style={{ borderRadius: radii.md }}
               />
             </div>
 
-            <div style={{ marginBottom: '2rem' }}>
-              <Typography variant="bodySmall" style={{ marginBottom: '0.5rem', fontWeight: '600' }}>Light Variant:</Typography>
+            <div style={{ marginBottom: spacing[8] }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2], fontWeight: '600' }}>Light Variant:</CriaTextBody2>
               <Footer
                 variant="light"
                 copyright="© 2024 CR_IA.UI Design System"
@@ -106,18 +108,18 @@ const FooterDemo: React.FC = () => {
                 socialLinks={sampleSocialLinks.slice(0, 3)}
                 onLinkClick={handleLinkClick}
                 onSocialClick={handleSocialClick}
-                style={{ border: '1px solid #e5e7eb', borderRadius: '8px' }}
+                style={{ border: `1px solid ${colors.gray[200]}`, borderRadius: radii.md }}
               />
             </div>
 
             <div>
-              <Typography variant="bodySmall" style={{ marginBottom: '0.5rem', fontWeight: '600' }}>Minimal Variant:</Typography>
+              <CriaTextBody2 style={{ marginBottom: spacing[2], fontWeight: '600' }}>Minimal Variant:</CriaTextBody2>
               <Footer
                 variant="minimal"
                 copyright="© 2024 CR_IA.UI Design System"
                 links={sampleLinks.slice(0, 3)}
                 onLinkClick={handleLinkClick}
-                style={{ border: '1px solid #e5e7eb', borderRadius: '8px' }}
+                style={{ border: `1px solid ${colors.gray[200]}`, borderRadius: radii.md }}
               />
             </div>
           </CardContent>
@@ -126,29 +128,29 @@ const FooterDemo: React.FC = () => {
         {/* Footer Sizes */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Footer Sizes
-            </Typography>
+            </CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
+            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
               Different footer sizes:
-            </Typography>
+            </CriaTextBody1>
             
-            <div style={{ marginBottom: '2rem' }}>
-              <Typography variant="bodySmall" style={{ marginBottom: '0.5rem', fontWeight: '600' }}>Small Size:</Typography>
+            <div style={{ marginBottom: spacing[8] }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2], fontWeight: '600' }}>Small Size:</CriaTextBody2>
               <Footer
                 size="sm"
                 variant="default"
                 copyright="© 2024 CR_IA.UI"
                 links={sampleLinks.slice(0, 3)}
                 onLinkClick={handleLinkClick}
-                style={{ border: '1px solid #e5e7eb', borderRadius: '8px' }}
+                style={{ border: `1px solid ${colors.gray[200]}`, borderRadius: radii.md }}
               />
             </div>
 
-            <div style={{ marginBottom: '2rem' }}>
-              <Typography variant="bodySmall" style={{ marginBottom: '0.5rem', fontWeight: '600' }}>Medium Size (Default):</Typography>
+            <div style={{ marginBottom: spacing[8] }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2], fontWeight: '600' }}>Medium Size (Default):</CriaTextBody2>
               <Footer
                 size="md"
                 variant="default"
@@ -157,12 +159,12 @@ const FooterDemo: React.FC = () => {
                 socialLinks={sampleSocialLinks.slice(0, 3)}
                 onLinkClick={handleLinkClick}
                 onSocialClick={handleSocialClick}
-                style={{ border: '1px solid #e5e7eb', borderRadius: '8px' }}
+                style={{ border: `1px solid ${colors.gray[200]}`, borderRadius: radii.md }}
               />
             </div>
 
             <div>
-              <Typography variant="bodySmall" style={{ marginBottom: '0.5rem', fontWeight: '600' }}>Large Size:</Typography>
+              <CriaTextBody2 style={{ marginBottom: spacing[2], fontWeight: '600' }}>Large Size:</CriaTextBody2>
               <Footer
                 size="lg"
                 variant="default"
@@ -171,7 +173,7 @@ const FooterDemo: React.FC = () => {
                 socialLinks={sampleSocialLinks}
                 onLinkClick={handleLinkClick}
                 onSocialClick={handleSocialClick}
-                style={{ border: '1px solid #e5e7eb', borderRadius: '8px' }}
+                style={{ border: `1px solid ${colors.gray[200]}`, borderRadius: radii.md }}
               />
             </div>
           </CardContent>
@@ -180,19 +182,19 @@ const FooterDemo: React.FC = () => {
         {/* Footer Positioning */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Footer Positioning
-            </Typography>
+            </CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
+            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
               Different positioning options:
-            </Typography>
+            </CriaTextBody1>
             
-            <div style={{ marginBottom: '2rem' }}>
-              <Typography variant="bodySmall" style={{ marginBottom: '0.5rem', fontWeight: '600' }}>Sticky Footer:</Typography>
-              <div style={{ height: '200px', backgroundColor: '#f3f4f6', borderRadius: '8px', padding: '1rem', marginBottom: '1rem' }}>
-                <Typography variant="body">Content area - scroll to see sticky behavior</Typography>
+            <div style={{ marginBottom: spacing[8] }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2], fontWeight: '600' }}>Sticky Footer:</CriaTextBody2>
+              <div style={{ height: '200px', backgroundColor: colors.gray[100], borderRadius: radii.md, padding: spacing[4], marginBottom: spacing[4] }}>
+                <CriaTextBody1>Content area - scroll to see sticky behavior</CriaTextBody1>
               </div>
               <Footer
                 sticky
@@ -200,14 +202,14 @@ const FooterDemo: React.FC = () => {
                 copyright="© 2024 Sticky Footer"
                 links={sampleLinks.slice(0, 3)}
                 onLinkClick={handleLinkClick}
-                style={{ borderRadius: '8px' }}
+                style={{ borderRadius: radii.md }}
               />
             </div>
 
             <div>
-              <Typography variant="bodySmall" style={{ marginBottom: '0.5rem', fontWeight: '600' }}>Fixed Footer (simulated):</Typography>
-              <div style={{ height: '200px', backgroundColor: '#f3f4f6', borderRadius: '8px', padding: '1rem', marginBottom: '1rem' }}>
-                <Typography variant="body">Content area - footer would be fixed to bottom</Typography>
+              <CriaTextBody2 style={{ marginBottom: spacing[2], fontWeight: '600' }}>Fixed Footer (simulated):</CriaTextBody2>
+              <div style={{ height: '200px', backgroundColor: colors.gray[100], borderRadius: radii.md, padding: spacing[4], marginBottom: spacing[4] }}>
+                <CriaTextBody1>Content area - footer would be fixed to bottom</CriaTextBody1>
               </div>
               <Footer
                 fixed
@@ -215,7 +217,7 @@ const FooterDemo: React.FC = () => {
                 copyright="© 2024 Fixed Footer"
                 links={sampleLinks.slice(0, 3)}
                 onLinkClick={handleLinkClick}
-                style={{ borderRadius: '8px' }}
+                style={{ borderRadius: radii.md }}
               />
             </div>
           </CardContent>
@@ -224,17 +226,17 @@ const FooterDemo: React.FC = () => {
         {/* Visual Effects */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Visual Effects
-            </Typography>
+            </CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
+            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
               Different visual effects:
-            </Typography>
+            </CriaTextBody1>
             
-            <div style={{ marginBottom: '2rem' }}>
-              <Typography variant="bodySmall" style={{ marginBottom: '0.5rem', fontWeight: '600' }}>With Border and Shadow:</Typography>
+            <div style={{ marginBottom: spacing[8] }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2], fontWeight: '600' }}>With Border and Shadow:</CriaTextBody2>
               <Footer
                 variant="default"
                 border
@@ -244,12 +246,12 @@ const FooterDemo: React.FC = () => {
                 socialLinks={sampleSocialLinks.slice(0, 3)}
                 onLinkClick={handleLinkClick}
                 onSocialClick={handleSocialClick}
-                style={{ borderRadius: '8px' }}
+                style={{ borderRadius: radii.md }}
               />
             </div>
 
             <div>
-              <Typography variant="bodySmall" style={{ marginBottom: '0.5rem', fontWeight: '600' }}>Full Width:</Typography>
+              <CriaTextBody2 style={{ marginBottom: spacing[2], fontWeight: '600' }}>Full Width:</CriaTextBody2>
               <Footer
                 variant="dark"
                 fullWidth
@@ -258,7 +260,7 @@ const FooterDemo: React.FC = () => {
                 socialLinks={sampleSocialLinks.slice(0, 3)}
                 onLinkClick={handleLinkClick}
                 onSocialClick={handleSocialClick}
-                style={{ borderRadius: '8px' }}
+                style={{ borderRadius: radii.md }}
               />
             </div>
           </CardContent>
@@ -267,14 +269,14 @@ const FooterDemo: React.FC = () => {
         {/* Custom Content */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Custom Content
-            </Typography>
+            </CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
+            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
               Footer with custom content sections:
-            </Typography>
+            </CriaTextBody1>
             
             <Footer
               variant="dark"
@@ -285,79 +287,79 @@ const FooterDemo: React.FC = () => {
               socialLinks={sampleSocialLinks}
               onLinkClick={handleLinkClick}
               onSocialClick={handleSocialClick}
-              style={{ borderRadius: '8px' }}
+              style={{ borderRadius: radii.md }}
             >
               <div style={{ 
                 display: 'grid', 
                 gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-                gap: '2rem',
-                marginBottom: '2rem'
+                gap: spacing[8],
+                marginBottom: spacing[8]
               }}>
                 <div>
-                  <Typography variant="h3" weight="semibold" style={{ color: 'var(--cria-white)', marginBottom: '1rem' }}>
+                  <CriaTextTitle2  style={{ color: colors.white, marginBottom: spacing[4] }}>
                     Product
-                  </Typography>
+                  </CriaTextTitle2>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    <li style={{ marginBottom: '0.5rem' }}>
-                      <Typography variant="bodySmall" style={{ color: 'var(--cria-gray-300)' }}>
+                    <li style={{ marginBottom: spacing[2] }}>
+                      <CriaTextBody2 style={{ color: colors.gray[300] }}>
                         Design System
-                      </Typography>
+                      </CriaTextBody2>
                     </li>
-                    <li style={{ marginBottom: '0.5rem' }}>
-                      <Typography variant="bodySmall" style={{ color: 'var(--cria-gray-300)' }}>
+                    <li style={{ marginBottom: spacing[2] }}>
+                      <CriaTextBody2 style={{ color: colors.gray[300] }}>
                         Components
-                      </Typography>
+                      </CriaTextBody2>
                     </li>
-                    <li style={{ marginBottom: '0.5rem' }}>
-                      <Typography variant="bodySmall" style={{ color: 'var(--cria-gray-300)' }}>
+                    <li style={{ marginBottom: spacing[2] }}>
+                      <CriaTextBody2 style={{ color: colors.gray[300] }}>
                         Documentation
-                      </Typography>
+                      </CriaTextBody2>
                     </li>
                   </ul>
                 </div>
                 
                 <div>
-                  <Typography variant="h3" weight="semibold" style={{ color: 'var(--cria-white)', marginBottom: '1rem' }}>
+                  <CriaTextTitle2  style={{ color: colors.white, marginBottom: spacing[4] }}>
                     Company
-                  </Typography>
+                  </CriaTextTitle2>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    <li style={{ marginBottom: '0.5rem' }}>
-                      <Typography variant="bodySmall" style={{ color: 'var(--cria-gray-300)' }}>
+                    <li style={{ marginBottom: spacing[2] }}>
+                      <CriaTextBody2 style={{ color: colors.gray[300] }}>
                         About Us
-                      </Typography>
+                      </CriaTextBody2>
                     </li>
-                    <li style={{ marginBottom: '0.5rem' }}>
-                      <Typography variant="bodySmall" style={{ color: 'var(--cria-gray-300)' }}>
+                    <li style={{ marginBottom: spacing[2] }}>
+                      <CriaTextBody2 style={{ color: colors.gray[300] }}>
                         Careers
-                      </Typography>
+                      </CriaTextBody2>
                     </li>
-                    <li style={{ marginBottom: '0.5rem' }}>
-                      <Typography variant="bodySmall" style={{ color: 'var(--cria-gray-300)' }}>
+                    <li style={{ marginBottom: spacing[2] }}>
+                      <CriaTextBody2 style={{ color: colors.gray[300] }}>
                         News
-                      </Typography>
+                      </CriaTextBody2>
                     </li>
                   </ul>
                 </div>
                 
                 <div>
-                  <Typography variant="h3" weight="semibold" style={{ color: 'var(--cria-white)', marginBottom: '1rem' }}>
+                  <CriaTextTitle2  style={{ color: colors.white, marginBottom: spacing[4] }}>
                     Support
-                  </Typography>
+                  </CriaTextTitle2>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    <li style={{ marginBottom: '0.5rem' }}>
-                      <Typography variant="bodySmall" style={{ color: 'var(--cria-gray-300)' }}>
+                    <li style={{ marginBottom: spacing[2] }}>
+                      <CriaTextBody2 style={{ color: colors.gray[300] }}>
                         Help Center
-                      </Typography>
+                      </CriaTextBody2>
                     </li>
-                    <li style={{ marginBottom: '0.5rem' }}>
-                      <Typography variant="bodySmall" style={{ color: 'var(--cria-gray-300)' }}>
+                    <li style={{ marginBottom: spacing[2] }}>
+                      <CriaTextBody2 style={{ color: colors.gray[300] }}>
                         Contact Support
-                      </Typography>
+                      </CriaTextBody2>
                     </li>
-                    <li style={{ marginBottom: '0.5rem' }}>
-                      <Typography variant="bodySmall" style={{ color: 'var(--cria-gray-300)' }}>
+                    <li style={{ marginBottom: spacing[2] }}>
+                      <CriaTextBody2 style={{ color: colors.gray[300] }}>
                         Community
-                      </Typography>
+                      </CriaTextBody2>
                     </li>
                   </ul>
                 </div>
@@ -369,14 +371,14 @@ const FooterDemo: React.FC = () => {
         {/* Responsive Footer */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Responsive Footer
-            </Typography>
+            </CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
+            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
               Footer with responsive behavior:
-            </Typography>
+            </CriaTextBody1>
             
             <Footer
               variant="default"
@@ -388,15 +390,15 @@ const FooterDemo: React.FC = () => {
               socialLinks={sampleSocialLinks}
               onLinkClick={handleLinkClick}
               onSocialClick={handleSocialClick}
-              style={{ borderRadius: '8px' }}
+              style={{ borderRadius: radii.md }}
             >
-              <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-                <Typography variant="body" weight="medium">
+              <div style={{ textAlign: 'center', marginBottom: spacing[4] }}>
+                <CriaTextBody1 >
                   This footer adapts to different screen sizes
-                </Typography>
-                <Typography variant="bodySmall" style={{ color: 'var(--cria-gray-600)' }}>
+                </CriaTextBody1>
+                <CriaTextBody2 style={{ color: colors.gray[600] }}>
                   On mobile, links stack vertically. On desktop, they spread horizontally.
-                </Typography>
+                </CriaTextBody2>
               </div>
             </Footer>
           </CardContent>
@@ -405,14 +407,14 @@ const FooterDemo: React.FC = () => {
         {/* Real-world Examples */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Real-world Examples
-            </Typography>
+            </CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
+            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
               E-commerce footer:
-            </Typography>
+            </CriaTextBody1>
             
             <Footer
               variant="dark"
@@ -430,62 +432,59 @@ const FooterDemo: React.FC = () => {
               socialLinks={sampleSocialLinks}
               onLinkClick={handleLinkClick}
               onSocialClick={handleSocialClick}
-              style={{ borderRadius: '8px' }}
+              style={{ borderRadius: radii.md }}
             >
               <div style={{ 
                 display: 'grid', 
                 gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-                gap: '2rem',
-                marginBottom: '2rem'
+                gap: spacing[8],
+                marginBottom: spacing[8]
               }}>
                 <div>
-                  <Typography variant="h3" weight="semibold" style={{ color: 'var(--cria-white)', marginBottom: '1rem' }}>
+                  <CriaTextTitle2  style={{ color: colors.white, marginBottom: spacing[4] }}>
                     Shop
-                  </Typography>
+                  </CriaTextTitle2>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                     {['New Arrivals', 'Men', 'Women', 'Kids', 'Accessories'].map((item) => (
-                      <li key={item} style={{ marginBottom: '0.5rem' }}>
-                        <Typography variant="bodySmall" style={{ color: 'var(--cria-gray-300)' }}>
+                      <li key={item} style={{ marginBottom: spacing[2] }}>
+                        <CriaTextBody2 style={{ color: colors.gray[300] }}>
                           {item}
-                        </Typography>
+                        </CriaTextBody2>
                       </li>
                     ))}
                   </ul>
                 </div>
                 
                 <div>
-                  <Typography variant="h3" weight="semibold" style={{ color: 'var(--cria-white)', marginBottom: '1rem' }}>
+                  <CriaTextTitle2  style={{ color: colors.white, marginBottom: spacing[4] }}>
                     Customer Service
-                  </Typography>
+                  </CriaTextTitle2>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                     {['Contact Us', 'FAQ', 'Live Chat', 'Returns', 'Exchanges'].map((item) => (
-                      <li key={item} style={{ marginBottom: '0.5rem' }}>
-                        <Typography variant="bodySmall" style={{ color: 'var(--cria-gray-300)' }}>
+                      <li key={item} style={{ marginBottom: spacing[2] }}>
+                        <CriaTextBody2 style={{ color: colors.gray[300] }}>
                           {item}
-                        </Typography>
+                        </CriaTextBody2>
                       </li>
                     ))}
                   </ul>
                 </div>
                 
                 <div>
-                  <Typography variant="h3" weight="semibold" style={{ color: 'var(--cria-white)', marginBottom: '1rem' }}>
+                  <CriaTextTitle2  style={{ color: colors.white, marginBottom: spacing[4] }}>
                     Newsletter
-                  </Typography>
-                  <Typography variant="bodySmall" style={{ color: 'var(--cria-gray-300)', marginBottom: '1rem' }}>
+                  </CriaTextTitle2>
+                  <CriaTextBody2 style={{ color: colors.gray[300], marginBottom: spacing[4] }}>
                     Subscribe to get updates on new products and exclusive offers.
-                  </Typography>
-                  <div style={{ display: 'flex', gap: '0.5rem' }}>
-                    <input 
+                  </CriaTextBody2>
+                  <div style={{ display: 'flex', gap: spacing[2] }}>
+                    <Input 
                       type="email" 
                       placeholder="Enter your email" 
                       style={{ 
                         flex: 1, 
-                        padding: '0.5rem', 
-                        border: '1px solid var(--cria-gray-600)', 
-                        borderRadius: '4px',
                         backgroundColor: 'transparent',
-                        color: 'var(--cria-white)'
+                        color: colors.white
                       }} 
                     />
                     <Button variant="primary" size="sm">Subscribe</Button>
@@ -496,9 +495,9 @@ const FooterDemo: React.FC = () => {
 
             <Divider style={{ margin: '2rem 0' }} />
 
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
+            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
               SaaS/App footer:
-            </Typography>
+            </CriaTextBody1>
             
             <Footer
               variant="light"
@@ -516,15 +515,15 @@ const FooterDemo: React.FC = () => {
               socialLinks={sampleSocialLinks.slice(0, 4)}
               onLinkClick={handleLinkClick}
               onSocialClick={handleSocialClick}
-              style={{ borderRadius: '8px' }}
+              style={{ borderRadius: radii.md }}
             >
-              <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-                <Typography variant="h3" weight="semibold" style={{ marginBottom: '0.5rem' }}>
-                  Ready to get started?
-                </Typography>
-                <Typography variant="body" style={{ color: 'var(--cria-gray-600)', marginBottom: '1rem' }}>
+              <div style={{ textAlign: 'center', marginBottom: spacing[4] }}>
+                <CriaTextTitle2  style={{ marginBottom: spacing[2] }}>
+                Ready to get started?
+              </CriaTextTitle2>
+                <CriaTextBody1 style={{ color: colors.gray[600], marginBottom: spacing[4] }}>
                   Join thousands of teams already using CR_IA App
-                </Typography>
+                </CriaTextBody1>
                 <Button variant="primary" size="lg" style={{ marginRight: '1rem' }}>
                   Start Free Trial
                 </Button>
@@ -539,14 +538,14 @@ const FooterDemo: React.FC = () => {
         {/* Accessibility Features */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Accessibility Features
-            </Typography>
+            </CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
+            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
               Footer with proper accessibility attributes:
-            </Typography>
+            </CriaTextBody1>
             
             <Footer
               variant="dark"
@@ -557,18 +556,18 @@ const FooterDemo: React.FC = () => {
               onSocialClick={handleSocialClick}
               role="contentinfo"
               aria-label="Site footer"
-              style={{ borderRadius: '8px' }}
+              style={{ borderRadius: radii.md }}
             >
               <div>
-                <Typography variant="body" style={{ color: 'var(--cria-white)', textAlign: 'center' }}>
+                <CriaTextBody1 style={{ color: colors.white, textAlign: 'center' }}>
                   This footer includes proper ARIA attributes and keyboard navigation support.
-                </Typography>
+                </CriaTextBody1>
               </div>
             </Footer>
             
-            <Typography variant="bodySmall" style={{ marginTop: '1rem', color: 'var(--cria-gray-600)' }}>
+            <CriaTextBody2 style={{ marginTop: '1rem', color: colors.gray[600] }}>
               Features: role="contentinfo", aria-label, keyboard navigation, focus indicators, and semantic HTML structure.
-            </Typography>
+            </CriaTextBody2>
           </CardContent>
         </Card>
       </div>
