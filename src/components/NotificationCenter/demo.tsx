@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { NotificationCenter, Notification } from './NotificationCenter';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextTitle1, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { Card, CardContent, CardHeader } from '../Card';
 import { Grid, Row, Column } from '../Grid';
 import { Button } from '../Button';
@@ -71,50 +71,50 @@ const NotificationCenterDemo: React.FC = () => {
 
   return (
     <div style={{ padding: spacing[8], minHeight: '100vh' }}>
-      <Typography variant="h1" weight="bold" style={{ marginBottom: spacing[6] }}>
+      <CriaTextHeadline1 style={{ marginBottom: spacing[6] }}>
         Notification Center
-      </Typography>
+      </CriaTextHeadline1>
 
-      <Typography variant="body" style={{ marginBottom: spacing[8] }}>
+      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
         A component for displaying stacked toast notifications and global alerts with customizable positioning, animations, and auto-dismiss functionality.
-      </Typography>
+      </CriaTextBody1>
 
       {/* Controls */}
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Controls
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Grid gap="md">
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Add Notifications
-                </Typography>
+                </CriaTextTitle1>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[2], marginBottom: spacing[4] }}>
-                  <Button variant="success" size="sm" onClick={addSuccessNotification}>
+                  <Button variant="primary" size="sm" onClick={addSuccessNotification}>
                     <Check size={16} style={{ marginRight: spacing[1] }} />
                     Success
                   </Button>
-                  <Button variant="error" size="sm" onClick={addErrorNotification}>
+                  <Button variant="danger" size="sm" onClick={addErrorNotification}>
                     <XCircle size={16} style={{ marginRight: spacing[1] }} />
                     Error
                   </Button>
-                  <Button variant="warning" size="sm" onClick={addWarningNotification}>
+                  <Button variant="secondary" size="sm" onClick={addWarningNotification}>
                     <Warning size={16} style={{ marginRight: spacing[1] }} />
                     Warning
                   </Button>
-                  <Button variant="info" size="sm" onClick={addInfoNotification}>
+                  <Button variant="ghost" size="sm" onClick={addInfoNotification}>
                     <Info size={16} style={{ marginRight: spacing[1] }} />
                     Info
                   </Button>
-                  <Button variant="outlined" size="sm" onClick={addPersistentNotification}>
+                  <Button variant="outline" size="sm" onClick={addPersistentNotification}>
                     <Bell size={16} style={{ marginRight: spacing[1] }} />
                     Persistent
                   </Button>
-                  <Button variant="outlined" size="sm" onClick={addQuickNotification}>
+                  <Button variant="outline" size="sm" onClick={addQuickNotification}>
                     <Plus size={16} style={{ marginRight: spacing[1] }} />
                     Quick
                   </Button>
@@ -127,14 +127,14 @@ const NotificationCenterDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Configuration
-                </Typography>
+                </CriaTextTitle1>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[4], marginBottom: spacing[4] }}>
                   <div>
-                    <Typography variant="bodySmall" weight="medium" style={{ marginBottom: spacing[1] }}>
+                    <CriaTextBody2 style={{ marginBottom: spacing[1] }}>
                       Position
-                    </Typography>
+                    </CriaTextBody2>
                     <select 
                       value={position} 
                       onChange={(e) => setPosition(e.target.value as any)}
@@ -149,9 +149,9 @@ const NotificationCenterDemo: React.FC = () => {
                     </select>
                   </div>
                   <div>
-                    <Typography variant="bodySmall" weight="medium" style={{ marginBottom: spacing[1] }}>
+                    <CriaTextBody2 style={{ marginBottom: spacing[1] }}>
                       Size
-                    </Typography>
+                    </CriaTextBody2>
                     <select 
                       value={size} 
                       onChange={(e) => setSize(e.target.value as any)}
@@ -163,9 +163,9 @@ const NotificationCenterDemo: React.FC = () => {
                     </select>
                   </div>
                   <div>
-                    <Typography variant="bodySmall" weight="medium" style={{ marginBottom: spacing[1] }}>
+                    <CriaTextBody2 style={{ marginBottom: spacing[1] }}>
                       Variant
-                    </Typography>
+                    </CriaTextBody2>
                     <select 
                       value={variant} 
                       onChange={(e) => setVariant(e.target.value as any)}
@@ -176,9 +176,9 @@ const NotificationCenterDemo: React.FC = () => {
                     </select>
                   </div>
                   <div>
-                    <Typography variant="bodySmall" weight="medium" style={{ marginBottom: spacing[1] }}>
+                    <CriaTextBody2 style={{ marginBottom: spacing[1] }}>
                       Stack Direction
-                    </Typography>
+                    </CriaTextBody2>
                     <select 
                       value={stackDirection} 
                       onChange={(e) => setStackDirection(e.target.value as any)}
@@ -189,9 +189,9 @@ const NotificationCenterDemo: React.FC = () => {
                     </select>
                   </div>
                   <div>
-                    <Typography variant="bodySmall" weight="medium" style={{ marginBottom: spacing[1] }}>
+                    <CriaTextBody2 style={{ marginBottom: spacing[1] }}>
                       Animation
-                    </Typography>
+                    </CriaTextBody2>
                     <select 
                       value={animation} 
                       onChange={(e) => setAnimation(e.target.value as any)}
@@ -210,7 +210,7 @@ const NotificationCenterDemo: React.FC = () => {
                       checked={showProgress} 
                       onChange={(e) => setShowProgress(e.target.checked)}
                     />
-                    <Typography variant="bodySmall">Show Progress</Typography>
+                    <CriaTextBody2>Show Progress</CriaTextBody2>
                   </label>
                   <label style={{ display: 'flex', alignItems: 'center', gap: spacing[1] }}>
                     <input 
@@ -218,7 +218,7 @@ const NotificationCenterDemo: React.FC = () => {
                       checked={showIcons} 
                       onChange={(e) => setShowIcons(e.target.checked)}
                     />
-                    <Typography variant="bodySmall">Show Icons</Typography>
+                    <CriaTextBody2>Show Icons</CriaTextBody2>
                   </label>
                 </div>
               </Column>
@@ -226,13 +226,13 @@ const NotificationCenterDemo: React.FC = () => {
             <Row>
               <Column span={12}>
                 <div style={{ display: 'flex', gap: spacing[2] }}>
-                  <Button variant="outlined" size="sm" onClick={clearAllNotifications}>
+                  <Button variant="outline" size="sm" onClick={clearAllNotifications}>
                     <Trash size={16} style={{ marginRight: spacing[1] }} />
                     Clear All
                   </Button>
-                  <Typography variant="bodySmall" style={{ display: 'flex', alignItems: 'center', color: colors.gray[600] }}>
+                  <CriaTextBody2 style={{ display: 'flex', alignItems: 'center', color: colors.gray[600] }}>
                     {notifications.length} notification{notifications.length !== 1 ? 's' : ''} active
-                  </Typography>
+                  </CriaTextBody2>
                 </div>
               </Column>
             </Row>
@@ -243,17 +243,17 @@ const NotificationCenterDemo: React.FC = () => {
       {/* Examples */}
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Different Positions
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Grid gap="md">
             <Row>
               <Column span={6}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[2] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>
                   Top Right (Default)
-                </Typography>
+                </CriaTextTitle1>
                 <NotificationCenter
                   notifications={[
                     {
@@ -269,9 +269,9 @@ const NotificationCenterDemo: React.FC = () => {
                 />
               </Column>
               <Column span={6}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[2] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>
                   Top Left
-                </Typography>
+                </CriaTextTitle1>
                 <NotificationCenter
                   notifications={[
                     {
@@ -289,9 +289,9 @@ const NotificationCenterDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={6}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[2] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>
                   Bottom Right
-                </Typography>
+                </CriaTextTitle1>
                 <NotificationCenter
                   notifications={[
                     {
@@ -307,9 +307,9 @@ const NotificationCenterDemo: React.FC = () => {
                 />
               </Column>
               <Column span={6}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[2] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>
                   Bottom Left
-                </Typography>
+                </CriaTextTitle1>
                 <NotificationCenter
                   notifications={[
                     {
@@ -331,17 +331,17 @@ const NotificationCenterDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Different Sizes
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Grid gap="md">
             <Row>
               <Column span={4}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[2] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>
                   Small
-                </Typography>
+                </CriaTextTitle1>
                 <NotificationCenter
                   notifications={[
                     {
@@ -357,9 +357,9 @@ const NotificationCenterDemo: React.FC = () => {
                 />
               </Column>
               <Column span={4}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[2] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>
                   Medium (Default)
-                </Typography>
+                </CriaTextTitle1>
                 <NotificationCenter
                   notifications={[
                     {
@@ -375,9 +375,9 @@ const NotificationCenterDemo: React.FC = () => {
                 />
               </Column>
               <Column span={4}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[2] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>
                   Large
-                </Typography>
+                </CriaTextTitle1>
                 <NotificationCenter
                   notifications={[
                     {
@@ -399,17 +399,17 @@ const NotificationCenterDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Different Variants
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Grid gap="md">
             <Row>
               <Column span={6}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[2] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>
                   Default
-                </Typography>
+                </CriaTextTitle1>
                 <NotificationCenter
                   notifications={[
                     {
@@ -425,9 +425,9 @@ const NotificationCenterDemo: React.FC = () => {
                 />
               </Column>
               <Column span={6}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[2] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>
                   Compact
-                </Typography>
+                </CriaTextTitle1>
                 <NotificationCenter
                   notifications={[
                     {
@@ -449,9 +449,9 @@ const NotificationCenterDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             With Progress Bar
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <NotificationCenter
@@ -472,9 +472,9 @@ const NotificationCenterDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Without Icons
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <NotificationCenter
@@ -495,28 +495,28 @@ const NotificationCenterDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Real-world Examples
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Grid gap="md">
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   User Actions
-                </Typography>
+                </CriaTextTitle1>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[2] }}>
-                  <Button variant="success" size="sm" onClick={() => addNotification('success', 'Profile Updated', 'Your profile has been successfully updated')}>
+                  <Button variant="primary" size="sm" onClick={() => addNotification('success', 'Profile Updated', 'Your profile has been successfully updated')}>
                     Update Profile
                   </Button>
-                  <Button variant="error" size="sm" onClick={() => addNotification('error', 'Delete Failed', 'Unable to delete item. Please try again.')}>
+                  <Button variant="danger" size="sm" onClick={() => addNotification('error', 'Delete Failed', 'Unable to delete item. Please try again.')}>
                     Delete Item
                   </Button>
-                  <Button variant="warning" size="sm" onClick={() => addNotification('warning', 'Unsaved Changes', 'You have unsaved changes. Save before leaving.')}>
+                  <Button variant="secondary" size="sm" onClick={() => addNotification('warning', 'Unsaved Changes', 'You have unsaved changes. Save before leaving.')}>
                     Leave Page
                   </Button>
-                  <Button variant="info" size="sm" onClick={() => addNotification('info', 'New Feature', 'Check out our new dashboard feature!')}>
+                  <Button variant="ghost" size="sm" onClick={() => addNotification('info', 'New Feature', 'Check out our new dashboard feature!')}>
                     Show Feature
                   </Button>
                 </div>
@@ -524,20 +524,20 @@ const NotificationCenterDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   System Notifications
-                </Typography>
+                </CriaTextTitle1>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[2] }}>
-                  <Button variant="outlined" size="sm" onClick={() => addNotification('success', 'Backup Complete', 'Your data has been successfully backed up to the cloud')}>
+                  <Button variant="outline" size="sm" onClick={() => addNotification('success', 'Backup Complete', 'Your data has been successfully backed up to the cloud')}>
                     Backup Complete
                   </Button>
-                  <Button variant="outlined" size="sm" onClick={() => addNotification('error', 'Connection Lost', 'Lost connection to server. Attempting to reconnect...')}>
+                  <Button variant="outline" size="sm" onClick={() => addNotification('error', 'Connection Lost', 'Lost connection to server. Attempting to reconnect...')}>
                     Connection Lost
                   </Button>
-                  <Button variant="outlined" size="sm" onClick={() => addNotification('warning', 'Maintenance Mode', 'System will be under maintenance from 2-4 AM')}>
+                  <Button variant="outline" size="sm" onClick={() => addNotification('warning', 'Maintenance Mode', 'System will be under maintenance from 2-4 AM')}>
                     Maintenance Alert
                   </Button>
-                  <Button variant="outlined" size="sm" onClick={() => addNotification('info', 'Update Available', 'A new version is available. Click to update.')}>
+                  <Button variant="outline" size="sm" onClick={() => addNotification('info', 'Update Available', 'A new version is available. Click to update.')}>
                     Update Available
                   </Button>
                 </div>

@@ -1,7 +1,7 @@
 import React, { forwardRef, useEffect, useState } from 'react';
 import { colors, spacing, typography, radii, shadows } from '../../tokens';
 import { Button } from '../Button';
-import { Typography } from '../Typography';
+import { CriaTextTitle1, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { X, Check, Warning, Info, XCircle } from 'phosphor-react';
 
 export interface NotificationData {
