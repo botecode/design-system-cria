@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import { colors, spacing, typography, radii, shadows } from '../../tokens';
 import { Button } from '../Button';
-import { Typography } from '../Typography';
+import { CriaTextTitle1, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { Spinner } from 'phosphor-react';
 
 export interface StepperStepData {
@@ -638,9 +638,9 @@ export const Stepper = forwardRef<HTMLDivElement, StepperProps>(({
         </Button>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: spacing[2] }}>
-          <Typography variant="bodySmall" color="secondary">
+          <CriaTextBody2 style={{ color: colors.text.secondary }}>
             Step {currentStep + 1} of {steps.length}
-          </Typography>
+          </CriaTextBody2>
         </div>
 
         <Button

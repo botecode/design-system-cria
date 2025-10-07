@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { Stepper, StepperStep } from './Stepper';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextTitle1, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { Card, CardContent, CardHeader } from '../Card';
 import { Grid, Row, Column } from '../Grid';
 import { Button } from '../Button';
@@ -158,19 +158,19 @@ const StepperDemo: React.FC = () => {
 
   return (
     <div style={{ padding: spacing[8], minHeight: '100vh' }}>
-      <Typography variant="h1" weight="bold" style={{ marginBottom: spacing[6] }}>
+      <CriaTextHeadline1 style={{ marginBottom: spacing[6] }}>
         Stepper / Wizard
-      </Typography>
+      </CriaTextHeadline1>
 
-      <Typography variant="body" style={{ marginBottom: spacing[8] }}>
+      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
         A component for guiding users through multi-step flows, processes, or workflows with clear progress indication.
-      </Typography>
+      </CriaTextBody1>
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Basic Stepper
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Stepper
@@ -191,17 +191,17 @@ const StepperDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Different Orientations
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Grid gap="lg">
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Horizontal Orientation (Default)
-                </Typography>
+                </CriaTextTitle1>
                 <Stepper
                   steps={projectSteps}
                   currentStep={2}
@@ -212,9 +212,9 @@ const StepperDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Vertical Orientation
-                </Typography>
+                </CriaTextTitle1>
                 <Stepper
                   steps={projectSteps}
                   currentStep={2}
@@ -229,17 +229,17 @@ const StepperDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Different Sizes
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Grid gap="lg">
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Small Size
-                </Typography>
+                </CriaTextTitle1>
                 <Stepper
                   steps={purchaseSteps}
                   currentStep={2}
@@ -250,9 +250,9 @@ const StepperDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Medium Size (Default)
-                </Typography>
+                </CriaTextTitle1>
                 <Stepper
                   steps={purchaseSteps}
                   currentStep={2}
@@ -263,9 +263,9 @@ const StepperDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Large Size
-                </Typography>
+                </CriaTextTitle1>
                 <Stepper
                   steps={purchaseSteps}
                   currentStep={2}
@@ -280,17 +280,17 @@ const StepperDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Different Variants
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Grid gap="lg">
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Default Variant
-                </Typography>
+                </CriaTextTitle1>
                 <Stepper
                   steps={onboardingSteps}
                   currentStep={1}
@@ -301,9 +301,9 @@ const StepperDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Minimal Variant
-                </Typography>
+                </CriaTextTitle1>
                 <Stepper
                   steps={onboardingSteps}
                   currentStep={1}
@@ -318,9 +318,9 @@ const StepperDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Without Navigation
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Stepper
@@ -334,9 +334,9 @@ const StepperDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Without Connectors
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Stepper
@@ -350,9 +350,9 @@ const StepperDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Custom Connector
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Stepper
@@ -372,9 +372,9 @@ const StepperDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Custom Navigation Labels
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Stepper
@@ -393,9 +393,9 @@ const StepperDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Loading State
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
             <Stepper
@@ -408,9 +408,9 @@ const StepperDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Disabled State
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Stepper
@@ -427,17 +427,17 @@ const StepperDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Different Connector Styles
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Grid gap="lg">
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Solid Connector (Default)
-                </Typography>
+                </CriaTextTitle1>
                 <Stepper
                   steps={onboardingSteps}
                   currentStep={1}
@@ -448,9 +448,9 @@ const StepperDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Dashed Connector
-                </Typography>
+                </CriaTextTitle1>
                 <Stepper
                   steps={onboardingSteps}
                   currentStep={1}
@@ -461,9 +461,9 @@ const StepperDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Dotted Connector
-                </Typography>
+                </CriaTextTitle1>
                 <Stepper
                   steps={onboardingSteps}
                   currentStep={1}
@@ -478,17 +478,17 @@ const StepperDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Different Connector Colors
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Grid gap="lg">
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Primary Color (Default)
-                </Typography>
+                </CriaTextTitle1>
                 <Stepper
                   steps={onboardingSteps}
                   currentStep={1}
@@ -499,9 +499,9 @@ const StepperDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Secondary Color
-                </Typography>
+                </CriaTextTitle1>
                 <Stepper
                   steps={onboardingSteps}
                   currentStep={1}
@@ -512,9 +512,9 @@ const StepperDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Gray Color
-                </Typography>
+                </CriaTextTitle1>
                 <Stepper
                   steps={onboardingSteps}
                   currentStep={1}
@@ -529,17 +529,17 @@ const StepperDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Real-world Examples
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Grid gap="lg">
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   User Onboarding Flow
-                </Typography>
+                </CriaTextTitle1>
                 <Stepper
                   steps={onboardingSteps}
                   currentStep={1}
@@ -552,9 +552,9 @@ const StepperDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Project Development Pipeline
-                </Typography>
+                </CriaTextTitle1>
                 <Stepper
                   steps={projectSteps}
                   currentStep={2}
@@ -565,9 +565,9 @@ const StepperDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   E-commerce Checkout Process
-                </Typography>
+                </CriaTextTitle1>
                 <Stepper
                   steps={purchaseSteps}
                   currentStep={2}
