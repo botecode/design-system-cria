@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextBody1, CriaTextBody2, CriaTextTitle1, CriaTextTitle2 } from '../TextTokens';
 import { Button } from '../Button';
 import { Card, CardHeader, CardContent } from '../Card';
 import Badge from '../Badge';
 import Tabs from './Tabs';
+import { spacing, colors, radii } from '../../tokens';
 import { House, User, ChatCircle, Bell } from 'phosphor-react';
 
 export const TabsDemo: React.FC = () => {
@@ -14,16 +15,16 @@ export const TabsDemo: React.FC = () => {
       id: 'tab1',
       label: 'Overview',
       content: (
-        <div style={{ padding: '24px' }}>
-          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+        <div style={{ padding: spacing[6] }}>
+          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
             Overview Content
-          </Typography>
-          <Typography variant="body" style={{ marginBottom: '16px' }}>
+          </CriaTextTitle1>
+          <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
             This is the overview tab content. It contains general information about the topic.
-          </Typography>
-          <Typography variant="body">
+          </CriaTextBody1>
+          <CriaTextBody1>
             You can include any React content here, including other components, forms, or complex layouts.
-          </Typography>
+          </CriaTextBody1>
         </div>
       ),
     },
@@ -31,14 +32,14 @@ export const TabsDemo: React.FC = () => {
       id: 'tab2',
       label: 'Details',
       content: (
-        <div style={{ padding: '24px' }}>
-          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+        <div style={{ padding: spacing[6] }}>
+          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
             Details Content
-          </Typography>
-          <Typography variant="body" style={{ marginBottom: '16px' }}>
+          </CriaTextTitle1>
+          <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
             This tab contains detailed information and specifications.
-          </Typography>
-          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+          </CriaTextBody1>
+          <div style={{ display: 'flex', gap: spacing[3], flexWrap: 'wrap' }}>
             <Badge variant="primary">Feature 1</Badge>
             <Badge variant="secondary">Feature 2</Badge>
             <Badge variant="success">Feature 3</Badge>
@@ -50,14 +51,14 @@ export const TabsDemo: React.FC = () => {
       id: 'tab3',
       label: 'Settings',
       content: (
-        <div style={{ padding: '24px' }}>
-          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+        <div style={{ padding: spacing[6] }}>
+          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
             Settings Content
-          </Typography>
-          <Typography variant="body" style={{ marginBottom: '16px' }}>
+          </CriaTextTitle1>
+          <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
             Configure your preferences and settings here.
-          </Typography>
-          <div style={{ display: 'flex', gap: '12px' }}>
+          </CriaTextBody1>
+          <div style={{ display: 'flex', gap: spacing[3] }}>
             <Button variant="primary">Save Changes</Button>
             <Button variant="outline">Reset</Button>
           </div>
@@ -72,13 +73,13 @@ export const TabsDemo: React.FC = () => {
       label: 'Home',
       icon: <House size={16} />,
       content: (
-        <div style={{ padding: '24px' }}>
-          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+        <div style={{ padding: spacing[6] }}>
+          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
             Home Dashboard
-          </Typography>
-          <Typography variant="body">
+          </CriaTextTitle1>
+          <CriaTextBody1>
             Welcome to your home dashboard. Here you can see an overview of your activities.
-          </Typography>
+          </CriaTextBody1>
         </div>
       ),
     },
@@ -87,13 +88,13 @@ export const TabsDemo: React.FC = () => {
       label: 'Profile',
       icon: <User size={16} />,
       content: (
-        <div style={{ padding: '24px' }}>
-          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+        <div style={{ padding: spacing[6] }}>
+          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
             User Profile
-          </Typography>
-          <Typography variant="body">
+          </CriaTextTitle1>
+          <CriaTextBody1>
             Manage your profile information and preferences.
-          </Typography>
+          </CriaTextBody1>
         </div>
       ),
     },
@@ -103,13 +104,13 @@ export const TabsDemo: React.FC = () => {
       icon: <ChatCircle size={16} />,
       badge: <Badge variant="error" badgeStyle="solid" size="sm">3</Badge>,
       content: (
-        <div style={{ padding: '24px' }}>
-          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+        <div style={{ padding: spacing[6] }}>
+          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
             Messages
-          </Typography>
-          <Typography variant="body">
+          </CriaTextTitle1>
+          <CriaTextBody1>
             You have 3 unread messages. Check them out!
-          </Typography>
+          </CriaTextBody1>
         </div>
       ),
     },
@@ -119,13 +120,13 @@ export const TabsDemo: React.FC = () => {
       icon: <Bell size={16} />,
       badge: <Badge variant="warning" badgeStyle="solid" size="sm">1</Badge>,
       content: (
-        <div style={{ padding: '24px' }}>
-          <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
+        <div style={{ padding: spacing[6] }}>
+          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
             Notifications
-          </Typography>
-          <Typography variant="body">
+          </CriaTextTitle1>
+          <CriaTextBody1>
             You have important notifications waiting for you.
-          </Typography>
+          </CriaTextBody1>
         </div>
       ),
     },
@@ -136,8 +137,8 @@ export const TabsDemo: React.FC = () => {
       id: 'enabled1',
       label: 'Enabled Tab 1',
       content: (
-        <div style={{ padding: '24px' }}>
-          <Typography variant="body">This tab is enabled and functional.</Typography>
+        <div style={{ padding: spacing[6] }}>
+          <CriaTextBody1>This tab is enabled and functional.</CriaTextBody1>
         </div>
       ),
     },
@@ -146,8 +147,8 @@ export const TabsDemo: React.FC = () => {
       label: 'Disabled Tab',
       disabled: true,
       content: (
-        <div style={{ padding: '24px' }}>
-          <Typography variant="body">This content won't be shown because the tab is disabled.</Typography>
+        <div style={{ padding: spacing[6] }}>
+          <CriaTextBody1>This content won't be shown because the tab is disabled.</CriaTextBody1>
         </div>
       ),
     },
@@ -155,8 +156,8 @@ export const TabsDemo: React.FC = () => {
       id: 'enabled2',
       label: 'Enabled Tab 2',
       content: (
-        <div style={{ padding: '24px' }}>
-          <Typography variant="body">This tab is also enabled and functional.</Typography>
+        <div style={{ padding: spacing[6] }}>
+          <CriaTextBody1>This tab is also enabled and functional.</CriaTextBody1>
         </div>
       ),
     },
@@ -169,12 +170,12 @@ export const TabsDemo: React.FC = () => {
       content: (
         <Card variant="elevated">
           <CardHeader>
-            <Typography variant="h3" weight="medium">Card Content 1</Typography>
+            <CriaTextTitle1>Card Content 1</CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <Typography variant="body">
+            <CriaTextBody1>
               This is card content within a tab. The card styling provides a nice visual separation.
-            </Typography>
+            </CriaTextBody1>
           </CardContent>
         </Card>
       ),
@@ -185,12 +186,12 @@ export const TabsDemo: React.FC = () => {
       content: (
         <Card variant="elevated">
           <CardHeader>
-            <Typography variant="h3" weight="medium">Card Content 2</Typography>
+            <CriaTextTitle1>Card Content 2</CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <Typography variant="body">
+            <CriaTextBody1>
               Another card with different content. Cards work great within tabs for organized layouts.
-            </Typography>
+            </CriaTextBody1>
           </CardContent>
         </Card>
       ),
@@ -198,31 +199,31 @@ export const TabsDemo: React.FC = () => {
   ];
 
   return (
-    <div style={{ padding: '24px', maxWidth: '1000px' }}>
-      <Typography variant="title1" weight="bold" style={{ marginBottom: '32px' }}>
+    <div style={{ padding: spacing[6], maxWidth: '1000px' }}>
+      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
         Tabs Demo
-      </Typography>
+      </CriaTextHeadline1>
 
       {/* Basic Tabs */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Basic Tabs
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
           Simple tabs with different content panels. Use keyboard navigation (arrow keys, Home, End) for accessibility.
-        </Typography>
+        </CriaTextBody1>
         <Tabs items={basicTabs} />
       </section>
 
       {/* Controlled Tabs */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Controlled Tabs
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
           Tabs can be controlled externally. Current active tab: <strong>{activeTab}</strong>
-        </Typography>
-        <div style={{ display: 'flex', gap: '12px', marginBottom: '24px' }}>
+        </CriaTextBody1>
+        <div style={{ display: 'flex', gap: spacing[3], marginBottom: spacing[6] }}>
           <Button 
             variant="outline" 
             onClick={() => setActiveTab('tab1')}
@@ -253,193 +254,193 @@ export const TabsDemo: React.FC = () => {
       </section>
 
       {/* Tabs with Icons and Badges */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Tabs with Icons and Badges
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
           Tabs can include icons and badges to provide additional visual context and information. 
           Badge colors have been optimized for better readability.
-        </Typography>
+        </CriaTextBody1>
         <Tabs items={tabsWithIcons} />
       </section>
 
       {/* Alternative Badge Styles */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Alternative Badge Styles
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
           Different badge styles for better contrast and readability in various contexts.
-        </Typography>
+        </CriaTextBody1>
         <Tabs items={[
           {
             id: 'home-alt',
             label: 'Home',
             icon: <House size={16} />,
-            content: <div style={{ padding: '24px' }}><Typography variant="body">Home content</Typography></div>,
+            content: <div style={{ padding: spacing[6] }}><CriaTextBody1>Home content</CriaTextBody1></div>,
           },
           {
             id: 'messages-alt',
             label: 'Messages',
             icon: <ChatCircle size={16} />,
             badge: <Badge variant="error" badgeStyle="outline" size="sm">3</Badge>,
-            content: <div style={{ padding: '24px' }}><Typography variant="body">Messages with outline badge</Typography></div>,
+            content: <div style={{ padding: spacing[6] }}><CriaTextBody1>Messages with outline badge</CriaTextBody1></div>,
           },
           {
             id: 'notifications-alt',
             label: 'Notifications',
             icon: <Bell size={16} />,
             badge: <Badge variant="warning" badgeStyle="soft" size="sm">1</Badge>,
-            content: <div style={{ padding: '24px' }}><Typography variant="body">Notifications with soft badge</Typography></div>,
+            content: <div style={{ padding: spacing[6] }}><CriaTextBody1>Notifications with soft badge</CriaTextBody1></div>,
           },
         ]} />
       </section>
 
       {/* Tab Variants */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Tab Variants
-        </Typography>
+        </CriaTextHeadline2>
         
-        <div style={{ marginBottom: '32px' }}>
-          <Typography variant="h3" weight="medium" style={{ marginBottom: '16px' }}>
+        <div style={{ marginBottom: spacing[8] }}>
+          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
             Pills Variant
-          </Typography>
+          </CriaTextTitle1>
           <Tabs items={basicTabs} variant="pills" />
         </div>
 
-        <div style={{ marginBottom: '32px' }}>
-          <Typography variant="h3" weight="medium" style={{ marginBottom: '16px' }}>
+        <div style={{ marginBottom: spacing[8] }}>
+          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
             Underline Variant
-          </Typography>
+          </CriaTextTitle1>
           <Tabs items={basicTabs} variant="underline" />
         </div>
 
-        <div style={{ marginBottom: '32px' }}>
-          <Typography variant="h3" weight="medium" style={{ marginBottom: '16px' }}>
+        <div style={{ marginBottom: spacing[8] }}>
+          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
             Cards Variant
-          </Typography>
+          </CriaTextTitle1>
           <Tabs items={cardTabs} variant="cards" />
         </div>
       </section>
 
       {/* Tab Sizes */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Tab Sizes
-        </Typography>
+        </CriaTextHeadline2>
         
-        <div style={{ marginBottom: '32px' }}>
-          <Typography variant="h3" weight="medium" style={{ marginBottom: '16px' }}>
+        <div style={{ marginBottom: spacing[8] }}>
+          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
             Small Size
-          </Typography>
+          </CriaTextTitle1>
           <Tabs items={basicTabs} size="sm" />
         </div>
 
-        <div style={{ marginBottom: '32px' }}>
-          <Typography variant="h3" weight="medium" style={{ marginBottom: '16px' }}>
+        <div style={{ marginBottom: spacing[8] }}>
+          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
             Medium Size (Default)
-          </Typography>
+          </CriaTextTitle1>
           <Tabs items={basicTabs} size="md" />
         </div>
 
-        <div style={{ marginBottom: '32px' }}>
-          <Typography variant="h3" weight="medium" style={{ marginBottom: '16px' }}>
+        <div style={{ marginBottom: spacing[8] }}>
+          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
             Large Size
-          </Typography>
+          </CriaTextTitle1>
           <Tabs items={basicTabs} size="lg" />
         </div>
       </section>
 
       {/* Full Width Tabs */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Full Width Tabs
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
           Tabs can span the full width of their container for better space utilization.
-        </Typography>
+        </CriaTextBody1>
         <Tabs items={basicTabs} fullWidth />
       </section>
 
       {/* Disabled Tabs */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Disabled Tabs
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
           Individual tabs can be disabled to prevent user interaction while maintaining visual context.
-        </Typography>
+        </CriaTextBody1>
         <Tabs items={tabsWithDisabled} />
       </section>
 
       {/* Note about Vertical Navigation */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Vertical Navigation
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
           For vertical navigation and sidebar layouts, use the <strong>Sidebar</strong> component instead of vertical tabs.
           The Sidebar component is specifically designed for navigation menus and provides better accessibility and UX for vertical layouts.
-        </Typography>
+        </CriaTextBody1>
         <div style={{ 
-          padding: '16px', 
-          backgroundColor: '#F3F4F6', 
-          borderRadius: '8px',
-          border: '1px solid #E5E7EB'
+          padding: spacing[4], 
+          backgroundColor: colors.gray[100], 
+          borderRadius: radii.md,
+          border: `1px solid ${colors.border.light}`
         }}>
-          <Typography variant="body" weight="medium" style={{ marginBottom: '8px' }}>
+          <CriaTextBody1 style={{ marginBottom: spacing[2] }}>
             💡 Tip: Use Sidebar for navigation menus, Tabs for content organization
-          </Typography>
-          <Typography variant="bodySmall">
+          </CriaTextBody1>
+          <CriaTextBody2>
             Import: <code>import {'{'} Sidebar {'}'} from 'design-system-cria';</code>
-          </Typography>
+          </CriaTextBody2>
         </div>
       </section>
 
       {/* Tabs Without Content */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Tabs Without Content
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
           Sometimes you only need the tab navigation without displaying content below.
-        </Typography>
+        </CriaTextBody1>
         <Tabs items={basicTabs} showContent={false} />
-        <Typography variant="body" style={{ marginTop: '16px' }}>
+        <CriaTextBody1 style={{ marginTop: spacing[4] }}>
           The content is hidden, but you can still handle tab changes via the onChange callback.
-        </Typography>
+        </CriaTextBody1>
       </section>
 
       {/* Accessibility */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Accessibility Features
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
           The Tabs component includes comprehensive accessibility features:
-        </Typography>
-        <ul style={{ marginLeft: '24px', marginBottom: '16px' }}>
+        </CriaTextBody1>
+        <ul style={{ marginLeft: spacing[6], marginBottom: spacing[4] }}>
           <li>
-            <Typography variant="body">
+            <CriaTextBody1>
               <strong>Keyboard Navigation:</strong> Use left/right arrow keys to navigate between tabs, Home/End to jump to first/last tab
-            </Typography>
+            </CriaTextBody1>
           </li>
           <li>
-            <Typography variant="body">
+            <CriaTextBody1>
               <strong>ARIA Attributes:</strong> Proper role, aria-selected, aria-controls, and aria-labelledby attributes
-            </Typography>
+            </CriaTextBody1>
           </li>
           <li>
-            <Typography variant="body">
+            <CriaTextBody1>
               <strong>Focus Management:</strong> Automatic focus management and tab order
-            </Typography>
+            </CriaTextBody1>
           </li>
           <li>
-            <Typography variant="body">
+            <CriaTextBody1>
               <strong>Screen Reader Support:</strong> Clear labeling and state announcements
-            </Typography>
+            </CriaTextBody1>
           </li>
         </ul>
         <Tabs items={basicTabs} />
