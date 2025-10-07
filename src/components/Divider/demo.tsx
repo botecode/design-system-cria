@@ -1,45 +1,47 @@
 import React from 'react';
 import { Divider } from './Divider';
 import { Card, CardContent, CardHeader } from '../Card';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextTitle1, CriaTextTitle2, CriaTextBody1 } from '../TextTokens';
 import { Button } from '../Button';
+import { Input } from '../Input';
+import { spacing, colors, radii } from '../../tokens';
 
 const DividerDemo: React.FC = () => {
   return (
-    <div style={{ padding: '2rem' }}>
-      <Typography variant="h1" weight="bold" style={{ marginBottom: '2rem' }}>
+    <div style={{ padding: spacing[8] }}>
+      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
         Divider Component
-      </Typography>
+      </CriaTextHeadline1>
 
-      <Typography variant="body" style={{ marginBottom: '2rem' }}>
+      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
         A versatile divider component for separating content sections with multiple variants, orientations, and styling options.
-      </Typography>
+      </CriaTextBody1>
 
-      <div style={{ display: 'grid', gap: '2rem' }}>
+      <div style={{ display: 'grid', gap: spacing[8] }}>
         {/* Basic Dividers */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1>
               Basic Dividers
-            </Typography>
+            </CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
+            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
               Default horizontal divider:
-            </Typography>
-            <div style={{ padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
-              <Typography variant="body">Content above</Typography>
+            </CriaTextBody1>
+            <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
+              <CriaTextBody1>Content above</CriaTextBody1>
               <Divider />
-              <Typography variant="body">Content below</Typography>
+              <CriaTextBody1>Content below</CriaTextBody1>
             </div>
 
-            <Typography variant="body" style={{ marginTop: '2rem', marginBottom: '1rem' }}>
+            <CriaTextBody1 style={{ marginTop: spacing[8], marginBottom: spacing[4] }}>
               Vertical divider:
-            </Typography>
-            <div style={{ display: 'flex', alignItems: 'center', padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '4px', height: '100px' }}>
-              <Typography variant="body">Left content</Typography>
+            </CriaTextBody1>
+            <div style={{ display: 'flex', alignItems: 'center', padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm, height: '100px' }}>
+              <CriaTextBody1>Left content</CriaTextBody1>
               <Divider orientation="vertical" />
-              <Typography variant="body">Right content</Typography>
+              <CriaTextBody1>Right content</CriaTextBody1>
             </div>
           </CardContent>
         </Card>
@@ -47,19 +49,19 @@ const DividerDemo: React.FC = () => {
         {/* Variants */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Variants
-            </Typography>
+            </CriaTextBody1>
           </CardHeader>
           <CardContent>
-            <div style={{ padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
-              <Typography variant="body" style={{ marginBottom: '0.5rem' }}>Solid (default)</Typography>
+            <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[2] }}>Solid (default)</CriaTextBody1>
               <Divider variant="solid" />
               
-              <Typography variant="body" style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>Dashed</Typography>
+              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Dashed</CriaTextBody1>
               <Divider variant="dashed" />
               
-              <Typography variant="body" style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>Dotted</Typography>
+              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Dotted</CriaTextBody1>
               <Divider variant="dotted" />
             </div>
           </CardContent>
@@ -68,19 +70,19 @@ const DividerDemo: React.FC = () => {
         {/* Sizes */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Sizes
-            </Typography>
+            </CriaTextBody1>
           </CardHeader>
           <CardContent>
-            <div style={{ padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
-              <Typography variant="body" style={{ marginBottom: '0.5rem' }}>Small</Typography>
+            <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[2] }}>Small</CriaTextBody1>
               <Divider size="sm" />
               
-              <Typography variant="body" style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>Medium (default)</Typography>
+              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Medium (default)</CriaTextBody1>
               <Divider size="md" />
               
-              <Typography variant="body" style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>Large</Typography>
+              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Large</CriaTextBody1>
               <Divider size="lg" />
             </div>
           </CardContent>
@@ -89,19 +91,19 @@ const DividerDemo: React.FC = () => {
         {/* Colors */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Colors
-            </Typography>
+            </CriaTextBody1>
           </CardHeader>
           <CardContent>
-            <div style={{ padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
-              <Typography variant="body" style={{ marginBottom: '0.5rem' }}>Primary</Typography>
+            <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[2] }}>Primary</CriaTextBody1>
               <Divider color="primary" />
               
-              <Typography variant="body" style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>Secondary</Typography>
+              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Secondary</CriaTextBody1>
               <Divider color="secondary" />
               
-              <Typography variant="body" style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>Gray (default)</Typography>
+              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Gray (default)</CriaTextBody1>
               <Divider color="gray" />
             </div>
           </CardContent>
@@ -110,22 +112,22 @@ const DividerDemo: React.FC = () => {
         {/* Dividers with Labels */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Dividers with Labels
-            </Typography>
+            </CriaTextBody1>
           </CardHeader>
           <CardContent>
-            <div style={{ padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
-              <Typography variant="body" style={{ marginBottom: '0.5rem' }}>Label at start</Typography>
+            <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[2] }}>Label at start</CriaTextBody1>
               <Divider label="Start Label" labelPosition="start" />
               
-              <Typography variant="body" style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>Label at center (default)</Typography>
+              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Label at center (default)</CriaTextBody1>
               <Divider label="Center Label" labelPosition="center" />
               
-              <Typography variant="body" style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>Label at end</Typography>
+              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Label at end</CriaTextBody1>
               <Divider label="End Label" labelPosition="end" />
               
-              <Typography variant="body" style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>Primary colored divider with label</Typography>
+              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Primary colored divider with label</CriaTextBody1>
               <Divider label="OR" color="primary" />
             </div>
           </CardContent>
@@ -134,23 +136,23 @@ const DividerDemo: React.FC = () => {
         {/* Custom Dimensions */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Custom Dimensions
-            </Typography>
+            </CriaTextBody1>
           </CardHeader>
           <CardContent>
-            <div style={{ padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
-              <Typography variant="body" style={{ marginBottom: '0.5rem' }}>Custom width (50%)</Typography>
+            <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[2] }}>Custom width (50%)</CriaTextBody1>
               <Divider width="50%" />
               
-              <Typography variant="body" style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>Custom width (200px)</Typography>
+              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Custom width (200px)</CriaTextBody1>
               <Divider width="200px" />
               
-              <Typography variant="body" style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>Vertical with custom height</Typography>
+              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Vertical with custom height</CriaTextBody1>
               <div style={{ display: 'flex', alignItems: 'center', height: '120px' }}>
-                <Typography variant="body">Left</Typography>
+                <CriaTextBody1>Left</CriaTextBody1>
                 <Divider orientation="vertical" height="80px" />
-                <Typography variant="body">Right</Typography>
+                <CriaTextBody1>Right</CriaTextBody1>
               </div>
             </div>
           </CardContent>
@@ -159,19 +161,19 @@ const DividerDemo: React.FC = () => {
         {/* Spacing Options */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Spacing Options
-            </Typography>
+            </CriaTextBody1>
           </CardHeader>
           <CardContent>
-            <div style={{ padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
-              <Typography variant="body" style={{ marginBottom: '0.5rem' }}>Small spacing</Typography>
+            <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[2] }}>Small spacing</CriaTextBody1>
               <Divider spacing="sm" />
               
-              <Typography variant="body" style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>Medium spacing (default)</Typography>
+              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Medium spacing (default)</CriaTextBody1>
               <Divider spacing="md" />
               
-              <Typography variant="body" style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>Large spacing</Typography>
+              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Large spacing</CriaTextBody1>
               <Divider spacing="lg" />
             </div>
           </CardContent>
@@ -180,44 +182,44 @@ const DividerDemo: React.FC = () => {
         {/* Real-world Examples */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Real-world Examples
-            </Typography>
+            </CriaTextBody1>
           </CardHeader>
           <CardContent>
-            <div style={{ padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '4px' }}>
+            <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
               {/* Login Form Divider */}
-              <Typography variant="h3" weight="medium" style={{ marginBottom: '1rem' }}>Login Form</Typography>
-              <Button variant="primary" size="lg" style={{ width: '100%', marginBottom: '1rem' }}>
+              <CriaTextTitle2  style={{ marginBottom: spacing[4] }}>Login Form</CriaTextBody1>
+              <Button variant="primary" size="lg" style={{ width: '100%', marginBottom: spacing[4] }}>
                 Sign in with Google
               </Button>
               <Divider label="OR" color="primary" />
-              <div style={{ marginTop: '1rem' }}>
-                <Typography variant="body" style={{ marginBottom: '0.5rem' }}>Email:</Typography>
-                <input type="email" style={{ width: '100%', padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc' }} />
-                <Typography variant="body" style={{ marginTop: '0.5rem', marginBottom: '0.5rem' }}>Password:</Typography>
-                <input type="password" style={{ width: '100%', padding: '0.5rem', borderRadius: '4px', border: '1px solid #ccc' }} />
+              <div style={{ marginTop: spacing[4] }}>
+                <CriaTextBody1 style={{ marginBottom: spacing[2] }}>Email:</CriaTextBody1>
+                <Input type="email" style={{ width: '100%' }} />
+                <CriaTextBody1 style={{ marginTop: spacing[2], marginBottom: spacing[2] }}>Password:</CriaTextBody1>
+                <Input type="password" style={{ width: '100%' }} />
               </div>
 
               {/* Section Separators */}
-              <Divider style={{ marginTop: '2rem', marginBottom: '2rem' }} />
+              <Divider style={{ marginTop: spacing[8], marginBottom: spacing[8] }} />
               
-              <Typography variant="h3" weight="medium" style={{ marginBottom: '1rem' }}>Content Sections</Typography>
-              <Typography variant="body" style={{ marginBottom: '1rem' }}>
+              <CriaTextTitle2  style={{ marginBottom: spacing[4] }}>Content Sections</CriaTextBody1>
+              <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
                 This is the first section of content. It contains important information that needs to be separated from other sections.
-              </Typography>
+              </CriaTextBody1>
               
               <Divider variant="dashed" color="secondary" />
               
-              <Typography variant="body" style={{ marginTop: '1rem', marginBottom: '1rem' }}>
+              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[4] }}>
                 This is the second section. Notice how the dashed divider creates a visual break between sections while maintaining the flow.
-              </Typography>
+              </CriaTextBody1>
               
               <Divider variant="dotted" size="lg" />
               
-              <Typography variant="body" style={{ marginTop: '1rem' }}>
+              <CriaTextBody1 style={{ marginTop: spacing[4] }}>
                 This is the final section. The dotted divider provides a softer separation for the conclusion.
-              </Typography>
+              </CriaTextBody1>
             </div>
           </CardContent>
         </Card>
@@ -225,30 +227,30 @@ const DividerDemo: React.FC = () => {
         {/* Vertical Layout Example */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Vertical Layout Example
-            </Typography>
+            </CriaTextBody1>
           </CardHeader>
           <CardContent>
-            <div style={{ padding: '1rem', backgroundColor: '#f8f9fa', borderRadius: '4px', height: '200px' }}>
+            <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm, height: '200px' }}>
               <div style={{ display: 'flex', height: '100%', alignItems: 'center' }}>
                 <div style={{ flex: 1, textAlign: 'center' }}>
-                  <Typography variant="h3" weight="semibold">Navigation</Typography>
-                  <Typography variant="body">Menu items and links</Typography>
+                  <CriaTextTitle2 >Navigation</CriaTextBody1>
+                  <CriaTextBody1>Menu items and links</CriaTextBody1>
                 </div>
                 
                 <Divider orientation="vertical" height="80%" color="primary" />
                 
                 <div style={{ flex: 2, textAlign: 'center' }}>
-                  <Typography variant="h3" weight="semibold">Main Content</Typography>
-                  <Typography variant="body">Primary content area</Typography>
+                  <CriaTextTitle2 >Main Content</CriaTextBody1>
+                  <CriaTextBody1>Primary content area</CriaTextBody1>
                 </div>
                 
                 <Divider orientation="vertical" height="80%" variant="dashed" />
                 
                 <div style={{ flex: 1, textAlign: 'center' }}>
-                  <Typography variant="h3" weight="semibold">Sidebar</Typography>
-                  <Typography variant="body">Additional information</Typography>
+                  <CriaTextTitle2 >Sidebar</CriaTextBody1>
+                  <CriaTextBody1>Additional information</CriaTextBody1>
                 </div>
               </div>
             </div>
