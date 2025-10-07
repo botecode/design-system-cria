@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from '../Card';
 import { Checkbox } from '../Checkbox';
-import { Typography } from '../Typography';
-import { colors, spacing, typography } from '../../tokens';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextTitle1, CriaTextBody1, CriaTextBody2, CriaTextCaption } from '../TextTokens';
+import { colors, spacing, typography, radii } from '../../tokens';
 
 export type SelectionMode = 'single' | 'multi';
 export type CardLayout = 'grid' | 'list';
@@ -145,7 +145,7 @@ export const CardSelector: React.FC<CardSelectorProps> = ({
       style={{
         cursor: disabled || loading || card.disabled ? 'not-allowed' : 'pointer',
         opacity: disabled || loading || card.disabled ? 0.6 : 1,
-        border: isSelected ? `2px solid ${colors.primary}` : `1px solid ${colors.border.medium}`,
+        border: isSelected ? `2px solid ${colors.primary[500]}` : `1px solid ${colors.border.medium}`,
         backgroundColor: isSelected ? colors.background.secondary : colors.background.primary,
         transition: 'all 0.2s ease',
         position: 'relative',
@@ -159,7 +159,7 @@ export const CardSelector: React.FC<CardSelectorProps> = ({
     >
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: spacing.sm }}>
         {/* Selection indicator */}
-        <div style={{ marginTop: '4px', flexShrink: 0 }}>
+        <div style={{ marginTop: spacing[1], flexShrink: 0 }}>
           {mode === 'single' ? (
             <input
               type="radio"
@@ -195,10 +195,10 @@ export const CardSelector: React.FC<CardSelectorProps> = ({
               position: 'absolute',
               top: spacing.sm,
               right: spacing.sm,
-              backgroundColor: colors.primary,
+              backgroundColor: colors.primary[500],
               color: colors.white,
               padding: `${spacing.xs} ${spacing.sm}`,
-              borderRadius: '4px',
+              borderRadius: radii.sm,
               fontSize: typography.fontSize.caption,
               fontWeight: typography.fontWeight.semiBold,
             }}>
@@ -207,42 +207,37 @@ export const CardSelector: React.FC<CardSelectorProps> = ({
           )}
 
           {/* Title */}
-          <Typography
-            variant="h3"
-            weight="semiBold"
+          <CriaTextTitle1
             style={{
               marginBottom: spacing.xs,
               color: colors.text.primary,
             }}
           >
             {card.title}
-          </Typography>
+          </CriaTextTitle1>
 
           {/* Description */}
           {card.description && (
-            <Typography
-              variant="body"
+            <CriaTextBody1
               style={{
                 marginBottom: spacing.sm,
                 color: colors.text.secondary,
               }}
             >
               {card.description}
-            </Typography>
+            </CriaTextBody1>
           )}
 
           {/* Price */}
           {card.price && (
-            <Typography
-              variant="h2"
-              weight="bold"
+            <CriaTextHeadline2
               style={{
                 marginBottom: spacing.sm,
-                color: colors.primary,
+                color: colors.primary[500],
               }}
             >
               {card.price}
-            </Typography>
+            </CriaTextHeadline2>
           )}
 
           {/* Features */}
@@ -265,10 +260,10 @@ export const CardSelector: React.FC<CardSelectorProps> = ({
                 >
                   <div
                     style={{
-                      width: '16px',
-                      height: '16px',
+                      width: spacing[4],
+                      height: spacing[4],
                       borderRadius: '50%',
-                      backgroundColor: colors.success,
+                      backgroundColor: colors.success[500],
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -278,9 +273,9 @@ export const CardSelector: React.FC<CardSelectorProps> = ({
                   >
                     <span style={{ color: colors.white, fontSize: '10px', fontWeight: 'bold' }}>✓</span>
                   </div>
-                  <Typography variant="body2" style={{ color: colors.text.primary }}>
+                  <CriaTextBody2 style={{ color: colors.text.primary }}>
                     {feature}
-                  </Typography>
+                  </CriaTextBody2>
                 </li>
               ))}
             </ul>
@@ -302,11 +297,11 @@ export const CardSelector: React.FC<CardSelectorProps> = ({
           {card.image && (
             <div style={{
               width: '100%',
-              height: '120px',
+              height: spacing[30],
               backgroundImage: `url(${card.image})`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
-              borderRadius: '8px',
+              borderRadius: radii.md,
               marginBottom: spacing.sm,
             }} />
           )}
@@ -327,23 +322,21 @@ export const CardSelector: React.FC<CardSelectorProps> = ({
     >
       {/* Error message */}
       {error && (
-        <Typography
-          variant="caption"
+        <CriaTextCaption
           style={{
-            color: colors.error,
+            color: colors.error[500],
             marginBottom: spacing.sm,
             display: 'block',
           }}
           className="cria-card-selector__error"
         >
           {error}
-        </Typography>
+        </CriaTextCaption>
       )}
 
       {/* Help text */}
       {helpText && (
-        <Typography
-          variant="body2"
+        <CriaTextBody2
           style={{
             color: colors.text.secondary,
             marginBottom: spacing.md,
@@ -352,7 +345,7 @@ export const CardSelector: React.FC<CardSelectorProps> = ({
           className="cria-card-selector__help"
         >
           {helpText}
-        </Typography>
+        </CriaTextBody2>
       )}
 
       {/* Cards container */}
@@ -388,9 +381,9 @@ export const CardSelector: React.FC<CardSelectorProps> = ({
             zIndex: 10,
           }}
         >
-          <Typography variant="body" style={{ color: colors.text.secondary }}>
+          <CriaTextBody1 style={{ color: colors.text.secondary }}>
             Loading...
-          </Typography>
+          </CriaTextBody1>
         </div>
       )}
     </div>
