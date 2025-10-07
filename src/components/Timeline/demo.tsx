@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { Timeline, TimelineItem } from './Timeline';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextTitle1, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { Card, CardContent, CardHeader } from '../Card';
 import { Grid, Row, Column } from '../Grid';
 import { Button } from '../Button';
@@ -140,19 +140,19 @@ const TimelineDemo: React.FC = () => {
 
   return (
     <div style={{ padding: spacing[8], minHeight: '100vh' }}>
-      <Typography variant="h1" weight="bold" style={{ marginBottom: spacing[6] }}>
+      <CriaTextHeadline1 style={{ marginBottom: spacing[6] }}>
         Timeline / Activity Feed
-      </Typography>
+      </CriaTextHeadline1>
 
-      <Typography variant="body" style={{ marginBottom: spacing[8] }}>
+      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
         A versatile component for displaying sequential events, activities, or updates in chronological order.
-      </Typography>
+      </CriaTextBody1>
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Basic Timeline
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Timeline items={activityItems} />
@@ -161,9 +161,9 @@ const TimelineDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Clickable Timeline
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Timeline 
@@ -173,41 +173,41 @@ const TimelineDemo: React.FC = () => {
             }))}
             onItemClick={handleItemClick}
           />
-          <Typography variant="bodySmall" style={{ marginTop: spacing[4], color: colors.gray[600] }}>
+          <CriaTextBody2 style={{ marginTop: spacing[4], color: colors.gray[600] }}>
             Selected items: {selectedItems.length > 0 ? selectedItems.join(', ') : 'None'}
-          </Typography>
+          </CriaTextBody2>
         </CardContent>
       </Card>
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Different Sizes
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Grid gap="lg">
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Small Size
-                </Typography>
+                </CriaTextTitle1>
                 <Timeline items={compactItems} size="sm" />
               </Column>
             </Row>
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Medium Size (Default)
-                </Typography>
+                </CriaTextTitle1>
                 <Timeline items={compactItems} size="md" />
               </Column>
             </Row>
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Large Size
-                </Typography>
+                </CriaTextTitle1>
                 <Timeline items={compactItems} size="lg" />
               </Column>
             </Row>
@@ -217,33 +217,33 @@ const TimelineDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Different Variants
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Grid gap="lg">
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Default Variant
-                </Typography>
+                </CriaTextTitle1>
                 <Timeline items={projectTimelineItems} variant="default" />
               </Column>
             </Row>
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Compact Variant
-                </Typography>
+                </CriaTextTitle1>
                 <Timeline items={projectTimelineItems} variant="compact" />
               </Column>
             </Row>
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Detailed Variant
-                </Typography>
+                </CriaTextTitle1>
                 <Timeline items={projectTimelineItems} variant="detailed" />
               </Column>
             </Row>
@@ -253,17 +253,17 @@ const TimelineDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Item Styles
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Grid gap="lg">
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Filled Style (Default)
-                </Typography>
+                </CriaTextTitle1>
                 <Timeline 
                   items={socialActivityItems.map(item => ({ ...item, style: 'filled' as const }))} 
                 />
@@ -271,9 +271,9 @@ const TimelineDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Outlined Style
-                </Typography>
+                </CriaTextTitle1>
                 <Timeline 
                   items={socialActivityItems.map(item => ({ ...item, style: 'outlined' as const }))} 
                 />
@@ -281,9 +281,9 @@ const TimelineDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Ghost Style
-                </Typography>
+                </CriaTextTitle1>
                 <Timeline 
                   items={socialActivityItems.map(item => ({ ...item, style: 'ghost' as const }))} 
                 />
@@ -295,9 +295,9 @@ const TimelineDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Without Connectors
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Timeline items={activityItems} showConnector={false} />
@@ -306,9 +306,9 @@ const TimelineDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Without Timestamps
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Timeline items={activityItems} showTimestamps={false} />
@@ -317,9 +317,9 @@ const TimelineDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Custom Connector
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Timeline 
@@ -337,9 +337,9 @@ const TimelineDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Loading State
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Timeline items={[]} loading />
@@ -348,9 +348,9 @@ const TimelineDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Empty State
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Timeline items={[]} emptyMessage="No activities yet. Start by creating your first event!" />
@@ -359,9 +359,9 @@ const TimelineDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Custom Empty Component
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Timeline 
@@ -373,12 +373,12 @@ const TimelineDemo: React.FC = () => {
                 color: colors.gray[500]
               }}>
                 <Clock size={48} style={{ marginBottom: spacing[4], opacity: 0.5 }} />
-                <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[2] }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>
                   No Timeline Data
-                </Typography>
-                <Typography variant="body" style={{ marginBottom: spacing[4] }}>
+                </CriaTextTitle1>
+                <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
                   Your timeline will appear here once you start creating events.
-                </Typography>
+                </CriaTextBody1>
                 <Button variant="primary" size="sm">
                   Create First Event
                 </Button>
@@ -390,9 +390,9 @@ const TimelineDemo: React.FC = () => {
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
-          <Typography variant="h2" weight="semibold">
+          <CriaTextHeadline2>
             Mixed States
-          </Typography>
+          </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
           <Timeline 
