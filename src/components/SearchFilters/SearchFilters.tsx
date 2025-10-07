@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Input } from '../Input';
 import { Button } from '../Button';
-import { Typography } from '../Typography';
+import { CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { FilterDropdown } from '../FilterDropdown';
 import { colors, spacing, radii, shadows, typography } from '../../tokens';
 import { FunnelSimple, X, CaretDown } from 'phosphor-react';
@@ -190,9 +190,9 @@ export function SearchFilters({
       case 'checkbox':
         return (
           <div key={filter.id} style={filterGroupStyles}>
-            <Typography variant="bodySmall" weight="medium" style={filterLabelStyles}>
+            <CriaTextBody2 style={{ ...filterLabelStyles, fontWeight: typography.fontWeight.medium }}>
               {filter.label}
-            </Typography>
+            </CriaTextBody2>
             <div style={checkboxContainerStyles}>
               {filter.options?.map(option => (
                 <label key={option.value} style={checkboxLabelStyles}>
@@ -212,9 +212,9 @@ export function SearchFilters({
       case 'dateRange':
         return (
           <div key={filter.id} style={filterGroupStyles}>
-            <Typography variant="bodySmall" weight="medium" style={filterLabelStyles}>
+            <CriaTextBody2 style={{ ...filterLabelStyles, fontWeight: typography.fontWeight.medium }}>
               {filter.label}
-            </Typography>
+            </CriaTextBody2>
             <div style={dateRangeContainerStyles}>
               <Input
                 type="date"
@@ -248,9 +248,9 @@ export function SearchFilters({
         style={getContainerStyles(style)}
         data-testid={dataTestId}
       >
-        <Typography variant="body" color="secondary">
+        <CriaTextBody1 style={{ color: colors.text.secondary }}>
           No filters configured
-        </Typography>
+        </CriaTextBody1>
       </div>
     );
   }
@@ -309,7 +309,7 @@ export function SearchFilters({
 
 // Styles using design tokens
 const getContainerStyles = (customStyle?: React.CSSProperties): React.CSSProperties => ({
-  backgroundColor: colors.backgroundLight,
+  backgroundColor: colors.background.secondary,
   border: `1px solid ${colors.border.light}`,
   borderRadius: radii.md,
   padding: spacing[6],
@@ -332,7 +332,7 @@ const filtersContentStyles: React.CSSProperties = {
 
 const filtersGridStyles: React.CSSProperties = {
   display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+  gridTemplateColumns: `repeat(auto-fit, minmax(${spacing[50]}, 1fr))`,
   gap: spacing[6],
   marginBottom: spacing[6],
 };
@@ -345,7 +345,7 @@ const filterGroupStyles: React.CSSProperties = {
 
 const filterLabelStyles: React.CSSProperties = {
   fontFamily: typography.fontFamily.primary,
-  fontSize: '14px',
+  fontSize: typography.fontSize.caption,
   fontWeight: typography.fontWeight.medium,
   color: colors.text.primary,
   marginBottom: spacing[1],
@@ -366,9 +366,9 @@ const selectStyles: React.CSSProperties = {
   paddingRight: spacing[8],
   border: `1px solid ${colors.border.medium}`,
   borderRadius: radii.sm,
-  backgroundColor: colors.backgroundLight,
+  backgroundColor: colors.background.secondary,
   fontFamily: typography.fontFamily.primary,
-  fontSize: '14px',
+  fontSize: typography.fontSize.caption,
   color: colors.text.primary,
   appearance: 'none',
   cursor: 'pointer',
@@ -395,19 +395,19 @@ const checkboxLabelStyles: React.CSSProperties = {
   alignItems: 'center',
   gap: spacing[2],
   cursor: 'pointer',
-  fontSize: '14px',
+  fontSize: typography.fontSize.caption,
   color: colors.text.primary,
 };
 
 const checkboxInputStyles: React.CSSProperties = {
-  width: '16px',
-  height: '16px',
-  accentColor: colors.primary,
+  width: spacing[4],
+  height: spacing[4],
+  accentColor: colors.primary[500],
 };
 
 const checkboxTextStyles: React.CSSProperties = {
   fontFamily: typography.fontFamily.primary,
-  fontSize: '14px',
+  fontSize: typography.fontSize.caption,
 };
 
 const dateRangeContainerStyles: React.CSSProperties = {

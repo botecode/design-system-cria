@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { SearchFilters, SearchFilter } from './SearchFilters';
 import { Card, CardContent, CardHeader } from '../Card';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextBody1 } from '../TextTokens';
 import { Button } from '../Button';
+import { colors, spacing, radii, typography } from '../../tokens';
 
 const SearchFiltersDemo: React.FC = () => {
   const [filters, setFilters] = useState<SearchFilter[]>([
@@ -84,22 +85,22 @@ const SearchFiltersDemo: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <Typography variant="h1" weight="bold" style={{ marginBottom: '2rem' }}>
+    <div style={{ padding: spacing[8] }}>
+      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
         Search Filters Component
-      </Typography>
+      </CriaTextHeadline1>
 
-      <Typography variant="body" style={{ marginBottom: '2rem' }}>
+      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
         A comprehensive filtering component with multiple filter types, responsive design, and accessibility features.
-      </Typography>
+      </CriaTextBody1>
 
-      <div style={{ display: 'grid', gap: '2rem' }}>
+      <div style={{ display: 'grid', gap: spacing[8] }}>
         {/* Basic Search Filters */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextHeadline2 >
               Basic Search Filters
-            </Typography>
+            </CriaTextHeadline2>
           </CardHeader>
           <CardContent>
             <SearchFilters
@@ -108,7 +109,7 @@ const SearchFiltersDemo: React.FC = () => {
               data-testid="basic-search-filters"
             />
             
-            <div style={{ marginTop: '1rem', display: 'flex', gap: '1rem' }}>
+            <div style={{ marginTop: spacing[4], display: 'flex', gap: spacing[4] }}>
               <Button 
                 variant="secondary" 
                 onClick={handleResetFilters}
@@ -130,12 +131,12 @@ const SearchFiltersDemo: React.FC = () => {
         {/* Mobile Collapsed Example */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextHeadline2 >
               Mobile Collapsed Layout
-            </Typography>
+            </CriaTextHeadline2>
           </CardHeader>
           <CardContent>
-            <div style={{ marginBottom: '1rem' }}>
+            <div style={{ marginBottom: spacing[4] }}>
               <Button 
                 variant="secondary" 
                 onClick={() => setMobileCollapsed(!mobileCollapsed)}
@@ -157,9 +158,9 @@ const SearchFiltersDemo: React.FC = () => {
         {/* Minimal Filters */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextHeadline2 >
               Minimal Filters (Text Only)
-            </Typography>
+            </CriaTextHeadline2>
           </CardHeader>
           <CardContent>
             <SearchFilters
@@ -180,9 +181,9 @@ const SearchFiltersDemo: React.FC = () => {
         {/* Advanced Filters */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextHeadline2 >
               Advanced Filters (Checkbox + Date Range)
-            </Typography>
+            </CriaTextHeadline2>
           </CardHeader>
           <CardContent>
             <SearchFilters
@@ -217,16 +218,16 @@ const SearchFiltersDemo: React.FC = () => {
         {/* Current Filter Values Display */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextHeadline2 >
               Current Filter Values
-            </Typography>
+            </CriaTextHeadline2>
           </CardHeader>
           <CardContent>
             <pre style={{ 
-              backgroundColor: '#f5f5f5', 
-              padding: '1rem', 
-              borderRadius: '4px',
-              fontSize: '14px',
+              backgroundColor: colors.gray[50], 
+              padding: spacing[4], 
+              borderRadius: radii.sm,
+              fontSize: typography.fontSize.caption,
               overflow: 'auto'
             }}>
               {JSON.stringify(filters, null, 2)}
