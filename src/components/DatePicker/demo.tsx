@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextTitle1 } from '../TextTokens';
 import { Card, CardHeader, CardContent } from '../Card';
 import { DatePicker } from './index';
 
@@ -9,11 +9,11 @@ export const DatePickerDemo: React.FC = () => {
 
   return (
     <div>
-      <Typography variant="h2">Date Picker</Typography>
+      <CriaTextHeadline1>Date Picker</CriaTextHeadline1>
 
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">Single Date</Typography>
+          <CriaTextTitle1>Single Date</CriaTextTitle1>
         </CardHeader>
         <CardContent>
           <DatePicker value={single} onChange={(v)=>setSingle(v as Date)} />
@@ -22,7 +22,7 @@ export const DatePickerDemo: React.FC = () => {
 
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">Range</Typography>
+          <CriaTextTitle1>Range</CriaTextTitle1>
         </CardHeader>
         <CardContent>
           <DatePicker range value={range} onChange={(v)=>setRange(v as [Date|null,Date|null])} />
