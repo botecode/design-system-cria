@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { MegaMenu, MegaMenuItem } from './index';
+import { MegaMenu, MegaMenuItem } from './MegaMenu';
 import { Card, CardContent, CardHeader } from '../Card';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextTitle1, CriaTextTitle2, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { Button } from '../Button';
 import { Divider } from '../Divider';
+import { Input } from '../Input';
+import { spacing, colors, radii } from '../../tokens';
 
 const MegaMenuDemo: React.FC = () => {
   const [clickedItem, setClickedItem] = useState<string>('');
@@ -104,56 +106,56 @@ const MegaMenuDemo: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '2rem', minHeight: '100vh' }}>
-      <Typography variant="h1" weight="bold" style={{ marginBottom: '2rem' }}>
+    <div style={{ padding: spacing[8], minHeight: '100vh' }}>
+      <CriaTextHeadline1  style={{ marginBottom: spacing[8] }}>
         MegaMenu Component
-      </Typography>
+      </CriaTextBody1>
 
-      <Typography variant="body" style={{ marginBottom: '2rem' }}>
+      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
         Expanded top navigation component for marketing sites and dashboards with nested dropdowns, search, and CTA buttons.
-      </Typography>
+      </CriaTextBody1>
 
       {/* Click feedback */}
       {clickedItem && (
-        <Card style={{ marginBottom: '2rem', backgroundColor: '#f0f9ff', border: '1px solid #0ea5e9' }}>
+        <Card style={{ marginBottom: spacing[8], backgroundColor: colors.primary[50], border: `1px solid ${colors.primary[500]}` }}>
           <CardContent>
-            <Typography variant="bodySmall" weight="medium" style={{ color: '#0369a1' }}>
+            <CriaTextBody2  style={{ color: colors.primary[700] }}>
               {clickedItem}
-            </Typography>
+            </CriaTextBody1>
           </CardContent>
         </Card>
       )}
 
       {/* Search feedback */}
       {searchQuery && (
-        <Card style={{ marginBottom: '2rem', backgroundColor: '#fef3c7', border: '1px solid #f59e0b' }}>
+        <Card style={{ marginBottom: spacing[8], backgroundColor: colors.warning[50], border: `1px solid ${colors.warning[500]}` }}>
           <CardContent>
-            <Typography variant="bodySmall" weight="medium" style={{ color: '#92400e' }}>
+            <CriaTextBody2  style={{ color: colors.warning[700] }}>
               Search: "{searchQuery}"
-            </Typography>
+            </CriaTextBody1>
           </CardContent>
         </Card>
       )}
 
-      <div style={{ display: 'grid', gap: '2rem' }}>
+      <div style={{ display: 'grid', gap: spacing[8] }}>
         {/* Basic MegaMenu Examples */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Basic MegaMenu Variants
-            </Typography>
+            </CriaTextBody1>
           </CardHeader>
           <CardContent>
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
+            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
               Different mega menu variants:
-            </Typography>
+            </CriaTextBody1>
             
-            <div style={{ marginBottom: '2rem' }}>
-              <Typography variant="bodySmall" style={{ marginBottom: '0.5rem', fontWeight: '600' }}>Default Variant:</Typography>
+            <div style={{ marginBottom: spacing[8] }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2], fontWeight: '600' }}>Default Variant:</CriaTextBody1>
               <MegaMenu
                 variant="default"
                 items={sampleMenuItems.slice(0, 3)}
-                logo={<Typography variant="h3" weight="bold">CR_IA.UI</Typography>}
+                logo={<CriaTextTitle2 >CR_IA.UI</CriaTextBody1>}
                 showSearch
                 onSearch={handleSearch}
                 onItemClick={handleItemClick}
@@ -162,16 +164,16 @@ const MegaMenuDemo: React.FC = () => {
                   href: '/get-started',
                   onClick: handleCtaClick
                 }}
-                style={{ border: '1px solid #e5e7eb', borderRadius: '8px' }}
+                style={{ border: `1px solid ${colors.gray[200]}`, borderRadius: radii.md }}
               />
             </div>
 
-            <div style={{ marginBottom: '2rem' }}>
-              <Typography variant="bodySmall" style={{ marginBottom: '0.5rem', fontWeight: '600' }}>Dark Variant:</Typography>
+            <div style={{ marginBottom: spacing[8] }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2], fontWeight: '600' }}>Dark Variant:</CriaTextBody1>
               <MegaMenu
                 variant="dark"
                 items={sampleMenuItems.slice(0, 3)}
-                logo={<Typography variant="h3" weight="bold" style={{ color: 'var(--cria-white)' }}>CR_IA.UI</Typography>}
+                logo={<CriaTextTitle2  style={{ color: 'colors.white' }}>CR_IA.UI</CriaTextBody1>}
                 showSearch
                 onSearch={handleSearch}
                 onItemClick={handleItemClick}
@@ -180,16 +182,16 @@ const MegaMenuDemo: React.FC = () => {
                   href: '/get-started',
                   onClick: handleCtaClick
                 }}
-                style={{ borderRadius: '8px' }}
+                style={{ borderRadius: radii.md }}
               />
             </div>
 
-            <div style={{ marginBottom: '2rem' }}>
-              <Typography variant="bodySmall" style={{ marginBottom: '0.5rem', fontWeight: '600' }}>Light Variant:</Typography>
+            <div style={{ marginBottom: spacing[8] }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2], fontWeight: '600' }}>Light Variant:</CriaTextBody1>
               <MegaMenu
                 variant="light"
                 items={sampleMenuItems.slice(0, 3)}
-                logo={<Typography variant="h3" weight="bold">CR_IA.UI</Typography>}
+                logo={<CriaTextTitle2 >CR_IA.UI</CriaTextBody1>}
                 showSearch
                 onSearch={handleSearch}
                 onItemClick={handleItemClick}
@@ -198,19 +200,19 @@ const MegaMenuDemo: React.FC = () => {
                   href: '/get-started',
                   onClick: handleCtaClick
                 }}
-                style={{ border: '1px solid #e5e7eb', borderRadius: '8px' }}
+                style={{ border: `1px solid ${colors.gray[200]}`, borderRadius: radii.md }}
               />
             </div>
 
             <div>
-              <Typography variant="bodySmall" style={{ marginBottom: '0.5rem', fontWeight: '600' }}>Transparent Variant:</Typography>
-              <div style={{ backgroundColor: '#f3f4f6', padding: '1rem', borderRadius: '8px' }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2], fontWeight: '600' }}>Transparent Variant:</CriaTextBody1>
+              <div style={{ backgroundColor: colors.gray[100], padding: spacing[4], borderRadius: radii.md }}>
                 <MegaMenu
                   variant="transparent"
                   items={sampleMenuItems.slice(0, 2)}
-                  logo={<Typography variant="h3" weight="bold">CR_IA.UI</Typography>}
+                  logo={<CriaTextTitle2 >CR_IA.UI</CriaTextBody1>}
                   onItemClick={handleItemClick}
-                  style={{ borderRadius: '8px' }}
+                  style={{ borderRadius: radii.md }}
                 />
               </div>
             </div>
@@ -220,42 +222,42 @@ const MegaMenuDemo: React.FC = () => {
         {/* Positioning Examples */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Positioning Options
-            </Typography>
+            </CriaTextBody1>
           </CardHeader>
           <CardContent>
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
+            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
               Different positioning options:
-            </Typography>
+            </CriaTextBody1>
             
-            <div style={{ marginBottom: '2rem' }}>
-              <Typography variant="bodySmall" style={{ marginBottom: '0.5rem', fontWeight: '600' }}>Sticky Position:</Typography>
-              <div style={{ height: '200px', backgroundColor: '#f3f4f6', borderRadius: '8px', padding: '1rem', marginBottom: '1rem' }}>
-                <Typography variant="body">Content area - scroll to see sticky behavior</Typography>
+            <div style={{ marginBottom: spacing[8] }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2], fontWeight: '600' }}>Sticky Position:</CriaTextBody1>
+              <div style={{ height: '200px', backgroundColor: colors.gray[100], borderRadius: radii.md, padding: spacing[4], marginBottom: spacing[4] }}>
+                <CriaTextBody1>Content area - scroll to see sticky behavior</CriaTextBody1>
               </div>
               <MegaMenu
                 position="sticky"
                 variant="dark"
                 items={sampleMenuItems.slice(0, 3)}
-                logo={<Typography variant="h3" weight="bold" style={{ color: 'var(--cria-white)' }}>CR_IA.UI</Typography>}
+                logo={<CriaTextTitle2  style={{ color: 'colors.white' }}>CR_IA.UI</CriaTextBody1>}
                 onItemClick={handleItemClick}
-                style={{ borderRadius: '8px' }}
+                style={{ borderRadius: radii.md }}
               />
             </div>
 
             <div>
-              <Typography variant="bodySmall" style={{ marginBottom: '0.5rem', fontWeight: '600' }}>Fixed Position (simulated):</Typography>
-              <div style={{ height: '200px', backgroundColor: '#f3f4f6', borderRadius: '8px', padding: '1rem', marginBottom: '1rem' }}>
-                <Typography variant="body">Content area - menu would be fixed to top</Typography>
+              <CriaTextBody2 style={{ marginBottom: spacing[2], fontWeight: '600' }}>Fixed Position (simulated):</CriaTextBody1>
+              <div style={{ height: '200px', backgroundColor: colors.gray[100], borderRadius: radii.md, padding: spacing[4], marginBottom: spacing[4] }}>
+                <CriaTextBody1>Content area - menu would be fixed to top</CriaTextBody1>
               </div>
               <MegaMenu
                 position="fixed"
                 variant="light"
                 items={sampleMenuItems.slice(0, 3)}
-                logo={<Typography variant="h3" weight="bold">CR_IA.UI</Typography>}
+                logo={<CriaTextTitle2 >CR_IA.UI</CriaTextBody1>}
                 onItemClick={handleItemClick}
-                style={{ borderRadius: '8px' }}
+                style={{ borderRadius: radii.md }}
               />
             </div>
           </CardContent>
@@ -264,51 +266,51 @@ const MegaMenuDemo: React.FC = () => {
         {/* Size and Alignment Examples */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Sizes and Alignments
-            </Typography>
+            </CriaTextBody1>
           </CardHeader>
           <CardContent>
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
+            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
               Different sizes and alignments:
-            </Typography>
+            </CriaTextBody1>
             
-            <div style={{ marginBottom: '2rem' }}>
-              <Typography variant="bodySmall" style={{ marginBottom: '0.5rem', fontWeight: '600' }}>Small Size, Left Alignment:</Typography>
+            <div style={{ marginBottom: spacing[8] }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2], fontWeight: '600' }}>Small Size, Left Alignment:</CriaTextBody1>
               <MegaMenu
                 size="sm"
                 alignment="left"
                 variant="default"
                 items={sampleMenuItems.slice(0, 3)}
-                logo={<Typography variant="body" weight="bold">CR_IA.UI</Typography>}
+                logo={<CriaTextBody1 >CR_IA.UI</CriaTextBody1>}
                 onItemClick={handleItemClick}
-                style={{ border: '1px solid #e5e7eb', borderRadius: '8px' }}
+                style={{ border: `1px solid ${colors.gray[200]}`, borderRadius: radii.md }}
               />
             </div>
 
-            <div style={{ marginBottom: '2rem' }}>
-              <Typography variant="bodySmall" style={{ marginBottom: '0.5rem', fontWeight: '600' }}>Medium Size, Center Alignment:</Typography>
+            <div style={{ marginBottom: spacing[8] }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2], fontWeight: '600' }}>Medium Size, Center Alignment:</CriaTextBody1>
               <MegaMenu
                 size="md"
                 alignment="center"
                 variant="dark"
                 items={sampleMenuItems.slice(0, 3)}
-                logo={<Typography variant="h3" weight="bold" style={{ color: 'var(--cria-white)' }}>CR_IA.UI</Typography>}
+                logo={<CriaTextTitle2  style={{ color: 'colors.white' }}>CR_IA.UI</CriaTextBody1>}
                 onItemClick={handleItemClick}
-                style={{ borderRadius: '8px' }}
+                style={{ borderRadius: radii.md }}
               />
             </div>
 
             <div>
-              <Typography variant="bodySmall" style={{ marginBottom: '0.5rem', fontWeight: '600' }}>Large Size, Right Alignment:</Typography>
+              <CriaTextBody2 style={{ marginBottom: spacing[2], fontWeight: '600' }}>Large Size, Right Alignment:</CriaTextBody1>
               <MegaMenu
                 size="lg"
                 alignment="right"
                 variant="light"
                 items={sampleMenuItems.slice(0, 3)}
-                logo={<Typography variant="h2" weight="bold">CR_IA.UI</Typography>}
+                logo={<CriaTextTitle1 >CR_IA.UI</CriaTextBody1>}
                 onItemClick={handleItemClick}
-                style={{ border: '1px solid #e5e7eb', borderRadius: '8px' }}
+                style={{ border: `1px solid ${colors.gray[200]}`, borderRadius: radii.md }}
               />
             </div>
           </CardContent>
@@ -317,23 +319,23 @@ const MegaMenuDemo: React.FC = () => {
         {/* Visual Effects */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Visual Effects
-            </Typography>
+            </CriaTextBody1>
           </CardHeader>
           <CardContent>
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
+            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
               Different visual effects:
-            </Typography>
+            </CriaTextBody1>
             
-            <div style={{ marginBottom: '2rem' }}>
-              <Typography variant="bodySmall" style={{ marginBottom: '0.5rem', fontWeight: '600' }}>With Border and Shadow:</Typography>
+            <div style={{ marginBottom: spacing[8] }}>
+              <CriaTextBody2 style={{ marginBottom: spacing[2], fontWeight: '600' }}>With Border and Shadow:</CriaTextBody1>
               <MegaMenu
                 variant="default"
                 border
                 shadow
                 items={sampleMenuItems.slice(0, 3)}
-                logo={<Typography variant="h3" weight="bold">CR_IA.UI</Typography>}
+                logo={<CriaTextTitle2 >CR_IA.UI</CriaTextBody1>}
                 showSearch
                 onSearch={handleSearch}
                 onItemClick={handleItemClick}
@@ -342,21 +344,21 @@ const MegaMenuDemo: React.FC = () => {
                   href: '/get-started',
                   onClick: handleCtaClick
                 }}
-                style={{ borderRadius: '8px' }}
+                style={{ borderRadius: radii.md }}
               />
             </div>
 
             <div>
-              <Typography variant="bodySmall" style={{ marginBottom: '0.5rem', fontWeight: '600' }}>Full Width:</Typography>
+              <CriaTextBody2 style={{ marginBottom: spacing[2], fontWeight: '600' }}>Full Width:</CriaTextBody1>
               <MegaMenu
                 variant="dark"
                 fullWidth
                 items={sampleMenuItems.slice(0, 3)}
-                logo={<Typography variant="h3" weight="bold" style={{ color: 'var(--cria-white)' }}>CR_IA.UI</Typography>}
+                logo={<CriaTextTitle2  style={{ color: 'colors.white' }}>CR_IA.UI</CriaTextBody1>}
                 showSearch
                 onSearch={handleSearch}
                 onItemClick={handleItemClick}
-                style={{ borderRadius: '8px' }}
+                style={{ borderRadius: radii.md }}
               />
             </div>
           </CardContent>
@@ -365,19 +367,19 @@ const MegaMenuDemo: React.FC = () => {
         {/* Mobile Menu */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Mobile Menu
-            </Typography>
+            </CriaTextBody1>
           </CardHeader>
           <CardContent>
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
+            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
               Mobile-responsive mega menu with toggle:
-            </Typography>
+            </CriaTextBody1>
             
             <MegaMenu
               variant="default"
               items={sampleMenuItems}
-              logo={<Typography variant="h3" weight="bold">CR_IA.UI</Typography>}
+              logo={<CriaTextTitle2 >CR_IA.UI</CriaTextBody1>}
               showMobileToggle
               showSearch
               onSearch={handleSearch}
@@ -387,12 +389,12 @@ const MegaMenuDemo: React.FC = () => {
                 href: '/get-started',
                 onClick: handleCtaClick
               }}
-              style={{ border: '1px solid #e5e7eb', borderRadius: '8px' }}
+              style={{ border: `1px solid ${colors.gray[200]}`, borderRadius: radii.md }}
             >
-              <div style={{ textAlign: 'center', padding: '1rem' }}>
-                <Typography variant="body" style={{ color: 'var(--cria-gray-600)' }}>
+              <div style={{ textAlign: 'center', padding: spacing[4] }}>
+                <CriaTextBody1 style={{ color: 'colors.gray[600]' }}>
                   Resize your browser window to see the mobile menu in action
-                </Typography>
+                </CriaTextBody1>
               </div>
             </MegaMenu>
           </CardContent>
@@ -401,14 +403,14 @@ const MegaMenuDemo: React.FC = () => {
         {/* Custom Content */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Custom Content
-            </Typography>
+            </CriaTextBody1>
           </CardHeader>
           <CardContent>
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
+            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
               Mega menu with custom content sections:
-            </Typography>
+            </CriaTextBody1>
             
             <MegaMenu
               variant="dark"
@@ -417,7 +419,7 @@ const MegaMenuDemo: React.FC = () => {
               shadow
               fullWidth
               items={sampleMenuItems}
-              logo={<Typography variant="h2" weight="bold" style={{ color: 'var(--cria-white)' }}>CR_IA.UI</Typography>}
+              logo={<CriaTextTitle1  style={{ color: 'colors.white' }}>CR_IA.UI</CriaTextBody1>}
               showSearch
               onSearch={handleSearch}
               onItemClick={handleItemClick}
@@ -426,80 +428,77 @@ const MegaMenuDemo: React.FC = () => {
                 href: '/get-started',
                 onClick: handleCtaClick
               }}
-              style={{ borderRadius: '8px' }}
+              style={{ borderRadius: radii.md }}
             >
               <div style={{ 
                 display: 'grid', 
                 gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-                gap: '2rem',
+                gap: spacing[8],
                 padding: '2rem 0',
-                borderTop: '1px solid var(--cria-gray-700)',
+                borderTop: '1px solid colors.gray[700]',
                 marginTop: '1rem'
               }}>
                 <div>
-                  <Typography variant="h3" weight="semibold" style={{ color: 'var(--cria-white)', marginBottom: '1rem' }}>
+                  <CriaTextTitle2  style={{ color: 'colors.white', marginBottom: spacing[4] }}>
                     Product Updates
-                  </Typography>
+                  </CriaTextBody1>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    <li style={{ marginBottom: '0.5rem' }}>
-                      <Typography variant="bodySmall" style={{ color: 'var(--cria-gray-300)' }}>
+                    <li style={{ marginBottom: spacing[2] }}>
+                      <CriaTextBody2 style={{ color: 'colors.gray[300]' }}>
                         New features in v2.1
-                      </Typography>
+                      </CriaTextBody1>
                     </li>
-                    <li style={{ marginBottom: '0.5rem' }}>
-                      <Typography variant="bodySmall" style={{ color: 'var(--cria-gray-300)' }}>
+                    <li style={{ marginBottom: spacing[2] }}>
+                      <CriaTextBody2 style={{ color: 'colors.gray[300]' }}>
                         Performance improvements
-                      </Typography>
+                      </CriaTextBody1>
                     </li>
-                    <li style={{ marginBottom: '0.5rem' }}>
-                      <Typography variant="bodySmall" style={{ color: 'var(--cria-gray-300)' }}>
+                    <li style={{ marginBottom: spacing[2] }}>
+                      <CriaTextBody2 style={{ color: 'colors.gray[300]' }}>
                         Security enhancements
-                      </Typography>
+                      </CriaTextBody1>
                     </li>
                   </ul>
                 </div>
                 
                 <div>
-                  <Typography variant="h3" weight="semibold" style={{ color: 'var(--cria-white)', marginBottom: '1rem' }}>
+                  <CriaTextTitle2  style={{ color: 'colors.white', marginBottom: spacing[4] }}>
                     Community
-                  </Typography>
+                  </CriaTextBody1>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
-                    <li style={{ marginBottom: '0.5rem' }}>
-                      <Typography variant="bodySmall" style={{ color: 'var(--cria-gray-300)' }}>
+                    <li style={{ marginBottom: spacing[2] }}>
+                      <CriaTextBody2 style={{ color: 'colors.gray[300]' }}>
                         Developer Forum
-                      </Typography>
+                      </CriaTextBody1>
                     </li>
-                    <li style={{ marginBottom: '0.5rem' }}>
-                      <Typography variant="bodySmall" style={{ color: 'var(--cria-gray-300)' }}>
+                    <li style={{ marginBottom: spacing[2] }}>
+                      <CriaTextBody2 style={{ color: 'colors.gray[300]' }}>
                         GitHub Discussions
-                      </Typography>
+                      </CriaTextBody1>
                     </li>
-                    <li style={{ marginBottom: '0.5rem' }}>
-                      <Typography variant="bodySmall" style={{ color: 'var(--cria-gray-300)' }}>
+                    <li style={{ marginBottom: spacing[2] }}>
+                      <CriaTextBody2 style={{ color: 'colors.gray[300]' }}>
                         Discord Server
-                      </Typography>
+                      </CriaTextBody1>
                     </li>
                   </ul>
                 </div>
                 
                 <div>
-                  <Typography variant="h3" weight="semibold" style={{ color: 'var(--cria-white)', marginBottom: '1rem' }}>
+                  <CriaTextTitle2  style={{ color: 'colors.white', marginBottom: spacing[4] }}>
                     Newsletter
-                  </Typography>
-                  <Typography variant="bodySmall" style={{ color: 'var(--cria-gray-300)', marginBottom: '1rem' }}>
+                  </CriaTextBody1>
+                  <CriaTextBody2 style={{ color: 'colors.gray[300]', marginBottom: spacing[4] }}>
                     Stay updated with the latest news and features.
-                  </Typography>
-                  <div style={{ display: 'flex', gap: '0.5rem' }}>
-                    <input 
+                  </CriaTextBody1>
+                  <div style={{ display: 'flex', gap: spacing[2] }}>
+                    <Input 
                       type="email" 
                       placeholder="Enter your email" 
                       style={{ 
                         flex: 1, 
-                        padding: '0.5rem', 
-                        border: '1px solid var(--cria-gray-600)', 
-                        borderRadius: '4px',
                         backgroundColor: 'transparent',
-                        color: 'var(--cria-white)'
+                        color: colors.white
                       }} 
                     />
                     <Button variant="primary" size="sm">Subscribe</Button>
@@ -513,14 +512,14 @@ const MegaMenuDemo: React.FC = () => {
         {/* Real-world Examples */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Real-world Examples
-            </Typography>
+            </CriaTextBody1>
           </CardHeader>
           <CardContent>
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
+            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
               E-commerce mega menu:
-            </Typography>
+            </CriaTextBody1>
             
             <MegaMenu
               variant="dark"
@@ -581,7 +580,7 @@ const MegaMenuDemo: React.FC = () => {
                   href: '/support'
                 }
               ]}
-              logo={<Typography variant="h2" weight="bold" style={{ color: 'var(--cria-white)' }}>CR_IA Store</Typography>}
+              logo={<CriaTextTitle1  style={{ color: 'colors.white' }}>CR_IA Store</CriaTextBody1>}
               showSearch
               onSearch={handleSearch}
               onItemClick={handleItemClick}
@@ -590,14 +589,14 @@ const MegaMenuDemo: React.FC = () => {
                 href: '/account',
                 variant: 'outline'
               }}
-              style={{ borderRadius: '8px' }}
+              style={{ borderRadius: radii.md }}
             />
 
             <Divider style={{ margin: '2rem 0' }} />
 
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
+            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
               SaaS/App mega menu:
-            </Typography>
+            </CriaTextBody1>
             
             <MegaMenu
               variant="light"
@@ -605,7 +604,7 @@ const MegaMenuDemo: React.FC = () => {
               border
               shadow
               items={sampleMenuItems.slice(0, 4)}
-              logo={<Typography variant="h3" weight="bold">CR_IA App</Typography>}
+              logo={<CriaTextTitle2 >CR_IA App</CriaTextBody1>}
               showSearch
               onSearch={handleSearch}
               onItemClick={handleItemClick}
@@ -614,15 +613,15 @@ const MegaMenuDemo: React.FC = () => {
                 href: '/try-free',
                 variant: 'primary'
               }}
-              style={{ borderRadius: '8px' }}
+              style={{ borderRadius: radii.md }}
             >
-              <div style={{ textAlign: 'center', padding: '1rem' }}>
-                <Typography variant="h3" weight="semibold" style={{ marginBottom: '0.5rem' }}>
+              <div style={{ textAlign: 'center', padding: spacing[4] }}>
+                <CriaTextTitle2  style={{ marginBottom: spacing[2] }}>
                   Ready to get started?
-                </Typography>
-                <Typography variant="body" style={{ color: 'var(--cria-gray-600)', marginBottom: '1rem' }}>
+                </CriaTextBody1>
+                <CriaTextBody1 style={{ color: 'colors.gray[600]', marginBottom: spacing[4] }}>
                   Join thousands of teams already using CR_IA App
-                </Typography>
+                </CriaTextBody1>
                 <Button variant="primary" size="lg" style={{ marginRight: '1rem' }}>
                   Start Free Trial
                 </Button>
@@ -637,36 +636,36 @@ const MegaMenuDemo: React.FC = () => {
         {/* Accessibility Features */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextTitle1 >
               Accessibility Features
-            </Typography>
+            </CriaTextBody1>
           </CardHeader>
           <CardContent>
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
+            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
               Mega menu with proper accessibility attributes:
-            </Typography>
+            </CriaTextBody1>
             
             <MegaMenu
               variant="default"
               items={sampleMenuItems.slice(0, 3)}
-              logo={<Typography variant="h3" weight="bold">CR_IA.UI</Typography>}
+              logo={<CriaTextTitle2 >CR_IA.UI</CriaTextBody1>}
               showSearch
               onSearch={handleSearch}
               onItemClick={handleItemClick}
               role="navigation"
               aria-label="Main navigation"
-              style={{ border: '1px solid #e5e7eb', borderRadius: '8px' }}
+              style={{ border: `1px solid ${colors.gray[200]}`, borderRadius: radii.md }}
             >
               <div>
-                <Typography variant="body" style={{ textAlign: 'center' }}>
+                <CriaTextBody1 style={{ textAlign: 'center' }}>
                   This mega menu includes proper ARIA attributes, keyboard navigation, and semantic HTML structure.
-                </Typography>
+                </CriaTextBody1>
               </div>
             </MegaMenu>
             
-            <Typography variant="bodySmall" style={{ marginTop: '1rem', color: 'var(--cria-gray-600)' }}>
+            <CriaTextBody2 style={{ marginTop: '1rem', color: 'colors.gray[600]' }}>
               Features: role="navigation", aria-label, keyboard navigation, focus indicators, and semantic HTML structure.
-            </Typography>
+            </CriaTextBody1>
           </CardContent>
         </Card>
       </div>
