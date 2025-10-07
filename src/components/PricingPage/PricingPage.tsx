@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Card } from '../Card';
 import { Button } from '../Button';
 import { Badge } from '../Badge';
-import { Typography } from '../Typography';
-import { colors, spacing, typography } from '../../tokens';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextTitle1, CriaTextTitle2, CriaTextBody1, CriaTextBody2, CriaTextCaption } from '../TextTokens';
+import { colors, spacing, typography, radii } from '../../tokens';
 
 export type BillingPeriod = 'monthly' | 'yearly';
 
@@ -75,9 +75,9 @@ export const PricingPage: React.FC<PricingPageProps> = ({
         }}
         {...props}
       >
-        <Typography variant="h2" weight="semiBold" style={{ color: colors.text.primary }}>
+        <CriaTextHeadline2 style={{ color: colors.text.primary }}>
           No pricing tiers available
-        </Typography>
+        </CriaTextHeadline2>
       </main>
     );
   }
@@ -96,9 +96,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({
     >
       {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: spacing.xl }}>
-        <Typography 
-          variant="h1" 
-          weight="bold" 
+        <CriaTextHeadline1 
           style={{ 
             marginBottom: spacing.md,
             color: colors.text.primary,
@@ -107,16 +105,15 @@ export const PricingPage: React.FC<PricingPageProps> = ({
           }}
         >
           {title}
-        </Typography>
-        <Typography 
-          variant="h3" 
+        </CriaTextHeadline1>
+        <CriaTextTitle1 
           style={{ 
             color: colors.text.secondary,
             marginBottom: spacing.xl,
           }}
         >
           {subtitle}
-        </Typography>
+        </CriaTextTitle1>
 
         {/* Billing Toggle */}
         <div style={{ 
@@ -126,17 +123,16 @@ export const PricingPage: React.FC<PricingPageProps> = ({
           gap: spacing.md,
           marginBottom: spacing.xl,
         }}>
-          <Typography 
-            variant="body" 
-            weight={billingPeriod === 'monthly' ? 'semiBold' : 'normal'}
+          <CriaTextBody1 
             style={{ 
-              color: billingPeriod === 'monthly' ? colors.primary : colors.text.secondary,
+              color: billingPeriod === 'monthly' ? colors.primary[500] : colors.text.secondary,
               cursor: 'pointer',
+              fontWeight: billingPeriod === 'monthly' ? '600' : '400',
             }}
             onClick={() => handleBillingToggle('monthly')}
           >
             Monthly
-          </Typography>
+          </CriaTextBody1>
           
           <Button
             variant="outline"
@@ -145,38 +141,37 @@ export const PricingPage: React.FC<PricingPageProps> = ({
             style={{
               minWidth: '60px',
               height: '32px',
-              borderRadius: '16px',
+              borderRadius: radii.lg,
               position: 'relative',
-              backgroundColor: billingPeriod === 'yearly' ? colors.primary : colors.background.primary,
-              borderColor: colors.primary,
+              backgroundColor: billingPeriod === 'yearly' ? colors.primary[500] : colors.background.primary,
+              borderColor: colors.primary[500],
             }}
             aria-label={`Switch to ${billingPeriod === 'monthly' ? 'yearly' : 'monthly'} billing`}
           >
             <div
               style={{
                 position: 'absolute',
-                top: '2px',
-                left: billingPeriod === 'monthly' ? '2px' : '30px',
+                top: spacing[0.5],
+                left: billingPeriod === 'monthly' ? spacing[0.5] : '30px',
                 width: '28px',
                 height: '28px',
-                backgroundColor: billingPeriod === 'yearly' ? colors.white : colors.primary,
+                backgroundColor: billingPeriod === 'yearly' ? colors.white : colors.primary[500],
                 borderRadius: '50%',
                 transition: 'left 0.3s ease',
               }}
             />
           </Button>
           
-          <Typography 
-            variant="body" 
-            weight={billingPeriod === 'yearly' ? 'semiBold' : 'normal'}
+          <CriaTextBody1 
             style={{ 
-              color: billingPeriod === 'yearly' ? colors.primary : colors.text.secondary,
+              color: billingPeriod === 'yearly' ? colors.primary[500] : colors.text.secondary,
               cursor: 'pointer',
+              fontWeight: billingPeriod === 'yearly' ? '600' : '400',
             }}
             onClick={() => handleBillingToggle('yearly')}
           >
             Yearly
-          </Typography>
+          </CriaTextBody1>
           
           {billingPeriod === 'yearly' && (
             <Badge 
@@ -208,8 +203,8 @@ export const PricingPage: React.FC<PricingPageProps> = ({
                 position: 'relative',
                 padding: spacing.lg,
                 textAlign: 'center',
-                border: tier.popular ? `2px solid ${colors.primary}` : `1px solid ${colors.border.medium}`,
-                borderRadius: '12px',
+                border: tier.popular ? `2px solid ${colors.primary[500]}` : `1px solid ${colors.border.medium}`,
+                borderRadius: radii.lg,
                 backgroundColor: colors.background.primary,
                 boxShadow: tier.popular ? `0 4px 20px ${colors.primary}15` : `0 2px 8px ${colors.border.light}`,
                 transform: tier.popular ? 'scale(1.02)' : 'scale(1)',
@@ -229,10 +224,10 @@ export const PricingPage: React.FC<PricingPageProps> = ({
                   <Badge 
                     variant="primary" 
                     style={{
-                      backgroundColor: colors.primary,
+                      backgroundColor: colors.primary[500],
                       color: colors.white,
                       padding: `${spacing.xs} ${spacing.md}`,
-                      borderRadius: '20px',
+                      borderRadius: radii.xl,
                       fontSize: typography.fontSize.bodySmall,
                       fontWeight: typography.fontWeight.semiBold,
                     }}
@@ -243,9 +238,7 @@ export const PricingPage: React.FC<PricingPageProps> = ({
               )}
 
               <div style={{ marginBottom: spacing.lg, flex: '0 0 auto' }}>
-                <Typography 
-                  variant="h3" 
-                  weight="semiBold" 
+                <CriaTextTitle1 
                   style={{ 
                     marginBottom: spacing.xs,
                     color: colors.text.primary,
@@ -253,9 +246,8 @@ export const PricingPage: React.FC<PricingPageProps> = ({
                   }}
                 >
                   {tier.name}
-                </Typography>
-                <Typography 
-                  variant="body" 
+                </CriaTextTitle1>
+                <CriaTextBody1 
                   style={{ 
                     color: colors.text.secondary,
                     marginBottom: spacing.md,
@@ -263,42 +255,38 @@ export const PricingPage: React.FC<PricingPageProps> = ({
                   }}
                 >
                   {tier.description}
-                </Typography>
+                </CriaTextBody1>
 
                 <div style={{ marginBottom: spacing.sm }}>
-                  <Typography 
-                    variant="h1" 
-                    weight="bold" 
+                  <CriaTextHeadline1 
                     style={{ 
-                      color: colors.primary,
+                      color: colors.primary[500],
                       fontSize: typography.fontSize.h1,
                       lineHeight: typography.lineHeight.tight,
                       marginBottom: spacing.xs,
                     }}
                   >
                     {formatPrice(price)}
-                  </Typography>
-                  <Typography 
-                    variant="body" 
+                  </CriaTextHeadline1>
+                  <CriaTextBody1 
                     style={{ 
                       color: colors.text.secondary,
                       fontSize: typography.fontSize.bodySmall,
                     }}
                   >
                     /{billingPeriod === 'monthly' ? 'month' : 'year'}
-                  </Typography>
+                  </CriaTextBody1>
                 </div>
 
                 {billingPeriod === 'yearly' && savings.percentage > 0 && (
-                  <Typography 
-                    variant="caption" 
+                  <CriaTextCaption 
                     style={{ 
-                      color: colors.success,
+                      color: colors.success[500],
                       fontWeight: typography.fontWeight.medium,
                     }}
                   >
                     Save {savings.percentage}%
-                  </Typography>
+                  </CriaTextCaption>
                 )}
               </div>
 
@@ -334,16 +322,16 @@ export const PricingPage: React.FC<PricingPageProps> = ({
                       >
                         <span style={{ color: colors.white, fontSize: '10px', fontWeight: 'bold' }}>✓</span>
                       </div>
-                      <Typography variant="body2" style={{ color: colors.text.primary, fontSize: typography.fontSize.bodySmall }}>
+                      <CriaTextBody2 style={{ color: colors.text.primary, fontSize: typography.fontSize.bodySmall }}>
                         {feature}
-                      </Typography>
+                      </CriaTextBody2>
                     </li>
                   ))}
                   {tier.features.length > 5 && (
                     <li style={{ marginTop: spacing.xs }}>
-                      <Typography variant="caption" style={{ color: colors.text.secondary, fontStyle: 'italic' }}>
+                      <CriaTextCaption style={{ color: colors.text.secondary, fontStyle: 'italic' }}>
                         +{tier.features.length - 5} more features
-                      </Typography>
+                      </CriaTextCaption>
                     </li>
                   )}
                 </ul>
@@ -374,25 +362,23 @@ export const PricingPage: React.FC<PricingPageProps> = ({
         marginTop: spacing.xl,
         padding: spacing.lg,
         backgroundColor: colors.background.secondary,
-        borderRadius: '12px',
+        borderRadius: radii.lg,
       }}>
-        <Typography 
-          variant="body" 
+        <CriaTextBody1 
           style={{ 
             color: colors.text.secondary,
             marginBottom: spacing.sm,
           }}
         >
           All plans include 14-day free trial
-        </Typography>
-        <Typography 
-          variant="caption" 
+        </CriaTextBody1>
+        <CriaTextCaption 
           style={{ 
             color: colors.text.tertiary,
           }}
         >
           No credit card required • Cancel anytime
-        </Typography>
+        </CriaTextCaption>
       </div>
     </main>
   );
