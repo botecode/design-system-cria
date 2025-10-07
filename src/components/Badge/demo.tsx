@@ -1,6 +1,7 @@
 import React from 'react';
 import Badge from './Badge';
-import Typography from '../Typography/Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextBody1, CriaTextBody2, CriaTextTitle1, CriaTextTitle2 } from '../TextTokens';
+import { spacing, colors, radii } from '../../tokens';
 import { Check, WarningCircle, X, Star, Rocket, ThumbsUp } from 'phosphor-react';
 
 /**
@@ -8,17 +9,17 @@ import { Check, WarningCircle, X, Star, Rocket, ThumbsUp } from 'phosphor-react'
  */
 export const BadgeDemo: React.FC = () => {
   return (
-    <div style={{ padding: '24px', maxWidth: '1000px' }}>
-      <Typography variant="title1" weight="bold" style={{ marginBottom: '32px' }}>
+    <div style={{ padding: spacing[6], maxWidth: '1000px' }}>
+      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
         Badge Demo
-      </Typography>
+      </CriaTextHeadline1>
 
       {/* Variants */}
-      <section style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Variants
-        </Typography>
-        <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
+        </CriaTextHeadline2>
+        <div style={{ display: 'flex', gap: spacing[3], flexWrap: 'wrap', alignItems: 'center' }}>
           <Badge variant="default">Default</Badge>
           <Badge variant="primary">Primary</Badge>
           <Badge variant="secondary">Secondary</Badge>
@@ -30,11 +31,11 @@ export const BadgeDemo: React.FC = () => {
       </section>
 
       {/* Sizes */}
-      <section style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Sizes
-        </Typography>
-        <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+        </CriaTextHeadline2>
+        <div style={{ display: 'flex', gap: spacing[3], alignItems: 'center', flexWrap: 'wrap' }}>
           <Badge size="sm" variant="primary">Small</Badge>
           <Badge size="md" variant="primary">Medium</Badge>
           <Badge size="lg" variant="primary">Large</Badge>
@@ -42,11 +43,11 @@ export const BadgeDemo: React.FC = () => {
       </section>
 
       {/* Styles */}
-      <section style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Styles
-        </Typography>
-        <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+        </CriaTextHeadline2>
+        <div style={{ display: 'flex', gap: spacing[3], alignItems: 'center', flexWrap: 'wrap' }}>
           <Badge badgeStyle="solid" variant="primary">Solid</Badge>
           <Badge badgeStyle="outline" variant="primary">Outline</Badge>
           <Badge badgeStyle="soft" variant="primary">Soft</Badge>
@@ -54,11 +55,11 @@ export const BadgeDemo: React.FC = () => {
       </section>
 
       {/* Count Badges */}
-      <section style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Count Badges
-        </Typography>
-        <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+        </CriaTextHeadline2>
+        <div style={{ display: 'flex', gap: spacing[3], alignItems: 'center', flexWrap: 'wrap' }}>
           <Badge variant="primary">1</Badge>
           <Badge variant="secondary">42</Badge>
           <Badge variant="success">999</Badge>
@@ -68,11 +69,11 @@ export const BadgeDemo: React.FC = () => {
       </section>
 
       {/* Dot Badges */}
-      <section style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Dot Badges
-        </Typography>
-        <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+        </CriaTextHeadline2>
+        <div style={{ display: 'flex', gap: spacing[3], alignItems: 'center', flexWrap: 'wrap' }}>
           <Badge variant="primary" dot>Dot</Badge>
           <Badge variant="secondary" dot>Dot</Badge>
           <Badge variant="success" dot>Dot</Badge>
@@ -82,11 +83,11 @@ export const BadgeDemo: React.FC = () => {
       </section>
 
       {/* Interactive Badges */}
-      <section style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Interactive Badges
-        </Typography>
-        <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+        </CriaTextHeadline2>
+        <div style={{ display: 'flex', gap: spacing[3], alignItems: 'center', flexWrap: 'wrap' }}>
           <Badge 
             variant="primary" 
             interactive 
@@ -113,11 +114,11 @@ export const BadgeDemo: React.FC = () => {
       </section>
 
       {/* Badges with Icons */}
-      <section style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Badges with Icons
-        </Typography>
-        <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+        </CriaTextHeadline2>
+        <div style={{ display: 'flex', gap: spacing[3], alignItems: 'center', flexWrap: 'wrap' }}>
           <Badge 
             variant="success" 
             leftIcon={<Check size={12} />}
@@ -141,23 +142,23 @@ export const BadgeDemo: React.FC = () => {
       </section>
 
       {/* Real-world Examples */}
-      <section style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Real-world Examples
-        </Typography>
+        </CriaTextHeadline2>
         
         {/* Notification Badge */}
-        <div style={{ marginBottom: '16px' }}>
-          <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>
             Notification Badge
-          </Typography>
-          <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+          </CriaTextTitle1>
+          <div style={{ display: 'flex', gap: spacing[3], alignItems: 'center' }}>
             <div style={{ position: 'relative', display: 'inline-block' }}>
               <div style={{ 
-                padding: '8px 16px', 
-                backgroundColor: '#f3f4f6', 
-                borderRadius: '8px',
-                border: '1px solid #e5e7eb'
+                padding: `${spacing[2]} ${spacing[4]}`, 
+                backgroundColor: colors.gray[100], 
+                borderRadius: radii.md,
+                border: `1px solid ${colors.border.light}`
               }}>
                 Messages
               </div>
@@ -175,10 +176,10 @@ export const BadgeDemo: React.FC = () => {
             </div>
             <div style={{ position: 'relative', display: 'inline-block' }}>
               <div style={{ 
-                padding: '8px 16px', 
-                backgroundColor: '#f3f4f6', 
-                borderRadius: '8px',
-                border: '1px solid #e5e7eb'
+                padding: `${spacing[2]} ${spacing[4]}`, 
+                backgroundColor: colors.gray[100], 
+                borderRadius: radii.md,
+                border: `1px solid ${colors.border.light}`
               }}>
                 Notifications
               </div>
@@ -197,11 +198,11 @@ export const BadgeDemo: React.FC = () => {
         </div>
 
         {/* Status Badges */}
-        <div style={{ marginBottom: '16px' }}>
-          <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>
             Status Badges
-          </Typography>
-          <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+          </CriaTextTitle1>
+          <div style={{ display: 'flex', gap: spacing[3], alignItems: 'center', flexWrap: 'wrap' }}>
             <Badge variant="success" badgeStyle="soft">Active</Badge>
             <Badge variant="warning" badgeStyle="soft">Pending</Badge>
             <Badge variant="error" badgeStyle="soft">Inactive</Badge>
@@ -210,11 +211,11 @@ export const BadgeDemo: React.FC = () => {
         </div>
 
         {/* Category Badges */}
-        <div style={{ marginBottom: '16px' }}>
-          <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>
             Category Badges
-          </Typography>
-          <div style={{ display: 'flex', gap: '8px', alignItems: 'center', flexWrap: 'wrap' }}>
+          </CriaTextTitle1>
+          <div style={{ display: 'flex', gap: spacing[2], alignItems: 'center', flexWrap: 'wrap' }}>
             <Badge variant="primary" badgeStyle="outline">React</Badge>
             <Badge variant="secondary" badgeStyle="outline">TypeScript</Badge>
             <Badge variant="success" badgeStyle="outline">Design System</Badge>
@@ -224,11 +225,11 @@ export const BadgeDemo: React.FC = () => {
       </section>
 
       {/* Accessibility */}
-      <section style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Accessibility Features
-        </Typography>
-        <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+        </CriaTextHeadline2>
+        <div style={{ display: 'flex', gap: spacing[3], alignItems: 'center', flexWrap: 'wrap' }}>
           <Badge 
             variant="primary" 
             interactive 
@@ -246,13 +247,12 @@ export const BadgeDemo: React.FC = () => {
             Keyboard Accessible
           </Badge>
         </div>
-        <Typography 
+        <CriaTextBody2 
           id="badge-description" 
-          variant="bodySmall" 
-          style={{ marginTop: '8px', color: '#6b7280' }}
+          style={{ marginTop: spacing[2], color: colors.gray[500] }}
         >
           This badge can be activated with Enter or Space key
-        </Typography>
+        </CriaTextBody2>
       </section>
     </div>
   );
