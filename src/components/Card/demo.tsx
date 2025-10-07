@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { Card, CardHeader, CardContent, CardFooter } from './Card';
 import { Button } from '../Button';
-import Typography from '../Typography/Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextBody1, CriaTextBody2, CriaTextTitle1, CriaTextTitle2 } from '../TextTokens';
 import { CriaLessonCardSmall, Lesson } from '../CriaLessonCardSmall';
 import { CriaLessonCard, Lesson as CriaLessonCardLesson } from '../CriaLessonCard';
+import { spacing, colors } from '../../tokens';
 
 /**
  * Card component demo
@@ -227,27 +228,27 @@ export const CardDemo: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '24px', maxWidth: '1000px' }}>
-      <Typography variant="title1" weight="bold" style={{ marginBottom: '32px' }}>
+    <div style={{ padding: spacing[6], maxWidth: '1000px' }}>
+      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
         Lesson Cards
-      </Typography>
+      </CriaTextHeadline1>
 
 
       {/* CriaLessonCardSmall Component */}
-      <section style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           CriaLessonCardSmall - Lesson Cards
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px', color: '#6b7280' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6], color: colors.gray[500] }}>
           Specialized lesson card component with completion tracking, instructor details, and interactive elements. 
           Features examples with different instructors across various categories, including stacked instructor avatars for collaborative lessons.
-        </Typography>
+        </CriaTextBody1>
         
         <div style={{ 
           display: 'grid', 
           gridTemplateColumns: 'repeat(4, 1fr)', 
-          gap: '16px',
-          marginBottom: '24px',
+          gap: spacing[4],
+          marginBottom: spacing[6],
           maxWidth: '1200px'
         }}>
           {sampleLessons.slice(0, 4).map((lesson) => (
@@ -264,20 +265,20 @@ export const CardDemo: React.FC = () => {
       </section>
 
       {/* CriaLessonCard Component */}
-      <section style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           CriaLessonCard - Detailed Lesson Cards
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px', color: '#6b7280' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6], color: colors.gray[500] }}>
           Large, detailed lesson card component with tool icons, descriptions, and comprehensive lesson information. 
           Perfect for showcasing detailed course content with rich visual elements.
-        </Typography>
+        </CriaTextBody1>
         
         <div style={{ 
           display: 'grid', 
           gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', 
-          gap: '24px',
-          marginBottom: '24px',
+          gap: spacing[6],
+          marginBottom: spacing[6],
           maxWidth: '1200px'
         }}>
           {sampleCriaLessons.slice(0, 2).map((lesson) => (
@@ -291,45 +292,45 @@ export const CardDemo: React.FC = () => {
       </section>
 
       {/* Variants */}
-      <section style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Variantes
-        </Typography>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '16px' }}>
+        </CriaTextHeadline2>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[4] }}>
           <Card variant="default">
             <CardHeader>
-              <Typography variant="h3" weight="medium">
+              <CriaTextTitle1>
                 Card Padrão
-              </Typography>
+              </CriaTextTitle1>
             </CardHeader>
             <CardContent>
-              <Typography variant="body">
+              <CriaTextBody1>
                 Este é um card padrão com borda e fundo claros.
-              </Typography>
+              </CriaTextBody1>
             </CardContent>
           </Card>
 
           <Card variant="elevated">
             <CardHeader>
-              <Typography variant="h3" weight="medium">
+              <CriaTextTitle1>
                 Card Elevado
-              </Typography>
+              </CriaTextTitle1>
             </CardHeader>
             <CardContent>
-              <Typography variant="body">
+              <CriaTextBody1>
                 Este card tem uma sombra mais pronunciada para dar destaque.
-              </Typography>
+              </CriaTextBody1>
             </CardContent>
           </Card>
 
           <Card variant="outlined">
             <CardHeader>
-              <Typography variant="h3">Outlined Card</Typography>
+              <CriaTextTitle1>Outlined Card</CriaTextTitle1>
             </CardHeader>
             <CardContent>
-              <Typography variant="body">
+              <CriaTextBody1>
                 This card has a prominent border and transparent background.
-              </Typography>
+              </CriaTextBody1>
             </CardContent>
           </Card>
         </div>
