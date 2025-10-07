@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { CriaTextTitle1, CriaTextTitle2, CriaTextBody1 } from '../TextTokens';
 import { Textarea } from './index';
 import { Card, CardContent, CardHeader, CardFooter } from '../Card';
+import { spacing } from '../../tokens';
 
 export const TextareaDemo: React.FC = () => {
   const [basicValue, setBasicValue] = useState('');
@@ -10,19 +11,19 @@ export const TextareaDemo: React.FC = () => {
 
   return (
     <div style={{ padding: '0' }}>
-      <CriaTextTitle1 as="h2" style={{ marginBottom: '32px' }}>Textarea Component</CriaTextTitle1>
+      <CriaTextTitle1 as="h2" style={{ marginBottom: spacing[8] }}>Textarea Component</CriaTextTitle1>
 
-      <CriaTextBody1 style={{ marginBottom: '32px' }}>
+      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
         The Textarea component provides a multi-line text input with various states, sizes, and features including auto-resize, character counting, and accessibility support.
       </CriaTextBody1>
 
       {/* Basic Examples */}
-      <Card style={{ marginBottom: '32px' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
           <CriaTextTitle2 as="h3">Basic Examples</CriaTextTitle2>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             {/* Basic Textarea */}
             <div>
               <Textarea
@@ -67,12 +68,12 @@ export const TextareaDemo: React.FC = () => {
       </Card>
 
       {/* Sizes */}
-      <Card style={{ marginBottom: '32px' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
           <CriaTextTitle2 as="h3">Sizes</CriaTextTitle2>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             <div>
               <Textarea
                 label="Small Textarea"
@@ -104,12 +105,12 @@ export const TextareaDemo: React.FC = () => {
       </Card>
 
       {/* Variants */}
-      <Card style={{ marginBottom: '32px' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
           <CriaTextTitle2 as="h3">Variants</CriaTextTitle2>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             <div>
               <Textarea
                 label="Default Variant"
@@ -150,12 +151,12 @@ export const TextareaDemo: React.FC = () => {
       </Card>
 
       {/* States */}
-      <Card style={{ marginBottom: '32px' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
           <CriaTextTitle2 as="h3">States</CriaTextTitle2>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             <div>
               <Textarea
                 label="Success State"
@@ -187,12 +188,12 @@ export const TextareaDemo: React.FC = () => {
       </Card>
 
       {/* Features */}
-      <Card style={{ marginBottom: '32px' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
           <CriaTextTitle2 as="h3">Features</CriaTextTitle2>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             {/* Character Count */}
             <div>
               <Textarea
@@ -237,12 +238,12 @@ export const TextareaDemo: React.FC = () => {
       </Card>
 
       {/* Interactive Examples */}
-      <Card style={{ marginBottom: '32px' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
           <CriaTextTitle2 as="h3">Interactive Examples</CriaTextTitle2>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             {/* Controlled Input */}
             <div>
               <Textarea
@@ -296,7 +297,7 @@ export const TextareaDemo: React.FC = () => {
           <CriaTextBody1>
             The Textarea component includes comprehensive accessibility features:
           </CriaTextBody1>
-          <ul style={{ marginTop: '16px', paddingLeft: '24px' }}>
+          <ul style={{ marginTop: spacing[4], paddingLeft: spacing[6] }}>
             <li><strong>ARIA attributes:</strong> Proper labeling, descriptions, and state announcements</li>
             <li><strong>Keyboard navigation:</strong> Full keyboard support including Tab, Enter, and arrow keys</li>
             <li><strong>Screen reader support:</strong> Error messages are announced with role="alert"</li>

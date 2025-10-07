@@ -1,5 +1,6 @@
 import React, { forwardRef, useRef, useImperativeHandle, useCallback, useEffect } from 'react';
-import { Typography } from '../Typography';
+import { CriaTextBody1, CriaTextBody2 } from '../TextTokens';
+import { spacing, colors } from '../../tokens';
 import { Check, WarningCircle } from 'phosphor-react';
 
 export interface TextareaProps extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> {
@@ -257,10 +258,10 @@ export const Textarea = forwardRef<TextareaRef, TextareaProps>(({
       {/* Label */}
       {label && (
         <label htmlFor={textareaId} id={labelId} className="cria-textarea__label">
-          <Typography variant="body" weight="medium" color="primary">
+          <CriaTextBody1>
             {label}
             {required && <span className="cria-textarea__required" aria-label="required"> *</span>}
-          </Typography>
+          </CriaTextBody1>
         </label>
       )}
       
@@ -295,66 +296,61 @@ export const Textarea = forwardRef<TextareaRef, TextareaProps>(({
         <div className="cria-textarea__messages">
           {/* Helper Text */}
           {helperText && !errorMessage && !successMessage && !warningMessage && (
-            <Typography 
-              variant="body" 
-              color="secondary" 
+            <CriaTextBody2 
+              style={{ color: colors.text.secondary }}
               className="cria-textarea__helper-text"
               id={helperId}
             >
               {helperText}
-            </Typography>
+            </CriaTextBody2>
           )}
           
           {/* Error Message */}
           {errorMessage && (
-            <Typography 
-              variant="body" 
-              color="error" 
+            <CriaTextBody2 
+              style={{ color: colors.error }}
               className="cria-textarea__error-message"
               id={errorId}
               role="alert"
             >
-              <WarningCircle size={14} style={{ marginRight: '4px' }} />
+              <WarningCircle size={14} style={{ marginRight: spacing[1] }} />
               {errorMessage}
-            </Typography>
+            </CriaTextBody2>
           )}
           
           {/* Success Message */}
           {successMessage && (
-            <Typography 
-              variant="body" 
-              color="success" 
+            <CriaTextBody2 
+              style={{ color: colors.success }}
               className="cria-textarea__success-message"
               id={successId}
             >
-              <Check size={14} style={{ marginRight: '4px' }} />
+              <Check size={14} style={{ marginRight: spacing[1] }} />
               {successMessage}
-            </Typography>
+            </CriaTextBody2>
           )}
           
           {/* Warning Message */}
           {warningMessage && (
-            <Typography 
-              variant="body" 
-              color="warning" 
+            <CriaTextBody2 
+              style={{ color: colors.warning }}
               className="cria-textarea__warning-message"
               id={warningId}
             >
-              <WarningCircle size={14} style={{ marginRight: '4px' }} />
+              <WarningCircle size={14} style={{ marginRight: spacing[1] }} />
               {warningMessage}
-            </Typography>
+            </CriaTextBody2>
           )}
           
           {/* Character Count */}
           {showCharacterCount && maxLength && (
-            <Typography 
-              variant="body" 
-              color="secondary" 
+            <CriaTextBody2 
+              style={{ color: colors.text.secondary }}
               className="cria-textarea__character-count"
               id={countId}
             >
               {characterCount}/{maxLength}
-            </Typography>
+            </CriaTextBody2>
           )}
         </div>
       )}
