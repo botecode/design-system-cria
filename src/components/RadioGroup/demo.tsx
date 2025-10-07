@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { RadioGroup, RadioGroupLabel, RadioGroupItem } from './RadioGroup';
-import { Typography } from '../Typography';
 import { Card, CardContent, CardHeader } from '../Card';
 import { Button } from '../Button';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextBody1, CriaTextBody2, CriaTextTitle1 } from '../TextTokens';
+import { spacing, colors, radii, typography } from '../../tokens';
 
 export const RadioGroupDemo: React.FC = () => {
   const [basicValue, setBasicValue] = useState('');
@@ -18,28 +19,28 @@ export const RadioGroupDemo: React.FC = () => {
 
   return (
     <div style={{ padding: '0' }}>
-      <div style={{ marginBottom: '32px' }}>
-        <Typography variant="title1" style={{ marginBottom: '16px' }}>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline1 style={{ marginBottom: spacing[4] }}>
           Radio Group Component
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '0' }}>
+        </CriaTextHeadline1>
+        <CriaTextBody1 style={{ marginBottom: '0' }}>
           A Radio Group component for single selection from multiple options with proper accessibility,
           keyboard navigation, and form integration.
-        </Typography>
+        </CriaTextBody1>
       </div>
 
       {/* Basic Usage */}
-      <div style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" style={{ marginBottom: '16px' }}>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Basic Usage
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
           Simple radio group with three options. Only one option can be selected at a time.
-        </Typography>
+        </CriaTextBody1>
         
-        <Card style={{ marginBottom: '16px' }}>
+        <Card style={{ marginBottom: spacing[4] }}>
           <CardHeader>
-            <Typography variant="h3">Choose your preferred option</Typography>
+            <CriaTextTitle1>Choose your preferred option</CriaTextTitle1>
           </CardHeader>
           <CardContent>
             <RadioGroup 
@@ -53,9 +54,9 @@ export const RadioGroupDemo: React.FC = () => {
               <RadioGroupItem value="option3">Option 3</RadioGroupItem>
             </RadioGroup>
             {basicValue && (
-              <Typography variant="body" style={{ marginTop: '16px', color: '#666' }}>
+              <CriaTextBody1 style={{ marginTop: spacing[4], color: colors.text.secondary }}>
                 Selected: {basicValue}
-              </Typography>
+              </CriaTextBody1>
             )}
           </CardContent>
         </Card>
@@ -63,17 +64,17 @@ export const RadioGroupDemo: React.FC = () => {
 
       {/* Size Variants */}
       <div style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" style={{ marginBottom: '16px' }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Size Variants
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
           Radio groups support different sizes for various use cases.
-        </Typography>
+        </CriaTextBody1>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '16px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[4] }}>
           <Card>
             <CardHeader>
-              <Typography variant="h3">Small Size</Typography>
+              <CriaTextTitle1>Small Size</CriaTextTitle1>
             </CardHeader>
             <CardContent>
               <RadioGroup 
@@ -92,7 +93,7 @@ export const RadioGroupDemo: React.FC = () => {
 
           <Card>
             <CardHeader>
-              <Typography variant="h3">Large Size</Typography>
+              <CriaTextTitle1>Large Size</CriaTextTitle1>
             </CardHeader>
             <CardContent>
               <RadioGroup 
@@ -113,17 +114,17 @@ export const RadioGroupDemo: React.FC = () => {
 
       {/* Orientation */}
       <div style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" style={{ marginBottom: '16px' }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Orientation
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
           Radio groups can be displayed horizontally or vertically.
-        </Typography>
+        </CriaTextBody1>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '16px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: spacing[4] }}>
           <Card>
             <CardHeader>
-              <Typography variant="h3">Vertical (Default)</Typography>
+              <CriaTextTitle1>Vertical (Default)</CriaTextTitle1>
             </CardHeader>
             <CardContent>
               <RadioGroup 
@@ -142,7 +143,7 @@ export const RadioGroupDemo: React.FC = () => {
 
           <Card>
             <CardHeader>
-              <Typography variant="h3">Horizontal</Typography>
+              <CriaTextTitle1>Horizontal</CriaTextTitle1>
             </CardHeader>
             <CardContent>
               <RadioGroup 
@@ -163,17 +164,17 @@ export const RadioGroupDemo: React.FC = () => {
 
       {/* States */}
       <div style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" style={{ marginBottom: '16px' }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           States
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
           Radio groups support different states including disabled, required, and error states.
-        </Typography>
+        </CriaTextBody1>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '16px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[4] }}>
           <Card>
             <CardHeader>
-              <Typography variant="h3">Disabled Group</Typography>
+              <CriaTextTitle1>Disabled Group</CriaTextTitle1>
             </CardHeader>
             <CardContent>
               <RadioGroup 
@@ -192,7 +193,7 @@ export const RadioGroupDemo: React.FC = () => {
 
           <Card>
             <CardHeader>
-              <Typography variant="h3">Required with Error</Typography>
+              <CriaTextTitle1>Required with Error</CriaTextTitle1>
             </CardHeader>
             <CardContent>
               <RadioGroup 
@@ -212,7 +213,7 @@ export const RadioGroupDemo: React.FC = () => {
 
           <Card>
             <CardHeader>
-              <Typography variant="h3">Mixed States</Typography>
+              <CriaTextTitle1>Mixed States</CriaTextTitle1>
             </CardHeader>
             <CardContent>
               <RadioGroup 
@@ -232,19 +233,19 @@ export const RadioGroupDemo: React.FC = () => {
 
       {/* Form Integration */}
       <div style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" style={{ marginBottom: '16px' }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Form Integration
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
           Radio groups work seamlessly with forms and provide proper validation.
-        </Typography>
+        </CriaTextBody1>
         
         <Card>
           <CardHeader>
-            <Typography variant="h3">Survey Form</Typography>
+            <CriaTextTitle1>Survey Form</CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <form onSubmit={handleFormSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <form onSubmit={handleFormSubmit} style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
               <div>
                 <RadioGroup 
                   name="survey-group" 
@@ -265,9 +266,9 @@ export const RadioGroupDemo: React.FC = () => {
               </Button>
               
               {formValue && (
-                <Typography variant="body" style={{ color: '#666' }}>
+                <CriaTextBody1 style={{ color: colors.text.secondary }}>
                   Preview: You selected "{formValue}"
-                </Typography>
+                </CriaTextBody1>
               )}
             </form>
           </CardContent>
@@ -276,22 +277,22 @@ export const RadioGroupDemo: React.FC = () => {
 
       {/* Accessibility Features */}
       <div style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" style={{ marginBottom: '16px' }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Accessibility Features
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
           The Radio Group component includes comprehensive accessibility features.
-        </Typography>
+        </CriaTextBody1>
         
         <Card>
           <CardContent>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <Typography variant="body">• <strong>Keyboard Navigation:</strong> Use arrow keys to navigate between options</Typography>
-              <Typography variant="body">• <strong>Screen Reader Support:</strong> Proper ARIA attributes and semantic HTML</Typography>
-              <Typography variant="body">• <strong>Focus Management:</strong> Clear focus indicators and logical tab order</Typography>
-              <Typography variant="body">• <strong>Error Announcements:</strong> Error messages are announced to screen readers</Typography>
-              <Typography variant="body">• <strong>Required Field Indication:</strong> Visual and programmatic indication of required fields</Typography>
-              <Typography variant="body">• <strong>Fieldset/Legend Structure:</strong> Proper semantic structure for form groups</Typography>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[3] }}>
+              <CriaTextBody1>• <strong>Keyboard Navigation:</strong> Use arrow keys to navigate between options</CriaTextBody1>
+              <CriaTextBody1>• <strong>Screen Reader Support:</strong> Proper ARIA attributes and semantic HTML</CriaTextBody1>
+              <CriaTextBody1>• <strong>Focus Management:</strong> Clear focus indicators and logical tab order</CriaTextBody1>
+              <CriaTextBody1>• <strong>Error Announcements:</strong> Error messages are announced to screen readers</CriaTextBody1>
+              <CriaTextBody1>• <strong>Required Field Indication:</strong> Visual and programmatic indication of required fields</CriaTextBody1>
+              <CriaTextBody1>• <strong>Fieldset/Legend Structure:</strong> Proper semantic structure for form groups</CriaTextBody1>
             </div>
           </CardContent>
         </Card>
@@ -299,16 +300,16 @@ export const RadioGroupDemo: React.FC = () => {
 
       {/* Real-world Example */}
       <div style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" style={{ marginBottom: '16px' }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Real-world Example
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
           Here's how the Radio Group component works in a typical application form.
-        </Typography>
+        </CriaTextBody1>
         
         <Card>
           <CardContent>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
               <div>
                 <RadioGroup 
                   name="shipping-method" 
@@ -322,7 +323,7 @@ export const RadioGroupDemo: React.FC = () => {
                   <RadioGroupItem value="express">Express Shipping (2-3 business days) - $9.99</RadioGroupItem>
                   <RadioGroupItem value="overnight">Overnight Shipping (1 business day) - $19.99</RadioGroupItem>
                 </RadioGroup>
-                <div id="shipping-help" style={{ fontSize: '14px', color: '#666', marginTop: '8px' }}>
+                <div id="shipping-help" style={{ fontSize: typography.fontSize.caption, color: colors.text.secondary, marginTop: spacing[2] }}>
                   Select your preferred shipping method. Express and overnight options are available for faster delivery.
                 </div>
               </div>
