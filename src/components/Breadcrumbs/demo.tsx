@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextBody1, CriaTextBody2, CriaTextTitle1 } from '../TextTokens';
 import { Breadcrumbs } from './index';
 import { Card, CardContent, CardHeader } from '../Card';
 import { House, Folder, ShoppingCart, Package, ArrowRight, CaretRight } from 'phosphor-react';
+import { spacing, colors, radii } from '../../tokens';
 
 export const BreadcrumbsDemo: React.FC = () => {
   const [selectedPath, setSelectedPath] = useState<string | null>(null);
@@ -69,52 +70,52 @@ export const BreadcrumbsDemo: React.FC = () => {
 
   return (
     <div style={{ padding: '0' }}>
-      <Typography variant="h1" style={{ marginBottom: '32px' }}>
+      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
         Breadcrumbs Component
-      </Typography>
+      </CriaTextHeadline1>
 
-      <Typography variant="body" style={{ marginBottom: '32px' }}>
+      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
         The Breadcrumbs component provides navigation context by showing the user's current location 
         within a hierarchical structure. It helps users understand where they are and provides 
         quick access to parent pages.
       </Typography>
 
       {/* Basic Examples */}
-      <Card style={{ marginBottom: '32px' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Basic Examples</Typography>
+          <CriaTextTitle1>Basic Examples</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             {/* Default breadcrumbs */}
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 Default Breadcrumbs
-              </Typography>
+              </CriaTextBody1>
               <Breadcrumbs items={basicItems} />
             </div>
 
             {/* With icons */}
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 With Icons
-              </Typography>
+              </CriaTextBody1>
               <Breadcrumbs items={ecommerceItems} />
             </div>
 
             {/* Custom separator */}
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 Custom Separator (Arrow)
-              </Typography>
+              </CriaTextBody1>
               <Breadcrumbs items={basicItems} separator={<ArrowRight size={14} />} />
             </div>
 
             {/* Custom separator text */}
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 Custom Separator (Text)
-              </Typography>
+              </CriaTextBody1>
               <Breadcrumbs items={basicItems} separator="→" />
             </div>
           </div>
@@ -122,33 +123,33 @@ export const BreadcrumbsDemo: React.FC = () => {
       </Card>
 
       {/* Real-world Examples */}
-      <Card style={{ marginBottom: '32px' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Real-world Examples</Typography>
+          <CriaTextTitle1>Real-world Examples</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             {/* E-commerce */}
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 E-commerce Navigation
-              </Typography>
+              </CriaTextBody1>
               <Breadcrumbs items={ecommerceItems} separator={<CaretRight size={14} />} />
             </div>
 
             {/* File system */}
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 File System Navigation
-              </Typography>
+              </CriaTextBody1>
               <Breadcrumbs items={fileSystemItems} />
             </div>
 
             {/* Admin dashboard */}
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 Admin Dashboard
-              </Typography>
+              </CriaTextBody1>
               <Breadcrumbs 
                 items={[
                   { label: 'Dashboard', href: '/admin', icon: <House size={16} /> },
@@ -163,30 +164,30 @@ export const BreadcrumbsDemo: React.FC = () => {
       </Card>
 
       {/* Truncation */}
-      <Card style={{ marginBottom: '32px' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Truncation</Typography>
+          <CriaTextTitle1>Truncation</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 Long Path (maxItems: 5)
-              </Typography>
+              </CriaTextBody1>
               <Breadcrumbs items={manyItems} maxItems={5} />
             </div>
 
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 Long Path (maxItems: 3)
-              </Typography>
+              </CriaTextBody1>
               <Breadcrumbs items={manyItems} maxItems={3} />
             </div>
 
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 Very Long Path (maxItems: 4) with Custom Separator
-              </Typography>
+              </CriaTextBody1>
               <Breadcrumbs 
                 items={manyItems} 
                 maxItems={4} 
@@ -198,77 +199,77 @@ export const BreadcrumbsDemo: React.FC = () => {
       </Card>
 
       {/* States */}
-      <Card style={{ marginBottom: '32px' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">States</Typography>
+          <CriaTextTitle1>States</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             {/* Disabled items */}
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 With Disabled Items
-              </Typography>
+              </CriaTextBody1>
               <Breadcrumbs items={itemsWithDisabled} />
-              <Typography variant="caption" style={{ marginTop: '8px', display: 'block' }}>
+              <CriaTextBody2 style={{ marginTop: spacing[2], display: 'block' }}>
                 The "Electronics" item is disabled and cannot be clicked
-              </Typography>
+              </CriaTextBody2>
             </div>
 
             {/* Click handlers */}
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 With Click Handlers
-              </Typography>
+              </CriaTextBody1>
               <Breadcrumbs items={itemsWithClickHandlers} />
               {selectedPath && (
-                <Typography variant="caption" style={{ marginTop: '8px', display: 'block' }}>
+                <CriaTextBody2 style={{ marginTop: spacing[2], display: 'block' }}>
                   Last clicked: <strong>{selectedPath}</strong>
-                </Typography>
+                </CriaTextBody2>
               )}
             </div>
 
             {/* Single item */}
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 Single Item
-              </Typography>
+              </CriaTextBody1>
               <Breadcrumbs items={[{ label: 'Home', href: '/' }]} />
             </div>
 
             {/* Empty state */}
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 Empty State
-              </Typography>
+              </CriaTextBody1>
               <Breadcrumbs items={[]} />
-              <Typography variant="caption" style={{ marginTop: '8px', display: 'block' }}>
+              <CriaTextBody2 style={{ marginTop: spacing[2], display: 'block' }}>
                 Renders an empty navigation element
-              </Typography>
+              </CriaTextBody2>
             </div>
           </div>
         </CardContent>
       </Card>
 
       {/* Customization */}
-      <Card style={{ marginBottom: '32px' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Customization</Typography>
+          <CriaTextTitle1>Customization</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             {/* Custom styling */}
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 Custom Styling
-              </Typography>
+              </CriaTextBody1>
               <Breadcrumbs 
                 items={basicItems} 
                 style={{ 
-                  padding: '12px 16px',
-                  backgroundColor: 'var(--cria-gray-50)',
-                  borderRadius: 'var(--cria-radius-md)',
-                  border: '1px solid var(--cria-gray-200)'
+                  padding: `${spacing[3]} ${spacing[4]}`,
+                  backgroundColor: colors.gray[50],
+                  borderRadius: radii.md,
+                  border: `1px solid ${colors.gray[200]}`
                 }}
                 separator={<ArrowRight size={14} />}
               />
@@ -276,9 +277,9 @@ export const BreadcrumbsDemo: React.FC = () => {
 
             {/* Custom class */}
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 Custom Class
-              </Typography>
+              </CriaTextBody1>
               <Breadcrumbs 
                 items={basicItems} 
                 className="custom-breadcrumbs"
@@ -288,9 +289,9 @@ export const BreadcrumbsDemo: React.FC = () => {
 
             {/* Custom aria-label */}
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 Custom ARIA Label
-              </Typography>
+              </CriaTextBody1>
               <Breadcrumbs 
                 items={basicItems} 
                 ariaLabel="Custom breadcrumb navigation"
@@ -302,17 +303,17 @@ export const BreadcrumbsDemo: React.FC = () => {
       </Card>
 
       {/* Complex Examples */}
-      <Card style={{ marginBottom: '32px' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Complex Examples</Typography>
+          <CriaTextTitle1>Complex Examples</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             {/* Mixed content */}
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 Mixed Content (Links, Text, Disabled)
-              </Typography>
+              </CriaTextBody1>
               <Breadcrumbs 
                 items={[
                   { label: 'Home', href: '/' },
@@ -325,9 +326,9 @@ export const BreadcrumbsDemo: React.FC = () => {
 
             {/* With complex icons */}
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 Complex Icons and Separators
-              </Typography>
+              </CriaTextBody1>
               <Breadcrumbs 
                 items={[
                   { label: 'Dashboard', href: '/', icon: <House size={16} /> },
@@ -345,13 +346,13 @@ export const BreadcrumbsDemo: React.FC = () => {
       {/* Accessibility Note */}
       <Card>
         <CardHeader>
-          <Typography variant="h3">Accessibility Features</Typography>
+          <CriaTextTitle1>Accessibility Features</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body">
+          <CriaTextBody1>
             The Breadcrumbs component includes comprehensive accessibility features:
-          </Typography>
-          <ul style={{ marginTop: '16px', paddingLeft: '24px' }}>
+          </CriaTextBody1>
+          <ul style={{ marginTop: spacing[4], paddingLeft: spacing[6] }}>
             <li><strong>Navigation landmark:</strong> Uses &lt;nav&gt; with proper aria-label</li>
             <li><strong>Ordered list structure:</strong> Uses &lt;ol&gt; for semantic breadcrumb list</li>
             <li><strong>Current page indication:</strong> Last item has aria-current="page"</li>
