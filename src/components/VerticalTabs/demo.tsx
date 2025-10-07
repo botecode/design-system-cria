@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextBody1, CriaTextTitle1, CriaTextTitle2 } from '../TextTokens';
 import { VerticalTabs } from './index';
 import { Card, CardContent, CardHeader } from '../Card';
+import { spacing } from '../../tokens';
 import { List, Gear, Info, Article } from 'phosphor-react';
 
 export const VerticalTabsDemo: React.FC = () => {
@@ -16,24 +17,24 @@ export const VerticalTabsDemo: React.FC = () => {
 
   return (
     <div className="vertical-tabs-demo">
-      <Typography variant="h2" className="demo-title">
+      <CriaTextHeadline1 className="demo-title">
         Vertical Tabs Component
-      </Typography>
+      </CriaTextHeadline1>
 
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">Basic</Typography>
+          <CriaTextTitle1>Basic</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'grid', gridTemplateColumns: '240px 1fr', gap: '16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '240px 1fr', gap: spacing[4] }}>
             <VerticalTabs
               tabs={tabs}
               activeId={active}
               onChange={setActive}
               renderPanel={(id) => (
-                <div style={{ padding: 16 }}>
-                  <Typography variant="h4">Panel: {id}</Typography>
-                  <Typography variant="body">This is the content for the {id} tab.</Typography>
+                <div style={{ padding: spacing[4] }}>
+                  <CriaTextTitle2>Panel: {id}</CriaTextTitle2>
+                  <CriaTextBody1>This is the content for the {id} tab.</CriaTextBody1>
                 </div>
               )}
             />
@@ -43,17 +44,17 @@ export const VerticalTabsDemo: React.FC = () => {
 
       <Card className="demo-section">
         <CardHeader>
-          <Typography variant="h3">Without Icons</Typography>
+          <CriaTextTitle1>Without Icons</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', gap: '16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', gap: spacing[4] }}>
             <VerticalTabs
               tabs={tabs.map(({ icon, ...rest }) => rest)}
               activeId={active}
               onChange={setActive}
               renderPanel={(id) => (
-                <div style={{ padding: 16 }}>
-                  <Typography variant="h4">Content: {id}</Typography>
+                <div style={{ padding: spacing[4] }}>
+                  <CriaTextTitle2>Content: {id}</CriaTextTitle2>
                 </div>
               )}
             />
