@@ -1,5 +1,6 @@
 import React, { forwardRef, useState, useCallback } from 'react';
 import { User } from 'phosphor-react';
+import { colors } from '../../tokens';
 
 export interface AvatarProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'> {
   /**
@@ -203,7 +204,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(({
       ref={ref}
       className={avatarClasses}
       style={{
-        backgroundColor: backgroundColor || (showInitials || showFallback ? undefined : 'var(--cria-gray-200)'),
+        backgroundColor: backgroundColor || (showInitials || showFallback ? undefined : colors.gray[200]),
         ...style,
       }}
       role={role}

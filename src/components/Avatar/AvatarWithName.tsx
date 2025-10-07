@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 import { Avatar, AvatarProps } from './Avatar';
-import Typography from '../Typography/Typography';
+import { CriaTextBody1 } from '../TextTokens';
 import { colors, spacing, radii } from '../../tokens';
 
 export interface AvatarWithNameProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'> {
@@ -183,8 +183,7 @@ export const AvatarWithName = forwardRef<HTMLDivElement, AvatarWithNameProps>(({
       />
       
       {/* Name */}
-      <Typography
-        variant="body"
+      <CriaTextBody1
         style={{
           fontSize: config.fontSize,
           fontWeight: 500,
@@ -197,7 +196,7 @@ export const AvatarWithName = forwardRef<HTMLDivElement, AvatarWithNameProps>(({
         }}
       >
         {name}
-      </Typography>
+      </CriaTextBody1>
     </div>
   );
 });

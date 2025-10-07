@@ -1,36 +1,37 @@
 import React, { useState } from 'react';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextBody1, CriaTextBody2, CriaTextTitle1 } from '../TextTokens';
 import { Avatar, AvatarUpload, AvatarWithName } from './index';
 import { Card, CardContent, CardHeader, CardFooter } from '../Card';
 import { User, UserCircle, UserMinus, UserPlus, CheckCircle, X } from 'phosphor-react';
+import { spacing, colors, radii } from '../../tokens';
 
 export const AvatarDemo: React.FC = () => {
   const [selectedAvatar, setSelectedAvatar] = useState<string | null>(null);
 
   return (
     <div style={{ padding: '0' }}>
-      <Typography variant="h1" style={{ marginBottom: '32px' }}>
+      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
         Avatar Component
-      </Typography>
+      </CriaTextHeadline1>
 
-      <Typography variant="body" style={{ marginBottom: '32px' }}>
+      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
         The Avatar component displays user profile images, initials, or icons with various sizes, 
         shapes, and status indicators. Perfect for user profiles, chat interfaces, and user lists.
       </Typography>
 
       {/* Basic Examples */}
-      <Card style={{ marginBottom: '32px' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Basic Examples</Typography>
+          <CriaTextTitle1>Basic Examples</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             {/* Image Avatar */}
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 Image Avatar
-              </Typography>
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+              </CriaTextBody1>
+              <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center' }}>
                 <Avatar
                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
                   alt="John Doe"
@@ -51,10 +52,10 @@ export const AvatarDemo: React.FC = () => {
 
             {/* Initials Avatar */}
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 Initials Avatar
-              </Typography>
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+              </CriaTextBody1>
+              <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center' }}>
                 <Avatar initials="JD" name="John Doe" size="md" />
                 <Avatar initials="JS" name="Jane Smith" size="md" />
                 <Avatar initials="MJ" name="Mike Johnson" size="md" />
@@ -64,10 +65,10 @@ export const AvatarDemo: React.FC = () => {
 
             {/* Icon Avatar */}
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 Icon Avatar
-              </Typography>
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+              </CriaTextBody1>
+              <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center' }}>
                 <Avatar icon={<User size={20} />} size="md" />
                 <Avatar icon={<UserCircle size={20} />} size="md" />
                 <Avatar icon={<UserPlus size={20} />} size="md" />
@@ -77,10 +78,10 @@ export const AvatarDemo: React.FC = () => {
 
             {/* Default Avatar */}
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 Default Avatar (no props)
-              </Typography>
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+              </CriaTextBody1>
+              <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center' }}>
                 <Avatar size="md" />
                 <Avatar size="md" />
                 <Avatar size="md" />
@@ -91,32 +92,32 @@ export const AvatarDemo: React.FC = () => {
       </Card>
 
       {/* Sizes */}
-      <Card style={{ marginBottom: '32px' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Sizes</Typography>
+          <CriaTextTitle1>Sizes</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             <div>
-              <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
                 All Size Variants
-              </Typography>
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              </CriaTextBody1>
+              <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: spacing[2] }}>
                   <Avatar initials="XS" size="sm" />
-                  <Typography variant="caption">Small</Typography>
+                  <CriaTextBody2>Small</CriaTextBody2>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: spacing[2] }}>
                   <Avatar initials="MD" size="md" />
-                  <Typography variant="caption">Medium</Typography>
+                  <CriaTextBody2>Medium</CriaTextBody2>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: spacing[2] }}>
                   <Avatar initials="LG" size="lg" />
-                  <Typography variant="caption">Large</Typography>
+                  <CriaTextBody2>Large</CriaTextBody2>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: spacing[2] }}>
                   <Avatar initials="XL" size="xl" />
-                  <Typography variant="caption">Extra Large</Typography>
+                  <CriaTextBody2>Extra Large</CriaTextBody2>
                 </div>
               </div>
             </div>
@@ -125,26 +126,26 @@ export const AvatarDemo: React.FC = () => {
       </Card>
 
       {/* Variants */}
-      <Card style={{ marginBottom: '32px' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Variants</Typography>
+          <CriaTextTitle1>Variants</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             <div>
               <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
                 Shape Variants
               </Typography>
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: spacing[2] }}>
                   <Avatar initials="C" variant="circle" size="lg" />
                   <Typography variant="caption">Circle</Typography>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: spacing[2] }}>
                   <Avatar initials="R" variant="rounded" size="lg" />
                   <Typography variant="caption">Rounded</Typography>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: spacing[2] }}>
                   <Avatar initials="S" variant="square" size="lg" />
                   <Typography variant="caption">Square</Typography>
                 </div>
@@ -155,30 +156,30 @@ export const AvatarDemo: React.FC = () => {
       </Card>
 
       {/* Status Indicators */}
-      <Card style={{ marginBottom: '32px' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Status Indicators</Typography>
+          <CriaTextTitle1>Status Indicators</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             <div>
               <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
                 Online Status
               </Typography>
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: spacing[2] }}>
                   <Avatar initials="ON" status="online" size="lg" />
                   <Typography variant="caption">Online</Typography>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: spacing[2] }}>
                   <Avatar initials="OF" status="offline" size="lg" />
                   <Typography variant="caption">Offline</Typography>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: spacing[2] }}>
                   <Avatar initials="AW" status="away" size="lg" />
                   <Typography variant="caption">Away</Typography>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: spacing[2] }}>
                   <Avatar initials="BU" status="busy" size="lg" />
                   <Typography variant="caption">Busy</Typography>
                 </div>
@@ -189,17 +190,17 @@ export const AvatarDemo: React.FC = () => {
       </Card>
 
       {/* Custom Colors */}
-      <Card style={{ marginBottom: '32px' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Custom Colors</Typography>
+          <CriaTextTitle1>Custom Colors</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             <div>
               <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
                 Background and Text Colors
               </Typography>
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+              <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center' }}>
                 <Avatar
                   initials="RB"
                   backgroundColor="#ff6b6b"
@@ -237,26 +238,26 @@ export const AvatarDemo: React.FC = () => {
       </Card>
 
       {/* States */}
-      <Card style={{ marginBottom: '32px' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">States</Typography>
+          <CriaTextTitle1>States</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             <div>
               <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
                 Different States
               </Typography>
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+              <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: spacing[2] }}>
                   <Avatar initials="LD" loading size="lg" />
                   <Typography variant="caption">Loading</Typography>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: spacing[2] }}>
                   <Avatar initials="DS" disabled size="lg" />
                   <Typography variant="caption">Disabled</Typography>
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: spacing[2] }}>
                   <Avatar 
                     initials="CL" 
                     clickable 
@@ -276,18 +277,18 @@ export const AvatarDemo: React.FC = () => {
       </Card>
 
       {/* Advanced Features */}
-      <Card style={{ marginBottom: '32px' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Advanced Features</Typography>
+          <CriaTextTitle1>Advanced Features</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             {/* Auto-generated initials */}
             <div>
               <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
                 Auto-generated Initials
               </Typography>
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+              <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center' }}>
                 <Avatar name="John Doe" size="lg" />
                 <Avatar name="Mary Jane Watson" size="lg" />
                 <Avatar email="alice.brown@example.com" size="lg" />
@@ -300,7 +301,7 @@ export const AvatarDemo: React.FC = () => {
               <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
                 Fallback Handling
               </Typography>
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+              <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center' }}>
                 <Avatar
                   src="invalid-url.jpg"
                   fallback="FB"
@@ -321,7 +322,7 @@ export const AvatarDemo: React.FC = () => {
               <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
                 Custom Icons
               </Typography>
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+              <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center' }}>
                 <Avatar icon={<CheckCircle size={20} />} size="lg" />
                 <Avatar icon={<X size={20} />} size="lg" />
                 <Avatar icon={<UserCircle size={20} />} size="lg" />
@@ -333,12 +334,12 @@ export const AvatarDemo: React.FC = () => {
       </Card>
 
       {/* Stacked Avatars */}
-      <Card style={{ marginBottom: '32px' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Stacked Avatars</Typography>
+          <CriaTextTitle1>Stacked Avatars</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             <div>
               <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
                 Overlapping Avatars
@@ -492,17 +493,17 @@ export const AvatarDemo: React.FC = () => {
       </Card>
 
       {/* Interactive Examples */}
-      <Card style={{ marginBottom: '32px' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Interactive Examples</Typography>
+          <CriaTextTitle1>Interactive Examples</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             <div>
               <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
                 Clickable Avatars
               </Typography>
-              <div style={{ display: 'flex', gap: '16px', alignItems: 'center' }}>
+              <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center' }}>
                 <Avatar
                   initials="U1"
                   clickable
@@ -570,12 +571,12 @@ export const AvatarDemo: React.FC = () => {
       </Card>
 
       {/* Avatar with Name */}
-      <Card style={{ marginBottom: '32px' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Avatar with Name</Typography>
+          <CriaTextTitle1>Avatar with Name</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             <div>
               <Typography variant="body" weight="medium" style={{ marginBottom: '12px' }}>
                 Basic Examples
@@ -737,12 +738,12 @@ export const AvatarDemo: React.FC = () => {
       </Card>
 
       {/* Avatar Upload */}
-      <Card style={{ marginBottom: '32px' }}>
+      <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Avatar Upload</Typography>
+          <CriaTextTitle1>Avatar Upload</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <div style={{ display: 'flex', gap: '24px', alignItems: 'center', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: spacing[6], alignItems: 'center', flexWrap: 'wrap' }}>
             <AvatarUpload size="lg" label="Upload profile image" />
             <AvatarUpload size="md" label="Upload avatar" />
           </div>
@@ -752,7 +753,7 @@ export const AvatarDemo: React.FC = () => {
       {/* Accessibility Note */}
       <Card>
         <CardHeader>
-          <Typography variant="h3">Accessibility Features</Typography>
+          <CriaTextTitle1>Accessibility Features</CriaTextTitle1>
         </CardHeader>
         <CardContent>
           <Typography variant="body">
