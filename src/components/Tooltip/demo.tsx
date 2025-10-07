@@ -1,27 +1,29 @@
 import React from 'react';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextBody1, CriaTextBody2, CriaTextTitle1, CriaTextTitle2 } from '../TextTokens';
 import { Button } from '../Button';
 import { Card, CardHeader, CardContent } from '../Card';
+import { Input } from '../Input';
 import Badge from '../Badge';
 import Tooltip from './Tooltip';
+import { spacing, colors, radii } from '../../tokens';
 import { Info, Question, WarningCircle, CheckCircle, XCircle, Star } from 'phosphor-react';
 
 export const TooltipDemo: React.FC = () => {
   return (
-    <div style={{ padding: '24px', maxWidth: '1000px' }}>
-      <Typography variant="title1" weight="bold" style={{ marginBottom: '32px' }}>
+    <div style={{ padding: spacing[6], maxWidth: '1000px' }}>
+      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
         Tooltip Demo
-      </Typography>
+      </CriaTextHeadline1>
 
       {/* Basic Tooltips */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Basic Tooltips
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
           Simple tooltips that appear on hover or focus. They provide contextual information without cluttering the interface.
-        </Typography>
-        <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+        </CriaTextBody1>
+        <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center', flexWrap: 'wrap' }}>
           <Tooltip content="This is a helpful tooltip">
             <Button variant="outline">Hover me</Button>
           </Tooltip>
@@ -37,14 +39,14 @@ export const TooltipDemo: React.FC = () => {
       </section>
 
       {/* Tooltip Variants */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Tooltip Variants
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
           Different visual styles for different types of information.
-        </Typography>
-        <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+        </CriaTextBody1>
+        <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center', flexWrap: 'wrap' }}>
           <Tooltip content="Default tooltip style" variant="default">
             <Button variant="outline">Default</Button>
           </Tooltip>
@@ -76,14 +78,14 @@ export const TooltipDemo: React.FC = () => {
       </section>
 
       {/* Tooltip Sizes */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Tooltip Sizes
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
           Different sizes for different content lengths and contexts.
-        </Typography>
-        <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+        </CriaTextBody1>
+        <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center', flexWrap: 'wrap' }}>
           <Tooltip content="Small tooltip" size="sm">
             <Button variant="outline" size="sm">Small</Button>
           </Tooltip>
@@ -99,14 +101,14 @@ export const TooltipDemo: React.FC = () => {
       </section>
 
       {/* Tooltip Positions */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Tooltip Positions
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
           Tooltips can be positioned in various directions to avoid viewport boundaries.
-        </Typography>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px', alignItems: 'center', justifyItems: 'center' }}>
+        </CriaTextBody1>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: spacing[6], alignItems: 'center', justifyItems: 'center' }}>
           <Tooltip content="Top tooltip" position="top">
             <Button variant="outline">Top</Button>
           </Tooltip>
@@ -134,14 +136,14 @@ export const TooltipDemo: React.FC = () => {
       </section>
 
       {/* Tooltips with Icons */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Tooltips with Icons
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
           Icons can be used as triggers for tooltips, providing visual context.
-        </Typography>
-        <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+        </CriaTextBody1>
+        <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center', flexWrap: 'wrap' }}>
           <Tooltip content="Get more information about this feature" variant="info">
             <div style={{ 
               display: 'inline-flex', 
@@ -150,9 +152,9 @@ export const TooltipDemo: React.FC = () => {
               width: '32px',
               height: '32px',
               borderRadius: '50%',
-              backgroundColor: 'var(--cria-gray-100)',
+              backgroundColor: colors.gray[100],
               cursor: 'pointer',
-              color: 'var(--cria-gray-600)'
+              color: colors.gray[600]
             }}>
               <Info size={16} />
             </div>
@@ -166,9 +168,9 @@ export const TooltipDemo: React.FC = () => {
               width: '32px',
               height: '32px',
               borderRadius: '50%',
-              backgroundColor: 'var(--cria-primary)',
+              backgroundColor: colors.primary,
               cursor: 'pointer',
-              color: 'var(--cria-white)'
+              color: colors.white
             }}>
               <Question size={16} />
             </div>
@@ -182,9 +184,9 @@ export const TooltipDemo: React.FC = () => {
               width: '32px',
               height: '32px',
               borderRadius: '50%',
-              backgroundColor: 'var(--cria-warning)',
+              backgroundColor: colors.warning,
               cursor: 'pointer',
-              color: 'var(--cria-white)'
+              color: colors.white
             }}>
               <WarningCircle size={16} />
             </div>
@@ -193,23 +195,23 @@ export const TooltipDemo: React.FC = () => {
       </section>
 
       {/* Interactive Tooltips */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Interactive Tooltips
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
           Interactive tooltips stay open when you hover over them, allowing for more complex content.
-        </Typography>
-        <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+        </CriaTextBody1>
+        <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center', flexWrap: 'wrap' }}>
           <Tooltip 
             content={
-              <div style={{ padding: '8px' }}>
-                <Typography variant="body" weight="medium" style={{ marginBottom: '4px' }}>
+              <div style={{ padding: spacing[2] }}>
+                <CriaTextBody1 style={{ marginBottom: spacing[1] }}>
                   Interactive Tooltip
-                </Typography>
-                <Typography variant="body" size="sm">
+                </CriaTextBody1>
+                <CriaTextBody2>
                   This tooltip stays open when you hover over it, allowing for interactive content.
-                </Typography>
+                </CriaTextBody2>
               </div>
             } 
             interactive
@@ -220,14 +222,14 @@ export const TooltipDemo: React.FC = () => {
           
           <Tooltip 
             content={
-              <div style={{ padding: '8px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                  <CheckCircle size={16} color="var(--cria-success)" />
-                  <Typography variant="body" weight="medium">Success</Typography>
+              <div style={{ padding: spacing[2] }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: spacing[2], marginBottom: spacing[2] }}>
+                  <CheckCircle size={16} color={colors.success} />
+                  <CriaTextBody1>Success</CriaTextBody1>
                 </div>
-                <Typography variant="body" size="sm">
+                <CriaTextBody2>
                   Your changes have been saved successfully.
-                </Typography>
+                </CriaTextBody2>
               </div>
             } 
             interactive
@@ -239,14 +241,14 @@ export const TooltipDemo: React.FC = () => {
       </section>
 
       {/* Tooltips with Delays */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Tooltips with Delays
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
           Control when tooltips appear and disappear with custom delays.
-        </Typography>
-        <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+        </CriaTextBody1>
+        <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center', flexWrap: 'wrap' }}>
           <Tooltip content="Appears after 500ms" delay={500}>
             <Button variant="outline">500ms Delay</Button>
           </Tooltip>
@@ -262,31 +264,24 @@ export const TooltipDemo: React.FC = () => {
       </section>
 
       {/* Tooltips on Different Elements */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Tooltips on Different Elements
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
           Tooltips can be attached to any focusable or hoverable element.
-        </Typography>
-        <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+        </CriaTextBody1>
+        <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center', flexWrap: 'wrap' }}>
           <Tooltip content="This is a link with a tooltip">
-            <a href="#" style={{ color: 'var(--cria-primary)', textDecoration: 'underline' }}>
+            <a href="#" style={{ color: colors.primary, textDecoration: 'underline' }}>
               Link with tooltip
             </a>
           </Tooltip>
           
           <Tooltip content="This input has a tooltip">
-            <input 
+            <Input 
               type="text" 
               placeholder="Input with tooltip"
-              style={{
-                padding: '8px 12px',
-                border: '1px solid var(--cria-gray-300)',
-                borderRadius: 'var(--cria-radius-md)',
-                fontSize: 'var(--cria-font-size-body)',
-                fontFamily: 'var(--cria-font-family)'
-              }}
             />
           </Tooltip>
           
@@ -294,10 +289,10 @@ export const TooltipDemo: React.FC = () => {
             <Badge variant="default">Badge with tooltip</Badge>
           </Tooltip>
           
-          <Tooltip content="This card has a tooltip">
-            <Card variant="elevated" style={{ width: '120px', height: '80px', cursor: 'pointer' }}>
+          <Tooltip content='This card has a tooltip'>
+            <Card variant='elevated' style={{ width: '120px', height: '80px', cursor: 'pointer' }}>
               <CardContent>
-                <Typography variant="body" size="sm">Card with tooltip</Typography>
+                <CriaTextBody2>Card with tooltip</CriaTextBody2>
               </CardContent>
             </Card>
           </Tooltip>
@@ -305,25 +300,25 @@ export const TooltipDemo: React.FC = () => {
       </section>
 
       {/* Complex Tooltip Content */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Complex Tooltip Content
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
           Tooltips can contain rich content including multiple elements and formatting.
-        </Typography>
-        <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+        </CriaTextBody1>
+        <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center', flexWrap: 'wrap' }}>
           <Tooltip 
             content={
-              <div style={{ padding: '12px', maxWidth: '200px' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
-                  <Star size={16} color="var(--cria-warning)" />
-                  <Typography variant="body" weight="medium">Premium Feature</Typography>
+              <div style={{ padding: spacing[3], maxWidth: '200px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: spacing[2], marginBottom: spacing[2] }}>
+                  <Star size={16} color={colors.warning} />
+                  <CriaTextBody1>Premium Feature</CriaTextBody1>
                 </div>
-                <Typography variant="body" size="sm" style={{ marginBottom: '8px' }}>
+                <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
                   This feature is available in our premium plan.
-                </Typography>
-                <Button variant="primary" size="sm" style={{ width: '100%' }}>
+                </CriaTextBody2>
+                <Button variant='primary' size='sm' style={{ width: '100%' }}>
                   Upgrade Now
                 </Button>
               </div>
@@ -336,33 +331,33 @@ export const TooltipDemo: React.FC = () => {
           
           <Tooltip 
             content={
-              <div style={{ padding: '12px' }}>
-                <Typography variant="body" weight="medium" style={{ marginBottom: '8px' }}>
+              <div style={{ padding: spacing[3] }}>
+                <CriaTextBody1 style={{ marginBottom: spacing[2] }}>
                   User Profile
-                </Typography>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                </CriaTextBody1>
+                <div style={{ display: 'flex', alignItems: 'center', gap: spacing[2], marginBottom: spacing[2] }}>
                   <div style={{
                     width: '32px',
                     height: '32px',
                     borderRadius: '50%',
-                    backgroundColor: 'var(--cria-primary)',
+                    backgroundColor: colors.primary,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: 'var(--cria-white)',
+                    color: colors.white,
                     fontSize: '14px',
                     fontWeight: 'bold'
                   }}>
                     JD
                   </div>
                   <div>
-                    <Typography variant="body" weight="medium">John Doe</Typography>
-                    <Typography variant="body" size="sm" color="secondary">john@example.com</Typography>
+                    <CriaTextBody1>John Doe</CriaTextBody1>
+                    <CriaTextBody2>john@example.com</CriaTextBody2>
                   </div>
                 </div>
-                <div style={{ display: 'flex', gap: '4px' }}>
-                  <Badge variant="success" size="sm">Active</Badge>
-                  <Badge variant="info" size="sm">Premium</Badge>
+                <div style={{ display: 'flex', gap: spacing[1] }}>
+                  <Badge variant='success' size='sm'>Active</Badge>
+                  <Badge variant='info' size='sm'>Premium</Badge>
                 </div>
               </div>
             }
@@ -375,36 +370,36 @@ export const TooltipDemo: React.FC = () => {
       </section>
 
       {/* Accessibility */}
-      <section style={{ marginBottom: '48px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[12] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Accessibility Features
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
           The Tooltip component includes comprehensive accessibility features:
-        </Typography>
-        <ul style={{ marginLeft: '24px', marginBottom: '16px' }}>
+        </CriaTextBody1>
+        <ul style={{ marginLeft: spacing[6], marginBottom: spacing[4] }}>
           <li>
-            <Typography variant="body">
+            <CriaTextBody1>
               <strong>Keyboard Navigation:</strong> Tooltips appear on focus and disappear on blur
-            </Typography>
+            </CriaTextBody1>
           </li>
           <li>
-            <Typography variant="body">
+            <CriaTextBody1>
               <strong>ARIA Attributes:</strong> Proper role="tooltip" and aria-describedby relationships
-            </Typography>
+            </CriaTextBody1>
           </li>
           <li>
-            <Typography variant="body">
+            <CriaTextBody1>
               <strong>Screen Reader Support:</strong> Tooltip content is announced to screen readers
-            </Typography>
+            </CriaTextBody1>
           </li>
           <li>
-            <Typography variant="body">
+            <CriaTextBody1>
               <strong>Focus Management:</strong> Tooltips don't interfere with tab order
-            </Typography>
+            </CriaTextBody1>
           </li>
         </ul>
-        <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center', flexWrap: 'wrap' }}>
           <Tooltip content="This tooltip is accessible via keyboard navigation">
             <Button variant="outline">Accessible Tooltip</Button>
           </Tooltip>
