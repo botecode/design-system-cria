@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect, useCallback, forwardRef, useImperativeHandle } from 'react';
 import { colors, spacing, radii, shadows, typography } from '../../tokens';
-import { Typography } from '../Typography';
-import { CriaTextBody1, CriaTextBody2 } from '../TextTokens';
+import { CriaTextBody1, CriaTextBody2, CriaTextTitle1 } from '../TextTokens';
 import { CaretDown, MagnifyingGlass, Check, X } from 'phosphor-react';
 
 export interface DropdownOption {
@@ -410,10 +409,10 @@ export const Dropdown = forwardRef<DropdownRef, DropdownProps>(({
       {/* Label */}
       {label && (
         <label className="cria-dropdown__label">
-          <Typography variant="body" weight="medium" color="primary">
+          <CriaTextTitle1>
             {label}
             {required && <span style={{ color: colors.error }}> *</span>}
-          </Typography>
+          </CriaTextTitle1>
         </label>
       )}
 
@@ -551,13 +550,13 @@ export const Dropdown = forwardRef<DropdownRef, DropdownProps>(({
           style={{ marginTop: spacing[1] }}
         >
           {errorMessage ? (
-            <Typography variant="bodySmall" color="error">
+            <CriaTextBody2 style={{ color: colors.error }}>
               {errorMessage}
-            </Typography>
+            </CriaTextBody2>
           ) : (
-            <Typography variant="bodySmall" color="secondary">
+            <CriaTextBody2 style={{ color: colors.text.secondary }}>
               {helperText}
-            </Typography>
+            </CriaTextBody2>
           )}
         </div>
       )}

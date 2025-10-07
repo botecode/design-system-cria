@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Typography } from '../Typography';
 import { Dropdown, DropdownOption } from './Dropdown';
 import { Card, CardHeader, CardContent } from '../Card';
 import { Button } from '../Button';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextBody1, CriaTextBody2, CriaTextTitle1 } from '../TextTokens';
+import { spacing, colors, radii } from '../../tokens';
 import { User, MapPin, Calendar, Tag, Globe, Heart, Star, Rocket } from 'phosphor-react';
 
 export const DropdownDemo: React.FC = () => {
@@ -50,28 +51,28 @@ export const DropdownDemo: React.FC = () => {
 
   return (
     <div style={{ padding: '0' }}>
-      <div style={{ marginBottom: '32px' }}>
-        <Typography variant="title1" style={{ marginBottom: '16px' }}>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline1 style={{ marginBottom: spacing[4] }}>
           Dropdown Component
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '0' }}>
+        </CriaTextHeadline1>
+        <CriaTextBody1 style={{ marginBottom: '0' }}>
           A versatile dropdown/select component with support for single and multiple selection, 
           search functionality, custom options, and comprehensive accessibility features.
-        </Typography>
+        </CriaTextBody1>
       </div>
 
       {/* Basic Dropdown */}
-      <div style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" style={{ marginBottom: '16px' }}>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Basic Dropdown
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
           Simple dropdown with placeholder text and basic selection functionality.
-        </Typography>
+        </CriaTextBody1>
         
-        <Card style={{ marginBottom: '16px' }}>
+        <Card style={{ marginBottom: spacing[4] }}>
           <CardContent>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
               <Dropdown
                 options={sizes}
                 placeholder="Select a size"
@@ -80,10 +81,10 @@ export const DropdownDemo: React.FC = () => {
                 value={selectedSize}
               />
               
-              <div style={{ padding: '12px', backgroundColor: '#f8f9fa', borderRadius: '8px' }}>
-                <Typography variant="bodySmall" style={{ fontFamily: 'monospace' }}>
+              <div style={{ padding: spacing[3], backgroundColor: colors.gray[100], borderRadius: radii.md }}>
+                <CriaTextBody2 style={{ fontFamily: 'monospace' }}>
                   Selected: {selectedSize || 'None'}
-                </Typography>
+                </CriaTextBody2>
               </div>
             </div>
           </CardContent>
@@ -93,16 +94,16 @@ export const DropdownDemo: React.FC = () => {
 
       {/* Dropdown with Icons */}
       <div style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" style={{ marginBottom: '16px' }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Dropdown with Icons
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
           Dropdown options can include icons for better visual representation.
-        </Typography>
+        </CriaTextBody1>
         
-        <Card style={{ marginBottom: '16px' }}>
+        <Card style={{ marginBottom: spacing[4] }}>
           <CardContent>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
               <Dropdown
                 options={countries}
                 placeholder="Select your country"
@@ -111,10 +112,10 @@ export const DropdownDemo: React.FC = () => {
                 value={selectedCountry}
               />
               
-              <div style={{ padding: '12px', backgroundColor: '#f8f9fa', borderRadius: '8px' }}>
-                <Typography variant="bodySmall" style={{ fontFamily: 'monospace' }}>
+              <div style={{ padding: spacing[3], backgroundColor: colors.gray[100], borderRadius: radii.md }}>
+                <CriaTextBody2 style={{ fontFamily: 'monospace' }}>
                   Selected: {selectedCountry || 'None'}
-                </Typography>
+                </CriaTextBody2>
               </div>
             </div>
           </CardContent>
@@ -124,16 +125,16 @@ export const DropdownDemo: React.FC = () => {
 
       {/* Multiple Selection */}
       <div style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" style={{ marginBottom: '16px' }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Multiple Selection
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
           Enable multiple selection to allow users to choose multiple options from the dropdown.
-        </Typography>
+        </CriaTextBody1>
         
-        <Card style={{ marginBottom: '16px' }}>
+        <Card style={{ marginBottom: spacing[4] }}>
           <CardContent>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
               <Dropdown
                 options={skills}
                 placeholder="Select your skills"
@@ -143,10 +144,10 @@ export const DropdownDemo: React.FC = () => {
                 value={selectedSkills}
               />
               
-              <div style={{ padding: '12px', backgroundColor: '#f8f9fa', borderRadius: '8px' }}>
-                <Typography variant="bodySmall" style={{ fontFamily: 'monospace' }}>
+              <div style={{ padding: spacing[3], backgroundColor: colors.gray[100], borderRadius: radii.md }}>
+                <CriaTextBody2 style={{ fontFamily: 'monospace' }}>
                   Selected: {selectedSkills.length > 0 ? selectedSkills.join(', ') : 'None'}
-                </Typography>
+                </CriaTextBody2>
               </div>
             </div>
           </CardContent>
@@ -156,16 +157,16 @@ export const DropdownDemo: React.FC = () => {
 
       {/* Searchable Dropdown */}
       <div style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" style={{ marginBottom: '16px' }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Searchable Dropdown
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
           Add search functionality to help users find options in large lists.
-        </Typography>
+        </CriaTextBody1>
         
-        <Card style={{ marginBottom: '16px' }}>
+        <Card style={{ marginBottom: spacing[4] }}>
           <CardContent>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
               <Dropdown
                 options={countries}
                 placeholder="Search and select a country"
@@ -180,16 +181,16 @@ export const DropdownDemo: React.FC = () => {
 
       {/* Different Sizes */}
       <div style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" style={{ marginBottom: '16px' }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Different Sizes
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
           Dropdowns come in three sizes: small, medium (default), and large.
-        </Typography>
+        </CriaTextBody1>
         
-        <Card style={{ marginBottom: '16px' }}>
+        <Card style={{ marginBottom: spacing[4] }}>
           <CardContent>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
               <Dropdown
                 options={sizes}
                 placeholder="Small dropdown"
@@ -218,16 +219,16 @@ export const DropdownDemo: React.FC = () => {
 
       {/* Different Variants */}
       <div style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" style={{ marginBottom: '16px' }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Different Variants
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
           Dropdowns support different visual variants to match your design needs.
-        </Typography>
+        </CriaTextBody1>
         
-        <Card style={{ marginBottom: '16px' }}>
+        <Card style={{ marginBottom: spacing[4] }}>
           <CardContent>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
               <Dropdown
                 options={sizes}
                 placeholder="Default variant"
@@ -256,16 +257,16 @@ export const DropdownDemo: React.FC = () => {
 
       {/* States */}
       <div style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" style={{ marginBottom: '16px' }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Different States
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
           Dropdowns can be in different states: normal, disabled, loading, and with error messages.
-        </Typography>
+        </CriaTextBody1>
         
-        <Card style={{ marginBottom: '16px' }}>
+        <Card style={{ marginBottom: spacing[4] }}>
           <CardContent>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
               <Dropdown
                 options={sizes}
                 placeholder="Normal dropdown"
@@ -307,16 +308,16 @@ export const DropdownDemo: React.FC = () => {
 
       {/* Form Integration */}
       <div style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" style={{ marginBottom: '16px' }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Form Integration
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '16px' }}>
+        </CriaTextHeadline2>
+        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
           Dropdowns integrate seamlessly with forms and support all standard form attributes.
-        </Typography>
+        </CriaTextBody1>
         
         <Card style={{ marginBottom: '16px' }}>
           <CardContent>
-            <form style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <form style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
               <Dropdown
                 options={countries}
                 placeholder="Select your country"
@@ -344,30 +345,30 @@ export const DropdownDemo: React.FC = () => {
 
       {/* Accessibility Features */}
       <div style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" style={{ marginBottom: '16px' }}>
+        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
           Accessibility Features
-        </Typography>
+        </CriaTextHeadline2>
         <Card>
           <CardContent>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-              <Typography variant="body">
+            <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[3] }}>
+              <CriaTextBody1>
                 • <strong>Keyboard Navigation:</strong> Full keyboard support with Arrow keys, Enter, Space, Escape, Home, and End
-              </Typography>
-              <Typography variant="body">
+              </CriaTextBody1>
+              <CriaTextBody1>
                 • <strong>Screen Reader Support:</strong> Proper ARIA attributes and semantic HTML structure
-              </Typography>
-              <Typography variant="body">
+              </CriaTextBody1>
+              <CriaTextBody1>
                 • <strong>Focus Management:</strong> Clear focus indicators and logical tab order
-              </Typography>
-              <Typography variant="body">
+              </CriaTextBody1>
+              <CriaTextBody1>
                 • <strong>Search Accessibility:</strong> Search input is properly labeled and accessible
-              </Typography>
-              <Typography variant="body">
+              </CriaTextBody1>
+              <CriaTextBody1>
                 • <strong>Error Handling:</strong> Error messages are properly associated with the dropdown
-              </Typography>
-              <Typography variant="body">
+              </CriaTextBody1>
+              <CriaTextBody1>
                 • <strong>Multiple Selection:</strong> Clear indication of selected items and selection count
-              </Typography>
+              </CriaTextBody1>
             </div>
           </CardContent>
         </Card>
