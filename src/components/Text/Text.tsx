@@ -1,5 +1,5 @@
 import React from 'react';
-import { typography } from '../../tokens';
+import { typography, colors } from '../../tokens';
 
 // Base Text component props
 export interface BaseTextProps extends React.HTMLAttributes<HTMLElement> {
@@ -48,7 +48,7 @@ export const TextBody: React.FC<TextBodyProps> = ({
     fontSize: typography.fontSize.body,
     fontWeight: typography.fontWeight.regular,
     lineHeight: typography.lineHeight.normal,
-    color: '#374151', // Default dark gray
+    color: colors.text.primary,
     margin: 0,
   };
 
@@ -90,7 +90,7 @@ export const TextContent: React.FC<TextContentProps> = ({
     fontSize: typography.fontSize.body,
     fontWeight: typography.fontWeight.regular,
     lineHeight: typography.lineHeight.relaxed, // More readable for long content
-    color: '#374151', // Default dark gray
+    color: colors.text.primary,
     margin: 0,
   };
 
@@ -132,7 +132,7 @@ export const TextContentTitle: React.FC<TextContentTitleProps> = ({
     fontSize: typography.fontSize.h3,
     fontWeight: typography.fontWeight.semiBold,
     lineHeight: typography.lineHeight.normal,
-    color: '#374151', // Default dark gray
+    color: colors.text.primary,
     margin: 0,
   };
 
@@ -174,7 +174,7 @@ export const TextContentImportant: React.FC<TextContentImportantProps> = ({
     fontSize: typography.fontSize.body,
     fontWeight: typography.fontWeight.medium,
     lineHeight: typography.lineHeight.normal,
-    color: '#374151', // Default dark gray
+    color: colors.text.primary,
     margin: 0,
   };
 

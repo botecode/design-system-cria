@@ -11,12 +11,13 @@ import {
   CriaTextAlert
 } from '../TextTokens';
 import { Card, CardContent } from '../Card';
+import { spacing, colors, radii } from '../../tokens';
 
 export const TextDemo: React.FC = () => {
   return (
     <div style={{ padding: '0' }}>
       {/* Overview */}
-      <div style={{ marginBottom: '32px' }}>
+      <div style={{ marginBottom: spacing[8] }}>
         <CriaTextHeadline2 as="h2">CriaText Tokens</CriaTextHeadline2>
         <CriaTextBody1>
           Unified text tokens mapped to design tokens for consistent typography and semantics.
@@ -24,11 +25,11 @@ export const TextDemo: React.FC = () => {
       </div>
 
       {/* CriaText Tokens Demo */}
-      <div style={{ marginBottom: '32px' }}>
+      <div style={{ marginBottom: spacing[8] }}>
         <CriaTextHeadline2 as="h2">Tokens</CriaTextHeadline2>
-        <Card style={{ marginBottom: '16px' }}>
+        <Card style={{ marginBottom: spacing[4] }}>
           <CardContent>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[3] }}>
               <CriaTextHeadline1>Main page headline (Headline1)</CriaTextHeadline1>
               <CriaTextHeadline2>Section headline (Headline2)</CriaTextHeadline2>
               <CriaTextTitle1>Content title (Title1)</CriaTextTitle1>
@@ -43,7 +44,7 @@ export const TextDemo: React.FC = () => {
 
         <Card>
           <CardContent>
-            <div style={{ background: '#3A2E52', padding: '16px', borderRadius: 8 }}>
+            <div style={{ background: colors.primary[600], padding: spacing[4], borderRadius: radii.md }}>
               <CriaTextBody1Inverse>Inverse body text for dark backgrounds</CriaTextBody1Inverse>
             </div>
           </CardContent>
@@ -51,13 +52,13 @@ export const TextDemo: React.FC = () => {
       </div>
 
       {/* Real-world Example */}
-      <div style={{ marginBottom: '32px' }}>
+      <div style={{ marginBottom: spacing[8] }}>
         <CriaTextHeadline2 as="h2">Real-world Example</CriaTextHeadline2>
         <CriaTextBody1>How CriaText tokens compose in a typical layout:</CriaTextBody1>
         
         <Card>
           <CardContent>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
               <CriaTextTitle1>Getting Started with CRIA_UI</CriaTextTitle1>
               
               <CriaTextBody1>
@@ -66,7 +67,7 @@ export const TextDemo: React.FC = () => {
               
               <CriaTextTitle2>Key Features</CriaTextTitle2>
               
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[2] }}>
                 <CriaTextBody1>• <CriaTextImportant>Accessibility-first design</CriaTextImportant> with WCAG compliance</CriaTextBody1>
                 <CriaTextBody1>• <CriaTextImportant>Consistent design tokens</CriaTextImportant> for colors, typography, and spacing</CriaTextBody1>
                 <CriaTextBody1>• <CriaTextImportant>TypeScript support</CriaTextImportant> with full type safety</CriaTextBody1>
@@ -82,11 +83,11 @@ export const TextDemo: React.FC = () => {
       </div>
 
       {/* Accessibility Notes */}
-      <div style={{ marginBottom: '32px' }}>
+      <div style={{ marginBottom: spacing[8] }}>
         <CriaTextHeadline2 as="h2">Accessibility Features</CriaTextHeadline2>
         <Card>
           <CardContent>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[3] }}>
               <CriaTextBody1>• <CriaTextImportant>Semantic HTML:</CriaTextImportant> Each CriaText* token renders appropriate HTML elements</CriaTextBody1>
               <CriaTextBody1>• <CriaTextImportant>Screen reader support:</CriaTextImportant> Proper heading hierarchy and content structure</CriaTextBody1>
               <CriaTextBody1>• <CriaTextImportant>Flexible element override:</CriaTextImportant> Use the `as` prop to change elements while preserving styles</CriaTextBody1>
