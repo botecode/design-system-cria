@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Button } from '../Button';
 import { Card } from '../Card';
-import { Typography } from '../Typography';
+import { CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { colors, spacing, radii, shadows, typography } from '../../tokens';
 import { CaretLeft, CaretRight } from 'phosphor-react';
 
@@ -94,7 +94,7 @@ export function RowOfCards<T = any>({
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          minHeight: '200px',
+          minHeight: spacing[50],
           padding: spacing[8],
           ...style,
         }}
@@ -102,9 +102,9 @@ export function RowOfCards<T = any>({
       >
         <Card variant="outlined">
           <div style={{ textAlign: 'center', padding: spacing[8] }}>
-            <Typography variant="body" color="secondary">
+            <CriaTextBody1 style={{ color: colors.text.secondary }}>
               No cards to display
-            </Typography>
+            </CriaTextBody1>
           </div>
         </Card>
       </div>
@@ -154,16 +154,15 @@ export function RowOfCards<T = any>({
       >
         {/* Page Info */}
         <div style={pageInfoStyles}>
-          <Typography 
-            variant="bodySmall" 
-            color="secondary"
+          <CriaTextBody2 
             style={{ 
               fontFamily: typography.fontFamily.primary,
-              fontSize: '14px',
+              fontSize: typography.fontSize.caption,
+              color: colors.text.secondary,
             }}
           >
             Page {currentPage} of {pagination.totalPages}
-          </Typography>
+          </CriaTextBody2>
         </div>
 
         {/* Navigation Buttons */}
@@ -200,7 +199,7 @@ export function RowOfCards<T = any>({
 // Styles using design tokens
 const gridStyles: React.CSSProperties = {
   display: 'grid',
-  gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+  gridTemplateColumns: `repeat(auto-fill, minmax(${spacing[75]}, 1fr))`,
   gap: spacing[6],
   marginBottom: spacing[8],
   padding: spacing[4],
@@ -211,7 +210,7 @@ const paginationStyles: React.CSSProperties = {
   justifyContent: 'space-between',
   alignItems: 'center',
   padding: `${spacing[4]} ${spacing[6]}`,
-  backgroundColor: colors.backgroundLight,
+  backgroundColor: colors.background.secondary,
   border: `1px solid ${colors.border.light}`,
   borderRadius: radii.md,
   boxShadow: shadows.sm,
@@ -228,7 +227,7 @@ const navButtonsStyles: React.CSSProperties = {
 };
 
 const navButtonStyles: React.CSSProperties = {
-  minWidth: '100px',
+  minWidth: spacing[25],
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
