@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Accordion, AccordionItem, AccordionHeader, AccordionContent } from './Accordion';
 import { Button } from '../Button';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextBody1, CriaTextBody2, CriaTextTitle1, CriaTextTitle2 } from '../TextTokens';
+import { spacing, colors, radii } from '../../tokens';
 
 export const AccordionDemo: React.FC = () => {
   const [controlledOpenItems, setControlledOpenItems] = useState<string[]>(['item1']);
@@ -10,11 +12,11 @@ export const AccordionDemo: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '24px', maxWidth: '800px', margin: '0 auto' }}>
-      <h1>Accordion Component Demo</h1>
+    <div style={{ padding: spacing[6], maxWidth: '800px', margin: '0 auto' }}>
+      <CriaTextHeadline1>Accordion Component Demo</CriaTextHeadline1>
       
-      <section style={{ marginBottom: '32px' }}>
-        <h2>Basic Accordion (Multiple Open)</h2>
+      <section style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline2>Basic Accordion (Multiple Open)</CriaTextHeadline2>
         <Accordion>
           <AccordionItem id="item1">
             <AccordionHeader>What is React?</AccordionHeader>
@@ -40,14 +42,14 @@ export const AccordionDemo: React.FC = () => {
         </Accordion>
       </section>
 
-      <section style={{ marginBottom: '32px' }}>
-        <h2>Single Open Mode</h2>
+      <section style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline2>Single Open Mode</CriaTextHeadline2>
         <Accordion allowMultiple={false}>
           <AccordionItem id="single1">
             <AccordionHeader>How do I install React?</AccordionHeader>
             <AccordionContent>
               You can install React using npm or yarn. The most common way is to use Create React App:
-              <pre style={{ background: '#f5f5f5', padding: '8px', borderRadius: '4px', marginTop: '8px' }}>
+              <pre style={{ background: colors.gray[100], padding: spacing[2], borderRadius: radii.sm, marginTop: spacing[2] }}>
                 npx create-react-app my-app
               </pre>
             </AccordionContent>
@@ -71,8 +73,8 @@ export const AccordionDemo: React.FC = () => {
         </Accordion>
       </section>
 
-      <section style={{ marginBottom: '32px' }}>
-        <h2>Bordered Variant</h2>
+      <section style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline2>Bordered Variant</CriaTextHeadline2>
         <Accordion variant="bordered">
           <AccordionItem id="bordered1">
             <AccordionHeader>Component Lifecycle</AccordionHeader>
@@ -91,11 +93,11 @@ export const AccordionDemo: React.FC = () => {
         </Accordion>
       </section>
 
-      <section style={{ marginBottom: '32px' }}>
-        <h2>Different Sizes</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px' }}>
+      <section style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline2>Different Sizes</CriaTextHeadline2>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: spacing[4] }}>
           <div>
-            <h3>Small</h3>
+            <CriaTextTitle1>Small</CriaTextTitle1>
             <Accordion size="sm">
               <AccordionItem id="small1">
                 <AccordionHeader>Small Accordion</AccordionHeader>
@@ -104,7 +106,7 @@ export const AccordionDemo: React.FC = () => {
             </Accordion>
           </div>
           <div>
-            <h3>Medium</h3>
+            <CriaTextTitle1>Medium</CriaTextTitle1>
             <Accordion size="md">
               <AccordionItem id="medium1">
                 <AccordionHeader>Medium Accordion</AccordionHeader>
@@ -113,7 +115,7 @@ export const AccordionDemo: React.FC = () => {
             </Accordion>
           </div>
           <div>
-            <h3>Large</h3>
+            <CriaTextTitle1>Large</CriaTextTitle1>
             <Accordion size="lg">
               <AccordionItem id="large1">
                 <AccordionHeader>Large Accordion</AccordionHeader>
@@ -124,8 +126,8 @@ export const AccordionDemo: React.FC = () => {
         </div>
       </section>
 
-      <section style={{ marginBottom: '32px' }}>
-        <h2>Default Open Items</h2>
+      <section style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline2>Default Open Items</CriaTextHeadline2>
         <Accordion defaultOpenItems={['default1', 'default3']}>
           <AccordionItem id="default1">
             <AccordionHeader>This item is open by default</AccordionHeader>
@@ -148,28 +150,28 @@ export const AccordionDemo: React.FC = () => {
         </Accordion>
       </section>
 
-      <section style={{ marginBottom: '32px' }}>
-        <h2>Controlled Mode</h2>
-        <p>Currently open items: {controlledOpenItems.join(', ') || 'none'}</p>
-        <div style={{ marginBottom: '16px' }}>
+      <section style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline2>Controlled Mode</CriaTextHeadline2>
+        <CriaTextBody1>Currently open items: {controlledOpenItems.join(', ') || 'none'}</CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
           <Button 
             onClick={() => setControlledOpenItems(['item1'])}
             size="sm"
-            style={{ marginRight: '8px' }}
+            style={{ marginRight: spacing[2] }}
           >
             Open Item 1
           </Button>
           <Button 
             onClick={() => setControlledOpenItems(['item2'])}
             size="sm"
-            style={{ marginRight: '8px' }}
+            style={{ marginRight: spacing[2] }}
           >
             Open Item 2
           </Button>
           <Button 
             onClick={() => setControlledOpenItems(['item1', 'item2'])}
             size="sm"
-            style={{ marginRight: '8px' }}
+            style={{ marginRight: spacing[2] }}
           >
             Open Both
           </Button>
@@ -197,16 +199,16 @@ export const AccordionDemo: React.FC = () => {
         </Accordion>
       </section>
 
-      <section style={{ marginBottom: '32px' }}>
-        <h2>Accessibility Features</h2>
+      <section style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline2>Accessibility Features</CriaTextHeadline2>
         <Accordion>
           <AccordionItem id="accessibility1">
             <AccordionHeader>Keyboard Navigation</AccordionHeader>
             <AccordionContent>
               <ul>
-                <li>Use <kbd>Tab</kbd> to navigate between accordion headers</li>
-                <li>Use <kbd>Enter</kbd> or <kbd>Space</kbd> to toggle items</li>
-                <li>Use <kbd>Arrow Up</kbd> and <kbd>Arrow Down</kbd> to navigate between headers</li>
+                <li><CriaTextBody1>Use <kbd>Tab</kbd> to navigate between accordion headers</CriaTextBody1></li>
+                <li><CriaTextBody1>Use <kbd>Enter</kbd> or <kbd>Space</kbd> to toggle items</CriaTextBody1></li>
+                <li><CriaTextBody1>Use <kbd>Arrow Up</kbd> and <kbd>Arrow Down</kbd> to navigate between headers</CriaTextBody1></li>
               </ul>
             </AccordionContent>
           </AccordionItem>
@@ -214,10 +216,10 @@ export const AccordionDemo: React.FC = () => {
             <AccordionHeader>Screen Reader Support</AccordionHeader>
             <AccordionContent>
               <ul>
-                <li>Headers have proper ARIA attributes (aria-expanded, aria-controls)</li>
-                <li>Content panels have role="region" and aria-labelledby</li>
-                <li>State changes are announced to screen readers</li>
-                <li>Focus management is handled properly</li>
+                <li><CriaTextBody1>Headers have proper ARIA attributes (aria-expanded, aria-controls)</CriaTextBody1></li>
+                <li><CriaTextBody1>Content panels have role="region" and aria-labelledby</CriaTextBody1></li>
+                <li><CriaTextBody1>State changes are announced to screen readers</CriaTextBody1></li>
+                <li><CriaTextBody1>Focus management is handled properly</CriaTextBody1></li>
               </ul>
             </AccordionContent>
           </AccordionItem>
