@@ -4,7 +4,7 @@ import {
   FolderOpen, 
   Gear, 
   User, 
-  Search, 
+  MagnifyingGlass as Search, 
   Bell, 
   Heart,
   Star,
@@ -23,9 +23,9 @@ import {
 import { CommandPalette, CommandItem, CommandCategory } from './CommandPalette';
 import { Button } from '../Button';
 import { Card, CardContent } from '../Card';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextTitle1, CriaTextTitle2, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { Container, Section } from '../Container';
-import { spacing } from '../../tokens';
+import { spacing, colors, radii, typography } from '../../tokens';
 
 const CommandPaletteDemo: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -300,29 +300,29 @@ const CommandPaletteDemo: React.FC = () => {
         display: 'flex',
         alignItems: 'center',
         padding: spacing[3],
-        borderRadius: '8px',
+        borderRadius: radii.md,
         cursor: 'pointer',
-        backgroundColor: isSelected ? '#3b82f6' : 'transparent',
+        backgroundColor: isSelected ? colors.primary[500] : 'transparent',
         color: isSelected ? 'white' : 'inherit',
         transition: 'all 0.2s ease',
         marginBottom: spacing[1],
       }}
     >
-      <div style={{ marginRight: spacing[3], fontSize: '20px' }}>
+      <div style={{ marginRight: spacing[3], fontSize: spacing[5] }}>
         {command.icon}
       </div>
       <div style={{ flex: 1 }}>
-        <div style={{ fontWeight: '600', marginBottom: '2px' }}>
+        <div style={{ fontWeight: typography.fontWeight.semiBold, marginBottom: spacing[1] }}>
           {command.title}
         </div>
         {command.description && (
-          <div style={{ fontSize: '12px', opacity: 0.8 }}>
+          <div style={{ fontSize: typography.fontSize.caption, opacity: 0.8 }}>
             {command.description}
           </div>
         )}
       </div>
       {command.shortcut && (
-        <div style={{ fontSize: '11px', opacity: 0.7 }}>
+        <div style={{ fontSize: typography.fontSize.caption, opacity: 0.7 }}>
           {command.shortcut}
         </div>
       )}
@@ -332,20 +332,20 @@ const CommandPaletteDemo: React.FC = () => {
   return (
     <Container>
       <Section>
-        <Typography variant="h1" style={{ marginBottom: spacing[6] }}>
+        <CriaTextHeadline1 style={{ marginBottom: spacing[6] }}>
           Command Palette
-        </Typography>
+        </CriaTextHeadline1>
         
-        <Typography variant="body" style={{ marginBottom: spacing[8], color: '#666' }}>
+        <CriaTextBody1 style={{ marginBottom: spacing[8], color: colors.text.secondary }}>
           A searchable command palette component for quick access to application commands and actions.
-        </Typography>
+        </CriaTextBody1>
 
         {/* Basic Usage */}
         <Card style={{ marginBottom: spacing[8] }}>
           <CardContent>
-            <Typography variant="h3" style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
               Basic Usage
-            </Typography>
+            </CriaTextTitle1>
             
             <div style={{ marginBottom: spacing[6] }}>
               <Button onClick={handleOpenPalette} variant="primary">
@@ -357,27 +357,27 @@ const CommandPaletteDemo: React.FC = () => {
               <div
                 style={{
                   padding: spacing[4],
-                  backgroundColor: '#f0f9ff',
-                  border: '1px solid #0ea5e9',
-                  borderRadius: '8px',
+                  backgroundColor: colors.primary[50],
+                  border: `1px solid ${colors.primary[500]}`,
+                  borderRadius: radii.md,
                   marginTop: spacing[4],
                 }}
               >
-                <Typography variant="body" style={{ color: '#0c4a6e' }}>
+                <CriaTextBody1 style={{ color: colors.primary[800] }}>
                   Last executed command: <strong>{lastExecutedCommand}</strong>
-                </Typography>
+                </CriaTextBody1>
               </div>
             )}
 
             <div style={{ marginTop: spacing[6] }}>
-              <Typography variant="body" weight="medium" style={{ marginBottom: spacing[2] }}>
+              <CriaTextBody1 style={{ marginBottom: spacing[2], fontWeight: typography.fontWeight.medium }}>
                 Try these keyboard shortcuts:
-              </Typography>
-              <ul style={{ paddingLeft: spacing[6], color: '#666' }}>
-                <li><kbd style={{ padding: '2px 6px', backgroundColor: '#f1f5f9', borderRadius: '4px', fontSize: '12px' }}>Ctrl+K</kbd> - Open Command Palette</li>
-                <li><kbd style={{ padding: '2px 6px', backgroundColor: '#f1f5f9', borderRadius: '4px', fontSize: '12px' }}>↑↓</kbd> - Navigate commands</li>
-                <li><kbd style={{ padding: '2px 6px', backgroundColor: '#f1f5f9', borderRadius: '4px', fontSize: '12px' }}>Enter</kbd> - Execute command</li>
-                <li><kbd style={{ padding: '2px 6px', backgroundColor: '#f1f5f9', borderRadius: '4px', fontSize: '12px' }}>Esc</kbd> - Close palette</li>
+              </CriaTextBody1>
+              <ul style={{ paddingLeft: spacing[6], color: colors.text.secondary }}>
+                <li><kbd style={{ padding: `${spacing[1]} ${spacing[2]}`, backgroundColor: colors.gray[50], borderRadius: radii.sm, fontSize: typography.fontSize.caption }}>Ctrl+K</kbd> - Open Command Palette</li>
+                <li><kbd style={{ padding: `${spacing[1]} ${spacing[2]}`, backgroundColor: colors.gray[50], borderRadius: radii.sm, fontSize: typography.fontSize.caption }}>↑↓</kbd> - Navigate commands</li>
+                <li><kbd style={{ padding: `${spacing[1]} ${spacing[2]}`, backgroundColor: colors.gray[50], borderRadius: radii.sm, fontSize: typography.fontSize.caption }}>Enter</kbd> - Execute command</li>
+                <li><kbd style={{ padding: `${spacing[1]} ${spacing[2]}`, backgroundColor: colors.gray[50], borderRadius: radii.sm, fontSize: typography.fontSize.caption }}>Esc</kbd> - Close palette</li>
               </ul>
             </div>
           </CardContent>
@@ -386,63 +386,63 @@ const CommandPaletteDemo: React.FC = () => {
         {/* Features */}
         <Card style={{ marginBottom: spacing[8] }}>
           <CardContent>
-            <Typography variant="h3" style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
               Features
-            </Typography>
+            </CriaTextTitle1>
             
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[6] }}>
               <div>
-                <Typography variant="h4" style={{ marginBottom: spacing[3], color: '#3b82f6' }}>
+                <CriaTextTitle2 style={{ marginBottom: spacing[3], color: colors.primary[500] }}>
                   🔍 Smart Search
-                </Typography>
-                <Typography variant="body" style={{ color: '#666' }}>
+                </CriaTextTitle2>
+                <CriaTextBody1 style={{ color: colors.text.secondary }}>
                   Search by title, description, or keywords. The palette filters results in real-time as you type.
-                </Typography>
+                </CriaTextBody1>
               </div>
               
               <div>
-                <Typography variant="h4" style={{ marginBottom: spacing[3], color: '#3b82f6' }}>
+                <CriaTextTitle2 style={{ marginBottom: spacing[3], color: colors.primary[500] }}>
                   ⌨️ Keyboard Navigation
-                </Typography>
-                <Typography variant="body" style={{ color: '#666' }}>
+                </CriaTextTitle2>
+                <CriaTextBody1 style={{ color: colors.text.secondary }}>
                   Full keyboard support with arrow keys for navigation and Enter to execute commands.
-                </Typography>
+                </CriaTextBody1>
               </div>
               
               <div>
-                <Typography variant="h4" style={{ marginBottom: spacing[3], color: '#3b82f6' }}>
+                <CriaTextTitle2 style={{ marginBottom: spacing[3], color: colors.primary[500] }}>
                   🏷️ Categories
-                </Typography>
-                <Typography variant="body" style={{ color: '#666' }}>
+                </CriaTextTitle2>
+                <CriaTextBody1 style={{ color: colors.text.secondary }}>
                   Commands are organized by categories for better discoverability and organization.
-                </Typography>
+                </CriaTextBody1>
               </div>
               
               <div>
-                <Typography variant="h4" style={{ marginBottom: spacing[3], color: '#3b82f6' }}>
+                <CriaTextTitle2 style={{ marginBottom: spacing[3], color: colors.primary[500] }}>
                   ⚡ Keyboard Shortcuts
-                </Typography>
-                <Typography variant="body" style={{ color: '#666' }}>
+                </CriaTextTitle2>
+                <CriaTextBody1 style={{ color: colors.text.secondary }}>
                   Display keyboard shortcuts for each command to help users learn and remember them.
-                </Typography>
+                </CriaTextBody1>
               </div>
               
               <div>
-                <Typography variant="h4" style={{ marginBottom: spacing[3], color: '#3b82f6' }}>
+                <CriaTextTitle2 style={{ marginBottom: spacing[3], color: colors.primary[500] }}>
                   🎨 Custom Rendering
-                </Typography>
-                <Typography variant="body" style={{ color: '#666' }}>
+                </CriaTextTitle2>
+                <CriaTextBody1 style={{ color: colors.text.secondary }}>
                   Support for custom command rendering functions to match your application's design.
-                </Typography>
+                </CriaTextBody1>
               </div>
               
               <div>
-                <Typography variant="h4" style={{ marginBottom: spacing[3], color: '#3b82f6' }}>
+                <CriaTextTitle2 style={{ marginBottom: spacing[3], color: colors.primary[500] }}>
                   ♿ Accessible
-                </Typography>
-                <Typography variant="body" style={{ color: '#666' }}>
+                </CriaTextTitle2>
+                <CriaTextBody1 style={{ color: colors.text.secondary }}>
                   Built with accessibility in mind, supporting screen readers and keyboard navigation.
-                </Typography>
+                </CriaTextBody1>
               </div>
             </div>
           </CardContent>
@@ -451,19 +451,19 @@ const CommandPaletteDemo: React.FC = () => {
         {/* Sample Commands */}
         <Card style={{ marginBottom: spacing[8] }}>
           <CardContent>
-            <Typography variant="h3" style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
               Sample Commands ({commands.length} total)
-            </Typography>
+            </CriaTextTitle1>
             
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: spacing[4] }}>
               {categories.map((category) => {
                 const categoryCommands = commands.filter(cmd => cmd.category === category.label);
                 return (
                   <div key={category.id} style={{ marginBottom: spacing[4] }}>
-                    <Typography variant="body" weight="medium" style={{ marginBottom: spacing[2], color: '#3b82f6' }}>
+                    <CriaTextBody1 style={{ marginBottom: spacing[2], color: colors.primary[500], fontWeight: typography.fontWeight.medium }}>
                       {category.icon} {category.label} ({categoryCommands.length})
-                    </Typography>
-                    <div style={{ fontSize: '12px', color: '#666', lineHeight: 1.5 }}>
+                    </CriaTextBody1>
+                    <div style={{ fontSize: typography.fontSize.caption, color: colors.text.secondary, lineHeight: 1.5 }}>
                       {categoryCommands.slice(0, 3).map(cmd => cmd.title).join(', ')}
                       {categoryCommands.length > 3 && ` +${categoryCommands.length - 3} more`}
                     </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { MagnifyingGlass as Search, CaretUp as ArrowUp, CaretDown as ArrowDown, Command } from 'phosphor-react';
 import { colors, spacing, radii, shadows, typography } from '../../tokens';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextBody1, CriaTextBody2, CriaTextCaption } from '../TextTokens';
 import { Card, CardContent } from '../Card';
 
 export interface CommandItem {
@@ -213,7 +213,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
         display: 'flex',
         alignItems: 'flex-start',
         justifyContent: 'center',
-        paddingTop: '10vh',
+        paddingTop: spacing[25],
         zIndex: 1000,
       }}
       onClick={handleOverlayClick}
@@ -227,7 +227,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
           width: '100%',
           maxWidth: '600px',
           margin: spacing[4],
-          maxHeight: '70vh',
+          maxHeight: spacing[175],
           overflow: 'hidden',
           ...style,
         }}
@@ -240,8 +240,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
               borderBottom: `1px solid ${colors.gray[200]}`,
             }}
           >
-            <Typography
-              variant="h3"
+            <CriaTextHeadline1
               style={{
                 marginBottom: spacing[4],
                 color: colors.gray[900],
@@ -249,7 +248,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
               }}
             >
               {title}
-            </Typography>
+            </CriaTextHeadline1>
 
             {/* Search Input */}
             <div
@@ -260,7 +259,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
               }}
             >
               <Search
-                size={20}
+                size={spacing[5]}
                 color={colors.gray[400]}
                 style={{
                   position: 'absolute',
@@ -287,7 +286,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                   transition: 'border-color 0.2s ease',
                 }}
                 onFocus={(e) => {
-                  e.currentTarget.style.borderColor = colors.primary;
+                  e.currentTarget.style.borderColor = colors.primary[500];
                 }}
                 onBlur={(e) => {
                   e.currentTarget.style.borderColor = colors.gray[300];
@@ -299,7 +298,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
           {/* Commands List */}
           <div
             style={{
-              maxHeight: '400px',
+              maxHeight: spacing[100],
               overflowY: 'auto',
               padding: spacing[2],
             }}
@@ -312,9 +311,9 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                   color: colors.gray[500],
                 }}
               >
-                <Typography variant="body" style={{ color: colors.gray[500] }}>
+                <CriaTextBody1 style={{ color: colors.gray[500] }}>
                   {commands.length === 0 ? 'No commands available' : 'No commands found'}
-                </Typography>
+                </CriaTextBody1>
               </div>
             ) : (
               Object.entries(groupedCommands).map(([categoryLabel, categoryCommands]) => (
@@ -328,8 +327,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                       borderRadius: radii.sm,
                     }}
                   >
-                    <Typography
-                      variant="caption"
+                    <CriaTextCaption
                       style={{
                         color: colors.gray[600],
                         fontWeight: typography.fontWeight.semiBold,
@@ -338,7 +336,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                       }}
                     >
                       {categoryLabel}
-                    </Typography>
+                    </CriaTextCaption>
                   </div>
 
                   {/* Commands in Category */}
@@ -367,8 +365,8 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                           padding: spacing[3],
                           borderRadius: radii.md,
                           cursor: 'pointer',
-                          backgroundColor: isSelected ? colors.primary + '10' : 'transparent',
-                          border: isSelected ? `1px solid ${colors.primary + '30'}` : '1px solid transparent',
+                          backgroundColor: isSelected ? colors.primary[500] + '10' : 'transparent',
+                          border: isSelected ? `1px solid ${colors.primary[500] + '30'}` : '1px solid transparent',
                           transition: 'all 0.2s ease',
                           marginBottom: spacing[1],
                         }}
@@ -387,13 +385,13 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                         {command.icon && (
                           <div
                             style={{
-                              width: '32px',
-                              height: '32px',
+                              width: spacing[8],
+                              height: spacing[8],
                               display: 'flex',
                               alignItems: 'center',
                               justifyContent: 'center',
                               marginRight: spacing[3],
-                              fontSize: '16px',
+                              fontSize: spacing[4],
                             }}
                           >
                             {command.icon}
@@ -402,8 +400,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
 
                         {/* Content */}
                         <div style={{ flex: 1, minWidth: 0 }}>
-                          <Typography
-                            variant="body"
+                          <CriaTextBody1
                             style={{
                               fontWeight: typography.fontWeight.medium,
                               color: colors.gray[900],
@@ -411,18 +408,17 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                             }}
                           >
                             {command.title}
-                          </Typography>
+                          </CriaTextBody1>
                           {command.description && (
-                            <Typography
-                              variant="caption"
+                            <CriaTextCaption
                               style={{
                                 color: colors.gray[600],
-                                fontSize: '12px',
+                                fontSize: typography.fontSize.caption,
                                 lineHeight: 1.4,
                               }}
                             >
                               {command.description}
-                            </Typography>
+                            </CriaTextCaption>
                           )}
                         </div>
 
@@ -436,12 +432,12 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                               padding: `${spacing[1]} ${spacing[2]}`,
                               backgroundColor: colors.gray[100],
                               borderRadius: radii.sm,
-                              fontSize: '11px',
+                              fontSize: typography.fontSize.caption,
                               fontFamily: typography.fontFamily.mono,
                               color: colors.gray[600],
                             }}
                           >
-                            <Command size={12} />
+                            <Command size={spacing[3]} />
                             <span>{command.shortcut}</span>
                           </div>
                         )}
@@ -466,24 +462,24 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                 display: 'flex',
                 justifyContent: 'space-between',
                 alignItems: 'center',
-                fontSize: '12px',
+                fontSize: typography.fontSize.caption,
                 color: colors.gray[500],
               }}
             >
               <div style={{ display: 'flex', gap: spacing[4] }}>
                 <span>
-                  <ArrowUp size={12} style={{ marginRight: spacing[1] }} />
-                  <ArrowDown size={12} style={{ marginRight: spacing[1] }} />
+                  <ArrowUp size={spacing[3]} style={{ marginRight: spacing[1] }} />
+                  <ArrowDown size={spacing[3]} style={{ marginRight: spacing[1] }} />
                   Navigate
                 </span>
                 <span>
-                  <kbd style={{ padding: '2px 4px', backgroundColor: colors.gray[200], borderRadius: '3px' }}>
+                  <kbd style={{ padding: `${spacing[0.5]} ${spacing[1]}`, backgroundColor: colors.gray[200], borderRadius: radii.xs }}>
                     Enter
                   </kbd>
                   {' '}Select
                 </span>
                 <span>
-                  <kbd style={{ padding: '2px 4px', backgroundColor: colors.gray[200], borderRadius: '3px' }}>
+                  <kbd style={{ padding: `${spacing[0.5]} ${spacing[1]}`, backgroundColor: colors.gray[200], borderRadius: radii.xs }}>
                     Esc
                   </kbd>
                   {' '}Close
