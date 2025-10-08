@@ -1,7 +1,6 @@
 import React from 'react';
 import { CriaTextHeadline1, CriaTextTitle1, CriaTextBody1 } from '../../../components/TextTokens';
 import { Card, CardContent } from '../../../components/Card';
-import { Grid, Row, Column } from '../../../components/Grid';
 import { PieChart, DonutChart, BarChart, StackedBarChart, RadialProgressChart } from '../../../components/Charts';
 import { insightsMockData, onboardingLabels } from '../mock/insights';
 
@@ -108,151 +107,120 @@ const Insights: React.FC = () => {
       </div>
 
       {/* Overview Cards */}
-      <Grid>
-        <Row style={{ marginBottom: '32px' }}>
-          <Column span={{ sm: 12, md: 6, lg: 3 }}>
-            <Card>
-              <CardContent>
-                <CriaTextTitle1 style={{ fontSize: '24px', color: 'var(--cria-primary)', marginBottom: '8px' }}>
-                  {totalUsers}
-                </CriaTextTitle1>
-                <CriaTextBody1 style={{ color: 'var(--cria-text-secondary)' }}>
-                  Total de Alunos
-                </CriaTextBody1>
-              </CardContent>
-            </Card>
-          </Column>
-          <Column span={{ sm: 12, md: 6, lg: 3 }}>
-            <Card>
-              <CardContent>
-                <CriaTextTitle1 style={{ fontSize: '24px', color: 'var(--cria-success)', marginBottom: '8px' }}>
-                  {completedOnboarding}
-                </CriaTextTitle1>
-                <CriaTextBody1 style={{ color: 'var(--cria-text-secondary)' }}>
-                  Onboarding Completo
-                </CriaTextBody1>
-              </CardContent>
-            </Card>
-          </Column>
-          <Column span={{ sm: 12, md: 6, lg: 3 }}>
-            <Card>
-              <CardContent>
-                <CriaTextTitle1 style={{ fontSize: '24px', color: 'var(--cria-warning)', marginBottom: '8px' }}>
-                  {Math.round((completedOnboarding / totalUsers) * 100)}%
-                </CriaTextTitle1>
-                <CriaTextBody1 style={{ color: 'var(--cria-text-secondary)' }}>
-                  Taxa de Conclusão
-                </CriaTextBody1>
-              </CardContent>
-            </Card>
-          </Column>
-          <Column span={{ sm: 12, md: 6, lg: 3 }}>
-            <Card>
-              <CardContent>
-                <CriaTextTitle1 style={{ fontSize: '24px', color: 'var(--cria-info)', marginBottom: '8px' }}>
-                  {Object.keys(workAreasSummary).length}
-                </CriaTextTitle1>
-                <CriaTextBody1 style={{ color: 'var(--cria-text-secondary)' }}>
-                  Áreas de Atuação
-                </CriaTextBody1>
-              </CardContent>
-            </Card>
-          </Column>
-        </Row>
-      </Grid>
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+        gap: '16px', 
+        marginBottom: '32px' 
+      }}>
+        <Card>
+          <CardContent>
+            <CriaTextTitle1 style={{ fontSize: '24px', color: 'var(--cria-primary)', marginBottom: '8px' }}>
+              {totalUsers}
+            </CriaTextTitle1>
+            <CriaTextBody1 style={{ color: 'var(--cria-text-secondary)' }}>
+              Total de Alunos
+            </CriaTextBody1>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent>
+            <CriaTextTitle1 style={{ fontSize: '24px', color: 'var(--cria-success)', marginBottom: '8px' }}>
+              {completedOnboarding}
+            </CriaTextTitle1>
+            <CriaTextBody1 style={{ color: 'var(--cria-text-secondary)' }}>
+              Onboarding Completo
+            </CriaTextBody1>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent>
+            <CriaTextTitle1 style={{ fontSize: '24px', color: 'var(--cria-warning)', marginBottom: '8px' }}>
+              {Math.round((completedOnboarding / totalUsers) * 100)}%
+            </CriaTextTitle1>
+            <CriaTextBody1 style={{ color: 'var(--cria-text-secondary)' }}>
+              Taxa de Conclusão
+            </CriaTextBody1>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardContent>
+            <CriaTextTitle1 style={{ fontSize: '24px', color: 'var(--cria-info)', marginBottom: '8px' }}>
+              {Object.keys(workAreasSummary).length}
+            </CriaTextTitle1>
+            <CriaTextBody1 style={{ color: 'var(--cria-text-secondary)' }}>
+              Áreas de Atuação
+            </CriaTextBody1>
+          </CardContent>
+        </Card>
+      </div>
 
-      {/* Charts Grid */}
-      <Grid>
+      {/* Charts Grid - Full Width */}
+      <div style={{ 
+        display: 'grid', 
+        gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', 
+        gap: '24px' 
+      }}>
         {/* First Row - AI Experience and Intimacy */}
-        <Row style={{ marginBottom: '32px' }}>
-          <Column span={{ sm: 12, md: 6 }}>
-            <PieChart
-              title="Experiência com IA"
-              data={aiExperienceData}
-              height={400}
-            />
-          </Column>
-          <Column span={{ sm: 12, md: 6 }}>
-            <DonutChart
-              title="Intimidade com IA"
-              data={aiIntimacyData}
-              height={400}
-            />
-          </Column>
-        </Row>
+        <PieChart
+          title="Experiência com IA"
+          data={aiExperienceData}
+          height={400}
+        />
+        <DonutChart
+          title="Intimidade com IA"
+          data={aiIntimacyData}
+          height={400}
+        />
 
         {/* Second Row - Objectives and Work Areas */}
-        <Row style={{ marginBottom: '32px' }}>
-          <Column span={{ sm: 12, md: 6 }}>
-            <BarChart
-              title="Objetivos com IA"
-              data={objectivesData.map(item => ({ name: item.name, value: item.value }))}
-              height={400}
-            />
-          </Column>
-          <Column span={{ sm: 12, md: 6 }}>
-            <PieChart
-              title="Áreas de Atuação"
-              data={workAreasData}
-              height={400}
-            />
-          </Column>
-        </Row>
+        <BarChart
+          title="Objetivos com IA"
+          data={objectivesData.map(item => ({ name: item.name, value: item.value }))}
+          height={400}
+        />
+        <PieChart
+          title="Áreas de Atuação"
+          data={workAreasData}
+          height={400}
+        />
 
         {/* Third Row - Roles and Daily Tasks */}
-        <Row style={{ marginBottom: '32px' }}>
-          <Column span={{ sm: 12, md: 6 }}>
-            <DonutChart
-              title="Papéis na Empresa"
-              data={rolesData}
-              height={400}
-            />
-          </Column>
-          <Column span={{ sm: 12, md: 6 }}>
-            <BarChart
-              title="Tarefas do Dia a Dia"
-              data={dailyTasksData.map(item => ({ name: item.name, value: item.value }))}
-              height={400}
-            />
-          </Column>
-        </Row>
+        <DonutChart
+          title="Papéis na Empresa"
+          data={rolesData}
+          height={400}
+        />
+        <BarChart
+          title="Tarefas do Dia a Dia"
+          data={dailyTasksData.map(item => ({ name: item.name, value: item.value }))}
+          height={400}
+        />
 
         {/* Fourth Row - Learning Preferences and Discovery Source */}
-        <Row style={{ marginBottom: '32px' }}>
-          <Column span={{ sm: 12, md: 6 }}>
-            <PieChart
-              title="Preferências de Aprendizado"
-              data={learningPreferencesData}
-              height={400}
-            />
-          </Column>
-          <Column span={{ sm: 12, md: 6 }}>
-            <DonutChart
-              title="Canais de Descoberta"
-              data={discoverySourceData}
-              height={400}
-            />
-          </Column>
-        </Row>
+        <PieChart
+          title="Preferências de Aprendizado"
+          data={learningPreferencesData}
+          height={400}
+        />
+        <DonutChart
+          title="Canais de Descoberta"
+          data={discoverySourceData}
+          height={400}
+        />
 
         {/* Fifth Row - Department and Title Distribution */}
-        <Row style={{ marginBottom: '32px' }}>
-          <Column span={{ sm: 12, md: 6 }}>
-            <BarChart
-              title="Distribuição por Área"
-              data={departmentBarData}
-              height={400}
-            />
-          </Column>
-          <Column span={{ sm: 12, md: 6 }}>
-            <BarChart
-              title="Distribuição por Cargo"
-              data={titleBarData}
-              height={400}
-            />
-          </Column>
-        </Row>
-      </Grid>
+        <BarChart
+          title="Distribuição por Área"
+          data={departmentBarData}
+          height={400}
+        />
+        <BarChart
+          title="Distribuição por Cargo"
+          data={titleBarData}
+          height={400}
+        />
+      </div>
     </section>
   );
 };
