@@ -1,6 +1,7 @@
 import React, { forwardRef, useRef, useImperativeHandle, useCallback } from 'react';
 import { Typography } from '../Typography';
 import { Eye, EyeSlash, X, Check, WarningCircle } from 'phosphor-react';
+import './Input.css';
 
 export interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   /**

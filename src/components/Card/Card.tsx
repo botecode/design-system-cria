@@ -1,5 +1,6 @@
 import React from 'react';
 import { colors, spacing, radii, shadows } from '../../tokens';
+import './Card.css';
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
@@ -55,15 +56,8 @@ export const Card: React.FC<CardProps> = ({
     className,
   ].filter(Boolean).join(' ');
 
-  // Build inline styles
+  // Build inline styles (minimal, most styles are in CSS)
   const cardStyles: React.CSSProperties = {
-    borderRadius: radii.md,
-    overflow: 'hidden',
-    position: 'relative',
-    cursor: interactive && !disabled ? 'pointer' : 'default',
-    transition: 'all 0.2s ease-in-out',
-    ...getVariantStyles(variant as CardProps['variant']),
-    ...getSizeStyles(size as CardProps['size']),
     ...style,
   };
 
@@ -78,54 +72,6 @@ export const Card: React.FC<CardProps> = ({
   );
 };
 
-// Helper function to get variant-specific styles
-function getVariantStyles(variant: CardProps['variant']): React.CSSProperties {
-  switch (variant) {
-    case 'default':
-      return {
-        backgroundColor: colors.backgroundLight,
-        border: `1px solid ${colors.border.light}`,
-      };
-    case 'elevated':
-      return {
-        backgroundColor: colors.backgroundLight,
-        boxShadow: shadows.md,
-        border: 'none',
-      };
-    case 'outlined':
-      return {
-        backgroundColor: 'transparent',
-        border: `2px solid ${colors.border.medium}`,
-      };
-    case 'filled':
-      return {
-        backgroundColor: colors.gray[50],
-        border: 'none',
-      };
-    default:
-      return {};
-  }
-}
-
-// Helper function to get size-specific styles
-function getSizeStyles(size: CardProps['size']): React.CSSProperties {
-  switch (size) {
-    case 'sm':
-      return {
-        padding: spacing[3],
-      };
-    case 'md':
-      return {
-        padding: spacing[4],
-      };
-    case 'lg':
-      return {
-        padding: spacing[6],
-      };
-    default:
-      return {};
-  }
-}
 
 /**
  * Card Header component
@@ -146,7 +92,6 @@ export const CardHeader: React.FC<CardHeaderProps> = ({
     <div
       className={classes}
       style={{
-        marginBottom: spacing[4],
         ...style,
       }}
       {...props}
@@ -203,9 +148,6 @@ export const CardFooter: React.FC<CardFooterProps> = ({
     <div
       className={classes}
       style={{
-        marginTop: spacing[4],
-        paddingTop: spacing[4],
-        borderTop: `1px solid ${colors.border.light}`,
         ...style,
       }}
       {...props}

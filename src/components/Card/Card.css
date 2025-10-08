@@ -1,0 +1,124 @@
+/* CRIA Design System - Card Component Dark Mode Support */
+
+.cria-card {
+  border-radius: var(--cria-radius-md);
+  overflow: hidden;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+}
+
+.cria-card--interactive {
+  cursor: pointer;
+}
+
+.cria-card--interactive:hover:not(.cria-card--disabled) {
+  transform: translateY(-2px);
+  box-shadow: var(--cria-shadow-lg);
+}
+
+.cria-card--interactive:focus {
+  outline: 2px solid var(--cria-focus-ring);
+  outline-offset: 2px;
+}
+
+.cria-card--interactive:active:not(.cria-card--disabled) {
+  transform: translateY(0);
+  box-shadow: var(--cria-shadow-md);
+}
+
+.cria-card--disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Card Variants */
+.cria-card--default {
+  background-color: var(--cria-surface-primary);
+  border: 1px solid var(--cria-border-primary);
+}
+
+.cria-card--elevated {
+  background-color: var(--cria-surface-primary);
+  box-shadow: var(--cria-shadow-md);
+  border: none;
+}
+
+.cria-card--outlined {
+  background-color: transparent;
+  border: 2px solid var(--cria-border-secondary);
+}
+
+.cria-card--filled {
+  background-color: var(--cria-surface-secondary);
+  border: none;
+}
+
+/* Card Sizes */
+.cria-card--sm {
+  padding: var(--cria-spacing-3);
+}
+
+.cria-card--md {
+  padding: var(--cria-spacing-4);
+}
+
+.cria-card--lg {
+  padding: var(--cria-spacing-6);
+}
+
+/* Card Header */
+.cria-card-header {
+  margin-bottom: var(--cria-spacing-4);
+}
+
+/* Card Content */
+.cria-card-content {
+  /* Base content styles */
+}
+
+/* Card Footer */
+.cria-card-footer {
+  margin-top: var(--cria-spacing-4);
+  padding-top: var(--cria-spacing-4);
+  border-top: 1px solid var(--cria-border-primary);
+}
+
+/* Dark mode specific adjustments */
+[data-theme="dark"] .cria-card--default,
+.dark .cria-card--default {
+  background-color: var(--cria-surface-primary);
+  border-color: var(--cria-border-primary);
+}
+
+[data-theme="dark"] .cria-card--elevated,
+.dark .cria-card--elevated {
+  background-color: var(--cria-surface-primary);
+  box-shadow: var(--cria-shadow-md);
+}
+
+[data-theme="dark"] .cria-card--outlined,
+.dark .cria-card--outlined {
+  background-color: transparent;
+  border-color: var(--cria-border-secondary);
+}
+
+[data-theme="dark"] .cria-card--filled,
+.dark .cria-card--filled {
+  background-color: var(--cria-surface-secondary);
+}
+
+[data-theme="dark"] .cria-card-footer,
+.dark .cria-card-footer {
+  border-top-color: var(--cria-border-primary);
+}
+
+/* Interactive states for dark mode */
+[data-theme="dark"] .cria-card--interactive:hover:not(.cria-card--disabled),
+.dark .cria-card--interactive:hover:not(.cria-card--disabled) {
+  box-shadow: var(--cria-shadow-lg);
+}
+
+[data-theme="dark"] .cria-card--interactive:active:not(.cria-card--disabled),
+.dark .cria-card--interactive:active:not(.cria-card--disabled) {
+  box-shadow: var(--cria-shadow-md);
+}
