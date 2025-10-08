@@ -107,9 +107,9 @@ const MegaMenuDemo: React.FC = () => {
 
   return (
     <div style={{ padding: spacing[8], minHeight: '100vh' }}>
-      <CriaTextHeadline1  style={{ marginBottom: spacing[8] }}>
+      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
         MegaMenu Component
-      </CriaTextBody1>
+      </CriaTextHeadline1>
 
       <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
         Expanded top navigation component for marketing sites and dashboards with nested dropdowns, search, and CTA buttons.
