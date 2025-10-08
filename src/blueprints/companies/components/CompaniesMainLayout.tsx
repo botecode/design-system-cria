@@ -26,36 +26,51 @@ const CompaniesMainLayout: React.FC<CompaniesMainLayoutProps> = ({
       id: 'dashboard', 
       label: 'Visão Geral', 
       icon: <House size={20} />,
-      href: '#/companies/dashboard',
-      onClick: () => handleNavigation('dashboard')
+      href: '#', // Prevent default navigation
+      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        handleNavigation('dashboard');
+      }
     },
     { 
       id: 'alunos', 
       label: 'Alunos', 
       icon: <Users size={20} />,
-      href: '#/companies/alunos',
-      onClick: () => handleNavigation('alunos')
+      href: '#', // Prevent default navigation
+      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        handleNavigation('alunos');
+      }
     },
     { 
       id: 'assinaturas', 
       label: 'Assinaturas', 
       icon: <CreditCard size={20} />,
-      href: '#/companies/assinaturas',
-      onClick: () => handleNavigation('assinaturas')
+      href: '#', // Prevent default navigation
+      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        handleNavigation('assinaturas');
+      }
     },
     { 
       id: 'insights', 
       label: 'Insights', 
       icon: <ChartBar size={20} />,
-      href: '#/companies/insights',
-      onClick: () => handleNavigation('insights')
+      href: '#', // Prevent default navigation
+      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        handleNavigation('insights');
+      }
     },
     { 
       id: 'trilhas', 
       label: 'Trilhas', 
       icon: <BookOpen size={20} />,
-      href: '#/companies/trilhas',
-      onClick: () => handleNavigation('trilhas')
+      href: '#', // Prevent default navigation
+      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        handleNavigation('trilhas');
+      }
     },
   ];
 
