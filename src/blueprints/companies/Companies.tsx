@@ -7,8 +7,13 @@ import Insights from './pages/Insights';
 import Trilhas from './pages/Trilhas';
 
 type CompanyPage = 'dashboard' | 'alunos' | 'assinaturas' | 'insights' | 'trilhas';
+type SidebarTheme = 'default' | 'primary' | 'secondary';
 
-const Companies: React.FC = () => {
+interface CompaniesProps {
+  sidebarTheme?: SidebarTheme;
+}
+
+const Companies: React.FC<CompaniesProps> = ({ sidebarTheme = 'default' }) => {
   // Get initial page from URL hash, default to dashboard
   const getInitialPage = (): CompanyPage => {
     const hash = window.location.hash;
@@ -72,6 +77,7 @@ const Companies: React.FC = () => {
     <CompaniesMainLayout 
       currentPage={currentPage}
       onPageChange={handlePageChange}
+      sidebarTheme={sidebarTheme}
     >
       {renderCurrentPage()}
     </CompaniesMainLayout>

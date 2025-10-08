@@ -13,11 +13,13 @@ interface BlueprintsAppProps {
 
 type BlueprintPage = 'error-500' | 'error-404' | 'companies';
 type DeviceType = 'desktop' | 'laptop' | 'tablet' | 'mobile';
+type SidebarTheme = 'default' | 'primary' | 'secondary';
 
 const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [currentPage, setCurrentPage] = useState<BlueprintPage>('error-500');
   const [deviceType, setDeviceType] = useState<DeviceType>('desktop');
+  const [sidebarTheme, setSidebarTheme] = useState<SidebarTheme>('default');
 
   const handleBackToDesignSystem = () => {
     if (onBackToDesignSystem) {
@@ -43,12 +45,22 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
     { value: 'mobile', label: 'Mobile', icon: <DeviceMobile size={16} /> }
   ];
 
+  const sidebarThemeOptions = [
+    { value: 'default', label: 'White (Default)', icon: <Robot size={16} /> },
+    { value: 'primary', label: 'Primary', icon: <Robot size={16} /> },
+    { value: 'secondary', label: 'Secondary', icon: <Robot size={16} /> }
+  ];
+
   const handlePageChange = (value: string | string[]) => {
     setCurrentPage((Array.isArray(value) ? value[0] : value) as BlueprintPage);
   };
 
   const handleDeviceChange = (value: string | string[]) => {
     setDeviceType((Array.isArray(value) ? value[0] : value) as DeviceType);
+  };
+
+  const handleSidebarThemeChange = (value: string | string[]) => {
+    setSidebarTheme((Array.isArray(value) ? value[0] : value) as SidebarTheme);
   };
 
   const getDeviceStyles = () => {
@@ -101,7 +113,7 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
       case 'error-404':
         return <Error404 />;
       case 'companies':
-        return <Companies />;
+        return <Companies sidebarTheme={sidebarTheme} />;
       default:
         return <Error500 />;
     }
@@ -179,6 +191,17 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
               variant="outlined"
               style={{ minWidth: '140px' }}
             />
+            {currentPage === 'companies' && (
+              <Dropdown
+                options={sidebarThemeOptions}
+                value={sidebarTheme}
+                onChange={handleSidebarThemeChange}
+                placeholder="Sidebar theme"
+                size="md"
+                variant="outlined"
+                style={{ minWidth: '160px' }}
+              />
+            )}
           </div>
 
           {/* Right side - Controls */}

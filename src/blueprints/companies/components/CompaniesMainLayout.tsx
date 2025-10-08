@@ -8,12 +8,14 @@ interface CompaniesMainLayoutProps {
   children: React.ReactNode;
   currentPage?: string;
   onPageChange?: (page: string) => void;
+  sidebarTheme?: 'default' | 'primary' | 'secondary';
 }
 
 const CompaniesMainLayout: React.FC<CompaniesMainLayoutProps> = ({ 
   children, 
   currentPage = 'dashboard',
-  onPageChange
+  onPageChange,
+  sidebarTheme = 'default'
 }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const handleNavigation = (pageId: string) => {
@@ -72,7 +74,7 @@ const CompaniesMainLayout: React.FC<CompaniesMainLayoutProps> = ({
         activeRoute={currentPage}
         collapsed={isCollapsed}
         onToggle={handleToggle}
-        theme="default"
+        theme={sidebarTheme}
         title="CRIA Studio"
         style={{ 
           position: 'fixed',
