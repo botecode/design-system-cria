@@ -90,7 +90,7 @@ const Insights: React.FC = () => {
   const completedOnboarding = totalUsers; // Assuming all users completed onboarding
 
   return (
-    <section style={{ paddingBottom: '40px' }}>
+    <section style={{ padding: '24px', paddingBottom: '40px' }}>
       {/* Page Header */}
       <div style={{ marginBottom: '32px' }}>
         <CriaTextHeadline1 style={{ 
