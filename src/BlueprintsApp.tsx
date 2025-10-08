@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Typography, Button, ThemeProvider, ThemeToggle, Dropdown } from './index.ts';
 import { CriaTextHeadline1, CriaTextTitle1, CriaTextBody1 } from './components/TextTokens';
-import { ArrowLeft, Monitor, Robot, CaretDown, DeviceMobile, DeviceTablet, Desktop, Laptop, Buildings } from 'phosphor-react';
+import { ArrowLeft, Robot, CaretDown, DeviceMobile, DeviceTablet, Desktop, Laptop, Buildings } from 'phosphor-react';
 import Error500 from './pages/Error500';
 import Error404 from './pages/Error404';
 import Companies from './blueprints/companies/Companies';
@@ -11,12 +11,12 @@ interface BlueprintsAppProps {
   onBackToDesignSystem?: () => void;
 }
 
-type BlueprintPage = 'welcome' | 'error-500' | 'error-404' | 'companies';
+type BlueprintPage = 'error-500' | 'error-404' | 'companies';
 type DeviceType = 'desktop' | 'laptop' | 'tablet' | 'mobile';
 
 const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [currentPage, setCurrentPage] = useState<BlueprintPage>('welcome');
+  const [currentPage, setCurrentPage] = useState<BlueprintPage>('companies');
   const [deviceType, setDeviceType] = useState<DeviceType>('desktop');
 
   const handleBackToDesignSystem = () => {
@@ -31,7 +31,6 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
   };
 
   const pageOptions = [
-    { value: 'welcome', label: 'Welcome', icon: <Monitor size={16} /> },
     { value: 'companies', label: 'Companies Dashboard', icon: <Buildings size={16} /> },
     { value: 'error-500', label: 'Error 500', icon: <CaretDown size={16} /> },
     { value: 'error-404', label: 'Error 404', icon: <CaretDown size={16} /> }
@@ -94,155 +93,6 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
     }
   };
 
-  const renderWelcomePage = () => (
-    <div style={{ 
-      padding: deviceType === 'mobile' ? '16px 12px' : 
-              deviceType === 'tablet' ? '24px 20px' : 
-              deviceType === 'laptop' ? '28px 22px' : '32px 24px'
-    }}>
-      <div style={{ 
-        maxWidth: deviceType === 'mobile' ? '100%' : 
-                 deviceType === 'tablet' ? '100%' : 
-                 deviceType === 'laptop' ? '100%' : 
-                 deviceType === 'desktop' ? '100%' : '1200px', 
-        margin: '0 auto' 
-      }}>
-        {/* Welcome Section */}
-        <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-          <div style={{ marginBottom: '16px' }}>
-            <CriaTextHeadline1>
-              Blueprints Studio
-            </CriaTextHeadline1>
-          </div>
-          <div style={{ marginBottom: '24px' }}>
-            <CriaTextTitle1>
-              Build your website views using our design system
-            </CriaTextTitle1>
-          </div>
-          <div>
-            <CriaTextBody1>
-              Create, prototype, and build beautiful interfaces with CRIA_UI components
-            </CriaTextBody1>
-          </div>
-        </div>
-
-        {/* Quick Start Cards */}
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: deviceType === 'mobile' ? '1fr' : 
-                              deviceType === 'tablet' ? 'repeat(auto-fit, minmax(250px, 1fr))' : 
-                              deviceType === 'laptop' ? 'repeat(auto-fit, minmax(280px, 1fr))' : 
-                              'repeat(auto-fit, minmax(300px, 1fr))', 
-          gap: deviceType === 'mobile' ? '16px' : 
-               deviceType === 'tablet' ? '20px' : '24px',
-          marginBottom: deviceType === 'mobile' ? '32px' : 
-                       deviceType === 'tablet' ? '40px' : '48px'
-        }}>
-          <div style={{ 
-            padding: deviceType === 'mobile' ? '16px' : 
-                    deviceType === 'tablet' ? '20px' : 
-                    deviceType === 'laptop' ? '22px' : '24px', 
-            backgroundColor: 'var(--cria-surface-primary)', 
-            borderRadius: 'var(--cria-radius-lg)', 
-            border: '1px solid var(--cria-border-primary)',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)'
-          }}>
-            <div style={{ marginBottom: '12px' }}>
-              <CriaTextTitle1>
-                🎨 Start from Scratch
-              </CriaTextTitle1>
-            </div>
-            <div style={{ marginBottom: '16px' }}>
-              <CriaTextBody1>
-                Begin with a blank canvas and build your interface using our component library.
-              </CriaTextBody1>
-            </div>
-            <Button variant="primary" size="md">
-              Create New Blueprint
-            </Button>
-          </div>
-
-          <div style={{ 
-            padding: deviceType === 'mobile' ? '16px' : 
-                    deviceType === 'tablet' ? '20px' : 
-                    deviceType === 'laptop' ? '22px' : '24px', 
-            backgroundColor: 'var(--cria-surface-primary)', 
-            borderRadius: 'var(--cria-radius-lg)', 
-            border: '1px solid var(--cria-border-primary)',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)'
-          }}>
-            <div style={{ marginBottom: '12px' }}>
-              <CriaTextTitle1>
-                📋 Use Templates
-              </CriaTextTitle1>
-            </div>
-            <div style={{ marginBottom: '16px' }}>
-              <CriaTextBody1>
-                Start with pre-built templates for common page layouts and patterns.
-              </CriaTextBody1>
-            </div>
-            <Button variant="outline" size="md">
-              Browse Templates
-            </Button>
-          </div>
-
-          <div style={{ 
-            padding: deviceType === 'mobile' ? '16px' : 
-                    deviceType === 'tablet' ? '20px' : 
-                    deviceType === 'laptop' ? '22px' : '24px', 
-            backgroundColor: 'var(--cria-surface-primary)', 
-            borderRadius: 'var(--cria-radius-lg)', 
-            border: '1px solid var(--cria-border-primary)',
-            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.05)'
-          }}>
-            <div style={{ marginBottom: '12px' }}>
-              <CriaTextTitle1>
-                🔧 Import Existing
-              </CriaTextTitle1>
-            </div>
-            <div style={{ marginBottom: '16px' }}>
-              <CriaTextBody1>
-                Import your existing designs and convert them to use CRIA_UI components.
-              </CriaTextBody1>
-            </div>
-            <Button variant="outline" size="md">
-              Import Project
-            </Button>
-          </div>
-        </div>
-
-        {/* Recent Blueprints */}
-        <div style={{ marginBottom: '32px' }}>
-          <div style={{ marginBottom: '24px' }}>
-            <CriaTextTitle1>Recent Blueprints</CriaTextTitle1>
-          </div>
-          <div style={{ 
-            padding: '24px', 
-            backgroundColor: 'var(--cria-surface-secondary)', 
-            borderRadius: 'var(--cria-radius-lg)', 
-            border: '1px solid var(--cria-border-primary)',
-            textAlign: 'center'
-          }}>
-            <CriaTextBody1 style={{ color: 'var(--cria-text-secondary)' }}>
-              No blueprints yet. Create your first blueprint to get started!
-            </CriaTextBody1>
-          </div>
-        </div>
-
-        {/* Footer */}
-        <div style={{ 
-          textAlign: 'center', 
-          padding: '32px 0',
-          borderTop: '1px solid var(--cria-border-primary)',
-          color: 'var(--cria-text-secondary)'
-        }}>
-          <CriaTextBody1>
-            Built with ❤️ using CRIA_UI Design System
-          </CriaTextBody1>
-        </div>
-      </div>
-    </div>
-  );
 
   const renderCurrentPage = () => {
     switch (currentPage) {
@@ -252,9 +102,8 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
         return <Error500 />;
       case 'error-404':
         return <Error404 />;
-      case 'welcome':
       default:
-        return renderWelcomePage();
+        return <Companies />;
     }
   };
 
