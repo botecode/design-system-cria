@@ -7,42 +7,55 @@ import { company, currentUser } from '../mock/company';
 interface CompaniesMainLayoutProps {
   children: React.ReactNode;
   currentPage?: string;
+  onPageChange?: (page: string) => void;
 }
 
 const CompaniesMainLayout: React.FC<CompaniesMainLayoutProps> = ({ 
   children, 
-  currentPage = 'dashboard' 
+  currentPage = 'dashboard',
+  onPageChange
 }) => {
+  const handleNavigation = (pageId: string) => {
+    if (onPageChange) {
+      onPageChange(pageId);
+    }
+  };
+
   const sidebarItems = [
     { 
       id: 'dashboard', 
       label: 'Visão Geral', 
       icon: <House size={20} />,
-      href: '/companies/dashboard'
+      href: '#/companies/dashboard',
+      onClick: () => handleNavigation('dashboard')
     },
     { 
       id: 'alunos', 
       label: 'Alunos', 
       icon: <Users size={20} />,
-      href: '/companies/alunos'
+      href: '#/companies/alunos',
+      onClick: () => handleNavigation('alunos')
     },
     { 
       id: 'assinaturas', 
       label: 'Assinaturas', 
       icon: <CreditCard size={20} />,
-      href: '/companies/assinaturas'
+      href: '#/companies/assinaturas',
+      onClick: () => handleNavigation('assinaturas')
     },
     { 
       id: 'insights', 
       label: 'Insights', 
       icon: <ChartBar size={20} />,
-      href: '/companies/insights'
+      href: '#/companies/insights',
+      onClick: () => handleNavigation('insights')
     },
     { 
       id: 'trilhas', 
       label: 'Trilhas', 
       icon: <BookOpen size={20} />,
-      href: '/companies/trilhas'
+      href: '#/companies/trilhas',
+      onClick: () => handleNavigation('trilhas')
     },
   ];
 
