@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { FilterDropdown, FilterOption } from './FilterDropdown';
 import { Card, CardContent, CardHeader } from '../Card';
-import { Typography } from '../Typography';
-import { spacing } from '../../tokens';
+import { CriaTextHeadline1, CriaTextTitle1 } from '../TextTokens';
+import { spacing, colors, radii } from '../../tokens';
 
 export const FilterDropdownDemo: React.FC = () => {
   const [categoryValue, setCategoryValue] = useState<string>('');
@@ -25,15 +25,15 @@ export const FilterDropdownDemo: React.FC = () => {
 
   return (
     <div style={{ padding: spacing[8] }}>
-      <Typography variant="h1" style={{ marginBottom: spacing[8] }}>
+      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
         FilterDropdown Component
-      </Typography>
+      </CriaTextHeadline1>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[6] }}>
         {/* Basic Usage */}
         <Card>
           <CardHeader>
-            <Typography variant="h3">Basic FilterDropdown</Typography>
+            <CriaTextTitle1>Basic FilterDropdown</CriaTextTitle1>
           </CardHeader>
           <CardContent>
             <div style={{ display: 'flex', gap: spacing[4], flexDirection: 'column' }}>
@@ -59,7 +59,7 @@ export const FilterDropdownDemo: React.FC = () => {
         {/* With Default Selection */}
         <Card>
           <CardHeader>
-            <Typography variant="h3">With Default Selection</Typography>
+            <CriaTextTitle1>With Default Selection</CriaTextTitle1>
           </CardHeader>
           <CardContent>
             <FilterDropdown
@@ -74,7 +74,7 @@ export const FilterDropdownDemo: React.FC = () => {
         {/* Disabled State */}
         <Card>
           <CardHeader>
-            <Typography variant="h3">Disabled State</Typography>
+            <CriaTextTitle1>Disabled State</CriaTextTitle1>
           </CardHeader>
           <CardContent>
             <FilterDropdown
@@ -90,7 +90,7 @@ export const FilterDropdownDemo: React.FC = () => {
         {/* Custom Styling */}
         <Card>
           <CardHeader>
-            <Typography variant="h3">Custom Styling</Typography>
+            <CriaTextTitle1>Custom Styling</CriaTextTitle1>
           </CardHeader>
           <CardContent>
             <FilterDropdown
@@ -100,8 +100,8 @@ export const FilterDropdownDemo: React.FC = () => {
               onChange={() => {}}
               style={{
                 maxWidth: '200px',
-                border: '2px solid #28DDB9',
-                borderRadius: '12px',
+                border: `2px solid ${colors.accent[500]}`,
+                borderRadius: radii.lg,
               }}
             />
           </CardContent>
@@ -111,13 +111,13 @@ export const FilterDropdownDemo: React.FC = () => {
       {/* Usage Example */}
       <Card style={{ marginTop: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Usage Example</Typography>
+          <CriaTextTitle1>Usage Example</CriaTextTitle1>
         </CardHeader>
         <CardContent>
           <pre style={{ 
-            backgroundColor: '#f5f5f5', 
+            backgroundColor: colors.gray[50], 
             padding: spacing[4], 
-            borderRadius: '8px',
+            borderRadius: radii.md,
             overflow: 'auto',
             fontSize: '14px',
             lineHeight: '1.5'
