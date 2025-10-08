@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import { colors } from '../../tokens';
+import './Backgrounds.css';
 
 export interface BackgroundsProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
   /**

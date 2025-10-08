@@ -1,0 +1,282 @@
+/* CRIA Design System - Modal Component Dark Mode Support */
+
+.cria-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--cria-shadow-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease-in-out;
+}
+
+.cria-modal-overlay--visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cria-modal {
+  background-color: var(--cria-surface-primary);
+  border-radius: var(--cria-radius-lg);
+  box-shadow: var(--cria-shadow-lg);
+  max-height: 90vh;
+  max-width: 90vw;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 0.2s ease-in-out;
+}
+
+.cria-modal--visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.cria-modal--centered {
+  margin: auto;
+}
+
+.cria-modal--scrollable {
+  overflow: hidden;
+}
+
+/* Modal Sizes */
+.cria-modal--sm {
+  width: 400px;
+  max-width: 90vw;
+}
+
+.cria-modal--md {
+  width: 600px;
+  max-width: 90vw;
+}
+
+.cria-modal--lg {
+  width: 800px;
+  max-width: 90vw;
+}
+
+.cria-modal--xl {
+  width: 1000px;
+  max-width: 90vw;
+}
+
+.cria-modal--full {
+  width: 95vw;
+  height: 95vh;
+  max-width: none;
+  max-height: none;
+}
+
+/* Modal Header */
+.cria-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--cria-spacing-6);
+  border-bottom: 1px solid var(--cria-border-primary);
+  flex-shrink: 0;
+}
+
+.cria-modal__title {
+  margin: 0;
+  flex: 1;
+  color: var(--cria-text-primary);
+}
+
+.cria-modal__close-button {
+  margin-left: var(--cria-spacing-4);
+  flex-shrink: 0;
+}
+
+/* Modal Content */
+.cria-modal__content {
+  padding: var(--cria-spacing-6);
+  flex: 1;
+  overflow-y: auto;
+  color: var(--cria-text-primary);
+}
+
+.cria-modal--scrollable .cria-modal__content {
+  max-height: 60vh;
+  overflow-y: auto;
+}
+
+/* Modal Footer */
+.cria-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--cria-spacing-3);
+  padding: var(--cria-spacing-6);
+  border-top: 1px solid var(--cria-border-primary);
+  flex-shrink: 0;
+}
+
+/* Focus Management */
+.cria-modal:focus {
+  outline: none;
+}
+
+.cria-modal:focus-within {
+  outline: 2px solid var(--cria-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Animation Keyframes */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.cria-modal-overlay--visible {
+  animation: modalFadeIn 0.2s ease-out;
+}
+
+.cria-modal--visible {
+  animation: modalSlideIn 0.2s ease-out;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cria-modal--sm,
+  .cria-modal--md,
+  .cria-modal--lg,
+  .cria-modal--xl {
+    width: 95vw;
+    max-width: 95vw;
+    margin: var(--cria-spacing-4);
+  }
+  
+  .cria-modal__header,
+  .cria-modal__content,
+  .cria-modal__footer {
+    padding: var(--cria-spacing-4);
+  }
+  
+  .cria-modal--scrollable .cria-modal__content {
+    max-height: 70vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .cria-modal--sm,
+  .cria-modal--md,
+  .cria-modal--lg,
+  .cria-modal--xl {
+    width: 100vw;
+    max-width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    margin: 0;
+    border-radius: 0;
+  }
+  
+  .cria-modal__header,
+  .cria-modal__content,
+  .cria-modal__footer {
+    padding: var(--cria-spacing-3);
+  }
+}
+
+/* Dark mode specific adjustments */
+[data-theme="dark"] .cria-modal-overlay,
+.dark .cria-modal-overlay {
+  background-color: var(--cria-shadow-dark);
+}
+
+[data-theme="dark"] .cria-modal,
+.dark .cria-modal {
+  background-color: var(--cria-surface-primary);
+  box-shadow: var(--cria-shadow-lg);
+}
+
+[data-theme="dark"] .cria-modal__header,
+.dark .cria-modal__header {
+  border-bottom-color: var(--cria-border-primary);
+}
+
+[data-theme="dark"] .cria-modal__title,
+.dark .cria-modal__title {
+  color: var(--cria-text-primary);
+}
+
+[data-theme="dark"] .cria-modal__content,
+.dark .cria-modal__content {
+  color: var(--cria-text-primary);
+}
+
+[data-theme="dark"] .cria-modal__footer,
+.dark .cria-modal__footer {
+  border-top-color: var(--cria-border-primary);
+}
+
+/* Ensure proper contrast in dark mode */
+[data-theme="dark"] .cria-modal__close-button,
+.dark .cria-modal__close-button {
+  color: var(--cria-text-primary);
+}
+
+[data-theme="dark"] .cria-modal__close-button:hover,
+.dark .cria-modal__close-button:hover {
+  background-color: var(--cria-hover-overlay);
+  color: var(--cria-text-primary);
+}
+
+/* Focus states for dark mode */
+[data-theme="dark"] .cria-modal:focus-within,
+.dark .cria-modal:focus-within {
+  outline-color: var(--cria-focus-ring);
+}
+
+/* Ensure modal content is readable in dark mode */
+[data-theme="dark"] .cria-modal__content *,
+.dark .cria-modal__content * {
+  color: inherit;
+}
+
+/* Dark mode scrollbar styling */
+[data-theme="dark"] .cria-modal__content::-webkit-scrollbar,
+.dark .cria-modal__content::-webkit-scrollbar {
+  width: 8px;
+}
+
+[data-theme="dark"] .cria-modal__content::-webkit-scrollbar-track,
+.dark .cria-modal__content::-webkit-scrollbar-track {
+  background: var(--cria-surface-secondary);
+  border-radius: var(--cria-radius-sm);
+}
+
+[data-theme="dark"] .cria-modal__content::-webkit-scrollbar-thumb,
+.dark .cria-modal__content::-webkit-scrollbar-thumb {
+  background: var(--cria-border-secondary);
+  border-radius: var(--cria-radius-sm);
+}
+
+[data-theme="dark"] .cria-modal__content::-webkit-scrollbar-thumb:hover,
+.dark .cria-modal__content::-webkit-scrollbar-thumb:hover {
+  background: var(--cria-border-tertiary);
+}

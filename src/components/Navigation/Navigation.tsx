@@ -2,6 +2,7 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { House, Folder, CheckSquare, Users, ChatCircle, Gear, Question, ArrowLeft, ArrowRight, List, CaretDown, CaretRight, CaretLeft, CaretUp } from 'phosphor-react';
 import { CriaTextTitle1 } from '../TextTokens';
 import { Button } from '../Button';
+import './Navigation.css';
 
 export interface NavigationSubItem {
   /**

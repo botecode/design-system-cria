@@ -1,5 +1,6 @@
 import React from 'react';
 import { typography, TypographyVariant, colors } from '../../tokens';
+import './Typography.css';
 
 export interface TypographyProps extends React.HTMLAttributes<HTMLElement> {
   /**
@@ -104,50 +105,18 @@ export const Typography: React.FC<TypographyProps> = ({
     className,
   ].filter(Boolean).join(' ');
 
-  // Get color styles based on color variant
+  // Get color styles based on color variant (minimal, most styles are in CSS)
   const getColorStyles = (color: string): React.CSSProperties => {
-    switch (color) {
-      case 'primary':
-        return { color: colors.primary };
-      case 'primaryLight':
-        return { color: colors.primaryLight };
-      case 'content':
-        return { color: colors.text.content };
-      case 'secondary':
-        return { color: colors.secondary };
-      case 'secondaryDark':
-        return { color: colors.secondaryDark };
-      case 'disabled':
-        return { color: colors.text.disabled };
-      case 'inverse':
-        return { color: colors.white };
-      case 'success':
-        return { color: colors.success };
-      case 'warning':
-        return { color: colors.warning };
-      case 'error':
-        return { color: colors.error };
-      case 'info':
-        return { color: colors.info };
-      default:
-        return { color: colors.text.primary };
-    }
+    // Color is now handled by CSS classes, only return empty object
+    return {};
   };
 
   // Check if this is a title variant
   const isTitleVariant = variant === 'title1' || variant === 'title2' || variant === 'title3';
   
-  // Build inline styles
+  // Build inline styles (minimal, most styles are in CSS)
   const styles: React.CSSProperties = {
-    fontFamily: typography.fontFamily.primary,
-    fontSize: typography.fontSize[variant],
-    fontWeight: typography.fontWeight[weight],
-    lineHeight: typography.lineHeight[lineHeight],
-    letterSpacing: typography.letterSpacing[letterSpacing],
-    textAlign: align,
-    margin: 0,
-    // Uppercase for title variants should be handled by CSS class for consistency
-    ...getColorStyles(isTitleVariant ? 'primary' : (color || 'default')),
+    // Most styling is now handled by CSS classes
   };
 
   return (

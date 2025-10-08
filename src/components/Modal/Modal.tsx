@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useCallback } from 'react';
 import { CriaTextTitle1 } from '../TextTokens';
 import { Button } from '../Button';
 import { X } from 'phosphor-react';
+import './Modal.css';
 
 export interface ModalProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   /**

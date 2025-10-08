@@ -1,46 +1,50 @@
-/* Backgrounds Component Styles */
+/* CRIA Design System - Backgrounds Component Dark Mode Support */
+
 .backgrounds {
-  --background-bg: var(--cria-background);
-  --background-text: var(--cria-text-primary);
-  --background-border: var(--cria-border-light);
-  --background-overlay: rgba(0, 0, 0, 0.1);
-  
   position: relative;
-  display: block;
-  width: 100%;
-  min-height: 200px;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease-in-out;
 }
 
-/* Variants */
+.backgrounds__content {
+  position: relative;
+  z-index: 2;
+}
+
+.backgrounds__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Background Variants */
 .backgrounds--plain {
-  background-color: var(--background-bg);
-  color: var(--background-text);
+  background-color: var(--cria-surface-primary);
 }
 
 .backgrounds--gradient {
-  background-attachment: fixed;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .backgrounds--pattern {
-  background-attachment: fixed;
+  background-size: 20px;
   background-position: center;
   background-repeat: repeat;
 }
 
 .backgrounds--texture {
-  background-attachment: fixed;
-  background-size: cover;
+  background-size: 100%;
   background-position: center;
   background-repeat: no-repeat;
 }
 
 .backgrounds--modern {
-  background-attachment: fixed;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -48,166 +52,77 @@
 
 /* Gradient Types */
 .backgrounds--gradient-linear {
-  background-image: linear-gradient(var(--gradient-direction, to right), var(--gradient-colors));
+  background-image: linear-gradient(var(--cria-gradient-direction), var(--cria-gradient-colors));
 }
 
 .backgrounds--gradient-radial {
-  background-image: radial-gradient(circle at var(--gradient-position, center), var(--gradient-colors));
+  background-image: radial-gradient(circle at var(--cria-gradient-position), var(--cria-gradient-colors));
 }
 
 .backgrounds--gradient-conic {
-  background-image: conic-gradient(from var(--gradient-direction, 0deg), var(--gradient-colors));
-}
-
-/* Gradient Directions */
-.backgrounds--gradient-to-right {
-  --gradient-direction: to right;
-}
-
-.backgrounds--gradient-to-bottom {
-  --gradient-direction: to bottom;
-}
-
-.backgrounds--gradient-to-bottom-right {
-  --gradient-direction: to bottom right;
-}
-
-.backgrounds--gradient-to-top {
-  --gradient-direction: to top;
-}
-
-.backgrounds--gradient-to-top-right {
-  --gradient-direction: to top right;
-}
-
-.backgrounds--gradient-to-left {
-  --gradient-direction: to left;
-}
-
-.backgrounds--gradient-to-top-left {
-  --gradient-direction: to top left;
-}
-
-.backgrounds--gradient-to-bottom-left {
-  --gradient-direction: to bottom left;
-}
-
-.backgrounds--gradient-45deg {
-  --gradient-direction: 45deg;
-}
-
-.backgrounds--gradient-90deg {
-  --gradient-direction: 90deg;
-}
-
-.backgrounds--gradient-135deg {
-  --gradient-direction: 135deg;
-}
-
-.backgrounds--gradient-180deg {
-  --gradient-direction: 180deg;
-}
-
-.backgrounds--gradient-225deg {
-  --gradient-direction: 225deg;
-}
-
-.backgrounds--gradient-270deg {
-  --gradient-direction: 270deg;
-}
-
-.backgrounds--gradient-315deg {
-  --gradient-direction: 315deg;
+  background-image: conic-gradient(from var(--cria-gradient-direction), var(--cria-gradient-colors));
 }
 
 /* Pattern Types */
 .backgrounds--pattern-dots {
-  background-image: radial-gradient(circle at 1px 1px, var(--pattern-color) var(--pattern-opacity), transparent 0);
-  background-size: var(--pattern-size, 20px) var(--pattern-size, 20px);
+  background-image: radial-gradient(circle at 1px 1px, var(--cria-pattern-color) var(--cria-pattern-opacity), transparent 0);
 }
 
 .backgrounds--pattern-grid {
   background-image: 
-    linear-gradient(var(--pattern-color) var(--pattern-opacity) 1px, transparent 1px),
-    linear-gradient(90deg, var(--pattern-color) var(--pattern-opacity) 1px, transparent 1px);
-  background-size: var(--pattern-size, 20px) var(--pattern-size, 20px);
+    linear-gradient(var(--cria-pattern-color) var(--cria-pattern-opacity) 1px, transparent 1px),
+    linear-gradient(90deg, var(--cria-pattern-color) var(--cria-pattern-opacity) 1px, transparent 1px);
 }
 
 .backgrounds--pattern-lines {
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 2px,
-    var(--pattern-color) var(--pattern-opacity) 2px,
-    var(--pattern-color) var(--pattern-opacity) 4px
-  );
-  background-size: var(--pattern-size, 20px) var(--pattern-size, 20px);
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 2px, var(--cria-pattern-color) var(--cria-pattern-opacity) 2px, var(--cria-pattern-color) var(--cria-pattern-opacity) 4px);
 }
 
 .backgrounds--pattern-waves {
-  background-image: radial-gradient(
-    ellipse at center,
-    var(--pattern-color) var(--pattern-opacity) 0%,
-    transparent 70%
-  );
-  background-size: var(--pattern-size, 40px) var(--pattern-size, 40px);
+  background-image: radial-gradient(ellipse at center, var(--cria-pattern-color) var(--cria-pattern-opacity) 0%, transparent 70%);
 }
 
 .backgrounds--pattern-geometric {
-  background-image: conic-gradient(
-    from 0deg at 50% 50%,
-    var(--pattern-color) var(--pattern-opacity) 0deg,
-    transparent 60deg,
-    var(--pattern-color) var(--pattern-opacity) 120deg,
-    transparent 180deg,
-    var(--pattern-color) var(--pattern-opacity) 240deg,
-    transparent 300deg
-  );
-  background-size: var(--pattern-size, 60px) var(--pattern-size, 60px);
+  background-image: conic-gradient(from 0deg at 50% 50%, var(--cria-pattern-color) var(--cria-pattern-opacity) 0deg, transparent 60deg, var(--cria-pattern-color) var(--cria-pattern-opacity) 120deg, transparent 180deg, var(--cria-pattern-color) var(--cria-pattern-opacity) 240deg, transparent 300deg);
 }
 
 /* Texture Types */
 .backgrounds--texture-paper {
   background-image: 
-    radial-gradient(circle at 20% 50%, transparent 20%, rgba(255,255,255,var(--texture-intensity)) 21%, rgba(255,255,255,var(--texture-intensity)) 34%, transparent 35%, transparent),
-    linear-gradient(0deg, rgba(255,255,255,calc(var(--texture-intensity) * 0.5)) 50%, transparent 50%);
-  background-size: calc(100% * var(--texture-scale)) calc(100% * var(--texture-scale));
+    radial-gradient(circle at 20% 50%, transparent 20%, rgba(255,255,255,var(--cria-texture-intensity)) 21%, rgba(255,255,255,var(--cria-texture-intensity)) 34%, transparent 35%, transparent),
+    linear-gradient(0deg, rgba(255,255,255,calc(var(--cria-texture-intensity) * 0.5)) 50%, transparent 50%);
 }
 
 .backgrounds--texture-fabric {
   background-image: 
-    repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,calc(var(--texture-intensity) * 0.3)) 2px, rgba(255,255,255,calc(var(--texture-intensity) * 0.3)) 4px),
-    repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(0,0,0,calc(var(--texture-intensity) * 0.1)) 2px, rgba(0,0,0,calc(var(--texture-intensity) * 0.1)) 4px);
-  background-size: calc(100% * var(--texture-scale)) calc(100% * var(--texture-scale));
+    repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,calc(var(--cria-texture-intensity) * 0.3)) 2px, rgba(255,255,255,calc(var(--cria-texture-intensity) * 0.3)) 4px),
+    repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(0,0,0,calc(var(--cria-texture-intensity) * 0.1)) 2px, rgba(0,0,0,calc(var(--cria-texture-intensity) * 0.1)) 4px);
 }
 
 .backgrounds--texture-metal {
   background-image: 
-    linear-gradient(45deg, rgba(255,255,255,calc(var(--texture-intensity) * 0.8)) 25%, transparent 25%),
-    linear-gradient(-45deg, rgba(255,255,255,calc(var(--texture-intensity) * 0.8)) 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, rgba(255,255,255,calc(var(--texture-intensity) * 0.4)) 75%),
-    linear-gradient(-45deg, transparent 75%, rgba(255,255,255,calc(var(--texture-intensity) * 0.4)) 75%);
-  background-size: calc(100% * var(--texture-scale)) calc(100% * var(--texture-scale));
+    linear-gradient(45deg, rgba(255,255,255,calc(var(--cria-texture-intensity) * 0.8)) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(255,255,255,calc(var(--cria-texture-intensity) * 0.8)) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(255,255,255,calc(var(--cria-texture-intensity) * 0.4)) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(255,255,255,calc(var(--cria-texture-intensity) * 0.4)) 75%);
 }
 
 .backgrounds--texture-wood {
   background-image: 
-    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(139,69,19,calc(var(--texture-intensity) * 0.3)) 2px, rgba(139,69,19,calc(var(--texture-intensity) * 0.3)) 4px),
-    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(160,82,45,calc(var(--texture-intensity) * 0.2)) 2px, rgba(160,82,45,calc(var(--texture-intensity) * 0.2)) 4px);
-  background-size: calc(100% * var(--texture-scale)) calc(100% * var(--texture-scale));
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(139,69,19,calc(var(--cria-texture-intensity) * 0.3)) 2px, rgba(139,69,19,calc(var(--cria-texture-intensity) * 0.3)) 4px),
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(160,82,45,calc(var(--cria-texture-intensity) * 0.2)) 2px, rgba(160,82,45,calc(var(--cria-texture-intensity) * 0.2)) 4px);
 }
 
-/* Modern Background Types */
+/* Modern Types */
 .backgrounds--modern-radial-glow {
   background: radial-gradient(60% 120% at 50% 50%, hsla(0,0%,100%,0) 0, var(--cria-primary)50 100%);
 }
 
 .backgrounds--modern-grid-dots {
   background: 
-    linear-gradient(to right, #4f4f4f2e 1px, transparent 1px), 
-    linear-gradient(to bottom, #8080800a 1px, transparent 1px), 
+    linear-gradient(to right, #4f4f4f2e 1px, transparent 1px),
+    linear-gradient(to bottom, #8080800a 1px, transparent 1px),
     radial-gradient(circle 400px at 50% 300px, var(--cria-primary)36, #000);
-  background-size: 14px 24px, 14px 24px, 100% 100%;
 }
 
 .backgrounds--modern-mesh-gradient {
@@ -219,6 +134,7 @@
     radial-gradient(#ffffff33 1px, #00091d 1px),
     url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
   background-size: 20px 20px, 100% 100%;
+  background-repeat: repeat, no-repeat;
 }
 
 .backgrounds--modern-aurora {
@@ -238,71 +154,65 @@
 
 /* Color Schemes */
 .backgrounds--color-primary {
-  --pattern-color: var(--cria-primary);
-  --gradient-colors: var(--cria-primary), var(--cria-primary-dark);
+  --cria-gradient-colors: var(--cria-primary), var(--cria-primary-light);
+  --cria-pattern-color: var(--cria-primary);
 }
 
 .backgrounds--color-secondary {
-  --pattern-color: var(--cria-secondary);
-  --gradient-colors: var(--cria-secondary), var(--cria-secondary-dark);
+  --cria-gradient-colors: var(--cria-secondary), var(--cria-secondary-dark);
+  --cria-pattern-color: var(--cria-secondary);
 }
 
 .backgrounds--color-neutral {
-  --pattern-color: var(--cria-text-secondary);
-  --gradient-colors: var(--cria-background-light), var(--cria-background-dark);
+  --cria-gradient-colors: var(--cria-text-secondary), var(--cria-text-primary);
+  --cria-pattern-color: var(--cria-text-secondary);
 }
 
 .backgrounds--color-accent {
-  --pattern-color: var(--cria-primary-light);
-  --gradient-colors: var(--cria-primary-light), var(--cria-primary-darker);
+  --cria-gradient-colors: var(--cria-primary-light), var(--cria-primary-dark);
+  --cria-pattern-color: var(--cria-primary-light);
 }
 
 /* Sizes */
 .backgrounds--sm {
-  min-height: 100px;
-  padding: var(--cria-spacing-4);
+  min-height: 200px;
 }
 
 .backgrounds--md {
-  min-height: 200px;
-  padding: var(--cria-spacing-6);
+  min-height: 400px;
 }
 
 .backgrounds--lg {
-  min-height: 300px;
-  padding: var(--cria-spacing-8);
+  min-height: 600px;
 }
 
 .backgrounds--xl {
-  min-height: 400px;
-  padding: var(--cria-spacing-10);
+  min-height: 800px;
 }
 
 .backgrounds--full {
   min-height: 100vh;
-  padding: var(--cria-spacing-10);
 }
 
-/* Intensities */
+/* Intensity */
 .backgrounds--intensity-subtle {
-  --pattern-opacity: 0.05;
-  --texture-intensity: 0.2;
+  --cria-pattern-opacity: 0.05;
+  --cria-texture-intensity: 0.2;
 }
 
 .backgrounds--intensity-medium {
-  --pattern-opacity: 0.1;
-  --texture-intensity: 0.5;
+  --cria-pattern-opacity: 0.1;
+  --cria-texture-intensity: 0.5;
 }
 
 .backgrounds--intensity-bold {
-  --pattern-opacity: 0.2;
-  --texture-intensity: 0.8;
+  --cria-pattern-opacity: 0.2;
+  --cria-texture-intensity: 0.8;
 }
 
 /* Animation */
 .backgrounds--animated {
-  animation: backgroundShift var(--animation-duration, 3s) ease-in-out infinite;
-  animation-delay: var(--animation-delay, 0s);
+  animation: backgroundShift var(--cria-animation-duration) ease-in-out infinite;
 }
 
 @keyframes backgroundShift {
@@ -314,182 +224,95 @@
   }
 }
 
-/* Overlay */
-.backgrounds--overlay {
-  position: relative;
-}
-
-.backgrounds__overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--background-overlay);
-  opacity: var(--overlay-opacity, 0.1);
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Content */
-.backgrounds__content {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-}
-
-/* Responsive Design */
+/* Responsive */
 .backgrounds--responsive {
   background-attachment: scroll;
 }
 
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .backgrounds--responsive {
-    background-attachment: scroll;
-  }
-  
-  .backgrounds--sm {
-    min-height: 80px;
-    padding: var(--cria-spacing-2);
-  }
-  
-  .backgrounds--md {
-    min-height: 150px;
-    padding: var(--cria-spacing-4);
-  }
-  
-  .backgrounds--lg {
-    min-height: 200px;
-    padding: var(--cria-spacing-6);
-  }
-  
-  .backgrounds--xl {
-    min-height: 250px;
-    padding: var(--cria-spacing-8);
-  }
-  
-  .backgrounds--full {
-    min-height: 100vh;
-    padding: var(--cria-spacing-6);
+    background-attachment: fixed;
   }
 }
 
-@media (max-width: 480px) {
-  .backgrounds--sm {
-    min-height: 60px;
-    padding: var(--cria-spacing-2);
-  }
-  
-  .backgrounds--md {
-    min-height: 120px;
-    padding: var(--cria-spacing-2);
-  }
-  
-  .backgrounds--lg {
-    min-height: 150px;
-    padding: var(--cria-spacing-4);
-  }
-  
-  .backgrounds--xl {
-    min-height: 200px;
-    padding: var(--cria-spacing-6);
-  }
-  
-  .backgrounds--full {
-    min-height: 100vh;
-    padding: var(--cria-spacing-4);
-  }
+/* Dark mode specific adjustments */
+[data-theme="dark"] .backgrounds--plain,
+.dark .backgrounds--plain {
+  background-color: var(--cria-surface-primary);
 }
 
-/* High Contrast Mode */
-@media (prefers-contrast: high) {
-  .backgrounds--pattern {
-    --pattern-opacity: 0.3;
-  }
-  
-  .backgrounds--texture {
-    --texture-intensity: 0.8;
-  }
-  
-  .backgrounds--overlay {
-    --overlay-opacity: 0.2;
-  }
+[data-theme="dark"] .backgrounds--color-primary,
+.dark .backgrounds--color-primary {
+  --cria-gradient-colors: var(--cria-primary), var(--cria-primary-light);
+  --cria-pattern-color: var(--cria-primary);
 }
 
-/* Reduced Motion */
-@media (prefers-reduced-motion: reduce) {
-  .backgrounds--animated {
-    animation: none;
-  }
-  
-  .backgrounds {
-    transition: none;
-  }
+[data-theme="dark"] .backgrounds--color-secondary,
+.dark .backgrounds--color-secondary {
+  --cria-gradient-colors: var(--cria-secondary), var(--cria-secondary-dark);
+  --cria-pattern-color: var(--cria-secondary);
 }
 
-/* Print Styles */
-@media print {
-  .backgrounds--gradient,
-  .backgrounds--pattern,
-  .backgrounds--texture {
-    background: none !important;
-    background-color: var(--cria-background) !important;
-  }
-  
-  .backgrounds__overlay {
-    display: none;
-  }
+[data-theme="dark"] .backgrounds--color-neutral,
+.dark .backgrounds--color-neutral {
+  --cria-gradient-colors: var(--cria-text-secondary), var(--cria-text-primary);
+  --cria-pattern-color: var(--cria-text-secondary);
 }
 
-/* Focus Styles */
-.backgrounds:focus {
-  outline: 2px solid var(--cria-primary);
-  outline-offset: 2px;
+[data-theme="dark"] .backgrounds--color-accent,
+.dark .backgrounds--color-accent {
+  --cria-gradient-colors: var(--cria-primary-light), var(--cria-primary-dark);
+  --cria-pattern-color: var(--cria-primary-light);
 }
 
-/* Hover Effects */
-.backgrounds:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+/* Dark mode texture adjustments */
+[data-theme="dark"] .backgrounds--texture-paper,
+.dark .backgrounds--texture-paper {
+  background-image: 
+    radial-gradient(circle at 20% 50%, transparent 20%, rgba(0,0,0,var(--cria-texture-intensity)) 21%, rgba(0,0,0,var(--cria-texture-intensity)) 34%, transparent 35%, transparent),
+    linear-gradient(0deg, rgba(0,0,0,calc(var(--cria-texture-intensity) * 0.5)) 50%, transparent 50%);
 }
 
-.backgrounds--animated:hover {
-  animation-play-state: paused;
+[data-theme="dark"] .backgrounds--texture-fabric,
+.dark .backgrounds--texture-fabric {
+  background-image: 
+    repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(0,0,0,calc(var(--cria-texture-intensity) * 0.3)) 2px, rgba(0,0,0,calc(var(--cria-texture-intensity) * 0.3)) 4px),
+    repeating-linear-gradient(-45deg, transparent, transparent 2px, rgba(255,255,255,calc(var(--cria-texture-intensity) * 0.1)) 2px, rgba(255,255,255,calc(var(--cria-texture-intensity) * 0.1)) 4px);
 }
 
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-  .backgrounds--color-neutral {
-    --gradient-colors: var(--color-neutral-800), var(--color-neutral-200);
-  }
-  
-  .backgrounds--texture-paper {
-    background-image: 
-      radial-gradient(circle at 20% 50%, transparent 20%, rgba(0,0,0,var(--texture-intensity)) 21%, rgba(0,0,0,var(--texture-intensity)) 34%, transparent 35%, transparent),
-      linear-gradient(0deg, rgba(0,0,0,calc(var(--texture-intensity) * 0.5)) 50%, transparent 50%);
-  }
+[data-theme="dark"] .backgrounds--texture-metal,
+.dark .backgrounds--texture-metal {
+  background-image: 
+    linear-gradient(45deg, rgba(0,0,0,calc(var(--cria-texture-intensity) * 0.8)) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(0,0,0,calc(var(--cria-texture-intensity) * 0.8)) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(0,0,0,calc(var(--cria-texture-intensity) * 0.4)) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(0,0,0,calc(var(--cria-texture-intensity) * 0.4)) 75%);
 }
 
-/* Performance Optimizations */
-.backgrounds--gradient,
-.backgrounds--pattern,
-.backgrounds--texture {
-  will-change: background-position;
-  transform: translateZ(0);
-  backface-visibility: hidden;
+/* Dark mode modern background adjustments */
+[data-theme="dark"] .backgrounds--modern-radial-glow,
+.dark .backgrounds--modern-radial-glow {
+  background: radial-gradient(60% 120% at 50% 50%, hsla(0,0%,0%,0) 0, var(--cria-primary)50 100%);
 }
 
-/* Accessibility */
-.backgrounds[aria-hidden="true"] {
-  display: none;
+[data-theme="dark"] .backgrounds--modern-grid-dots,
+.dark .backgrounds--modern-grid-dots {
+  background: 
+    linear-gradient(to right, #4f4f4f2e 1px, transparent 1px),
+    linear-gradient(to bottom, #8080800a 1px, transparent 1px),
+    radial-gradient(circle 400px at 50% 300px, var(--cria-primary)36, var(--cria-bg-primary));
 }
 
-.backgrounds[role="region"] {
-  outline: none;
+[data-theme="dark"] .backgrounds--modern-mesh-gradient,
+.dark .backgrounds--modern-mesh-gradient {
+  background: radial-gradient(125% 125% at 50% 10%, var(--cria-bg-primary) 40%, var(--cria-primary) 100%);
 }
 
-.backgrounds[role="region"]:focus-visible {
-  outline: 2px solid var(--cria-primary);
-  outline-offset: 2px;
+[data-theme="dark"] .backgrounds--modern-noise,
+.dark .backgrounds--modern-noise {
+  background: 
+    radial-gradient(#00000033 1px, var(--cria-bg-primary) 1px),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-size: 20px 20px, 100% 100%;
+  background-repeat: repeat, no-repeat;
 }
