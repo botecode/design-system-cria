@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Typography, Button, ThemeProvider, ThemeToggle, Dropdown } from './index.ts';
 import { CriaTextHeadline1, CriaTextTitle1, CriaTextBody1 } from './components/TextTokens';
-import { ArrowLeft, Monitor, Robot, CaretDown } from 'phosphor-react';
+import { ArrowLeft, Monitor, Robot, CaretDown, DeviceMobile, DeviceTablet, Desktop, Laptop } from 'phosphor-react';
 import Error500 from './pages/Error500';
 import Error404 from './pages/Error404';
 import './fonts.css';
@@ -11,10 +11,12 @@ interface BlueprintsAppProps {
 }
 
 type BlueprintPage = 'welcome' | 'error-500' | 'error-404';
+type DeviceType = 'desktop-xl' | 'desktop' | 'laptop' | 'tablet' | 'mobile';
 
 const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [currentPage, setCurrentPage] = useState<BlueprintPage>('welcome');
+  const [deviceType, setDeviceType] = useState<DeviceType>('desktop');
 
   const handleBackToDesignSystem = () => {
     if (onBackToDesignSystem) {
@@ -33,13 +35,86 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
     { value: 'error-404', label: 'Error 404', icon: <CaretDown size={16} /> }
   ];
 
+  const deviceOptions = [
+    { value: 'desktop-xl', label: 'Desktop XL', icon: <Desktop size={16} /> },
+    { value: 'desktop', label: 'Desktop', icon: <Desktop size={16} /> },
+    { value: 'laptop', label: 'Laptop', icon: <Laptop size={16} /> },
+    { value: 'tablet', label: 'Tablet', icon: <DeviceTablet size={16} /> },
+    { value: 'mobile', label: 'Mobile', icon: <DeviceMobile size={16} /> }
+  ];
+
   const handlePageChange = (value: string) => {
     setCurrentPage(value as BlueprintPage);
   };
 
+  const handleDeviceChange = (value: string) => {
+    setDeviceType(value as DeviceType);
+  };
+
+  const getDeviceStyles = () => {
+    switch (deviceType) {
+      case 'mobile':
+        return {
+          maxWidth: '375px',
+          margin: '0 auto',
+          minHeight: '100vh',
+          backgroundColor: 'var(--cria-bg-primary)',
+          boxShadow: '0 0 20px rgba(0, 0, 0, 0.1)',
+          borderRadius: '0'
+        };
+      case 'tablet':
+        return {
+          maxWidth: '768px',
+          margin: '0 auto',
+          minHeight: '100vh',
+          backgroundColor: 'var(--cria-bg-primary)',
+          boxShadow: '0 0 20px rgba(0, 0, 0, 0.1)',
+          borderRadius: '8px'
+        };
+      case 'laptop':
+        return {
+          maxWidth: '1024px',
+          margin: '0 auto',
+          minHeight: '100vh',
+          backgroundColor: 'var(--cria-bg-primary)',
+          boxShadow: '0 0 20px rgba(0, 0, 0, 0.1)',
+          borderRadius: '8px'
+        };
+      case 'desktop':
+        return {
+          maxWidth: '1440px',
+          margin: '0 auto',
+          minHeight: '100vh',
+          backgroundColor: 'var(--cria-bg-primary)',
+          boxShadow: '0 0 20px rgba(0, 0, 0, 0.1)',
+          borderRadius: '8px'
+        };
+      case 'desktop-xl':
+      default:
+        return {
+          maxWidth: '100%',
+          margin: '0',
+          minHeight: '100vh',
+          backgroundColor: 'var(--cria-bg-primary)',
+          boxShadow: 'none',
+          borderRadius: '0'
+        };
+    }
+  };
+
   const renderWelcomePage = () => (
-    <div style={{ padding: '32px 24px' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+    <div style={{ 
+      padding: deviceType === 'mobile' ? '16px 12px' : 
+              deviceType === 'tablet' ? '24px 20px' : 
+              deviceType === 'laptop' ? '28px 22px' : '32px 24px'
+    }}>
+      <div style={{ 
+        maxWidth: deviceType === 'mobile' ? '100%' : 
+                 deviceType === 'tablet' ? '100%' : 
+                 deviceType === 'laptop' ? '100%' : 
+                 deviceType === 'desktop' ? '100%' : '1200px', 
+        margin: '0 auto' 
+      }}>
         {/* Welcome Section */}
         <div style={{ textAlign: 'center', marginBottom: '48px' }}>
           <div style={{ marginBottom: '16px' }}>
@@ -62,12 +137,19 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
         {/* Quick Start Cards */}
         <div style={{ 
           display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-          gap: '24px',
-          marginBottom: '48px'
+          gridTemplateColumns: deviceType === 'mobile' ? '1fr' : 
+                              deviceType === 'tablet' ? 'repeat(auto-fit, minmax(250px, 1fr))' : 
+                              deviceType === 'laptop' ? 'repeat(auto-fit, minmax(280px, 1fr))' : 
+                              'repeat(auto-fit, minmax(300px, 1fr))', 
+          gap: deviceType === 'mobile' ? '16px' : 
+               deviceType === 'tablet' ? '20px' : '24px',
+          marginBottom: deviceType === 'mobile' ? '32px' : 
+                       deviceType === 'tablet' ? '40px' : '48px'
         }}>
           <div style={{ 
-            padding: '24px', 
+            padding: deviceType === 'mobile' ? '16px' : 
+                    deviceType === 'tablet' ? '20px' : 
+                    deviceType === 'laptop' ? '22px' : '24px', 
             backgroundColor: 'var(--cria-surface-primary)', 
             borderRadius: 'var(--cria-radius-lg)', 
             border: '1px solid var(--cria-border-primary)',
@@ -89,7 +171,9 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
           </div>
 
           <div style={{ 
-            padding: '24px', 
+            padding: deviceType === 'mobile' ? '16px' : 
+                    deviceType === 'tablet' ? '20px' : 
+                    deviceType === 'laptop' ? '22px' : '24px', 
             backgroundColor: 'var(--cria-surface-primary)', 
             borderRadius: 'var(--cria-radius-lg)', 
             border: '1px solid var(--cria-border-primary)',
@@ -111,7 +195,9 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
           </div>
 
           <div style={{ 
-            padding: '24px', 
+            padding: deviceType === 'mobile' ? '16px' : 
+                    deviceType === 'tablet' ? '20px' : 
+                    deviceType === 'laptop' ? '22px' : '24px', 
             backgroundColor: 'var(--cria-surface-primary)', 
             borderRadius: 'var(--cria-radius-lg)', 
             border: '1px solid var(--cria-border-primary)',
@@ -230,7 +316,7 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
             </div>
           </div>
 
-          {/* Center - Page Selector */}
+          {/* Center - Page and Device Selectors */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <Dropdown
               options={pageOptions}
@@ -240,6 +326,15 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
               size="md"
               variant="outlined"
               style={{ minWidth: '160px' }}
+            />
+            <Dropdown
+              options={deviceOptions}
+              value={deviceType}
+              onChange={handleDeviceChange}
+              placeholder="Select device"
+              size="md"
+              variant="outlined"
+              style={{ minWidth: '140px' }}
             />
           </div>
 
@@ -285,9 +380,30 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
         {/* Main Content */}
         <main style={{ 
           marginTop: '64px',
-          minHeight: 'calc(100vh - 64px)'
+          minHeight: 'calc(100vh - 64px)',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'flex-start',
+          padding: deviceType === 'desktop-xl' ? '0' : '20px',
+          backgroundColor: deviceType === 'desktop-xl' ? 'transparent' : 'var(--cria-bg-secondary)',
+          position: 'relative'
         }}>
-          {renderCurrentPage()}
+          {/* Device Preview Background Overlay */}
+          {deviceType !== 'desktop-xl' && (
+            <div style={{
+              position: 'fixed',
+              top: '64px',
+              left: '0',
+              right: '0',
+              bottom: '0',
+              backgroundColor: 'var(--cria-gray-900)',
+              zIndex: -1
+            }} />
+          )}
+          
+          <div style={getDeviceStyles()}>
+            {renderCurrentPage()}
+          </div>
         </main>
       </div>
     </ThemeProvider>
