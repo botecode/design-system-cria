@@ -154,7 +154,7 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
             }} />
             
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <Monitor size={24} color="var(--cria-primary)" />
+              <Robot size={24} color="var(--cria-primary)" />
               <CriaTextTitle1>CR_IA Blueprints</CriaTextTitle1>
             </div>
           </div>
