@@ -119,9 +119,9 @@ const MegaMenuDemo: React.FC = () => {
       {clickedItem && (
         <Card style={{ marginBottom: spacing[8], backgroundColor: colors.primary[50], border: `1px solid ${colors.primary[500]}` }}>
           <CardContent>
-            <CriaTextBody2  style={{ color: colors.primary[700] }}>
+            <CriaTextBody2 style={{ color: colors.primary[700] }}>
               {clickedItem}
-            </CriaTextBody1>
+            </CriaTextBody2>
           </CardContent>
         </Card>
       )}
