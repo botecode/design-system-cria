@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { Clock, UserCircle, Wrench } from 'phosphor-react';
 import { colors, spacing, radii, shadows, typography } from '../../tokens';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextBody1, CriaTextBody2, CriaTextCaption } from '../TextTokens';
 import { Avatar } from '../Avatar';
 
 export interface Instructor {
@@ -293,7 +293,7 @@ export const CriaClassroomTrilhaCard: React.FC<CriaClassroomTrilhaCardProps> = (
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(to top, rgba(0,0,0,0.2) 0%, transparent 100%)',
+            background: `linear-gradient(to top, ${colors.black}20 0%, transparent 100%)`,
           }}
         />
         
@@ -306,8 +306,7 @@ export const CriaClassroomTrilhaCard: React.FC<CriaClassroomTrilhaCardProps> = (
             left: spacing[4],
           }}
         >
-          <Typography
-            variant="h1"
+          <div
             style={{
               fontSize: '48px',
               fontFamily: typography.fontFamily.primary,
@@ -317,10 +316,11 @@ export const CriaClassroomTrilhaCard: React.FC<CriaClassroomTrilhaCardProps> = (
               marginBottom: spacing[1],
             }}
           >
-            {String(classroomItem.position || 1).padStart(2, '0')}
-          </Typography>
-          <Typography
-            variant="caption"
+            <CriaTextHeadline1>
+              {String(classroomItem.position || 1).padStart(2, '0')}
+            </CriaTextHeadline1>
+          </div>
+          <div
             style={{
               fontFamily: typography.fontFamily.primary,
               fontWeight: typography.fontWeight.medium,
@@ -330,8 +330,8 @@ export const CriaClassroomTrilhaCard: React.FC<CriaClassroomTrilhaCardProps> = (
               letterSpacing: '0.1em',
             }}
           >
-            TRILHA
-          </Typography>
+            <CriaTextCaption>TRILHA</CriaTextCaption>
+          </div>
         </div>
       </div>
 
@@ -350,8 +350,7 @@ export const CriaClassroomTrilhaCard: React.FC<CriaClassroomTrilhaCardProps> = (
         {/* Header Section */}
         <div>
           {/* Learning Path Title */}
-          <Typography
-            variant="h2"
+          <div
             style={{
               color: colors.primary,
               fontFamily: typography.fontFamily.primary,
@@ -376,12 +375,11 @@ export const CriaClassroomTrilhaCard: React.FC<CriaClassroomTrilhaCardProps> = (
               }
             }}
           >
-            {title}
-          </Typography>
+            <CriaTextHeadline1>{title}</CriaTextHeadline1>
+          </div>
 
           {/* Learning Path Description */}
-          <Typography
-            variant="body"
+          <div
             style={{
               color: colors.gray[600],
               fontSize: '14px',
@@ -389,8 +387,8 @@ export const CriaClassroomTrilhaCard: React.FC<CriaClassroomTrilhaCardProps> = (
               marginBottom: spacing[4],
             }}
           >
-            {description}
-          </Typography>
+            <CriaTextBody1>{description}</CriaTextBody1>
+          </div>
 
           {/* Instructors Section */}
           <div
@@ -435,7 +433,7 @@ export const CriaClassroomTrilhaCard: React.FC<CriaClassroomTrilhaCardProps> = (
                   </div>
                 ))}
                 {overflowInstructorsCount > 0 && (
-                  <span
+                  <div
                     style={{
                       display: 'inline-flex',
                       alignItems: 'center',
@@ -448,12 +446,12 @@ export const CriaClassroomTrilhaCard: React.FC<CriaClassroomTrilhaCardProps> = (
                       flexShrink: 0,
                     }}
                   >
-                    +{overflowInstructorsCount}
-                  </span>
+                    <CriaTextCaption>+{overflowInstructorsCount}</CriaTextCaption>
+                  </div>
                 )}
               </>
             ) : (
-              <span
+              <div
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -465,8 +463,8 @@ export const CriaClassroomTrilhaCard: React.FC<CriaClassroomTrilhaCardProps> = (
                   fontWeight: typography.fontWeight.medium,
                 }}
               >
-                No instructors
-              </span>
+                <CriaTextCaption>No instructors</CriaTextCaption>
+              </div>
             )}
           </div>
 
@@ -489,7 +487,7 @@ export const CriaClassroomTrilhaCard: React.FC<CriaClassroomTrilhaCardProps> = (
             >
               {tools.length > 0 ? (
                 tools.map((tool) => (
-                  <span
+                  <div
                     key={tool.id}
                     onClick={(e) => handleToolClick(tool, e)}
                     style={{
@@ -506,15 +504,15 @@ export const CriaClassroomTrilhaCard: React.FC<CriaClassroomTrilhaCardProps> = (
                     }}
                   >
                     {tool.icon && (
-                      <span style={{ width: '20px', height: '20px', marginRight: spacing[2], display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        {tool.icon}
-                      </span>
+                      <div style={{ width: '20px', height: '20px', marginRight: spacing[2], display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <CriaTextCaption>{tool.icon}</CriaTextCaption>
+                      </div>
                     )}
-                    {tool.name}
-                  </span>
+                    <CriaTextCaption>{tool.name}</CriaTextCaption>
+                  </div>
                 ))
               ) : (
-                <span
+                <div
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -527,8 +525,8 @@ export const CriaClassroomTrilhaCard: React.FC<CriaClassroomTrilhaCardProps> = (
                     backgroundColor: colors.gray[100],
                   }}
                 >
-                  No tools
-                </span>
+                  <CriaTextCaption>No tools</CriaTextCaption>
+                </div>
               )}
             </div>
           </div>
@@ -546,8 +544,7 @@ export const CriaClassroomTrilhaCard: React.FC<CriaClassroomTrilhaCardProps> = (
           {/* Duration */}
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <Clock size={16} color={colors.primary} style={{ marginRight: spacing[1] }} />
-            <Typography
-              variant="caption"
+            <div
               style={{
                 color: colors.primary,
                 fontSize: '12px',
@@ -555,13 +552,12 @@ export const CriaClassroomTrilhaCard: React.FC<CriaClassroomTrilhaCardProps> = (
                 fontWeight: typography.fontWeight.medium,
               }}
             >
-              {customLearning.duration || '--'}
-            </Typography>
+              <CriaTextCaption>{customLearning.duration || '--'}</CriaTextCaption>
+            </div>
           </div>
 
           {/* Category */}
-          <Typography
-            variant="caption"
+          <div
             style={{
               color: colors.primary,
               fontSize: '12px',
@@ -571,8 +567,8 @@ export const CriaClassroomTrilhaCard: React.FC<CriaClassroomTrilhaCardProps> = (
               letterSpacing: '0.1em',
             }}
           >
-            TRILHA
-          </Typography>
+            <CriaTextCaption>TRILHA</CriaTextCaption>
+          </div>
 
           {/* Empty div for spacing */}
           <div></div>

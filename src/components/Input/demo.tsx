@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Typography } from '../Typography';
 import { Button } from '../Button';
+import { CriaTextHeadline1, CriaTextTitle1, CriaTextBody1 } from '../TextTokens';
 import { Card, CardHeader, CardContent } from '../Card';
 import Input from './Input';
 import { User, Envelope, Lock, Phone, MagnifyingGlass, Calendar, MapPin, CreditCard, WarningCircle } from 'phosphor-react';
@@ -34,18 +35,24 @@ export const InputDemo: React.FC = () => {
 
   return (
     <div style={{ padding: spacing[6], maxWidth: '1000px' }}>
-      <Typography variant="title1" weight="bold" style={{ marginBottom: spacing[8] }}>
-        Input Demo
-      </Typography>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline1>
+          Input Demo
+        </CriaTextHeadline1>
+      </div>
 
       {/* Basic Inputs */}
       <section style={{ marginBottom: spacing[12] }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[4] }}>
-          Basic Inputs
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
-          Simple text inputs with labels and placeholders.
-        </Typography>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1>
+            Basic Inputs
+          </CriaTextTitle1>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Simple text inputs with labels and placeholders.
+          </CriaTextBody1>
+        </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[6] }}>
           <Input
             label="Full Name"
@@ -78,12 +85,16 @@ export const InputDemo: React.FC = () => {
 
       {/* Input Sizes */}
       <section style={{ marginBottom: spacing[12] }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[4] }}>
-          Input Sizes
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
-          Different sizes for different contexts and use cases.
-        </Typography>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1>
+            Input Sizes
+          </CriaTextTitle1>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Different sizes for different contexts and use cases.
+          </CriaTextBody1>
+        </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4], maxWidth: '400px' }}>
           <Input
             label="Small Input"
@@ -105,12 +116,16 @@ export const InputDemo: React.FC = () => {
 
       {/* Input Variants */}
       <section style={{ marginBottom: spacing[12] }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[4] }}>
-          Input Variants
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
-          Different visual styles for different design contexts.
-        </Typography>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1>
+            Input Variants
+          </CriaTextTitle1>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Different visual styles for different design contexts.
+          </CriaTextBody1>
+        </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[6] }}>
           <Input
             label="Default Variant"
@@ -137,12 +152,16 @@ export const InputDemo: React.FC = () => {
 
       {/* Input States */}
       <section style={{ marginBottom: spacing[12] }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[4] }}>
-          Input States
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
-          Different states for validation and user feedback.
-        </Typography>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1>
+            Input States
+          </CriaTextTitle1>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Different states for validation and user feedback.
+          </CriaTextBody1>
+        </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[6] }}>
           <Input
             label="Default State"
@@ -172,12 +191,16 @@ export const InputDemo: React.FC = () => {
 
       {/* Inputs with Icons */}
       <section style={{ marginBottom: spacing[12] }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[4] }}>
-          Inputs with Icons
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
-          Icons can be added to provide visual context and improve usability.
-        </Typography>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1>
+            Inputs with Icons
+          </CriaTextTitle1>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Icons can be added to provide visual context and improve usability.
+          </CriaTextBody1>
+        </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[6] }}>
           <Input
             label="Username"
@@ -208,12 +231,16 @@ export const InputDemo: React.FC = () => {
 
       {/* Special Input Types */}
       <section style={{ marginBottom: spacing[12] }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[4] }}>
-          Special Input Types
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
-          Different input types for specific data formats.
-        </Typography>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1>
+            Special Input Types
+          </CriaTextTitle1>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Different input types for specific data formats.
+          </CriaTextBody1>
+        </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[6] }}>
           <Input
             label="Password"
@@ -245,12 +272,16 @@ export const InputDemo: React.FC = () => {
 
       {/* Input Features */}
       <section style={{ marginBottom: spacing[12] }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[4] }}>
-          Input Features
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
-          Advanced features like character count, clear button, and validation.
-        </Typography>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1>
+            Input Features
+          </CriaTextTitle1>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Advanced features like character count, clear button, and validation.
+          </CriaTextBody1>
+        </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[6] }}>
           <Input
             label="With Clear Button"
@@ -285,12 +316,16 @@ export const InputDemo: React.FC = () => {
 
       {/* Disabled Inputs */}
       <section style={{ marginBottom: spacing[12] }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[4] }}>
-          Disabled Inputs
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
-          Disabled inputs for inactive or unavailable fields.
-        </Typography>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1>
+            Disabled Inputs
+          </CriaTextTitle1>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Disabled inputs for inactive or unavailable fields.
+          </CriaTextBody1>
+        </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[6] }}>
           <Input
             label="Disabled Input"
@@ -310,15 +345,19 @@ export const InputDemo: React.FC = () => {
 
       {/* Form Example */}
       <section style={{ marginBottom: spacing[12] }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[4] }}>
-          Form Example
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
-          A complete form example showing how inputs work together.
-        </Typography>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1>
+            Form Example
+          </CriaTextTitle1>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            A complete form example showing how inputs work together.
+          </CriaTextBody1>
+        </div>
         <Card variant="elevated">
           <CardHeader>
-            <Typography variant="h3" weight="medium">User Registration</Typography>
+            <CriaTextTitle1>User Registration</CriaTextTitle1>
           </CardHeader>
           <CardContent>
             <form style={{ display: 'flex', flexDirection: 'column', gap: spacing[5] }}>
@@ -391,37 +430,41 @@ export const InputDemo: React.FC = () => {
 
       {/* Accessibility */}
       <section style={{ marginBottom: spacing[12] }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[4] }}>
-          Accessibility Features
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: spacing[4] }}>
-          The Input component includes comprehensive accessibility features:
-        </Typography>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1>
+            Accessibility Features
+          </CriaTextTitle1>
+        </div>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextBody1>
+            The Input component includes comprehensive accessibility features:
+          </CriaTextBody1>
+        </div>
         <ul style={{ marginLeft: spacing[6], marginBottom: spacing[4] }}>
           <li>
-            <Typography variant="body">
+            <CriaTextBody1>
               <strong>Labels:</strong> Proper label association with inputs
-            </Typography>
+            </CriaTextBody1>
           </li>
           <li>
-            <Typography variant="body">
+            <CriaTextBody1>
               <strong>ARIA Attributes:</strong> Proper aria-describedby, aria-invalid, and aria-required
-            </Typography>
+            </CriaTextBody1>
           </li>
           <li>
-            <Typography variant="body">
+            <CriaTextBody1>
               <strong>Keyboard Navigation:</strong> Full keyboard support for all interactive elements
-            </Typography>
+            </CriaTextBody1>
           </li>
           <li>
-            <Typography variant="body">
+            <CriaTextBody1>
               <strong>Screen Reader Support:</strong> Proper announcement of labels, help text, and error messages
-            </Typography>
+            </CriaTextBody1>
           </li>
           <li>
-            <Typography variant="body">
+            <CriaTextBody1>
               <strong>Focus Management:</strong> Clear focus indicators and proper tab order
-            </Typography>
+            </CriaTextBody1>
           </li>
         </ul>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[6] }}>

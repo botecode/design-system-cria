@@ -195,7 +195,7 @@ export const RowOfCardsDemo: React.FC = () => {
           top: spacing[3],
           right: spacing[3],
         }}>
-          <Badge variant="filled" style={{ color: colors.primary[500] }}>
+          <Badge variant="primary" style={{ color: colors.primary }}>
             {course.level}
           </Badge>
         </div>
@@ -203,15 +203,15 @@ export const RowOfCardsDemo: React.FC = () => {
 
       <CardContent style={{ padding: spacing[6] }}>
         {/* Course Title */}
-        <CriaTextTitle1 
-          style={{ 
-            marginBottom: spacing[3],
-            lineHeight: 1.3,
-            color: colors.text.primary,
-          }}
-        >
-          {course.title}
-        </CriaTextTitle1>
+        <div style={{ 
+          marginBottom: spacing[3],
+          lineHeight: 1.3,
+          color: colors.text.primary,
+        }}>
+          <CriaTextTitle1>
+            {course.title}
+          </CriaTextTitle1>
+        </div>
 
         {/* Instructor */}
         <div style={{ 
@@ -224,9 +224,11 @@ export const RowOfCardsDemo: React.FC = () => {
             size="sm"
             src={`https://ui-avatars.com/api/?name=${course.instructor}&background=7566A1&color=fff`}
           />
-          <CriaTextBody2 style={{ color: colors.text.secondary }}>
-            {course.instructor}
-          </CriaTextBody2>
+          <div style={{ color: colors.text.secondary }}>
+            <CriaTextBody2>
+              {course.instructor}
+            </CriaTextBody2>
+          </div>
         </div>
 
         {/* Rating and Students */}
@@ -238,15 +240,19 @@ export const RowOfCardsDemo: React.FC = () => {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: spacing[1] }}>
             <Star size={16} color={colors.warning} weight="fill" />
-            <CriaTextBody2 style={{ fontWeight: '500' }}>
-              {course.rating}
-            </CriaTextBody2>
+            <div style={{ fontWeight: '500' }}>
+              <CriaTextBody2>
+                {course.rating}
+              </CriaTextBody2>
+            </div>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: spacing[1] }}>
             <Users size={16} color={colors.text.secondary} />
-            <CriaTextBody2 style={{ color: colors.text.secondary }}>
-              {course.students.toLocaleString()}
-            </CriaTextBody2>
+            <div style={{ color: colors.text.secondary }}>
+              <CriaTextBody2>
+                {course.students.toLocaleString()}
+              </CriaTextBody2>
+            </div>
           </div>
         </div>
 
@@ -258,9 +264,11 @@ export const RowOfCardsDemo: React.FC = () => {
           marginBottom: spacing[4],
         }}>
           <Clock size={16} color={colors.text.secondary} />
-          <CriaTextBody2 style={{ color: colors.text.secondary }}>
-            {course.duration}
-          </CriaTextBody2>
+          <div style={{ color: colors.text.secondary }}>
+            <CriaTextBody2>
+              {course.duration}
+            </CriaTextBody2>
+          </div>
         </div>
 
         {/* Tags */}
@@ -271,7 +279,7 @@ export const RowOfCardsDemo: React.FC = () => {
           marginBottom: spacing[4],
         }}>
           {course.tags.slice(0, 3).map((tag: string) => (
-            <Badge key={tag} variant="outlined" size="sm">
+            <Badge key={tag} variant="secondary" size="sm">
               {tag}
             </Badge>
           ))}
@@ -283,10 +291,12 @@ export const RowOfCardsDemo: React.FC = () => {
           alignItems: 'center', 
           justifyContent: 'space-between',
         }}>
-          <CriaTextTitle1 style={{ fontWeight: '700', color: colors.primary[500] }}>
-            {course.price}
-          </CriaTextTitle1>
-          <Button size="sm" variant="filled">
+          <div style={{ fontWeight: '700', color: colors.primary[500] }}>
+            <CriaTextTitle1>
+              {course.price}
+            </CriaTextTitle1>
+          </div>
+          <Button size="sm" variant="primary">
             <Play size={16} weight="fill" />
             Enroll
           </Button>
@@ -298,14 +308,18 @@ export const RowOfCardsDemo: React.FC = () => {
   const renderSimpleCard = (item: any) => (
     <Card key={item.id} style={{ height: '100%' }}>
       <CardHeader>
-        <CriaTextTitle1 style={{ fontWeight: '500' }}>
-          {item.title}
-        </CriaTextTitle1>
+        <div style={{ fontWeight: '500' }}>
+          <CriaTextTitle1>
+            {item.title}
+          </CriaTextTitle1>
+        </div>
       </CardHeader>
       <CardContent>
-        <CriaTextBody1 style={{ color: colors.text.secondary }}>
-          {item.description}
-        </CriaTextBody1>
+        <div style={{ color: colors.text.secondary }}>
+          <CriaTextBody1>
+            {item.description}
+          </CriaTextBody1>
+        </div>
       </CardContent>
     </Card>
   );
@@ -323,20 +337,26 @@ export const RowOfCardsDemo: React.FC = () => {
   return (
     <div style={{ padding: spacing[8] }}>
       <div style={{ marginBottom: spacing[8] }}>
-        <CriaTextHeadline1 style={{ marginBottom: spacing[4] }}>
-          Row of Cards Component
-        </CriaTextHeadline1>
-        <CriaTextBody1 style={{ color: colors.text.secondary, marginBottom: spacing[6] }}>
-          A responsive grid component that displays cards in rows with pagination support. 
-          Perfect for showcasing courses, products, or any collection of items.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline1>
+            Row of Cards Component
+          </CriaTextHeadline1>
+        </div>
+        <div style={{ color: colors.text.secondary, marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            A responsive grid component that displays cards in rows with pagination support. 
+            Perfect for showcasing courses, products, or any collection of items.
+          </CriaTextBody1>
+        </div>
       </div>
 
       {/* Course Cards Example */}
       <div style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2  style={{ marginBottom: spacing[6] }}>
-          Course Cards (6 per page)
-        </CriaTextBody2>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextHeadline2>
+            Course Cards (6 per page)
+          </CriaTextHeadline2>
+        </div>
         <RowOfCards
           cards={courseCards}
           renderCard={renderCourseCard}
@@ -344,16 +364,20 @@ export const RowOfCardsDemo: React.FC = () => {
           onPageChange={setCurrentPage}
           data-testid="course-cards"
         />
-        <CriaTextBody2 style={{ color: colors.text.secondary }} style={{ marginTop: spacing[4] }}>
-          Current page: {currentPage} of {Math.ceil(courseCards.length / 6)}
-        </CriaTextBody2>
+        <div style={{ color: colors.text.secondary, marginTop: spacing[4] }}>
+          <CriaTextBody2>
+            Current page: {currentPage} of {Math.ceil(courseCards.length / 6)}
+          </CriaTextBody2>
+        </div>
       </div>
 
       {/* Simple Cards Example */}
       <div style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2  style={{ marginBottom: spacing[6] }}>
-          Simple Cards (3 per page)
-        </CriaTextBody2>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextHeadline2>
+            Simple Cards (3 per page)
+          </CriaTextHeadline2>
+        </div>
         <RowOfCards
           cards={simpleCards}
           renderCard={renderSimpleCard}
@@ -364,9 +388,11 @@ export const RowOfCardsDemo: React.FC = () => {
 
       {/* Empty State Example */}
       <div style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2  style={{ marginBottom: spacing[6] }}>
-          Empty State
-        </CriaTextBody2>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextHeadline2>
+            Empty State
+          </CriaTextHeadline2>
+        </div>
         <RowOfCards
           cards={[]}
           renderCard={renderSimpleCard}
@@ -377,9 +403,11 @@ export const RowOfCardsDemo: React.FC = () => {
 
       {/* Single Card Example */}
       <div>
-        <CriaTextHeadline2  style={{ marginBottom: spacing[6] }}>
-          Single Card (No Pagination)
-        </CriaTextBody2>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextHeadline2>
+            Single Card (No Pagination)
+          </CriaTextHeadline2>
+        </div>
         <RowOfCards
           cards={[simpleCards[0]]}
           renderCard={renderSimpleCard}

@@ -8,8 +8,12 @@ export const FileUploadDemo: React.FC = () => {
   const [files, setFiles] = useState<File[]>([]);
   return (
     <div style={{ padding: spacing[6], maxWidth: 900 }}>
-      <CriaTextHeadline2 as="h2" style={{ marginBottom: spacing[4] }}>File Upload</CriaTextHeadline2>
-      <CriaTextBody1 style={{ marginBottom: spacing[6] }}>Upload files via click or drag-and-drop. Accessible and keyboard friendly.</CriaTextBody1>
+      <div style={{ marginBottom: spacing[4] }}>
+        <CriaTextHeadline2 as="h2">File Upload</CriaTextHeadline2>
+      </div>
+      <div style={{ marginBottom: spacing[6] }}>
+        <CriaTextBody1>Upload files via click or drag-and-drop. Accessible and keyboard friendly.</CriaTextBody1>
+      </div>
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { CriaCustomLearningLessonCard, CustomLearning, ClassroomItem, Instructor, Tool } from './CriaCustomLearningLessonCard';
-import Typography from '../Typography/Typography';
+import { CriaTextTitle1, CriaTextHeadline1, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { spacing } from '../../tokens';
 
 // Sample data for CriaCustomLearningLessonCard
@@ -276,19 +276,25 @@ const handleToolClick = (tool: Tool) => {
 export const CriaCustomLearningLessonCardDemo: React.FC = () => {
   return (
     <div style={{ padding: '24px', maxWidth: '1000px' }}>
-      <Typography variant="title1" weight="bold" style={{ marginBottom: '32px' }}>
-        Custom Learning Lesson Cards (Trilha)
-      </Typography>
+      <div style={{ marginBottom: '32px' }}>
+        <CriaTextTitle1>
+          Custom Learning Lesson Cards (Trilha)
+        </CriaTextTitle1>
+      </div>
 
       <section style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
-          CriaCustomLearningLessonCard - Learning Path Cards
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '24px', color: '#6b7280' }}>
-          Comprehensive learning path cards with aggregated instructors and tools from lessons and courses.
-          Features custom titles/subtitles, instructor overflow handling, and interactive tool badges.
-          Perfect for showcasing custom learning paths with rich metadata and comprehensive content.
-        </Typography>
+        <div style={{ marginBottom: '16px' }}>
+          <CriaTextHeadline1>
+            CriaCustomLearningLessonCard - Learning Path Cards
+          </CriaTextHeadline1>
+        </div>
+        <div style={{ marginBottom: '24px', color: '#6b7280' }}>
+          <CriaTextBody1>
+            Comprehensive learning path cards with aggregated instructors and tools from lessons and courses.
+            Features custom titles/subtitles, instructor overflow handling, and interactive tool badges.
+            Perfect for showcasing custom learning paths with rich metadata and comprehensive content.
+          </CriaTextBody1>
+        </div>
 
         <div style={{
           display: 'flex',
@@ -311,62 +317,88 @@ export const CriaCustomLearningLessonCardDemo: React.FC = () => {
       </section>
 
       <section style={{ marginBottom: '32px' }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: '16px' }}>
-          Features
-        </Typography>
+        <div style={{ marginBottom: '16px' }}>
+          <CriaTextHeadline1>
+            Features
+          </CriaTextHeadline1>
+        </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '16px' }}>
           <div style={{ padding: '16px', backgroundColor: '#f8fafc', borderRadius: '8px' }}>
-            <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
-              🎯 Custom Content
-            </Typography>
-            <Typography variant="body" style={{ color: '#6b7280' }}>
-              Support for custom titles and subtitles that override the default learning path content.
-            </Typography>
+            <div style={{ marginBottom: '8px' }}>
+              <CriaTextHeadline1>
+                🎯 Custom Content
+              </CriaTextHeadline1>
+            </div>
+            <div style={{ color: '#6b7280' }}>
+              <CriaTextBody1>
+                Support for custom titles and subtitles that override the default learning path content.
+              </CriaTextBody1>
+            </div>
           </div>
           
           <div style={{ padding: '16px', backgroundColor: '#f8fafc', borderRadius: '8px' }}>
-            <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
-              👥 Instructor Aggregation
-            </Typography>
-            <Typography variant="body" style={{ color: '#6b7280' }}>
-              Automatically collects and displays instructors from all lessons and courses with overflow handling.
-            </Typography>
+            <div style={{ marginBottom: '8px' }}>
+              <CriaTextHeadline1>
+                👥 Instructor Aggregation
+              </CriaTextHeadline1>
+            </div>
+            <div style={{ color: '#6b7280' }}>
+              <CriaTextBody1>
+                Automatically collects and displays instructors from all lessons and courses with overflow handling.
+              </CriaTextBody1>
+            </div>
           </div>
           
           <div style={{ padding: '16px', backgroundColor: '#f8fafc', borderRadius: '8px' }}>
-            <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
-              🔧 Tool Integration
-            </Typography>
-            <Typography variant="body" style={{ color: '#6b7280' }}>
-              Aggregates tools from lessons and courses with interactive badges and overflow indicators.
-            </Typography>
+            <div style={{ marginBottom: '8px' }}>
+              <CriaTextHeadline1>
+                🔧 Tool Integration
+              </CriaTextHeadline1>
+            </div>
+            <div style={{ color: '#6b7280' }}>
+              <CriaTextBody1>
+                Aggregates tools from lessons and courses with interactive badges and overflow indicators.
+              </CriaTextBody1>
+            </div>
           </div>
           
           <div style={{ padding: '16px', backgroundColor: '#f8fafc', borderRadius: '8px' }}>
-            <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
-              🎨 Visual Design
-            </Typography>
-            <Typography variant="body" style={{ color: '#6b7280' }}>
-              Beautiful gradient overlays, hover effects, and responsive design with proper spacing.
-            </Typography>
+            <div style={{ marginBottom: '8px' }}>
+              <CriaTextHeadline1>
+                🎨 Visual Design
+              </CriaTextHeadline1>
+            </div>
+            <div style={{ color: '#6b7280' }}>
+              <CriaTextBody1>
+                Beautiful gradient overlays, hover effects, and responsive design with proper spacing.
+              </CriaTextBody1>
+            </div>
           </div>
           
           <div style={{ padding: '16px', backgroundColor: '#f8fafc', borderRadius: '8px' }}>
-            <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
-              📱 Responsive Layout
-            </Typography>
-            <Typography variant="body" style={{ color: '#6b7280' }}>
-              Optimized for all screen sizes with proper image handling and content organization.
-            </Typography>
+            <div style={{ marginBottom: '8px' }}>
+              <CriaTextHeadline1>
+                📱 Responsive Layout
+              </CriaTextHeadline1>
+            </div>
+            <div style={{ color: '#6b7280' }}>
+              <CriaTextBody1>
+                Optimized for all screen sizes with proper image handling and content organization.
+              </CriaTextBody1>
+            </div>
           </div>
           
           <div style={{ padding: '16px', backgroundColor: '#f8fafc', borderRadius: '8px' }}>
-            <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
-              ♿ Accessibility
-            </Typography>
-            <Typography variant="body" style={{ color: '#6b7280' }}>
-              Proper ARIA labels, keyboard navigation, and screen reader support for all interactive elements.
-            </Typography>
+            <div style={{ marginBottom: '8px' }}>
+              <CriaTextHeadline1>
+                ♿ Accessibility
+              </CriaTextHeadline1>
+            </div>
+            <div style={{ color: '#6b7280' }}>
+              <CriaTextBody1>
+                Proper ARIA labels, keyboard navigation, and screen reader support for all interactive elements.
+              </CriaTextBody1>
+            </div>
           </div>
         </div>
       </section>

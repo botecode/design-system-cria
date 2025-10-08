@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { Calendar } from 'phosphor-react';
 import { colors, spacing, radii, shadows, typography } from '../../tokens';
-import { Typography } from '../Typography';
+import { CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { Button } from '../Button';
 
 export interface ClassroomEvent {
@@ -193,7 +193,7 @@ export const CriaClassroomEventCard: React.FC<CriaClassroomEventCardProps> = ({
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(to top, rgba(0,0,0,0.2) 0%, transparent 100%)',
+            background: `linear-gradient(to top, ${colors.black}20 0%, transparent 100%)`,
           }}
         />
         
@@ -201,12 +201,11 @@ export const CriaClassroomEventCard: React.FC<CriaClassroomEventCardProps> = ({
         <div
           style={{
             position: 'absolute',
-            top: spacing.md,
-            left: spacing.md,
+            top: spacing[4],
+            left: spacing[4],
           }}
         >
-          <Typography
-            variant="h1"
+          <div
             style={{
               fontSize: '48px',
               fontFamily: typography.fontFamily.primary,
@@ -216,15 +215,15 @@ export const CriaClassroomEventCard: React.FC<CriaClassroomEventCardProps> = ({
               marginBottom: spacing[1],
             }}
           >
-            {String(classroomItem.position || 1).padStart(2, '0')}
-          </Typography>
+            <CriaTextBody1>{String(classroomItem.position || 1).padStart(2, '0')}</CriaTextBody1>
+          </div>
         </div>
       </div>
 
       {/* Right Section - Content */}
       <div
         style={{
-          padding: `${spacing.xs} ${spacing.md} ${spacing.md} ${spacing.md}`,
+          padding: `${spacing[1]} ${spacing[4]} ${spacing[4]} ${spacing[4]}`,
           flex: 1,
           display: 'flex',
           flexDirection: 'column',
@@ -234,33 +233,31 @@ export const CriaClassroomEventCard: React.FC<CriaClassroomEventCardProps> = ({
       >
         {/* Event Title and Description */}
         <div>
-          <Typography
-            variant="h2"
+          <div
             style={{
               color: colors.primary,
               fontFamily: typography.fontFamily.primary,
               fontWeight: typography.fontWeight.bold,
               fontSize: '20px',
               lineHeight: 1.2,
-              marginBottom: spacing.sm,
+              marginBottom: spacing[2],
               cursor: 'pointer',
             }}
             onClick={handleEventClick}
           >
-            {title}
-          </Typography>
+            <CriaTextBody1>{title}</CriaTextBody1>
+          </div>
 
-          <Typography
-            variant="body"
+          <div
             style={{
               color: colors.gray[600],
               fontSize: '14px',
               lineHeight: 1.5,
-              marginBottom: spacing.md,
+              marginBottom: spacing[4],
             }}
           >
-            {description}
-          </Typography>
+            <CriaTextBody1>{description}</CriaTextBody1>
+          </div>
 
           {/* Event Date row */}
           <div
@@ -278,34 +275,8 @@ export const CriaClassroomEventCard: React.FC<CriaClassroomEventCardProps> = ({
             />
             
             {event.startDate ? (
-              <div style={{ display: 'flex', alignItems: 'center', gap: spacing.sm }}>
-                <Typography
-                  variant="body"
-                  style={{
-                    fontSize: '18px',
-                    fontFamily: typography.fontFamily.primary,
-                    fontWeight: typography.fontWeight.light,
-                    color: colors.primary,
-                    letterSpacing: '0.05em',
-                  }}
-                >
-                  {formattedDate} • {formattedTime}
-                </Typography>
-                
-                <Typography
-                  variant="caption"
-                  style={{
-                    fontSize: '12px',
-                    color: colors.gray[400],
-                    fontFamily: typography.fontFamily.primary,
-                  }}
-                >
-                  {timezoneInfo}
-                </Typography>
-              </div>
-            ) : (
-              <Typography
-                variant="body"
+            <div style={{ display: 'flex', alignItems: 'center', gap: spacing[2] }}>
+              <div
                 style={{
                   fontSize: '18px',
                   fontFamily: typography.fontFamily.primary,
@@ -314,14 +285,36 @@ export const CriaClassroomEventCard: React.FC<CriaClassroomEventCardProps> = ({
                   letterSpacing: '0.05em',
                 }}
               >
-                {formattedDate}
-              </Typography>
+                <CriaTextBody1>{formattedDate} • {formattedTime}</CriaTextBody1>
+              </div>
+              <div
+                style={{
+                  fontSize: '12px',
+                  color: colors.gray[400],
+                  fontFamily: typography.fontFamily.primary,
+                }}
+              >
+                <CriaTextBody2>{timezoneInfo}</CriaTextBody2>
+              </div>
+            </div>
+            ) : (
+            <div
+              style={{
+                fontSize: '18px',
+                fontFamily: typography.fontFamily.primary,
+                fontWeight: typography.fontWeight.light,
+                color: colors.primary,
+                letterSpacing: '0.05em',
+              }}
+            >
+              <CriaTextBody1>{formattedDate}</CriaTextBody1>
+            </div>
             )}
           </div>
         </div>
 
         {/* Action Button */}
-        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: spacing.xs }}>
+        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: spacing[1] }}>
           {event.startDate ? (
             isPastEvent ? (
               event.slug ? (
@@ -332,29 +325,27 @@ export const CriaClassroomEventCard: React.FC<CriaClassroomEventCardProps> = ({
                   VER GRAVAÇÃO
                 </Button>
               ) : (
-                <Typography
-                  variant="caption"
+                <div
                   style={{
                     color: colors.gray[500],
                     fontFamily: typography.fontFamily.primary,
                     fontSize: '14px',
                   }}
                 >
-                  Gravação não disponível
-                </Typography>
+                  <CriaTextBody2>Gravação não disponível</CriaTextBody2>
+                </div>
               )
             ) : null
           ) : (
-            <Typography
-              variant="caption"
+            <div
               style={{
                 color: colors.gray[500],
                 fontFamily: typography.fontFamily.primary,
                 fontSize: '14px',
               }}
             >
-              Data não definida
-            </Typography>
+              <CriaTextBody2>Data não definida</CriaTextBody2>
+            </div>
           )}
         </div>
       </div>

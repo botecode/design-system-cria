@@ -1,7 +1,7 @@
 import React from 'react';
 import { CriaCourseCard, Course } from './CriaCourseCard';
-import { Typography } from '../Typography';
-import { spacing } from '../../tokens';
+import { CriaTextHeadline1, CriaTextTitle1, CriaTextBody1 } from '../TextTokens';
+import { spacing, colors } from '../../tokens';
 
 export const CriaCourseCardDemo: React.FC = () => {
   // Sample course data for CriaCourseCard
@@ -130,18 +130,24 @@ export const CriaCourseCardDemo: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: spacing.lg }}>
-      <Typography variant="title1" weight="bold" style={{ marginBottom: spacing[6] }}>
-        Course Cards Demo
-      </Typography>
+    <div style={{ padding: spacing[6] }}>
+      <div style={{ marginBottom: spacing[6] }}>
+        <CriaTextHeadline1>
+          Course Cards Demo
+        </CriaTextHeadline1>
+      </div>
 
       <div style={{ marginBottom: spacing[8] }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[4] }}>
-          Horizontal Course Cards
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: spacing[6], color: spacing[6] }}>
-          These cards display course information in a horizontal layout with instructor avatars, course details, and tool icons.
-        </Typography>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1>
+            Horizontal Course Cards
+          </CriaTextTitle1>
+        </div>
+        <div style={{ marginBottom: spacing[6], color: colors.text.secondary }}>
+          <CriaTextBody1>
+            These cards display course information in a horizontal layout with instructor avatars, course details, and tool icons.
+          </CriaTextBody1>
+        </div>
         
         <div style={{ display: 'grid', gap: spacing[6] }}>
           {sampleCourses.map((course) => (

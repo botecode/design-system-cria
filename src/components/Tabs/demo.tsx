@@ -16,12 +16,16 @@ export const TabsDemo: React.FC = () => {
       label: 'Overview',
       content: (
         <div style={{ padding: spacing[6] }}>
-          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
-            Overview Content
-          </CriaTextTitle1>
-          <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-            This is the overview tab content. It contains general information about the topic.
-          </CriaTextBody1>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1>
+              Overview Content
+            </CriaTextTitle1>
+          </div>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextBody1>
+              This is the overview tab content. It contains general information about the topic.
+            </CriaTextBody1>
+          </div>
           <CriaTextBody1>
             You can include any React content here, including other components, forms, or complex layouts.
           </CriaTextBody1>
@@ -33,12 +37,16 @@ export const TabsDemo: React.FC = () => {
       label: 'Details',
       content: (
         <div style={{ padding: spacing[6] }}>
-          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
-            Details Content
-          </CriaTextTitle1>
-          <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-            This tab contains detailed information and specifications.
-          </CriaTextBody1>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1>
+              Details Content
+            </CriaTextTitle1>
+          </div>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextBody1>
+              This tab contains detailed information and specifications.
+            </CriaTextBody1>
+          </div>
           <div style={{ display: 'flex', gap: spacing[3], flexWrap: 'wrap' }}>
             <Badge variant="primary">Feature 1</Badge>
             <Badge variant="secondary">Feature 2</Badge>
@@ -52,12 +60,16 @@ export const TabsDemo: React.FC = () => {
       label: 'Settings',
       content: (
         <div style={{ padding: spacing[6] }}>
-          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
-            Settings Content
-          </CriaTextTitle1>
-          <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-            Configure your preferences and settings here.
-          </CriaTextBody1>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1>
+              Settings Content
+            </CriaTextTitle1>
+          </div>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextBody1>
+              Configure your preferences and settings here.
+            </CriaTextBody1>
+          </div>
           <div style={{ display: 'flex', gap: spacing[3] }}>
             <Button variant="primary">Save Changes</Button>
             <Button variant="outline">Reset</Button>

@@ -25,9 +25,11 @@ export const FilterDropdownDemo: React.FC = () => {
 
   return (
     <div style={{ padding: spacing[8] }}>
-      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
-        FilterDropdown Component
-      </CriaTextHeadline1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline1>
+          FilterDropdown Component
+        </CriaTextHeadline1>
+      </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[6] }}>
         {/* Basic Usage */}

@@ -11,18 +11,24 @@ import { Info, Question, WarningCircle, CheckCircle, XCircle, Star } from 'phosp
 export const TooltipDemo: React.FC = () => {
   return (
     <div style={{ padding: spacing[6], maxWidth: '1000px' }}>
-      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
-        Tooltip Demo
-      </CriaTextHeadline1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline1>
+          Tooltip Demo
+        </CriaTextHeadline1>
+      </div>
 
       {/* Basic Tooltips */}
       <section style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Basic Tooltips
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
-          Simple tooltips that appear on hover or focus. They provide contextual information without cluttering the interface.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Basic Tooltips
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Simple tooltips that appear on hover or focus. They provide contextual information without cluttering the interface.
+          </CriaTextBody1>
+        </div>
         <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center', flexWrap: 'wrap' }}>
           <Tooltip content="This is a helpful tooltip">
             <Button variant="outline">Hover me</Button>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, CardContent, CardHeader } from '../Card';
-import { Typography } from '../Typography';
+import { CriaTextTitle1 } from '../TextTokens';
 import { colors, spacing } from '../../tokens';
 
 export interface BaseChartProps {
@@ -22,9 +22,9 @@ export const BaseChart: React.FC<BaseChartProps> = ({
     <Card className={`cria-chart-card ${className}`} style={style}>
       {title && (
         <CardHeader>
-          <Typography variant="title2" style={{ color: colors.text.primary }}>
-            {title}
-          </Typography>
+          <div style={{ color: colors.text.primary }}>
+            <CriaTextTitle1>{title}</CriaTextTitle1>
+          </div>
         </CardHeader>
       )}
       <CardContent style={{ padding: spacing[6] }}>

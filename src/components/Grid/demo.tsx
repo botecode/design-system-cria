@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid, Row, Column } from './index';
 import { Card, CardContent, CardHeader } from '../Card';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextTitle1, CriaTextTitle2, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { Button } from '../Button';
 import { Divider } from '../Divider';
 import { spacing, radii, colors } from '../../tokens';
@@ -10,53 +10,61 @@ import { Input } from '../Input';
 const GridDemo: React.FC = () => {
   return (
     <div style={{ padding: spacing[8] }}>
-      <Typography variant="h1" weight="bold" style={{ marginBottom: spacing[8] }}>
-        Grid / Row / Column Components
-      </Typography>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline1>
+          Grid / Row / Column Components
+        </CriaTextHeadline1>
+      </div>
 
-      <Typography variant="body" style={{ marginBottom: spacing[8] }}>
-        Comprehensive layout components for responsive content alignment using CSS Grid and Flexbox.
-      </Typography>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextBody1>
+          Comprehensive layout components for responsive content alignment using CSS Grid and Flexbox.
+        </CriaTextBody1>
+      </div>
 
       <div style={{ display: 'grid', gap: spacing[8] }}>
         {/* Basic Grid Examples */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextHeadline2>
               Basic Grid Layout
-            </Typography>
+            </CriaTextHeadline2>
           </CardHeader>
           <CardContent>
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
-              Simple 3-column grid layout:
-            </Typography>
+            <div style={{ marginBottom: '1rem' }}>
+              <CriaTextBody1>
+                Simple 3-column grid layout:
+              </CriaTextBody1>
+            </div>
             <Grid columns={3} gap="md" style={{ marginBottom: spacing[8] }}>
               <div style={{ padding: spacing[4], backgroundColor: colors.gray[50], borderRadius: radii.sm, textAlign: 'center' }}>
-                <Typography variant="body" weight="medium">Column 1</Typography>
+                <CriaTextBody1>Column 1</CriaTextBody1>
               </div>
               <div style={{ padding: spacing[4], backgroundColor: colors.gray[50], borderRadius: radii.sm, textAlign: 'center' }}>
-                <Typography variant="body" weight="medium">Column 2</Typography>
+                <CriaTextBody1>Column 2</CriaTextBody1>
               </div>
               <div style={{ padding: spacing[4], backgroundColor: colors.gray[50], borderRadius: radii.sm, textAlign: 'center' }}>
-                <Typography variant="body" weight="medium">Column 3</Typography>
+                <CriaTextBody1>Column 3</CriaTextBody1>
               </div>
             </Grid>
 
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
-              Auto-fit grid with minimum column width:
-            </Typography>
+            <div style={{ marginBottom: '1rem' }}>
+              <CriaTextBody1>
+                Auto-fit grid with minimum column width:
+              </CriaTextBody1>
+            </div>
             <Grid autoFit minColumnWidth="200px" gap="lg" style={{ marginBottom: spacing[8] }}>
               <div style={{ padding: spacing[4], backgroundColor: colors.gray[50], borderRadius: radii.sm, textAlign: 'center' }}>
-                <Typography variant="body" weight="medium">Auto Item 1</Typography>
+                <CriaTextBody1>Auto Item 1</CriaTextBody1>
               </div>
               <div style={{ padding: spacing[4], backgroundColor: colors.gray[50], borderRadius: radii.sm, textAlign: 'center' }}>
-                <Typography variant="body" weight="medium">Auto Item 2</Typography>
+                <CriaTextBody1>Auto Item 2</CriaTextBody1>
               </div>
               <div style={{ padding: spacing[4], backgroundColor: colors.gray[50], borderRadius: radii.sm, textAlign: 'center' }}>
-                <Typography variant="body" weight="medium">Auto Item 3</Typography>
+                <CriaTextBody1>Auto Item 3</CriaTextBody1>
               </div>
               <div style={{ padding: spacing[4], backgroundColor: colors.gray[50], borderRadius: radii.sm, textAlign: 'center' }}>
-                <Typography variant="body" weight="medium">Auto Item 4</Typography>
+                <CriaTextBody1>Auto Item 4</CriaTextBody1>
               </div>
             </Grid>
           </CardContent>
@@ -65,47 +73,51 @@ const GridDemo: React.FC = () => {
         {/* Grid with Column Spans */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextHeadline2>
               Grid with Column Spans
-            </Typography>
+            </CriaTextHeadline2>
           </CardHeader>
           <CardContent>
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
-              Using Column components with different spans:
-            </Typography>
+            <div style={{ marginBottom: '1rem' }}>
+              <CriaTextBody1>
+                Using Column components with different spans:
+              </CriaTextBody1>
+            </div>
             <Grid columns={12} gap="md" style={{ marginBottom: spacing[8] }}>
               <Column span={6} style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm, textAlign: 'center' }}>
-                <Typography variant="body" weight="medium">Span 6</Typography>
+                <CriaTextBody1>Span 6</CriaTextBody1>
               </Column>
               <Column span={6} style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm, textAlign: 'center' }}>
-                <Typography variant="body" weight="medium">Span 6</Typography>
+                <CriaTextBody1>Span 6</CriaTextBody1>
               </Column>
               <Column span={4} style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm, textAlign: 'center' }}>
-                <Typography variant="body" weight="medium">Span 4</Typography>
+                <CriaTextBody1>Span 4</CriaTextBody1>
               </Column>
               <Column span={4} style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm, textAlign: 'center' }}>
-                <Typography variant="body" weight="medium">Span 4</Typography>
+                <CriaTextBody1>Span 4</CriaTextBody1>
               </Column>
               <Column span={4} style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm, textAlign: 'center' }}>
-                <Typography variant="body" weight="medium">Span 4</Typography>
+                <CriaTextBody1>Span 4</CriaTextBody1>
               </Column>
               <Column span={8} style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm, textAlign: 'center' }}>
-                <Typography variant="body" weight="medium">Span 8</Typography>
+                <CriaTextBody1>Span 8</CriaTextBody1>
               </Column>
               <Column span={4} style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm, textAlign: 'center' }}>
-                <Typography variant="body" weight="medium">Span 4</Typography>
+                <CriaTextBody1>Span 4</CriaTextBody1>
               </Column>
             </Grid>
 
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
-              Column with offset:
-            </Typography>
+            <div style={{ marginBottom: '1rem' }}>
+              <CriaTextBody1>
+                Column with offset:
+              </CriaTextBody1>
+            </div>
             <Grid columns={12} gap="md" style={{ marginBottom: spacing[8] }}>
               <Column span={4} offset={2} style={{ padding: spacing[4], backgroundColor: colors.gray[200], borderRadius: radii.sm, textAlign: 'center' }}>
-                <Typography variant="body" weight="medium">Span 4, Offset 2</Typography>
+                <CriaTextBody1>Span 4, Offset 2</CriaTextBody1>
               </Column>
               <Column span={4} style={{ padding: spacing[4], backgroundColor: colors.gray[200], borderRadius: radii.sm, textAlign: 'center' }}>
-                <Typography variant="body" weight="medium">Span 4</Typography>
+                <CriaTextBody1>Span 4</CriaTextBody1>
               </Column>
             </Grid>
           </CardContent>
@@ -114,54 +126,58 @@ const GridDemo: React.FC = () => {
         {/* Responsive Grid */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextHeadline2>
               Responsive Grid Layout
-            </Typography>
+            </CriaTextHeadline2>
           </CardHeader>
           <CardContent>
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
-              Responsive columns that adapt to screen size:
-            </Typography>
+            <div style={{ marginBottom: '1rem' }}>
+              <CriaTextBody1>
+                Responsive columns that adapt to screen size:
+              </CriaTextBody1>
+            </div>
             <Grid 
               columns={{ sm: 1, md: 2, lg: 3 }} 
               gap="md" 
               style={{ marginBottom: spacing[8] }}
             >
               <Column style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm, textAlign: 'center' }}>
-                <Typography variant="body" weight="medium">Responsive Item 1</Typography>
-                <Typography variant="bodySmall">1 col on mobile, 2 on tablet, 3 on desktop</Typography>
+                <CriaTextBody1>Responsive Item 1</CriaTextBody1>
+                <CriaTextBody2>1 col on mobile, 2 on tablet, 3 on desktop</CriaTextBody2>
               </Column>
               <Column style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm, textAlign: 'center' }}>
-                <Typography variant="body" weight="medium">Responsive Item 2</Typography>
-                <Typography variant="bodySmall">1 col on mobile, 2 on tablet, 3 on desktop</Typography>
+                <CriaTextBody1>Responsive Item 2</CriaTextBody1>
+                <CriaTextBody2>1 col on mobile, 2 on tablet, 3 on desktop</CriaTextBody2>
               </Column>
               <Column style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm, textAlign: 'center' }}>
-                <Typography variant="body" weight="medium">Responsive Item 3</Typography>
-                <Typography variant="bodySmall">1 col on mobile, 2 on tablet, 3 on desktop</Typography>
+                <CriaTextBody1>Responsive Item 3</CriaTextBody1>
+                <CriaTextBody2>1 col on mobile, 2 on tablet, 3 on desktop</CriaTextBody2>
               </Column>
             </Grid>
 
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
-              Responsive column spans:
-            </Typography>
+            <div style={{ marginBottom: '1rem' }}>
+              <CriaTextBody1>
+                Responsive column spans:
+              </CriaTextBody1>
+            </div>
             <Grid columns={12} gap="md" style={{ marginBottom: spacing[8] }}>
               <Column 
                 span={{ sm: 12, md: 6, lg: 4 }} 
                 style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm, textAlign: 'center' }}
               >
-                <Typography variant="body" weight="medium">Full on mobile, half on tablet, third on desktop</Typography>
+                <CriaTextBody1>Full on mobile, half on tablet, third on desktop</CriaTextBody1>
               </Column>
               <Column 
                 span={{ sm: 12, md: 6, lg: 4 }} 
                 style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm, textAlign: 'center' }}
               >
-                <Typography variant="body" weight="medium">Full on mobile, half on tablet, third on desktop</Typography>
+                <CriaTextBody1>Full on mobile, half on tablet, third on desktop</CriaTextBody1>
               </Column>
               <Column 
                 span={{ sm: 12, md: 12, lg: 4 }} 
                 style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm, textAlign: 'center' }}
               >
-                <Typography variant="body" weight="medium">Full on mobile and tablet, third on desktop</Typography>
+                <CriaTextBody1>Full on mobile and tablet, third on desktop</CriaTextBody1>
               </Column>
             </Grid>
           </CardContent>
@@ -170,64 +186,72 @@ const GridDemo: React.FC = () => {
         {/* Row Examples */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextHeadline2>
               Row Layout (Flexbox)
-            </Typography>
+            </CriaTextHeadline2>
           </CardHeader>
           <CardContent>
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
-              Basic row with flex items:
-            </Typography>
+            <div style={{ marginBottom: '1rem' }}>
+              <CriaTextBody1>
+                Basic row with flex items:
+              </CriaTextBody1>
+            </div>
             <Row gap="md" style={{ marginBottom: spacing[8] }}>
               <div style={{ padding: spacing[4], backgroundColor: colors.gray[50], borderRadius: radii.sm, flex: 1 }}>
-                <Typography variant="body" weight="medium">Flex Item 1</Typography>
+                <CriaTextBody1>Flex Item 1</CriaTextBody1>
               </div>
               <div style={{ padding: spacing[4], backgroundColor: colors.gray[50], borderRadius: radii.sm, flex: 1 }}>
-                <Typography variant="body" weight="medium">Flex Item 2</Typography>
+                <CriaTextBody1>Flex Item 2</CriaTextBody1>
               </div>
               <div style={{ padding: spacing[4], backgroundColor: colors.gray[50], borderRadius: radii.sm, flex: 1 }}>
-                <Typography variant="body" weight="medium">Flex Item 3</Typography>
+                <CriaTextBody1>Flex Item 3</CriaTextBody1>
               </div>
             </Row>
 
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
-              Row with different alignments:
-            </Typography>
+            <div style={{ marginBottom: '1rem' }}>
+              <CriaTextBody1>
+                Row with different alignments:
+              </CriaTextBody1>
+            </div>
             <Row align="center" justify="between" style={{ marginBottom: spacing[8], height: '100px', backgroundColor: colors.gray[50], padding: spacing[4], borderRadius: radii.sm }}>
               <div style={{ padding: spacing[2], backgroundColor: colors.gray[200], borderRadius: radii.sm }}>
-                <Typography variant="bodySmall">Start</Typography>
+                <CriaTextBody2>Start</CriaTextBody2>
               </div>
               <div style={{ padding: spacing[2], backgroundColor: colors.gray[200], borderRadius: radii.sm }}>
-                <Typography variant="bodySmall">Center</Typography>
+                <CriaTextBody2>Center</CriaTextBody2>
               </div>
               <div style={{ padding: spacing[2], backgroundColor: colors.gray[200], borderRadius: radii.sm }}>
-                <Typography variant="bodySmall">End</Typography>
+                <CriaTextBody2>End</CriaTextBody2>
               </div>
             </Row>
 
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
-              Row with wrapping:
-            </Typography>
+            <div style={{ marginBottom: '1rem' }}>
+              <CriaTextBody1>
+                Row with wrapping:
+              </CriaTextBody1>
+            </div>
             <Row wrap gap="sm" style={{ marginBottom: spacing[8] }}>
               {Array.from({ length: 8 }, (_, i) => (
                 <div key={i} style={{ padding: `${spacing[2]} ${spacing[4]}`, backgroundColor: colors.gray[200], borderRadius: radii.sm, whiteSpace: 'nowrap' }}>
-                  <Typography variant="bodySmall">Item {i + 1}</Typography>
+                  <CriaTextBody2>Item {i + 1}</CriaTextBody2>
                 </div>
               ))}
             </Row>
 
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
-              Vertical row (column direction):
-            </Typography>
+            <div style={{ marginBottom: '1rem' }}>
+              <CriaTextBody1>
+                Vertical row (column direction):
+              </CriaTextBody1>
+            </div>
             <Row direction="column" gap="sm" style={{ marginBottom: spacing[8] }}>
               <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
-                <Typography variant="body" weight="medium">Vertical Item 1</Typography>
+                <CriaTextBody1>Vertical Item 1</CriaTextBody1>
               </div>
               <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
-                <Typography variant="body" weight="medium">Vertical Item 2</Typography>
+                <CriaTextBody1>Vertical Item 2</CriaTextBody1>
               </div>
               <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
-                <Typography variant="body" weight="medium">Vertical Item 3</Typography>
+                <CriaTextBody1>Vertical Item 3</CriaTextBody1>
               </div>
             </Row>
           </CardContent>
@@ -236,21 +260,23 @@ const GridDemo: React.FC = () => {
         {/* Real-world Examples */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextHeadline2>
               Real-world Examples
-            </Typography>
+            </CriaTextHeadline2>
           </CardHeader>
           <CardContent>
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
-              Card layout with responsive grid:
-            </Typography>
+            <div style={{ marginBottom: '1rem' }}>
+              <CriaTextBody1>
+                Card layout with responsive grid:
+              </CriaTextBody1>
+            </div>
             <Grid columns={{ sm: 1, md: 2, lg: 3 }} gap="lg" style={{ marginBottom: spacing[8] }}>
               <Card>
                 <CardHeader>
-                  <Typography variant="h3" weight="semibold">Feature 1</Typography>
+                  <CriaTextTitle2>Feature 1</CriaTextTitle2>
                 </CardHeader>
                 <CardContent>
-                  <Typography variant="body">This is a feature card that demonstrates how the grid system works with complex components.</Typography>
+                  <CriaTextBody1>This is a feature card that demonstrates how the grid system works with complex components.</CriaTextBody1>
                   <Button variant="primary" size="sm" style={{ marginTop: spacing[4] }}>
                     Learn More
                   </Button>
@@ -258,10 +284,10 @@ const GridDemo: React.FC = () => {
               </Card>
               <Card>
                 <CardHeader>
-                  <Typography variant="h3" weight="semibold">Feature 2</Typography>
+                  <CriaTextTitle2>Feature 2</CriaTextTitle2>
                 </CardHeader>
                 <CardContent>
-                  <Typography variant="body">Another feature card showing responsive behavior across different screen sizes.</Typography>
+                  <CriaTextBody1>Another feature card showing responsive behavior across different screen sizes.</CriaTextBody1>
                   <Button variant="secondary" size="sm" style={{ marginTop: spacing[4] }}>
                     Get Started
                   </Button>
@@ -269,10 +295,10 @@ const GridDemo: React.FC = () => {
               </Card>
               <Card>
                 <CardHeader>
-                  <Typography variant="h3" weight="semibold">Feature 3</Typography>
+                  <CriaTextTitle2>Feature 3</CriaTextTitle2>
                 </CardHeader>
                 <CardContent>
-                  <Typography variant="body">The third feature card completes the responsive grid layout demonstration.</Typography>
+                  <CriaTextBody1>The third feature card completes the responsive grid layout demonstration.</CriaTextBody1>
                   <Button variant="outline" size="sm" style={{ marginTop: spacing[4] }}>
                     Explore
                   </Button>
@@ -282,52 +308,56 @@ const GridDemo: React.FC = () => {
 
             <Divider style={{ marginBottom: spacing[8] }} />
 
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
-              Dashboard layout with mixed components:
-            </Typography>
+            <div style={{ marginBottom: '1rem' }}>
+              <CriaTextBody1>
+                Dashboard layout with mixed components:
+              </CriaTextBody1>
+            </div>
             <Grid columns={12} gap="md" style={{ marginBottom: spacing[8] }}>
               <Column span={{ sm: 12, md: 8 }}>
                 <Card>
                   <CardHeader>
-                    <Typography variant="h3" weight="semibold">Main Content</Typography>
+                    <CriaTextTitle2>Main Content</CriaTextTitle2>
                   </CardHeader>
                   <CardContent>
-                    <Typography variant="body">This is the main content area that takes up 8 columns on medium+ screens and full width on small screens.</Typography>
+                    <CriaTextBody1>This is the main content area that takes up 8 columns on medium+ screens and full width on small screens.</CriaTextBody1>
                   </CardContent>
                 </Card>
               </Column>
               <Column span={{ sm: 12, md: 4 }}>
                 <Card>
                   <CardHeader>
-                    <Typography variant="h3" weight="semibold">Sidebar</Typography>
+                    <CriaTextTitle2>Sidebar</CriaTextTitle2>
                   </CardHeader>
                   <CardContent>
-                    <Typography variant="body">This sidebar takes up 4 columns on medium+ screens and full width on small screens.</Typography>
+                    <CriaTextBody1>This sidebar takes up 4 columns on medium+ screens and full width on small screens.</CriaTextBody1>
                   </CardContent>
                 </Card>
               </Column>
             </Grid>
 
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
-              Form layout with rows:
-            </Typography>
+            <div style={{ marginBottom: '1rem' }}>
+              <CriaTextBody1>
+                Form layout with rows:
+              </CriaTextBody1>
+            </div>
             <Card>
               <CardHeader>
-                <Typography variant="h3" weight="semibold">Contact Form</Typography>
+                <CriaTextTitle2>Contact Form</CriaTextTitle2>
               </CardHeader>
               <CardContent>
                 <Row gap="md" style={{ marginBottom: spacing[4] }}>
                   <div style={{ flex: 1 }}>
-                    <Typography variant="bodySmall" style={{ marginBottom: spacing[2] }}>First Name</Typography>
+                    <div style={{ marginBottom: spacing[2] }}><CriaTextBody2>First Name</CriaTextBody2></div>
                     <Input placeholder="First Name" />
                   </div>
                   <div style={{ flex: 1 }}>
-                    <Typography variant="bodySmall" style={{ marginBottom: spacing[2] }}>Last Name</Typography>
+                    <div style={{ marginBottom: spacing[2] }}><CriaTextBody2>Last Name</CriaTextBody2></div>
                     <Input placeholder="Last Name" />
                   </div>
                 </Row>
                 <div style={{ marginBottom: spacing[4] }}>
-                  <Typography variant="bodySmall" style={{ marginBottom: spacing[2] }}>Email</Typography>
+                  <div style={{ marginBottom: spacing[2] }}><CriaTextBody2>Email</CriaTextBody2></div>
                   <Input type="email" placeholder="Email" />
                 </div>
                 <Row justify="end" gap="sm">
@@ -342,51 +372,53 @@ const GridDemo: React.FC = () => {
         {/* Grid Alignment Examples */}
         <Card>
           <CardHeader>
-            <Typography variant="h2" weight="semibold">
+            <CriaTextHeadline2>
               Grid Alignment & Justification
-            </Typography>
+            </CriaTextHeadline2>
           </CardHeader>
           <CardContent>
-            <Typography variant="body" style={{ marginBottom: '1rem' }}>
-              Different alignment options:
-            </Typography>
+            <div style={{ marginBottom: '1rem' }}>
+              <CriaTextBody1>
+                Different alignment options:
+              </CriaTextBody1>
+            </div>
             
-            <Typography variant="bodySmall" style={{ marginBottom: '0.5rem' }}>Align Start:</Typography>
+            <div style={{ marginBottom: '0.5rem' }}><CriaTextBody2>Align Start:</CriaTextBody2></div>
             <Grid columns={3} align="start" style={{ marginBottom: '1rem', height: '120px', backgroundColor: '#f1f5f9', padding: '1rem', borderRadius: '4px' }}>
               <div style={{ padding: '1rem', backgroundColor: '#cbd5e1', borderRadius: '4px' }}>
-                <Typography variant="bodySmall">Short</Typography>
+                <CriaTextBody2>Short</CriaTextBody2>
               </div>
               <div style={{ padding: '1rem', backgroundColor: '#cbd5e1', borderRadius: '4px' }}>
-                <Typography variant="bodySmall">Medium height content that demonstrates alignment</Typography>
+                <CriaTextBody2>Medium height content that demonstrates alignment</CriaTextBody2>
               </div>
               <div style={{ padding: '1rem', backgroundColor: '#cbd5e1', borderRadius: '4px' }}>
-                <Typography variant="bodySmall">Very tall content that shows how different alignments work across multiple lines of text</Typography>
+                <CriaTextBody2>Very tall content that shows how different alignments work across multiple lines of text</CriaTextBody2>
               </div>
             </Grid>
 
-            <Typography variant="bodySmall" style={{ marginBottom: '0.5rem' }}>Align Center:</Typography>
+            <div style={{ marginBottom: '0.5rem' }}><CriaTextBody2>Align Center:</CriaTextBody2></div>
             <Grid columns={3} align="center" style={{ marginBottom: '1rem', height: '120px', backgroundColor: '#f1f5f9', padding: '1rem', borderRadius: '4px' }}>
               <div style={{ padding: '1rem', backgroundColor: '#cbd5e1', borderRadius: '4px' }}>
-                <Typography variant="bodySmall">Short</Typography>
+                <CriaTextBody2>Short</CriaTextBody2>
               </div>
               <div style={{ padding: '1rem', backgroundColor: '#cbd5e1', borderRadius: '4px' }}>
-                <Typography variant="bodySmall">Medium height content that demonstrates alignment</Typography>
+                <CriaTextBody2>Medium height content that demonstrates alignment</CriaTextBody2>
               </div>
               <div style={{ padding: '1rem', backgroundColor: '#cbd5e1', borderRadius: '4px' }}>
-                <Typography variant="bodySmall">Very tall content that shows how different alignments work across multiple lines of text</Typography>
+                <CriaTextBody2>Very tall content that shows how different alignments work across multiple lines of text</CriaTextBody2>
               </div>
             </Grid>
 
-            <Typography variant="bodySmall" style={{ marginBottom: '0.5rem' }}>Align End:</Typography>
+            <div style={{ marginBottom: '0.5rem' }}><CriaTextBody2>Align End:</CriaTextBody2></div>
             <Grid columns={3} align="end" style={{ marginBottom: '2rem', height: '120px', backgroundColor: '#f1f5f9', padding: '1rem', borderRadius: '4px' }}>
               <div style={{ padding: '1rem', backgroundColor: '#cbd5e1', borderRadius: '4px' }}>
-                <Typography variant="bodySmall">Short</Typography>
+                <CriaTextBody2>Short</CriaTextBody2>
               </div>
               <div style={{ padding: '1rem', backgroundColor: '#cbd5e1', borderRadius: '4px' }}>
-                <Typography variant="bodySmall">Medium height content that demonstrates alignment</Typography>
+                <CriaTextBody2>Medium height content that demonstrates alignment</CriaTextBody2>
               </div>
               <div style={{ padding: '1rem', backgroundColor: '#cbd5e1', borderRadius: '4px' }}>
-                <Typography variant="bodySmall">Very tall content that shows how different alignments work across multiple lines of text</Typography>
+                <CriaTextBody2>Very tall content that shows how different alignments work across multiple lines of text</CriaTextBody2>
               </div>
             </Grid>
           </CardContent>

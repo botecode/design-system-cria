@@ -11,11 +11,15 @@ export const TextareaDemo: React.FC = () => {
 
   return (
     <div style={{ padding: '0' }}>
-      <CriaTextTitle1 as="h2" style={{ marginBottom: spacing[8] }}>Textarea Component</CriaTextTitle1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextTitle1 as="h2">Textarea Component</CriaTextTitle1>
+      </div>
 
-      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
-        The Textarea component provides a multi-line text input with various states, sizes, and features including auto-resize, character counting, and accessibility support.
-      </CriaTextBody1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextBody1>
+          The Textarea component provides a multi-line text input with various states, sizes, and features including auto-resize, character counting, and accessibility support.
+        </CriaTextBody1>
+      </div>
 
       {/* Basic Examples */}
       <Card style={{ marginBottom: spacing[8] }}>

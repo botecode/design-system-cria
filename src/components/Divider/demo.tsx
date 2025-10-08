@@ -9,13 +9,17 @@ import { spacing, colors, radii } from '../../tokens';
 const DividerDemo: React.FC = () => {
   return (
     <div style={{ padding: spacing[8] }}>
-      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
-        Divider Component
-      </CriaTextHeadline1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline1>
+          Divider Component
+        </CriaTextHeadline1>
+      </div>
 
-      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
-        A versatile divider component for separating content sections with multiple variants, orientations, and styling options.
-      </CriaTextBody1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextBody1>
+          A versatile divider component for separating content sections with multiple variants, orientations, and styling options.
+        </CriaTextBody1>
+      </div>
 
       <div style={{ display: 'grid', gap: spacing[8] }}>
         {/* Basic Dividers */}
@@ -51,7 +55,7 @@ const DividerDemo: React.FC = () => {
           <CardHeader>
             <CriaTextTitle1 >
               Variants
-            </CriaTextBody1>
+            </CriaTextTitle1>
           </CardHeader>
           <CardContent>
             <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
@@ -72,7 +76,7 @@ const DividerDemo: React.FC = () => {
           <CardHeader>
             <CriaTextTitle1 >
               Sizes
-            </CriaTextBody1>
+            </CriaTextTitle1>
           </CardHeader>
           <CardContent>
             <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
@@ -93,7 +97,7 @@ const DividerDemo: React.FC = () => {
           <CardHeader>
             <CriaTextTitle1 >
               Colors
-            </CriaTextBody1>
+            </CriaTextTitle1>
           </CardHeader>
           <CardContent>
             <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
@@ -114,7 +118,7 @@ const DividerDemo: React.FC = () => {
           <CardHeader>
             <CriaTextTitle1 >
               Dividers with Labels
-            </CriaTextBody1>
+            </CriaTextTitle1>
           </CardHeader>
           <CardContent>
             <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
@@ -138,7 +142,7 @@ const DividerDemo: React.FC = () => {
           <CardHeader>
             <CriaTextTitle1 >
               Custom Dimensions
-            </CriaTextBody1>
+            </CriaTextTitle1>
           </CardHeader>
           <CardContent>
             <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
@@ -163,7 +167,7 @@ const DividerDemo: React.FC = () => {
           <CardHeader>
             <CriaTextTitle1 >
               Spacing Options
-            </CriaTextBody1>
+            </CriaTextTitle1>
           </CardHeader>
           <CardContent>
             <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
@@ -184,12 +188,12 @@ const DividerDemo: React.FC = () => {
           <CardHeader>
             <CriaTextTitle1 >
               Real-world Examples
-            </CriaTextBody1>
+            </CriaTextTitle1>
           </CardHeader>
           <CardContent>
             <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
               {/* Login Form Divider */}
-              <CriaTextTitle2  style={{ marginBottom: spacing[4] }}>Login Form</CriaTextBody1>
+              <CriaTextTitle2  style={{ marginBottom: spacing[4] }}>Login Form</CriaTextTitle2>
               <Button variant="primary" size="lg" style={{ width: '100%', marginBottom: spacing[4] }}>
                 Sign in with Google
               </Button>
@@ -204,7 +208,7 @@ const DividerDemo: React.FC = () => {
               {/* Section Separators */}
               <Divider style={{ marginTop: spacing[8], marginBottom: spacing[8] }} />
               
-              <CriaTextTitle2  style={{ marginBottom: spacing[4] }}>Content Sections</CriaTextBody1>
+              <CriaTextTitle2  style={{ marginBottom: spacing[4] }}>Content Sections</CriaTextTitle2>
               <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
                 This is the first section of content. It contains important information that needs to be separated from other sections.
               </CriaTextBody1>
@@ -229,27 +233,27 @@ const DividerDemo: React.FC = () => {
           <CardHeader>
             <CriaTextTitle1 >
               Vertical Layout Example
-            </CriaTextBody1>
+            </CriaTextTitle1>
           </CardHeader>
           <CardContent>
             <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm, height: '200px' }}>
               <div style={{ display: 'flex', height: '100%', alignItems: 'center' }}>
                 <div style={{ flex: 1, textAlign: 'center' }}>
-                  <CriaTextTitle2 >Navigation</CriaTextBody1>
+                  <CriaTextTitle2 >Navigation</CriaTextTitle2>
                   <CriaTextBody1>Menu items and links</CriaTextBody1>
                 </div>
                 
                 <Divider orientation="vertical" height="80%" color="primary" />
                 
                 <div style={{ flex: 2, textAlign: 'center' }}>
-                  <CriaTextTitle2 >Main Content</CriaTextBody1>
+                  <CriaTextTitle2 >Main Content</CriaTextTitle2>
                   <CriaTextBody1>Primary content area</CriaTextBody1>
                 </div>
                 
                 <Divider orientation="vertical" height="80%" variant="dashed" />
                 
                 <div style={{ flex: 1, textAlign: 'center' }}>
-                  <CriaTextTitle2 >Sidebar</CriaTextBody1>
+                  <CriaTextTitle2 >Sidebar</CriaTextTitle2>
                   <CriaTextBody1>Additional information</CriaTextBody1>
                 </div>
               </div>

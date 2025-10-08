@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Carousel } from './Carousel';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextTitle1, CriaTextTitle2, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { Button } from '../Button';
 import { Divider } from '../Divider';
 import { Card } from '../Card';
 import { Scrollbar } from '../Scrollbar';
+import { colors, spacing } from '../../tokens';
 
 const CarouselDemo: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -92,23 +93,31 @@ const CarouselDemo: React.FC = () => {
 
   return (
     <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
-      <Typography variant="h1" style={{ marginBottom: '2rem' }}>
-        Carousel Component
-      </Typography>
+      <div style={{ marginBottom: '2rem' }}>
+        <CriaTextHeadline1>
+          Carousel Component
+        </CriaTextHeadline1>
+      </div>
 
-      <Typography variant="body" style={{ marginBottom: '2rem', color: '#666' }}>
-        A versatile carousel component built with Embla Carousel, supporting multiple variants,
-        auto-play, navigation controls, and responsive design.
-      </Typography>
+      <div style={{ marginBottom: '2rem', color: '#666' }}>
+        <CriaTextBody1>
+          A versatile carousel component built with Embla Carousel, supporting multiple variants,
+          auto-play, navigation controls, and responsive design.
+        </CriaTextBody1>
+      </div>
 
       {/* Basic Image Carousel */}
       <section style={{ marginBottom: '3rem' }}>
-        <Typography variant="h2" style={{ marginBottom: '1rem' }}>
-          Basic Image Carousel
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '1rem' }}>
-          Simple image carousel with navigation arrows and dots.
-        </Typography>
+        <div style={{ marginBottom: '1rem' }}>
+          <CriaTextHeadline2>
+            Basic Image Carousel
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: '1rem' }}>
+          <CriaTextBody1>
+            Simple image carousel with navigation arrows and dots.
+          </CriaTextBody1>
+        </div>
         
         <Carousel
           slides={imageSlides}
@@ -137,32 +146,42 @@ const CarouselDemo: React.FC = () => {
                 padding: '2rem',
                 borderRadius: '0 0 8px 8px'
               }}>
-                <Typography variant="h3" style={{ color: 'white', marginBottom: '0.5rem' }}>
-                  {slide.title}
-                </Typography>
-                <Typography variant="body" style={{ color: 'rgba(255,255,255,0.9)' }}>
-                  {slide.description}
-                </Typography>
+                <div style={{ color: 'white', marginBottom: '0.5rem' }}>
+                  <CriaTextTitle1>
+                    {slide.title}
+                  </CriaTextTitle1>
+                </div>
+                <div style={{ color: 'rgba(255,255,255,0.9)' }}>
+                  <CriaTextBody1>
+                    {slide.description}
+                  </CriaTextBody1>
+                </div>
               </div>
             </div>
           )}
         </Carousel>
         
-        <Typography variant="caption" style={{ color: '#666' }}>
-          Current slide: {currentSlide + 1} of {imageSlides.length}
-        </Typography>
+        <div style={{ color: '#666' }}>
+          <CriaTextBody2>
+            Current slide: {currentSlide + 1} of {imageSlides.length}
+          </CriaTextBody2>
+        </div>
       </section>
 
       <Divider style={{ margin: '2rem 0' }} />
 
       {/* Cards Carousel */}
       <section style={{ marginBottom: '3rem' }}>
-        <Typography variant="h2" style={{ marginBottom: '1rem' }}>
-          Cards Carousel
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '1rem' }}>
-          Carousel with card-based content and custom styling.
-        </Typography>
+        <div style={{ marginBottom: '1rem' }}>
+          <CriaTextHeadline2>
+            Cards Carousel
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: '1rem' }}>
+          <CriaTextBody1>
+            Carousel with card-based content and custom styling.
+          </CriaTextBody1>
+        </div>
         
         <Carousel
           variant="cards"
@@ -173,19 +192,27 @@ const CarouselDemo: React.FC = () => {
           {(slide) => (
             <Card style={{ height: '100%', margin: '0 0.5rem' }}>
               <div style={{ padding: '1.5rem' }}>
-                <Typography variant="h4" style={{ marginBottom: '0.5rem' }}>
-                  {slide.title}
-                </Typography>
-                <Typography variant="body" style={{ marginBottom: '1rem', color: '#666' }}>
-                  {slide.description}
-                </Typography>
+                <div style={{ marginBottom: '0.5rem' }}>
+                  <CriaTextTitle1>
+                    {slide.title}
+                  </CriaTextTitle1>
+                </div>
+                <div style={{ marginBottom: '1rem', color: '#666' }}>
+                  <CriaTextBody1>
+                    {slide.description}
+                  </CriaTextBody1>
+                </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                  <Typography variant="caption" style={{ color: '#888' }}>
-                    by {slide.author}
-                  </Typography>
-                  <Typography variant="caption" style={{ color: '#888' }}>
-                    ⭐ {slide.rating}
-                  </Typography>
+                  <div style={{ color: '#888' }}>
+                    <CriaTextBody2>
+                      by {slide.author}
+                    </CriaTextBody2>
+                  </div>
+                  <div style={{ color: '#888' }}>
+                    <CriaTextBody2>
+                      ⭐ {slide.rating}
+                    </CriaTextBody2>
+                  </div>
                 </div>
                 <Button variant="primary" style={{ width: '100%' }}>
                   Enroll for {slide.price}
@@ -200,12 +227,16 @@ const CarouselDemo: React.FC = () => {
 
       {/* Auto-play Carousel */}
       <section style={{ marginBottom: '3rem' }}>
-        <Typography variant="h2" style={{ marginBottom: '1rem' }}>
-          Auto-play Carousel
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '1rem' }}>
-          Carousel with automatic slide progression every 3 seconds.
-        </Typography>
+        <div style={{ marginBottom: '1rem' }}>
+          <CriaTextHeadline2>
+            Auto-play Carousel
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: '1rem' }}>
+          <CriaTextBody1>
+            Carousel with automatic slide progression every 3 seconds.
+          </CriaTextBody1>
+        </div>
         
         <Carousel
           variant="minimal"
@@ -230,12 +261,16 @@ const CarouselDemo: React.FC = () => {
               flexDirection: 'column',
               justifyContent: 'center'
             }}>
-              <Typography variant="h2" style={{ color: 'white', marginBottom: '1rem' }}>
-                {slide.content}
-              </Typography>
-              <Typography variant="body" style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.2rem' }}>
-                {slide.subtitle}
-              </Typography>
+              <div style={{ color: 'white', marginBottom: '1rem' }}>
+                <CriaTextHeadline2>
+                  {slide.content}
+                </CriaTextHeadline2>
+              </div>
+              <div style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.2rem' }}>
+                <CriaTextBody1>
+                  {slide.subtitle}
+                </CriaTextBody1>
+              </div>
             </div>
           )}
         </Carousel>
@@ -245,16 +280,20 @@ const CarouselDemo: React.FC = () => {
 
       {/* Different Sizes */}
       <section style={{ marginBottom: '3rem' }}>
-        <Typography variant="h2" style={{ marginBottom: '1rem' }}>
-          Different Sizes
-        </Typography>
+        <div style={{ marginBottom: '1rem' }}>
+          <CriaTextHeadline2>
+            Different Sizes
+          </CriaTextHeadline2>
+        </div>
         
         <div style={{ display: 'grid', gap: '2rem' }}>
           {/* Small Size */}
           <div>
-            <Typography variant="h3" style={{ marginBottom: '0.5rem' }}>
-              Small Size
-            </Typography>
+            <div style={{ marginBottom: '0.5rem' }}>
+              <CriaTextTitle1>
+                Small Size
+              </CriaTextTitle1>
+            </div>
             <Carousel
               size="sm"
               variant="minimal"
@@ -293,9 +332,11 @@ const CarouselDemo: React.FC = () => {
 
           {/* Large Size */}
           <div>
-            <Typography variant="h3" style={{ marginBottom: '0.5rem' }}>
-              Large Size
-            </Typography>
+            <div style={{ marginBottom: '0.5rem' }}>
+              <CriaTextTitle1>
+                Large Size
+              </CriaTextTitle1>
+            </div>
             <Carousel
               size="lg"
               slides={imageSlides.slice(0, 3)}
@@ -322,12 +363,16 @@ const CarouselDemo: React.FC = () => {
                     padding: '3rem',
                     borderRadius: '0 0 12px 12px'
                   }}>
-                    <Typography variant="h2" style={{ color: 'white', marginBottom: '0.5rem' }}>
-                      {slide.title}
-                    </Typography>
-                    <Typography variant="body" style={{ color: 'rgba(255,255,255,0.9)', fontSize: '1.1rem' }}>
-                      {slide.description}
-                    </Typography>
+                    <div style={{ color: 'white', marginBottom: '0.5rem' }}>
+                      <CriaTextHeadline2>
+                        {slide.title}
+                      </CriaTextHeadline2>
+                    </div>
+                    <div style={{ color: 'rgba(255,255,255,0.9)', fontSize: '1.1rem' }}>
+                      <CriaTextBody1>
+                        {slide.description}
+                      </CriaTextBody1>
+                    </div>
                   </div>
                 </div>
               )}
@@ -340,20 +385,26 @@ const CarouselDemo: React.FC = () => {
 
       {/* Custom Header and Footer */}
       <section style={{ marginBottom: '3rem' }}>
-        <Typography variant="h2" style={{ marginBottom: '1rem' }}>
-          Custom Header and Footer
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: '1rem' }}>
-          Carousel with custom header and footer content.
-        </Typography>
+        <div style={{ marginBottom: '1rem' }}>
+          <CriaTextHeadline2>
+            Custom Header and Footer
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: '1rem' }}>
+          <CriaTextBody1>
+            Carousel with custom header and footer content.
+          </CriaTextBody1>
+        </div>
         
         <Carousel
           header={
             <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
-              <Typography variant="h3">Featured Products</Typography>
-              <Typography variant="body" style={{ color: '#666' }}>
-                Discover our latest collection
-              </Typography>
+              <CriaTextTitle1>Featured Products</CriaTextTitle1>
+              <div style={{ color: '#666' }}>
+                <CriaTextBody1>
+                  Discover our latest collection
+                </CriaTextBody1>
+              </div>
             </div>
           }
           footer={
@@ -380,16 +431,22 @@ const CarouselDemo: React.FC = () => {
                 }}>
                   📚
                 </div>
-                <Typography variant="h4" style={{ marginBottom: '0.5rem' }}>
-                  {slide.title}
-                </Typography>
-                <Typography variant="body" style={{ marginBottom: '1rem', color: '#666' }}>
-                  {slide.description}
-                </Typography>
+                <div style={{ marginBottom: '0.5rem' }}>
+                  <CriaTextTitle1>
+                    {slide.title}
+                  </CriaTextTitle1>
+                </div>
+                <div style={{ marginBottom: '1rem', color: '#666' }}>
+                  <CriaTextBody1>
+                    {slide.description}
+                  </CriaTextBody1>
+                </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <Typography variant="h5" style={{ color: '#007bff' }}>
-                    {slide.price}
-                  </Typography>
+                  <div style={{ color: '#007bff' }}>
+                    <CriaTextTitle2>
+                      {slide.price}
+                    </CriaTextTitle2>
+                  </div>
                   <Button variant="primary" size="sm">
                     Learn More
                   </Button>
@@ -404,15 +461,19 @@ const CarouselDemo: React.FC = () => {
 
       {/* Usage Examples */}
       <section>
-        <Typography variant="h2" style={{ marginBottom: '1rem' }}>
-          Usage Examples
-        </Typography>
+        <div style={{ marginBottom: '1rem' }}>
+          <CriaTextHeadline2>
+            Usage Examples
+          </CriaTextHeadline2>
+        </div>
         
         <div style={{ display: 'grid', gap: '2rem' }}>
           <div>
-            <Typography variant="h3" style={{ marginBottom: '0.5rem' }}>
-              Basic Usage
-            </Typography>
+            <div style={{ marginBottom: '0.5rem' }}>
+              <CriaTextTitle1>
+                Basic Usage
+              </CriaTextTitle1>
+            </div>
             <Scrollbar height="200px" style={{ border: '1px solid #dee2e6', borderRadius: '4px' }}>
               <div style={{ padding: '1rem', backgroundColor: '#f8f9fa' }}>
                 <div style={{ fontFamily: 'monospace', fontSize: '0.875rem', color: '#333' }}>
@@ -441,9 +502,11 @@ const CarouselDemo: React.FC = () => {
           </div>
 
           <div>
-            <Typography variant="h3" style={{ marginBottom: '0.5rem' }}>
-              Advanced Configuration
-            </Typography>
+            <div style={{ marginBottom: '0.5rem' }}>
+              <CriaTextTitle1>
+                Advanced Configuration
+              </CriaTextTitle1>
+            </div>
             <Scrollbar height="200px" style={{ border: '1px solid #dee2e6', borderRadius: '4px' }}>
               <div style={{ padding: '1rem', backgroundColor: '#f8f9fa' }}>
                 <div style={{ fontFamily: 'monospace', fontSize: '0.875rem', color: '#333' }}>

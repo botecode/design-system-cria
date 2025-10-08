@@ -2,6 +2,7 @@ import React from 'react';
 import Changelog from './Changelog';
 import type { ChangelogEntry } from './Changelog';
 import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextBody1 } from '../TextTokens';
 import { spacing } from '../../tokens';
 
 const sampleChangelogEntries: ChangelogEntry[] = [
@@ -242,12 +243,16 @@ export const ChangelogDemo: React.FC = () => {
   return (
     <div style={{ padding: spacing[6] }}>
       <div style={{ marginBottom: spacing[8] }}>
-        <Typography variant="title1" style={{ marginBottom: spacing[4] }}>
-          Changelog Component
-        </Typography>
-        <Typography variant="body" style={{ color: '#666', marginBottom: spacing[6] }}>
-          A comprehensive changelog component with pagination, version tracking, and categorized changes.
-        </Typography>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline1>
+            Changelog Component
+          </CriaTextHeadline1>
+        </div>
+        <div style={{ color: '#666', marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            A comprehensive changelog component with pagination, version tracking, and categorized changes.
+          </CriaTextBody1>
+        </div>
       </div>
 
       <Changelog 

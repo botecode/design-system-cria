@@ -70,15 +70,19 @@ export const BreadcrumbsDemo: React.FC = () => {
 
   return (
     <div style={{ padding: '0' }}>
-      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
-        Breadcrumbs Component
-      </CriaTextHeadline1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline1>
+          Breadcrumbs Component
+        </CriaTextHeadline1>
+      </div>
 
-      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
-        The Breadcrumbs component provides navigation context by showing the user's current location 
-        within a hierarchical structure. It helps users understand where they are and provides 
-        quick access to parent pages.
-      </Typography>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextBody1>
+          The Breadcrumbs component provides navigation context by showing the user's current location 
+          within a hierarchical structure. It helps users understand where they are and provides 
+          quick access to parent pages.
+        </CriaTextBody1>
+      </div>
 
       {/* Basic Examples */}
       <Card style={{ marginBottom: spacing[8] }}>
@@ -89,9 +93,11 @@ export const BreadcrumbsDemo: React.FC = () => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             {/* Default breadcrumbs */}
             <div>
-              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
-                Default Breadcrumbs
-              </CriaTextBody1>
+              <div style={{ marginBottom: spacing[3] }}>
+                <CriaTextBody1>
+                  Default Breadcrumbs
+                </CriaTextBody1>
+              </div>
               <Breadcrumbs items={basicItems} />
             </div>
 

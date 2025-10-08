@@ -229,20 +229,26 @@ export const CardDemo: React.FC = () => {
 
   return (
     <div style={{ padding: spacing[6], maxWidth: '1000px' }}>
-      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
-        Lesson Cards
-      </CriaTextHeadline1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline1>
+          Lesson Cards
+        </CriaTextHeadline1>
+      </div>
 
 
       {/* CriaLessonCardSmall Component */}
       <section style={{ marginBottom: spacing[8] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          CriaLessonCardSmall - Lesson Cards
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[6], color: colors.gray[500] }}>
-          Specialized lesson card component with completion tracking, instructor details, and interactive elements. 
-          Features examples with different instructors across various categories, including stacked instructor avatars for collaborative lessons.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            CriaLessonCardSmall - Lesson Cards
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[6], color: colors.gray[500] }}>
+          <CriaTextBody1>
+            Specialized lesson card component with completion tracking, instructor details, and interactive elements. 
+            Features examples with different instructors across various categories, including stacked instructor avatars for collaborative lessons.
+          </CriaTextBody1>
+        </div>
         
         <div style={{ 
           display: 'grid', 
@@ -266,13 +272,17 @@ export const CardDemo: React.FC = () => {
 
       {/* CriaLessonCard Component */}
       <section style={{ marginBottom: spacing[8] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          CriaLessonCard - Detailed Lesson Cards
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[6], color: colors.gray[500] }}>
-          Large, detailed lesson card component with tool icons, descriptions, and comprehensive lesson information. 
-          Perfect for showcasing detailed course content with rich visual elements.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            CriaLessonCard - Detailed Lesson Cards
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[6], color: colors.gray[500] }}>
+          <CriaTextBody1>
+            Large, detailed lesson card component with tool icons, descriptions, and comprehensive lesson information. 
+            Perfect for showcasing detailed course content with rich visual elements.
+          </CriaTextBody1>
+        </div>
         
         <div style={{ 
           display: 'grid', 
@@ -293,9 +303,11 @@ export const CardDemo: React.FC = () => {
 
       {/* Variants */}
       <section style={{ marginBottom: spacing[8] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Variantes
-        </CriaTextHeadline2>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Variantes
+          </CriaTextHeadline2>
+        </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[4] }}>
           <Card variant="default">
             <CardHeader>

@@ -140,13 +140,17 @@ const TimelineDemo: React.FC = () => {
 
   return (
     <div style={{ padding: spacing[8], minHeight: '100vh' }}>
-      <CriaTextHeadline1 style={{ marginBottom: spacing[6] }}>
-        Timeline / Activity Feed
-      </CriaTextHeadline1>
+      <div style={{ marginBottom: spacing[6] }}>
+        <CriaTextHeadline1>
+          Timeline / Activity Feed
+        </CriaTextHeadline1>
+      </div>
 
-      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
-        A versatile component for displaying sequential events, activities, or updates in chronological order.
-      </CriaTextBody1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextBody1>
+          A versatile component for displaying sequential events, activities, or updates in chronological order.
+        </CriaTextBody1>
+      </div>
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
@@ -173,9 +177,11 @@ const TimelineDemo: React.FC = () => {
             }))}
             onItemClick={handleItemClick}
           />
-          <CriaTextBody2 style={{ marginTop: spacing[4], color: colors.gray[600] }}>
-            Selected items: {selectedItems.length > 0 ? selectedItems.join(', ') : 'None'}
-          </CriaTextBody2>
+          <div style={{ marginTop: spacing[4], color: colors.gray[600] }}>
+            <CriaTextBody2>
+              Selected items: {selectedItems.length > 0 ? selectedItems.join(', ') : 'None'}
+            </CriaTextBody2>
+          </div>
         </CardContent>
       </Card>
 
@@ -189,25 +195,31 @@ const TimelineDemo: React.FC = () => {
           <Grid gap="lg">
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Small Size
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Small Size
+                  </CriaTextTitle1>
+                </div>
                 <Timeline items={compactItems} size="sm" />
               </Column>
             </Row>
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Medium Size (Default)
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Medium Size (Default)
+                  </CriaTextTitle1>
+                </div>
                 <Timeline items={compactItems} size="md" />
               </Column>
             </Row>
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Large Size
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Large Size
+                  </CriaTextTitle1>
+                </div>
                 <Timeline items={compactItems} size="lg" />
               </Column>
             </Row>
@@ -225,25 +237,31 @@ const TimelineDemo: React.FC = () => {
           <Grid gap="lg">
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Default Variant
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Default Variant
+                  </CriaTextTitle1>
+                </div>
                 <Timeline items={projectTimelineItems} variant="default" />
               </Column>
             </Row>
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Compact Variant
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Compact Variant
+                  </CriaTextTitle1>
+                </div>
                 <Timeline items={projectTimelineItems} variant="compact" />
               </Column>
             </Row>
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Detailed Variant
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Detailed Variant
+                  </CriaTextTitle1>
+                </div>
                 <Timeline items={projectTimelineItems} variant="detailed" />
               </Column>
             </Row>
@@ -261,9 +279,11 @@ const TimelineDemo: React.FC = () => {
           <Grid gap="lg">
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Filled Style (Default)
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Filled Style (Default)
+                  </CriaTextTitle1>
+                </div>
                 <Timeline 
                   items={socialActivityItems.map(item => ({ ...item, style: 'filled' as const }))} 
                 />
@@ -271,9 +291,11 @@ const TimelineDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Outlined Style
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Outlined Style
+                  </CriaTextTitle1>
+                </div>
                 <Timeline 
                   items={socialActivityItems.map(item => ({ ...item, style: 'outlined' as const }))} 
                 />
@@ -281,9 +303,11 @@ const TimelineDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Ghost Style
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Ghost Style
+                  </CriaTextTitle1>
+                </div>
                 <Timeline 
                   items={socialActivityItems.map(item => ({ ...item, style: 'ghost' as const }))} 
                 />
@@ -373,12 +397,16 @@ const TimelineDemo: React.FC = () => {
                 color: colors.gray[500]
               }}>
                 <Clock size={48} style={{ marginBottom: spacing[4], opacity: 0.5 }} />
-                <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>
-                  No Timeline Data
-                </CriaTextTitle1>
-                <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-                  Your timeline will appear here once you start creating events.
-                </CriaTextBody1>
+                <div style={{ marginBottom: spacing[2] }}>
+                  <CriaTextTitle1>
+                    No Timeline Data
+                  </CriaTextTitle1>
+                </div>
+                <div style={{ marginBottom: spacing[4] }}>
+                  <CriaTextBody1>
+                    Your timeline will appear here once you start creating events.
+                  </CriaTextBody1>
+                </div>
                 <Button variant="primary" size="sm">
                   Create First Event
                 </Button>

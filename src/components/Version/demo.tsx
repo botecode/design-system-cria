@@ -1,6 +1,7 @@
 import React from 'react';
 import { Version } from './Version';
 import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextTitle1, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { Card, CardContent, CardHeader } from '../Card';
 import { Grid, Row, Column } from '../Grid';
 import { spacing, colors } from '../../tokens';
@@ -8,43 +9,50 @@ import { spacing, colors } from '../../tokens';
 const VersionDemo: React.FC = () => {
   return (
     <div style={{ padding: spacing[8], minHeight: '100vh' }}>
-      <Typography variant="h1" weight="bold" style={{ marginBottom: spacing[6] }}>
-        Version Component
-      </Typography>
+      <div style={{ marginBottom: spacing[6] }}>
+        <CriaTextHeadline1>
+          Version Component
+        </CriaTextHeadline1>
+      </div>
 
-      <Typography variant="body" style={{ marginBottom: spacing[8] }}>
-        A component for displaying version information with various styling options.
-      </Typography>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextBody1>
+          A component for displaying version information with various styling options.
+        </CriaTextBody1>
+      </div>
 
       <Grid gap="lg">
         <Row>
           <Column span={12}>
             <Card style={{ marginBottom: spacing[6] }}>
               <CardHeader>
-                <Typography variant="h2" weight="semibold">
+                <CriaTextTitle1>
                   Basic Version Display
-                </Typography>
+                </CriaTextTitle1>
               </CardHeader>
               <CardContent>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
                   <div>
-                    <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[2] }}>
+                    <div style={{ marginBottom: spacing[2] }}>
+                      <CriaTextTitle1>
                       Default Version
-                    </Typography>
+                    </CriaTextTitle1>
                     <Version />
                   </div>
                   
                   <div>
-                    <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[2] }}>
+                    <div style={{ marginBottom: spacing[2] }}>
+                      <CriaTextTitle1>
                       Custom Version
-                    </Typography>
+                    </CriaTextTitle1>
                     <Version version="1.2.3" />
                   </div>
                   
                   <div>
-                    <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[2] }}>
+                    <div style={{ marginBottom: spacing[2] }}>
+                      <CriaTextTitle1>
                       Different Sizes
-                    </Typography>
+                    </CriaTextTitle1>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[2] }}>
                       <Version size="caption" />
                       <Version size="body2" />
@@ -63,23 +71,25 @@ const VersionDemo: React.FC = () => {
           <Column span={12}>
             <Card style={{ marginBottom: spacing[6] }}>
               <CardHeader>
-                <Typography variant="h2" weight="semibold">
+                <CriaTextTitle1>
                   Version Badges
-                </Typography>
+                </CriaTextTitle1>
               </CardHeader>
               <CardContent>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
                   <div>
-                    <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[2] }}>
+                    <div style={{ marginBottom: spacing[2] }}>
+                      <CriaTextTitle1>
                       Badge Format
-                    </Typography>
+                    </CriaTextTitle1>
                     <Version badge />
                   </div>
                   
                   <div>
-                    <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[2] }}>
+                    <div style={{ marginBottom: spacing[2] }}>
+                      <CriaTextTitle1>
                       Different Variants
-                    </Typography>
+                    </CriaTextTitle1>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[2] }}>
                       <Version badge variant="primary" />
                       <Version badge variant="secondary" />
@@ -91,9 +101,10 @@ const VersionDemo: React.FC = () => {
                   </div>
                   
                   <div>
-                    <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[2] }}>
+                    <div style={{ marginBottom: spacing[2] }}>
+                      <CriaTextTitle1>
                       Custom Styling
-                    </Typography>
+                    </CriaTextTitle1>
                     <Version 
                       badge 
                       style={{ 
@@ -113,23 +124,25 @@ const VersionDemo: React.FC = () => {
           <Column span={12}>
             <Card style={{ marginBottom: spacing[6] }}>
               <CardHeader>
-                <Typography variant="h2" weight="semibold">
+                <CriaTextTitle1>
                   Build Information
-                </Typography>
+                </CriaTextTitle1>
               </CardHeader>
               <CardContent>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
                   <div>
-                    <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[2] }}>
+                    <div style={{ marginBottom: spacing[2] }}>
+                      <CriaTextTitle1>
                       With Build Info
-                    </Typography>
+                    </CriaTextTitle1>
                     <Version showBuildInfo />
                   </div>
                   
                   <div>
-                    <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[2] }}>
+                    <div style={{ marginBottom: spacing[2] }}>
+                      <CriaTextTitle1>
                       Badge with Build Info
-                    </Typography>
+                    </CriaTextTitle1>
                     <Version badge showBuildInfo />
                   </div>
                 </div>
@@ -142,16 +155,17 @@ const VersionDemo: React.FC = () => {
           <Column span={12}>
             <Card style={{ marginBottom: spacing[6] }}>
               <CardHeader>
-                <Typography variant="h2" weight="semibold">
+                <CriaTextTitle1>
                   Real-world Examples
-                </Typography>
+                </CriaTextTitle1>
               </CardHeader>
               <CardContent>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
                   <div>
-                    <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[2] }}>
+                    <div style={{ marginBottom: spacing[2] }}>
+                      <CriaTextTitle1>
                       Footer Version
-                    </Typography>
+                    </CriaTextTitle1>
                     <div style={{ 
                       padding: spacing[4], 
                       backgroundColor: colors.gray[50], 
@@ -160,17 +174,20 @@ const VersionDemo: React.FC = () => {
                       justifyContent: 'space-between',
                       alignItems: 'center'
                     }}>
-                      <Typography variant="body2" color="muted">
-                        © 2024 CRIA Design System
-                      </Typography>
+                      <div style={{ color: 'var(--cria-text-muted)' }}>
+                        <CriaTextBody2>
+                          © 2024 CRIA Design System
+                        </CriaTextBody2>
+                      </div>
                       <Version variant="muted" size="caption" />
                     </div>
                   </div>
                   
                   <div>
-                    <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[2] }}>
+                    <div style={{ marginBottom: spacing[2] }}>
+                      <CriaTextTitle1>
                       Header Version Badge
-                    </Typography>
+                    </CriaTextTitle1>
                     <div style={{ 
                       padding: spacing[4], 
                       backgroundColor: colors.white, 
@@ -180,26 +197,29 @@ const VersionDemo: React.FC = () => {
                       justifyContent: 'space-between',
                       alignItems: 'center'
                     }}>
-                      <Typography variant="h4" weight="semibold">
+                      <CriaTextTitle1>
                         CRIA Design System
-                      </Typography>
+                      </CriaTextTitle1>
                       <Version badge variant="primary" />
                     </div>
                   </div>
                   
                   <div>
-                    <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[2] }}>
+                    <div style={{ marginBottom: spacing[2] }}>
+                      <CriaTextTitle1>
                       Development Info
-                    </Typography>
+                    </CriaTextTitle1>
                     <div style={{ 
                       padding: spacing[4], 
                       backgroundColor: colors.warning[50], 
                       border: `1px solid ${colors.warning[200]}`,
                       borderRadius: '8px'
                     }}>
-                      <Typography variant="body2" weight="medium" style={{ marginBottom: spacing[2] }}>
-                        Development Environment
-                      </Typography>
+                      <div style={{ marginBottom: spacing[2] }}>
+                        <CriaTextBody2>
+                          Development Environment
+                        </CriaTextBody2>
+                      </div>
                       <Version showBuildInfo variant="warning" />
                     </div>
                   </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { CriaClassroomFutureEventCard, ClassroomEvent, ClassroomItem } from '../CriaClassroomFutureEventCard';
 import { CriaClassroomTrilhaCard, CustomLearning, ClassroomItem as TrilhaClassroomItem } from '../CriaClassroomTrilhaCard';
 import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextTitle1, CriaTextBody1 } from '../TextTokens';
 import { spacing } from '../../tokens';
 
 export const EventsCardsDemo: React.FC = () => {
@@ -209,19 +210,25 @@ export const EventsCardsDemo: React.FC = () => {
 
   return (
     <div style={{ padding: spacing.lg }}>
-      <Typography variant="title1" weight="bold" style={{ marginBottom: spacing[6] }}>
-        Events Cards Demo
-      </Typography>
+      <div style={{ marginBottom: spacing[6] }}>
+        <CriaTextHeadline1>
+          Events Cards Demo
+        </CriaTextHeadline1>
+      </div>
 
       {/* CriaClassroomFutureEventCard Component */}
       <section style={{ marginBottom: spacing[8] }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[4] }}>
-          CriaClassroomFutureEventCard - Event Cards with Countdown
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: spacing[6], color: spacing[6] }}>
-          Interactive event cards with live countdown timers, beautiful gradient backgrounds, and calendar integration. 
-          Perfect for showcasing upcoming classroom events with real-time countdown functionality.
-        </Typography>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1>
+            CriaClassroomFutureEventCard - Event Cards with Countdown
+          </CriaTextTitle1>
+        </div>
+        <div style={{ marginBottom: spacing[6], color: spacing[6] }}>
+          <CriaTextBody1>
+            Interactive event cards with live countdown timers, beautiful gradient backgrounds, and calendar integration. 
+            Perfect for showcasing upcoming classroom events with real-time countdown functionality.
+          </CriaTextBody1>
+        </div>
         
         <div style={{ 
           display: 'flex',
@@ -244,13 +251,17 @@ export const EventsCardsDemo: React.FC = () => {
 
       {/* CriaClassroomTrilhaCard Component */}
       <section style={{ marginBottom: spacing[8] }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[4] }}>
-          CriaClassroomTrilhaCard - Learning Path Cards
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: spacing[6], color: spacing[6] }}>
-          Comprehensive learning path cards with progress tracking, instructor information, and tool badges. 
-          Perfect for showcasing structured learning journeys with detailed progress and metadata.
-        </Typography>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1>
+            CriaClassroomTrilhaCard - Learning Path Cards
+          </CriaTextTitle1>
+        </div>
+        <div style={{ marginBottom: spacing[6], color: spacing[6] }}>
+          <CriaTextBody1>
+            Comprehensive learning path cards with progress tracking, instructor information, and tool badges. 
+            Perfect for showcasing structured learning journeys with detailed progress and metadata.
+          </CriaTextBody1>
+        </div>
         
         <div style={{ 
           display: 'flex',

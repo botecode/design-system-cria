@@ -41,21 +41,27 @@ const FooterDemo: React.FC = () => {
 
   return (
     <div style={{ padding: spacing[8], minHeight: '100vh' }}>
-      <CriaTextHeadline1  style={{ marginBottom: spacing[8] }}>
-        Footer Component
-      </CriaTextHeadline1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline1>
+          Footer Component
+        </CriaTextHeadline1>
+      </div>
 
-      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
-        Global app/site footer component with customizable variants, positioning, and content sections.
-      </CriaTextBody1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextBody1>
+          Global app/site footer component with customizable variants, positioning, and content sections.
+        </CriaTextBody1>
+      </div>
 
       {/* Click feedback */}
       {(clickedLink || clickedSocial) && (
         <Card style={{ marginBottom: spacing[8], backgroundColor: colors.primary[50], border: `1px solid ${colors.primary[500]}` }}>
           <CardContent>
-            <CriaTextBody2  style={{ color: colors.primary[700] }}>
-              {clickedLink || clickedSocial}
-            </CriaTextBody2>
+            <div style={{ color: colors.primary[700] }}>
+              <CriaTextBody2>
+                {clickedLink || clickedSocial}
+              </CriaTextBody2>
+            </div>
           </CardContent>
         </Card>
       )}

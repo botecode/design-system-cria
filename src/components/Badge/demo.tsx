@@ -10,15 +10,19 @@ import { Check, WarningCircle, X, Star, Rocket, ThumbsUp } from 'phosphor-react'
 export const BadgeDemo: React.FC = () => {
   return (
     <div style={{ padding: spacing[6], maxWidth: '1000px' }}>
-      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
-        Badge Demo
-      </CriaTextHeadline1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline1>
+          Badge Demo
+        </CriaTextHeadline1>
+      </div>
 
       {/* Variants */}
       <section style={{ marginBottom: spacing[8] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Variants
-        </CriaTextHeadline2>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Variants
+          </CriaTextHeadline2>
+        </div>
         <div style={{ display: 'flex', gap: spacing[3], flexWrap: 'wrap', alignItems: 'center' }}>
           <Badge variant="default">Default</Badge>
           <Badge variant="primary">Primary</Badge>
@@ -32,9 +36,11 @@ export const BadgeDemo: React.FC = () => {
 
       {/* Sizes */}
       <section style={{ marginBottom: spacing[8] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Sizes
-        </CriaTextHeadline2>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Sizes
+          </CriaTextHeadline2>
+        </div>
         <div style={{ display: 'flex', gap: spacing[3], alignItems: 'center', flexWrap: 'wrap' }}>
           <Badge size="sm" variant="primary">Small</Badge>
           <Badge size="md" variant="primary">Medium</Badge>
@@ -44,9 +50,11 @@ export const BadgeDemo: React.FC = () => {
 
       {/* Styles */}
       <section style={{ marginBottom: spacing[8] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Styles
-        </CriaTextHeadline2>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Styles
+          </CriaTextHeadline2>
+        </div>
         <div style={{ display: 'flex', gap: spacing[3], alignItems: 'center', flexWrap: 'wrap' }}>
           <Badge badgeStyle="solid" variant="primary">Solid</Badge>
           <Badge badgeStyle="outline" variant="primary">Outline</Badge>
@@ -56,9 +64,11 @@ export const BadgeDemo: React.FC = () => {
 
       {/* Count Badges */}
       <section style={{ marginBottom: spacing[8] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Count Badges
-        </CriaTextHeadline2>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Count Badges
+          </CriaTextHeadline2>
+        </div>
         <div style={{ display: 'flex', gap: spacing[3], alignItems: 'center', flexWrap: 'wrap' }}>
           <Badge variant="primary">1</Badge>
           <Badge variant="secondary">42</Badge>
@@ -70,9 +80,11 @@ export const BadgeDemo: React.FC = () => {
 
       {/* Dot Badges */}
       <section style={{ marginBottom: spacing[8] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Dot Badges
-        </CriaTextHeadline2>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Dot Badges
+          </CriaTextHeadline2>
+        </div>
         <div style={{ display: 'flex', gap: spacing[3], alignItems: 'center', flexWrap: 'wrap' }}>
           <Badge variant="primary" dot>Dot</Badge>
           <Badge variant="secondary" dot>Dot</Badge>
@@ -84,9 +96,11 @@ export const BadgeDemo: React.FC = () => {
 
       {/* Interactive Badges */}
       <section style={{ marginBottom: spacing[8] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Interactive Badges
-        </CriaTextHeadline2>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Interactive Badges
+          </CriaTextHeadline2>
+        </div>
         <div style={{ display: 'flex', gap: spacing[3], alignItems: 'center', flexWrap: 'wrap' }}>
           <Badge 
             variant="primary" 
@@ -115,9 +129,11 @@ export const BadgeDemo: React.FC = () => {
 
       {/* Badges with Icons */}
       <section style={{ marginBottom: spacing[8] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Badges with Icons
-        </CriaTextHeadline2>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Badges with Icons
+          </CriaTextHeadline2>
+        </div>
         <div style={{ display: 'flex', gap: spacing[3], alignItems: 'center', flexWrap: 'wrap' }}>
           <Badge 
             variant="success" 
@@ -143,15 +159,19 @@ export const BadgeDemo: React.FC = () => {
 
       {/* Real-world Examples */}
       <section style={{ marginBottom: spacing[8] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Real-world Examples
-        </CriaTextHeadline2>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Real-world Examples
+          </CriaTextHeadline2>
+        </div>
         
         {/* Notification Badge */}
         <div style={{ marginBottom: spacing[4] }}>
-          <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>
-            Notification Badge
-          </CriaTextTitle1>
+          <div style={{ marginBottom: spacing[2] }}>
+            <CriaTextTitle1>
+              Notification Badge
+            </CriaTextTitle1>
+          </div>
           <div style={{ display: 'flex', gap: spacing[3], alignItems: 'center' }}>
             <div style={{ position: 'relative', display: 'inline-block' }}>
               <div style={{ 
@@ -199,9 +219,11 @@ export const BadgeDemo: React.FC = () => {
 
         {/* Status Badges */}
         <div style={{ marginBottom: spacing[4] }}>
-          <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>
-            Status Badges
-          </CriaTextTitle1>
+          <div style={{ marginBottom: spacing[2] }}>
+            <CriaTextTitle1>
+              Status Badges
+            </CriaTextTitle1>
+          </div>
           <div style={{ display: 'flex', gap: spacing[3], alignItems: 'center', flexWrap: 'wrap' }}>
             <Badge variant="success" badgeStyle="soft">Active</Badge>
             <Badge variant="warning" badgeStyle="soft">Pending</Badge>
@@ -212,9 +234,11 @@ export const BadgeDemo: React.FC = () => {
 
         {/* Category Badges */}
         <div style={{ marginBottom: spacing[4] }}>
-          <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>
-            Category Badges
-          </CriaTextTitle1>
+          <div style={{ marginBottom: spacing[2] }}>
+            <CriaTextTitle1>
+              Category Badges
+            </CriaTextTitle1>
+          </div>
           <div style={{ display: 'flex', gap: spacing[2], alignItems: 'center', flexWrap: 'wrap' }}>
             <Badge variant="primary" badgeStyle="outline">React</Badge>
             <Badge variant="secondary" badgeStyle="outline">TypeScript</Badge>
@@ -226,9 +250,11 @@ export const BadgeDemo: React.FC = () => {
 
       {/* Accessibility */}
       <section style={{ marginBottom: spacing[8] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Accessibility Features
-        </CriaTextHeadline2>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Accessibility Features
+          </CriaTextHeadline2>
+        </div>
         <div style={{ display: 'flex', gap: spacing[3], alignItems: 'center', flexWrap: 'wrap' }}>
           <Badge 
             variant="primary" 

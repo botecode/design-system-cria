@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Slider } from './Slider';
-import { CriaTextHeadline1, CriaTextTitle1, CriaTextTitle2, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextTitle1, CriaTextTitle2, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { spacing, colors, radii } from '../../tokens';
 import { Card } from '../Card';
 
@@ -69,25 +69,27 @@ export const SliderDemo: React.FC = () => {
 
   return (
     <div style={{ padding: spacing[6], maxWidth: '800px' }}>
-      <CriaTextHeadline1 style={{ marginBottom: spacing[4] }}>
+      <div style={{ marginBottom: spacing[4] }}>
+        <CriaTextHeadline1>
         Slider Demo
-      </CriaTextHeadline1>
+        </CriaTextHeadline1>
+      </div>
       
       <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[8] }}>
         {/* Basic Single Slider */}
         <Card style={{ padding: spacing[6] }}>
-          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1>
             Basic Single Slider
           </CriaTextTitle1>
           <div style={{ marginBottom: spacing[4] }}>
-            <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
+            <CriaTextBody2>
               Value: {singleValue}
             </CriaTextBody2>
             <Slider
               min={0}
               max={100}
               value={singleValue}
-              onChange={setSingleValue}
+              onChange={(v) => typeof v === 'number' && setSingleValue(v)}
               marks={marks}
               showLabels={true}
             />
@@ -96,18 +98,18 @@ export const SliderDemo: React.FC = () => {
 
         {/* Zero to Ten Slider */}
         <Card style={{ padding: spacing[6] }}>
-          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1>
             Zero to Ten Slider
           </CriaTextTitle1>
           <div style={{ marginBottom: spacing[4] }}>
-            <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
+            <CriaTextBody2>
               Value: {zeroToTenValue}
             </CriaTextBody2>
             <Slider
               min={0}
               max={10}
               value={zeroToTenValue}
-              onChange={setZeroToTenValue}
+              onChange={(v) => typeof v === 'number' && setZeroToTenValue(v)}
               marks={zeroToTenMarks}
               showLabels={true}
             />
@@ -116,19 +118,21 @@ export const SliderDemo: React.FC = () => {
 
         {/* Interactive Text Slider */}
         <Card style={{ padding: spacing[6] }}>
-          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1>
             Interactive Text Slider
-          </CriaTextBody2>
-          <CriaTextBody2 style={{ marginBottom: spacing[4], color: colors.text.secondary }}>
+          </CriaTextTitle1>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextBody2>
             How much does this apply to you?
-          </CriaTextBody2>
+            </CriaTextBody2>
+          </div>
           
           <div style={{ marginBottom: '24px' }}>
             <Slider
               min={0}
               max={10}
               value={textSliderValue}
-              onChange={setTextSliderValue}
+              onChange={(v) => typeof v === 'number' && setTextSliderValue(v)}
               marks={textSliderMarks}
               showLabels={true}
               color="primary"
@@ -146,41 +150,33 @@ export const SliderDemo: React.FC = () => {
             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
             borderColor: textSliderValue >= 7 ? 'var(--cria-primary)' : textSliderValue <= 3 ? 'var(--cria-secondary)' : '#6c757d'
           }}>
-            <Typography 
-              variant="h2" 
-              style={{ 
-                marginBottom: spacing[2],
-                color: textSliderValue >= 7 ? 'var(--cria-primary)' : textSliderValue <= 3 ? 'var(--cria-secondary)' : '#495057'
-              }}
-            >
-              {getTextForValue(textSliderValue).text}
-            </CriaTextBody2>
-            <Typography 
-              variant="body1" 
-              style={{ 
-                color: colors.text.secondary,
-                fontStyle: 'italic'
-              }}
-            >
-              {getTextForValue(textSliderValue).description}
-            </CriaTextBody2>
+            <div style={{ marginBottom: spacing[2], color: textSliderValue >= 7 ? colors.primary : textSliderValue <= 3 ? colors.secondary : colors.gray[600] }}>
+              <CriaTextHeadline2>
+                {getTextForValue(textSliderValue).text}
+              </CriaTextHeadline2>
+            </div>
+            <div style={{ color: colors.text.secondary, fontStyle: 'italic' }}>
+              <CriaTextBody1>
+                {getTextForValue(textSliderValue).description}
+              </CriaTextBody1>
+            </div>
           </div>
         </Card>
 
         {/* Range Slider */}
         <Card style={{ padding: spacing[6] }}>
-          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1>
             Range Slider
-          </CriaTextBody2>
+          </CriaTextTitle1>
           <div style={{ marginBottom: spacing[4] }}>
-            <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
+            <CriaTextBody2>
               Range: {rangeValue[0]} - {rangeValue[1]}
             </CriaTextBody2>
             <Slider
               min={0}
               max={100}
               value={rangeValue}
-              onChange={setRangeValue}
+              onChange={(v) => Array.isArray(v) && setRangeValue(v)}
               range
               marks={rangeMarks}
               showLabels={true}
@@ -190,18 +186,18 @@ export const SliderDemo: React.FC = () => {
 
         {/* Step Control */}
         <Card style={{ padding: spacing[6] }}>
-          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1>
             Step Control (Step: 5)
-          </CriaTextBody2>
+          </CriaTextTitle1>
           <div style={{ marginBottom: spacing[4] }}>
-            <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
+            <CriaTextBody2>
               Value: {stepValue} (step: 5)
             </CriaTextBody2>
             <Slider
               min={0}
               max={100}
               value={stepValue}
-              onChange={setStepValue}
+              onChange={(v) => typeof v === 'number' && setStepValue(v)}
               step={5}
               marks={[
                 { value: 0, label: '0' },
@@ -218,75 +214,75 @@ export const SliderDemo: React.FC = () => {
 
         {/* Different Colors */}
         <Card style={{ padding: spacing[6] }}>
-          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1>
             Different Colors
-          </CriaTextBody2>
+          </CriaTextTitle1>
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <div>
-              <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
+              <CriaTextBody2>
                 Primary Color
               </CriaTextBody2>
               <Slider
                 min={0}
                 max={100}
                 value={colorValue}
-                onChange={setColorValue}
+                onChange={(v) => typeof v === 'number' && setColorValue(v)}
                 color="primary"
                 marks={marks}
                 showLabels={true}
               />
             </div>
             <div>
-              <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
+              <CriaTextBody2>
                 Secondary Color
               </CriaTextBody2>
               <Slider
                 min={0}
                 max={100}
                 value={colorValue}
-                onChange={setColorValue}
+                onChange={(v) => typeof v === 'number' && setColorValue(v)}
                 color="secondary"
                 marks={marks}
                 showLabels={true}
               />
             </div>
             <div>
-              <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
+              <CriaTextBody2>
                 Success Color
               </CriaTextBody2>
               <Slider
                 min={0}
                 max={100}
                 value={colorValue}
-                onChange={setColorValue}
+                onChange={(v) => typeof v === 'number' && setColorValue(v)}
                 color="success"
                 marks={marks}
                 showLabels={true}
               />
             </div>
             <div>
-              <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
+              <CriaTextBody2>
                 Warning Color
               </CriaTextBody2>
               <Slider
                 min={0}
                 max={100}
                 value={colorValue}
-                onChange={setColorValue}
+                onChange={(v) => typeof v === 'number' && setColorValue(v)}
                 color="warning"
                 marks={marks}
                 showLabels={true}
               />
             </div>
             <div>
-              <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
+              <CriaTextBody2>
                 Error Color
               </CriaTextBody2>
               <Slider
                 min={0}
                 max={100}
                 value={colorValue}
-                onChange={setColorValue}
+                onChange={(v) => typeof v === 'number' && setColorValue(v)}
                 color="error"
                 marks={marks}
                 showLabels={true}
@@ -297,12 +293,12 @@ export const SliderDemo: React.FC = () => {
 
         {/* Different Sizes */}
         <Card style={{ padding: spacing[6] }}>
-          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1>
             Different Sizes
-          </CriaTextBody2>
+          </CriaTextTitle1>
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             <div>
-              <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
+              <CriaTextBody2>
                 Small Size
               </CriaTextBody2>
               <Slider
@@ -316,7 +312,7 @@ export const SliderDemo: React.FC = () => {
               />
             </div>
             <div>
-              <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
+              <CriaTextBody2>
                 Medium Size (Default)
               </CriaTextBody2>
               <Slider
@@ -330,7 +326,7 @@ export const SliderDemo: React.FC = () => {
               />
             </div>
             <div>
-              <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
+              <CriaTextBody2>
                 Large Size
               </CriaTextBody2>
               <Slider
@@ -348,12 +344,12 @@ export const SliderDemo: React.FC = () => {
 
         {/* Disabled State */}
         <Card style={{ padding: spacing[6] }}>
-          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1>
             Disabled State
-          </CriaTextBody2>
+          </CriaTextTitle1>
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <div>
-              <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
+              <CriaTextBody2>
                 Disabled Single Slider
               </CriaTextBody2>
               <Slider
@@ -367,7 +363,7 @@ export const SliderDemo: React.FC = () => {
               />
             </div>
             <div>
-              <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
+              <CriaTextBody2>
                 Disabled Range Slider
               </CriaTextBody2>
               <Slider

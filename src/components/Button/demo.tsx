@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from './Button';
 import { Typography } from '../Typography/Typography';
+import { CriaTextHeadline1 } from '../TextTokens';
 import { spacing, colors } from '../../tokens';
 
 /**
@@ -16,9 +17,11 @@ export const ButtonDemo: React.FC = () => {
 
   return (
     <div style={{ padding: spacing[6], maxWidth: '800px' }}>
-      <Typography variant="title1" weight="bold" style={{ marginBottom: spacing[8] }}>
-        Button Demo
-      </Typography>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline1>
+          Button Demo
+        </CriaTextHeadline1>
+      </div>
 
       {/* Variants */}
       <section style={{ marginBottom: spacing[8] }}>

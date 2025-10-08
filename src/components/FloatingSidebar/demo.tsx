@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FloatingSidebar, FloatingSidebarItem } from './FloatingSidebar';
 import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextBody1 } from '../TextTokens';
 import { Card, CardContent, CardHeader } from '../Card';
 import { spacing } from '../../tokens';
 
@@ -30,12 +31,16 @@ export const FloatingSidebarDemo: React.FC = () => {
   return (
     <div style={{ padding: spacing.lg, minHeight: '100vh', background: '#f5f5f5' }}>
       <div style={{ marginBottom: spacing.xl }}>
-        <Typography variant="title1" style={{ marginBottom: spacing.md }}>
-          Floating Sidebar Component
-        </Typography>
-        <Typography variant="body" style={{ color: '#666', marginBottom: spacing.lg }}>
-          A floating sidebar with emblem image, navigation items, and user profile section.
-        </Typography>
+        <div style={{ marginBottom: spacing.md }}>
+          <CriaTextHeadline1>
+            Floating Sidebar Component
+          </CriaTextHeadline1>
+        </div>
+        <div style={{ color: '#666', marginBottom: spacing.lg }}>
+          <CriaTextBody1>
+            A floating sidebar with emblem image, navigation items, and user profile section.
+          </CriaTextBody1>
+        </div>
       </div>
 
       {/* Floating Sidebar */}
@@ -57,21 +62,29 @@ export const FloatingSidebarDemo: React.FC = () => {
       }}>
         <Card>
           <CardContent>
-            <Typography variant="title1" style={{ marginBottom: spacing.lg }}>
-              Lorem Ipsum Content
-            </Typography>
+            <div style={{ marginBottom: spacing.lg }}>
+              <CriaTextHeadline1>
+                Lorem Ipsum Content
+              </CriaTextHeadline1>
+            </div>
             
-            <Typography variant="body" style={{ marginBottom: spacing.md, lineHeight: 1.6 }}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </Typography>
+            <div style={{ marginBottom: spacing.md, lineHeight: 1.6 }}>
+              <CriaTextBody1>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </CriaTextBody1>
+            </div>
             
-            <Typography variant="body" style={{ marginBottom: spacing.md, lineHeight: 1.6 }}>
-              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </Typography>
+            <div style={{ marginBottom: spacing.md, lineHeight: 1.6 }}>
+              <CriaTextBody1>
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </CriaTextBody1>
+            </div>
             
-            <Typography variant="body" style={{ marginBottom: spacing.lg, lineHeight: 1.6 }}>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-            </Typography>
+            <div style={{ marginBottom: spacing.lg, lineHeight: 1.6 }}>
+              <CriaTextBody1>
+                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+              </CriaTextBody1>
+            </div>
           </CardContent>
         </Card>
       </div>

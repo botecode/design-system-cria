@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Typography } from '../Typography';
 import { Button } from '../Button';
+import { CriaTextHeadline1, CriaTextTitle1, CriaTextBody1 } from '../TextTokens';
 import { Card, CardHeader, CardContent } from '../Card';
 import { Checkbox } from './Checkbox';
 import { colors, spacing } from '../../tokens';
@@ -51,19 +52,23 @@ export const CheckboxDemo: React.FC = () => {
 
   return (
     <div style={{ padding: spacing[6], maxWidth: '1200px', margin: '0 auto' }}>
-      <Typography variant="title1" style={{ marginBottom: spacing[8] }}>
-        CHECKBOX DEMO
-      </Typography>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline1>
+          CHECKBOX DEMO
+        </CriaTextHeadline1>
+      </div>
 
       {/* Basic Checkboxes */}
       <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Basic Checkboxes</Typography>
+          <CriaTextTitle1>Basic Checkboxes</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" style={{ marginBottom: spacing[6], color: colors.gray[700] }}>
-            Simple checkboxes for basic selection functionality. They provide clear visual feedback and support all standard states.
-          </Typography>
+          <div style={{ marginBottom: spacing[6], color: colors.gray[700] }}>
+            <CriaTextBody1>
+              Simple checkboxes for basic selection functionality. They provide clear visual feedback and support all standard states.
+            </CriaTextBody1>
+          </div>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Checkbox
@@ -103,12 +108,14 @@ export const CheckboxDemo: React.FC = () => {
       {/* Checkbox Sizes */}
       <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Checkbox Sizes</Typography>
+          <CriaTextTitle1>Checkbox Sizes</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" style={{ marginBottom: spacing[6], color: colors.gray[700] }}>
-            Different sizes for different contexts and design requirements.
-          </Typography>
+          <div style={{ marginBottom: spacing[6], color: colors.gray[700] }}>
+            <CriaTextBody1>
+              Different sizes for different contexts and design requirements.
+            </CriaTextBody1>
+          </div>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Checkbox
@@ -135,12 +142,14 @@ export const CheckboxDemo: React.FC = () => {
       {/* Checkbox Variants */}
       <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Checkbox Variants</Typography>
+          <CriaTextTitle1>Checkbox Variants</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" style={{ marginBottom: spacing[6], color: colors.gray[700] }}>
-            Different visual styles to match your design system.
-          </Typography>
+          <div style={{ marginBottom: spacing[6], color: colors.gray[700] }}>
+            <CriaTextBody1>
+              Different visual styles to match your design system.
+            </CriaTextBody1>
+          </div>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Checkbox
@@ -167,12 +176,14 @@ export const CheckboxDemo: React.FC = () => {
       {/* Checkbox Colors */}
       <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Checkbox Colors</Typography>
+          <CriaTextTitle1>Checkbox Colors</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" style={{ marginBottom: spacing[6], color: colors.gray[700] }}>
-            Different color themes for different types of actions and states.
-          </Typography>
+          <div style={{ marginBottom: spacing[6], color: colors.gray[700] }}>
+            <CriaTextBody1>
+              Different color themes for different types of actions and states.
+            </CriaTextBody1>
+          </div>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Checkbox
@@ -211,12 +222,14 @@ export const CheckboxDemo: React.FC = () => {
       {/* Indeterminate State */}
       <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Indeterminate State</Typography>
+          <CriaTextTitle1>Indeterminate State</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" style={{ marginBottom: spacing[6], color: colors.gray[700] }}>
-            Indeterminate state is useful for "select all" functionality or when some items in a group are selected.
-          </Typography>
+          <div style={{ marginBottom: spacing[6], color: colors.gray[700] }}>
+            <CriaTextBody1>
+              Indeterminate state is useful for "select all" functionality or when some items in a group are selected.
+            </CriaTextBody1>
+          </div>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Checkbox
@@ -255,12 +268,14 @@ export const CheckboxDemo: React.FC = () => {
       {/* Validation States */}
       <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Validation States</Typography>
+          <CriaTextTitle1>Validation States</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" style={{ marginBottom: spacing[6], color: colors.gray[700] }}>
-            Checkboxes can display validation states with appropriate messaging.
-          </Typography>
+          <div style={{ marginBottom: spacing[6], color: colors.gray[700] }}>
+            <CriaTextBody1>
+              Checkboxes can display validation states with appropriate messaging.
+            </CriaTextBody1>
+          </div>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Checkbox
@@ -291,18 +306,22 @@ export const CheckboxDemo: React.FC = () => {
       {/* Form Example */}
       <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Form Example</Typography>
+          <CriaTextTitle1>Form Example</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" style={{ marginBottom: spacing[6], color: colors.gray[700] }}>
-            A complete form example showing checkboxes in a real-world scenario.
-          </Typography>
+          <div style={{ marginBottom: spacing[6], color: colors.gray[700] }}>
+            <CriaTextBody1>
+              A complete form example showing checkboxes in a real-world scenario.
+            </CriaTextBody1>
+          </div>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[5] }}>
             <div>
-              <Typography variant="h3" style={{ marginBottom: '16px' }}>
-                Account Settings
-              </Typography>
+              <div style={{ marginBottom: '16px' }}>
+                <CriaTextTitle1>
+                  Account Settings
+                </CriaTextTitle1>
+              </div>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[3] }}>
                 <Checkbox
@@ -329,9 +348,11 @@ export const CheckboxDemo: React.FC = () => {
             </div>
             
             <div style={{ borderTop: `1px solid ${colors.border.light}`, paddingTop: spacing[5] }}>
-              <Typography variant="h3" style={{ marginBottom: '16px' }}>
-                Legal Agreements
-              </Typography>
+              <div style={{ marginBottom: '16px' }}>
+                <CriaTextTitle1>
+                  Legal Agreements
+                </CriaTextTitle1>
+              </div>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[3] }}>
                 <Checkbox
@@ -375,12 +396,14 @@ export const CheckboxDemo: React.FC = () => {
       {/* Accessibility Features */}
       <Card variant="elevated" style={{ marginBottom: '32px' }}>
         <CardHeader>
-          <Typography variant="h3">Accessibility Features</Typography>
+          <CriaTextTitle1>Accessibility Features</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" style={{ marginBottom: '24px', color: colors.gray[700] }}>
-            Checkboxes include comprehensive accessibility features for screen readers and keyboard navigation.
-          </Typography>
+          <div style={{ marginBottom: '24px', color: colors.gray[700] }}>
+            <CriaTextBody1>
+              Checkboxes include comprehensive accessibility features for screen readers and keyboard navigation.
+            </CriaTextBody1>
+          </div>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <Checkbox

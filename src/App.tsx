@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Typography, Button, Navigation } from './index.ts';
-import { House, TextAa, Mouse, PencilSimple, CheckSquare, ToggleLeft, Bell, ChatCircle, Info, Square, Tag, Tabs, List, CaretDown, Article, Layout, User, Robot, Wrench } from 'phosphor-react';
+import { CriaTextHeadline1, CriaTextTitle1, CriaTextBody1 } from './components/TextTokens';
+import { House, TextAa, Mouse, PencilSimple, CheckSquare, ToggleLeft, Bell, ChatCircle, Info, Square, Tag, Tabs, List, CaretDown, Article, Layout, User, Robot } from 'phosphor-react';
 import TypographyDemo from './components/Typography/demo';
 import ButtonDemo from './components/Button/demo';
 import CardDemo from './components/Card/demo';
@@ -61,7 +62,6 @@ import EventsCardsDemo from './components/EventsCards/demo';
 import TrilhaCardsDemo from './components/TrilhaCards/demo';
 import StatisticMetricCardDemo from './components/StatisticMetricCard/demo';
 import CommandPaletteDemo from './components/CommandPalette/demo';
-import CriaFlowEditor from './pages/CriaFlowEditor/CriaFlowEditor';
 import ChangelogDemo from './components/Changelog/demo';
 import AgentDevDemo from './app/views/AgentDev/demo';
 import { AgentDev } from './app/views/AgentDev';
@@ -228,37 +228,51 @@ const App: React.FC = () => {
         return (
           <div style={{ padding: '0' }}>
             <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-              <Typography variant="title1" weight="bold" style={{ marginBottom: '8px' }}>
-                CRIA_UI Design System
-              </Typography>
-              <Typography variant="h3" weight="semiBold" style={{ marginBottom: '16px' }}>
-                Welcome to CRIA_UI
-              </Typography>
-              <Typography variant="h3" weight="medium" style={{ marginBottom: '24px' }}>
-                Getting Started
-              </Typography>
+              <div style={{ marginBottom: '8px' }}>
+                <CriaTextHeadline1>
+                  CRIA_UI Design System
+                </CriaTextHeadline1>
+              </div>
+              <div style={{ marginBottom: '16px' }}>
+                <CriaTextTitle1>
+                  Welcome to CRIA_UI
+                </CriaTextTitle1>
+              </div>
+              <div style={{ marginBottom: '24px' }}>
+                <CriaTextTitle1>
+                  Getting Started
+                </CriaTextTitle1>
+              </div>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
               <div style={{ padding: '20px', backgroundColor: 'var(--cria-white)', borderRadius: 'var(--cria-radius-md)', border: '1px solid var(--cria-gray-200)' }}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
-                  🎨 Design Tokens
-                </Typography>
-                <Typography variant="body" style={{ marginBottom: '12px', fontSize: '14px' }}>
-                  Consistent colors, typography, spacing, and elevation.
-                </Typography>
+                <div style={{ marginBottom: '8px' }}>
+                  <CriaTextTitle1>
+                    🎨 Design Tokens
+                  </CriaTextTitle1>
+                </div>
+                <div style={{ marginBottom: '12px', fontSize: '14px' }}>
+                  <CriaTextBody1>
+                    Consistent colors, typography, spacing, and elevation.
+                  </CriaTextBody1>
+                </div>
                 <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                   <Button variant="outline" size="sm" onClick={() => setActiveSection('typography')}>Explore Typography</Button>
                 </div>
               </div>
 
               <div style={{ padding: '20px', backgroundColor: 'var(--cria-white)', borderRadius: 'var(--cria-radius-md)', border: '1px solid var(--cria-gray-200)' }}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
-                  🧩 Components
-                </Typography>
-                <Typography variant="body" style={{ marginBottom: '12px', fontSize: '14px' }}>
-                  Production-ready React components.
-                </Typography>
+                <div style={{ marginBottom: '8px' }}>
+                  <CriaTextTitle1>
+                    🧩 Components
+                  </CriaTextTitle1>
+                </div>
+                <div style={{ marginBottom: '12px', fontSize: '14px' }}>
+                  <CriaTextBody1>
+                    Production-ready React components.
+                  </CriaTextBody1>
+                </div>
                 <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                   <Button variant="outline" size="sm" onClick={() => setActiveSection('button')}>View Buttons</Button>
                   <Button variant="outline" size="sm" onClick={() => setActiveSection('card')}>See Cards</Button>
@@ -266,24 +280,32 @@ const App: React.FC = () => {
               </div>
 
               <div style={{ padding: '20px', backgroundColor: 'var(--cria-white)', borderRadius: 'var(--cria-radius-md)', border: '1px solid var(--cria-gray-200)' }}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
-                  ♿ Accessible
-                </Typography>
-                <Typography variant="body" style={{ marginBottom: '12px', fontSize: '14px' }}>
-                  Built with accessibility in mind.
-                </Typography>
+                <div style={{ marginBottom: '8px' }}>
+                  <CriaTextTitle1>
+                    ♿ Accessible
+                  </CriaTextTitle1>
+                </div>
+                <div style={{ marginBottom: '12px', fontSize: '14px' }}>
+                  <CriaTextBody1>
+                    Built with accessibility in mind.
+                  </CriaTextBody1>
+                </div>
                 <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                   <Button variant="outline" size="sm" onClick={() => setActiveSection('colors')}>View Colors</Button>
                 </div>
               </div>
 
               <div style={{ padding: '20px', backgroundColor: 'var(--cria-white)', borderRadius: 'var(--cria-radius-md)', border: '1px solid var(--cria-gray-200)' }}>
-                <Typography variant="h3" weight="medium" style={{ marginBottom: '8px' }}>
-                  📐 Layout
-                </Typography>
-                <Typography variant="body" style={{ marginBottom: '12px', fontSize: '14px' }}>
-                  Structural components for organizing and presenting content.
-                </Typography>
+                <div style={{ marginBottom: '8px' }}>
+                  <CriaTextTitle1>
+                    📐 Layout
+                  </CriaTextTitle1>
+                </div>
+                <div style={{ marginBottom: '12px', fontSize: '14px' }}>
+                  <CriaTextBody1>
+                    Structural components for organizing and presenting content.
+                  </CriaTextBody1>
+                </div>
                 <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                   <Button variant="outline" size="sm" onClick={() => setActiveSection('card')}>
                     Open Card
@@ -310,12 +332,16 @@ const App: React.FC = () => {
             {/* Changelog Section */}
             <div style={{ marginTop: '48px' }}>
               <div style={{ textAlign: 'center', marginBottom: '32px' }}>
-                <Typography variant="title1" weight="bold" style={{ marginBottom: '8px' }}>
-                  📝 Changelog
-                </Typography>
-                <Typography variant="body" style={{ color: '#666' }}>
-                  Stay updated with the latest changes and improvements to CRIA_UI
-                </Typography>
+                <div style={{ marginBottom: '8px' }}>
+                  <CriaTextHeadline1>
+                    📝 Changelog
+                  </CriaTextHeadline1>
+                </div>
+                <div style={{ color: '#666' }}>
+                  <CriaTextBody1>
+                    Stay updated with the latest changes and improvements to CRIA_UI
+                  </CriaTextBody1>
+                </div>
               </div>
               <ChangelogDemo />
             </div>
@@ -483,16 +509,16 @@ const App: React.FC = () => {
               title: 'CR_IA.UI',
               titleHref: '#overview',
               subtitle: <Badge variant="secondary" size="lg">v0.40</Badge>,
-              items: sidebarItems.map((item: any) => ({
+              items: sidebarItems.map(item => ({
                 ...item,
-                onClick: item.subitems ? undefined : (e: React.MouseEvent) => {
+                onClick: item.subitems ? undefined : (e) => {
                   e.preventDefault();
                   handleSectionChange(item.id as DemoSection);
                   if (isMobile) {
                     setMobileMenuOpen(false);
                   }
                 },
-                subitems: item.subitems?.map((subitem: any) => ({
+                subitems: item.subitems?.map(subitem => ({
                   ...subitem,
                   onClick: subitem.subitems ? undefined : (e: React.MouseEvent) => {
                     e.preventDefault();
@@ -537,7 +563,12 @@ const App: React.FC = () => {
             zIndex: 1
           }}>
             {/* Robot Icon - Top Right */}
-            <div style={{ position: 'fixed', top: '20px', right: '20px', zIndex: 1000, display: 'flex', gap: '10px' }}>
+            <div style={{
+              position: 'fixed',
+              top: '20px',
+              right: '20px',
+              zIndex: 1000
+            }}>
               <Button
                 variant="ghost"
                 size="sm"
@@ -567,41 +598,10 @@ const App: React.FC = () => {
               >
                 <Robot size={24} />
               </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                style={{
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '50%',
-                  backgroundColor: 'var(--cria-primary)',
-                  color: 'white',
-                  border: 'none',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-                  transition: 'all 0.2s ease'
-                }}
-                onClick={() => {
-                  window.history.pushState(null, '', `/cria-flow-editor`);
-                  // rudimentary navigation: replace main content with editor
-                  // optionally, could use a Router; keeping simple per current app structure
-                  // We render editor below the top content area for now
-                  setActiveSection('overview');
-                }}
-                title="CRIA Flow Editor"
-              >
-                <Wrench size={24} />
-              </Button>
             </div>
 
             <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-              {window.location.pathname === '/cria-flow-editor' ? (
-                <CriaFlowEditor />
-              ) : (
-                renderContent()
-              )}
+              {renderContent()}
               <div style={{ marginTop: '32px', textAlign: 'center', color: 'var(--cria-text-secondary)' }}>
                 Built with ❤️ for CR_IA applications
               </div>

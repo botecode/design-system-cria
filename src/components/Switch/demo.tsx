@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Typography } from '../Typography';
 import { Button } from '../Button';
+import { CriaTextHeadline1, CriaTextTitle1, CriaTextBody1 } from '../TextTokens';
 import { Card, CardHeader, CardContent } from '../Card';
 import { Switch } from './Switch';
 // import { Bell, Shield, Moon, Lock, Eye } from 'phosphor-react';
@@ -43,19 +44,23 @@ export const SwitchDemo: React.FC = () => {
 
   return (
     <div style={{ padding: spacing[6], maxWidth: '1200px', margin: '0 auto' }}>
-      <Typography variant="title1" style={{ marginBottom: spacing[8] }}>
-        SWITCH DEMO
-      </Typography>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline1>
+          SWITCH DEMO
+        </CriaTextHeadline1>
+      </div>
 
       {/* Basic Switches */}
       <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Basic Switches</Typography>
+          <CriaTextTitle1>Basic Switches</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" color="secondary" style={{ marginBottom: spacing[6] }}>
-            Simple toggle switches for binary choices. They provide clear visual feedback and support all standard states.
-          </Typography>
+          <div style={{ color: 'var(--cria-text-secondary)', marginBottom: spacing[6] }}>
+            <CriaTextBody1>
+              Simple toggle switches for binary choices. They provide clear visual feedback and support all standard states.
+            </CriaTextBody1>
+          </div>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Switch
@@ -101,12 +106,14 @@ export const SwitchDemo: React.FC = () => {
       {/* Switch Sizes */}
       <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Switch Sizes</Typography>
+          <CriaTextTitle1>Switch Sizes</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" color="secondary" style={{ marginBottom: spacing[6] }}>
-            Different sizes for different contexts and design requirements.
-          </Typography>
+          <div style={{ color: 'var(--cria-text-secondary)', marginBottom: spacing[6] }}>
+            <CriaTextBody1>
+              Different sizes for different contexts and design requirements.
+            </CriaTextBody1>
+          </div>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Switch
@@ -133,12 +140,14 @@ export const SwitchDemo: React.FC = () => {
       {/* Switch Variants */}
       <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Switch Variants</Typography>
+          <CriaTextTitle1>Switch Variants</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" color="secondary" style={{ marginBottom: spacing[6] }}>
-            Different visual styles to match your design system.
-          </Typography>
+          <div style={{ color: 'var(--cria-text-secondary)', marginBottom: spacing[6] }}>
+            <CriaTextBody1>
+              Different visual styles to match your design system.
+            </CriaTextBody1>
+          </div>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Switch
@@ -165,12 +174,14 @@ export const SwitchDemo: React.FC = () => {
       {/* Switch Colors */}
       <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Switch Colors</Typography>
+          <CriaTextTitle1>Switch Colors</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" color="secondary" style={{ marginBottom: spacing[6] }}>
-            Different color themes for different types of actions and states.
-          </Typography>
+          <div style={{ color: 'var(--cria-text-secondary)', marginBottom: spacing[6] }}>
+            <CriaTextBody1>
+              Different color themes for different types of actions and states.
+            </CriaTextBody1>
+          </div>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Switch
@@ -209,12 +220,14 @@ export const SwitchDemo: React.FC = () => {
       {/* Validation States */}
       <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Validation States</Typography>
+          <CriaTextTitle1>Validation States</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" color="secondary" style={{ marginBottom: spacing[6] }}>
-            Switches can display validation states with appropriate messaging.
-          </Typography>
+          <div style={{ color: 'var(--cria-text-secondary)', marginBottom: spacing[6] }}>
+            <CriaTextBody1>
+              Switches can display validation states with appropriate messaging.
+            </CriaTextBody1>
+          </div>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Switch
@@ -245,18 +258,22 @@ export const SwitchDemo: React.FC = () => {
       {/* Settings Example */}
       <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Settings Example</Typography>
+          <CriaTextTitle1>Settings Example</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" color="secondary" style={{ marginBottom: spacing[6] }}>
-            A complete settings panel example showing switches in a real-world scenario.
-          </Typography>
+          <div style={{ color: 'var(--cria-text-secondary)', marginBottom: spacing[6] }}>
+            <CriaTextBody1>
+              A complete settings panel example showing switches in a real-world scenario.
+            </CriaTextBody1>
+          </div>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[5] }}>
             <div>
-              <Typography variant="h3" style={{ marginBottom: spacing[4] }}>
-                Notification Settings
-              </Typography>
+              <div style={{ marginBottom: spacing[4] }}>
+                <CriaTextTitle1>
+                  Notification Settings
+                </CriaTextTitle1>
+              </div>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[3] }}>
                 <Switch
@@ -276,9 +293,11 @@ export const SwitchDemo: React.FC = () => {
             </div>
             
             <div style={{ borderTop: '1px solid var(--cria-gray-200)', paddingTop: spacing[5] }}>
-              <Typography variant="h3" style={{ marginBottom: spacing[4] }}>
-                Appearance
-              </Typography>
+              <div style={{ marginBottom: spacing[4] }}>
+                <CriaTextTitle1>
+                  Appearance
+                </CriaTextTitle1>
+              </div>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[3] }}>
                 <Switch
@@ -291,9 +310,11 @@ export const SwitchDemo: React.FC = () => {
             </div>
             
             <div style={{ borderTop: '1px solid var(--cria-gray-200)', paddingTop: spacing[5] }}>
-              <Typography variant="h3" style={{ marginBottom: spacing[4] }}>
-                Connectivity
-              </Typography>
+              <div style={{ marginBottom: spacing[4] }}>
+                <CriaTextTitle1>
+                  Connectivity
+                </CriaTextTitle1>
+              </div>
               
               <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[3] }}>
                 <Switch
@@ -337,12 +358,14 @@ export const SwitchDemo: React.FC = () => {
       {/* Accessibility Features */}
       <Card variant="elevated" style={{ marginBottom: spacing[8] }}>
         <CardHeader>
-          <Typography variant="h3">Accessibility Features</Typography>
+          <CriaTextTitle1>Accessibility Features</CriaTextTitle1>
         </CardHeader>
         <CardContent>
-          <Typography variant="body" color="secondary" style={{ marginBottom: spacing[6] }}>
-            Switches include comprehensive accessibility features for screen readers and keyboard navigation.
-          </Typography>
+          <div style={{ color: 'var(--cria-text-secondary)', marginBottom: spacing[6] }}>
+            <CriaTextBody1>
+              Switches include comprehensive accessibility features for screen readers and keyboard navigation.
+            </CriaTextBody1>
+          </div>
           
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <Switch

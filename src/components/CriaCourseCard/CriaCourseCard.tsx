@@ -3,7 +3,7 @@ import { Clock, UserCircle, Wrench } from 'phosphor-react';
 import { colors, spacing, radii, shadows, typography } from '../../tokens';
 import { Avatar } from '../Avatar';
 import { AvatarWithName } from '../Avatar';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextBody1, CriaTextBody2, CriaTextCaption } from '../TextTokens';
 
 export interface Instructor {
   id: string;
@@ -181,8 +181,7 @@ export const CriaCourseCard: React.FC<CriaCourseCardProps> = ({
         {/* Header Section */}
         <div>
           {/* Course Title */}
-          <Typography
-            variant="h1"
+          <div
             style={{
               color: colors.primary,
               fontWeight: typography.fontWeight.bold,
@@ -193,18 +192,17 @@ export const CriaCourseCard: React.FC<CriaCourseCardProps> = ({
               cursor: 'pointer',
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.color = colors.secondary;
+              (e.currentTarget as HTMLElement).style.color = colors.secondary;
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.color = colors.primary;
+              (e.currentTarget as HTMLElement).style.color = colors.primary;
             }}
           >
-            {course.title}
-          </Typography>
+            <CriaTextHeadline1 as="h3">{course.title}</CriaTextHeadline1>
+          </div>
 
           {/* Course Description */}
-          <Typography
-            variant="body"
+          <div
             style={{
               color: colors.gray[600],
               fontSize: '14px',
@@ -212,8 +210,10 @@ export const CriaCourseCard: React.FC<CriaCourseCardProps> = ({
               marginBottom: spacing[6],
             }}
           >
-            {course.description || 'A comprehensive course designed to help you master the fundamentals and advanced concepts.'}
-          </Typography>
+            <CriaTextBody1>
+              {course.description || 'A comprehensive course designed to help you master the fundamentals and advanced concepts.'}
+            </CriaTextBody1>
+          </div>
         </div>
 
         {/* Metadata Section */}
@@ -279,15 +279,14 @@ export const CriaCourseCard: React.FC<CriaCourseCardProps> = ({
                 color={colors.primary}
                 weight="duotone"
               />
-              <Typography
-                variant="caption"
+              <div
                 style={{
                   color: colors.primary,
                   fontSize: '14px',
                 }}
               >
-                {course.duration || '--'}
-              </Typography>
+                <CriaTextBody2>{course.duration || '--'}</CriaTextBody2>
+              </div>
             </div>
           </div>
 
@@ -341,7 +340,7 @@ export const CriaCourseCard: React.FC<CriaCourseCardProps> = ({
                     }}
                   >
                     {tool.icon && (
-                      <span
+                      <div
                         style={{
                           width: '20px',
                           height: '20px',
@@ -352,8 +351,8 @@ export const CriaCourseCard: React.FC<CriaCourseCardProps> = ({
                           fontSize: '14px',
                         }}
                       >
-                        {tool.icon}
-                      </span>
+                        <CriaTextCaption>{tool.icon}</CriaTextCaption>
+                      </div>
                     )}
                     {tool.name}
                   </div>

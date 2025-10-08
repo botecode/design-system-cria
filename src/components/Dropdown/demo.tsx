@@ -52,13 +52,17 @@ export const DropdownDemo: React.FC = () => {
   return (
     <div style={{ padding: '0' }}>
       <div style={{ marginBottom: spacing[8] }}>
-        <CriaTextHeadline1 style={{ marginBottom: spacing[4] }}>
-          Dropdown Component
-        </CriaTextHeadline1>
-        <CriaTextBody1 style={{ marginBottom: '0' }}>
-          A versatile dropdown/select component with support for single and multiple selection, 
-          search functionality, custom options, and comprehensive accessibility features.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline1>
+            Dropdown Component
+          </CriaTextHeadline1>
+        </div>
+        <div style={{ marginBottom: '0' }}>
+          <CriaTextBody1>
+            A versatile dropdown/select component with support for single and multiple selection, 
+            search functionality, custom options, and comprehensive accessibility features.
+          </CriaTextBody1>
+        </div>
       </div>
 
       {/* Basic Dropdown */}

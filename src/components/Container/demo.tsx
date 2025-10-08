@@ -9,13 +9,17 @@ import { spacing, colors, radii } from '../../tokens';
 const ContainerDemo: React.FC = () => {
   return (
     <div style={{ padding: spacing[8] }}>
-      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
-        Container / Section Components
-      </CriaTextHeadline1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline1>
+          Container / Section Components
+        </CriaTextHeadline1>
+      </div>
 
-      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
-        Layout components for controlling max-width, padding, responsive breakpoints, and section organization.
-      </CriaTextBody1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextBody1>
+          Layout components for controlling max-width, padding, responsive breakpoints, and section organization.
+        </CriaTextBody1>
+      </div>
 
       <div style={{ display: 'grid', gap: spacing[8] }}>
         {/* Basic Container Examples */}
@@ -26,9 +30,11 @@ const ContainerDemo: React.FC = () => {
             </CriaTextHeadline2>
           </CardHeader>
           <CardContent>
-            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-              Different max-width configurations:
-            </CriaTextBody1>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                Different max-width configurations:
+              </CriaTextBody1>
+            </div>
             
             <Container maxWidth="sm" style={{ backgroundColor: colors.gray[50], border: `1px solid ${colors.border.light}`, marginBottom: spacing[4], borderRadius: radii.sm }}>
               <CriaTextBody1 weight="medium">Small Container (640px max-width)</CriaTextBody1>
@@ -60,9 +66,11 @@ const ContainerDemo: React.FC = () => {
             </CriaTextHeadline2>
           </CardHeader>
           <CardContent>
-            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-              Different padding and margin sizes:
-            </CriaTextBody1>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                Different padding and margin sizes:
+              </CriaTextBody1>
+            </div>
             
             <Container padding="sm" style={{ backgroundColor: colors.gray[100], marginBottom: spacing[4], borderRadius: radii.sm }}>
               <CriaTextBody1>Small Padding Container</CriaTextBody1>
@@ -80,9 +88,11 @@ const ContainerDemo: React.FC = () => {
               <CriaTextBody1>Extra Large Padding Container</CriaTextBody1>
             </Container>
             
-            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-              Containers with margins:
-            </CriaTextBody1>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                Containers with margins:
+              </CriaTextBody1>
+            </div>
             
             <Container margin="sm" style={{ backgroundColor: colors.gray[50], border: `1px solid ${colors.border.light}`, borderRadius: radii.sm }}>
               <CriaTextBody1>Container with Small Margin</CriaTextBody1>
@@ -98,17 +108,21 @@ const ContainerDemo: React.FC = () => {
             </CriaTextHeadline2>
           </CardHeader>
           <CardContent>
-            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-              Centered container:
-            </CriaTextBody1>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                Centered container:
+              </CriaTextBody1>
+            </div>
             <Container center maxWidth="md" style={{ backgroundColor: colors.gray[100], border: `1px solid ${colors.border.light}`, marginBottom: spacing[8], borderRadius: radii.sm }}>
               <CriaTextBody1 weight="medium">Centered Container</CriaTextBody1>
               <CriaTextBody2>This container is centered and has medium max-width</CriaTextBody2>
             </Container>
             
-            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-              Fluid container (full width):
-            </CriaTextBody1>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                Fluid container (full width):
+              </CriaTextBody1>
+            </div>
             <Container fluid style={{ backgroundColor: colors.gray[50], border: `1px solid ${colors.border.light}`, borderRadius: radii.sm }}>
               <CriaTextBody1 weight="medium">Fluid Container</CriaTextBody1>
               <CriaTextBody2>This container takes full width regardless of max-width</CriaTextBody2>
@@ -124,9 +138,11 @@ const ContainerDemo: React.FC = () => {
             </CriaTextHeadline2>
           </CardHeader>
           <CardContent>
-            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-              Containers with custom max-width values:
-            </CriaTextBody1>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                Containers with custom max-width values:
+              </CriaTextBody1>
+            </div>
             
             <Container maxWidth="800px" style={{ backgroundColor: colors.gray[50], border: `1px solid ${colors.border.light}`, marginBottom: spacing[4], borderRadius: radii.sm }}>
               <CriaTextBody1 weight="medium">Custom 800px Max Width</CriaTextBody1>
@@ -146,9 +162,11 @@ const ContainerDemo: React.FC = () => {
             </CriaTextHeadline2>
           </CardHeader>
           <CardContent>
-            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-              Different section types:
-            </CriaTextBody1>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                Different section types:
+              </CriaTextBody1>
+            </div>
             
             <Section variant="default" style={{ marginBottom: spacing[4] }}>
               <Container>
@@ -159,12 +177,16 @@ const ContainerDemo: React.FC = () => {
             
             <Section variant="hero" size="md" style={{ marginBottom: spacing[4] }}>
               <Container center>
-                <CriaTextHeadline2 weight="bold" style={{ color: 'var(--cria-white)', marginBottom: '1rem' }}>
-                  Hero Section
-                </CriaTextHeadline2>
-                <CriaTextBody1 style={{ color: 'var(--cria-white)', marginBottom: spacing[4] }}>
-                  Eye-catching hero section with gradient background
-                </CriaTextBody1>
+                <div style={{ color: 'var(--cria-white)', marginBottom: '1rem' }}>
+                  <CriaTextHeadline2 weight="bold">
+                    Hero Section
+                  </CriaTextHeadline2>
+                </div>
+                <div style={{ color: 'var(--cria-white)', marginBottom: spacing[4] }}>
+                  <CriaTextBody1>
+                    Eye-catching hero section with gradient background
+                  </CriaTextBody1>
+                </div>
                 <Button variant="secondary" size="lg">Get Started</Button>
               </Container>
             </Section>
@@ -178,8 +200,12 @@ const ContainerDemo: React.FC = () => {
             
             <Section variant="footer" style={{ marginTop: spacing[8] }}>
               <Container>
-                <CriaTextBody1 weight="medium" style={{ color: 'var(--cria-white)' }}>Footer Section</CriaTextBody1>
-                <CriaTextBody2 style={{ color: 'var(--cria-white)' }}>Dark footer section for site footers</CriaTextBody2>
+                <div style={{ color: 'var(--cria-white)' }}>
+                  <CriaTextBody1 weight="medium">Footer Section</CriaTextBody1>
+                </div>
+                <div style={{ color: 'var(--cria-white)' }}>
+                  <CriaTextBody2>Dark footer section for site footers</CriaTextBody2>
+                </div>
               </Container>
             </Section>
           </CardContent>
@@ -193,9 +219,11 @@ const ContainerDemo: React.FC = () => {
             </CriaTextHeadline2>
           </CardHeader>
           <CardContent>
-            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-              Different section sizes:
-            </CriaTextBody1>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                Different section sizes:
+              </CriaTextBody1>
+            </div>
             
             <Section size="sm" backgroundColor="gray" style={{ marginBottom: spacing[4] }}>
               <Container>
@@ -205,17 +233,21 @@ const ContainerDemo: React.FC = () => {
             
             <Section size="md" backgroundColor="primary" style={{ marginBottom: spacing[4] }}>
               <Container>
-                <CriaTextBody1 weight="medium" style={{ color: 'var(--cria-white)' }}>
-                  Medium Section (400px min-height) - Primary Background
-                </CriaTextBody1>
+                <div style={{ color: 'var(--cria-white)' }}>
+                  <CriaTextBody1 weight="medium">
+                    Medium Section (400px min-height) - Primary Background
+                  </CriaTextBody1>
+                </div>
               </Container>
             </Section>
             
             <Section size="lg" backgroundColor="secondary" style={{ marginBottom: spacing[4] }}>
               <Container>
-                <CriaTextBody1 weight="medium" style={{ color: 'var(--cria-white)' }}>
-                  Large Section (600px min-height) - Secondary Background
-                </CriaTextBody1>
+                <div style={{ color: 'var(--cria-white)' }}>
+                  <CriaTextBody1 weight="medium">
+                    Large Section (600px min-height) - Secondary Background
+                  </CriaTextBody1>
+                </div>
               </Container>
             </Section>
             
@@ -225,23 +257,29 @@ const ContainerDemo: React.FC = () => {
               </Container>
             </Section>
             
-            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-              Custom background colors:
-            </CriaTextBody1>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                Custom background colors:
+              </CriaTextBody1>
+            </div>
             
             <Section backgroundColor={colors.error} style={{ marginBottom: spacing[4] }}>
               <Container>
-                <CriaTextBody1 weight="medium" style={{ color: 'var(--cria-white)' }}>
-                  Custom Red Background Section
-                </CriaTextBody1>
+                <div style={{ color: 'var(--cria-white)' }}>
+                  <CriaTextBody1 weight="medium">
+                    Custom Red Background Section
+                  </CriaTextBody1>
+                </div>
               </Container>
             </Section>
             
             <Section backgroundColor={colors.secondary}>
               <Container>
-                <CriaTextBody1 weight="medium" style={{ color: 'var(--cria-white)' }}>
-                  Custom Teal Background Section
-                </CriaTextBody1>
+                <div style={{ color: 'var(--cria-white)' }}>
+                  <CriaTextBody1 weight="medium">
+                    Custom Teal Background Section
+                  </CriaTextBody1>
+                </div>
               </Container>
             </Section>
           </CardContent>
@@ -255,9 +293,11 @@ const ContainerDemo: React.FC = () => {
             </CriaTextHeadline2>
           </CardHeader>
           <CardContent>
-            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-              Section that takes full viewport height:
-            </CriaTextBody1>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                Section that takes full viewport height:
+              </CriaTextBody1>
+            </div>
             
             <Section 
               fullHeight 
@@ -265,12 +305,16 @@ const ContainerDemo: React.FC = () => {
               style={{ marginBottom: spacing[8], minHeight: '400px' }} // Limited for demo
             >
               <Container center>
-                <CriaTextHeadline1 weight="bold" style={{ color: 'var(--cria-white)', textAlign: 'center' }}>
-                  Full Height Section
-                </CriaTextHeadline1>
-                <CriaTextBody1 style={{ color: 'var(--cria-white)', textAlign: 'center' }}>
-                  This section would normally take the full viewport height
-                </CriaTextBody1>
+                <div style={{ color: 'var(--cria-white)', textAlign: 'center' }}>
+                  <CriaTextHeadline1 weight="bold">
+                    Full Height Section
+                  </CriaTextHeadline1>
+                </div>
+                <div style={{ color: 'var(--cria-white)', textAlign: 'center' }}>
+                  <CriaTextBody1>
+                    This section would normally take the full viewport height
+                  </CriaTextBody1>
+                </div>
               </Container>
             </Section>
           </CardContent>
@@ -284,9 +328,11 @@ const ContainerDemo: React.FC = () => {
             </CriaTextHeadline2>
           </CardHeader>
           <CardContent>
-            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-              Container with responsive padding:
-            </CriaTextBody1>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                Container with responsive padding:
+              </CriaTextBody1>
+            </div>
             
             <Container 
               padding={{ sm: 'sm', md: 'md', lg: 'lg' }}
@@ -298,9 +344,11 @@ const ContainerDemo: React.FC = () => {
               </CriaTextBody2>
             </Container>
             
-            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-              Section with responsive padding:
-            </CriaTextBody1>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                Section with responsive padding:
+              </CriaTextBody1>
+            </div>
             
             <Section 
               padding={{ sm: 'sm', md: 'md', lg: 'lg' }}
@@ -324,18 +372,24 @@ const ContainerDemo: React.FC = () => {
             </CriaTextHeadline2>
           </CardHeader>
           <CardContent>
-            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-              Landing page layout:
-            </CriaTextBody1>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                Landing page layout:
+              </CriaTextBody1>
+            </div>
             
             <Section variant="hero" backgroundColor="primary" style={{ marginBottom: spacing[8] }}>
               <Container center>
-                <CriaTextHeadline1 weight="bold" style={{ color: 'var(--cria-white)', marginBottom: spacing[4] }}>
-                  Welcome to Our Platform
-                </CriaTextHeadline1>
-                <CriaTextBody1 style={{ color: 'var(--cria-white)', marginBottom: spacing[8] }}>
-                  Build amazing applications with our design system
-                </CriaTextBody1>
+                <div style={{ color: 'var(--cria-white)', marginBottom: spacing[4] }}>
+                  <CriaTextHeadline1 weight="bold">
+                    Welcome to Our Platform
+                  </CriaTextHeadline1>
+                </div>
+                <div style={{ color: 'var(--cria-white)', marginBottom: spacing[8] }}>
+                  <CriaTextBody1>
+                    Build amazing applications with our design system
+                  </CriaTextBody1>
+                </div>
                 <Button variant="secondary" size="lg" style={{ marginRight: spacing[4] }}>
                   Get Started
                 </Button>
@@ -347,9 +401,11 @@ const ContainerDemo: React.FC = () => {
             
             <Section variant="content" style={{ marginBottom: spacing[8] }}>
               <Container>
-                <CriaTextHeadline2 weight="semibold" style={{ marginBottom: spacing[4] }}>
-                  Features
-                </CriaTextHeadline2>
+                <div style={{ marginBottom: spacing[4] }}>
+                  <CriaTextHeadline2 weight="semibold">
+                    Features
+                  </CriaTextHeadline2>
+                </div>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: spacing[4] }}>
                   <Card>
                     <CardHeader>
@@ -382,9 +438,11 @@ const ContainerDemo: React.FC = () => {
             <Section variant="footer" style={{ marginTop: '2rem' }}>
               <Container>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <CriaTextBody1 weight="medium" style={{ color: 'var(--cria-white)' }}>
-                    © 2024 Design System
-                  </CriaTextBody1>
+                  <div style={{ color: 'var(--cria-white)' }}>
+                    <CriaTextBody1 weight="medium">
+                      © 2024 Design System
+                    </CriaTextBody1>
+                  </div>
                   <div style={{ display: 'flex', gap: '1rem' }}>
                     <Button variant="ghost" size="sm" style={{ color: 'var(--cria-white)' }}>
                       Privacy

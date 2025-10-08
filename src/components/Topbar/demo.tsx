@@ -99,21 +99,27 @@ const TopbarDemo: React.FC = () => {
 
   return (
     <div style={{ padding: spacing[6], backgroundColor: colors.background, minHeight: '100vh' }}>
-      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
-        Topbar Component
-      </CriaTextHeadline1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline1>
+          Topbar Component
+        </CriaTextHeadline1>
+      </div>
       
-      <CriaTextBody1 style={{ marginBottom: spacing[8], color: colors.text.secondary }}>
-        A global navigation header component with customizable variants, responsive design, and accessibility features.
-      </CriaTextBody1>
+      <div style={{ marginBottom: spacing[8], color: colors.text.secondary }}>
+        <CriaTextBody1>
+          A global navigation header component with customizable variants, responsive design, and accessibility features.
+        </CriaTextBody1>
+      </div>
 
       {/* Basic Topbar */}
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
           <CriaTextTitle1>Basic Topbar</CriaTextTitle1>
-          <CriaTextBody2 style={{ color: colors.text.secondary }}>
-            Default topbar with logo, navigation, and actions
-          </CriaTextBody2>
+          <div style={{ color: colors.text.secondary }}>
+            <CriaTextBody2>
+              Default topbar with logo, navigation, and actions
+            </CriaTextBody2>
+          </div>
         </div>
         <div style={{ padding: spacing[4] }}>
           <Topbar
@@ -143,13 +149,17 @@ const TopbarDemo: React.FC = () => {
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
           <CriaTextTitle1>Variants</CriaTextTitle1>
-          <CriaTextBody2 style={{ color: colors.text.secondary }}>
-            Different visual styles for various use cases
-          </CriaTextBody2>
+          <div style={{ color: colors.text.secondary }}>
+            <CriaTextBody2>
+              Different visual styles for various use cases
+            </CriaTextBody2>
+          </div>
         </div>
         <div style={{ padding: spacing[4] }}>
           <div style={{ marginBottom: '16px' }}>
-            <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>Primary Variant</CriaTextTitle1>
+            <div style={{ marginBottom: spacing[2] }}>
+              <CriaTextTitle1>Primary Variant</CriaTextTitle1>
+            </div>
             <Topbar
               variant="primary"
               logo={<CriaTextTitle1 color="white">CR_IA.UI</CriaTextTitle1>}
@@ -162,7 +172,9 @@ const TopbarDemo: React.FC = () => {
           </div>
 
           <div style={{ marginBottom: '16px' }}>
-            <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>Secondary Variant</CriaTextTitle1>
+            <div style={{ marginBottom: spacing[2] }}>
+              <CriaTextTitle1>Secondary Variant</CriaTextTitle1>
+            </div>
             <Topbar
               variant="secondary"
               logo={<CriaTextTitle1 color="white">CR_IA.UI</CriaTextTitle1>}
@@ -175,7 +187,9 @@ const TopbarDemo: React.FC = () => {
           </div>
 
           <div>
-            <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>Minimal Variant</CriaTextTitle1>
+            <div style={{ marginBottom: spacing[2] }}>
+              <CriaTextTitle1>Minimal Variant</CriaTextTitle1>
+            </div>
             <Topbar
               variant="minimal"
               logo={<CriaTextTitle1>CR_IA.UI</CriaTextTitle1>}
@@ -193,13 +207,17 @@ const TopbarDemo: React.FC = () => {
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
           <CriaTextTitle1>Sizes</CriaTextTitle1>
-          <CriaTextBody2 style={{ color: colors.text.secondary }}>
-            Different height configurations for various layouts
-          </CriaTextBody2>
+          <div style={{ color: colors.text.secondary }}>
+            <CriaTextBody2>
+              Different height configurations for various layouts
+            </CriaTextBody2>
+          </div>
         </div>
         <div style={{ padding: spacing[4] }}>
           <div style={{ marginBottom: '16px' }}>
-            <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>Small (sm)</CriaTextTitle1>
+            <div style={{ marginBottom: spacing[2] }}>
+              <CriaTextTitle1>Small (sm)</CriaTextTitle1>
+            </div>
             <Topbar
               size="sm"
               logo={<CriaTextTitle1>CR_IA.UI</CriaTextTitle1>}
@@ -212,7 +230,9 @@ const TopbarDemo: React.FC = () => {
           </div>
 
           <div style={{ marginBottom: '16px' }}>
-            <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>Medium (md) - Default</CriaTextTitle1>
+            <div style={{ marginBottom: spacing[2] }}>
+              <CriaTextTitle1>Medium (md) - Default</CriaTextTitle1>
+            </div>
             <Topbar
               size="md"
               logo={<CriaTextTitle1>CR_IA.UI</CriaTextTitle1>}
@@ -225,7 +245,9 @@ const TopbarDemo: React.FC = () => {
           </div>
 
           <div>
-            <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>Large (lg)</CriaTextTitle1>
+            <div style={{ marginBottom: spacing[2] }}>
+              <CriaTextTitle1>Large (lg)</CriaTextTitle1>
+            </div>
             <Topbar
               size="lg"
               logo={<CriaTextTitle1>CR_IA.UI</CriaTextTitle1>}
@@ -243,13 +265,17 @@ const TopbarDemo: React.FC = () => {
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
           <CriaTextTitle1>Positions</CriaTextTitle1>
-          <CriaTextBody2 style={{ color: colors.text.secondary }}>
-            Different positioning options for various layouts
-          </CriaTextBody2>
+          <div style={{ color: colors.text.secondary }}>
+            <CriaTextBody2>
+              Different positioning options for various layouts
+            </CriaTextBody2>
+          </div>
         </div>
         <div style={{ padding: spacing[4] }}>
           <div style={{ marginBottom: '16px' }}>
-            <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>Static Position</CriaTextTitle1>
+            <div style={{ marginBottom: spacing[2] }}>
+              <CriaTextTitle1>Static Position</CriaTextTitle1>
+            </div>
             <Topbar
               position="static"
               logo={<CriaTextTitle1>CR_IA.UI</CriaTextTitle1>}
@@ -259,7 +285,9 @@ const TopbarDemo: React.FC = () => {
           </div>
 
           <div style={{ marginBottom: '16px' }}>
-            <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>Sticky Position</CriaTextTitle1>
+            <div style={{ marginBottom: spacing[2] }}>
+              <CriaTextTitle1>Sticky Position</CriaTextTitle1>
+            </div>
             <Topbar
               position="sticky"
               logo={<CriaTextTitle1>CR_IA.UI</CriaTextTitle1>}
@@ -270,7 +298,9 @@ const TopbarDemo: React.FC = () => {
           </div>
 
           <div>
-            <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>Fixed Position</CriaTextTitle1>
+            <div style={{ marginBottom: spacing[2] }}>
+              <CriaTextTitle1>Fixed Position</CriaTextTitle1>
+            </div>
             <Topbar
               position="fixed"
               logo={<CriaTextTitle1>CR_IA.UI</CriaTextTitle1>}
@@ -287,13 +317,17 @@ const TopbarDemo: React.FC = () => {
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
           <CriaTextTitle1>Visual Effects</CriaTextTitle1>
-          <CriaTextBody2 style={{ color: colors.text.secondary }}>
-            Borders, shadows, and other visual enhancements
-          </CriaTextBody2>
+          <div style={{ color: colors.text.secondary }}>
+            <CriaTextBody2>
+              Borders, shadows, and other visual enhancements
+            </CriaTextBody2>
+          </div>
         </div>
         <div style={{ padding: spacing[4] }}>
           <div style={{ marginBottom: '16px' }}>
-            <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>With Border</CriaTextTitle1>
+            <div style={{ marginBottom: spacing[2] }}>
+              <CriaTextTitle1>With Border</CriaTextTitle1>
+            </div>
             <Topbar
               logo={<CriaTextTitle1>CR_IA.UI</CriaTextTitle1>}
               navigation={navigationItems.slice(0, 3)}
@@ -302,7 +336,9 @@ const TopbarDemo: React.FC = () => {
           </div>
 
           <div style={{ marginBottom: '16px' }}>
-            <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>With Shadow</CriaTextTitle1>
+            <div style={{ marginBottom: spacing[2] }}>
+              <CriaTextTitle1>With Shadow</CriaTextTitle1>
+            </div>
             <Topbar
               logo={<CriaTextTitle1>CR_IA.UI</CriaTextTitle1>}
               navigation={navigationItems.slice(0, 3)}
@@ -311,7 +347,9 @@ const TopbarDemo: React.FC = () => {
           </div>
 
           <div>
-            <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>Full Width</CriaTextTitle1>
+            <div style={{ marginBottom: spacing[2] }}>
+              <CriaTextTitle1>Full Width</CriaTextTitle1>
+            </div>
             <Topbar
               logo={<CriaTextTitle1>CR_IA.UI</CriaTextTitle1>}
               navigation={navigationItems.slice(0, 3)}
@@ -326,9 +364,11 @@ const TopbarDemo: React.FC = () => {
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
           <CriaTextTitle1>Custom Content</CriaTextTitle1>
-          <CriaTextBody2 style={{ color: colors.text.secondary }}>
-            Header and footer content areas
-          </CriaTextBody2>
+          <div style={{ color: colors.text.secondary }}>
+            <CriaTextBody2>
+              Header and footer content areas
+            </CriaTextBody2>
+          </div>
         </div>
         <div style={{ padding: spacing[4] }}>
           <Topbar
@@ -337,12 +377,16 @@ const TopbarDemo: React.FC = () => {
             headerContent={
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <Badge variant="success" size="sm">Beta</Badge>
-                <CriaTextBody2 style={{ color: colors.text.secondary }}>Welcome to the new interface</CriaTextBody2>
+                <div style={{ color: colors.text.secondary }}>
+                  <CriaTextBody2>Welcome to the new interface</CriaTextBody2>
+                </div>
               </div>
             }
             footerContent={
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <CriaTextBody2 style={{ color: colors.text.secondary }}>Last updated: 2 minutes ago</CriaTextBody2>
+                <div style={{ color: colors.text.secondary }}>
+                  <CriaTextBody2>Last updated: 2 minutes ago</CriaTextBody2>
+                </div>
               </div>
             }
             showBorder={true}
@@ -354,9 +398,11 @@ const TopbarDemo: React.FC = () => {
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
           <CriaTextTitle1>Loading State</CriaTextTitle1>
-          <CriaTextBody2 style={{ color: colors.text.secondary }}>
-            Disabled state with reduced opacity
-          </CriaTextBody2>
+          <div style={{ color: colors.text.secondary }}>
+            <CriaTextBody2>
+              Disabled state with reduced opacity
+            </CriaTextBody2>
+          </div>
         </div>
         <div style={{ padding: spacing[4] }}>
           <Topbar
@@ -375,9 +421,11 @@ const TopbarDemo: React.FC = () => {
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
           <CriaTextTitle1>Interactive Example</CriaTextTitle1>
-          <CriaTextBody2 style={{ color: colors.text.secondary }}>
-            Click navigation items to see active state changes
-          </CriaTextBody2>
+          <div style={{ color: colors.text.secondary }}>
+            <CriaTextBody2>
+              Click navigation items to see active state changes
+            </CriaTextBody2>
+          </div>
         </div>
         <div style={{ padding: spacing[4] }}>
           <Topbar
@@ -403,9 +451,11 @@ const TopbarDemo: React.FC = () => {
             showShadow={true}
           />
           <div style={{ marginTop: '16px', padding: '12px', backgroundColor: 'var(--color-background-subtle)', borderRadius: 'var(--radius-sm)' }}>
-            <CriaTextBody2 style={{ color: colors.text.secondary }}>
-              Active item: <strong>{activeItem}</strong> | Search: <strong>"{searchValue}"</strong>
-            </CriaTextBody2>
+            <div style={{ color: colors.text.secondary }}>
+              <CriaTextBody2>
+                Active item: <strong>{activeItem}</strong> | Search: <strong>"{searchValue}"</strong>
+              </CriaTextBody2>
+            </div>
           </div>
         </div>
       </Card>
@@ -414,13 +464,17 @@ const TopbarDemo: React.FC = () => {
       <Card style={{ padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
           <CriaTextTitle1>Usage Examples</CriaTextTitle1>
-          <CriaTextBody2 style={{ color: colors.text.secondary }}>
-            Common implementation patterns
-          </CriaTextBody2>
+          <div style={{ color: colors.text.secondary }}>
+            <CriaTextBody2>
+              Common implementation patterns
+            </CriaTextBody2>
+          </div>
         </div>
         <div style={{ padding: spacing[4] }}>
           <div style={{ marginBottom: '16px' }}>
-            <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>E-commerce Header</CriaTextTitle1>
+            <div style={{ marginBottom: spacing[2] }}>
+              <CriaTextTitle1>E-commerce Header</CriaTextTitle1>
+            </div>
             <Topbar
               logo={<CriaTextTitle1 color="primary">ShopApp</CriaTextTitle1>}
               navigation={[
@@ -441,7 +495,9 @@ const TopbarDemo: React.FC = () => {
           </div>
 
           <div>
-            <CriaTextTitle1 style={{ marginBottom: spacing[2] }}>Dashboard Header</CriaTextTitle1>
+            <div style={{ marginBottom: spacing[2] }}>
+              <CriaTextTitle1>Dashboard Header</CriaTextTitle1>
+            </div>
             <Topbar
               variant="primary"
               logo={<CriaTextTitle1 color="white">Analytics</CriaTextTitle1>}

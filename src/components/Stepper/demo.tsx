@@ -158,13 +158,17 @@ const StepperDemo: React.FC = () => {
 
   return (
     <div style={{ padding: spacing[8], minHeight: '100vh' }}>
-      <CriaTextHeadline1 style={{ marginBottom: spacing[6] }}>
-        Stepper / Wizard
-      </CriaTextHeadline1>
+      <div style={{ marginBottom: spacing[6] }}>
+        <CriaTextHeadline1>
+          Stepper / Wizard
+        </CriaTextHeadline1>
+      </div>
 
-      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
-        A component for guiding users through multi-step flows, processes, or workflows with clear progress indication.
-      </CriaTextBody1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextBody1>
+          A component for guiding users through multi-step flows, processes, or workflows with clear progress indication.
+        </CriaTextBody1>
+      </div>
 
       <Card style={{ marginBottom: spacing[6] }}>
         <CardHeader>
@@ -199,9 +203,11 @@ const StepperDemo: React.FC = () => {
           <Grid gap="lg">
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Horizontal Orientation (Default)
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Horizontal Orientation (Default)
+                  </CriaTextTitle1>
+                </div>
                 <Stepper
                   steps={projectSteps}
                   currentStep={2}
@@ -212,9 +218,11 @@ const StepperDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Vertical Orientation
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Vertical Orientation
+                  </CriaTextTitle1>
+                </div>
                 <Stepper
                   steps={projectSteps}
                   currentStep={2}
@@ -237,9 +245,11 @@ const StepperDemo: React.FC = () => {
           <Grid gap="lg">
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Small Size
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Small Size
+                  </CriaTextTitle1>
+                </div>
                 <Stepper
                   steps={purchaseSteps}
                   currentStep={2}
@@ -250,9 +260,11 @@ const StepperDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Medium Size (Default)
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Medium Size (Default)
+                  </CriaTextTitle1>
+                </div>
                 <Stepper
                   steps={purchaseSteps}
                   currentStep={2}
@@ -263,9 +275,11 @@ const StepperDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Large Size
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Large Size
+                  </CriaTextTitle1>
+                </div>
                 <Stepper
                   steps={purchaseSteps}
                   currentStep={2}
@@ -288,9 +302,11 @@ const StepperDemo: React.FC = () => {
           <Grid gap="lg">
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Default Variant
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Default Variant
+                  </CriaTextTitle1>
+                </div>
                 <Stepper
                   steps={onboardingSteps}
                   currentStep={1}
@@ -301,9 +317,11 @@ const StepperDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Minimal Variant
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Minimal Variant
+                  </CriaTextTitle1>
+                </div>
                 <Stepper
                   steps={onboardingSteps}
                   currentStep={1}
@@ -435,9 +453,11 @@ const StepperDemo: React.FC = () => {
           <Grid gap="lg">
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Solid Connector (Default)
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Solid Connector (Default)
+                  </CriaTextTitle1>
+                </div>
                 <Stepper
                   steps={onboardingSteps}
                   currentStep={1}
@@ -448,9 +468,11 @@ const StepperDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Dashed Connector
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Dashed Connector
+                  </CriaTextTitle1>
+                </div>
                 <Stepper
                   steps={onboardingSteps}
                   currentStep={1}
@@ -461,9 +483,11 @@ const StepperDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Dotted Connector
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Dotted Connector
+                  </CriaTextTitle1>
+                </div>
                 <Stepper
                   steps={onboardingSteps}
                   currentStep={1}
@@ -486,9 +510,11 @@ const StepperDemo: React.FC = () => {
           <Grid gap="lg">
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Primary Color (Default)
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Primary Color (Default)
+                  </CriaTextTitle1>
+                </div>
                 <Stepper
                   steps={onboardingSteps}
                   currentStep={1}
@@ -499,9 +525,11 @@ const StepperDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Secondary Color
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Secondary Color
+                  </CriaTextTitle1>
+                </div>
                 <Stepper
                   steps={onboardingSteps}
                   currentStep={1}
@@ -512,9 +540,11 @@ const StepperDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Gray Color
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Gray Color
+                  </CriaTextTitle1>
+                </div>
                 <Stepper
                   steps={onboardingSteps}
                   currentStep={1}
@@ -537,9 +567,11 @@ const StepperDemo: React.FC = () => {
           <Grid gap="lg">
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  User Onboarding Flow
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    User Onboarding Flow
+                  </CriaTextTitle1>
+                </div>
                 <Stepper
                   steps={onboardingSteps}
                   currentStep={1}
@@ -552,9 +584,11 @@ const StepperDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Project Development Pipeline
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Project Development Pipeline
+                  </CriaTextTitle1>
+                </div>
                 <Stepper
                   steps={projectSteps}
                   currentStep={2}
@@ -565,9 +599,11 @@ const StepperDemo: React.FC = () => {
             </Row>
             <Row>
               <Column span={12}>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  E-commerce Checkout Process
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    E-commerce Checkout Process
+                  </CriaTextTitle1>
+                </div>
                 <Stepper
                   steps={purchaseSteps}
                   currentStep={2}

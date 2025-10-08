@@ -69,6 +69,9 @@ __export(index_exports, {
   CriaTextHeadline1: () => CriaTextHeadline1,
   CriaTextHeadline2: () => CriaTextHeadline2,
   CriaTextImportant: () => CriaTextImportant,
+  CriaTextInvert: () => CriaTextInvert,
+  CriaTextLearningTitle: () => CriaTextLearningTitle,
+  CriaTextSuccess: () => CriaTextSuccess,
   CriaTextTitle1: () => CriaTextTitle1,
   CriaTextTitle2: () => CriaTextTitle2,
   DatePicker: () => DatePicker,
@@ -736,7 +739,7 @@ var Avatar = (0, import_react2.forwardRef)(({
       ref,
       className: avatarClasses,
       style: {
-        backgroundColor: backgroundColor || (showInitials || showFallback ? void 0 : "var(--cria-gray-200)"),
+        backgroundColor: backgroundColor || (showInitials || showFallback ? void 0 : colors.gray[200]),
         ...style
       },
       role,
@@ -835,34 +838,29 @@ var Typography = ({
   const getColorStyles = (color2) => {
     switch (color2) {
       case "primary":
-        return { color: "#7566A1" };
-      // Main brand purple
+        return { color: colors.primary };
       case "primaryLight":
-        return { color: "#3A2E52" };
-      // Primary light/darker
+        return { color: colors.primaryLight };
       case "content":
-        return { color: "#3A2E52" };
-      // Primary light/darker for content text
+        return { color: colors.text.content };
       case "secondary":
-        return { color: "#28DDB9" };
-      // Secondary brand teal
+        return { color: colors.secondary };
       case "secondaryDark":
-        return { color: "#167B7A" };
-      // Secondary dark
+        return { color: colors.secondaryDark };
       case "disabled":
-        return { color: "#9CA3AF" };
+        return { color: colors.text.disabled };
       case "inverse":
-        return { color: "#FFFFFF" };
+        return { color: colors.white };
       case "success":
-        return { color: "#10B981" };
+        return { color: colors.success };
       case "warning":
-        return { color: "#F59E0B" };
+        return { color: colors.warning };
       case "error":
-        return { color: "#EF4444" };
+        return { color: colors.error };
       case "info":
-        return { color: "#3B82F6" };
+        return { color: colors.info };
       default:
-        return { color: "#374151" };
+        return { color: colors.text.primary };
     }
   };
   const isTitleVariant = variant === "title1" || variant === "title2" || variant === "title3";
@@ -874,10 +872,10 @@ var Typography = ({
     letterSpacing: typography.letterSpacing[letterSpacing],
     textAlign: align,
     margin: 0,
-    textTransform: isTitleVariant ? "uppercase" : "none",
+    // Uppercase for title variants should be handled by CSS class for consistency
     ...getColorStyles(isTitleVariant ? "primary" : color || "default")
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(Element, { className: classes, style: styles, ...props, children });
+  return /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(Element, { className: `${classes} ${isTitleVariant ? "cria-typography--title" : ""}`, style: styles, ...props, children });
 };
 var Typography_default = Typography;
 
@@ -1011,7 +1009,188 @@ var AvatarUpload = ({
 
 // src/components/Avatar/AvatarWithName.tsx
 var import_react4 = require("react");
+
+// src/components/TextTokens/CriaText.tsx
 var import_jsx_runtime6 = require("react/jsx-runtime");
+var CriaTextHeadline1 = ({ as, children, className = "", ...props }) => {
+  const Element = as || "h1";
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+    Typography,
+    {
+      as: Element,
+      variant: "h1",
+      color: "primary",
+      weight: "bold",
+      className,
+      ...props,
+      children
+    }
+  );
+};
+var CriaTextHeadline2 = ({ as, children, className = "", ...props }) => {
+  const Element = as || "h2";
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+    Typography,
+    {
+      as: Element,
+      variant: "h2",
+      color: "primary",
+      weight: "semiBold",
+      className,
+      ...props,
+      children
+    }
+  );
+};
+var CriaTextBody1 = ({ as, children, className = "", ...props }) => {
+  const Element = as || "p";
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+    Typography,
+    {
+      as: Element,
+      variant: "body",
+      color: "content",
+      className,
+      ...props,
+      children
+    }
+  );
+};
+var CriaTextBody2 = ({ as, children, className = "", ...props }) => {
+  const Element = as || "span";
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+    Typography,
+    {
+      as: Element,
+      variant: "bodySmall",
+      color: "content",
+      className,
+      ...props,
+      children
+    }
+  );
+};
+var CriaTextBody1Inverse = ({ as, children, className = "", ...props }) => {
+  const Element = as || "p";
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+    Typography,
+    {
+      as: Element,
+      variant: "body",
+      color: "inverse",
+      className,
+      ...props,
+      children
+    }
+  );
+};
+var CriaTextTitle1 = ({ as, children, className = "", ...props }) => {
+  const Element = as || "h3";
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+    Typography,
+    {
+      as: Element,
+      variant: "title2",
+      color: "primary",
+      weight: "bold",
+      className,
+      ...props,
+      children
+    }
+  );
+};
+var CriaTextTitle2 = ({ as, children, className = "", ...props }) => {
+  const Element = as || "h4";
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+    Typography,
+    {
+      as: Element,
+      variant: "title3",
+      color: "primary",
+      weight: "semiBold",
+      className,
+      ...props,
+      children
+    }
+  );
+};
+var CriaTextImportant = ({ as, children, className = "", ...props }) => {
+  const Element = as || "span";
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+    Typography,
+    {
+      as: Element,
+      variant: "body",
+      color: "content",
+      weight: "medium",
+      className,
+      ...props,
+      children
+    }
+  );
+};
+var CriaTextAlert = ({ as, children, className = "", ...props }) => {
+  const Element = as || "span";
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+    Typography,
+    {
+      as: Element,
+      variant: "body",
+      color: "error",
+      weight: "medium",
+      className,
+      ...props,
+      children
+    }
+  );
+};
+var CriaTextSuccess = ({ as, children, className = "", ...props }) => {
+  const Element = as || "span";
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+    Typography,
+    {
+      as: Element,
+      variant: "body",
+      color: "success",
+      weight: "medium",
+      className,
+      ...props,
+      children
+    }
+  );
+};
+var CriaTextInvert = ({ as, children, className = "", ...props }) => {
+  const Element = as || "span";
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+    Typography,
+    {
+      as: Element,
+      variant: "body",
+      color: "inverse",
+      className,
+      ...props,
+      children
+    }
+  );
+};
+var CriaTextLearningTitle = ({ as, children, className = "", ...props }) => {
+  const Element = as || "h2";
+  return /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+    Typography,
+    {
+      as: Element,
+      variant: "h2",
+      color: "primary",
+      weight: "bold",
+      className,
+      ...props,
+      children
+    }
+  );
+};
+
+// src/components/Avatar/AvatarWithName.tsx
+var import_jsx_runtime7 = require("react/jsx-runtime");
 var AvatarWithName = (0, import_react4.forwardRef)(({
   avatarProps = {},
   name,
@@ -1110,7 +1289,7 @@ var AvatarWithName = (0, import_react4.forwardRef)(({
   const containerStyles = getContainerStyles2();
   const ariaLabel = clickable ? `Click to interact with ${name}` : name;
   const tabIndex = clickable ? 0 : void 0;
-  return /* @__PURE__ */ (0, import_jsx_runtime6.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(
     "div",
     {
       ref,
@@ -1123,7 +1302,7 @@ var AvatarWithName = (0, import_react4.forwardRef)(({
       tabIndex,
       ...props,
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
           Avatar,
           {
             ...avatarProps,
@@ -1131,10 +1310,9 @@ var AvatarWithName = (0, import_react4.forwardRef)(({
             name
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime6.jsx)(
-          Typography_default,
+        /* @__PURE__ */ (0, import_jsx_runtime7.jsx)(
+          CriaTextBody1,
           {
-            variant: "body",
             style: {
               fontSize: config.fontSize,
               fontWeight: 500,
@@ -1157,7 +1335,7 @@ AvatarWithName.displayName = "AvatarWithName";
 
 // src/components/Badge/Badge.tsx
 var import_react5 = require("react");
-var import_jsx_runtime7 = require("react/jsx-runtime");
+var import_jsx_runtime8 = require("react/jsx-runtime");
 var Badge = ({
   variant = "default",
   size = "md",
@@ -1217,7 +1395,7 @@ var Badge = ({
     }
   };
   const { onClick, onKeyDown, ...restProps } = props;
-  return /* @__PURE__ */ (0, import_jsx_runtime7.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(
     "span",
     {
       className: classes,
@@ -1229,9 +1407,9 @@ var Badge = ({
       "aria-disabled": disabled,
       ...restProps,
       children: [
-        leftIcon && !dot && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: "cria-badge__icon cria-badge__icon--left", "aria-hidden": "true", children: leftIcon }),
-        !dot && displayContent && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: "cria-badge__content", children: displayContent }),
-        rightIcon && !dot && /* @__PURE__ */ (0, import_jsx_runtime7.jsx)("span", { className: "cria-badge__icon cria-badge__icon--right", "aria-hidden": "true", children: rightIcon })
+        leftIcon && !dot && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { className: "cria-badge__icon cria-badge__icon--left", "aria-hidden": "true", children: leftIcon }),
+        !dot && displayContent && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { className: "cria-badge__content", children: displayContent }),
+        rightIcon && !dot && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { className: "cria-badge__icon cria-badge__icon--right", "aria-hidden": "true", children: rightIcon })
       ]
     }
   );
@@ -1239,7 +1417,7 @@ var Badge = ({
 
 // src/components/Button/Button.tsx
 var import_react6 = __toESM(require("react"), 1);
-var import_jsx_runtime8 = require("react/jsx-runtime");
+var import_jsx_runtime9 = require("react/jsx-runtime");
 var Button = import_react6.default.forwardRef(({
   variant = "primary",
   size = "md",
@@ -1281,7 +1459,7 @@ var Button = import_react6.default.forwardRef(({
     ...getSizeStyles2(size),
     ...style
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)(
     "button",
     {
       ref,
@@ -1291,7 +1469,7 @@ var Button = import_react6.default.forwardRef(({
       "aria-disabled": isDisabled,
       ...props,
       children: [
-        loading && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)(
+        loading && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(
           "div",
           {
             style: {
@@ -1308,10 +1486,10 @@ var Button = import_react6.default.forwardRef(({
             }
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime8.jsxs)("span", { style: { opacity: loading ? 0 : 1, display: "flex", alignItems: "center", gap: spacing[2] }, children: [
-          leftIcon && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { children: leftIcon }),
+        /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("span", { style: { opacity: loading ? 0 : 1, display: "flex", alignItems: "center", gap: spacing[2] }, children: [
+          leftIcon && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("span", { children: leftIcon }),
           children,
-          rightIcon && /* @__PURE__ */ (0, import_jsx_runtime8.jsx)("span", { children: rightIcon })
+          rightIcon && /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("span", { children: rightIcon })
         ] })
       ]
     }
@@ -1380,91 +1558,91 @@ function getSizeStyles2(size) {
 
 // src/components/Button/demo.tsx
 var import_react7 = require("react");
-var import_jsx_runtime9 = require("react/jsx-runtime");
+var import_jsx_runtime10 = require("react/jsx-runtime");
 var ButtonDemo = () => {
   const [loading, setLoading] = (0, import_react7.useState)(false);
   const handleLoadingClick = () => {
     setLoading(true);
     setTimeout(() => setLoading(false), 2e3);
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { style: { padding: "24px", maxWidth: "800px" }, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Typography, { variant: "title1", weight: "bold", style: { marginBottom: "32px" }, children: "Button Demo" }),
-    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Variantes" }),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "primary", children: "Prim\xE1rio" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "secondary", children: "Secund\xE1rio" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "outline", children: "Contorno" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "ghost", children: "Fantasma" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "danger", children: "Perigo" })
+  return /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { style: { padding: spacing[6], maxWidth: "800px" }, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Typography, { variant: "title1", weight: "bold", style: { marginBottom: spacing[8] }, children: "Button Demo" }),
+    /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("section", { style: { marginBottom: spacing[8] }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: spacing[4] }, children: "Variantes" }),
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { style: { display: "flex", gap: spacing[3], flexWrap: "wrap" }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { variant: "primary", children: "Prim\xE1rio" }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { variant: "secondary", children: "Secund\xE1rio" }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { variant: "outline", children: "Contorno" }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { variant: "ghost", children: "Fantasma" }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { variant: "danger", children: "Perigo" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Tamanhos" }),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { style: { display: "flex", gap: "12px", alignItems: "center", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { size: "sm", children: "Pequeno" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { size: "md", children: "M\xE9dio" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { size: "lg", children: "Grande" })
+    /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("section", { style: { marginBottom: spacing[8] }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: spacing[4] }, children: "Tamanhos" }),
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { style: { display: "flex", gap: spacing[3], alignItems: "center", flexWrap: "wrap" }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { size: "sm", children: "Pequeno" }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { size: "md", children: "M\xE9dio" }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { size: "lg", children: "Grande" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Estados" }),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { children: "Normal" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { loading: true, children: "Carregando" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { disabled: true, children: "Desabilitado" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { loading, onClick: handleLoadingClick, children: "Clique para Carregar" })
+    /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("section", { style: { marginBottom: spacing[8] }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: spacing[4] }, children: "Estados" }),
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { style: { display: "flex", gap: spacing[3], flexWrap: "wrap" }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { children: "Normal" }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { loading: true, children: "Carregando" }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { disabled: true, children: "Desabilitado" }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { loading, onClick: handleLoadingClick, children: "Clique para Carregar" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Com \xCDcones" }),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { leftIcon: "\u2190", children: "Voltar" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { rightIcon: "\u2192", children: "Pr\xF3ximo" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { leftIcon: "\u2605", rightIcon: "\u2605", children: "Estrela" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { leftIcon: "\u{1F4E7}", children: "Email" })
+    /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("section", { style: { marginBottom: spacing[8] }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: spacing[4] }, children: "Com \xCDcones" }),
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { style: { display: "flex", gap: spacing[3], flexWrap: "wrap" }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { leftIcon: "\u2190", children: "Voltar" }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { rightIcon: "\u2192", children: "Pr\xF3ximo" }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { leftIcon: "\u2605", rightIcon: "\u2605", children: "Estrela" }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { leftIcon: "\u{1F4E7}", children: "Email" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Largura Completa" }),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { style: { display: "flex", flexDirection: "column", gap: "12px" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { fullWidth: true, children: "Bot\xE3o de Largura Completa" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "outline", fullWidth: true, children: "Contorno de Largura Completa" })
+    /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("section", { style: { marginBottom: spacing[8] }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: spacing[4] }, children: "Largura Completa" }),
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { style: { display: "flex", flexDirection: "column", gap: spacing[3] }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { fullWidth: true, children: "Bot\xE3o de Largura Completa" }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { variant: "outline", fullWidth: true, children: "Contorno de Largura Completa" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Efeitos de Hover" }),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("p", { style: { fontFamily: "var(--cria-font-family)", color: "#6B7280", marginBottom: "16px", fontSize: "14px" }, children: "Passe o mouse sobre os bot\xF5es para ver os efeitos de hover" }),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "primary", children: "Prim\xE1rio" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "secondary", children: "Secund\xE1rio" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "outline", children: "Contorno" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "ghost", children: "Fantasma" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "danger", children: "Perigo" })
+    /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("section", { style: { marginBottom: spacing[8] }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: spacing[4] }, children: "Efeitos de Hover" }),
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { style: { fontFamily: "var(--cria-font-family)", color: colors.text.secondary, marginBottom: spacing[4], fontSize: "14px" }, children: "Passe o mouse sobre os bot\xF5es para ver os efeitos de hover" }),
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { style: { display: "flex", gap: spacing[3], flexWrap: "wrap" }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { variant: "primary", children: "Prim\xE1rio" }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { variant: "secondary", children: "Secund\xE1rio" }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { variant: "outline", children: "Contorno" }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { variant: "ghost", children: "Fantasma" }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { variant: "danger", children: "Perigo" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Exemplos Interativos" }),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { onClick: () => alert("Prim\xE1rio clicado!"), children: "Clique em Mim" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "secondary", onClick: () => console.log("Secund\xE1rio clicado!"), children: "Log no Console" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { variant: "outline", onClick: () => window.open("https://example.com", "_blank"), children: "Link Externo" })
+    /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("section", { style: { marginBottom: spacing[8] }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: spacing[4] }, children: "Exemplos Interativos" }),
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { style: { display: "flex", gap: spacing[3], flexWrap: "wrap" }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { onClick: () => alert("Prim\xE1rio clicado!"), children: "Clique em Mim" }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { variant: "secondary", onClick: () => console.log("Secund\xE1rio clicado!"), children: "Log no Console" }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { variant: "outline", onClick: () => window.open("https://example.com", "_blank"), children: "Link Externo" })
       ] })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: "16px" }, children: "Acessibilidade" }),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsxs)("div", { style: { display: "flex", gap: "12px", flexWrap: "wrap" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { "aria-label": "Fechar di\xE1logo", children: "\xD7" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { "aria-describedby": "help-text", children: "Ajuda" }),
-        /* @__PURE__ */ (0, import_jsx_runtime9.jsx)(Button, { disabled: true, "aria-label": "Esta a\xE7\xE3o n\xE3o est\xE1 dispon\xEDvel", children: "Indispon\xEDvel" })
+    /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("section", { style: { marginBottom: spacing[8] }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("h2", { style: { fontFamily: "var(--cria-font-family)", marginBottom: spacing[4] }, children: "Acessibilidade" }),
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsxs)("div", { style: { display: "flex", gap: spacing[3], flexWrap: "wrap" }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { "aria-label": "Fechar di\xE1logo", children: "\xD7" }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { "aria-describedby": "help-text", children: "Ajuda" }),
+        /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(Button, { disabled: true, "aria-label": "Esta a\xE7\xE3o n\xE3o est\xE1 dispon\xEDvel", children: "Indispon\xEDvel" })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime9.jsx)("p", { id: "help-text", style: { fontSize: "14px", color: "#6B7280", marginTop: "8px" }, children: "Este bot\xE3o fornece informa\xE7\xF5es de ajuda adicionais." })
+      /* @__PURE__ */ (0, import_jsx_runtime10.jsx)("p", { id: "help-text", style: { fontSize: "14px", color: colors.text.secondary, marginTop: spacing[2] }, children: "Este bot\xE3o fornece informa\xE7\xF5es de ajuda adicionais." })
     ] })
   ] });
 };
 
 // src/components/Card/Card.tsx
-var import_jsx_runtime10 = require("react/jsx-runtime");
+var import_jsx_runtime11 = require("react/jsx-runtime");
 var Card = ({
   variant = "default",
   size = "md",
@@ -1493,7 +1671,7 @@ var Card = ({
     ...getSizeStyles3(size),
     ...style
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
     "div",
     {
       className: classes,
@@ -1555,7 +1733,7 @@ var CardHeader = ({
   ...props
 }) => {
   const classes = ["cria-card-header", className].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
     "div",
     {
       className: classes,
@@ -1575,7 +1753,7 @@ var CardContent = ({
   ...props
 }) => {
   const classes = ["cria-card-content", className].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
     "div",
     {
       className: classes,
@@ -1594,7 +1772,7 @@ var CardFooter = ({
   ...props
 }) => {
   const classes = ["cria-card-footer", className].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime10.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
     "div",
     {
       className: classes,
@@ -1616,7 +1794,7 @@ var import_react10 = require("react");
 // src/components/CriaLessonCardSmall/CriaLessonCardSmall.tsx
 var import_react8 = require("react");
 var import_phosphor_react2 = require("phosphor-react");
-var import_jsx_runtime11 = require("react/jsx-runtime");
+var import_jsx_runtime12 = require("react/jsx-runtime");
 var CriaLessonCardSmall = ({
   lesson,
   completed = false,
@@ -1671,7 +1849,7 @@ var CriaLessonCardSmall = ({
     boxShadow: shadows.xl,
     transform: "translateY(-2px)"
   } : {};
-  return /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
     "div",
     {
       className: classes,
@@ -1684,14 +1862,14 @@ var CriaLessonCardSmall = ({
       "data-tools": lesson.tools?.join(",") || "",
       ...props,
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { style: {
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { style: {
           position: "relative",
           width: "100%",
           height: "140px",
           background: `linear-gradient(135deg, ${colors.gray[100]} 0%, ${colors.gray[200]} 100%)`,
           overflow: "visible"
         }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
             "img",
             {
               src: thumbnailUrl,
@@ -1705,17 +1883,17 @@ var CriaLessonCardSmall = ({
               }
             }
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { style: {
+          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { style: {
             position: "absolute",
             inset: 0,
             background: "linear-gradient(to top, rgba(0,0,0,0.2) 0%, transparent 100%)"
           } }),
-          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { style: {
+          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { style: {
             position: "absolute",
             top: spacing[2],
             right: spacing[2],
             zIndex: 10
-          }, children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+          }, children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
             "button",
             {
               onClick: handleToggleCompletion,
@@ -1737,7 +1915,7 @@ var CriaLessonCardSmall = ({
               },
               title: completed ? "Mark as incomplete" : "Mark as completed",
               "aria-label": completed ? "Mark as incomplete" : "Mark as completed",
-              children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+              children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
                 import_phosphor_react2.Check,
                 {
                   size: completed ? 16 : 14,
@@ -1747,12 +1925,12 @@ var CriaLessonCardSmall = ({
               )
             }
           ) }),
-          toolIconUrl && /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { style: {
+          toolIconUrl && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { style: {
             position: "absolute",
             bottom: "-20px",
             left: spacing[4],
             zIndex: 30
-          }, children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+          }, children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
             "img",
             {
               src: toolIconUrl,
@@ -1766,7 +1944,7 @@ var CriaLessonCardSmall = ({
             }
           ) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { style: {
+        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { style: {
           flex: 1,
           display: "flex",
           flexDirection: "column",
@@ -1776,7 +1954,7 @@ var CriaLessonCardSmall = ({
           paddingTop: toolIconUrl ? spacing[6] : spacing[2]
           // Adjust for tool icon
         }, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { style: { marginBottom: spacing[2] }, children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+          /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { style: { marginBottom: spacing[2] }, children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
             Typography,
             {
               variant: "body",
@@ -1795,8 +1973,8 @@ var CriaLessonCardSmall = ({
               children: lesson.title
             }
           ) }),
-          /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { style: { display: "flex", flexDirection: "column", gap: spacing[2] }, children: [
-            /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+          /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { style: { display: "flex", flexDirection: "column", gap: spacing[2] }, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
               Typography,
               {
                 variant: "caption",
@@ -1809,14 +1987,14 @@ var CriaLessonCardSmall = ({
                 children: category
               }
             ) }),
-            /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { style: {
+            /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { style: {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between"
             }, children: [
-              /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { style: { display: "flex", alignItems: "center", gap: spacing[1] }, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(import_phosphor_react2.Clock, { size: 12, color: colors.gray[500] }),
-                /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { style: { display: "flex", alignItems: "center", gap: spacing[1] }, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_phosphor_react2.Clock, { size: 12, color: colors.gray[500] }),
+                /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
                   Typography,
                   {
                     variant: "caption",
@@ -1828,7 +2006,7 @@ var CriaLessonCardSmall = ({
                   }
                 )
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { style: {
+              /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { style: {
                 width: lesson.instructors && lesson.instructors.length > 0 ? "80px" : "32px",
                 height: "32px",
                 position: "relative",
@@ -1836,7 +2014,7 @@ var CriaLessonCardSmall = ({
                 justifyContent: "flex-end"
               }, children: lesson.instructors && lesson.instructors.length > 0 ? (
                 // Stacked avatars for multiple instructors
-                lesson.instructors.slice(0, 3).map((instructor, index) => /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+                lesson.instructors.slice(0, 3).map((instructor, index) => /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
                   "div",
                   {
                     onClick: () => onInstructorClick?.(instructor),
@@ -1846,7 +2024,7 @@ var CriaLessonCardSmall = ({
                       right: `${index * 8}px`,
                       zIndex: 3 - index
                     },
-                    children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+                    children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
                       Avatar,
                       {
                         src: instructor.avatarUrl,
@@ -1866,7 +2044,7 @@ var CriaLessonCardSmall = ({
                 ))
               ) : lesson.instructor ? (
                 // Single instructor - aligned to right
-                /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+                /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
                   "div",
                   {
                     onClick: handleInstructorClick,
@@ -1875,7 +2053,7 @@ var CriaLessonCardSmall = ({
                       position: "absolute",
                       right: "0px"
                     },
-                    children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+                    children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
                       Avatar,
                       {
                         src: lesson.instructor.avatarUrl,
@@ -1894,7 +2072,7 @@ var CriaLessonCardSmall = ({
                 )
               ) : (
                 // Default user icon - aligned to right
-                /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("div", { style: {
+                /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { style: {
                   width: "32px",
                   height: "32px",
                   borderRadius: "50%",
@@ -1904,7 +2082,7 @@ var CriaLessonCardSmall = ({
                   justifyContent: "center",
                   position: "absolute",
                   right: "0px"
-                }, children: /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(import_phosphor_react2.User, { size: 16, color: colors.white }) })
+                }, children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_phosphor_react2.User, { size: 16, color: colors.white }) })
               ) })
             ] })
           ] })
@@ -1917,7 +2095,7 @@ var CriaLessonCardSmall = ({
 // src/components/CriaLessonCard/CriaLessonCard.tsx
 var import_react9 = require("react");
 var import_phosphor_react3 = require("phosphor-react");
-var import_jsx_runtime12 = require("react/jsx-runtime");
+var import_jsx_runtime13 = require("react/jsx-runtime");
 var CriaLessonCard = ({
   lesson,
   onLessonClick,
@@ -1937,7 +2115,7 @@ var CriaLessonCard = ({
     "cria-lesson-card",
     className
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(
     "div",
     {
       className: cardClasses,
@@ -1960,7 +2138,7 @@ var CriaLessonCard = ({
       "data-lesson-slug": lesson.slug,
       ...props,
       children: [
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
           "div",
           {
             style: {
@@ -1971,7 +2149,7 @@ var CriaLessonCard = ({
               borderRadius: `${radii.lg} ${radii.lg} 0 0`,
               overflow: "hidden"
             },
-            children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+            children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
               "img",
               {
                 src: lesson.thumbnailUrl || "https://cdn.prod.website-files.com/65870ed41744e63eb43fd116/6876c357bfbaf5d573e3dd27_AU-409Thumb2.png",
@@ -1990,7 +2168,7 @@ var CriaLessonCard = ({
             )
           }
         ),
-        lesson.toolIconText && /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+        lesson.toolIconText && /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
           "div",
           {
             style: {
@@ -2001,7 +2179,7 @@ var CriaLessonCard = ({
               height: "48px",
               zIndex: 20
             },
-            children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+            children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
               "div",
               {
                 style: {
@@ -2014,7 +2192,7 @@ var CriaLessonCard = ({
                   alignItems: "center",
                   justifyContent: "center"
                 },
-                children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+                children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
                   Typography,
                   {
                     variant: "caption",
@@ -2030,7 +2208,7 @@ var CriaLessonCard = ({
             )
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(
           "div",
           {
             style: {
@@ -2047,7 +2225,7 @@ var CriaLessonCard = ({
               zIndex: 10
             },
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
                 Typography,
                 {
                   variant: "body",
@@ -2069,7 +2247,7 @@ var CriaLessonCard = ({
                   children: lesson.title
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
                 "div",
                 {
                   style: {
@@ -2080,7 +2258,7 @@ var CriaLessonCard = ({
                   }
                 }
               ),
-              /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
                 Typography,
                 {
                   variant: "caption",
@@ -2103,7 +2281,7 @@ var CriaLessonCard = ({
             ]
           }
         ),
-        /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)(
+        /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(
           "div",
           {
             style: {
@@ -2122,9 +2300,9 @@ var CriaLessonCard = ({
               borderTop: `1px solid ${colors.gray[200]}`
             },
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime12.jsxs)("div", { style: { display: "flex", alignItems: "center" }, children: [
-                /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_phosphor_react3.Clock, { size: 16, color: colors.gray[600], style: { marginRight: spacing[1] } }),
-                /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { style: { display: "flex", alignItems: "center" }, children: [
+                /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(import_phosphor_react3.Clock, { size: 16, color: colors.gray[600], style: { marginRight: spacing[1] } }),
+                /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
                   Typography,
                   {
                     variant: "caption",
@@ -2139,12 +2317,12 @@ var CriaLessonCard = ({
                   }
                 )
               ] }),
-              /* @__PURE__ */ (0, import_jsx_runtime12.jsx)("div", { style: { width: "25px", height: "25px" }, children: lesson.instructor ? /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+              /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { style: { width: "25px", height: "25px" }, children: lesson.instructor ? /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
                 "div",
                 {
                   onClick: handleInstructorClick,
                   style: { cursor: "pointer" },
-                  children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+                  children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
                     Avatar,
                     {
                       src: lesson.instructor.avatarUrl,
@@ -2160,7 +2338,7 @@ var CriaLessonCard = ({
                     }
                   )
                 }
-              ) : /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(
+              ) : /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
                 "div",
                 {
                   style: {
@@ -2172,7 +2350,7 @@ var CriaLessonCard = ({
                     alignItems: "center",
                     justifyContent: "center"
                   },
-                  children: /* @__PURE__ */ (0, import_jsx_runtime12.jsx)(import_phosphor_react3.User, { size: 16, color: colors.white })
+                  children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(import_phosphor_react3.User, { size: 16, color: colors.white })
                 }
               ) })
             ]
@@ -2184,7 +2362,7 @@ var CriaLessonCard = ({
 };
 
 // src/components/Card/demo.tsx
-var import_jsx_runtime13 = require("react/jsx-runtime");
+var import_jsx_runtime14 = require("react/jsx-runtime");
 var CardDemo = () => {
   const [completedLessons, setCompletedLessons] = (0, import_react10.useState)(/* @__PURE__ */ new Set(["1", "3", "6"]));
   const sampleLessons = [
@@ -2394,18 +2572,18 @@ var CardDemo = () => {
     console.log("CriaLesson clicked:", lesson.title);
     alert(`Opening lesson: ${lesson.title}`);
   };
-  return /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { style: { padding: "24px", maxWidth: "1000px" }, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "title1", weight: "bold", style: { marginBottom: "32px" }, children: "Lesson Cards" }),
-    /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "CriaLessonCardSmall - Lesson Cards" }),
-      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "body", style: { marginBottom: "24px", color: "#6b7280" }, children: "Specialized lesson card component with completion tracking, instructor details, and interactive elements. Features examples with different instructors across various categories, including stacked instructor avatars for collaborative lessons." }),
-      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { style: {
+  return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { style: { padding: spacing[6], maxWidth: "1000px" }, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(CriaTextHeadline1, { style: { marginBottom: spacing[8] }, children: "Lesson Cards" }),
+    /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("section", { style: { marginBottom: spacing[8] }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(CriaTextHeadline2, { style: { marginBottom: spacing[4] }, children: "CriaLessonCardSmall - Lesson Cards" }),
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(CriaTextBody1, { style: { marginBottom: spacing[6], color: colors.gray[500] }, children: "Specialized lesson card component with completion tracking, instructor details, and interactive elements. Features examples with different instructors across various categories, including stacked instructor avatars for collaborative lessons." }),
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { style: {
         display: "grid",
         gridTemplateColumns: "repeat(4, 1fr)",
-        gap: "16px",
-        marginBottom: "24px",
+        gap: spacing[4],
+        marginBottom: spacing[6],
         maxWidth: "1200px"
-      }, children: sampleLessons.slice(0, 4).map((lesson) => /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+      }, children: sampleLessons.slice(0, 4).map((lesson) => /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
         CriaLessonCardSmall,
         {
           lesson,
@@ -2417,16 +2595,16 @@ var CardDemo = () => {
         lesson.id
       )) })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "CriaLessonCard - Detailed Lesson Cards" }),
-      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "body", style: { marginBottom: "24px", color: "#6b7280" }, children: "Large, detailed lesson card component with tool icons, descriptions, and comprehensive lesson information. Perfect for showcasing detailed course content with rich visual elements." }),
-      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)("div", { style: {
+    /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("section", { style: { marginBottom: spacing[8] }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(CriaTextHeadline2, { style: { marginBottom: spacing[4] }, children: "CriaLessonCard - Detailed Lesson Cards" }),
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(CriaTextBody1, { style: { marginBottom: spacing[6], color: colors.gray[500] }, children: "Large, detailed lesson card component with tool icons, descriptions, and comprehensive lesson information. Perfect for showcasing detailed course content with rich visual elements." }),
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { style: {
         display: "grid",
         gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
-        gap: "24px",
-        marginBottom: "24px",
+        gap: spacing[6],
+        marginBottom: spacing[6],
         maxWidth: "1200px"
-      }, children: sampleCriaLessons.slice(0, 2).map((lesson) => /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(
+      }, children: sampleCriaLessons.slice(0, 2).map((lesson) => /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
         CriaLessonCard,
         {
           lesson,
@@ -2435,20 +2613,20 @@ var CardDemo = () => {
         lesson.id
       )) })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("section", { style: { marginBottom: "32px" }, children: [
-      /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "h2", weight: "semiBold", style: { marginBottom: "16px" }, children: "Variantes" }),
-      /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "16px" }, children: [
-        /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(Card, { variant: "default", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "h3", weight: "medium", children: "Card Padr\xE3o" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "body", children: "Este \xE9 um card padr\xE3o com borda e fundo claros." }) })
+    /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("section", { style: { marginBottom: spacing[8] }, children: [
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(CriaTextHeadline2, { style: { marginBottom: spacing[4] }, children: "Variantes" }),
+      /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { style: { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: spacing[4] }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(Card, { variant: "default", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(CriaTextTitle1, { children: "Card Padr\xE3o" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(CriaTextBody1, { children: "Este \xE9 um card padr\xE3o com borda e fundo claros." }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(Card, { variant: "elevated", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "h3", weight: "medium", children: "Card Elevado" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "body", children: "Este card tem uma sombra mais pronunciada para dar destaque." }) })
+        /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(Card, { variant: "elevated", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(CriaTextTitle1, { children: "Card Elevado" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(CriaTextBody1, { children: "Este card tem uma sombra mais pronunciada para dar destaque." }) })
         ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime13.jsxs)(Card, { variant: "outlined", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "h3", children: "Outlined Card" }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime13.jsx)(Typography_default, { variant: "body", children: "This card has a prominent border and transparent background." }) })
+        /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(Card, { variant: "outlined", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(CardHeader, { children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(CriaTextTitle1, { children: "Outlined Card" }) }),
+          /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(CardContent, { children: /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(CriaTextBody1, { children: "This card has a prominent border and transparent background." }) })
         ] })
       ] })
     ] })
@@ -2458,7 +2636,7 @@ var CardDemo = () => {
 // src/components/Checkbox/Checkbox.tsx
 var import_react11 = require("react");
 var import_phosphor_react4 = require("phosphor-react");
-var import_jsx_runtime14 = require("react/jsx-runtime");
+var import_jsx_runtime15 = require("react/jsx-runtime");
 var Checkbox = (0, import_react11.forwardRef)(({
   checked,
   indeterminate = false,
@@ -2537,9 +2715,9 @@ var Checkbox = (0, import_react11.forwardRef)(({
     disabled && "cria-checkbox__label--disabled",
     readOnly && "cria-checkbox__label--readonly"
   ].filter(Boolean).join(" ");
-  return /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: checkboxClasses, style, ...props, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)("div", { className: "cria-checkbox__container", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: checkboxClasses, style, ...props, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)("div", { className: "cria-checkbox__container", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
         "input",
         {
           ref: inputRef,
@@ -2568,20 +2746,20 @@ var Checkbox = (0, import_react11.forwardRef)(({
           ...inputProps
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { className: "cria-checkbox__checkmark", children: indeterminate ? /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("div", { className: "cria-checkbox__indeterminate" }) : checked === true ? /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(import_phosphor_react4.Check, { size: size === "sm" ? 12 : size === "lg" ? 20 : 16 }) : null }),
-      label && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("label", { htmlFor: id || (label ? `${name || "checkbox"}-input` : void 0), className: labelClasses, children: /* @__PURE__ */ (0, import_jsx_runtime14.jsxs)(
+      /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "cria-checkbox__checkmark", children: indeterminate ? /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("div", { className: "cria-checkbox__indeterminate" }) : checked === true ? /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(import_phosphor_react4.Check, { size: size === "sm" ? 12 : size === "lg" ? 20 : 16 }) : null }),
+      label && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("label", { htmlFor: id || (label ? `${name || "checkbox"}-input` : void 0), className: labelClasses, children: /* @__PURE__ */ (0, import_jsx_runtime15.jsxs)(
         Typography,
         {
           variant: "body",
           color: disabled ? "secondary" : "content",
           children: [
             label,
-            required && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)("span", { className: "cria-checkbox__required", "aria-label": "required", children: " *" })
+            required && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)("span", { className: "cria-checkbox__required", "aria-label": "required", children: " *" })
           ]
         }
       ) })
     ] }),
-    helperText && !errorMessage && !warningMessage && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
+    helperText && !errorMessage && !warningMessage && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
       Typography,
       {
         variant: "caption",
@@ -2591,7 +2769,7 @@ var Checkbox = (0, import_react11.forwardRef)(({
         children: helperText
       }
     ),
-    errorMessage && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
+    errorMessage && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
       Typography,
       {
         variant: "caption",
@@ -2601,7 +2779,7 @@ var Checkbox = (0, import_react11.forwardRef)(({
         children: errorMessage
       }
     ),
-    warningMessage && /* @__PURE__ */ (0, import_jsx_runtime14.jsx)(
+    warningMessage && /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
       Typography,
       {
         variant: "caption",
@@ -2617,143 +2795,6 @@ Checkbox.displayName = "Checkbox";
 
 // src/components/Dropdown/Dropdown.tsx
 var import_react12 = require("react");
-
-// src/components/TextTokens/CriaText.tsx
-var import_jsx_runtime15 = require("react/jsx-runtime");
-var CriaTextHeadline1 = ({ as, children, className = "", ...props }) => {
-  const Element = as || "h1";
-  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
-    Typography,
-    {
-      as: Element,
-      variant: "h1",
-      color: "primary",
-      weight: "bold",
-      className,
-      ...props,
-      children
-    }
-  );
-};
-var CriaTextHeadline2 = ({ as, children, className = "", ...props }) => {
-  const Element = as || "h2";
-  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
-    Typography,
-    {
-      as: Element,
-      variant: "h2",
-      color: "primary",
-      weight: "semiBold",
-      className,
-      ...props,
-      children
-    }
-  );
-};
-var CriaTextBody1 = ({ as, children, className = "", ...props }) => {
-  const Element = as || "p";
-  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
-    Typography,
-    {
-      as: Element,
-      variant: "body",
-      color: "content",
-      className,
-      ...props,
-      children
-    }
-  );
-};
-var CriaTextBody2 = ({ as, children, className = "", ...props }) => {
-  const Element = as || "span";
-  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
-    Typography,
-    {
-      as: Element,
-      variant: "bodySmall",
-      color: "content",
-      className,
-      ...props,
-      children
-    }
-  );
-};
-var CriaTextBody1Inverse = ({ as, children, className = "", ...props }) => {
-  const Element = as || "p";
-  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
-    Typography,
-    {
-      as: Element,
-      variant: "body",
-      color: "inverse",
-      className,
-      ...props,
-      children
-    }
-  );
-};
-var CriaTextTitle1 = ({ as, children, className = "", ...props }) => {
-  const Element = as || "h3";
-  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
-    Typography,
-    {
-      as: Element,
-      variant: "title2",
-      color: "primary",
-      weight: "bold",
-      className,
-      ...props,
-      children
-    }
-  );
-};
-var CriaTextTitle2 = ({ as, children, className = "", ...props }) => {
-  const Element = as || "h4";
-  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
-    Typography,
-    {
-      as: Element,
-      variant: "title3",
-      color: "primary",
-      weight: "semiBold",
-      className,
-      ...props,
-      children
-    }
-  );
-};
-var CriaTextImportant = ({ as, children, className = "", ...props }) => {
-  const Element = as || "span";
-  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
-    Typography,
-    {
-      as: Element,
-      variant: "body",
-      color: "content",
-      weight: "medium",
-      className,
-      ...props,
-      children
-    }
-  );
-};
-var CriaTextAlert = ({ as, children, className = "", ...props }) => {
-  const Element = as || "span";
-  return /* @__PURE__ */ (0, import_jsx_runtime15.jsx)(
-    Typography,
-    {
-      as: Element,
-      variant: "body",
-      color: "error",
-      weight: "medium",
-      className,
-      ...props,
-      children
-    }
-  );
-};
-
-// src/components/Dropdown/Dropdown.tsx
 var import_phosphor_react5 = require("phosphor-react");
 var import_jsx_runtime16 = require("react/jsx-runtime");
 var Dropdown = (0, import_react12.forwardRef)(({
@@ -3002,7 +3043,7 @@ var Dropdown = (0, import_react12.forwardRef)(({
     return classes.join(" ");
   };
   return /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)("div", { className: containerClasses, style, ...props, children: [
-    label && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("label", { className: "cria-dropdown__label", children: /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(Typography, { variant: "body", weight: "medium", color: "primary", children: [
+    label && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("label", { className: "cria-dropdown__label", children: /* @__PURE__ */ (0, import_jsx_runtime16.jsxs)(CriaTextTitle1, { children: [
       label,
       required && /* @__PURE__ */ (0, import_jsx_runtime16.jsx)("span", { style: { color: colors.error }, children: " *" })
     ] }) }),
@@ -3128,7 +3169,7 @@ var Dropdown = (0, import_react12.forwardRef)(({
         id: `${label || "dropdown"}-helper`,
         className: "cria-dropdown__messages",
         style: { marginTop: spacing[1] },
-        children: errorMessage ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Typography, { variant: "bodySmall", color: "error", children: errorMessage }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(Typography, { variant: "bodySmall", color: "secondary", children: helperText })
+        children: errorMessage ? /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(CriaTextBody2, { style: { color: colors.error }, children: errorMessage }) : /* @__PURE__ */ (0, import_jsx_runtime16.jsx)(CriaTextBody2, { style: { color: colors.text.secondary }, children: helperText })
       }
     )
   ] });
@@ -3474,11 +3515,9 @@ var Modal = ({
           children: [
             showHeader && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "cria-modal__header", children: [
               title && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
-                Typography,
+                CriaTextTitle1,
                 {
                   id: "modal-title",
-                  variant: "h3",
-                  weight: "semiBold",
                   className: "cria-modal__title",
                   children: title
                 }
@@ -3594,7 +3633,7 @@ var Sidebar = ({
       ...props,
       children: [
         /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "cria-sidebar__header", children: [
-          title && !collapsed && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "cria-sidebar__title-section", children: titleHref ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("a", { href: titleHref, className: "cria-sidebar__title-link", children: theme !== "default" ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Typography, { variant: "h3", weight: "bold", children: title }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Typography, { variant: "h3", weight: "bold", color: "primary", children: title }) }) : theme !== "default" ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Typography, { variant: "h3", weight: "bold", children: title }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Typography, { variant: "h3", weight: "bold", color: "primary", children: title }) }),
+          title && !collapsed && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "cria-sidebar__title-section", children: titleHref ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("a", { href: titleHref, className: "cria-sidebar__title-link", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(CriaTextTitle1, { children: title }) }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(CriaTextTitle1, { children: title }) }),
           subtitle && !collapsed && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "cria-sidebar__subtitle-section", style: { marginTop: "0.5rem" }, children: subtitle }),
           showToggle && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(
             Button,
@@ -3764,7 +3803,7 @@ var Topbar = ({
       ...props,
       children: [
         /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "cria-topbar__content", children: [
-          brand && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "cria-topbar__brand", children: brandHref ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("a", { href: brandHref, className: "cria-topbar__brand-link", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Typography, { variant: "h3", weight: "bold", color: "primary", children: brand }) }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(Typography, { variant: "h3", weight: "bold", color: "primary", children: brand }) }),
+          brand && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "cria-topbar__brand", children: brandHref ? /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("a", { href: brandHref, className: "cria-topbar__brand-link", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(CriaTextTitle1, { children: brand }) }) : /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(CriaTextTitle1, { children: brand }) }),
           /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: itemsClasses, children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("ul", { className: "cria-topbar__items-list", role: "menubar", children: items.map((item, index) => /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("li", { className: "cria-topbar__item-wrapper", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(
             "a",
             {
@@ -4764,7 +4803,7 @@ var Stepper = (0, import_react20.forwardRef)(({
               children: previousLabel
             }
           ),
-          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { style: { display: "flex", alignItems: "center", gap: spacing[2] }, children: /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(Typography, { variant: "bodySmall", color: "secondary", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { style: { display: "flex", alignItems: "center", gap: spacing[2] }, children: /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(CriaTextBody2, { style: { color: colors.text.secondary }, children: [
             "Step ",
             currentStep + 1,
             " of ",
@@ -5837,8 +5876,7 @@ var TextBody = ({
     fontSize: typography.fontSize.body,
     fontWeight: typography.fontWeight.regular,
     lineHeight: typography.lineHeight.normal,
-    color: "#374151",
-    // Default dark gray
+    color: colors.text.primary,
     margin: 0
   };
   return /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Element, { className: classes, style: styles, ...props, children });
@@ -5861,8 +5899,7 @@ var TextContent = ({
     fontWeight: typography.fontWeight.regular,
     lineHeight: typography.lineHeight.relaxed,
     // More readable for long content
-    color: "#374151",
-    // Default dark gray
+    color: colors.text.primary,
     margin: 0
   };
   return /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Element, { className: classes, style: styles, ...props, children });
@@ -5884,8 +5921,7 @@ var TextContentTitle = ({
     fontSize: typography.fontSize.h3,
     fontWeight: typography.fontWeight.semiBold,
     lineHeight: typography.lineHeight.normal,
-    color: "#374151",
-    // Default dark gray
+    color: colors.text.primary,
     margin: 0
   };
   return /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Element, { className: classes, style: styles, ...props, children });
@@ -5907,8 +5943,7 @@ var TextContentImportant = ({
     fontSize: typography.fontSize.body,
     fontWeight: typography.fontWeight.medium,
     lineHeight: typography.lineHeight.normal,
-    color: "#374151",
-    // Default dark gray
+    color: colors.text.primary,
     margin: 0
   };
   return /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(Element, { className: classes, style: styles, ...props, children });
@@ -6027,7 +6062,7 @@ var Textarea = (0, import_react25.forwardRef)(({
     showCharacterCount && maxLength ? countId : null
   ].filter(Boolean).join(" ") || void 0;
   return /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: containerClasses, style, children: [
-    label && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("label", { htmlFor: textareaId, id: labelId, className: "cria-textarea__label", children: /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(Typography, { variant: "body", weight: "medium", color: "primary", children: [
+    label && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("label", { htmlFor: textareaId, id: labelId, className: "cria-textarea__label", children: /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(CriaTextBody1, { children: [
       label,
       required && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "cria-textarea__required", "aria-label": "required", children: " *" })
     ] }) }),
@@ -6060,60 +6095,55 @@ var Textarea = (0, import_react25.forwardRef)(({
     ),
     (helperText || errorMessage || successMessage || warningMessage || showCharacterCount) && /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "cria-textarea__messages", children: [
       helperText && !errorMessage && !successMessage && !warningMessage && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(
-        Typography,
+        CriaTextBody2,
         {
-          variant: "body",
-          color: "secondary",
+          style: { color: colors.text.secondary },
           className: "cria-textarea__helper-text",
           id: helperId,
           children: helperText
         }
       ),
       errorMessage && /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(
-        Typography,
+        CriaTextBody2,
         {
-          variant: "body",
-          color: "error",
+          style: { color: colors.error },
           className: "cria-textarea__error-message",
           id: errorId,
           role: "alert",
           children: [
-            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(import_phosphor_react12.WarningCircle, { size: 14, style: { marginRight: "4px" } }),
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(import_phosphor_react12.WarningCircle, { size: 14, style: { marginRight: spacing[1] } }),
             errorMessage
           ]
         }
       ),
       successMessage && /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(
-        Typography,
+        CriaTextBody2,
         {
-          variant: "body",
-          color: "success",
+          style: { color: colors.success },
           className: "cria-textarea__success-message",
           id: successId,
           children: [
-            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(import_phosphor_react12.Check, { size: 14, style: { marginRight: "4px" } }),
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(import_phosphor_react12.Check, { size: 14, style: { marginRight: spacing[1] } }),
             successMessage
           ]
         }
       ),
       warningMessage && /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(
-        Typography,
+        CriaTextBody2,
         {
-          variant: "body",
-          color: "warning",
+          style: { color: colors.warning },
           className: "cria-textarea__warning-message",
           id: warningId,
           children: [
-            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(import_phosphor_react12.WarningCircle, { size: 14, style: { marginRight: "4px" } }),
+            /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(import_phosphor_react12.WarningCircle, { size: 14, style: { marginRight: spacing[1] } }),
             warningMessage
           ]
         }
       ),
       showCharacterCount && maxLength && /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)(
-        Typography,
+        CriaTextBody2,
         {
-          variant: "body",
-          color: "secondary",
+          style: { color: colors.text.secondary },
           className: "cria-textarea__character-count",
           id: countId,
           children: [
@@ -6420,7 +6450,7 @@ var FileUpload = ({
       style,
       ...props,
       children: [
-        label && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("label", { htmlFor: `file-input-${id}`, className: "cria-file-upload__label", children: /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(Typography, { variant: "body", weight: "medium", color: disabled ? "secondary" : "content", children: [
+        label && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("label", { htmlFor: `file-input-${id}`, className: "cria-file-upload__label", children: /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(CriaTextBody1, { style: { fontWeight: "medium", color: disabled ? "secondary" : "content" }, children: [
           label,
           required && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { "aria-label": "required", children: " *" })
         ] }) }),
@@ -6458,15 +6488,15 @@ var FileUpload = ({
             "aria-disabled": disabled,
             "aria-label": label,
             children: /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { className: "cria-file-upload__dropzone-inner", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Typography, { variant: "body", color: "secondary", children: "Drag & drop files here, or click to select" }),
-              accept && /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(Typography, { variant: "caption", color: "secondary", children: [
+              /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(CriaTextBody1, { color: "secondary", children: "Drag & drop files here, or click to select" }),
+              accept && /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)(CriaTextBody2, { color: "secondary", children: [
                 "Accepted: ",
                 accept
               ] })
             ] })
           }
         ),
-        description && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(Typography, { id: `file-desc-${id}`, variant: "caption", color: "secondary", style: { marginTop: 8 }, children: description }),
+        description && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(CriaTextBody2, { id: `file-desc-${id}`, color: "secondary", style: { marginTop: spacing[2] }, children: description }),
         files.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("ul", { className: "cria-file-upload__list", "aria-label": "Selected files", children: files.map((f, idx) => /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("li", { className: "cria-file-upload__item", children: [
           /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("span", { className: "cria-file-upload__filename", children: f.name }),
           /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("span", { className: "cria-file-upload__filesize", children: [
@@ -7782,6 +7812,7 @@ var Drawer = ({
   isOpen,
   onClose,
   title,
+  titleIcon,
   children,
   header,
   footer,
@@ -7944,16 +7975,17 @@ var Drawer = ({
         children: [
           loading && /* @__PURE__ */ (0, import_jsx_runtime38.jsx)("div", { className: "drawer__loading", "data-testid": "drawer-loading", children: /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(import_phosphor_react15.Spinner, { size: 24, className: "animate-spin" }) }),
           (title || header || showCloseButton) && /* @__PURE__ */ (0, import_jsx_runtime38.jsx)("div", { className: "drawer__header", children: header || /* @__PURE__ */ (0, import_jsx_runtime38.jsxs)(import_jsx_runtime38.Fragment, { children: [
-            title && /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(
-              Typography,
-              {
-                id: "drawer-title",
-                variant: "h3",
-                weight: "semibold",
-                className: "drawer__title",
-                children: title
-              }
-            ),
+            title && /* @__PURE__ */ (0, import_jsx_runtime38.jsxs)("div", { style: { display: "flex", alignItems: "center", gap: 8 }, children: [
+              titleIcon && /* @__PURE__ */ (0, import_jsx_runtime38.jsx)("span", { className: "drawer__title-icon", "aria-hidden": "true", children: titleIcon }),
+              /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(
+                CriaTextTitle1,
+                {
+                  id: "drawer-title",
+                  className: "drawer__title",
+                  children: title
+                }
+              )
+            ] }),
             showCloseButton && /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(
               Button,
               {
@@ -8005,7 +8037,7 @@ var Backgrounds = ({
   animationDelay = 0,
   showOverlay = false,
   overlayOpacity = 0.1,
-  overlayColor = "#000000",
+  overlayColor = colors.black,
   responsive = true,
   className = "",
   style,
@@ -8016,22 +8048,22 @@ var Backgrounds = ({
 }) => {
   const gradientBackground = (0, import_react32.useMemo)(() => {
     if (variant !== "gradient") return "";
-    const colors2 = gradientColors || getDefaultGradientColors(colorScheme);
-    const stops = gradientStops || getDefaultGradientStops(colors2.length);
+    const colors3 = gradientColors || getDefaultGradientColors(colorScheme);
+    const stops = gradientStops || getDefaultGradientStops(colors3.length);
     let gradient = "";
     switch (gradientType) {
       case "linear":
-        gradient = `linear-gradient(${gradientDirection}, ${colors2.map(
+        gradient = `linear-gradient(${gradientDirection}, ${colors3.map(
           (color, index) => `${color} ${stops[index] || "0%"}`
         ).join(", ")})`;
         break;
       case "radial":
-        gradient = `radial-gradient(circle at ${gradientPosition}, ${colors2.map(
+        gradient = `radial-gradient(circle at ${gradientPosition}, ${colors3.map(
           (color, index) => `${color} ${stops[index] || "0%"}`
         ).join(", ")})`;
         break;
       case "conic":
-        gradient = `conic-gradient(from ${gradientDirection}, ${colors2.map(
+        gradient = `conic-gradient(from ${gradientDirection}, ${colors3.map(
           (color, index) => `${color} ${stops[index] || "0%"}`
         ).join(", ")})`;
         break;
@@ -8076,20 +8108,20 @@ var Backgrounds = ({
   }, [variant, textureType, textureIntensity, textureScale]);
   const modernBackground = (0, import_react32.useMemo)(() => {
     if (variant !== "modern") return "";
-    const colors2 = getDefaultGradientColors(colorScheme);
+    const colors3 = getDefaultGradientColors(colorScheme);
     switch (modernType) {
       case "radial-glow":
-        return `radial-gradient(60% 120% at 50% 50%, hsla(0,0%,100%,0) 0, ${colors2[0]}50 100%)`;
+        return `radial-gradient(60% 120% at 50% 50%, hsla(0,0%,100%,0) 0, ${colors3[0]}50 100%)`;
       case "grid-dots":
-        return `linear-gradient(to right, #4f4f4f2e 1px, transparent 1px), linear-gradient(to bottom, #8080800a 1px, transparent 1px), radial-gradient(circle 400px at 50% 300px, ${colors2[0]}36, #000)`;
+        return `linear-gradient(to right, #4f4f4f2e 1px, transparent 1px), linear-gradient(to bottom, #8080800a 1px, transparent 1px), radial-gradient(circle 400px at 50% 300px, ${colors3[0]}36, #000)`;
       case "mesh-gradient":
-        return `radial-gradient(125% 125% at 50% 10%, #fff 40%, ${colors2[0]} 100%)`;
+        return `radial-gradient(125% 125% at 50% 10%, #fff 40%, ${colors3[0]} 100%)`;
       case "noise":
         return `radial-gradient(#ffffff33 1px, #00091d 1px), url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`;
       case "aurora":
-        return `linear-gradient(45deg, ${colors2[0]}20, ${colors2[1]}20, ${colors2[0]}20), radial-gradient(circle at 20% 50%, ${colors2[0]}40, transparent 50%), radial-gradient(circle at 80% 20%, ${colors2[1]}40, transparent 50%), radial-gradient(circle at 40% 80%, ${colors2[0]}40, transparent 50%)`;
+        return `linear-gradient(45deg, ${colors3[0]}20, ${colors3[1]}20, ${colors3[0]}20), radial-gradient(circle at 20% 50%, ${colors3[0]}40, transparent 50%), radial-gradient(circle at 80% 20%, ${colors3[1]}40, transparent 50%), radial-gradient(circle at 40% 80%, ${colors3[0]}40, transparent 50%)`;
       case "waves":
-        return `radial-gradient(circle at 50% 50%, ${colors2[0]}20, transparent 50%), radial-gradient(circle at 80% 20%, ${colors2[1]}20, transparent 50%), radial-gradient(circle at 20% 80%, ${colors2[0]}20, transparent 50%)`;
+        return `radial-gradient(circle at 50% 50%, ${colors3[0]}20, transparent 50%), radial-gradient(circle at 80% 20%, ${colors3[1]}20, transparent 50%), radial-gradient(circle at 20% 80%, ${colors3[0]}20, transparent 50%)`;
       default:
         return "";
     }
@@ -8180,15 +8212,15 @@ var Backgrounds = ({
 function getDefaultGradientColors(colorScheme) {
   switch (colorScheme) {
     case "primary":
-      return ["var(--cria-primary)", "var(--cria-primary-dark)"];
+      return [colors.primary[500], colors.primary[700]];
     case "secondary":
-      return ["var(--cria-secondary)", "var(--cria-secondary-dark)"];
+      return [colors.secondary[500], colors.secondary[700]];
     case "neutral":
-      return ["var(--cria-background-light)", "var(--cria-background-dark)"];
+      return [colors.gray[100], colors.gray[800]];
     case "accent":
-      return ["var(--cria-primary-light)", "var(--cria-primary-darker)"];
+      return [colors.primary[300], colors.primary[900]];
     default:
-      return ["var(--cria-primary)", "var(--cria-primary-dark)"];
+      return [colors.primary[500], colors.primary[700]];
   }
 }
 function getDefaultGradientStops(count) {
@@ -8201,15 +8233,15 @@ function getDefaultGradientStops(count) {
 function getDefaultPatternColor(colorScheme) {
   switch (colorScheme) {
     case "primary":
-      return "var(--cria-primary)";
+      return colors.primary[500];
     case "secondary":
-      return "var(--cria-secondary)";
+      return colors.secondary[500];
     case "neutral":
-      return "var(--cria-text-secondary)";
+      return colors.text.secondary;
     case "accent":
-      return "var(--cria-primary-light)";
+      return colors.primary[300];
     default:
-      return "var(--cria-primary)";
+      return colors.primary[500];
   }
 }
 
@@ -8848,7 +8880,7 @@ var PRList = ({
       case "merged":
         return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Badge, { variant: "success", size: "sm", children: "Merged" });
       case "closed":
-        return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Badge, { variant: "danger", size: "sm", children: "Closed" });
+        return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Badge, { variant: "error", size: "sm", children: "Closed" });
       case "open":
         return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Badge, { variant: "info", size: "sm", children: "Open" });
       default:
@@ -8885,7 +8917,7 @@ var PRList = ({
   if (loading) {
     return /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: `pr-list ${className}`, children: [
       /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "pr-list__header", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "h4", weight: "medium", children: title }),
+        /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "h3", weight: "medium", children: title }),
         onRefresh && /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)(Button, { variant: "ghost", size: "sm", onClick: onRefresh, disabled: true, children: [
           /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(import_phosphor_react18.Clock, { size: 16 }),
           "Atualizando..."
@@ -8893,25 +8925,25 @@ var PRList = ({
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { className: "pr-list__loading", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "pr-list__loading-content", children: [
         /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { className: "pr-list__loading-spinner", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(import_phosphor_react18.Clock, { size: 24, className: "pr-list__spinner-icon" }) }),
-        /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "body", color: "muted", children: "Carregando PRs..." })
+        /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "body", color: "disabled", children: "Carregando PRs..." })
       ] }) })
     ] });
   }
   if (prs.length === 0) {
     return /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: `pr-list ${className}`, children: [
       /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "pr-list__header", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "h4", weight: "medium", children: title }),
+        /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "h3", weight: "medium", children: title }),
         onRefresh && /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)(Button, { variant: "ghost", size: "sm", onClick: onRefresh, children: [
           /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(import_phosphor_react18.Clock, { size: 16 }),
           "Atualizar"
         ] })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { className: "pr-list__empty", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "body", color: "muted", children: emptyMessage }) })
+      /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { className: "pr-list__empty", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "body", color: "disabled", children: emptyMessage }) })
     ] });
   }
   return /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: `pr-list ${className}`, children: [
     /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "pr-list__header", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)(Typography, { variant: "h4", weight: "medium", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)(Typography, { variant: "h3", weight: "medium", children: [
         title,
         " (",
         prs.length,
@@ -8926,7 +8958,7 @@ var PRList = ({
       /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "pr-list__item-header", children: [
         /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "pr-list__item-title", children: [
           getStatusIcon(pr.state),
-          /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "h5", weight: "medium", className: "pr-list__item-title-text", children: pr.title })
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "title3", weight: "medium", className: "pr-list__item-title-text", children: pr.title })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "pr-list__item-actions", children: [
           getStatusBadge(pr.state),
@@ -8937,21 +8969,21 @@ var PRList = ({
               size: "sm",
               onClick: () => window.open(pr.html_url, "_blank"),
               title: "Ver no GitHub",
-              children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(import_phosphor_react18.ExternalLink, { size: 16 })
+              children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(import_phosphor_react18.ArrowSquareOut, { size: 16 })
             }
           )
         ] })
       ] }),
-      pr.body && /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { className: "pr-list__item-body", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "body", color: "muted", children: pr.body.length > 200 ? `${pr.body.substring(0, 200)}...` : pr.body }) }),
+      pr.body && /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { className: "pr-list__item-body", children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "body", color: "disabled", children: pr.body.length > 200 ? `${pr.body.substring(0, 200)}...` : pr.body }) }),
       /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { className: "pr-list__item-labels", children: pr.labels.map(getLabelBadge) }),
       /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "pr-list__item-meta", children: [
         /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "pr-list__item-meta-item", children: [
           /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(import_phosphor_react18.User, { size: 14 }),
-          /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "caption", color: "muted", children: pr.user.login })
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "caption", color: "disabled", children: pr.user.login })
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "pr-list__item-meta-item", children: [
           /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(import_phosphor_react18.GitBranch, { size: 14 }),
-          /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)(Typography, { variant: "caption", color: "muted", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)(Typography, { variant: "caption", color: "disabled", children: [
             pr.head.ref,
             " \u2192 ",
             pr.base.ref
@@ -8959,18 +8991,18 @@ var PRList = ({
         ] }),
         /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "pr-list__item-meta-item", children: [
           /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(import_phosphor_react18.Calendar, { size: 14 }),
-          /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "caption", color: "muted", children: formatDate2(pr.created_at) })
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(Typography, { variant: "caption", color: "disabled", children: formatDate2(pr.created_at) })
         ] }),
         pr.merged_at && /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "pr-list__item-meta-item", children: [
           /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(import_phosphor_react18.CheckCircle, { size: 14 }),
-          /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)(Typography, { variant: "caption", color: "muted", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)(Typography, { variant: "caption", color: "disabled", children: [
             "Merged: ",
             formatDate2(pr.merged_at)
           ] })
         ] }),
         pr.closed_at && !pr.merged_at && /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)("div", { className: "pr-list__item-meta-item", children: [
           /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(import_phosphor_react18.XCircle, { size: 14 }),
-          /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)(Typography, { variant: "caption", color: "muted", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime42.jsxs)(Typography, { variant: "caption", color: "disabled", children: [
             "Closed: ",
             formatDate2(pr.closed_at)
           ] })
@@ -9147,7 +9179,7 @@ var AgenteTab = ({ className = "" }) => {
     {
       id: "em-andamento",
       label: "Em Andamento",
-      icon: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(import_phosphor_react19.AlertCircle, { size: 16 }),
+      icon: /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(import_phosphor_react19.WarningCircle, { size: 16 }),
       count: prs.length,
       description: "PRs abertos e em desenvolvimento"
     },
@@ -9205,8 +9237,8 @@ var AgenteTab = ({ className = "" }) => {
   return /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: `agente-tab ${className}`, children: [
     /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agente-tab__header", children: [
       /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agente-tab__header-content", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "h3", weight: "semibold", style: { marginBottom: spacing[2] }, children: "Status do Agente" }),
-        /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "body", color: "muted", style: { marginBottom: spacing[4] }, children: "Acompanhe o status das suas solicita\xE7\xF5es de cria\xE7\xE3o e corre\xE7\xE3o." }),
+        /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "h3", weight: "semiBold", style: { marginBottom: spacing[2] }, children: "Status do Agente" }),
+        /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "body", color: "disabled", style: { marginBottom: spacing[4] }, children: "Acompanhe o status das suas solicita\xE7\xF5es de cria\xE7\xE3o e corre\xE7\xE3o." }),
         /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agente-tab__stats", children: [
           /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("div", { className: "agente-tab__stat", children: /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)(Badge, { variant: "info", size: "md", children: [
             prs.length,
@@ -9216,7 +9248,7 @@ var AgenteTab = ({ className = "" }) => {
             mergedPRs.length,
             " Em Produ\xE7\xE3o"
           ] }) }),
-          /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("div", { className: "agente-tab__stat", children: /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)(Badge, { variant: "danger", size: "md", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("div", { className: "agente-tab__stat", children: /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)(Badge, { variant: "error", size: "md", children: [
             closedPRs.length,
             " Recusado"
           ] }) })
@@ -9232,7 +9264,7 @@ var AgenteTab = ({ className = "" }) => {
             disabled: loading,
             title: "Atualizar PRs",
             children: [
-              /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(import_phosphor_react19.Refresh, { size: 16, className: loading ? "agente-tab__refresh-icon--spinning" : "" }),
+              /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(import_phosphor_react19.ArrowsClockwise, { size: 16, className: loading ? "agente-tab__refresh-icon--spinning" : "" }),
               "Atualizar"
             ]
           }
@@ -9253,10 +9285,10 @@ var AgenteTab = ({ className = "" }) => {
       ] })
     ] }),
     error && /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { className: "agente-tab__error", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(import_phosphor_react19.AlertCircle, { size: 20 }),
+      /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(import_phosphor_react19.WarningCircle, { size: 20 }),
       /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "h5", weight: "medium", children: "Erro ao carregar PRs" }),
-        /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "body", color: "muted", children: error })
+        /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "title3", weight: "medium", children: "Erro ao carregar PRs" }),
+        /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Typography, { variant: "body", color: "disabled", children: error })
       ] }),
       /* @__PURE__ */ (0, import_jsx_runtime43.jsx)(Button, { variant: "outline", size: "sm", onClick: refreshPRs, children: "Tentar Novamente" })
     ] }),
@@ -9294,7 +9326,7 @@ var AgenteTab = ({ className = "" }) => {
         onRefresh: refreshPRs
       }
     ) }),
-    lastUpdated && /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("div", { className: "agente-tab__footer", children: /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)(Typography, { variant: "caption", color: "muted", children: [
+    lastUpdated && /* @__PURE__ */ (0, import_jsx_runtime43.jsx)("div", { className: "agente-tab__footer", children: /* @__PURE__ */ (0, import_jsx_runtime43.jsxs)(Typography, { variant: "caption", color: "disabled", children: [
       "\xDAltima atualiza\xE7\xE3o: ",
       formatLastUpdated()
     ] }) })
@@ -9335,6 +9367,17 @@ var AgentDev = ({
       loading: false
     }
   });
+  const getCurrentComponentId = (0, import_react37.useCallback)(() => {
+    if (typeof window === "undefined") return "";
+    const hash = window.location.hash || "";
+    return hash.replace("#", "").trim();
+  }, []);
+  const getCurrentComponentLabel = (0, import_react37.useCallback)(() => {
+    const id = getCurrentComponentId();
+    if (!id) return "Componente atual";
+    const words = id.replace(/([a-z])([A-Z])/g, "$1 $2").replace(/[-_]/g, " ").split(" ").filter(Boolean).map((w) => w.charAt(0).toUpperCase() + w.slice(1));
+    return words.join(" ");
+  }, [getCurrentComponentId]);
   const handleTabChange = (0, import_react37.useCallback)((tab) => {
     setActiveTab(tab);
     setTabState((prev) => ({ ...prev, activeTab: tab }));
@@ -9369,75 +9412,48 @@ var AgentDev = ({
     switch (activeTab) {
       case "criar":
         return /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "agent-dev__tab-content", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Typography, { variant: "h3", weight: "semibold", style: { marginBottom: spacing[4] }, children: "Criar Componente" }),
-          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Typography, { variant: "body", color: "muted", style: { marginBottom: spacing[6] }, children: "Selecione o tipo de componente e descreva o que voc\xEA gostaria de criar." }),
-          /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "agent-dev__section", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Tipo de Componente" }),
-            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "agent-dev__type-selector", children: Object.entries(componentTypes).map(([category, types]) => /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { style: { marginBottom: spacing[3] }, children: [
-              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
-                Button,
-                {
-                  variant: tabState.criar.selectedType === category ? "primary" : "outline",
-                  size: "sm",
-                  style: { marginBottom: spacing[2] },
-                  onClick: () => updateTabState("criar", { selectedType: category }),
-                  children: category
-                }
-              ),
-              tabState.criar.selectedType === category && /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { style: { marginLeft: spacing[4], display: "flex", flexWrap: "wrap", gap: spacing[2] }, children: types.map((type) => /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
-                Button,
-                {
-                  variant: "ghost",
-                  size: "sm",
-                  onClick: () => updateTabState("criar", { selectedComponent: type }),
-                  style: {
-                    backgroundColor: tabState.criar.selectedComponent === type ? "var(--agent-dev-hover)" : "transparent",
-                    color: tabState.criar.selectedComponent === type ? "var(--agent-dev-accent)" : "var(--agent-dev-text)"
-                  },
-                  children: type
-                },
-                type
-              )) })
-            ] }, category)) })
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Typography, { variant: "h3", weight: "semiBold", style: { marginBottom: spacing[4] }, children: "Criar Componente" }),
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Typography, { variant: "body", color: "disabled", style: { marginBottom: spacing[6] }, children: "Selecione o tipo de componente e descreva o que voc\xEA gostaria de criar." }),
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "agent-dev__section", style: { display: "flex", alignItems: "center", gap: spacing[3], marginBottom: spacing[6] }, children: [
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Badge, { variant: "secondary", children: getCurrentComponentLabel() }),
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { style: { display: "flex", alignItems: "center", gap: spacing[2] }, children: [
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Typography, { variant: "body", children: "Criar varia\xE7\xE3o" }),
+              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Switch, { checked: Boolean(tabState.criar.selectedComponent), onChange: (checked) => updateTabState("criar", { selectedComponent: checked ? getCurrentComponentLabel() : null }) })
+            ] })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "agent-dev__section", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Descri\xE7\xE3o do Componente" }),
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Typography, { variant: "h3", weight: "medium", style: { marginBottom: spacing[3] }, children: "Descri\xE7\xE3o do Componente" }),
             /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
-              "textarea",
+              Textarea,
               {
-                className: "agent-dev__textarea",
+                label: void 0,
                 placeholder: "Descreva o componente que voc\xEA gostaria de criar...",
                 value: tabState.criar.prompt,
                 onChange: (e) => updateTabState("criar", { prompt: e.target.value }),
-                rows: 6
+                rows: 6,
+                helperText: "Seja espec\xEDfico, cuidaremos do resto!"
               }
             )
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "agent-dev__section", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Imagens de Refer\xEAncia (Opcional)" }),
-            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "agent-dev__image-upload", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
-                "input",
-                {
-                  type: "file",
-                  accept: "image/*",
-                  multiple: true,
-                  className: "agent-dev__file-input",
-                  id: "image-upload"
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Typography, { variant: "h3", weight: "medium", style: { marginBottom: spacing[3] }, children: "Imagens de Refer\xEAncia (Opcional)" }),
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
+              FileUpload,
+              {
+                label: "Imagens",
+                description: "PNG, JPG, SVG",
+                accept: "image/*",
+                onFilesChange: () => {
                 }
-              ),
-              /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("label", { htmlFor: "image-upload", className: "agent-dev__file-label", children: [
-                /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(import_phosphor_react20.Plus, { size: 24 }),
-                /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { children: "Adicionar Imagens" })
-              ] })
-            ] })
+              }
+            )
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "agent-dev__actions", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)(
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "agent-dev__actions", style: { marginTop: spacing[4] }, children: /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)(
             Button,
             {
               variant: "primary",
               size: "lg",
-              disabled: !tabState.criar.selectedType || !tabState.criar.selectedComponent || !tabState.criar.prompt.trim(),
+              disabled: !getCurrentComponentId() || !tabState.criar.prompt.trim(),
               onClick: () => {
                 console.log("Creating component:", tabState.criar);
               },
@@ -9450,44 +9466,48 @@ var AgentDev = ({
         ] });
       case "consertar":
         return /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "agent-dev__tab-content", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Typography, { variant: "h3", weight: "semibold", style: { marginBottom: spacing[4] }, children: "Consertar Componentes" }),
-          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Typography, { variant: "body", color: "muted", style: { marginBottom: spacing[6] }, children: "Selecione os componentes que precisam ser corrigidos e descreva os problemas." }),
-          /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "agent-dev__section", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Tipo de Componente" }),
-            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "agent-dev__type-selector", children: Object.entries(componentTypes).map(([category, types]) => /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { style: { marginBottom: spacing[3] }, children: [
-              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
-                Button,
-                {
-                  variant: tabState.consertar.selectedType === category ? "primary" : "outline",
-                  size: "sm",
-                  style: { marginBottom: spacing[2] },
-                  onClick: () => updateTabState("consertar", { selectedType: category }),
-                  children: category
-                }
-              ),
-              tabState.consertar.selectedType === category && /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "agent-dev__component-list", children: types.map((type) => /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "agent-dev__component-item", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Typography, { variant: "h3", weight: "semiBold", style: { marginBottom: spacing[4] }, children: "Consertar Componentes" }),
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Typography, { variant: "body", color: "disabled", style: { marginBottom: spacing[6] }, children: "Selecione os componentes que precisam ser corrigidos e descreva os problemas." }),
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "agent-dev__section", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "agent-dev__component-list", style: { display: "flex", flexDirection: "column", gap: spacing[3] }, children: getCurrentComponentId().toLowerCase() === "button" ? (() => {
+            const variants = ["primary", "secondary", "outline", "ghost", "danger"];
+            return variants.map((variantKey) => {
+              const label = `Button \u2014 ${variantKey}`;
+              const checked = tabState.consertar.selectedComponents.includes(label);
+              return /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "agent-dev__component-item", style: { display: "flex", alignItems: "center", gap: spacing[3] }, children: [
                 /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
-                  "input",
+                  Checkbox,
                   {
-                    type: "checkbox",
-                    id: `consertar-${type}`,
-                    checked: tabState.consertar.selectedComponents.includes(type),
-                    onChange: (e) => {
-                      const newSelected = e.target.checked ? [...tabState.consertar.selectedComponents, type] : tabState.consertar.selectedComponents.filter((c) => c !== type);
+                    id: `consertar-button-${variantKey}`,
+                    checked,
+                    label,
+                    onChange: (checkedNext) => {
+                      const newSelected = checkedNext ? [...tabState.consertar.selectedComponents, label] : tabState.consertar.selectedComponents.filter((c) => c !== label);
                       updateTabState("consertar", { selectedComponents: newSelected });
                     }
                   }
                 ),
-                /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("label", { htmlFor: `consertar-${type}`, children: type })
-              ] }, type)) })
-            ] }, category)) })
-          ] }),
+                /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Button, { variant: variantKey, size: "md", children: "Exemplo" })
+              ] }, variantKey);
+            });
+          })() : /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "agent-dev__component-item", style: { display: "flex", alignItems: "center", gap: spacing[3] }, children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
+            Checkbox,
+            {
+              id: `consertar-${getCurrentComponentId() || "atual"}`,
+              checked: tabState.consertar.selectedComponents.includes(getCurrentComponentLabel()),
+              label: getCurrentComponentLabel(),
+              onChange: (checked) => {
+                const type = getCurrentComponentLabel();
+                const newSelected = checked ? [...tabState.consertar.selectedComponents, type] : tabState.consertar.selectedComponents.filter((c) => c !== type);
+                updateTabState("consertar", { selectedComponents: newSelected });
+              }
+            }
+          ) }) }) }),
           /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "agent-dev__section", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Typography, { variant: "h4", weight: "medium", style: { marginBottom: spacing[3] }, children: "Descri\xE7\xE3o do Problema" }),
+            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Typography, { variant: "h3", weight: "medium", style: { marginBottom: spacing[3] }, children: "Descri\xE7\xE3o do Problema" }),
             /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
-              "textarea",
+              Textarea,
               {
-                className: "agent-dev__textarea",
+                label: void 0,
                 placeholder: "Descreva os problemas que precisam ser corrigidos...",
                 value: tabState.consertar.description,
                 onChange: (e) => updateTabState("consertar", { description: e.target.value }),
@@ -9495,7 +9515,7 @@ var AgentDev = ({
               }
             )
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "agent-dev__actions", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)(
+          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "agent-dev__actions", style: { marginTop: spacing[4] }, children: /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)(
             Button,
             {
               variant: "primary",
@@ -9524,106 +9544,31 @@ var AgentDev = ({
       onClose,
       position,
       size,
+      variant: "default",
+      title: "Fefo Bot",
+      titleIcon: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(import_phosphor_react20.Robot, { size: 20 }),
       className: `agent-dev ${className}`,
       style,
       ...props,
-      children: /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "agent-dev__container", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "agent-dev__header", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "agent-dev__header-content", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "agent-dev__header-icon", children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(import_phosphor_react20.Robot, { size: 24 }) }),
-            /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { className: "agent-dev__header-text", children: [
-              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Typography, { variant: "h2", weight: "bold", children: "Agent Dev" }),
-              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(Typography, { variant: "body", color: "muted", size: "sm", children: "Desenvolvimento assistido por IA" })
-            ] })
-          ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
-            Button,
-            {
-              variant: "ghost",
-              size: "sm",
-              onClick: onClose,
-              className: "agent-dev__close-button",
-              children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(import_phosphor_react20.X, { size: 20 })
-            }
-          )
-        ] }),
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "agent-dev__tabs", children: tabs.map((tab) => /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)(
-          "button",
+      children: /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { style: { display: "flex", flexDirection: "column", height: "100%" }, children: /* @__PURE__ */ (0, import_jsx_runtime44.jsxs)("div", { style: { flex: 1, display: "flex", flexDirection: "column" }, children: [
+        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)(
+          Tabs,
           {
-            className: `agent-dev__tab ${activeTab === tab.id ? "agent-dev__tab--active" : ""}`,
-            onClick: () => handleTabChange(tab.id),
-            title: tab.description,
-            children: [
-              tab.icon,
-              /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("span", { children: tab.label })
-            ]
-          },
-          tab.id
-        )) }),
-        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { className: "agent-dev__content", children: renderTabContent() })
-      ] })
+            items: [
+              { id: "criar", label: "Criar", content: null },
+              { id: "consertar", label: "Consertar", content: null },
+              { id: "agente", label: "Agente", content: null }
+            ],
+            activeTab,
+            onChange: (id) => handleTabChange(id),
+            variant: "underline",
+            showContent: false
+          }
+        ),
+        /* @__PURE__ */ (0, import_jsx_runtime44.jsx)("div", { style: { padding: spacing[6], flex: 1, overflowY: "auto" }, children: renderTabContent() })
+      ] }) })
     }
   );
-};
-var componentTypes = {
-  "Foundations": ["Typography", "Colors", "Text", "Grid"],
-  "Components": [
-    "Button",
-    "Input",
-    "Textarea",
-    "Avatar",
-    "Checkbox",
-    "Switch",
-    "Radio Group",
-    "Dropdown",
-    "File Upload",
-    "Chat",
-    "Comments Section",
-    "Slider",
-    "Shimmer Skeleton",
-    "Pricing Page",
-    "Page Loading Progress",
-    "Card Selector",
-    "Floating Sidebar",
-    "Search Filters",
-    "Filter Dropdown",
-    "Container",
-    "Scrollbar",
-    "Footer",
-    "Mega Menu",
-    "Command Palette",
-    "Carousel",
-    "Table",
-    "Empty State"
-  ],
-  "Content": ["Lesson - Cards", "Course - Cards", "Events - Cards", "Trilha - Cards"],
-  "Layout": [
-    "Tabs",
-    "Accordion",
-    "Navigation",
-    "Breadcrumbs",
-    "Pagination",
-    "Progress Bar",
-    "Stepper",
-    "Date Picker",
-    "Charts",
-    "Divider",
-    "Row of Cards",
-    "Statistic / Metric Card",
-    "Backgrounds"
-  ],
-  "Feedback": [
-    "Snackbar",
-    "Modal",
-    "Tooltip",
-    "Badge",
-    "Tag / Chip",
-    "Timeline / Activity Feed",
-    "Stepper / Wizard",
-    "Notification Center",
-    "Topbar",
-    "Drawer"
-  ]
 };
 var AgentDev_default = AgentDev;
 
@@ -9658,7 +9603,7 @@ var ShimmerSkeleton = ({
           height: height || "auto",
           display: "flex",
           flexDirection: "column",
-          gap: "8px"
+          gap: spacing[2]
         };
       case "avatar":
         return {
@@ -9670,17 +9615,17 @@ var ShimmerSkeleton = ({
         return {
           width: width || "100%",
           height: height || "200px",
-          borderRadius: "12px",
-          padding: "16px",
+          borderRadius: radii.lg,
+          padding: spacing[4],
           display: "flex",
           flexDirection: "column",
-          gap: "12px"
+          gap: spacing[3]
         };
       case "button":
         return {
           width: width || "120px",
           height: height || "36px",
-          borderRadius: "6px"
+          borderRadius: radii.md
         };
       case "circle":
         return {
@@ -9693,7 +9638,7 @@ var ShimmerSkeleton = ({
         return {
           width: width || "100%",
           height: height || "20px",
-          borderRadius: "4px"
+          borderRadius: radii.sm
         };
     }
   };
@@ -9706,7 +9651,7 @@ var ShimmerSkeleton = ({
         style: {
           width: index === lines - 1 ? "75%" : "100%",
           height: "16px",
-          borderRadius: "4px",
+          borderRadius: radii.sm,
           backgroundColor: colors.gray[200],
           position: "relative",
           overflow: "hidden"
@@ -9740,7 +9685,7 @@ var ShimmerSkeleton = ({
           style: {
             width: "60%",
             height: "20px",
-            borderRadius: "4px",
+            borderRadius: radii.sm,
             backgroundColor: colors.gray[200],
             position: "relative",
             overflow: "hidden"
@@ -9769,7 +9714,7 @@ var ShimmerSkeleton = ({
           style: {
             width: "100%",
             height: "16px",
-            borderRadius: "4px",
+            borderRadius: radii.sm,
             backgroundColor: colors.gray[200],
             position: "relative",
             overflow: "hidden"
@@ -9798,7 +9743,7 @@ var ShimmerSkeleton = ({
           style: {
             width: "80%",
             height: "16px",
-            borderRadius: "4px",
+            borderRadius: radii.sm,
             backgroundColor: colors.gray[200],
             position: "relative",
             overflow: "hidden"
@@ -11227,12 +11172,12 @@ function RowOfCards({
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          minHeight: "200px",
+          minHeight: spacing[50],
           padding: spacing[8],
           ...style
         },
         "data-testid": dataTestId,
-        children: /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Card, { variant: "outlined", children: /* @__PURE__ */ (0, import_jsx_runtime49.jsx)("div", { style: { textAlign: "center", padding: spacing[8] }, children: /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Typography, { variant: "body", color: "secondary", children: "No cards to display" }) }) })
+        children: /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(Card, { variant: "outlined", children: /* @__PURE__ */ (0, import_jsx_runtime49.jsx)("div", { style: { textAlign: "center", padding: spacing[8] }, children: /* @__PURE__ */ (0, import_jsx_runtime49.jsx)(CriaTextBody1, { style: { color: colors.text.secondary }, children: "No cards to display" }) }) })
       }
     );
   }
@@ -11272,13 +11217,12 @@ function RowOfCards({
             "aria-label": "Cards pagination",
             children: [
               /* @__PURE__ */ (0, import_jsx_runtime49.jsx)("div", { style: pageInfoStyles, children: /* @__PURE__ */ (0, import_jsx_runtime49.jsxs)(
-                Typography,
+                CriaTextBody2,
                 {
-                  variant: "bodySmall",
-                  color: "secondary",
                   style: {
                     fontFamily: typography.fontFamily.primary,
-                    fontSize: "14px"
+                    fontSize: typography.fontSize.caption,
+                    color: colors.text.secondary
                   },
                   children: [
                     "Page ",
@@ -11329,7 +11273,7 @@ function RowOfCards({
 }
 var gridStyles = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
+  gridTemplateColumns: `repeat(auto-fill, minmax(${spacing[75]}, 1fr))`,
   gap: spacing[6],
   marginBottom: spacing[8],
   padding: spacing[4]
@@ -11339,7 +11283,7 @@ var paginationStyles = {
   justifyContent: "space-between",
   alignItems: "center",
   padding: `${spacing[4]} ${spacing[6]}`,
-  backgroundColor: colors.backgroundLight,
+  backgroundColor: colors.background.secondary,
   border: `1px solid ${colors.border.light}`,
   borderRadius: radii.md,
   boxShadow: shadows.sm
@@ -11353,7 +11297,7 @@ var navButtonsStyles = {
   gap: spacing[3]
 };
 var navButtonStyles = {
-  minWidth: "100px",
+  minWidth: spacing[25],
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
@@ -11719,7 +11663,7 @@ function SearchFilters({
         ) }, filter.id);
       case "checkbox":
         return /* @__PURE__ */ (0, import_jsx_runtime51.jsxs)("div", { style: filterGroupStyles, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(Typography, { variant: "bodySmall", weight: "medium", style: filterLabelStyles, children: filter.label }),
+          /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(CriaTextBody2, { style: { ...filterLabelStyles, fontWeight: typography.fontWeight.medium }, children: filter.label }),
           /* @__PURE__ */ (0, import_jsx_runtime51.jsx)("div", { style: checkboxContainerStyles, children: filter.options?.map((option) => /* @__PURE__ */ (0, import_jsx_runtime51.jsxs)("label", { style: checkboxLabelStyles, children: [
             /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(
               "input",
@@ -11735,7 +11679,7 @@ function SearchFilters({
         ] }, filter.id);
       case "dateRange":
         return /* @__PURE__ */ (0, import_jsx_runtime51.jsxs)("div", { style: filterGroupStyles, children: [
-          /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(Typography, { variant: "bodySmall", weight: "medium", style: filterLabelStyles, children: filter.label }),
+          /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(CriaTextBody2, { style: { ...filterLabelStyles, fontWeight: typography.fontWeight.medium }, children: filter.label }),
           /* @__PURE__ */ (0, import_jsx_runtime51.jsxs)("div", { style: dateRangeContainerStyles, children: [
             /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(
               Input,
@@ -11772,7 +11716,7 @@ function SearchFilters({
         className: `search-filters-container ${className || ""}`,
         style: getContainerStyles(style),
         "data-testid": dataTestId,
-        children: /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(Typography, { variant: "body", color: "secondary", children: "No filters configured" })
+        children: /* @__PURE__ */ (0, import_jsx_runtime51.jsx)(CriaTextBody1, { style: { color: colors.text.secondary }, children: "No filters configured" })
       }
     );
   }
@@ -11828,7 +11772,7 @@ function SearchFilters({
   );
 }
 var getContainerStyles = (customStyle) => ({
-  backgroundColor: colors.backgroundLight,
+  backgroundColor: colors.background.secondary,
   border: `1px solid ${colors.border.light}`,
   borderRadius: radii.md,
   padding: spacing[6],
@@ -11848,7 +11792,7 @@ var filtersContentStyles = {
 };
 var filtersGridStyles = {
   display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+  gridTemplateColumns: `repeat(auto-fit, minmax(${spacing[50]}, 1fr))`,
   gap: spacing[6],
   marginBottom: spacing[6]
 };
@@ -11859,7 +11803,7 @@ var filterGroupStyles = {
 };
 var filterLabelStyles = {
   fontFamily: typography.fontFamily.primary,
-  fontSize: "14px",
+  fontSize: typography.fontSize.caption,
   fontWeight: typography.fontWeight.medium,
   color: colors.text.primary,
   marginBottom: spacing[1]
@@ -11873,9 +11817,9 @@ var selectStyles = {
   paddingRight: spacing[8],
   border: `1px solid ${colors.border.medium}`,
   borderRadius: radii.sm,
-  backgroundColor: colors.backgroundLight,
+  backgroundColor: colors.background.secondary,
   fontFamily: typography.fontFamily.primary,
-  fontSize: "14px",
+  fontSize: typography.fontSize.caption,
   color: colors.text.primary,
   appearance: "none",
   cursor: "pointer",
@@ -11899,17 +11843,17 @@ var checkboxLabelStyles = {
   alignItems: "center",
   gap: spacing[2],
   cursor: "pointer",
-  fontSize: "14px",
+  fontSize: typography.fontSize.caption,
   color: colors.text.primary
 };
 var checkboxInputStyles = {
-  width: "16px",
-  height: "16px",
-  accentColor: colors.primary
+  width: spacing[4],
+  height: spacing[4],
+  accentColor: colors.primary[500]
 };
 var checkboxTextStyles = {
   fontFamily: typography.fontFamily.primary,
-  fontSize: "14px"
+  fontSize: typography.fontSize.caption
 };
 var dateRangeContainerStyles = {
   display: "flex",
@@ -14272,7 +14216,7 @@ var StatisticMetricCard = (0, import_react49.forwardRef)(({
     padding: spacing[3],
     color: colors.error,
     textAlign: "center"
-  }, children: /* @__PURE__ */ (0, import_jsx_runtime75.jsx)(Typography, { variant: "body2", weight: "medium", children: error }) });
+  }, children: /* @__PURE__ */ (0, import_jsx_runtime75.jsx)(CriaTextBody2, { style: { fontWeight: typography.fontWeight.medium }, children: error }) });
   return /* @__PURE__ */ (0, import_jsx_runtime75.jsxs)(
     Component,
     {
@@ -14314,10 +14258,10 @@ var StatisticMetricCard = (0, import_react49.forwardRef)(({
               loading ? renderLoading() : /* @__PURE__ */ (0, import_jsx_runtime75.jsxs)(import_jsx_runtime75.Fragment, { children: [
                 icon && /* @__PURE__ */ (0, import_jsx_runtime75.jsx)("div", { style: { display: "flex", alignItems: "center", justifyContent: "flex-start", marginBottom: spacing[3] }, children: /* @__PURE__ */ (0, import_jsx_runtime75.jsx)("span", { style: { fontSize: config.iconSize, display: "inline-block" }, children: icon }) }),
                 /* @__PURE__ */ (0, import_jsx_runtime75.jsx)("div", { style: { marginBottom: spacing[2] }, children: /* @__PURE__ */ (0, import_jsx_runtime75.jsx)(
-                  Typography,
+                  "div",
                   {
-                    variant: size === "sm" ? "h3" : size === "lg" ? "display2" : "h1",
                     style: {
+                      fontSize: config.valueFontSize,
                       fontWeight: typography.fontWeight.bold,
                       color: selectedColor,
                       lineHeight: typography.lineHeight.tight
@@ -14325,10 +14269,19 @@ var StatisticMetricCard = (0, import_react49.forwardRef)(({
                     children: value
                   }
                 ) }),
-                /* @__PURE__ */ (0, import_jsx_runtime75.jsx)(
-                  Typography,
+                size === "sm" ? /* @__PURE__ */ (0, import_jsx_runtime75.jsx)(
+                  CriaTextBody2,
                   {
-                    variant: size === "sm" ? "body2" : "body",
+                    style: {
+                      color: colors.gray[700],
+                      fontWeight: typography.fontWeight.medium,
+                      marginBottom: spacing[1]
+                    },
+                    children: label
+                  }
+                ) : /* @__PURE__ */ (0, import_jsx_runtime75.jsx)(
+                  CriaTextBody1,
+                  {
                     style: {
                       color: colors.gray[700],
                       fontWeight: typography.fontWeight.medium,
@@ -14340,9 +14293,8 @@ var StatisticMetricCard = (0, import_react49.forwardRef)(({
                 trend && /* @__PURE__ */ (0, import_jsx_runtime75.jsx)("div", { id: trendId, children: /* @__PURE__ */ (0, import_jsx_runtime75.jsxs)("div", { style: { display: "flex", alignItems: "center", gap: spacing[1], marginTop: spacing[2] }, children: [
                   /* @__PURE__ */ (0, import_jsx_runtime75.jsx)("span", { style: { color: trendColorMap[trend.direction], fontWeight: typography.fontWeight.semiBold }, children: trend.direction === "up" ? "\u2197" : trend.direction === "down" ? "\u2198" : "\u2192" }),
                   /* @__PURE__ */ (0, import_jsx_runtime75.jsx)(
-                    Typography,
+                    CriaTextBody2,
                     {
-                      variant: "caption",
                       style: {
                         color: trendColorMap[trend.direction],
                         fontSize: config.trendFontSize,
@@ -14352,9 +14304,8 @@ var StatisticMetricCard = (0, import_react49.forwardRef)(({
                     }
                   ),
                   /* @__PURE__ */ (0, import_jsx_runtime75.jsx)(
-                    Typography,
+                    CriaTextBody2,
                     {
-                      variant: "caption",
                       style: {
                         color: colors.gray[500],
                         fontSize: config.trendFontSize
@@ -14434,6 +14385,9 @@ StatisticMetricCard.displayName = "StatisticMetricCard";
   CriaTextHeadline1,
   CriaTextHeadline2,
   CriaTextImportant,
+  CriaTextInvert,
+  CriaTextLearningTitle,
+  CriaTextSuccess,
   CriaTextTitle1,
   CriaTextTitle2,
   DatePicker,

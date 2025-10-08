@@ -63,15 +63,19 @@ export const NavigationDemo: React.FC = () => {
 
   return (
     <div style={{ padding: spacing[6], maxWidth: '1200px', margin: '0 auto' }}>
-      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
-        Navigation Demo
-      </CriaTextHeadline1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline1>
+          Navigation Demo
+        </CriaTextHeadline1>
+      </div>
 
-      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
-        Navigation components provide consistent and accessible navigation patterns for your application.
-        Includes sidebar navigation with collapse/expand functionality, hierarchical subitems for grouping related navigation items,
-        and topbar navigation with responsive mobile menu.
-      </CriaTextBody1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextBody1>
+          Navigation components provide consistent and accessible navigation patterns for your application.
+          Includes sidebar navigation with collapse/expand functionality, hierarchical subitems for grouping related navigation items,
+          and topbar navigation with responsive mobile menu.
+        </CriaTextBody1>
+      </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[6], marginBottom: spacing[8] }}>
         <Card variant="elevated">
@@ -299,9 +303,11 @@ export const NavigationDemo: React.FC = () => {
           <CardContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
               <div>
-                <CriaTextTitle2 style={{ marginBottom: spacing[2] }}>
-                  Sidebar Features
-                </CriaTextTitle2>
+                <div style={{ marginBottom: spacing[2] }}>
+                  <CriaTextTitle2>
+                    Sidebar Features
+                  </CriaTextTitle2>
+                </div>
                 <ul style={{ margin: 0, paddingLeft: spacing[5] }}>
                   <li><CriaTextBody1>Collapse/expand functionality</CriaTextBody1></li>
                   <li><CriaTextBody1>Active route highlighting</CriaTextBody1></li>
@@ -312,9 +318,11 @@ export const NavigationDemo: React.FC = () => {
               </div>
               
               <div>
-                <CriaTextTitle2 style={{ marginBottom: spacing[2] }}>
-                  Topbar Features
-                </CriaTextTitle2>
+                <div style={{ marginBottom: spacing[2] }}>
+                  <CriaTextTitle2>
+                    Topbar Features
+                  </CriaTextTitle2>
+                </div>
                 <ul style={{ margin: 0, paddingLeft: spacing[5] }}>
                   <li><CriaTextBody1>Responsive mobile menu</CriaTextBody1></li>
                   <li><CriaTextBody1>Brand/logo support</CriaTextBody1></li>
@@ -325,9 +333,11 @@ export const NavigationDemo: React.FC = () => {
               </div>
               
               <div>
-                <CriaTextTitle2 style={{ marginBottom: spacing[2] }}>
-                  Accessibility
-                </CriaTextTitle2>
+                <div style={{ marginBottom: spacing[2] }}>
+                  <CriaTextTitle2>
+                    Accessibility
+                  </CriaTextTitle2>
+                </div>
                 <ul style={{ margin: 0, paddingLeft: spacing[5] }}>
                   <li><CriaTextBody1>ARIA navigation roles</CriaTextBody1></li>
                   <li><CriaTextBody1>Keyboard focus management</CriaTextBody1></li>
@@ -341,12 +351,16 @@ export const NavigationDemo: React.FC = () => {
       </div>
 
       <div style={{ marginTop: spacing[8] }}>
-        <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
-          Current Active Route
-        </CriaTextTitle1>
-        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-          Active route: <strong>{activeRoute}</strong>
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextTitle1>
+            Current Active Route
+          </CriaTextTitle1>
+        </div>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextBody1>
+            Active route: <strong>{activeRoute}</strong>
+          </CriaTextBody1>
+        </div>
         <div style={{ display: 'flex', gap: spacing[2], flexWrap: 'wrap' }}>
           {[...sidebarItems, ...topbarItems].map((item) => (
             <Button

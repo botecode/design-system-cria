@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { Clock, User } from 'phosphor-react';
 import { colors, spacing, radii, shadows, typography } from '../../tokens';
 import { Avatar } from '../Avatar';
-import { Typography } from '../Typography';
+import { CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 
 export interface Lesson {
   id?: string;
@@ -148,7 +148,7 @@ export const CriaLessonCard: React.FC<CriaLessonCardProps> = ({
         />
       </div>
 
-      {/* Tool Icon Overlay */}
+        {/* Tool Icon Overlay */}
       {lesson.toolIconText && (
         <div
           style={{
@@ -164,24 +164,18 @@ export const CriaLessonCard: React.FC<CriaLessonCardProps> = ({
             style={{
               width: '100%',
               height: '100%',
-              background: '#D4C4A8',
+              background: colors.secondary,
               borderRadius: radii.md,
               boxShadow: shadows.md,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
+              color: colors.text.primary,
+              fontWeight: typography.fontWeight.bold,
+              fontSize: '14px',
             }}
           >
-            <Typography
-              variant="caption"
-              style={{
-                color: '#2D1B0E',
-                fontWeight: typography.fontWeight.bold,
-                fontSize: '14px',
-              }}
-            >
-              {lesson.toolIconText}
-            </Typography>
+            <CriaTextBody2>{lesson.toolIconText}</CriaTextBody2>
           </div>
         </div>
       )}
@@ -203,8 +197,7 @@ export const CriaLessonCard: React.FC<CriaLessonCardProps> = ({
         }}
       >
         {/* Title */}
-        <Typography
-          variant="body"
+        <div
           style={{
             color: colors.primary,
             fontFamily: typography.fontFamily.mono,
@@ -221,8 +214,8 @@ export const CriaLessonCard: React.FC<CriaLessonCardProps> = ({
             minHeight: '2.8em',
           }}
         >
-          {lesson.title}
-        </Typography>
+          <CriaTextBody1>{lesson.title}</CriaTextBody1>
+        </div>
 
         {/* Divider */}
         <div
@@ -235,8 +228,7 @@ export const CriaLessonCard: React.FC<CriaLessonCardProps> = ({
         />
 
         {/* Description */}
-        <Typography
-          variant="caption"
+        <div
           style={{
             color: colors.gray[600],
             fontFamily: typography.fontFamily.mono,
@@ -251,8 +243,10 @@ export const CriaLessonCard: React.FC<CriaLessonCardProps> = ({
             minHeight: '3.6em',
           }}
         >
-          {lesson.description || "Uma seleção de aulas do CR_IA, escolhidas a dedo para funcionarem como seu kit de sobrevivência nos primeiros passos do mundo de IA"}
-        </Typography>
+          <CriaTextBody2>
+            {lesson.description || "Uma seleção de aulas do CR_IA, escolhidas a dedo para funcionarem como seu kit de sobrevivência nos primeiros passos do mundo de IA"}
+          </CriaTextBody2>
+        </div>
       </div>
 
       {/* Bottom Section (Duration and Avatar) */}
@@ -276,8 +270,7 @@ export const CriaLessonCard: React.FC<CriaLessonCardProps> = ({
         {/* Duration with clock icon */}
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <Clock size={16} color={colors.gray[600]} style={{ marginRight: spacing[1] }} />
-          <Typography
-            variant="caption"
+          <div
             style={{
               color: colors.gray[700],
               fontFamily: typography.fontFamily.mono,
@@ -286,8 +279,8 @@ export const CriaLessonCard: React.FC<CriaLessonCardProps> = ({
               textTransform: 'uppercase',
             }}
           >
-            {lesson.duration || '--'}
-          </Typography>
+            <CriaTextBody2>{lesson.duration || '--'}</CriaTextBody2>
+          </div>
         </div>
 
         {/* User avatar */}

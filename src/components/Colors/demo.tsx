@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography } from '../Typography/Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextTitle1, CriaTextTitle2, CriaTextTitle3, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { colors, spacing, radii } from '../../tokens';
 
 export const ColorsDemo: React.FC = () => {
@@ -49,15 +49,19 @@ export const ColorsDemo: React.FC = () => {
         }} 
       />
       <div style={{ flex: 1 }}>
-        <Typography variant="body" weight="medium" color="primary">
+        <CriaTextBody1>
           {name}
-        </Typography>
-        <Typography variant="bodySmall" style={{ marginTop: spacing[1] }}>
-          {value}
-        </Typography>
-        <Typography variant="caption" style={{ marginTop: spacing[1] }}>
-          {description}
-        </Typography>
+        </CriaTextBody1>
+        <div style={{ marginTop: spacing[1] }}>
+          <CriaTextBody2>
+            {value}
+          </CriaTextBody2>
+        </div>
+        <div style={{ marginTop: spacing[1] }}>
+          <CriaTextBody2>
+            {description}
+          </CriaTextBody2>
+        </div>
       </div>
     </div>
   );
@@ -87,37 +91,51 @@ export const ColorsDemo: React.FC = () => {
         }} 
       />
       <div style={{ flex: 1 }}>
-        <Typography variant="body" weight="medium" color="inverse">
-          {name}
-        </Typography>
-        <Typography variant="bodySmall" color="inverse" style={{ marginTop: spacing[1] }}>
-          {value}
-        </Typography>
-        <Typography variant="caption" color="inverse" style={{ marginTop: spacing[1] }}>
-          {description}
-        </Typography>
+        <div style={{ color: 'white' }}>
+          <CriaTextBody1>
+            {name}
+          </CriaTextBody1>
+        </div>
+        <div style={{ color: 'white', marginTop: spacing[1] }}>
+          <CriaTextBody2>
+            {value}
+          </CriaTextBody2>
+        </div>
+        <div style={{ color: 'white', marginTop: spacing[1] }}>
+          <CriaTextBody2>
+            {description}
+          </CriaTextBody2>
+        </div>
       </div>
     </div>
   );
 
   return (
     <div style={{ padding: spacing[6], maxWidth: '1200px', margin: '0 auto' }}>
-      <Typography variant="title1" weight="bold" style={{ marginBottom: spacing[8] }}>
-        Colors
-      </Typography>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline1>
+          Colors
+        </CriaTextHeadline1>
+      </div>
       
-      <Typography variant="body" style={{ marginBottom: spacing[8] }}>
-        The CRIA UI color palette provides a comprehensive set of colors for building consistent and accessible interfaces.
-      </Typography>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextBody1>
+          The CRIA UI color palette provides a comprehensive set of colors for building consistent and accessible interfaces.
+        </CriaTextBody1>
+      </div>
 
       {/* Semantic Colors */}
       <div style={{ marginBottom: spacing[12] }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[6] }}>
-          Semantic Colors
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
-          These colors have semantic meaning and should be used consistently across the application.
-        </Typography>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextHeadline2>
+            Semantic Colors
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            These colors have semantic meaning and should be used consistently across the application.
+          </CriaTextBody1>
+        </div>
         <div style={{ 
           display: 'grid', 
           gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
@@ -136,12 +154,16 @@ export const ColorsDemo: React.FC = () => {
 
       {/* Background Colors */}
       <div style={{ marginBottom: spacing[12] }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[6] }}>
-          Background Colors
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
-          Background colors for different surface levels and contexts.
-        </Typography>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextHeadline2>
+            Background Colors
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Background colors for different surface levels and contexts.
+          </CriaTextBody1>
+        </div>
         <div style={{ 
           display: 'grid', 
           gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
@@ -169,12 +191,16 @@ export const ColorsDemo: React.FC = () => {
 
       {/* Color Usage Examples */}
       <div style={{ marginBottom: spacing[12] }}>
-        <Typography variant="h2" weight="semiBold" style={{ marginBottom: spacing[6] }}>
-          Color Usage Examples
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: spacing[6] }}>
-          Examples of how colors are used in different contexts.
-        </Typography>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextHeadline2>
+            Color Usage Examples
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Examples of how colors are used in different contexts.
+          </CriaTextBody1>
+        </div>
         
         <div style={{ 
           display: 'grid', 
@@ -188,12 +214,14 @@ export const ColorsDemo: React.FC = () => {
             borderRadius: radii.md,
             backgroundColor: colors.gray[50]
           }}>
-            <Typography variant="h3" color="success" style={{ marginBottom: '8px' }}>
-              Success Message
-            </Typography>
-            <Typography variant="body" color="primary">
+            <div style={{ color: colors.success, marginBottom: '8px' }}>
+              <CriaTextTitle3>
+                Success Message
+              </CriaTextTitle3>
+            </div>
+            <CriaTextBody1>
               Your action was completed successfully.
-            </Typography>
+            </CriaTextBody1>
           </div>
 
           {/* Warning Example */}
@@ -203,12 +231,14 @@ export const ColorsDemo: React.FC = () => {
             borderRadius: radii.md,
             backgroundColor: colors.gray[50]
           }}>
-            <Typography variant="h3" color="warning" style={{ marginBottom: '8px' }}>
-              Warning Message
-            </Typography>
-            <Typography variant="body" color="primary">
+            <div style={{ color: colors.warning, marginBottom: '8px' }}>
+              <CriaTextTitle3>
+                Warning Message
+              </CriaTextTitle3>
+            </div>
+            <CriaTextBody1>
               Please review your input before proceeding.
-            </Typography>
+            </CriaTextBody1>
           </div>
 
           {/* Error Example */}
@@ -218,12 +248,14 @@ export const ColorsDemo: React.FC = () => {
             borderRadius: radii.md,
             backgroundColor: colors.gray[50]
           }}>
-            <Typography variant="h3" color="error" style={{ marginBottom: '8px' }}>
-              Error Message
-            </Typography>
-            <Typography variant="body" color="primary">
+            <div style={{ color: colors.error, marginBottom: '8px' }}>
+              <CriaTextTitle3>
+                Error Message
+              </CriaTextTitle3>
+            </div>
+            <CriaTextBody1>
               Something went wrong. Please try again.
-            </Typography>
+            </CriaTextBody1>
           </div>
 
           {/* Info Example */}
@@ -233,12 +265,14 @@ export const ColorsDemo: React.FC = () => {
             borderRadius: radii.md,
             backgroundColor: colors.gray[50]
           }}>
-            <Typography variant="h3" color="info" style={{ marginBottom: '8px' }}>
-              Information
-            </Typography>
-            <Typography variant="body" color="primary">
+            <div style={{ color: colors.info, marginBottom: '8px' }}>
+              <CriaTextTitle3>
+                Information
+              </CriaTextTitle3>
+            </div>
+            <CriaTextBody1>
               Here's some helpful information for you.
-            </Typography>
+            </CriaTextBody1>
           </div>
         </div>
       </div>
@@ -250,18 +284,24 @@ export const ColorsDemo: React.FC = () => {
         borderRadius: radii.md,
         border: `1px solid ${colors.border.light}`
       }}>
-        <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
-          Accessibility Guidelines
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: spacing[2] }}>
-          • Ensure sufficient color contrast ratios (4.5:1 for normal text, 3:1 for large text)
-        </Typography>
-        <Typography variant="body" style={{ marginBottom: spacing[2] }}>
-          • Don't rely solely on color to convey information
-        </Typography>
-        <Typography variant="body">
+        <div style={{ marginBottom: spacing[3] }}>
+          <CriaTextTitle3>
+            Accessibility Guidelines
+          </CriaTextTitle3>
+        </div>
+        <div style={{ marginBottom: spacing[2] }}>
+          <CriaTextBody1>
+            • Ensure sufficient color contrast ratios (4.5:1 for normal text, 3:1 for large text)
+          </CriaTextBody1>
+        </div>
+        <div style={{ marginBottom: spacing[2] }}>
+          <CriaTextBody1>
+            • Don't rely solely on color to convey information
+          </CriaTextBody1>
+        </div>
+        <CriaTextBody1>
           • Test your designs with color blindness simulators
-        </Typography>
+        </CriaTextBody1>
       </div>
     </div>
   );

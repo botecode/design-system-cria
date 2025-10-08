@@ -56,21 +56,27 @@ const DrawerDemo: React.FC = () => {
 
   return (
     <div style={{ padding: spacing[6], backgroundColor: colors.background, minHeight: '100vh' }}>
-      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
-        Drawer Component
-      </CriaTextHeadline1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline1>
+          Drawer Component
+        </CriaTextHeadline1>
+      </div>
       
-      <CriaTextBody1 style={{ marginBottom: spacing[8], color: colors.text.secondary }}>
-        A slide-out panel component for mobile navigation, settings panels, or contextual content with customizable positions, sizes, and animations.
-      </CriaTextBody1>
+      <div style={{ marginBottom: spacing[8], color: colors.text.secondary }}>
+        <CriaTextBody1>
+          A slide-out panel component for mobile navigation, settings panels, or contextual content with customizable positions, sizes, and animations.
+        </CriaTextBody1>
+      </div>
 
       {/* Basic Drawer */}
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
           <CriaTextTitle1>Basic Drawer</CriaTextTitle1>
-          <CriaTextBody2 style={{ color: colors.text.secondary }} >
-            Simple drawer with title and content
-          </CriaTextBody2>
+          <div style={{ color: colors.text.secondary }}>
+            <CriaTextBody2>
+              Simple drawer with title and content
+            </CriaTextBody2>
+          </div>
         </div>
         <div style={{ padding: spacing[4] }}>
           <Button onClick={() => openDrawer('basic')}>
@@ -99,9 +105,11 @@ const DrawerDemo: React.FC = () => {
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
           <CriaTextTitle1>Positions</CriaTextTitle1>
-          <CriaTextBody2 style={{ color: colors.text.secondary }} >
-            Drawers can slide in from different directions
-          </CriaTextBody2>
+          <div style={{ color: colors.text.secondary }}>
+            <CriaTextBody2>
+              Drawers can slide in from different directions
+            </CriaTextBody2>
+          </div>
         </div>
         <div style={{ padding: spacing[4], display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           <Button onClick={() => openDrawer('left')}>
@@ -158,7 +166,7 @@ const DrawerDemo: React.FC = () => {
             </CriaTextBody1>
             <Card>
               <CriaTextTitle1>Quick Actions</CriaTextTitle1>
-              <div style={{ display: 'flex', gap: '8px', marginTop: '12px' }}>
+              <div style={{ display: 'flex', gap: spacing[2], marginTop: spacing[3] }}>
                 <Button >Edit</Button>
                 <Button  variant="secondary">Share</Button>
               </div>
@@ -208,9 +216,11 @@ const DrawerDemo: React.FC = () => {
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
           <CriaTextTitle1>Sizes</CriaTextTitle1>
-          <CriaTextBody2 style={{ color: colors.text.secondary }} >
-            Different size configurations for various use cases
-          </CriaTextBody2>
+          <div style={{ color: colors.text.secondary }}>
+            <CriaTextBody2>
+              Different size configurations for various use cases
+            </CriaTextBody2>
+          </div>
         </div>
         <div style={{ padding: spacing[4], display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           <Button onClick={() => openDrawer('size-sm')} >Small</Button>
@@ -250,9 +260,11 @@ const DrawerDemo: React.FC = () => {
             <CriaTextBody1>This is a large drawer with plenty of space for content.</CriaTextBody1>
             <Card>
               <CriaTextTitle1>Content Section</CriaTextTitle1>
-              <CriaTextBody2 style={{ color: colors.text.secondary }}>
-                You can add multiple sections and complex layouts here.
-              </CriaTextBody2>
+              <div style={{ color: colors.text.secondary }}>
+                <CriaTextBody2>
+                  You can add multiple sections and complex layouts here.
+                </CriaTextBody2>
+              </div>
             </Card>
           </div>
         </Drawer>
@@ -269,11 +281,11 @@ const DrawerDemo: React.FC = () => {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
               <Card>
                 <CriaTextTitle1>Section 1</CriaTextTitle1>
-                <CriaTextBody2 style={{ color: colors.text.secondary }}>Content here</CriaTextBody2>
+                <div style={{ color: colors.text.secondary }}><CriaTextBody2>Content here</CriaTextBody2></div>
               </Card>
               <Card>
                 <CriaTextTitle1>Section 2</CriaTextTitle1>
-                <CriaTextBody2 style={{ color: colors.text.secondary }}>More content</CriaTextBody2>
+                <div style={{ color: colors.text.secondary }}><CriaTextBody2>More content</CriaTextBody2></div>
               </Card>
             </div>
           </div>
@@ -307,9 +319,11 @@ const DrawerDemo: React.FC = () => {
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
           <CriaTextTitle1>Variants</CriaTextTitle1>
-          <CriaTextBody2 style={{ color: colors.text.secondary }} >
-            Different visual styles for various contexts
-          </CriaTextBody2>
+          <div style={{ color: colors.text.secondary }}>
+            <CriaTextBody2>
+              Different visual styles for various contexts
+            </CriaTextBody2>
+          </div>
         </div>
         <div style={{ padding: spacing[4], display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           <Button onClick={() => openDrawer('variant-default')}>Default</Button>
@@ -336,9 +350,11 @@ const DrawerDemo: React.FC = () => {
           size="md"
           variant="primary"
         >
-          <CriaTextBody1 style={{ color: colors.white }}>
-            This is the primary variant with primary color styling.
-          </CriaTextBody1>
+          <div style={{ color: colors.white }}>
+            <CriaTextBody1>
+              This is the primary variant with primary color styling.
+            </CriaTextBody1>
+          </div>
         </Drawer>
 
         <Drawer
@@ -349,9 +365,11 @@ const DrawerDemo: React.FC = () => {
           size="md"
           variant="secondary"
         >
-          <CriaTextBody1 style={{ color: colors.white }}>
-            This is the secondary variant with secondary color styling.
-          </CriaTextBody1>
+          <div style={{ color: colors.white }}>
+            <CriaTextBody1>
+              This is the secondary variant with secondary color styling.
+            </CriaTextBody1>
+          </div>
         </Drawer>
       </Card>
 
@@ -359,9 +377,11 @@ const DrawerDemo: React.FC = () => {
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
           <CriaTextTitle1>Form Example</CriaTextTitle1>
-          <CriaTextBody2 style={{ color: colors.text.secondary }} >
-            Drawer with form content and custom footer
-          </CriaTextBody2>
+          <div style={{ color: colors.text.secondary }}>
+            <CriaTextBody2>
+              Drawer with form content and custom footer
+            </CriaTextBody2>
+          </div>
         </div>
         <div style={{ padding: spacing[4] }}>
           <Button onClick={() => openDrawer('form')}>
@@ -389,9 +409,11 @@ const DrawerDemo: React.FC = () => {
           >
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               <div>
-                <CriaTextBody1 style={{ marginBottom: spacing[2], display: 'block' }}>
-                  Name
-                </CriaTextBody1>
+                <div style={{ marginBottom: spacing[2], display: 'block' }}>
+                  <CriaTextBody1>
+                    Name
+                  </CriaTextBody1>
+                </div>
                 <Input
                   value={formData.name}
                   onChange={(e) => handleFormChange('name', e.target.value)}
@@ -400,9 +422,11 @@ const DrawerDemo: React.FC = () => {
               </div>
               
               <div>
-                <CriaTextBody1 style={{ marginBottom: spacing[2], display: 'block' }}>
-                  Email
-                </CriaTextBody1>
+                <div style={{ marginBottom: spacing[2], display: 'block' }}>
+                  <CriaTextBody1>
+                    Email
+                  </CriaTextBody1>
+                </div>
                 <Input
                   type="email"
                   value={formData.email}
@@ -412,9 +436,11 @@ const DrawerDemo: React.FC = () => {
               </div>
               
               <div>
-                <CriaTextBody1 style={{ marginBottom: spacing[2], display: 'block' }}>
-                  Message
-                </CriaTextBody1>
+                <div style={{ marginBottom: spacing[2], display: 'block' }}>
+                  <CriaTextBody1>
+                    Message
+                  </CriaTextBody1>
+                </div>
                 <Textarea
                   value={formData.message}
                   onChange={(e) => handleFormChange('message', e.target.value)}
@@ -439,9 +465,11 @@ const DrawerDemo: React.FC = () => {
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
           <CriaTextTitle1>Shopping Cart Example</CriaTextTitle1>
-          <CriaTextBody2 style={{ color: colors.text.secondary }} >
-            Real-world example with cart items and checkout
-          </CriaTextBody2>
+          <div style={{ color: colors.text.secondary }}>
+            <CriaTextBody2>
+              Real-world example with cart items and checkout
+            </CriaTextBody2>
+          </div>
         </div>
         <div style={{ padding: spacing[4] }}>
           <Button onClick={() => openDrawer('cart')}>
@@ -477,7 +505,7 @@ const DrawerDemo: React.FC = () => {
                   <div style={{ width: '60px', height: '60px', backgroundColor: 'var(--color-background-subtle)', borderRadius: 'var(--radius-sm)' }} />
                   <div style={{ flex: 1 }}>
                     <CriaTextBody1>{item.name}</CriaTextBody1>
-                    <CriaTextBody2 style={{ color: colors.text.secondary }}>Qty: {item.quantity}</CriaTextBody2>
+                    <div style={{ color: colors.text.secondary }}><CriaTextBody2>Qty: {item.quantity}</CriaTextBody2></div>
                     <CriaTextBody1>${item.price}</CriaTextBody1>
                   </div>
                   <Button variant="ghost" >
@@ -494,9 +522,11 @@ const DrawerDemo: React.FC = () => {
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
           <CriaTextTitle1>Settings Panel Example</CriaTextTitle1>
-          <CriaTextBody2 style={{ color: colors.text.secondary }} >
-            Complex settings interface with multiple sections
-          </CriaTextBody2>
+          <div style={{ color: colors.text.secondary }}>
+            <CriaTextBody2>
+              Complex settings interface with multiple sections
+            </CriaTextBody2>
+          </div>
         </div>
         <div style={{ padding: spacing[4] }}>
           <Button onClick={() => openDrawer('settings')}>
@@ -513,9 +543,11 @@ const DrawerDemo: React.FC = () => {
           >
             <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
               <div>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Account Settings
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Account Settings
+                  </CriaTextTitle1>
+                </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <CriaTextBody1>Email Notifications</CriaTextBody1>
@@ -533,9 +565,11 @@ const DrawerDemo: React.FC = () => {
               </div>
               
               <div>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Privacy Settings
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Privacy Settings
+                  </CriaTextTitle1>
+                </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <CriaTextBody1>Profile Visibility</CriaTextBody1>
@@ -549,9 +583,11 @@ const DrawerDemo: React.FC = () => {
               </div>
               
               <div>
-                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-                  Appearance
-                </CriaTextTitle1>
+                <div style={{ marginBottom: spacing[3] }}>
+                  <CriaTextTitle1>
+                    Appearance
+                  </CriaTextTitle1>
+                </div>
                 <div style={{ display: 'flex', gap: '8px' }}>
                   <Button  variant="primary">Light</Button>
                   <Button  variant="ghost">Dark</Button>
@@ -567,9 +603,11 @@ const DrawerDemo: React.FC = () => {
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
           <CriaTextTitle1>Loading State</CriaTextTitle1>
-          <CriaTextBody2 style={{ color: colors.text.secondary }} >
-            Drawer with loading spinner
-          </CriaTextBody2>
+          <div style={{ color: colors.text.secondary }}>
+            <CriaTextBody2>
+              Drawer with loading spinner
+            </CriaTextBody2>
+          </div>
         </div>
         <div style={{ padding: spacing[4] }}>
           <Button onClick={() => openDrawer('loading')}>
@@ -593,9 +631,11 @@ const DrawerDemo: React.FC = () => {
       <Card style={{ padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
           <CriaTextTitle1>Custom Header and Footer</CriaTextTitle1>
-          <CriaTextBody2 style={{ color: colors.text.secondary }} >
-            Drawer with custom header and footer content
-          </CriaTextBody2>
+          <div style={{ color: colors.text.secondary }}>
+            <CriaTextBody2>
+              Drawer with custom header and footer content
+            </CriaTextBody2>
+          </div>
         </div>
         <div style={{ padding: spacing[4] }}>
           <Button onClick={() => openDrawer('custom')}>
@@ -614,7 +654,7 @@ const DrawerDemo: React.FC = () => {
                 </div>
                 <div style={{ flex: 1 }}>
                   <CriaTextTitle1>John Doe</CriaTextTitle1>
-                  <CriaTextBody2 style={{ color: colors.text.secondary }}>Online</CriaTextBody2>
+                  <div style={{ color: colors.text.secondary }}><CriaTextBody2>Online</CriaTextBody2></div>
                 </div>
                 <Button variant="ghost"  onClick={() => closeDrawer('custom')}>
                   <X size={16} />

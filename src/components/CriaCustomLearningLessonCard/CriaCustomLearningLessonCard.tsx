@@ -2,7 +2,7 @@ import React from 'react';
 import { colors, spacing, typography, radii, shadows } from '../../tokens';
 import { Avatar } from '../Avatar';
 import { Button } from '../Button';
-import Typography from '../Typography/Typography';
+import { CriaTextHeadline1, CriaTextBody1, CriaTextBody2, CriaTextCaption } from '../TextTokens';
 
 export interface Instructor {
   id: string;
@@ -230,7 +230,7 @@ export const CriaCustomLearningLessonCard: React.FC<CriaCustomLearningLessonCard
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(to top, rgba(0, 0, 0, 0.2), transparent)',
+            background: `linear-gradient(to top, ${colors.black}20, transparent)`,
           }}
         />
         
@@ -242,7 +242,7 @@ export const CriaCustomLearningLessonCard: React.FC<CriaCustomLearningLessonCard
             left: spacing[4],
           }}
         >
-          <span
+          <div
             style={{
               fontSize: '2.25rem', // text-4xl
               fontFamily: typography.fontFamily.sans,
@@ -251,8 +251,10 @@ export const CriaCustomLearningLessonCard: React.FC<CriaCustomLearningLessonCard
               textShadow: '0 1px 2px rgba(0, 0, 0, 0.5)',
             }}
           >
-            {String(classroomItem.position || 1).padStart(2, '0')}
-          </span>
+            <CriaTextHeadline1>
+              {String(classroomItem.position || 1).padStart(2, '0')}
+            </CriaTextHeadline1>
+          </div>
         </div>
       </div>
 
@@ -291,30 +293,27 @@ export const CriaCustomLearningLessonCard: React.FC<CriaCustomLearningLessonCard
                 {displayTitle}
               </Button>
             ) : (
-              <Typography
-                variant="h3"
-                weight="semiBold"
+              <div
                 style={{
                   color: colors.gray[900],
                   marginBottom: 0,
                 }}
               >
-                {displayTitle}
-              </Typography>
+                <CriaTextHeadline1>{displayTitle}</CriaTextHeadline1>
+              </div>
             )}
           </div>
 
           {/* Description */}
-          <Typography
-            variant="body"
+          <div
             style={{
               color: colors.gray[600],
               marginBottom: spacing[4],
               lineHeight: 1.5,
             }}
           >
-            {displayDescription}
-          </Typography>
+            <CriaTextBody1>{displayDescription}</CriaTextBody1>
+          </div>
 
           {/* Instructors Row */}
           <div
@@ -341,19 +340,18 @@ export const CriaCustomLearningLessonCard: React.FC<CriaCustomLearningLessonCard
                   size="sm"
                   style={{ marginRight: spacing[1] }}
                 />
-                <Typography
-                  variant="caption"
+                <div
                   style={{
                     color: colors.gray[600],
                     fontSize: typography.fontSize.xs,
                   }}
                 >
-                  {instructor.name}
-                </Typography>
+                  <CriaTextCaption>{instructor.name}</CriaTextCaption>
+                </div>
               </div>
             ))}
             {overflowCount > 0 && (
-              <span
+              <div
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
@@ -365,8 +363,8 @@ export const CriaCustomLearningLessonCard: React.FC<CriaCustomLearningLessonCard
                   fontWeight: typography.fontWeight.medium,
                 }}
               >
-                +{overflowCount}
-              </span>
+                <CriaTextCaption>+{overflowCount}</CriaTextCaption>
+              </div>
             )}
           </div>
 
@@ -381,8 +379,10 @@ export const CriaCustomLearningLessonCard: React.FC<CriaCustomLearningLessonCard
               }}
             >
               {uniqueTools.slice(0, 4).map((tool) => (
-                <button
+                <Button
                   key={tool.id}
+                  variant="secondary"
+                  size="sm"
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -408,12 +408,12 @@ export const CriaCustomLearningLessonCard: React.FC<CriaCustomLearningLessonCard
                     e.currentTarget.style.borderColor = colors.gray[200];
                   }}
                 >
-                  {tool.icon && <span style={{ marginRight: spacing[1] }}>{tool.icon}</span>}
+                  {tool.icon && <div style={{ marginRight: spacing[1] }}><CriaTextCaption>{tool.icon}</CriaTextCaption></div>}
                   {tool.name}
-                </button>
+                </Button>
               ))}
               {uniqueTools.length > 4 && (
-                <span
+                <div
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -425,8 +425,8 @@ export const CriaCustomLearningLessonCard: React.FC<CriaCustomLearningLessonCard
                     fontWeight: typography.fontWeight.medium,
                   }}
                 >
-                  +{uniqueTools.length - 4}
-                </span>
+                  <CriaTextCaption>+{uniqueTools.length - 4}</CriaTextCaption>
+                </div>
               )}
             </div>
           )}
@@ -442,18 +442,17 @@ export const CriaCustomLearningLessonCard: React.FC<CriaCustomLearningLessonCard
           }}
         >
           {/* Duration */}
-          <Typography
-            variant="caption"
+          <div
             style={{
               color: colors.gray[500],
               fontSize: typography.fontSize.xs,
             }}
           >
-            {customLearning.duration}
-          </Typography>
+            <CriaTextCaption>{customLearning.duration}</CriaTextCaption>
+          </div>
 
           {/* Category */}
-          <span
+          <div
             style={{
               display: 'inline-flex',
               alignItems: 'center',
@@ -465,8 +464,8 @@ export const CriaCustomLearningLessonCard: React.FC<CriaCustomLearningLessonCard
               fontWeight: typography.fontWeight.semiBold,
             }}
           >
-            TRILHA
-          </span>
+            <CriaTextCaption>TRILHA</CriaTextCaption>
+          </div>
 
           <div></div>
         </div>

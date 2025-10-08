@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Check, Clock, User } from 'phosphor-react';
 import { colors, spacing, radii, shadows, typography } from '../../tokens';
 import { Avatar } from '../Avatar';
-import { Typography } from '../Typography';
+import { Button } from '../Button';
+import { CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 
 export interface Lesson {
   id?: string;
@@ -221,7 +222,9 @@ export const CriaLessonCardSmall: React.FC<CriaLessonCardSmallProps> = ({
           right: spacing[2],
           zIndex: 10,
         }}>
-          <button
+          <Button
+            variant={completed ? "primary" : "secondary"}
+            size="sm"
             onClick={handleToggleCompletion}
             style={{
               width: '24px',
@@ -247,7 +250,7 @@ export const CriaLessonCardSmall: React.FC<CriaLessonCardSmallProps> = ({
               color={completed ? colors.white : colors.gray[400]}
               weight="bold"
             />
-          </button>
+          </Button>
         </div>
 
         {/* Tool Icon Overlay */}
@@ -284,9 +287,7 @@ export const CriaLessonCardSmall: React.FC<CriaLessonCardSmallProps> = ({
       }}>
         {/* Title */}
         <div style={{ marginBottom: spacing[2] }}>
-          <Typography
-            variant="body"
-            weight="semiBold"
+          <div
             style={{
               color: colors.text.primary,
               lineHeight: typography.lineHeight.tight,
@@ -295,19 +296,18 @@ export const CriaLessonCardSmall: React.FC<CriaLessonCardSmallProps> = ({
               WebkitBoxOrient: 'vertical',
               overflow: 'hidden',
               textOverflow: 'ellipsis',
-              minHeight: '2.4em', // Ensure consistent height
+              minHeight: '2.4em',
             }}
           >
-            {lesson.title}
-          </Typography>
+            <CriaTextBody1>{lesson.title}</CriaTextBody1>
+          </div>
         </div>
 
         {/* Category, Duration & Instructor */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[2] }}>
           {/* Category */}
           <div>
-            <Typography
-              variant="caption"
+            <div
               style={{
                 color: colors.primary,
                 fontWeight: typography.fontWeight.medium,
@@ -315,8 +315,8 @@ export const CriaLessonCardSmall: React.FC<CriaLessonCardSmallProps> = ({
                 letterSpacing: '0.5px',
               }}
             >
-              {category}
-            </Typography>
+              <CriaTextBody2>{category}</CriaTextBody2>
+            </div>
           </div>
 
           {/* Duration & Instructor */}
@@ -328,15 +328,14 @@ export const CriaLessonCardSmall: React.FC<CriaLessonCardSmallProps> = ({
             {/* Duration */}
             <div style={{ display: 'flex', alignItems: 'center', gap: spacing[1] }}>
               <Clock size={12} color={colors.gray[500]} />
-              <Typography
-                variant="caption"
+              <div
                 style={{
                   color: colors.gray[600],
                   fontSize: '12px',
                 }}
               >
-                {duration}
-              </Typography>
+                <CriaTextBody2>{duration}</CriaTextBody2>
+              </div>
             </div>
 
             {/* Instructor Avatar(s) */}

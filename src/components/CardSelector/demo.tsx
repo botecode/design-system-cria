@@ -168,7 +168,7 @@ export const CardSelectorDemo: React.FC = () => {
         <Card style={{ padding: spacing[6] }}>
           <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
             Single Selection Mode
-          </CriaTextBody2>
+          </CriaTextTitle1>
           <CriaTextBody2 style={{ marginBottom: spacing[6], color: colors.text.secondary }}>
             Choose one option from the available cards. Only one selection is allowed.
           </CriaTextBody2>
@@ -191,7 +191,7 @@ export const CardSelectorDemo: React.FC = () => {
         <Card style={{ padding: spacing[6] }}>
           <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
             Multi Selection Mode
-          </CriaTextBody2>
+          </CriaTextTitle1>
           <CriaTextBody2 style={{ marginBottom: spacing[6], color: colors.text.secondary }}>
             Choose multiple options from the available cards. You can select and deselect multiple items.
           </CriaTextBody2>
@@ -215,7 +215,7 @@ export const CardSelectorDemo: React.FC = () => {
         <Card style={{ padding: spacing[6] }}>
           <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
             Pricing Plans Selection
-          </CriaTextBody2>
+          </CriaTextTitle1>
           <CriaTextBody2 style={{ marginBottom: spacing[6], color: colors.text.secondary }}>
             Select a pricing plan that best fits your needs. This example shows cards with pricing information.
           </CriaTextBody2>
@@ -238,7 +238,7 @@ export const CardSelectorDemo: React.FC = () => {
         <Card style={{ padding: spacing[6] }}>
           <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
             List Layout
-          </CriaTextBody2>
+          </CriaTextTitle1>
           <CriaTextBody2 style={{ marginBottom: spacing[6], color: colors.text.secondary }}>
             Cards arranged in a vertical list layout with horizontal orientation.
           </CriaTextBody2>
@@ -262,7 +262,7 @@ export const CardSelectorDemo: React.FC = () => {
         <Card style={{ padding: spacing[6] }}>
           <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
             Different Sizes
-          </CriaTextBody2>
+          </CriaTextTitle1>
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             <div>
               <CriaTextBody2  style={{ marginBottom: spacing[3] }}>
@@ -310,7 +310,7 @@ export const CardSelectorDemo: React.FC = () => {
         <Card style={{ padding: spacing[6] }}>
           <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
             Error and Help States
-          </CriaTextBody2>
+          </CriaTextTitle1>
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             <div>
               <CriaTextBody2  style={{ marginBottom: spacing[3] }}>
@@ -367,7 +367,7 @@ export const CardSelectorDemo: React.FC = () => {
         <Card style={{ padding: spacing[6] }}>
           <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
             Usage Examples
-          </CriaTextBody2>
+          </CriaTextTitle1>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             <div>
               <CriaTextBody2  style={{ marginBottom: spacing[2] }}>

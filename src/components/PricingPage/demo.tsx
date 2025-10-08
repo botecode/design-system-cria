@@ -3,7 +3,7 @@ import { PricingPage } from './PricingPage';
 import { CriaTextHeadline1, CriaTextTitle1, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { Card } from '../Card';
 import { Button } from '../Button';
-import { colors, spacing } from '../../tokens';
+import { colors, spacing, radii } from '../../tokens';
 
 export const PricingPageDemo: React.FC = () => {
   const [selectedTier, setSelectedTier] = useState<string | null>(null);
@@ -86,15 +86,19 @@ export const PricingPageDemo: React.FC = () => {
 
   return (
     <div style={{ padding: spacing[6], maxWidth: '1200px', margin: '0 auto' }}>
-      <CriaTextHeadline1 style={{ marginBottom: spacing[4] }}>
-        Pricing Page Demo
-      </CriaTextHeadline1>
+      <div style={{ marginBottom: spacing[4] }}>
+        <CriaTextHeadline1>
+          Pricing Page Demo
+        </CriaTextHeadline1>
+      </div>
       
-      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
-        The Pricing Page component provides a comprehensive pricing display with multiple tiers, 
-        billing period toggle, and interactive selection. Perfect for SaaS applications and 
-        subscription-based services.
-      </CriaTextBody1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextBody1>
+          The Pricing Page component provides a comprehensive pricing display with multiple tiers, 
+          billing period toggle, and interactive selection. Perfect for SaaS applications and 
+          subscription-based services.
+        </CriaTextBody1>
+      </div>
 
       {/* Interactive Demo Controls */}
       <Card style={{ marginBottom: spacing[8], padding: spacing[4] }}>
@@ -104,13 +108,17 @@ export const PricingPageDemo: React.FC = () => {
           </Button>
           {selectedTier && (
             <div style={{ display: 'flex', alignItems: 'center', gap: spacing[2] }}>
-              <CriaTextBody2 style={{ color: colors.text.secondary }}>
-                Selected:
-              </CriaTextBody2>
-              <CriaTextBody2 style={{ fontWeight: '600' }}>
-                {pricingTiers.find(t => t.id === selectedTier)?.name} - 
-                ${selectedPrice}/{selectedBilling === 'monthly' ? 'month' : 'year'}
-              </CriaTextBody2>
+              <div style={{ color: colors.text.secondary }}>
+                <CriaTextBody2>
+                  Selected:
+                </CriaTextBody2>
+              </div>
+              <div style={{ fontWeight: '600' }}>
+                <CriaTextBody2>
+                  {pricingTiers.find(t => t.id === selectedTier)?.name} - 
+                  ${selectedPrice}/{selectedBilling === 'monthly' ? 'month' : 'year'}
+                </CriaTextBody2>
+              </div>
             </div>
           )}
         </div>
@@ -119,9 +127,11 @@ export const PricingPageDemo: React.FC = () => {
       <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[8] }}>
         {/* Standard Pricing Page */}
         <Card style={{ padding: spacing[6] }}>
-          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
-            Standard Pricing Page
-          </CriaTextBody2>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1>
+              Standard Pricing Page
+            </CriaTextTitle1>
+          </div>
           <PricingPage
             tiers={pricingTiers}
             onTierSelect={handleTierSelect}
@@ -131,9 +141,11 @@ export const PricingPageDemo: React.FC = () => {
 
         {/* Custom Title and Subtitle */}
         <Card style={{ padding: spacing[6] }}>
-          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
-            Custom Title and Subtitle
-          </CriaTextBody2>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1>
+              Custom Title and Subtitle
+            </CriaTextTitle1>
+          </div>
           <PricingPage
             tiers={pricingTiers}
             title="Flexible Pricing Plans"
@@ -145,9 +157,11 @@ export const PricingPageDemo: React.FC = () => {
 
         {/* Euro Currency */}
         <Card style={{ padding: spacing[6] }}>
-          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
-            Euro Currency Pricing
-          </CriaTextBody2>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1>
+              Euro Currency Pricing
+            </CriaTextTitle1>
+          </div>
           <PricingPage
             tiers={pricingTiers.map(tier => ({
               ...tier,
@@ -164,9 +178,11 @@ export const PricingPageDemo: React.FC = () => {
 
         {/* Default to Yearly */}
         <Card style={{ padding: spacing[6] }}>
-          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
-            Default to Yearly Billing
-          </CriaTextBody2>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1>
+              Default to Yearly Billing
+            </CriaTextTitle1>
+          </div>
           <PricingPage
             tiers={pricingTiers}
             defaultBillingPeriod="yearly"
@@ -179,9 +195,11 @@ export const PricingPageDemo: React.FC = () => {
 
         {/* Minimal Pricing (2 tiers) */}
         <Card style={{ padding: spacing[6] }}>
-          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
-            Minimal Pricing (2 Tiers)
-          </CriaTextBody2>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1>
+              Minimal Pricing (2 Tiers)
+            </CriaTextTitle1>
+          </div>
           <PricingPage
             tiers={pricingTiers.slice(0, 2)}
             title="Simple Pricing"
@@ -193,9 +211,11 @@ export const PricingPageDemo: React.FC = () => {
 
         {/* Single Tier */}
         <Card style={{ padding: spacing[6] }}>
-          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
-            Single Tier Pricing
-          </CriaTextBody2>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1>
+              Single Tier Pricing
+            </CriaTextTitle1>
+          </div>
           <PricingPage
             tiers={[pricingTiers[1]]} // Just the Professional tier
             title="One Plan, All Features"
@@ -207,9 +227,11 @@ export const PricingPageDemo: React.FC = () => {
 
         {/* Empty State */}
         <Card style={{ padding: spacing[6] }}>
-          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
-            Empty State
-          </CriaTextBody2>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1>
+              Empty State
+            </CriaTextTitle1>
+          </div>
           <PricingPage
             tiers={[]}
             title="Pricing Coming Soon"
@@ -219,16 +241,20 @@ export const PricingPageDemo: React.FC = () => {
 
         {/* Usage Examples */}
         <Card style={{ padding: spacing[6] }}>
-          <CriaTextTitle1  style={{ marginBottom: spacing[4] }}>
-            Usage Examples
-          </CriaTextBody2>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1>
+              Usage Examples
+            </CriaTextTitle1>
+          </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[4] }}>
             <div>
-              <CriaTextBody2  style={{ marginBottom: spacing[2] }}>
-                Basic Usage:
-              </CriaTextBody2>
+              <div style={{ marginBottom: spacing[2] }}>
+                <CriaTextBody2>
+                  Basic Usage:
+                </CriaTextBody2>
+              </div>
               <pre style={{
-                backgroundColor: colors.background.secondary,
+                backgroundColor: colors.backgroundLight,
                 padding: spacing[3],
                 borderRadius: radii.md,
                 fontSize: '14px',
@@ -245,11 +271,13 @@ export const PricingPageDemo: React.FC = () => {
             </div>
 
             <div>
-              <CriaTextBody2  style={{ marginBottom: spacing[2] }}>
-                With Custom Configuration:
-              </CriaTextBody2>
+              <div style={{ marginBottom: spacing[2] }}>
+                <CriaTextBody2>
+                  With Custom Configuration:
+                </CriaTextBody2>
+              </div>
               <pre style={{
-                backgroundColor: colors.background.secondary,
+                backgroundColor: colors.backgroundLight,
                 padding: spacing[3],
                 borderRadius: radii.md,
                 fontSize: '14px',

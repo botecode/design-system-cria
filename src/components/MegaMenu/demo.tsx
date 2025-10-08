@@ -107,21 +107,27 @@ const MegaMenuDemo: React.FC = () => {
 
   return (
     <div style={{ padding: spacing[8], minHeight: '100vh' }}>
-      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
-        MegaMenu Component
-      </CriaTextHeadline1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline1>
+          MegaMenu Component
+        </CriaTextHeadline1>
+      </div>
 
-      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
-        Expanded top navigation component for marketing sites and dashboards with nested dropdowns, search, and CTA buttons.
-            </CriaTextBody1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextBody1>
+          Expanded top navigation component for marketing sites and dashboards with nested dropdowns, search, and CTA buttons.
+        </CriaTextBody1>
+      </div>
 
       {/* Click feedback */}
       {clickedItem && (
         <Card style={{ marginBottom: spacing[8], backgroundColor: colors.primary[50], border: `1px solid ${colors.primary[500]}` }}>
           <CardContent>
-            <CriaTextBody2 style={{ color: colors.primary[700] }}>
-              {clickedItem}
-            </CriaTextBody2>
+            <div style={{ color: colors.primary[700] }}>
+              <CriaTextBody2>
+                {clickedItem}
+              </CriaTextBody2>
+            </div>
           </CardContent>
         </Card>
       )}
@@ -130,9 +136,11 @@ const MegaMenuDemo: React.FC = () => {
       {searchQuery && (
         <Card style={{ marginBottom: spacing[8], backgroundColor: colors.warning[50], border: `1px solid ${colors.warning[500]}` }}>
           <CardContent>
-            <CriaTextBody2  style={{ color: colors.warning[700] }}>
-              Search: "{searchQuery}"
-            </CriaTextBody2>
+            <div style={{ color: colors.warning[700] }}>
+              <CriaTextBody2>
+                Search: "{searchQuery}"
+              </CriaTextBody2>
+            </div>
           </CardContent>
         </Card>
       )}
@@ -146,12 +154,16 @@ const MegaMenuDemo: React.FC = () => {
             </CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-              Different mega menu variants:
-            </CriaTextBody1>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                Different mega menu variants:
+              </CriaTextBody1>
+            </div>
             
             <div style={{ marginBottom: spacing[8] }}>
-              <CriaTextBody2 style={{ fontWeight: '600' }}>Default Variant:</CriaTextBody2>
+              <div style={{ fontWeight: '600' }}>
+                <CriaTextBody2>Default Variant:</CriaTextBody2>
+              </div>
               <MegaMenu
                 variant="default"
                 items={sampleMenuItems.slice(0, 3)}
@@ -169,11 +181,13 @@ const MegaMenuDemo: React.FC = () => {
             </div>
 
             <div style={{ marginBottom: spacing[8] }}>
-              <CriaTextBody2 style={{ fontWeight: '600' }}>Dark Variant:</CriaTextBody2>
+              <div style={{ fontWeight: '600' }}>
+                <CriaTextBody2>Dark Variant:</CriaTextBody2>
+              </div>
               <MegaMenu
                 variant="dark"
                 items={sampleMenuItems.slice(0, 3)}
-                logo={<CriaTextTitle2  style={{ color: 'colors.white' }}>CR_IA.UI</CriaTextTitle2>}
+                logo={<div style={{ color: 'white' }}><CriaTextTitle2>CR_IA.UI</CriaTextTitle2></div>}
                 showSearch
                 onSearch={handleSearch}
                 onItemClick={handleItemClick}
@@ -187,7 +201,9 @@ const MegaMenuDemo: React.FC = () => {
             </div>
 
             <div style={{ marginBottom: spacing[8] }}>
-              <CriaTextBody2 style={{ fontWeight: '600' }}>Light Variant:</CriaTextBody2>
+              <div style={{ fontWeight: '600' }}>
+                <CriaTextBody2>Light Variant:</CriaTextBody2>
+              </div>
               <MegaMenu
                 variant="light"
                 items={sampleMenuItems.slice(0, 3)}
@@ -205,7 +221,9 @@ const MegaMenuDemo: React.FC = () => {
             </div>
 
             <div>
-              <CriaTextBody2 style={{ fontWeight: '600' }}>Transparent Variant:</CriaTextBody2>
+              <div style={{ fontWeight: '600' }}>
+                <CriaTextBody2>Transparent Variant:</CriaTextBody2>
+              </div>
               <div style={{ backgroundColor: colors.gray[100], padding: spacing[4], borderRadius: radii.md }}>
                 <MegaMenu
                   variant="transparent"
@@ -227,12 +245,16 @@ const MegaMenuDemo: React.FC = () => {
             </CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-              Different positioning options:
-            </CriaTextBody1>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                Different positioning options:
+              </CriaTextBody1>
+            </div>
             
             <div style={{ marginBottom: spacing[8] }}>
-              <CriaTextBody2 style={{ fontWeight: '600' }}>Sticky Position:</CriaTextBody2>
+              <div style={{ fontWeight: '600' }}>
+                <CriaTextBody2>Sticky Position:</CriaTextBody2>
+              </div>
               <div style={{ height: '200px', backgroundColor: colors.gray[100], borderRadius: radii.md, padding: spacing[4], marginBottom: spacing[4] }}>
                 <CriaTextBody1>Content area - scroll to see sticky behavior</CriaTextBody1>
               </div>
@@ -240,14 +262,16 @@ const MegaMenuDemo: React.FC = () => {
                 position="sticky"
                 variant="dark"
                 items={sampleMenuItems.slice(0, 3)}
-                logo={<CriaTextTitle2  style={{ color: 'colors.white' }}>CR_IA.UI</CriaTextTitle2>}
+                logo={<div style={{ color: 'white' }}><CriaTextTitle2>CR_IA.UI</CriaTextTitle2></div>}
                 onItemClick={handleItemClick}
                 style={{ borderRadius: radii.md }}
               />
             </div>
 
             <div>
-              <CriaTextBody2 style={{ fontWeight: '600' }}>Fixed Position (simulated):</CriaTextBody2>
+              <div style={{ fontWeight: '600' }}>
+                <CriaTextBody2>Fixed Position (simulated):</CriaTextBody2>
+              </div>
               <div style={{ height: '200px', backgroundColor: colors.gray[100], borderRadius: radii.md, padding: spacing[4], marginBottom: spacing[4] }}>
                 <CriaTextBody1>Content area - menu would be fixed to top</CriaTextBody1>
               </div>
@@ -271,12 +295,16 @@ const MegaMenuDemo: React.FC = () => {
             </CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-              Different sizes and alignments:
-            </CriaTextBody1>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                Different sizes and alignments:
+              </CriaTextBody1>
+            </div>
             
             <div style={{ marginBottom: spacing[8] }}>
-              <CriaTextBody2 style={{ fontWeight: '600' }}>Small Size, Left Alignment:</CriaTextBody2>
+              <div style={{ fontWeight: '600' }}>
+                <CriaTextBody2>Small Size, Left Alignment:</CriaTextBody2>
+              </div>
               <MegaMenu
                 size="sm"
                 alignment="left"
@@ -289,20 +317,24 @@ const MegaMenuDemo: React.FC = () => {
             </div>
 
             <div style={{ marginBottom: spacing[8] }}>
-              <CriaTextBody2 style={{ fontWeight: '600' }}>Medium Size, Center Alignment:</CriaTextBody2>
+              <div style={{ fontWeight: '600' }}>
+                <CriaTextBody2>Medium Size, Center Alignment:</CriaTextBody2>
+              </div>
               <MegaMenu
                 size="md"
                 alignment="center"
                 variant="dark"
                 items={sampleMenuItems.slice(0, 3)}
-                logo={<CriaTextTitle2  style={{ color: 'colors.white' }}>CR_IA.UI</CriaTextTitle2>}
+                logo={<div style={{ color: 'white' }}><CriaTextTitle2>CR_IA.UI</CriaTextTitle2></div>}
                 onItemClick={handleItemClick}
                 style={{ borderRadius: radii.md }}
               />
             </div>
 
             <div>
-              <CriaTextBody2 style={{ fontWeight: '600' }}>Large Size, Right Alignment:</CriaTextBody2>
+              <div style={{ fontWeight: '600' }}>
+                <CriaTextBody2>Large Size, Right Alignment:</CriaTextBody2>
+              </div>
               <MegaMenu
                 size="lg"
                 alignment="right"
@@ -324,12 +356,16 @@ const MegaMenuDemo: React.FC = () => {
             </CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-              Different visual effects:
-            </CriaTextBody1>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                Different visual effects:
+              </CriaTextBody1>
+            </div>
             
             <div style={{ marginBottom: spacing[8] }}>
-              <CriaTextBody2 style={{ fontWeight: '600' }}>With Border and Shadow:</CriaTextBody2>
+              <div style={{ fontWeight: '600' }}>
+                <CriaTextBody2>With Border and Shadow:</CriaTextBody2>
+              </div>
               <MegaMenu
                 variant="default"
                 border
@@ -349,12 +385,14 @@ const MegaMenuDemo: React.FC = () => {
             </div>
 
             <div>
-              <CriaTextBody2 style={{ fontWeight: '600' }}>Full Width:</CriaTextBody2>
+              <div style={{ fontWeight: '600' }}>
+                <CriaTextBody2>Full Width:</CriaTextBody2>
+              </div>
               <MegaMenu
                 variant="dark"
                 fullWidth
                 items={sampleMenuItems.slice(0, 3)}
-                logo={<CriaTextTitle2  style={{ color: 'colors.white' }}>CR_IA.UI</CriaTextTitle2>}
+                logo={<div style={{ color: 'white' }}><CriaTextTitle2>CR_IA.UI</CriaTextTitle2></div>}
                 showSearch
                 onSearch={handleSearch}
                 onItemClick={handleItemClick}
@@ -372,9 +410,11 @@ const MegaMenuDemo: React.FC = () => {
             </CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-              Mobile-responsive mega menu with toggle:
-            </CriaTextBody1>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                Mobile-responsive mega menu with toggle:
+              </CriaTextBody1>
+            </div>
             
             <MegaMenu
               variant="default"
@@ -392,9 +432,11 @@ const MegaMenuDemo: React.FC = () => {
               style={{ border: `1px solid ${colors.gray[200]}`, borderRadius: radii.md }}
             >
               <div style={{ textAlign: 'center', padding: spacing[4] }}>
-                <CriaTextBody1 style={{ color: 'colors.gray[600]' }}>
-                  Resize your browser window to see the mobile menu in action
-                </CriaTextBody1>
+                <div style={{ color: 'colors.gray[600]' }}>
+                  <CriaTextBody1>
+                    Resize your browser window to see the mobile menu in action
+                  </CriaTextBody1>
+                </div>
               </div>
             </MegaMenu>
           </CardContent>
@@ -408,9 +450,11 @@ const MegaMenuDemo: React.FC = () => {
             </CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-              Mega menu with custom content sections:
-            </CriaTextBody1>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                Mega menu with custom content sections:
+              </CriaTextBody1>
+            </div>
             
             <MegaMenu
               variant="dark"
@@ -419,7 +463,7 @@ const MegaMenuDemo: React.FC = () => {
               shadow
               fullWidth
               items={sampleMenuItems}
-              logo={<CriaTextTitle1  style={{ color: 'colors.white' }}>CR_IA.UI</CriaTextTitle1>}
+              logo={<div style={{ color: 'white' }}><CriaTextTitle1>CR_IA.UI</CriaTextTitle1></div>}
               showSearch
               onSearch={handleSearch}
               onItemClick={handleItemClick}
@@ -439,58 +483,78 @@ const MegaMenuDemo: React.FC = () => {
                 marginTop: '1rem'
               }}>
                 <div>
-                  <CriaTextTitle2  style={{ color: 'colors.white', marginBottom: spacing[4] }}>
-                    Product Updates
-                  </CriaTextTitle2>
+                  <div style={{ color: 'colors.white', marginBottom: spacing[4] }}>
+                    <CriaTextTitle2>
+                      Product Updates
+                    </CriaTextTitle2>
+                  </div>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                     <li style={{ marginBottom: spacing[2] }}>
-                      <CriaTextBody2 style={{ color: 'colors.gray[300]' }}>
-                        New features in v2.1
-                      </CriaTextBody2>
+                      <div style={{ color: 'colors.gray[300]' }}>
+                        <CriaTextBody2>
+                          New features in v2.1
+                        </CriaTextBody2>
+                      </div>
                     </li>
                     <li style={{ marginBottom: spacing[2] }}>
-                      <CriaTextBody2 style={{ color: 'colors.gray[300]' }}>
-                        Performance improvements
-                      </CriaTextBody2>
+                      <div style={{ color: 'colors.gray[300]' }}>
+                        <CriaTextBody2>
+                          Performance improvements
+                        </CriaTextBody2>
+                      </div>
                     </li>
                     <li style={{ marginBottom: spacing[2] }}>
-                      <CriaTextBody2 style={{ color: 'colors.gray[300]' }}>
-                        Security enhancements
-                      </CriaTextBody2>
+                      <div style={{ color: 'colors.gray[300]' }}>
+                        <CriaTextBody2>
+                          Security enhancements
+                        </CriaTextBody2>
+                      </div>
                     </li>
                   </ul>
                 </div>
                 
                 <div>
-                  <CriaTextTitle2  style={{ color: 'colors.white', marginBottom: spacing[4] }}>
-                    Community
-                  </CriaTextTitle2>
+                  <div style={{ color: 'colors.white', marginBottom: spacing[4] }}>
+                    <CriaTextTitle2>
+                      Community
+                    </CriaTextTitle2>
+                  </div>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                     <li style={{ marginBottom: spacing[2] }}>
-                      <CriaTextBody2 style={{ color: 'colors.gray[300]' }}>
-                        Developer Forum
-                      </CriaTextBody2>
+                      <div style={{ color: 'colors.gray[300]' }}>
+                        <CriaTextBody2>
+                          Developer Forum
+                        </CriaTextBody2>
+                      </div>
                     </li>
                     <li style={{ marginBottom: spacing[2] }}>
-                      <CriaTextBody2 style={{ color: 'colors.gray[300]' }}>
-                        GitHub Discussions
-                      </CriaTextBody2>
+                      <div style={{ color: 'colors.gray[300]' }}>
+                        <CriaTextBody2>
+                          GitHub Discussions
+                        </CriaTextBody2>
+                      </div>
                     </li>
                     <li style={{ marginBottom: spacing[2] }}>
-                      <CriaTextBody2 style={{ color: 'colors.gray[300]' }}>
-                        Discord Server
-                      </CriaTextBody2>
+                      <div style={{ color: 'colors.gray[300]' }}>
+                        <CriaTextBody2>
+                          Discord Server
+                        </CriaTextBody2>
+                      </div>
                     </li>
                   </ul>
                 </div>
                 
                 <div>
-                  <CriaTextTitle2  style={{ color: 'colors.white', marginBottom: spacing[4] }}>
-                    Newsletter
-                  </CriaTextTitle2>
-                  <CriaTextBody2 style={{ color: 'colors.gray[300]', marginBottom: spacing[4] }}>
-                    Stay updated with the latest news and features.
-                  </CriaTextBody2>
+                  <div style={{ color: 'colors.white', marginBottom: spacing[4] }}>
+                    <CriaTextTitle2>
+                      Newsletter
+                    </CriaTextTitle2>
+                  </div>
+                  <div style={{ color: 'colors.gray[300]', marginBottom: spacing[4] }}>
+                    <CriaTextBody2>
+                      Stay updated with the latest news and features.
+                    </CriaTextBody2>
+                  </div>
                   <div style={{ display: 'flex', gap: spacing[2] }}>
                     <Input 
                       type="email" 
@@ -517,9 +581,11 @@ const MegaMenuDemo: React.FC = () => {
             </CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-              E-commerce mega menu:
-            </CriaTextBody1>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                E-commerce mega menu:
+              </CriaTextBody1>
+            </div>
             
             <MegaMenu
               variant="dark"
@@ -580,7 +646,7 @@ const MegaMenuDemo: React.FC = () => {
                   href: '/support'
                 }
               ]}
-              logo={<CriaTextTitle1  style={{ color: 'colors.white' }}>CR_IA Store</CriaTextTitle1>}
+              logo={<div style={{ color: 'white' }}><CriaTextTitle1>CR_IA Store</CriaTextTitle1></div>}
               showSearch
               onSearch={handleSearch}
               onItemClick={handleItemClick}
@@ -594,9 +660,11 @@ const MegaMenuDemo: React.FC = () => {
 
             <Divider style={{ margin: '2rem 0' }} />
 
-            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-              SaaS/App mega menu:
-            </CriaTextBody1>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                SaaS/App mega menu:
+              </CriaTextBody1>
+            </div>
             
             <MegaMenu
               variant="light"
@@ -616,12 +684,16 @@ const MegaMenuDemo: React.FC = () => {
               style={{ borderRadius: radii.md }}
             >
               <div style={{ textAlign: 'center', padding: spacing[4] }}>
-                <CriaTextTitle2  style={{ marginBottom: spacing[2] }}>
-                  Ready to get started?
-                </CriaTextTitle2>
-                <CriaTextBody1 style={{ color: 'colors.gray[600]', marginBottom: spacing[4] }}>
-                  Join thousands of teams already using CR_IA App
-                </CriaTextBody1>
+                <div style={{ marginBottom: spacing[2] }}>
+                  <CriaTextTitle2>
+                    Ready to get started?
+                  </CriaTextTitle2>
+                </div>
+                <div style={{ color: 'colors.gray[600]', marginBottom: spacing[4] }}>
+                  <CriaTextBody1>
+                    Join thousands of teams already using CR_IA App
+                  </CriaTextBody1>
+                </div>
                 <Button variant="primary" size="lg" style={{ marginRight: '1rem' }}>
                   Start Free Trial
                 </Button>
@@ -641,9 +713,11 @@ const MegaMenuDemo: React.FC = () => {
             </CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-              Mega menu with proper accessibility attributes:
-            </CriaTextBody1>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                Mega menu with proper accessibility attributes:
+              </CriaTextBody1>
+            </div>
             
             <MegaMenu
               variant="default"
@@ -657,15 +731,19 @@ const MegaMenuDemo: React.FC = () => {
               style={{ border: `1px solid ${colors.gray[200]}`, borderRadius: radii.md }}
             >
               <div>
-                <CriaTextBody1 style={{ textAlign: 'center' }}>
-                  This mega menu includes proper ARIA attributes, keyboard navigation, and semantic HTML structure.
-                </CriaTextBody1>
+                <div style={{ textAlign: 'center' }}>
+                  <CriaTextBody1>
+                    This mega menu includes proper ARIA attributes, keyboard navigation, and semantic HTML structure.
+                  </CriaTextBody1>
+                </div>
               </div>
             </MegaMenu>
             
-            <CriaTextBody2 style={{ marginTop: '1rem', color: 'colors.gray[600]' }}>
-              Features: role="navigation", aria-label, keyboard navigation, focus indicators, and semantic HTML structure.
-            </CriaTextBody2>
+            <div style={{ marginTop: '1rem', color: 'colors.gray[600]' }}>
+              <CriaTextBody2>
+                Features: role="navigation", aria-label, keyboard navigation, focus indicators, and semantic HTML structure.
+              </CriaTextBody2>
+            </div>
           </CardContent>
         </Card>
       </div>

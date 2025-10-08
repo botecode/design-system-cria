@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { Drawer } from '../../../components/Drawer';
 import { Typography } from '../../../components/Typography';
+import { CriaTextTitle1, CriaTextBody1 } from '../../../components/TextTokens';
 import { Button } from '../../../components/Button';
 import { Badge } from '../../../components/Badge';
 import { Switch } from '../../../components/Switch';
@@ -133,27 +134,33 @@ const AgentDev: React.FC<AgentDevProps> = ({
       case 'criar':
         return (
           <div className="agent-dev__tab-content">
-            <Typography variant="h3" weight="semiBold" style={{ marginBottom: spacing[4] }}>
-              Criar Componente
-            </Typography>
-            <Typography variant="body" color="disabled" style={{ marginBottom: spacing[6] }}>
-              Selecione o tipo de componente e descreva o que você gostaria de criar.
-            </Typography>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextTitle1>
+                Criar Componente
+              </CriaTextTitle1>
+            </div>
+            <div style={{ marginBottom: spacing[6], color: 'var(--cria-text-disabled)' }}>
+              <CriaTextBody1>
+                Selecione o tipo de componente e descreva o que você gostaria de criar.
+              </CriaTextBody1>
+            </div>
             
             {/* Current Component Context */}
             <div className="agent-dev__section" style={{ display: 'flex', alignItems: 'center', gap: spacing[3], marginBottom: spacing[6] }}>
               <Badge variant="secondary">{getCurrentComponentLabel()}</Badge>
               <div style={{ display: 'flex', alignItems: 'center', gap: spacing[2] }}>
-                <Typography variant="body">Criar variação</Typography>
+                <CriaTextBody1>Criar variação</CriaTextBody1>
                 <Switch checked={Boolean(tabState.criar.selectedComponent)} onChange={(checked) => updateTabState('criar', { selectedComponent: checked ? getCurrentComponentLabel() : null })} />
               </div>
             </div>
 
             {/* Prompt Input */}
             <div>
-              <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
-                Descrição do Componente
-              </Typography>
+              <div style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1>
+                  Descrição do Componente
+                </CriaTextTitle1>
+              </div>
               <Textarea
                 label={undefined}
                 placeholder="Descreva o componente que você gostaria de criar..."
@@ -166,9 +173,11 @@ const AgentDev: React.FC<AgentDevProps> = ({
 
             {/* Image Upload */}
             <div>
-              <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
-                Imagens de Referência (Opcional)
-              </Typography>
+              <div style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1>
+                  Imagens de Referência (Opcional)
+                </CriaTextTitle1>
+              </div>
               <FileUpload
                 label="Imagens"
                 description="PNG, JPG, SVG"
@@ -198,12 +207,16 @@ const AgentDev: React.FC<AgentDevProps> = ({
       case 'consertar':
         return (
           <div className="agent-dev__tab-content">
-            <Typography variant="h3" weight="semiBold" style={{ marginBottom: spacing[4] }}>
-              Consertar Componentes
-            </Typography>
-            <Typography variant="body" color="disabled" style={{ marginBottom: spacing[6] }}>
-              Selecione os componentes que precisam ser corrigidos e descreva os problemas.
-            </Typography>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextTitle1>
+                Consertar Componentes
+              </CriaTextTitle1>
+            </div>
+            <div style={{ marginBottom: spacing[6], color: 'var(--cria-text-disabled)' }}>
+              <CriaTextBody1>
+                Selecione os componentes que precisam ser corrigidos e descreva os problemas.
+              </CriaTextBody1>
+            </div>
             
             {/* Component List For Current Tab */}
             <div className="agent-dev__section">
@@ -253,9 +266,11 @@ const AgentDev: React.FC<AgentDevProps> = ({
 
             {/* Fix Description */}
             <div className="agent-dev__section">
-              <Typography variant="h3" weight="medium" style={{ marginBottom: spacing[3] }}>
-                Descrição do Problema
-              </Typography>
+              <div style={{ marginBottom: spacing[3] }}>
+                <CriaTextTitle1>
+                  Descrição do Problema
+                </CriaTextTitle1>
+              </div>
               <Textarea
                 label={undefined}
                 placeholder="Descreva os problemas que precisam ser corrigidos..."

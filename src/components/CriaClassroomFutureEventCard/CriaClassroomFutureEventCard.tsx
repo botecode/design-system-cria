@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Calendar } from 'phosphor-react';
 import { colors, spacing, radii, shadows, typography } from '../../tokens';
-import { Typography } from '../Typography';
+import { CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { Button } from '../Button';
 
 export interface ClassroomEvent {
@@ -211,7 +211,7 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(135deg, #a855f7 0%, #3b82f6 50%, #14b8a6 100%)',
+            background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.secondary} 50%, ${colors.accent} 100%)`,
           }}
         />
 
@@ -220,7 +220,7 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(135deg, rgba(0, 221, 185, 0.6) 0%, rgba(0, 123, 122, 0.6) 100%)',
+            background: `linear-gradient(135deg, ${colors.accent}60 0%, ${colors.accentDark}60 100%)`,
             backdropFilter: 'blur(12px)',
           }}
         />
@@ -248,7 +248,7 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
               left: '-20px',
               width: '80px',
               height: '80px',
-              background: '#00ddb9',
+              background: colors.accent,
               borderRadius: '50%',
               filter: 'blur(24px)',
             }}
@@ -262,7 +262,7 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
               transform: 'translate(-50%, -50%)',
               width: '96px',
               height: '96px',
-              background: 'rgba(255, 255, 255, 0.4)',
+              background: `${colors.white}40`,
               borderRadius: '50%',
               filter: 'blur(16px)',
             }}
@@ -275,7 +275,7 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
               left: spacing[4],
               width: '64px',
               height: '64px',
-              background: 'rgba(0, 221, 185, 0.3)',
+              background: `${colors.accent}30`,
               borderRadius: '50%',
               filter: 'blur(12px)',
             }}
@@ -288,7 +288,7 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
               right: spacing[4],
               width: '48px',
               height: '48px',
-              background: 'rgba(255, 255, 255, 0.5)',
+              background: `${colors.white}50`,
               borderRadius: '50%',
               filter: 'blur(8px)',
             }}
@@ -297,8 +297,7 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
 
         {/* Event Number */}
         <div style={{ position: 'relative', zIndex: 10 }}>
-          <Typography
-            variant="h1"
+          <div
             style={{
               fontSize: '48px',
               fontFamily: typography.fontFamily.primary,
@@ -308,10 +307,9 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
               marginBottom: spacing[1],
             }}
           >
-            {String(classroomItem.position || 1).padStart(2, '0')}
-          </Typography>
-          <Typography
-            variant="caption"
+            <CriaTextBody1>{String(classroomItem.position || 1).padStart(2, '0')}</CriaTextBody1>
+          </div>
+          <div
             style={{
               fontFamily: typography.fontFamily.primary,
               fontWeight: typography.fontWeight.medium,
@@ -320,8 +318,8 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
               letterSpacing: '0.1em',
             }}
           >
-            Este evento acontecerá em
-          </Typography>
+            <CriaTextBody2>Este evento acontecerá em</CriaTextBody2>
+          </div>
         </div>
 
         {/* Countdown Timer */}
@@ -335,8 +333,7 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
             }}
           >
             <div style={{ textAlign: 'center' }}>
-              <Typography
-                variant="h2"
+              <div
                 style={{
                   fontSize: '32px',
                   fontFamily: typography.fontFamily.primary,
@@ -345,10 +342,9 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
                   lineHeight: 1,
                 }}
               >
-                {String(timeLeft.days).padStart(2, '0')}
-              </Typography>
-              <Typography
-                variant="caption"
+                <CriaTextBody1>{String(timeLeft.days).padStart(2, '0')}</CriaTextBody1>
+              </div>
+              <div
                 style={{
                   fontSize: '12px',
                   fontFamily: typography.fontFamily.primary,
@@ -358,12 +354,11 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
                   letterSpacing: '0.1em',
                 }}
               >
-                dias
-              </Typography>
+                <CriaTextBody2>dias</CriaTextBody2>
+              </div>
             </div>
             <div style={{ textAlign: 'center' }}>
-              <Typography
-                variant="h2"
+              <div
                 style={{
                   fontSize: '32px',
                   fontFamily: typography.fontFamily.primary,
@@ -372,10 +367,9 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
                   lineHeight: 1,
                 }}
               >
-                {String(timeLeft.hours).padStart(2, '0')}
-              </Typography>
-              <Typography
-                variant="caption"
+                <CriaTextBody1>{String(timeLeft.hours).padStart(2, '0')}</CriaTextBody1>
+              </div>
+              <div
                 style={{
                   fontSize: '12px',
                   fontFamily: typography.fontFamily.primary,
@@ -385,12 +379,11 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
                   letterSpacing: '0.1em',
                 }}
               >
-                horas
-              </Typography>
+                <CriaTextBody2>horas</CriaTextBody2>
+              </div>
             </div>
             <div style={{ textAlign: 'center' }}>
-              <Typography
-                variant="h2"
+              <div
                 style={{
                   fontSize: '32px',
                   fontFamily: typography.fontFamily.primary,
@@ -399,10 +392,9 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
                   lineHeight: 1,
                 }}
               >
-                {String(timeLeft.minutes).padStart(2, '0')}
-              </Typography>
-              <Typography
-                variant="caption"
+                <CriaTextBody1>{String(timeLeft.minutes).padStart(2, '0')}</CriaTextBody1>
+              </div>
+              <div
                 style={{
                   fontSize: '12px',
                   fontFamily: typography.fontFamily.primary,
@@ -412,8 +404,8 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
                   letterSpacing: '0.1em',
                 }}
               >
-                min
-              </Typography>
+                <CriaTextBody2>min</CriaTextBody2>
+              </div>
             </div>
           </div>
         </div>
@@ -452,8 +444,7 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
       >
         {/* Event Title and Description */}
         <div style={{ marginBottom: spacing[4] }}>
-          <Typography
-            variant="h2"
+          <div
             style={{
               color: colors.primary,
               fontFamily: typography.fontFamily.primary,
@@ -466,18 +457,17 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
             }}
             onClick={handleEventClick}
           >
-            {title}
-          </Typography>
-          <Typography
-            variant="body"
+            <CriaTextBody1>{title}</CriaTextBody1>
+          </div>
+          <div
             style={{
               color: colors.gray[600],
               fontSize: '16px',
               lineHeight: 1.5,
             }}
           >
-            {description}
-          </Typography>
+            <CriaTextBody1>{description}</CriaTextBody1>
+          </div>
         </div>
 
         {/* Event Details */}
@@ -489,8 +479,7 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
           }}
         >
           <div>
-            <Typography
-              variant="caption"
+            <div
               style={{
                 fontFamily: typography.fontFamily.primary,
                 fontWeight: typography.fontWeight.bold,
@@ -500,10 +489,9 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
                 marginBottom: spacing[1],
               }}
             >
-              Data
-            </Typography>
-            <Typography
-              variant="body"
+              <CriaTextBody2>Data</CriaTextBody2>
+            </div>
+            <div
               style={{
                 fontSize: '18px',
                 fontFamily: typography.fontFamily.primary,
@@ -511,12 +499,11 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
                 color: colors.primary,
               }}
             >
-              {formattedDate}
-            </Typography>
+              <CriaTextBody1>{formattedDate}</CriaTextBody1>
+            </div>
           </div>
           <div>
-            <Typography
-              variant="caption"
+            <div
               style={{
                 fontFamily: typography.fontFamily.primary,
                 fontWeight: typography.fontWeight.bold,
@@ -526,10 +513,9 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
                 marginBottom: spacing[1],
               }}
             >
-              Horário
-            </Typography>
-            <Typography
-              variant="body"
+              <CriaTextBody2>Horário</CriaTextBody2>
+            </div>
+            <div
               style={{
                 fontSize: '18px',
                 fontFamily: typography.fontFamily.primary,
@@ -537,12 +523,11 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
                 color: colors.primary,
               }}
             >
-              {formattedTime}
-            </Typography>
+              <CriaTextBody1>{formattedTime}</CriaTextBody1>
+            </div>
           </div>
           <div>
-            <Typography
-              variant="caption"
+            <div
               style={{
                 fontFamily: typography.fontFamily.primary,
                 fontWeight: typography.fontWeight.bold,
@@ -552,10 +537,9 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
                 marginBottom: spacing[1],
               }}
             >
-              Duração
-            </Typography>
-            <Typography
-              variant="body"
+              <CriaTextBody2>Duração</CriaTextBody2>
+            </div>
+            <div
               style={{
                 fontSize: '18px',
                 fontFamily: typography.fontFamily.primary,
@@ -563,8 +547,8 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
                 color: colors.primary,
               }}
             >
-              {event.duration || '2H'}
-            </Typography>
+              <CriaTextBody1>{event.duration || '2H'}</CriaTextBody1>
+            </div>
           </div>
         </div>
 
@@ -584,15 +568,14 @@ export const CriaClassroomFutureEventCard: React.FC<CriaClassroomFutureEventCard
               SALVAR NA AGENDA
             </Button>
           ) : (
-            <Typography
-              variant="caption"
+            <div
               style={{
                 color: colors.gray[500],
                 fontFamily: typography.fontFamily.primary,
               }}
             >
-              Link da agenda não disponível
-            </Typography>
+              <CriaTextBody2>Link da agenda não disponível</CriaTextBody2>
+            </div>
           )}
         </div>
       </div>
