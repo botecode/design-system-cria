@@ -2,7 +2,7 @@ import React from 'react';
 import { CriaTextHeadline1, CriaTextTitle1, CriaTextBody1 } from '../../../components/TextTokens';
 import { Card, CardContent } from '../../../components/Card';
 import { Avatar } from '../../../components/Avatar';
-import { CheckCircle, GraduationCap, BookOpen, Users, Building, User } from 'phosphor-react';
+import { CheckCircle, GraduationCap, BookOpen, Users, Buildings, User } from 'phosphor-react';
 
 interface CustomLearning {
   id: string;
@@ -354,7 +354,7 @@ const Trilhas: React.FC = () => {
                             </CriaTextBody1>
                             {user.companyDepartment && (
                               <div style={{ display: 'flex', alignItems: 'center', marginBottom: '2px' }}>
-                                <Building size={12} style={{
+                                <Buildings size={12} style={{
                                   color: 'var(--cria-text-tertiary)',
                                   marginRight: '4px'
                                 }} />
