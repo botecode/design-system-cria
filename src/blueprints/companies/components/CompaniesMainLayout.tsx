@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CriaTextTitle1, CriaTextBody1 } from '../../../components/TextTokens';
 import { NavigationSidebar } from '../../../components/Navigation';
 import { ArrowLeft, House, Users, CreditCard, ChartBar, BookOpen, User } from 'phosphor-react';
@@ -15,10 +15,15 @@ const CompaniesMainLayout: React.FC<CompaniesMainLayoutProps> = ({
   currentPage = 'dashboard',
   onPageChange
 }) => {
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const handleNavigation = (pageId: string) => {
     if (onPageChange) {
       onPageChange(pageId);
     }
+  };
+
+  const handleToggle = () => {
+    setIsCollapsed(!isCollapsed);
   };
 
   const sidebarItems = [
@@ -65,8 +70,8 @@ const CompaniesMainLayout: React.FC<CompaniesMainLayoutProps> = ({
       <NavigationSidebar
         items={sidebarItems}
         activeRoute={currentPage}
-        collapsed={false}
-        onToggle={() => {}}
+        collapsed={isCollapsed}
+        onToggle={handleToggle}
         theme="default"
         title="CRIA Studio"
         style={{ 
@@ -81,9 +86,10 @@ const CompaniesMainLayout: React.FC<CompaniesMainLayoutProps> = ({
       {/* Main Content */}
       <main style={{
         flex: 1,
-        marginLeft: '120px',
+        marginLeft: isCollapsed ? '60px' : '120px', // Dynamic margin based on collapsed state
         backgroundColor: 'var(--cria-bg-primary)',
-        minHeight: 'calc(100vh - 60px)' // Account for topbar
+        minHeight: 'calc(100vh - 60px)', // Account for topbar
+        transition: 'margin-left 0.3s ease' // Smooth transition
       }}>
         {children}
       </main>
