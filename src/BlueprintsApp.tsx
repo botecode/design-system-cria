@@ -16,7 +16,7 @@ type DeviceType = 'desktop' | 'laptop' | 'tablet' | 'mobile';
 
 const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [currentPage, setCurrentPage] = useState<BlueprintPage>('companies');
+  const [currentPage, setCurrentPage] = useState<BlueprintPage>('error-500');
   const [deviceType, setDeviceType] = useState<DeviceType>('desktop');
 
   const handleBackToDesignSystem = () => {
@@ -31,9 +31,9 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
   };
 
   const pageOptions = [
-    { value: 'companies', label: 'Companies Dashboard', icon: <Buildings size={16} /> },
     { value: 'error-500', label: 'Error 500', icon: <CaretDown size={16} /> },
-    { value: 'error-404', label: 'Error 404', icon: <CaretDown size={16} /> }
+    { value: 'error-404', label: 'Error 404', icon: <CaretDown size={16} /> },
+    { value: 'companies', label: 'Companies Dashboard', icon: <Buildings size={16} /> }
   ];
 
   const deviceOptions = [
@@ -96,14 +96,14 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
 
   const renderCurrentPage = () => {
     switch (currentPage) {
-      case 'companies':
-        return <Companies />;
       case 'error-500':
         return <Error500 />;
       case 'error-404':
         return <Error404 />;
-      default:
+      case 'companies':
         return <Companies />;
+      default:
+        return <Error500 />;
     }
   };
 
