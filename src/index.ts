@@ -81,3 +81,4 @@ export * from './components/Charts';
 export * from './components/StatisticMetricCard';
 export * from './components/ThemeToggle';
 export * from './components/DarkModeTest';
+export * from './components/CriaCardError';
