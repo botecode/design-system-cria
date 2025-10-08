@@ -26,51 +26,31 @@ const CompaniesMainLayout: React.FC<CompaniesMainLayoutProps> = ({
       id: 'dashboard', 
       label: 'Visão Geral', 
       icon: <House size={20} />,
-      href: '#', // Prevent default navigation
-      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault();
-        handleNavigation('dashboard');
-      }
+      onClick: () => handleNavigation('dashboard')
     },
     { 
       id: 'alunos', 
       label: 'Alunos', 
       icon: <Users size={20} />,
-      href: '#', // Prevent default navigation
-      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault();
-        handleNavigation('alunos');
-      }
+      onClick: () => handleNavigation('alunos')
     },
     { 
       id: 'assinaturas', 
       label: 'Assinaturas', 
       icon: <CreditCard size={20} />,
-      href: '#', // Prevent default navigation
-      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault();
-        handleNavigation('assinaturas');
-      }
+      onClick: () => handleNavigation('assinaturas')
     },
     { 
       id: 'insights', 
       label: 'Insights', 
       icon: <ChartBar size={20} />,
-      href: '#', // Prevent default navigation
-      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault();
-        handleNavigation('insights');
-      }
+      onClick: () => handleNavigation('insights')
     },
     { 
       id: 'trilhas', 
       label: 'Trilhas', 
       icon: <BookOpen size={20} />,
-      href: '#', // Prevent default navigation
-      onClick: (e: React.MouseEvent<HTMLAnchorElement>) => {
-        e.preventDefault();
-        handleNavigation('trilhas');
-      }
+      onClick: () => handleNavigation('trilhas')
     },
   ];
 

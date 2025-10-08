@@ -359,6 +359,37 @@ const Sidebar: React.FC<NavigationSidebarProps> = ({
                       </span>
                     )}
                   </div>
+                ) : item.onClick ? (
+                  <button
+                    className={[
+                      'cria-sidebar__item',
+                      isActive && 'cria-sidebar__item--active',
+                      item.disabled && 'cria-sidebar__item--disabled',
+                    ].filter(Boolean).join(' ')}
+                    data-nav-item={index}
+                    tabIndex={item.disabled ? -1 : 0}
+                    onKeyDown={(e) => handleKeyDown(e, index)}
+                    onClick={item.onClick}
+                    aria-current={activeRoute === item.id ? 'page' : undefined}
+                    aria-disabled={item.disabled}
+                    disabled={item.disabled}
+                  >
+                    {item.icon && (
+                      <span className="cria-sidebar__icon" aria-hidden="true">
+                        {item.icon}
+                      </span>
+                    )}
+                    {!collapsed && (
+                      <span className="cria-sidebar__label">
+                        {item.label}
+                      </span>
+                    )}
+                    {item.badge && (
+                      <span className="cria-sidebar__badge" aria-hidden="true">
+                        {item.badge}
+                      </span>
+                    )}
+                  </button>
                 ) : (
                   <a
                     href={item.href}
@@ -370,7 +401,6 @@ const Sidebar: React.FC<NavigationSidebarProps> = ({
                     data-nav-item={index}
                     tabIndex={item.disabled ? -1 : 0}
                     onKeyDown={(e) => handleKeyDown(e, index)}
-                    onClick={item.onClick}
                     aria-current={activeRoute === item.href ? 'page' : undefined}
                     aria-disabled={item.disabled}
                   >
