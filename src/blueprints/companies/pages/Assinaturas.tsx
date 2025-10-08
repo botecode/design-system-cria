@@ -4,7 +4,7 @@ import { Card, CardContent } from '../../../components/Card';
 import { Button } from '../../../components/Button';
 import { Input } from '../../../components/Input';
 import { Dropdown } from '../../../components/Dropdown';
-import { CreditCard, Plus, Edit, X, Check } from 'phosphor-react';
+import { CreditCard, Plus, PencilSimple, X, Check } from 'phosphor-react';
 
 interface Subscription {
   id: string;
@@ -448,7 +448,7 @@ const Assinaturas: React.FC = () => {
                   <Button
                     variant="ghost"
                     onClick={() => handleEditSubscription(subscription.id)}
-                    icon={<Edit size={16} />}
+                    icon={<PencilSimple size={16} />}
                     style={{ color: 'var(--cria-primary)' }}
                   >
                     Editar
