@@ -78,12 +78,40 @@ const Assinaturas: React.FC = () => {
   };
 
   const getTierBadgeStyle = (tier: string) => {
-    const styles: Record<string, string> = {
-      'basic': 'background: #10b981; color: white; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: 600;',
-      'premium': 'background: #8b5cf6; color: white; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: 600;',
-      'enterprise': 'background: #f59e0b; color: white; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: 600;'
+    const styles: Record<string, React.CSSProperties> = {
+      'basic': {
+        background: '#10b981',
+        color: 'white',
+        padding: '4px 8px',
+        borderRadius: '6px',
+        fontSize: '12px',
+        fontWeight: '600'
+      },
+      'premium': {
+        background: '#8b5cf6',
+        color: 'white',
+        padding: '4px 8px',
+        borderRadius: '6px',
+        fontSize: '12px',
+        fontWeight: '600'
+      },
+      'enterprise': {
+        background: '#f59e0b',
+        color: 'white',
+        padding: '4px 8px',
+        borderRadius: '6px',
+        fontSize: '12px',
+        fontWeight: '600'
+      }
     };
-    return styles[tier] || 'background: #6b7280; color: white; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: 600;';
+    return styles[tier] || {
+      background: '#6b7280',
+      color: 'white',
+      padding: '4px 8px',
+      borderRadius: '6px',
+      fontSize: '12px',
+      fontWeight: '600'
+    };
   };
 
   const formatDate = (dateString: string) => {
