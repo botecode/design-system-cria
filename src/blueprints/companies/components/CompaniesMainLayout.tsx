@@ -1,6 +1,6 @@
 import React from 'react';
 import { CriaTextTitle1, CriaTextBody1 } from '../../../components/TextTokens';
-import { Sidebar } from '../../../components/Sidebar';
+import { NavigationSidebar } from '../../../components/Navigation';
 import { ArrowLeft, House, Users, CreditCard, ChartBar, BookOpen, User } from 'phosphor-react';
 import { company, currentUser } from '../mock/company';
 
@@ -18,51 +18,31 @@ const CompaniesMainLayout: React.FC<CompaniesMainLayoutProps> = ({
       id: 'dashboard', 
       label: 'Visão Geral', 
       icon: <House size={20} />,
-      content: (
-        <div style={{ padding: '16px' }}>
-          <CriaTextBody1>Conteúdo da Visão Geral</CriaTextBody1>
-        </div>
-      )
+      href: '/companies/dashboard'
     },
     { 
       id: 'alunos', 
       label: 'Alunos', 
       icon: <Users size={20} />,
-      content: (
-        <div style={{ padding: '16px' }}>
-          <CriaTextBody1>Conteúdo dos Alunos</CriaTextBody1>
-        </div>
-      )
+      href: '/companies/alunos'
     },
     { 
       id: 'assinaturas', 
       label: 'Assinaturas', 
       icon: <CreditCard size={20} />,
-      content: (
-        <div style={{ padding: '16px' }}>
-          <CriaTextBody1>Conteúdo das Assinaturas</CriaTextBody1>
-        </div>
-      )
+      href: '/companies/assinaturas'
     },
     { 
       id: 'insights', 
       label: 'Insights', 
       icon: <ChartBar size={20} />,
-      content: (
-        <div style={{ padding: '16px' }}>
-          <CriaTextBody1>Conteúdo dos Insights</CriaTextBody1>
-        </div>
-      )
+      href: '/companies/insights'
     },
     { 
       id: 'trilhas', 
       label: 'Trilhas', 
       icon: <BookOpen size={20} />,
-      content: (
-        <div style={{ padding: '16px' }}>
-          <CriaTextBody1>Conteúdo das Trilhas</CriaTextBody1>
-        </div>
-      )
+      href: '/companies/trilhas'
     },
   ];
 
@@ -70,23 +50,22 @@ const CompaniesMainLayout: React.FC<CompaniesMainLayoutProps> = ({
     <div style={{
       display: 'flex',
       minHeight: '100vh',
-      backgroundColor: 'var(--cria-bg-primary)'
+      backgroundColor: 'var(--cria-bg-primary)',
+      paddingTop: '60px' // Account for topbar height
     }}>
-      {/* CriaSidebar with secondary color */}
-      <Sidebar
+      {/* Navigation Sidebar with secondary theme */}
+      <NavigationSidebar
         items={sidebarItems}
-        activeItem={currentPage}
-        variant="default"
-        size="lg"
-        showContent={false}
-        style={{
-          width: '280px',
-          backgroundColor: 'var(--cria-surface-secondary)',
-          borderRight: '1px solid var(--cria-border-primary)',
+        activeRoute={currentPage}
+        collapsed={false}
+        onToggle={() => {}}
+        theme="secondary"
+        title="CRIA Studio"
+        style={{ 
           position: 'fixed',
-          height: '100vh',
+          top: '60px', // Start below topbar
           left: 0,
-          top: 0,
+          height: 'calc(100vh - 60px)', // Full height minus topbar
           zIndex: 100
         }}
       />
@@ -97,7 +76,7 @@ const CompaniesMainLayout: React.FC<CompaniesMainLayoutProps> = ({
         marginLeft: '280px',
         padding: '24px',
         backgroundColor: 'var(--cria-bg-primary)',
-        minHeight: '100vh'
+        minHeight: 'calc(100vh - 60px)' // Account for topbar
       }}>
         {children}
       </main>
