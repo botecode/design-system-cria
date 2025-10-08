@@ -38,9 +38,11 @@ This document tracks the systematic testing and fixing of dark mode implementati
 ### ✅ Completed Pages
 - [x] Overview (Fixed 4 dark mode issues: card backgrounds, text colors, hardcoded overrides, inline styles)
 - [x] Design Tokens (Fixed 6 issues: backgrounds, borders, text colors, semantic colors, accessibility section + refactored to reusable components)
+- [x] Button Component (Fixed 2 dark mode issues: hardcoded text colors, danger button hover)
+- [x] Sidebar Component (Fixed 5 dark mode issues: Badge demo + Navigation contrast improvements)
 
 ### 🔄 In Progress
-- [x] Sidebar Component (Fixed 5 dark mode issues: Badge demo + Navigation contrast improvements)
+- [ ] Ready for next component testing
 
 ### ⏳ Pending Pages
 - [ ] Design Tokens

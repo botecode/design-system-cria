@@ -71,7 +71,11 @@ import './fonts.css';
 
 type DemoSection = 'overview' | 'typography' | 'colors' | 'button' | 'input' | 'textarea' | 'avatar' | 'checkbox' | 'switch' | 'snackbar' | 'modal' | 'tooltip' | 'card' | 'badge' | 'tag-chip' | 'timeline' | 'stepper' | 'notification-center' | 'topbar' | 'drawer' | 'backgrounds' | 'tabs' | 'navigation' | 'accordion' | 'text' | 'dropdown' | 'radio-group' | 'breadcrumbs' | 'pagination' | 'progress-bar' | 'vertical-tabs' | 'date-picker' | 'file-upload' | 'chat' | 'pie-chart' | 'comments-section' | 'slider' | 'shimmer-skeleton' | 'pricing-page' | 'page-loading-progress' | 'card-selector' | 'floating-sidebar' | 'row-of-cards' | 'search-filters' | 'filter-dropdown' | 'divider' | 'grid' | 'container' | 'scrollbar' | 'footer' | 'mega-menu' | 'carousel' | 'table' | 'empty-state' | 'charts' | 'lesson-cards' | 'course-cards' | 'events-cards' | 'trilha-cards' | 'statistic-metric-card' | 'command-palette' | 'agent-dev';
 
-const App: React.FC = () => {
+interface AppProps {
+  onNavigateToBlueprints?: () => void;
+}
+
+const App: React.FC<AppProps> = ({ onNavigateToBlueprints }) => {
   const [activeSection, setActiveSection] = useState<DemoSection>('overview');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -517,16 +521,16 @@ const App: React.FC = () => {
                     setMobileMenuOpen(false);
                   }
                 },
-                subitems: item.subitems?.map(subitem => ({
+                subitems: item.subitems?.map((subitem: any) => ({
                   ...subitem,
-                  onClick: subitem.subitems ? undefined : (e: React.MouseEvent) => {
+                  onClick: (subitem as any).subitems ? undefined : (e: React.MouseEvent) => {
                     e.preventDefault();
                     handleSectionChange(subitem.id as DemoSection);
                     if (isMobile) {
                       setMobileMenuOpen(false);
                     }
                   },
-                  subitems: subitem.subitems?.map((subsubitem: any) => ({
+                  subitems: (subitem as any).subitems?.map((subsubitem: any) => ({
                     ...subsubitem,
                     onClick: (e: React.MouseEvent) => {
                       e.preventDefault();
@@ -591,8 +595,9 @@ const App: React.FC = () => {
                 variant="ghost"
                 size="sm"
                 onClick={() => {
-                  // Add your monitor functionality here
-                  console.log('Monitor button clicked');
+                  if (onNavigateToBlueprints) {
+                    onNavigateToBlueprints();
+                  }
                 }}
                 style={{
                   width: '48px',
@@ -603,7 +608,8 @@ const App: React.FC = () => {
                   border: '1px solid var(--cria-border-primary)',
                   boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
                 }}
-                aria-label="Monitor"
+                aria-label="Open Blueprints"
+                title="Open Blueprints Studio"
               >
                 <Monitor size={20} />
               </Button>
