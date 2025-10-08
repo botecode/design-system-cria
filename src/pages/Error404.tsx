@@ -1,7 +1,7 @@
 import React from 'react';
 import { CriaCardError } from '../index.ts';
 import { CriaTextTitle1, CriaTextBody1 } from '../components/TextTokens';
-import { MagnifyingGlass, House } from 'phosphor-react';
+import { House } from 'phosphor-react';
 
 const Error404: React.FC = () => {
   const handleGoHome = () => {
@@ -13,10 +13,8 @@ const Error404: React.FC = () => {
       errorCode="404"
       title="Página não encontrada"
       message="Desculpe, não conseguimos encontrar a página que você procurava. Ela pode ter sido movida, excluída ou o endereço digitado pode estar incorreto."
-      icon={<MagnifyingGlass size={48} />}
-      iconBackgroundColor="var(--cria-warning-50)"
-      iconColor="var(--cria-warning-500)"
-      errorCodeColor="var(--cria-warning-500)"
+      image="/src/assets/error/404.png"
+      errorType="warning"
       buttons={[
         {
           label: "Voltar para a página inicial",

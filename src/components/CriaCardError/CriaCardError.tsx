@@ -28,21 +28,21 @@ export interface CriaCardErrorProps {
    */
   message: string;
   /**
-   * Icon to display in the error card
+   * Image to display in the error card
    */
-  icon?: React.ReactNode;
+  image?: string;
   /**
-   * Icon background color (CSS variable or hex)
+   * Error type to determine appropriate colors (defaults to 'error')
+   */
+  errorType?: 'error' | 'warning' | 'info';
+  /**
+   * Icon background color (CSS variable or hex) - defaults to appropriate theme colors
    */
   iconBackgroundColor?: string;
   /**
-   * Icon color (CSS variable or hex)
+   * Icon color (CSS variable or hex) - defaults to appropriate theme colors
    */
   iconColor?: string;
-  /**
-   * Error code color (CSS variable or hex)
-   */
-  errorCodeColor?: string;
   /**
    * Array of action buttons (1-3 buttons)
    */
@@ -74,10 +74,8 @@ export interface CriaCardErrorProps {
  *   errorCode="404"
  *   title="Page Not Found"
  *   message="Sorry, we couldn't find the page you're looking for."
- *   icon={<MagnifyingGlass size={48} />}
- *   iconBackgroundColor="var(--cria-warning-50)"
- *   iconColor="var(--cria-warning-500)"
- *   errorCodeColor="var(--cria-warning-500)"
+ *   image="/assets/error/404.png"
+ *   errorType="warning"
  *   buttons={[
  *     { label: "Search", icon: <MagnifyingGlass size={16} />, variant: "primary", onClick: handleSearch },
  *     { label: "Go Back", icon: <ArrowLeft size={16} />, variant: "outline", onClick: handleGoBack },
@@ -92,10 +90,10 @@ export const CriaCardError: React.FC<CriaCardErrorProps> = ({
   title,
   subtitle,
   message,
-  icon,
-  iconBackgroundColor = 'var(--cria-error-50)',
-  iconColor = 'var(--cria-error-500)',
-  errorCodeColor = 'var(--cria-error-500)',
+  image,
+  errorType = 'error',
+  iconBackgroundColor,
+  iconColor,
   buttons = [],
   footer,
   additionalContent,
@@ -103,6 +101,31 @@ export const CriaCardError: React.FC<CriaCardErrorProps> = ({
   className = '',
   ...props
 }) => {
+  // Auto-select colors based on error type if not provided
+  const getDefaultColors = (type: 'error' | 'warning' | 'info') => {
+    switch (type) {
+      case 'warning':
+        return {
+          background: 'var(--cria-warning-50)',
+          color: 'var(--cria-warning-500)'
+        };
+      case 'info':
+        return {
+          background: 'var(--cria-info-50)',
+          color: 'var(--cria-info-500)'
+        };
+      case 'error':
+      default:
+        return {
+          background: 'var(--cria-error-50)',
+          color: 'var(--cria-error-500)'
+        };
+    }
+  };
+
+  const defaultColors = getDefaultColors(errorType);
+  const finalIconBackgroundColor = iconBackgroundColor || defaultColors.background;
+  const finalIconColor = iconColor || defaultColors.color;
   return (
     <div style={{ 
       minHeight: '100vh',
@@ -126,34 +149,29 @@ export const CriaCardError: React.FC<CriaCardErrorProps> = ({
         {...props}
       >
         <CardContent>
-          {/* Error Icon */}
-          {icon && (
+          {/* Error Image */}
+          {image && (
             <div style={{ 
               marginBottom: '32px',
               display: 'flex',
               justifyContent: 'center'
             }}>
-              <div style={{
-                width: '120px',
-                height: '120px',
-                borderRadius: '50%',
-                backgroundColor: iconBackgroundColor,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                margin: '0 auto'
-              }}>
-                <div style={{ color: iconColor }}>
-                  {icon}
-                </div>
-              </div>
+              <img 
+                src={image} 
+                alt={`${errorCode} error`}
+                style={{
+                  width: '200px',
+                  height: '200px',
+                  objectFit: 'contain'
+                }}
+              />
             </div>
           )}
 
           {/* Error Code */}
           <div style={{ marginBottom: '16px' }}>
             <CriaTextHeadline1 style={{ 
-              color: errorCodeColor,
+              color: 'var(--cria-text-primary)',
               fontSize: '72px',
               fontWeight: '700',
               lineHeight: '1'

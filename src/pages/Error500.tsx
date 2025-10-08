@@ -1,7 +1,7 @@
 import React from 'react';
 import { CriaCardError } from '../index.ts';
 import { CriaTextBody1 } from '../components/TextTokens';
-import { Warning, House } from 'phosphor-react';
+import { House } from 'phosphor-react';
 
 const Error500: React.FC = () => {
   const handleGoHome = () => {
@@ -13,10 +13,8 @@ const Error500: React.FC = () => {
       errorCode="500"
       title="Erro interno do servidor"
       message="Ops! Algo deu errado por aqui. Estamos trabalhando para resolver o problema. Tente novamente em alguns instantes."
-      icon={<Warning size={48} />}
-      iconBackgroundColor="var(--cria-error-50)"
-      iconColor="var(--cria-error-500)"
-      errorCodeColor="var(--cria-error-500)"
+      image="/src/assets/error/500.png"
+      errorType="error"
       buttons={[
         {
           label: "Voltar para a página inicial",
