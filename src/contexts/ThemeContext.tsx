@@ -10,7 +10,16 @@ export interface ThemeContextType {
   isLight: boolean;
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+// Default context value to prevent errors during initialization
+const defaultContextValue: ThemeContextType = {
+  theme: 'light',
+  toggleTheme: () => {},
+  setTheme: () => {},
+  isDark: false,
+  isLight: true,
+};
+
+const ThemeContext = createContext<ThemeContextType>(defaultContextValue);
 
 export interface ThemeProviderProps {
   children: ReactNode;
@@ -100,11 +109,6 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
     isLight: theme === 'light',
   };
 
-  // Prevent hydration mismatch by not rendering until mounted
-  if (!mounted) {
-    return <div style={{ visibility: 'hidden' }}>{children}</div>;
-  }
-
   return (
     <ThemeContext.Provider value={value}>
       {children}
@@ -114,10 +118,8 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({
 
 export const useTheme = (): ThemeContextType => {
   const context = useContext(ThemeContext);
-  if (context === undefined) {
-    throw new Error('useTheme must be used within a ThemeProvider');
-  }
   return context;
 };
 
+export { ThemeContext };
 export default ThemeContext;

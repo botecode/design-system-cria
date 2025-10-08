@@ -283,11 +283,11 @@ const Sidebar: React.FC<NavigationSidebarProps> = ({
                 {title}
               </CriaTextTitle1>
             )}
-          </div>
-        )}
-        {subtitle && !collapsed && (
-          <div className="cria-sidebar__subtitle-section" style={{ marginTop: '0.5rem' }}>
-            {subtitle}
+            {subtitle && (
+              <div className="cria-sidebar__subtitle-section">
+                {subtitle}
+              </div>
+            )}
           </div>
         )}
         {showToggle && (

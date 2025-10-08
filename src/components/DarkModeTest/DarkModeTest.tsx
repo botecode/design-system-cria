@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ThemeToggle, useTheme } from '../../contexts';
+import { useTheme } from '../../contexts';
+import { ThemeToggle } from '../ThemeToggle';
 import { 
   Button, 
   Card, 
@@ -8,7 +9,7 @@ import {
   Modal,
   Backgrounds,
   Navigation
-} from '../index';
+} from '../../index.js';
 import { 
   CriaTextHeadline1, 
   CriaTextTitle1, 
@@ -18,9 +19,9 @@ import {
 import { 
   House, 
   User, 
-  Settings, 
+  Gear, 
   Bell, 
-  Search,
+  MagnifyingGlass,
   Plus,
   Check,
   X
@@ -49,7 +50,7 @@ export const DarkModeTest: React.FC = () => {
       id: 'settings',
       label: 'Settings',
       href: '#',
-      icon: <Settings size={20} />,
+      icon: <Gear size={20} />,
     },
     {
       id: 'notifications',
@@ -161,7 +162,7 @@ export const DarkModeTest: React.FC = () => {
             <Input
               label="Input with Icon"
               placeholder="Search..."
-              leftIcon={<Search size={20} />}
+              leftIcon={<MagnifyingGlass size={20} />}
               value={inputValue}
               onChange={handleInputChange}
             />

@@ -31,14 +31,19 @@
 
 .cria-sidebar__header {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   padding: var(--cria-spacing-4);
   border-bottom: 1px solid var(--cria-border-primary);
   position: relative;
 }
 
 .cria-sidebar__title-section {
-  margin-bottom: var(--cria-spacing-2);
+  display: flex;
+  align-items: center;
+  gap: var(--cria-spacing-2);
+  flex: 1;
 }
 
 .cria-sidebar__title-link {
@@ -53,12 +58,12 @@
 
 .cria-sidebar__subtitle-section {
   color: var(--cria-text-secondary);
+  display: flex;
+  align-items: center;
 }
 
 .cria-sidebar__toggle {
-  position: absolute;
-  top: var(--cria-spacing-4);
-  right: var(--cria-spacing-4);
+  flex-shrink: 0;
 }
 
 .cria-sidebar__content {

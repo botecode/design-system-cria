@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTheme } from '../../hooks/useTheme';
+import { useTheme } from '../../contexts/ThemeContext';
 import { Switch } from '../Switch/Switch';
 import { Button } from '../Button/Button';
 import { CriaTextBody1 } from '../TextTokens';

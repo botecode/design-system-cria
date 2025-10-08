@@ -7,7 +7,7 @@ export {
   TextContentTitle, 
   TextContent, 
   TextContentImportant 
-} from './components/Text/Text.jsx';
+} from './components/Text';
 
 // Tabs Component (TS build)
 export { Tabs } from './components/Tabs';
@@ -23,8 +23,24 @@ export {
   TextBody as Typography,
   TextContentTitle as TypographyTitle,
   TextContent as TypographyContent
-} from './components/Text/Text.jsx';
+} from './components/Text';
 
+// Backgrounds Component (TS build)
+export { Backgrounds } from './components/Backgrounds';
 
+// Navigation Component (TS build)
+export { Navigation } from './components/Navigation';
 
+// Modal Component (TS build)
+export { Modal } from './components/Modal';
+
+// Input Component (TS build)
+export { Input } from './components/Input';
+
+// Theme System
+export { ThemeProvider, useTheme } from './contexts';
+export { ThemeToggle } from './components/ThemeToggle';
+
+// Text Tokens
+export * from './components/TextTokens';
 

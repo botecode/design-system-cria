@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Typography, Button, Navigation, ThemeProvider } from './index.ts';
+import { Typography, Button, Navigation, ThemeProvider, ThemeToggle } from './index.ts';
 import { CriaTextHeadline1, CriaTextTitle1, CriaTextBody1 } from './components/TextTokens';
 import { House, TextAa, Mouse, PencilSimple, CheckSquare, ToggleLeft, Bell, ChatCircle, Info, Square, Tag, Tabs, List, CaretDown, Article, Layout, User, Robot } from 'phosphor-react';
 import TypographyDemo from './components/Typography/demo';
@@ -407,8 +407,6 @@ const App: React.FC = () => {
         return <ProgressBarDemo />;
       case 'vertical-tabs':
         return <VerticalTabsDemo />;
-      case 'stepper':
-        return <StepperDemo />;
       case 'date-picker':
         return <DatePickerDemo />;
       case 'file-upload':
@@ -563,13 +561,32 @@ const App: React.FC = () => {
             boxSizing: 'border-box',
             zIndex: 1
           }}>
-            {/* Robot Icon - Top Right */}
+            {/* Header Controls - Top Right */}
             <div style={{
               position: 'fixed',
               top: '20px',
               right: '20px',
-              zIndex: 1000
+              zIndex: 1000,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px'
             }}>
+              {/* Theme Toggle */}
+              <div style={{
+                backgroundColor: 'var(--cria-surface-primary)',
+                borderRadius: 'var(--cria-radius-md)',
+                padding: '8px',
+                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
+                border: '1px solid var(--cria-border-primary)'
+              }}>
+                <ThemeToggle 
+                  variant="icon" 
+                  size="sm" 
+                  showLabel={false}
+                />
+              </div>
+
+              {/* Robot Icon */}
               <Button
                 variant="ghost"
                 size="sm"
