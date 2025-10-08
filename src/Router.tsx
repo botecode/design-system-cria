@@ -10,7 +10,7 @@ const Router: React.FC = () => {
   useEffect(() => {
     // Check URL hash for routing
     const hash = window.location.hash.slice(1);
-    if (hash === 'blueprints' || hash.startsWith('companies')) {
+    if (hash === 'blueprints' || hash.startsWith('companies') || hash.startsWith('/companies')) {
       setCurrentRoute('blueprints');
     } else {
       setCurrentRoute('design-system');
@@ -21,7 +21,7 @@ const Router: React.FC = () => {
     // Listen for hash changes
     const handleHashChange = () => {
       const hash = window.location.hash.slice(1);
-      if (hash === 'blueprints' || hash.startsWith('companies')) {
+      if (hash === 'blueprints' || hash.startsWith('companies') || hash.startsWith('/companies')) {
         setCurrentRoute('blueprints');
       } else {
         setCurrentRoute('design-system');
