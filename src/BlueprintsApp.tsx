@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { Typography, Button, ThemeProvider, ThemeToggle, Dropdown } from './index.ts';
 import { CriaTextHeadline1, CriaTextTitle1, CriaTextBody1 } from './components/TextTokens';
-import { ArrowLeft, Monitor, Robot, CaretDown, DeviceMobile, DeviceTablet, Desktop, Laptop } from 'phosphor-react';
+import { ArrowLeft, Monitor, Robot, CaretDown, DeviceMobile, DeviceTablet, Desktop, Laptop, Building } from 'phosphor-react';
 import Error500 from './pages/Error500';
 import Error404 from './pages/Error404';
+import Companies from './blueprints/companies/Companies';
 import './fonts.css';
 
 interface BlueprintsAppProps {
   onBackToDesignSystem?: () => void;
 }
 
-type BlueprintPage = 'welcome' | 'error-500' | 'error-404';
+type BlueprintPage = 'welcome' | 'error-500' | 'error-404' | 'companies';
 type DeviceType = 'desktop-xl' | 'desktop' | 'laptop' | 'tablet' | 'mobile';
 
 const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) => {
@@ -31,6 +32,7 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
 
   const pageOptions = [
     { value: 'welcome', label: 'Welcome', icon: <Monitor size={16} /> },
+    { value: 'companies', label: 'Companies Dashboard', icon: <Building size={16} /> },
     { value: 'error-500', label: 'Error 500', icon: <CaretDown size={16} /> },
     { value: 'error-404', label: 'Error 404', icon: <CaretDown size={16} /> }
   ];
@@ -254,6 +256,8 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
 
   const renderCurrentPage = () => {
     switch (currentPage) {
+      case 'companies':
+        return <Companies />;
       case 'error-500':
         return <Error500 />;
       case 'error-404':
