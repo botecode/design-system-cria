@@ -61,13 +61,13 @@ const CompaniesMainLayout: React.FC<CompaniesMainLayoutProps> = ({
       backgroundColor: 'var(--cria-bg-primary)',
       paddingTop: '60px' // Account for topbar height
     }}>
-      {/* Navigation Sidebar with secondary theme */}
+      {/* Navigation Sidebar with default theme */}
       <NavigationSidebar
         items={sidebarItems}
         activeRoute={currentPage}
         collapsed={false}
         onToggle={() => {}}
-        theme="secondary"
+        theme="default"
         title="CRIA Studio"
         style={{ 
           position: 'fixed',
