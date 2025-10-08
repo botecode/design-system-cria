@@ -23,7 +23,7 @@ const Dashboard: React.FC = () => {
   ];
 
   return (
-    <section data-testid="dashboard-page" style={{ padding: '16px', paddingBottom: '40px' }}>
+    <section data-testid="dashboard-page" style={{ padding: '24px', paddingBottom: '40px' }}>
       {/* Page Header */}
       <div style={{ marginBottom: '32px' }}>
         <CriaTextHeadline1 style={{ 
@@ -42,7 +42,7 @@ const Dashboard: React.FC = () => {
       {/* Stats Grid */}
       <div style={{ 
         display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+        gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', 
         gap: '16px', 
         marginBottom: '32px' 
       }}>
@@ -237,7 +237,7 @@ const Dashboard: React.FC = () => {
                     name={user.name}
                     style={{ marginRight: '16px' }}
                   />
-                  <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ flex: 1, minWidth: 0, marginRight: '16px' }}>
                     <CriaTextBody1 style={{ 
                       color: 'var(--cria-text-primary)', 
                       fontWeight: '500',
@@ -254,7 +254,8 @@ const Dashboard: React.FC = () => {
                   </div>
                   <CriaTextBody1 style={{ 
                     color: 'var(--cria-text-secondary)', 
-                    fontSize: '14px'
+                    fontSize: '14px',
+                    whiteSpace: 'nowrap'
                   }}>
                     {user.created_at}
                   </CriaTextBody1>
