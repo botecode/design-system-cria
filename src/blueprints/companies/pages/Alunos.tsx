@@ -168,8 +168,8 @@ const Alunos: React.FC = () => {
 
         {/* User Information Grid */}
         <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))',
+          display: 'flex',
+          flexDirection: 'column',
           gap: '24px'
         }}>
           {/* Basic Information */}
