@@ -159,67 +159,67 @@ const Insights: React.FC = () => {
       {/* Charts Grid - Full Width */}
       <div style={{ 
         display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', 
-        gap: '24px' 
+        gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+        gap: '20px' 
       }}>
         {/* First Row - AI Experience and Intimacy */}
         <PieChart
           title="Experiência com IA"
           data={aiExperienceData}
-          height={400}
+          height={350}
         />
         <DonutChart
           title="Intimidade com IA"
           data={aiIntimacyData}
-          height={400}
+          height={350}
         />
 
         {/* Second Row - Objectives and Work Areas */}
         <BarChart
           title="Objetivos com IA"
           data={objectivesData.map(item => ({ name: item.name, value: item.value }))}
-          height={400}
+          height={350}
         />
         <PieChart
           title="Áreas de Atuação"
           data={workAreasData}
-          height={400}
+          height={350}
         />
 
         {/* Third Row - Roles and Daily Tasks */}
         <DonutChart
           title="Papéis na Empresa"
           data={rolesData}
-          height={400}
+          height={350}
         />
         <BarChart
           title="Tarefas do Dia a Dia"
           data={dailyTasksData.map(item => ({ name: item.name, value: item.value }))}
-          height={400}
+          height={350}
         />
 
         {/* Fourth Row - Learning Preferences and Discovery Source */}
         <PieChart
           title="Preferências de Aprendizado"
           data={learningPreferencesData}
-          height={400}
+          height={350}
         />
         <DonutChart
           title="Canais de Descoberta"
           data={discoverySourceData}
-          height={400}
+          height={350}
         />
 
         {/* Fifth Row - Department and Title Distribution */}
         <BarChart
           title="Distribuição por Área"
           data={departmentBarData}
-          height={400}
+          height={350}
         />
         <BarChart
           title="Distribuição por Cargo"
           data={titleBarData}
-          height={400}
+          height={350}
         />
       </div>
     </section>
