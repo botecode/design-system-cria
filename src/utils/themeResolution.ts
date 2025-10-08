@@ -22,7 +22,7 @@ export const resolveInitialTheme = (options: ThemeResolutionOptions = {}): Theme
 
     // 2. Check system preference if enabled
     if (enableSystem) {
-      const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      const systemTheme = getSystemTheme();
       return systemTheme;
     }
   }
@@ -48,9 +48,32 @@ export const getStoredTheme = (storageKey: string = 'cria-theme'): Theme | null 
   return stored && (stored === 'light' || stored === 'dark') ? stored : null;
 };
 
+export const watchSystemTheme = (callback: (theme: Theme) => void): (() => void) => {
+  if (typeof window === 'undefined') return () => {};
+  
+  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  
+  const handleChange = (event: MediaQueryListEvent) => {
+    callback(event.matches ? 'dark' : 'light');
+  };
+  
+  mediaQuery.addEventListener('change', handleChange);
+  
+  return () => {
+    mediaQuery.removeEventListener('change', handleChange);
+  };
+};
+
+export const isSystemThemeDark = (): boolean => {
+  if (typeof window === 'undefined') return false;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches;
+};
+
 export default {
   resolveInitialTheme,
   getSystemTheme,
   saveThemePreference,
   getStoredTheme,
+  watchSystemTheme,
+  isSystemThemeDark,
 };

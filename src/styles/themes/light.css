@@ -50,4 +50,13 @@
   --cria-hover-overlay: rgba(0, 0, 0, 0.05);
   --cria-active-overlay: rgba(0, 0, 0, 0.1);
   --cria-disabled-overlay: rgba(0, 0, 0, 0.03);
+  
+  /* Transitions */
+  --cria-transition-duration: 0.3s;
+  --cria-transition-timing-function: ease-in-out;
+  
+  /* Shadow Sizes */
+  --cria-shadow-sm: 0 1px 2px 0 var(--cria-shadow-light);
+  --cria-shadow-md: 0 4px 6px -1px var(--cria-shadow-light), 0 2px 4px -1px var(--cria-shadow-light);
+  --cria-shadow-lg: 0 10px 15px -3px var(--cria-shadow-medium), 0 4px 6px -2px var(--cria-shadow-light);
 }
