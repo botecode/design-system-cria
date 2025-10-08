@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { MagnifyingGlass as Search, CaretUp as ArrowUp, CaretDown as ArrowDown, Command } from 'phosphor-react';
 import { colors, spacing, radii, shadows, typography } from '../../tokens';
-import { CriaTextHeadline1, CriaTextBody1, CriaTextBody2, CriaTextCaption } from '../TextTokens';
+import { CriaTextHeadline1, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { Card, CardContent } from '../Card';
 
 export interface CommandItem {
@@ -327,7 +327,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                       borderRadius: radii.sm,
                     }}
                   >
-                    <CriaTextCaption
+                    <CriaTextBody2
                       style={{
                         color: colors.gray[600],
                         fontWeight: typography.fontWeight.semiBold,
@@ -336,7 +336,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                       }}
                     >
                       {categoryLabel}
-                    </CriaTextCaption>
+                    </CriaTextBody2>
                   </div>
 
                   {/* Commands in Category */}
@@ -410,7 +410,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                             {command.title}
                           </CriaTextBody1>
                           {command.description && (
-                            <CriaTextCaption
+                            <CriaTextBody2
                               style={{
                                 color: colors.gray[600],
                                 fontSize: typography.fontSize.caption,
@@ -418,7 +418,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({
                               }}
                             >
                               {command.description}
-                            </CriaTextCaption>
+                            </CriaTextBody2>
                           )}
                         </div>
 

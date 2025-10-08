@@ -9,6 +9,7 @@ export * from './spacing';
 export * from './typography';
 export * from './radii';
 export * from './shadows';
+export * from './themeMapping';
 
 // CSS Variables for theming
 export const cssVariables = {

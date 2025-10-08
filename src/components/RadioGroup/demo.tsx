@@ -20,23 +20,31 @@ export const RadioGroupDemo: React.FC = () => {
   return (
     <div style={{ padding: '0' }}>
       <div style={{ marginBottom: spacing[8] }}>
-        <CriaTextHeadline1 style={{ marginBottom: spacing[4] }}>
-          Radio Group Component
-        </CriaTextHeadline1>
-        <CriaTextBody1 style={{ marginBottom: '0' }}>
-          A Radio Group component for single selection from multiple options with proper accessibility,
-          keyboard navigation, and form integration.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline1>
+            Radio Group Component
+          </CriaTextHeadline1>
+        </div>
+        <div style={{ marginBottom: '0' }}>
+          <CriaTextBody1>
+            A Radio Group component for single selection from multiple options with proper accessibility,
+            keyboard navigation, and form integration.
+          </CriaTextBody1>
+        </div>
       </div>
 
       {/* Basic Usage */}
       <div style={{ marginBottom: spacing[8] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Basic Usage
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-          Simple radio group with three options. Only one option can be selected at a time.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Basic Usage
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextBody1>
+            Simple radio group with three options. Only one option can be selected at a time.
+          </CriaTextBody1>
+        </div>
         
         <Card style={{ marginBottom: spacing[4] }}>
           <CardHeader>
@@ -54,9 +62,11 @@ export const RadioGroupDemo: React.FC = () => {
               <RadioGroupItem value="option3">Option 3</RadioGroupItem>
             </RadioGroup>
             {basicValue && (
-              <CriaTextBody1 style={{ marginTop: spacing[4], color: colors.text.secondary }}>
-                Selected: {basicValue}
-              </CriaTextBody1>
+              <div style={{ marginTop: spacing[4], color: colors.text.secondary }}>
+                <CriaTextBody1>
+                  Selected: {basicValue}
+                </CriaTextBody1>
+              </div>
             )}
           </CardContent>
         </Card>
@@ -64,12 +74,16 @@ export const RadioGroupDemo: React.FC = () => {
 
       {/* Size Variants */}
       <div style={{ marginBottom: '32px' }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Size Variants
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-          Radio groups support different sizes for various use cases.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Size Variants
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextBody1>
+            Radio groups support different sizes for various use cases.
+          </CriaTextBody1>
+        </div>
         
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[4] }}>
           <Card>
@@ -114,12 +128,16 @@ export const RadioGroupDemo: React.FC = () => {
 
       {/* Orientation */}
       <div style={{ marginBottom: '32px' }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Orientation
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-          Radio groups can be displayed horizontally or vertically.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Orientation
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextBody1>
+            Radio groups can be displayed horizontally or vertically.
+          </CriaTextBody1>
+        </div>
         
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: spacing[4] }}>
           <Card>
@@ -164,12 +182,16 @@ export const RadioGroupDemo: React.FC = () => {
 
       {/* States */}
       <div style={{ marginBottom: '32px' }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          States
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-          Radio groups support different states including disabled, required, and error states.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            States
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextBody1>
+            Radio groups support different states including disabled, required, and error states.
+          </CriaTextBody1>
+        </div>
         
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: spacing[4] }}>
           <Card>
@@ -233,12 +255,16 @@ export const RadioGroupDemo: React.FC = () => {
 
       {/* Form Integration */}
       <div style={{ marginBottom: '32px' }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Form Integration
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-          Radio groups work seamlessly with forms and provide proper validation.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Form Integration
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextBody1>
+            Radio groups work seamlessly with forms and provide proper validation.
+          </CriaTextBody1>
+        </div>
         
         <Card>
           <CardHeader>
@@ -266,9 +292,11 @@ export const RadioGroupDemo: React.FC = () => {
               </Button>
               
               {formValue && (
-                <CriaTextBody1 style={{ color: colors.text.secondary }}>
-                  Preview: You selected "{formValue}"
-                </CriaTextBody1>
+                <div style={{ color: colors.text.secondary }}>
+                  <CriaTextBody1>
+                    Preview: You selected "{formValue}"
+                  </CriaTextBody1>
+                </div>
               )}
             </form>
           </CardContent>
@@ -277,12 +305,16 @@ export const RadioGroupDemo: React.FC = () => {
 
       {/* Accessibility Features */}
       <div style={{ marginBottom: '32px' }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Accessibility Features
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-          The Radio Group component includes comprehensive accessibility features.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Accessibility Features
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextBody1>
+            The Radio Group component includes comprehensive accessibility features.
+          </CriaTextBody1>
+        </div>
         
         <Card>
           <CardContent>
@@ -300,12 +332,16 @@ export const RadioGroupDemo: React.FC = () => {
 
       {/* Real-world Example */}
       <div style={{ marginBottom: '32px' }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Real-world Example
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-          Here's how the Radio Group component works in a typical application form.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Real-world Example
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextBody1>
+            Here's how the Radio Group component works in a typical application form.
+          </CriaTextBody1>
+        </div>
         
         <Card>
           <CardContent>

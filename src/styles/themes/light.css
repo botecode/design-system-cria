@@ -1,0 +1,53 @@
+/* CRIA Design System - Light Theme CSS Variables */
+
+:root {
+  /* Background Colors */
+  --cria-bg-primary: #F2F4F3;
+  --cria-bg-secondary: #FFFFFF;
+  --cria-bg-tertiary: #F9FAFB;
+  
+  /* Text Colors */
+  --cria-text-primary: #374151;
+  --cria-text-secondary: #6B7280;
+  --cria-text-tertiary: #9CA3AF;
+  --cria-text-inverse: #FFFFFF;
+  
+  /* Border Colors */
+  --cria-border-primary: #E5E7EB;
+  --cria-border-secondary: #D1D5DB;
+  --cria-border-tertiary: #9CA3AF;
+  
+  /* Primary Colors */
+  --cria-primary: #7566A1;
+  --cria-primary-light: #3A2E52;
+  --cria-primary-dark: #2A1F3A;
+  
+  /* Secondary Colors */
+  --cria-secondary: #28DDB9;
+  --cria-secondary-dark: #167B7A;
+  
+  /* Semantic Colors */
+  --cria-success: #10B981;
+  --cria-warning: #D97706;
+  --cria-error: #DC2626;
+  --cria-info: #3B82F6;
+  
+  /* Surface Colors */
+  --cria-surface-primary: #FFFFFF;
+  --cria-surface-secondary: #F9FAFB;
+  --cria-surface-tertiary: #F3F4F6;
+  
+  /* Shadow Colors */
+  --cria-shadow-light: rgba(0, 0, 0, 0.1);
+  --cria-shadow-medium: rgba(0, 0, 0, 0.15);
+  --cria-shadow-dark: rgba(0, 0, 0, 0.25);
+  
+  /* Focus Colors */
+  --cria-focus-ring: #7566A1;
+  --cria-focus-ring-offset: #FFFFFF;
+  
+  /* Interactive States */
+  --cria-hover-overlay: rgba(0, 0, 0, 0.05);
+  --cria-active-overlay: rgba(0, 0, 0, 0.1);
+  --cria-disabled-overlay: rgba(0, 0, 0, 0.03);
+}

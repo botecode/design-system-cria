@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useCallback, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { CriaTextTitle1, CriaTextCaption } from '../TextTokens';
+import { CriaTextTitle1, CriaTextBody2 } from '../TextTokens';
 import { Button } from '../Button';
 import { X, Spinner } from 'phosphor-react';
 import { colors, spacing, radii, shadows } from '../../tokens';
@@ -345,7 +345,7 @@ export const Drawer: React.FC<DrawerProps> = ({
                   <div style={{ display: 'flex', alignItems: 'center', gap: spacing[2] }}>
                     {titleIcon && (
                       <div className="drawer__title-icon" aria-hidden="true">
-                        <CriaTextCaption>{titleIcon}</CriaTextCaption>
+                        <CriaTextBody2>{titleIcon}</CriaTextBody2>
                       </div>
                     )}
                     <CriaTextTitle1 

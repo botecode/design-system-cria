@@ -7,6 +7,11 @@
 // Design Tokens
 export * from './tokens';
 
+// Theme System
+export * from './contexts';
+export * from './hooks';
+export * from './utils';
+
 // Components - Named exports
 export * from './components/Accordion';
 export * from './components/Avatar';
@@ -74,3 +79,4 @@ export * from './components/Table';
 export * from './components/EmptyState';
 export * from './components/Charts';
 export * from './components/StatisticMetricCard';
+export * from './components/ThemeToggle';

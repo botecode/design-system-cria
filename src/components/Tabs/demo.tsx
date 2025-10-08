@@ -86,9 +86,11 @@ export const TabsDemo: React.FC = () => {
       icon: <House size={16} />,
       content: (
         <div style={{ padding: spacing[6] }}>
-          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
-            Home Dashboard
-          </CriaTextTitle1>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1>
+              Home Dashboard
+            </CriaTextTitle1>
+          </div>
           <CriaTextBody1>
             Welcome to your home dashboard. Here you can see an overview of your activities.
           </CriaTextBody1>
@@ -101,9 +103,11 @@ export const TabsDemo: React.FC = () => {
       icon: <User size={16} />,
       content: (
         <div style={{ padding: spacing[6] }}>
-          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
-            User Profile
-          </CriaTextTitle1>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1>
+              User Profile
+            </CriaTextTitle1>
+          </div>
           <CriaTextBody1>
             Manage your profile information and preferences.
           </CriaTextBody1>
@@ -117,9 +121,11 @@ export const TabsDemo: React.FC = () => {
       badge: <Badge variant="error" badgeStyle="solid" size="sm">3</Badge>,
       content: (
         <div style={{ padding: spacing[6] }}>
-          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
-            Messages
-          </CriaTextTitle1>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1>
+              Messages
+            </CriaTextTitle1>
+          </div>
           <CriaTextBody1>
             You have 3 unread messages. Check them out!
           </CriaTextBody1>
@@ -133,9 +139,11 @@ export const TabsDemo: React.FC = () => {
       badge: <Badge variant="warning" badgeStyle="solid" size="sm">1</Badge>,
       content: (
         <div style={{ padding: spacing[6] }}>
-          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
-            Notifications
-          </CriaTextTitle1>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1>
+              Notifications
+            </CriaTextTitle1>
+          </div>
           <CriaTextBody1>
             You have important notifications waiting for you.
           </CriaTextBody1>
@@ -212,29 +220,39 @@ export const TabsDemo: React.FC = () => {
 
   return (
     <div style={{ padding: spacing[6], maxWidth: '1000px' }}>
-      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
-        Tabs Demo
-      </CriaTextHeadline1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline1>
+          Tabs Demo
+        </CriaTextHeadline1>
+      </div>
 
       {/* Basic Tabs */}
       <section style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Basic Tabs
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
-          Simple tabs with different content panels. Use keyboard navigation (arrow keys, Home, End) for accessibility.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Basic Tabs
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Simple tabs with different content panels. Use keyboard navigation (arrow keys, Home, End) for accessibility.
+          </CriaTextBody1>
+        </div>
         <Tabs items={basicTabs} />
       </section>
 
       {/* Controlled Tabs */}
       <section style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Controlled Tabs
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-          Tabs can be controlled externally. Current active tab: <strong>{activeTab}</strong>
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Controlled Tabs
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextBody1>
+            Tabs can be controlled externally. Current active tab: <strong>{activeTab}</strong>
+          </CriaTextBody1>
+        </div>
         <div style={{ display: 'flex', gap: spacing[3], marginBottom: spacing[6] }}>
           <Button 
             variant="outline" 
@@ -267,24 +285,32 @@ export const TabsDemo: React.FC = () => {
 
       {/* Tabs with Icons and Badges */}
       <section style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Tabs with Icons and Badges
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
-          Tabs can include icons and badges to provide additional visual context and information. 
-          Badge colors have been optimized for better readability.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Tabs with Icons and Badges
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Tabs can include icons and badges to provide additional visual context and information. 
+            Badge colors have been optimized for better readability.
+          </CriaTextBody1>
+        </div>
         <Tabs items={tabsWithIcons} />
       </section>
 
       {/* Alternative Badge Styles */}
       <section style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Alternative Badge Styles
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
-          Different badge styles for better contrast and readability in various contexts.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Alternative Badge Styles
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Different badge styles for better contrast and readability in various contexts.
+          </CriaTextBody1>
+        </div>
         <Tabs items={[
           {
             id: 'home-alt',
@@ -311,100 +337,130 @@ export const TabsDemo: React.FC = () => {
 
       {/* Tab Variants */}
       <section style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Tab Variants
-        </CriaTextHeadline2>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Tab Variants
+          </CriaTextHeadline2>
+        </div>
         
         <div style={{ marginBottom: spacing[8] }}>
-          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
-            Pills Variant
-          </CriaTextTitle1>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1>
+              Pills Variant
+            </CriaTextTitle1>
+          </div>
           <Tabs items={basicTabs} variant="pills" />
         </div>
 
         <div style={{ marginBottom: spacing[8] }}>
-          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
-            Underline Variant
-          </CriaTextTitle1>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1>
+              Underline Variant
+            </CriaTextTitle1>
+          </div>
           <Tabs items={basicTabs} variant="underline" />
         </div>
 
         <div style={{ marginBottom: spacing[8] }}>
-          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
-            Cards Variant
-          </CriaTextTitle1>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1>
+              Cards Variant
+            </CriaTextTitle1>
+          </div>
           <Tabs items={cardTabs} variant="cards" />
         </div>
       </section>
 
       {/* Tab Sizes */}
       <section style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Tab Sizes
-        </CriaTextHeadline2>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Tab Sizes
+          </CriaTextHeadline2>
+        </div>
         
         <div style={{ marginBottom: spacing[8] }}>
-          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
-            Small Size
-          </CriaTextTitle1>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1>
+              Small Size
+            </CriaTextTitle1>
+          </div>
           <Tabs items={basicTabs} size="sm" />
         </div>
 
         <div style={{ marginBottom: spacing[8] }}>
-          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
-            Medium Size (Default)
-          </CriaTextTitle1>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1>
+              Medium Size (Default)
+            </CriaTextTitle1>
+          </div>
           <Tabs items={basicTabs} size="md" />
         </div>
 
         <div style={{ marginBottom: spacing[8] }}>
-          <CriaTextTitle1 style={{ marginBottom: spacing[4] }}>
-            Large Size
-          </CriaTextTitle1>
+          <div style={{ marginBottom: spacing[4] }}>
+            <CriaTextTitle1>
+              Large Size
+            </CriaTextTitle1>
+          </div>
           <Tabs items={basicTabs} size="lg" />
         </div>
       </section>
 
       {/* Full Width Tabs */}
       <section style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Full Width Tabs
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
-          Tabs can span the full width of their container for better space utilization.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Full Width Tabs
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Tabs can span the full width of their container for better space utilization.
+          </CriaTextBody1>
+        </div>
         <Tabs items={basicTabs} fullWidth />
       </section>
 
       {/* Disabled Tabs */}
       <section style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Disabled Tabs
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
-          Individual tabs can be disabled to prevent user interaction while maintaining visual context.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Disabled Tabs
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Individual tabs can be disabled to prevent user interaction while maintaining visual context.
+          </CriaTextBody1>
+        </div>
         <Tabs items={tabsWithDisabled} />
       </section>
 
       {/* Note about Vertical Navigation */}
       <section style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Vertical Navigation
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
-          For vertical navigation and sidebar layouts, use the <strong>Sidebar</strong> component instead of vertical tabs.
-          The Sidebar component is specifically designed for navigation menus and provides better accessibility and UX for vertical layouts.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Vertical Navigation
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            For vertical navigation and sidebar layouts, use the <strong>Sidebar</strong> component instead of vertical tabs.
+            The Sidebar component is specifically designed for navigation menus and provides better accessibility and UX for vertical layouts.
+          </CriaTextBody1>
+        </div>
         <div style={{ 
           padding: spacing[4], 
           backgroundColor: colors.gray[100], 
           borderRadius: radii.md,
           border: `1px solid ${colors.border.light}`
         }}>
-          <CriaTextBody1 style={{ marginBottom: spacing[2] }}>
-            💡 Tip: Use Sidebar for navigation menus, Tabs for content organization
-          </CriaTextBody1>
+          <div style={{ marginBottom: spacing[2] }}>
+            <CriaTextBody1>
+              💡 Tip: Use Sidebar for navigation menus, Tabs for content organization
+            </CriaTextBody1>
+          </div>
           <CriaTextBody2>
             Import: <code>import {'{'} Sidebar {'}'} from 'design-system-cria';</code>
           </CriaTextBody2>
@@ -413,26 +469,36 @@ export const TabsDemo: React.FC = () => {
 
       {/* Tabs Without Content */}
       <section style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Tabs Without Content
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
-          Sometimes you only need the tab navigation without displaying content below.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Tabs Without Content
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Sometimes you only need the tab navigation without displaying content below.
+          </CriaTextBody1>
+        </div>
         <Tabs items={basicTabs} showContent={false} />
-        <CriaTextBody1 style={{ marginTop: spacing[4] }}>
-          The content is hidden, but you can still handle tab changes via the onChange callback.
-        </CriaTextBody1>
+        <div style={{ marginTop: spacing[4] }}>
+          <CriaTextBody1>
+            The content is hidden, but you can still handle tab changes via the onChange callback.
+          </CriaTextBody1>
+        </div>
       </section>
 
       {/* Accessibility */}
       <section style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Accessibility Features
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-          The Tabs component includes comprehensive accessibility features:
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Accessibility Features
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextBody1>
+            The Tabs component includes comprehensive accessibility features:
+          </CriaTextBody1>
+        </div>
         <ul style={{ marginLeft: spacing[6], marginBottom: spacing[4] }}>
           <li>
             <CriaTextBody1>

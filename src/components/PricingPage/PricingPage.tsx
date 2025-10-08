@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Card } from '../Card';
 import { Button } from '../Button';
 import { Badge } from '../Badge';
-import { CriaTextHeadline1, CriaTextHeadline2, CriaTextTitle1, CriaTextTitle2, CriaTextBody1, CriaTextBody2, CriaTextCaption } from '../TextTokens';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextTitle1, CriaTextTitle2, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { colors, spacing, typography, radii } from '../../tokens';
 
 export type BillingPeriod = 'monthly' | 'yearly';
@@ -279,14 +279,14 @@ export const PricingPage: React.FC<PricingPageProps> = ({
                 </div>
 
                 {billingPeriod === 'yearly' && savings.percentage > 0 && (
-                  <CriaTextCaption 
+                  <CriaTextBody2 
                     style={{ 
                       color: colors.success[500],
                       fontWeight: typography.fontWeight.medium,
                     }}
                   >
                     Save {savings.percentage}%
-                  </CriaTextCaption>
+                  </CriaTextBody2>
                 )}
               </div>
 
@@ -329,9 +329,9 @@ export const PricingPage: React.FC<PricingPageProps> = ({
                   ))}
                   {tier.features.length > 5 && (
                     <li style={{ marginTop: spacing.xs }}>
-                      <CriaTextCaption style={{ color: colors.text.secondary, fontStyle: 'italic' }}>
+                      <CriaTextBody2 style={{ color: colors.text.secondary, fontStyle: 'italic' }}>
                         +{tier.features.length - 5} more features
-                      </CriaTextCaption>
+                      </CriaTextBody2>
                     </li>
                   )}
                 </ul>
@@ -372,13 +372,13 @@ export const PricingPage: React.FC<PricingPageProps> = ({
         >
           All plans include 14-day free trial
         </CriaTextBody1>
-        <CriaTextCaption 
+        <CriaTextBody2 
           style={{ 
             color: colors.text.tertiary,
           }}
         >
           No credit card required • Cancel anytime
-        </CriaTextCaption>
+        </CriaTextBody2>
       </div>
     </main>
   );

@@ -30,18 +30,22 @@ const DividerDemo: React.FC = () => {
             </CriaTextTitle1>
           </CardHeader>
           <CardContent>
-            <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-              Default horizontal divider:
-            </CriaTextBody1>
+            <div style={{ marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                Default horizontal divider:
+              </CriaTextBody1>
+            </div>
             <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
               <CriaTextBody1>Content above</CriaTextBody1>
               <Divider />
               <CriaTextBody1>Content below</CriaTextBody1>
             </div>
 
-            <CriaTextBody1 style={{ marginTop: spacing[8], marginBottom: spacing[4] }}>
-              Vertical divider:
-            </CriaTextBody1>
+            <div style={{ marginTop: spacing[8], marginBottom: spacing[4] }}>
+              <CriaTextBody1>
+                Vertical divider:
+              </CriaTextBody1>
+            </div>
             <div style={{ display: 'flex', alignItems: 'center', padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm, height: '100px' }}>
               <CriaTextBody1>Left content</CriaTextBody1>
               <Divider orientation="vertical" />
@@ -59,13 +63,19 @@ const DividerDemo: React.FC = () => {
           </CardHeader>
           <CardContent>
             <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
-              <CriaTextBody1 style={{ marginBottom: spacing[2] }}>Solid (default)</CriaTextBody1>
+              <div style={{ marginBottom: spacing[2] }}>
+                <CriaTextBody1>Solid (default)</CriaTextBody1>
+              </div>
               <Divider variant="solid" />
               
-              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Dashed</CriaTextBody1>
+              <div style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>
+                <CriaTextBody1>Dashed</CriaTextBody1>
+              </div>
               <Divider variant="dashed" />
               
-              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Dotted</CriaTextBody1>
+              <div style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>
+                <CriaTextBody1>Dotted</CriaTextBody1>
+              </div>
               <Divider variant="dotted" />
             </div>
           </CardContent>
@@ -80,13 +90,19 @@ const DividerDemo: React.FC = () => {
           </CardHeader>
           <CardContent>
             <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
-              <CriaTextBody1 style={{ marginBottom: spacing[2] }}>Small</CriaTextBody1>
+              <div style={{ marginBottom: spacing[2] }}>
+                <CriaTextBody1>Small</CriaTextBody1>
+              </div>
               <Divider size="sm" />
               
-              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Medium (default)</CriaTextBody1>
+              <div style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>
+                <CriaTextBody1>Medium (default)</CriaTextBody1>
+              </div>
               <Divider size="md" />
               
-              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Large</CriaTextBody1>
+              <div style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>
+                <CriaTextBody1>Large</CriaTextBody1>
+              </div>
               <Divider size="lg" />
             </div>
           </CardContent>
@@ -101,13 +117,19 @@ const DividerDemo: React.FC = () => {
           </CardHeader>
           <CardContent>
             <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
-              <CriaTextBody1 style={{ marginBottom: spacing[2] }}>Primary</CriaTextBody1>
+              <div style={{ marginBottom: spacing[2] }}>
+                <CriaTextBody1>Primary</CriaTextBody1>
+              </div>
               <Divider color="primary" />
               
-              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Secondary</CriaTextBody1>
+              <div style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>
+                <CriaTextBody1>Secondary</CriaTextBody1>
+              </div>
               <Divider color="secondary" />
               
-              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Gray (default)</CriaTextBody1>
+              <div style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>
+                <CriaTextBody1>Gray (default)</CriaTextBody1>
+              </div>
               <Divider color="gray" />
             </div>
           </CardContent>
@@ -122,16 +144,24 @@ const DividerDemo: React.FC = () => {
           </CardHeader>
           <CardContent>
             <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
-              <CriaTextBody1 style={{ marginBottom: spacing[2] }}>Label at start</CriaTextBody1>
+              <div style={{ marginBottom: spacing[2] }}>
+                <CriaTextBody1>Label at start</CriaTextBody1>
+              </div>
               <Divider label="Start Label" labelPosition="start" />
               
-              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Label at center (default)</CriaTextBody1>
+              <div style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>
+                <CriaTextBody1>Label at center (default)</CriaTextBody1>
+              </div>
               <Divider label="Center Label" labelPosition="center" />
               
-              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Label at end</CriaTextBody1>
+              <div style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>
+                <CriaTextBody1>Label at end</CriaTextBody1>
+              </div>
               <Divider label="End Label" labelPosition="end" />
               
-              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Primary colored divider with label</CriaTextBody1>
+              <div style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>
+                <CriaTextBody1>Primary colored divider with label</CriaTextBody1>
+              </div>
               <Divider label="OR" color="primary" />
             </div>
           </CardContent>
@@ -146,13 +176,19 @@ const DividerDemo: React.FC = () => {
           </CardHeader>
           <CardContent>
             <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
-              <CriaTextBody1 style={{ marginBottom: spacing[2] }}>Custom width (50%)</CriaTextBody1>
+              <div style={{ marginBottom: spacing[2] }}>
+                <CriaTextBody1>Custom width (50%)</CriaTextBody1>
+              </div>
               <Divider width="50%" />
               
-              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Custom width (200px)</CriaTextBody1>
+              <div style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>
+                <CriaTextBody1>Custom width (200px)</CriaTextBody1>
+              </div>
               <Divider width="200px" />
               
-              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Vertical with custom height</CriaTextBody1>
+              <div style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>
+                <CriaTextBody1>Vertical with custom height</CriaTextBody1>
+              </div>
               <div style={{ display: 'flex', alignItems: 'center', height: '120px' }}>
                 <CriaTextBody1>Left</CriaTextBody1>
                 <Divider orientation="vertical" height="80px" />
@@ -171,13 +207,19 @@ const DividerDemo: React.FC = () => {
           </CardHeader>
           <CardContent>
             <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
-              <CriaTextBody1 style={{ marginBottom: spacing[2] }}>Small spacing</CriaTextBody1>
+              <div style={{ marginBottom: spacing[2] }}>
+                <CriaTextBody1>Small spacing</CriaTextBody1>
+              </div>
               <Divider spacing="sm" />
               
-              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Medium spacing (default)</CriaTextBody1>
+              <div style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>
+                <CriaTextBody1>Medium spacing (default)</CriaTextBody1>
+              </div>
               <Divider spacing="md" />
               
-              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>Large spacing</CriaTextBody1>
+              <div style={{ marginTop: spacing[4], marginBottom: spacing[2] }}>
+                <CriaTextBody1>Large spacing</CriaTextBody1>
+              </div>
               <Divider spacing="lg" />
             </div>
           </CardContent>
@@ -193,37 +235,51 @@ const DividerDemo: React.FC = () => {
           <CardContent>
             <div style={{ padding: spacing[4], backgroundColor: colors.gray[100], borderRadius: radii.sm }}>
               {/* Login Form Divider */}
-              <CriaTextTitle2  style={{ marginBottom: spacing[4] }}>Login Form</CriaTextTitle2>
+              <div style={{ marginBottom: spacing[4] }}>
+                <CriaTextTitle2>Login Form</CriaTextTitle2>
+              </div>
               <Button variant="primary" size="lg" style={{ width: '100%', marginBottom: spacing[4] }}>
                 Sign in with Google
               </Button>
               <Divider label="OR" color="primary" />
               <div style={{ marginTop: spacing[4] }}>
-                <CriaTextBody1 style={{ marginBottom: spacing[2] }}>Email:</CriaTextBody1>
+                <div style={{ marginBottom: spacing[2] }}>
+                  <CriaTextBody1>Email:</CriaTextBody1>
+                </div>
                 <Input type="email" style={{ width: '100%' }} />
-                <CriaTextBody1 style={{ marginTop: spacing[2], marginBottom: spacing[2] }}>Password:</CriaTextBody1>
+                <div style={{ marginTop: spacing[2], marginBottom: spacing[2] }}>
+                  <CriaTextBody1>Password:</CriaTextBody1>
+                </div>
                 <Input type="password" style={{ width: '100%' }} />
               </div>
 
               {/* Section Separators */}
               <Divider style={{ marginTop: spacing[8], marginBottom: spacing[8] }} />
               
-              <CriaTextTitle2  style={{ marginBottom: spacing[4] }}>Content Sections</CriaTextTitle2>
-              <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-                This is the first section of content. It contains important information that needs to be separated from other sections.
-              </CriaTextBody1>
+              <div style={{ marginBottom: spacing[4] }}>
+                <CriaTextTitle2>Content Sections</CriaTextTitle2>
+              </div>
+              <div style={{ marginBottom: spacing[4] }}>
+                <CriaTextBody1>
+                  This is the first section of content. It contains important information that needs to be separated from other sections.
+                </CriaTextBody1>
+              </div>
               
               <Divider variant="dashed" color="secondary" />
               
-              <CriaTextBody1 style={{ marginTop: spacing[4], marginBottom: spacing[4] }}>
-                This is the second section. Notice how the dashed divider creates a visual break between sections while maintaining the flow.
-              </CriaTextBody1>
+              <div style={{ marginTop: spacing[4], marginBottom: spacing[4] }}>
+                <CriaTextBody1>
+                  This is the second section. Notice how the dashed divider creates a visual break between sections while maintaining the flow.
+                </CriaTextBody1>
+              </div>
               
               <Divider variant="dotted" size="lg" />
               
-              <CriaTextBody1 style={{ marginTop: spacing[4] }}>
-                This is the final section. The dotted divider provides a softer separation for the conclusion.
-              </CriaTextBody1>
+              <div style={{ marginTop: spacing[4] }}>
+                <CriaTextBody1>
+                  This is the final section. The dotted divider provides a softer separation for the conclusion.
+                </CriaTextBody1>
+              </div>
             </div>
           </CardContent>
         </Card>

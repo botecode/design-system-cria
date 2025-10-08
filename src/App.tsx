@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Typography, Button, Navigation } from './index.ts';
+import { Typography, Button, Navigation, ThemeProvider } from './index.ts';
 import { CriaTextHeadline1, CriaTextTitle1, CriaTextBody1 } from './components/TextTokens';
 import { House, TextAa, Mouse, PencilSimple, CheckSquare, ToggleLeft, Bell, ChatCircle, Info, Square, Tag, Tabs, List, CaretDown, Article, Layout, User, Robot } from 'phosphor-react';
 import TypographyDemo from './components/Typography/demo';
@@ -475,7 +475,8 @@ const App: React.FC = () => {
   };
 
       return (
-        <div style={{ minHeight: '100vh', backgroundColor: 'var(--cria-background)', position: 'relative' }}>
+        <ThemeProvider>
+          <div style={{ minHeight: '100vh', backgroundColor: 'var(--cria-bg-primary)', position: 'relative' }}>
           {/* Mobile Toggle Button */}
           {isMobile && (
             <button
@@ -615,7 +616,8 @@ const App: React.FC = () => {
             position="right"
             size="lg"
           />
-        </div>
+          </div>
+        </ThemeProvider>
       );
 };
 

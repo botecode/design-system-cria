@@ -46,12 +46,16 @@ export const TooltipDemo: React.FC = () => {
 
       {/* Tooltip Variants */}
       <section style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Tooltip Variants
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
-          Different visual styles for different types of information.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Tooltip Variants
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Different visual styles for different types of information.
+          </CriaTextBody1>
+        </div>
         <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center', flexWrap: 'wrap' }}>
           <Tooltip content="Default tooltip style" variant="default">
             <Button variant="outline">Default</Button>
@@ -85,12 +89,16 @@ export const TooltipDemo: React.FC = () => {
 
       {/* Tooltip Sizes */}
       <section style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Tooltip Sizes
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
-          Different sizes for different content lengths and contexts.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Tooltip Sizes
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Different sizes for different content lengths and contexts.
+          </CriaTextBody1>
+        </div>
         <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center', flexWrap: 'wrap' }}>
           <Tooltip content="Small tooltip" size="sm">
             <Button variant="outline" size="sm">Small</Button>
@@ -108,12 +116,16 @@ export const TooltipDemo: React.FC = () => {
 
       {/* Tooltip Positions */}
       <section style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Tooltip Positions
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
-          Tooltips can be positioned in various directions to avoid viewport boundaries.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Tooltip Positions
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Tooltips can be positioned in various directions to avoid viewport boundaries.
+          </CriaTextBody1>
+        </div>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: spacing[6], alignItems: 'center', justifyItems: 'center' }}>
           <Tooltip content="Top tooltip" position="top">
             <Button variant="outline">Top</Button>
@@ -143,12 +155,16 @@ export const TooltipDemo: React.FC = () => {
 
       {/* Tooltips with Icons */}
       <section style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Tooltips with Icons
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
-          Icons can be used as triggers for tooltips, providing visual context.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Tooltips with Icons
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Icons can be used as triggers for tooltips, providing visual context.
+          </CriaTextBody1>
+        </div>
         <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center', flexWrap: 'wrap' }}>
           <Tooltip content="Get more information about this feature" variant="info">
             <div style={{ 
@@ -202,19 +218,25 @@ export const TooltipDemo: React.FC = () => {
 
       {/* Interactive Tooltips */}
       <section style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Interactive Tooltips
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
-          Interactive tooltips stay open when you hover over them, allowing for more complex content.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Interactive Tooltips
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Interactive tooltips stay open when you hover over them, allowing for more complex content.
+          </CriaTextBody1>
+        </div>
         <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center', flexWrap: 'wrap' }}>
           <Tooltip 
             content={
               <div style={{ padding: spacing[2] }}>
-                <CriaTextBody1 style={{ marginBottom: spacing[1] }}>
-                  Interactive Tooltip
-                </CriaTextBody1>
+                <div style={{ marginBottom: spacing[1] }}>
+                  <CriaTextBody1>
+                    Interactive Tooltip
+                  </CriaTextBody1>
+                </div>
                 <CriaTextBody2>
                   This tooltip stays open when you hover over it, allowing for interactive content.
                 </CriaTextBody2>
@@ -248,12 +270,16 @@ export const TooltipDemo: React.FC = () => {
 
       {/* Tooltips with Delays */}
       <section style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Tooltips with Delays
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
-          Control when tooltips appear and disappear with custom delays.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Tooltips with Delays
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Control when tooltips appear and disappear with custom delays.
+          </CriaTextBody1>
+        </div>
         <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center', flexWrap: 'wrap' }}>
           <Tooltip content="Appears after 500ms" delay={500}>
             <Button variant="outline">500ms Delay</Button>
@@ -271,12 +297,16 @@ export const TooltipDemo: React.FC = () => {
 
       {/* Tooltips on Different Elements */}
       <section style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Tooltips on Different Elements
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
-          Tooltips can be attached to any focusable or hoverable element.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Tooltips on Different Elements
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Tooltips can be attached to any focusable or hoverable element.
+          </CriaTextBody1>
+        </div>
         <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center', flexWrap: 'wrap' }}>
           <Tooltip content="This is a link with a tooltip">
             <a href="#" style={{ color: colors.primary, textDecoration: 'underline' }}>
@@ -307,12 +337,16 @@ export const TooltipDemo: React.FC = () => {
 
       {/* Complex Tooltip Content */}
       <section style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Complex Tooltip Content
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[6] }}>
-          Tooltips can contain rich content including multiple elements and formatting.
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Complex Tooltip Content
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[6] }}>
+          <CriaTextBody1>
+            Tooltips can contain rich content including multiple elements and formatting.
+          </CriaTextBody1>
+        </div>
         <div style={{ display: 'flex', gap: spacing[4], alignItems: 'center', flexWrap: 'wrap' }}>
           <Tooltip 
             content={
@@ -321,9 +355,11 @@ export const TooltipDemo: React.FC = () => {
                   <Star size={16} color={colors.warning} />
                   <CriaTextBody1>Premium Feature</CriaTextBody1>
                 </div>
-                <CriaTextBody2 style={{ marginBottom: spacing[2] }}>
-                  This feature is available in our premium plan.
-                </CriaTextBody2>
+                <div style={{ marginBottom: spacing[2] }}>
+                  <CriaTextBody2>
+                    This feature is available in our premium plan.
+                  </CriaTextBody2>
+                </div>
                 <Button variant='primary' size='sm' style={{ width: '100%' }}>
                   Upgrade Now
                 </Button>
@@ -338,9 +374,11 @@ export const TooltipDemo: React.FC = () => {
           <Tooltip 
             content={
               <div style={{ padding: spacing[3] }}>
-                <CriaTextBody1 style={{ marginBottom: spacing[2] }}>
-                  User Profile
-                </CriaTextBody1>
+                <div style={{ marginBottom: spacing[2] }}>
+                  <CriaTextBody1>
+                    User Profile
+                  </CriaTextBody1>
+                </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: spacing[2], marginBottom: spacing[2] }}>
                   <div style={{
                     width: '32px',
@@ -377,12 +415,16 @@ export const TooltipDemo: React.FC = () => {
 
       {/* Accessibility */}
       <section style={{ marginBottom: spacing[12] }}>
-        <CriaTextHeadline2 style={{ marginBottom: spacing[4] }}>
-          Accessibility Features
-        </CriaTextHeadline2>
-        <CriaTextBody1 style={{ marginBottom: spacing[4] }}>
-          The Tooltip component includes comprehensive accessibility features:
-        </CriaTextBody1>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextHeadline2>
+            Accessibility Features
+          </CriaTextHeadline2>
+        </div>
+        <div style={{ marginBottom: spacing[4] }}>
+          <CriaTextBody1>
+            The Tooltip component includes comprehensive accessibility features:
+          </CriaTextBody1>
+        </div>
         <ul style={{ marginLeft: spacing[6], marginBottom: spacing[4] }}>
           <li>
             <CriaTextBody1>

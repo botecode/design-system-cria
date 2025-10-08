@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader } from '../Card';
 import { Chat, ChatMessage } from './Chat';
-import { CriaTextHeadline2, CriaTextTitle2 } from '../TextTokens';
-import { Typography } from '../Typography';
+import { CriaTextHeadline2, CriaTextTitle2, CriaTextTitle1 } from '../TextTokens';
 
 export const ChatDemo: React.FC = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([
@@ -115,7 +114,9 @@ export const ChatDemo: React.FC = () => {
 
   return (
     <div style={{ padding: 24, maxWidth: 900 }}>
-      <CriaTextHeadline2 as="h2" style={{ marginBottom: 16 }}>Chat</CriaTextHeadline2>
+      <div style={{ marginBottom: 16 }}>
+        <CriaTextHeadline2 as="h2">Chat</CriaTextHeadline2>
+      </div>
 
       <Card>
         <CardHeader>
@@ -170,7 +171,7 @@ export const ChatDemo: React.FC = () => {
           }} />
           
           <div style={{ margin: '0 8px 8px 8px', position: 'relative', zIndex: 1 }}>
-            <Typography variant="h3" color="inverse" weight="semiBold">Sidebar Chat</Typography>
+            <CriaTextTitle1 color="white">Sidebar Chat</CriaTextTitle1>
           </div>
           <div style={{ height: 'calc(70vh - 40px)', position: 'relative', zIndex: 1 }}>
             <Chat className="cria-chat--sidebar" messages={sidebarMessages} onSend={handleSidebarSend} typing={sidebarTyping} revealThem />

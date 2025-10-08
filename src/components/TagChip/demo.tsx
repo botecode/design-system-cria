@@ -53,13 +53,17 @@ const TagChipDemo: React.FC = () => {
 
   return (
     <div style={{ padding: spacing[8], minHeight: '100vh' }}>
-      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
-        Tag / Chip
-      </CriaTextHeadline1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextHeadline1>
+          Tag / Chip
+        </CriaTextHeadline1>
+      </div>
 
-      <CriaTextBody1 style={{ marginBottom: spacing[8] }}>
-        Versatile tag and chip components for labels, categories, and interactive elements with multiple variants, sizes, and styles.
-      </CriaTextBody1>
+      <div style={{ marginBottom: spacing[8] }}>
+        <CriaTextBody1>
+          Versatile tag and chip components for labels, categories, and interactive elements with multiple variants, sizes, and styles.
+        </CriaTextBody1>
+      </div>
 
       <Card style={{ marginBottom: spacing[8] }}>
         <CardHeader>
@@ -88,9 +92,11 @@ const TagChipDemo: React.FC = () => {
         </CardHeader>
         <CardContent>
           <div style={{ marginBottom: spacing[6] }}>
-            <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-              Filled (Default)
-            </CriaTextTitle1>
+            <div style={{ marginBottom: spacing[3] }}>
+              <CriaTextTitle1>
+                Filled (Default)
+              </CriaTextTitle1>
+            </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[3] }}>
               <TagChip label="Filled Primary" variant="primary" visualStyle="filled" />
               <TagChip label="Filled Success" variant="success" visualStyle="filled" />
@@ -99,9 +105,11 @@ const TagChipDemo: React.FC = () => {
           </div>
 
           <div style={{ marginBottom: spacing[6] }}>
-            <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-              Outlined
-            </CriaTextTitle1>
+            <div style={{ marginBottom: spacing[3] }}>
+              <CriaTextTitle1>
+                Outlined
+              </CriaTextTitle1>
+            </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[3] }}>
               <TagChip label="Outlined Primary" variant="primary" visualStyle="outlined" />
               <TagChip label="Outlined Success" variant="success" visualStyle="outlined" />
@@ -110,9 +118,11 @@ const TagChipDemo: React.FC = () => {
           </div>
 
           <div style={{ marginBottom: spacing[6] }}>
-            <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-              Soft
-            </CriaTextTitle1>
+            <div style={{ marginBottom: spacing[3] }}>
+              <CriaTextTitle1>
+                Soft
+              </CriaTextTitle1>
+            </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[3] }}>
               <TagChip label="Soft Primary" variant="primary" visualStyle="soft" />
               <TagChip label="Soft Success" variant="success" visualStyle="soft" />
@@ -121,9 +131,11 @@ const TagChipDemo: React.FC = () => {
           </div>
 
           <div>
-            <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-              Ghost
-            </CriaTextTitle1>
+            <div style={{ marginBottom: spacing[3] }}>
+              <CriaTextTitle1>
+                Ghost
+              </CriaTextTitle1>
+            </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[3] }}>
               <TagChip label="Ghost Primary" variant="primary" visualStyle="ghost" />
               <TagChip label="Ghost Success" variant="success" visualStyle="ghost" />
@@ -174,9 +186,11 @@ const TagChipDemo: React.FC = () => {
           </CriaTextHeadline2>
         </CardHeader>
         <CardContent>
-          <CriaTextBody1 style={{ marginBottom: spacing[4], color: colors.gray[500] }}>
-            Click tags to select/deselect them. Selected: {selectedTags.join(', ') || 'None'}
-          </CriaTextBody1>
+          <div style={{ marginBottom: spacing[4], color: colors.gray[500] }}>
+            <CriaTextBody1>
+              Click tags to select/deselect them. Selected: {selectedTags.join(', ') || 'None'}
+            </CriaTextBody1>
+          </div>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[3] }}>
             {['JavaScript', 'React', 'TypeScript', 'CSS', 'HTML', 'Node.js', 'Python', 'Go'].map(tag => (
               <TagChip
@@ -260,9 +274,11 @@ const TagChipDemo: React.FC = () => {
         </CardHeader>
         <CardContent>
           <div style={{ marginBottom: spacing[6] }}>
-            <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-              Blog Post Tags
-            </CriaTextTitle1>
+            <div style={{ marginBottom: spacing[3] }}>
+              <CriaTextTitle1>
+                Blog Post Tags
+              </CriaTextTitle1>
+            </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[3] }}>
               <TagChip label="React" variant="info" visualStyle="soft" />
               <TagChip label="JavaScript" variant="primary" visualStyle="soft" />
@@ -272,9 +288,11 @@ const TagChipDemo: React.FC = () => {
           </div>
 
           <div style={{ marginBottom: spacing[6] }}>
-            <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-              User Skills
-            </CriaTextTitle1>
+            <div style={{ marginBottom: spacing[3] }}>
+              <CriaTextTitle1>
+                User Skills
+              </CriaTextTitle1>
+            </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[3] }}>
               <TagChip label="Frontend Development" variant="primary" icon={<User />} />
               <TagChip label="UI/UX Design" variant="secondary" icon={<Heart />} />
@@ -283,9 +301,11 @@ const TagChipDemo: React.FC = () => {
           </div>
 
           <div>
-            <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
-              Filter Options
-            </CriaTextTitle1>
+            <div style={{ marginBottom: spacing[3] }}>
+              <CriaTextTitle1>
+                Filter Options
+              </CriaTextTitle1>
+            </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: spacing[3] }}>
               <TagChip label="Price: $0-$50" variant="info" removable />
               <TagChip label="Category: Electronics" variant="info" removable />

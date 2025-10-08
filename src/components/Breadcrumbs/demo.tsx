@@ -103,25 +103,31 @@ export const BreadcrumbsDemo: React.FC = () => {
 
             {/* With icons */}
             <div>
-              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
-                With Icons
-              </CriaTextBody1>
+              <div style={{ marginBottom: spacing[3] }}>
+                <CriaTextBody1>
+                  With Icons
+                </CriaTextBody1>
+              </div>
               <Breadcrumbs items={ecommerceItems} />
             </div>
 
             {/* Custom separator */}
             <div>
-              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
-                Custom Separator (Arrow)
-              </CriaTextBody1>
+              <div style={{ marginBottom: spacing[3] }}>
+                <CriaTextBody1>
+                  Custom Separator (Arrow)
+                </CriaTextBody1>
+              </div>
               <Breadcrumbs items={basicItems} separator={<ArrowRight size={14} />} />
             </div>
 
             {/* Custom separator text */}
             <div>
-              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
-                Custom Separator (Text)
-              </CriaTextBody1>
+              <div style={{ marginBottom: spacing[3] }}>
+                <CriaTextBody1>
+                  Custom Separator (Text)
+                </CriaTextBody1>
+              </div>
               <Breadcrumbs items={basicItems} separator="→" />
             </div>
           </div>
@@ -137,25 +143,31 @@ export const BreadcrumbsDemo: React.FC = () => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             {/* E-commerce */}
             <div>
-              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
-                E-commerce Navigation
-              </CriaTextBody1>
+              <div style={{ marginBottom: spacing[3] }}>
+                <CriaTextBody1>
+                  E-commerce Navigation
+                </CriaTextBody1>
+              </div>
               <Breadcrumbs items={ecommerceItems} separator={<CaretRight size={14} />} />
             </div>
 
             {/* File system */}
             <div>
-              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
-                File System Navigation
-              </CriaTextBody1>
+              <div style={{ marginBottom: spacing[3] }}>
+                <CriaTextBody1>
+                  File System Navigation
+                </CriaTextBody1>
+              </div>
               <Breadcrumbs items={fileSystemItems} />
             </div>
 
             {/* Admin dashboard */}
             <div>
-              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
-                Admin Dashboard
-              </CriaTextBody1>
+              <div style={{ marginBottom: spacing[3] }}>
+                <CriaTextBody1>
+                  Admin Dashboard
+                </CriaTextBody1>
+              </div>
               <Breadcrumbs 
                 items={[
                   { label: 'Dashboard', href: '/admin', icon: <House size={16} /> },
@@ -177,23 +189,29 @@ export const BreadcrumbsDemo: React.FC = () => {
         <CardContent>
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             <div>
-              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
-                Long Path (maxItems: 5)
-              </CriaTextBody1>
+              <div style={{ marginBottom: spacing[3] }}>
+                <CriaTextBody1>
+                  Long Path (maxItems: 5)
+                </CriaTextBody1>
+              </div>
               <Breadcrumbs items={manyItems} maxItems={5} />
             </div>
 
             <div>
-              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
-                Long Path (maxItems: 3)
-              </CriaTextBody1>
+              <div style={{ marginBottom: spacing[3] }}>
+                <CriaTextBody1>
+                  Long Path (maxItems: 3)
+                </CriaTextBody1>
+              </div>
               <Breadcrumbs items={manyItems} maxItems={3} />
             </div>
 
             <div>
-              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
-                Very Long Path (maxItems: 4) with Custom Separator
-              </CriaTextBody1>
+              <div style={{ marginBottom: spacing[3] }}>
+                <CriaTextBody1>
+                  Very Long Path (maxItems: 4) with Custom Separator
+                </CriaTextBody1>
+              </div>
               <Breadcrumbs 
                 items={manyItems} 
                 maxItems={4} 
@@ -213,45 +231,59 @@ export const BreadcrumbsDemo: React.FC = () => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             {/* Disabled items */}
             <div>
-              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
-                With Disabled Items
-              </CriaTextBody1>
+              <div style={{ marginBottom: spacing[3] }}>
+                <CriaTextBody1>
+                  With Disabled Items
+                </CriaTextBody1>
+              </div>
               <Breadcrumbs items={itemsWithDisabled} />
-              <CriaTextBody2 style={{ marginTop: spacing[2], display: 'block' }}>
-                The "Electronics" item is disabled and cannot be clicked
-              </CriaTextBody2>
+              <div style={{ marginTop: spacing[2], display: 'block' }}>
+                <CriaTextBody2>
+                  The "Electronics" item is disabled and cannot be clicked
+                </CriaTextBody2>
+              </div>
             </div>
 
             {/* Click handlers */}
             <div>
-              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
-                With Click Handlers
-              </CriaTextBody1>
+              <div style={{ marginBottom: spacing[3] }}>
+                <CriaTextBody1>
+                  With Click Handlers
+                </CriaTextBody1>
+              </div>
               <Breadcrumbs items={itemsWithClickHandlers} />
               {selectedPath && (
-                <CriaTextBody2 style={{ marginTop: spacing[2], display: 'block' }}>
-                  Last clicked: <strong>{selectedPath}</strong>
-                </CriaTextBody2>
+                <div style={{ marginTop: spacing[2], display: 'block' }}>
+                  <CriaTextBody2>
+                    Last clicked: <strong>{selectedPath}</strong>
+                  </CriaTextBody2>
+                </div>
               )}
             </div>
 
             {/* Single item */}
             <div>
-              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
-                Single Item
-              </CriaTextBody1>
+              <div style={{ marginBottom: spacing[3] }}>
+                <CriaTextBody1>
+                  Single Item
+                </CriaTextBody1>
+              </div>
               <Breadcrumbs items={[{ label: 'Home', href: '/' }]} />
             </div>
 
             {/* Empty state */}
             <div>
-              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
-                Empty State
-              </CriaTextBody1>
+              <div style={{ marginBottom: spacing[3] }}>
+                <CriaTextBody1>
+                  Empty State
+                </CriaTextBody1>
+              </div>
               <Breadcrumbs items={[]} />
-              <CriaTextBody2 style={{ marginTop: spacing[2], display: 'block' }}>
-                Renders an empty navigation element
-              </CriaTextBody2>
+              <div style={{ marginTop: spacing[2], display: 'block' }}>
+                <CriaTextBody2>
+                  Renders an empty navigation element
+                </CriaTextBody2>
+              </div>
             </div>
           </div>
         </CardContent>
@@ -266,9 +298,11 @@ export const BreadcrumbsDemo: React.FC = () => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             {/* Custom styling */}
             <div>
-              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
-                Custom Styling
-              </CriaTextBody1>
+              <div style={{ marginBottom: spacing[3] }}>
+                <CriaTextBody1>
+                  Custom Styling
+                </CriaTextBody1>
+              </div>
               <Breadcrumbs 
                 items={basicItems} 
                 style={{ 
@@ -283,9 +317,11 @@ export const BreadcrumbsDemo: React.FC = () => {
 
             {/* Custom class */}
             <div>
-              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
-                Custom Class
-              </CriaTextBody1>
+              <div style={{ marginBottom: spacing[3] }}>
+                <CriaTextBody1>
+                  Custom Class
+                </CriaTextBody1>
+              </div>
               <Breadcrumbs 
                 items={basicItems} 
                 className="custom-breadcrumbs"
@@ -295,9 +331,11 @@ export const BreadcrumbsDemo: React.FC = () => {
 
             {/* Custom aria-label */}
             <div>
-              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
-                Custom ARIA Label
-              </CriaTextBody1>
+              <div style={{ marginBottom: spacing[3] }}>
+                <CriaTextBody1>
+                  Custom ARIA Label
+                </CriaTextBody1>
+              </div>
               <Breadcrumbs 
                 items={basicItems} 
                 ariaLabel="Custom breadcrumb navigation"
@@ -317,9 +355,11 @@ export const BreadcrumbsDemo: React.FC = () => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: spacing[6] }}>
             {/* Mixed content */}
             <div>
-              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
-                Mixed Content (Links, Text, Disabled)
-              </CriaTextBody1>
+              <div style={{ marginBottom: spacing[3] }}>
+                <CriaTextBody1>
+                  Mixed Content (Links, Text, Disabled)
+                </CriaTextBody1>
+              </div>
               <Breadcrumbs 
                 items={[
                   { label: 'Home', href: '/' },
@@ -332,9 +372,11 @@ export const BreadcrumbsDemo: React.FC = () => {
 
             {/* With complex icons */}
             <div>
-              <CriaTextBody1 style={{ marginBottom: spacing[3] }}>
-                Complex Icons and Separators
-              </CriaTextBody1>
+              <div style={{ marginBottom: spacing[3] }}>
+                <CriaTextBody1>
+                  Complex Icons and Separators
+                </CriaTextBody1>
+              </div>
               <Breadcrumbs 
                 items={[
                   { label: 'Dashboard', href: '/', icon: <House size={16} /> },

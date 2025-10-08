@@ -3,7 +3,7 @@ import { Clock, UserCircle, Wrench } from 'phosphor-react';
 import { colors, spacing, radii, shadows, typography } from '../../tokens';
 import { Avatar } from '../Avatar';
 import { AvatarWithName } from '../Avatar';
-import { CriaTextHeadline1, CriaTextBody1, CriaTextBody2, CriaTextCaption } from '../TextTokens';
+import { CriaTextHeadline1, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 
 export interface Instructor {
   id: string;
@@ -351,7 +351,7 @@ export const CriaCourseCard: React.FC<CriaCourseCardProps> = ({
                           fontSize: '14px',
                         }}
                       >
-                        <CriaTextCaption>{tool.icon}</CriaTextCaption>
+                        <CriaTextBody2>{tool.icon}</CriaTextBody2>
                       </div>
                     )}
                     {tool.name}

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card } from '../Card';
 import { Checkbox } from '../Checkbox';
-import { CriaTextHeadline1, CriaTextHeadline2, CriaTextTitle1, CriaTextBody1, CriaTextBody2, CriaTextCaption } from '../TextTokens';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextTitle1, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { colors, spacing, typography, radii } from '../../tokens';
 
 export type SelectionMode = 'single' | 'multi';
@@ -322,7 +322,7 @@ export const CardSelector: React.FC<CardSelectorProps> = ({
     >
       {/* Error message */}
       {error && (
-        <CriaTextCaption
+        <CriaTextBody2
           style={{
             color: colors.error[500],
             marginBottom: spacing.sm,
@@ -331,7 +331,7 @@ export const CardSelector: React.FC<CardSelectorProps> = ({
           className="cria-card-selector__error"
         >
           {error}
-        </CriaTextCaption>
+        </CriaTextBody2>
       )}
 
       {/* Help text */}

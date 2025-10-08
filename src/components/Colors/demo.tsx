@@ -1,5 +1,5 @@
 import React from 'react';
-import { CriaTextHeadline1, CriaTextHeadline2, CriaTextTitle1, CriaTextTitle2, CriaTextTitle3, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextTitle1, CriaTextTitle2, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 import { colors, spacing, radii } from '../../tokens';
 
 export const ColorsDemo: React.FC = () => {
@@ -215,9 +215,9 @@ export const ColorsDemo: React.FC = () => {
             backgroundColor: colors.gray[50]
           }}>
             <div style={{ color: colors.success, marginBottom: '8px' }}>
-              <CriaTextTitle3>
+              <CriaTextTitle2>
                 Success Message
-              </CriaTextTitle3>
+              </CriaTextTitle2>
             </div>
             <CriaTextBody1>
               Your action was completed successfully.
@@ -232,9 +232,9 @@ export const ColorsDemo: React.FC = () => {
             backgroundColor: colors.gray[50]
           }}>
             <div style={{ color: colors.warning, marginBottom: '8px' }}>
-              <CriaTextTitle3>
+              <CriaTextTitle2>
                 Warning Message
-              </CriaTextTitle3>
+              </CriaTextTitle2>
             </div>
             <CriaTextBody1>
               Please review your input before proceeding.
@@ -249,9 +249,9 @@ export const ColorsDemo: React.FC = () => {
             backgroundColor: colors.gray[50]
           }}>
             <div style={{ color: colors.error, marginBottom: '8px' }}>
-              <CriaTextTitle3>
+              <CriaTextTitle2>
                 Error Message
-              </CriaTextTitle3>
+              </CriaTextTitle2>
             </div>
             <CriaTextBody1>
               Something went wrong. Please try again.
@@ -266,9 +266,9 @@ export const ColorsDemo: React.FC = () => {
             backgroundColor: colors.gray[50]
           }}>
             <div style={{ color: colors.info, marginBottom: '8px' }}>
-              <CriaTextTitle3>
+              <CriaTextTitle2>
                 Information
-              </CriaTextTitle3>
+              </CriaTextTitle2>
             </div>
             <CriaTextBody1>
               Here's some helpful information for you.
@@ -285,9 +285,9 @@ export const ColorsDemo: React.FC = () => {
         border: `1px solid ${colors.border.light}`
       }}>
         <div style={{ marginBottom: spacing[3] }}>
-          <CriaTextTitle3>
+          <CriaTextTitle2>
             Accessibility Guidelines
-          </CriaTextTitle3>
+          </CriaTextTitle2>
         </div>
         <div style={{ marginBottom: spacing[2] }}>
           <CriaTextBody1>

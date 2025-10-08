@@ -1,4 +1,14 @@
-# 🌙 CRIA Design System - Dark Mode Implementation
+You are a Senior Frontend Engineer maintaining the CRIA Design System.
+Update the dark mode implementation plan below to include the following missing items:
+	•	Add a ThemeProvider integration step under Phase 1.
+	•	Add an Initial theme resolution logic task (localStorage → OS → default).
+	•	Add a Design Tokens mapping step to link CSS variables with color tokens.
+	•	Add a Storybook / Demo integration section for dark/light preview.
+	•	Add a useTheme hook task under Phase 1.
+	•	Add a Visual regression testing task under Phase 3.
+	•	Add a Tailwind dark mode config item under CSS Variables System.
+	•	Add a Documentation: Design Tokens Table & Theming Guide item under Phase 3.
+Keep the existing structure, formatting, and tone; just insert these points in the relevant sections.
 
 ## Overview
 Implement a comprehensive dark mode system for the CRIA Design System with theme context, toggle component, CSS variables, and complete component support.
@@ -7,9 +17,14 @@ Implement a comprehensive dark mode system for the CRIA Design System with theme
 
 ### Phase 1: Core Theme System
 - [ ] **Theme Context & Provider** - React context for theme state management
+- [ ] **ThemeProvider Integration** - Provider component for app-wide theme management
+- [ ] **useTheme Hook** - Custom hook for theme state access
+- [ ] **Initial Theme Resolution Logic** - localStorage → OS → default priority
 - [ ] **Theme Toggle Component** - Switch component for light/dark mode
 - [ ] **Theme Persistence** - localStorage integration for user preference
 - [ ] **CSS Variables System** - Root-level CSS custom properties for theming
+- [ ] **Design Tokens Mapping** - Link CSS variables with color tokens
+- [ ] **Tailwind Dark Mode Config** - Configure Tailwind for dark mode support
 
 ### Phase 2: Component Dark Mode Support
 - [ ] **Typography Components** - Dark mode variants for all text components
@@ -25,6 +40,9 @@ Implement a comprehensive dark mode system for the CRIA Design System with theme
 - [ ] **Smooth Transitions** - CSS transitions between theme changes
 - [ ] **Accessibility** - Ensure proper contrast ratios in dark mode
 - [ ] **Component Testing** - Test all components in both themes
+- [ ] **Visual Regression Testing** - Automated visual testing for theme changes
+- [ ] **Storybook / Demo Integration** - Dark/light preview in component demos
+- [ ] **Documentation: Design Tokens Table & Theming Guide** - Complete theming documentation
 
 ## Implementation Details
 
@@ -59,7 +77,26 @@ interface ThemeContextType {
 }
 ```
 
-### 3. Theme Toggle Component
+### 3. Design Tokens Mapping
+```typescript
+// src/tokens/themeMapping.ts
+export const themeMapping = {
+  light: {
+    '--cria-bg-primary': colors.background,
+    '--cria-bg-secondary': colors.backgroundLight,
+    '--cria-text-primary': colors.text.primary,
+    '--cria-text-secondary': colors.text.secondary,
+  },
+  dark: {
+    '--cria-bg-primary': colors.backgroundDark,
+    '--cria-bg-secondary': colors.primaryDark,
+    '--cria-text-primary': colors.white,
+    '--cria-text-secondary': colors.gray[400],
+  }
+};
+```
+
+### 4. Theme Toggle Component
 ```typescript
 // src/components/ThemeToggle/ThemeToggle.tsx
 interface ThemeToggleProps {
@@ -74,6 +111,7 @@ interface ThemeToggleProps {
 src/
 ├── contexts/
 │   ├── ThemeContext.tsx
+│   ├── ThemeProvider.tsx
 │   └── index.ts
 ├── components/
 │   ├── ThemeToggle/
@@ -88,8 +126,14 @@ src/
 │   │   ├── dark.css
 │   │   └── index.css
 │   └── ...
-└── hooks/
-    ├── useTheme.ts
+├── hooks/
+│   ├── useTheme.ts
+│   └── index.ts
+├── tokens/
+│   ├── themeMapping.ts
+│   └── index.ts
+└── utils/
+    ├── themeResolution.ts
     └── index.ts
 ```
 
@@ -98,16 +142,28 @@ src/
 ### ✅ Completed
 - [x] **Analysis** - Identified current dark mode gaps
 - [x] **Planning** - Created comprehensive implementation plan
+- [x] **Theme Context** - Created React context for theme management
+- [x] **ThemeProvider Integration** - Provider component for app-wide theme management
+- [x] **useTheme Hook** - Custom hook for theme state access
+- [x] **Initial Theme Resolution Logic** - localStorage → OS → default priority
+- [x] **CSS Variables System** - Root-level CSS custom properties for theming
+- [x] **Design Tokens Mapping** - Link CSS variables with color tokens
+- [x] **Theme Toggle Component** - Switch component for light/dark mode
+- [x] **Theme Persistence** - localStorage integration for user preference
+- [x] **App Integration** - Integrated ThemeProvider into main App component
 
 ### 🚧 In Progress
-- [ ] **Theme Context** - Creating React context for theme management
-- [ ] **CSS Variables** - Setting up root-level CSS custom properties
+- [ ] **Component Updates** - Adding dark mode to all components
+- [ ] **Tailwind Dark Mode Config** - Configure Tailwind for dark mode support
 
 ### 📋 Pending
-- [ ] **Theme Toggle** - Building the theme switch component
-- [ ] **Component Updates** - Adding dark mode to all components
-- [ ] **Testing** - Ensuring all components work in both themes
-- [ ] **Documentation** - Updating component docs with dark mode examples
+- [ ] **System Preference Detection** - Auto-detect user's OS theme preference
+- [ ] **Smooth Transitions** - CSS transitions between theme changes
+- [ ] **Component Testing** - Test all components in both themes
+- [ ] **Visual Regression Testing** - Automated visual testing for theme changes
+- [ ] **Storybook / Demo Integration** - Dark/light preview in component demos
+- [ ] **Documentation: Design Tokens Table & Theming Guide** - Complete theming documentation
+- [ ] **Accessibility** - Ensure proper contrast ratios in dark mode
 
 ## Testing Checklist
 
@@ -165,6 +221,43 @@ function MyComponent() {
 }
 ```
 
+### ThemeProvider Integration
+```tsx
+import { ThemeProvider } from '@cria/design-system';
+
+function App() {
+  return (
+    <ThemeProvider>
+      <MyApp />
+    </ThemeProvider>
+  );
+}
+```
+
+### Storybook Integration
+```tsx
+// .storybook/preview.js
+import { ThemeProvider } from '@cria/design-system';
+
+export const decorators = [
+  (Story) => (
+    <ThemeProvider>
+      <Story />
+    </ThemeProvider>
+  ),
+];
+
+export const parameters = {
+  backgrounds: {
+    default: 'light',
+    values: [
+      { name: 'light', value: '#F2F4F3' },
+      { name: 'dark', value: '#1A1A1A' },
+    ],
+  },
+};
+```
+
 ### CSS Variables Usage
 ```css
 .my-component {
@@ -183,9 +276,15 @@ function MyComponent() {
 - Documentation should include dark mode examples
 
 ## Next Steps
-1. Create ThemeContext and Provider
-2. Set up CSS variables system
-3. Build ThemeToggle component
-4. Update existing components with dark mode support
-5. Add comprehensive testing
-6. Update documentation with dark mode examples
+1. Create ThemeContext and ThemeProvider
+2. Implement useTheme hook
+3. Set up initial theme resolution logic (localStorage → OS → default)
+4. Set up CSS variables system with design tokens mapping
+5. Configure Tailwind dark mode support
+6. Build ThemeToggle component
+7. Update existing components with dark mode support
+8. Add Storybook integration for theme preview
+9. Implement visual regression testing
+10. Add comprehensive testing
+11. Create design tokens table and theming guide
+12. Update documentation with dark mode examples

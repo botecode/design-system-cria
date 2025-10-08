@@ -2,7 +2,7 @@ import React from 'react';
 import { colors, spacing, typography, radii, shadows } from '../../tokens';
 import { Avatar } from '../Avatar';
 import { Button } from '../Button';
-import { CriaTextHeadline1, CriaTextBody1, CriaTextBody2, CriaTextCaption } from '../TextTokens';
+import { CriaTextHeadline1, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
 
 export interface Instructor {
   id: string;
@@ -346,7 +346,7 @@ export const CriaCustomLearningLessonCard: React.FC<CriaCustomLearningLessonCard
                     fontSize: typography.fontSize.xs,
                   }}
                 >
-                  <CriaTextCaption>{instructor.name}</CriaTextCaption>
+                  <CriaTextBody2>{instructor.name}</CriaTextBody2>
                 </div>
               </div>
             ))}
@@ -363,7 +363,7 @@ export const CriaCustomLearningLessonCard: React.FC<CriaCustomLearningLessonCard
                   fontWeight: typography.fontWeight.medium,
                 }}
               >
-                <CriaTextCaption>+{overflowCount}</CriaTextCaption>
+                <CriaTextBody2>+{overflowCount}</CriaTextBody2>
               </div>
             )}
           </div>
@@ -408,7 +408,7 @@ export const CriaCustomLearningLessonCard: React.FC<CriaCustomLearningLessonCard
                     e.currentTarget.style.borderColor = colors.gray[200];
                   }}
                 >
-                  {tool.icon && <div style={{ marginRight: spacing[1] }}><CriaTextCaption>{tool.icon}</CriaTextCaption></div>}
+                  {tool.icon && <div style={{ marginRight: spacing[1] }}><CriaTextBody2>{tool.icon}</CriaTextBody2></div>}
                   {tool.name}
                 </Button>
               ))}
@@ -425,7 +425,7 @@ export const CriaCustomLearningLessonCard: React.FC<CriaCustomLearningLessonCard
                     fontWeight: typography.fontWeight.medium,
                   }}
                 >
-                  <CriaTextCaption>+{uniqueTools.length - 4}</CriaTextCaption>
+                  <CriaTextBody2>+{uniqueTools.length - 4}</CriaTextBody2>
                 </div>
               )}
             </div>
@@ -448,7 +448,7 @@ export const CriaCustomLearningLessonCard: React.FC<CriaCustomLearningLessonCard
               fontSize: typography.fontSize.xs,
             }}
           >
-            <CriaTextCaption>{customLearning.duration}</CriaTextCaption>
+            <CriaTextBody2>{customLearning.duration}</CriaTextBody2>
           </div>
 
           {/* Category */}
@@ -464,7 +464,7 @@ export const CriaCustomLearningLessonCard: React.FC<CriaCustomLearningLessonCard
               fontWeight: typography.fontWeight.semiBold,
             }}
           >
-            <CriaTextCaption>TRILHA</CriaTextCaption>
+            <CriaTextBody2>TRILHA</CriaTextBody2>
           </div>
 
           <div></div>
