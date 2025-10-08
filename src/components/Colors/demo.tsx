@@ -1,5 +1,7 @@
 import React from 'react';
 import { CriaTextHeadline1, CriaTextHeadline2, CriaTextTitle1, CriaTextTitle2, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
+import { Card, CardContent } from '../Card';
+import { ColorSwatchCard, DarkColorSwatchCard } from './ColorSwatchCard';
 import { colors, spacing, radii } from '../../tokens';
 
 export const ColorsDemo: React.FC = () => {
@@ -24,91 +26,6 @@ export const ColorsDemo: React.FC = () => {
     { name: 'Background Dark', value: colors.gray[900], description: 'Dark background' },
   ];
 
-  const ColorSwatch: React.FC<{ name: string; value: string; description: string }> = ({ 
-    name, 
-    value, 
-    description 
-  }) => (
-    <div style={{ 
-      display: 'flex', 
-      alignItems: 'center', 
-      gap: spacing[4], 
-      padding: spacing[3],
-      border: `1px solid ${colors.border.light}`,
-      borderRadius: radii.md,
-      backgroundColor: colors.backgroundLight
-    }}>
-      <div 
-        style={{ 
-          width: '48px', 
-          height: '48px', 
-          backgroundColor: value, 
-          borderRadius: radii.md,
-          border: `1px solid ${colors.border.light}`,
-          flexShrink: 0
-        }} 
-      />
-      <div style={{ flex: 1 }}>
-        <CriaTextBody1>
-          {name}
-        </CriaTextBody1>
-        <div style={{ marginTop: spacing[1] }}>
-          <CriaTextBody2>
-            {value}
-          </CriaTextBody2>
-        </div>
-        <div style={{ marginTop: spacing[1] }}>
-          <CriaTextBody2>
-            {description}
-          </CriaTextBody2>
-        </div>
-      </div>
-    </div>
-  );
-
-  const DarkColorSwatch: React.FC<{ name: string; value: string; description: string }> = ({ 
-    name, 
-    value, 
-    description 
-  }) => (
-    <div style={{ 
-      display: 'flex', 
-      alignItems: 'center', 
-      gap: spacing[4], 
-      padding: spacing[3],
-      border: `1px solid ${colors.text.primary}`,
-      borderRadius: radii.md,
-      backgroundColor: value
-    }}>
-      <div 
-        style={{ 
-          width: '48px', 
-          height: '48px', 
-          backgroundColor: colors.white, 
-          borderRadius: radii.md,
-          border: `1px solid ${colors.text.primary}`,
-          flexShrink: 0
-        }} 
-      />
-      <div style={{ flex: 1 }}>
-        <div style={{ color: 'white' }}>
-          <CriaTextBody1>
-            {name}
-          </CriaTextBody1>
-        </div>
-        <div style={{ color: 'white', marginTop: spacing[1] }}>
-          <CriaTextBody2>
-            {value}
-          </CriaTextBody2>
-        </div>
-        <div style={{ color: 'white', marginTop: spacing[1] }}>
-          <CriaTextBody2>
-            {description}
-          </CriaTextBody2>
-        </div>
-      </div>
-    </div>
-  );
 
   return (
     <div style={{ padding: spacing[6], maxWidth: '1200px', margin: '0 auto' }}>
@@ -142,7 +59,7 @@ export const ColorsDemo: React.FC = () => {
           gap: spacing[4] 
         }}>
           {colorPalette.map((color) => (
-            <ColorSwatch
+            <ColorSwatchCard
               key={color.name}
               name={color.name}
               value={color.value}
@@ -171,14 +88,14 @@ export const ColorsDemo: React.FC = () => {
         }}>
           {backgroundColors.map((color) => (
             color.name === 'Background Dark' ? (
-              <DarkColorSwatch
+              <DarkColorSwatchCard
                 key={color.name}
                 name={color.name}
                 value={color.value}
                 description={color.description}
               />
             ) : (
-              <ColorSwatch
+              <ColorSwatchCard
                 key={color.name}
                 name={color.name}
                 value={color.value}
@@ -208,101 +125,102 @@ export const ColorsDemo: React.FC = () => {
           gap: spacing[6] 
         }}>
           {/* Success Example */}
-          <div style={{ 
-            padding: spacing[5], 
-            border: `1px solid ${colors.success}`, 
-            borderRadius: radii.md,
-            backgroundColor: colors.gray[50]
-          }}>
-            <div style={{ color: colors.success, marginBottom: '8px' }}>
-              <CriaTextTitle2>
-                Success Message
-              </CriaTextTitle2>
-            </div>
-            <CriaTextBody1>
-              Your action was completed successfully.
-            </CriaTextBody1>
-          </div>
+          <Card 
+            variant="outlined" 
+            size="lg"
+            style={{ borderColor: 'var(--cria-success)' }}
+          >
+            <CardContent>
+              <div style={{ color: 'var(--cria-success)', marginBottom: '8px' }}>
+                <CriaTextTitle2>
+                  Success Message
+                </CriaTextTitle2>
+              </div>
+              <CriaTextBody1>
+                Your action was completed successfully.
+              </CriaTextBody1>
+            </CardContent>
+          </Card>
 
           {/* Warning Example */}
-          <div style={{ 
-            padding: spacing[5], 
-            border: `1px solid ${colors.warning}`, 
-            borderRadius: radii.md,
-            backgroundColor: colors.gray[50]
-          }}>
-            <div style={{ color: colors.warning, marginBottom: '8px' }}>
-              <CriaTextTitle2>
-                Warning Message
-              </CriaTextTitle2>
-            </div>
-            <CriaTextBody1>
-              Please review your input before proceeding.
-            </CriaTextBody1>
-          </div>
+          <Card 
+            variant="outlined" 
+            size="lg"
+            style={{ borderColor: 'var(--cria-warning)' }}
+          >
+            <CardContent>
+              <div style={{ color: 'var(--cria-warning)', marginBottom: '8px' }}>
+                <CriaTextTitle2>
+                  Warning Message
+                </CriaTextTitle2>
+              </div>
+              <CriaTextBody1>
+                Please review your input before proceeding.
+              </CriaTextBody1>
+            </CardContent>
+          </Card>
 
           {/* Error Example */}
-          <div style={{ 
-            padding: spacing[5], 
-            border: `1px solid ${colors.error}`, 
-            borderRadius: radii.md,
-            backgroundColor: colors.gray[50]
-          }}>
-            <div style={{ color: colors.error, marginBottom: '8px' }}>
-              <CriaTextTitle2>
-                Error Message
-              </CriaTextTitle2>
-            </div>
-            <CriaTextBody1>
-              Something went wrong. Please try again.
-            </CriaTextBody1>
-          </div>
+          <Card 
+            variant="outlined" 
+            size="lg"
+            style={{ borderColor: 'var(--cria-error)' }}
+          >
+            <CardContent>
+              <div style={{ color: 'var(--cria-error)', marginBottom: '8px' }}>
+                <CriaTextTitle2>
+                  Error Message
+                </CriaTextTitle2>
+              </div>
+              <CriaTextBody1>
+                Something went wrong. Please try again.
+              </CriaTextBody1>
+            </CardContent>
+          </Card>
 
           {/* Info Example */}
-          <div style={{ 
-            padding: spacing[5], 
-            border: `1px solid ${colors.info}`, 
-            borderRadius: radii.md,
-            backgroundColor: colors.gray[50]
-          }}>
-            <div style={{ color: colors.info, marginBottom: '8px' }}>
-              <CriaTextTitle2>
-                Information
-              </CriaTextTitle2>
-            </div>
-            <CriaTextBody1>
-              Here's some helpful information for you.
-            </CriaTextBody1>
-          </div>
+          <Card 
+            variant="outlined" 
+            size="lg"
+            style={{ borderColor: 'var(--cria-info)' }}
+          >
+            <CardContent>
+              <div style={{ color: 'var(--cria-info)', marginBottom: '8px' }}>
+                <CriaTextTitle2>
+                  Information
+                </CriaTextTitle2>
+              </div>
+              <CriaTextBody1>
+                Here's some helpful information for you.
+              </CriaTextBody1>
+            </CardContent>
+          </Card>
         </div>
       </div>
 
       {/* Accessibility Notes */}
-      <div style={{ 
-        padding: spacing[5], 
-        backgroundColor: colors.gray[50], 
-        borderRadius: radii.md,
-        border: `1px solid ${colors.border.light}`
-      }}>
-        <div style={{ marginBottom: spacing[3] }}>
-          <CriaTextTitle2>
-            Accessibility Guidelines
-          </CriaTextTitle2>
-        </div>
-        <div style={{ marginBottom: spacing[2] }}>
+      <Card variant="filled" size="lg">
+        <CardContent>
+          <div style={{ marginBottom: spacing[3] }}>
+            <CriaTextTitle2>
+              Accessibility Guidelines
+            </CriaTextTitle2>
+          </div>
+          <div style={{ marginBottom: spacing[2] }}>
+            <CriaTextBody1>
+              • Ensure sufficient color contrast ratios (4.5:1 for normal text, 3:1 for large text)
+            </CriaTextBody1>
+          </div>
+          <div style={{ marginBottom: spacing[2] }}>
+            <CriaTextBody1>
+              • Don't rely solely on color to convey information
+            </CriaTextBody1>
+          </div>
           <CriaTextBody1>
-            • Ensure sufficient color contrast ratios (4.5:1 for normal text, 3:1 for large text)
+            • Test your designs with color blindness simulators
           </CriaTextBody1>
-        </div>
-        <div style={{ marginBottom: spacing[2] }}>
-          <CriaTextBody1>
-            • Don't rely solely on color to convey information
-          </CriaTextBody1>
-        </div>
-        <CriaTextBody1>
-          • Test your designs with color blindness simulators
-        </CriaTextBody1>
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };

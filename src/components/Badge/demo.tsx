@@ -176,9 +176,9 @@ export const BadgeDemo: React.FC = () => {
             <div style={{ position: 'relative', display: 'inline-block' }}>
               <div style={{ 
                 padding: `${spacing[2]} ${spacing[4]}`, 
-                backgroundColor: colors.gray[100], 
+                backgroundColor: 'var(--cria-surface-secondary)', 
                 borderRadius: radii.md,
-                border: `1px solid ${colors.border.light}`
+                border: '1px solid var(--cria-border-primary)'
               }}>
                 Messages
               </div>
@@ -197,9 +197,9 @@ export const BadgeDemo: React.FC = () => {
             <div style={{ position: 'relative', display: 'inline-block' }}>
               <div style={{ 
                 padding: `${spacing[2]} ${spacing[4]}`, 
-                backgroundColor: colors.gray[100], 
+                backgroundColor: 'var(--cria-surface-secondary)', 
                 borderRadius: radii.md,
-                border: `1px solid ${colors.border.light}`
+                border: '1px solid var(--cria-border-primary)'
               }}>
                 Notifications
               </div>
@@ -275,7 +275,7 @@ export const BadgeDemo: React.FC = () => {
         </div>
         <CriaTextBody2 
           id="badge-description" 
-          style={{ marginTop: spacing[2], color: colors.gray[500] }}
+          style={{ marginTop: spacing[2], color: 'var(--cria-text-secondary)' }}
         >
           This badge can be activated with Enter or Space key
         </CriaTextBody2>

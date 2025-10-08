@@ -93,7 +93,7 @@ export const ButtonDemo: React.FC = () => {
         <h2 style={{ fontFamily: 'var(--cria-font-family)', marginBottom: spacing[4] }}>
           Efeitos de Hover
         </h2>
-        <p style={{ fontFamily: 'var(--cria-font-family)', color: colors.text.secondary, marginBottom: spacing[4], fontSize: '14px' }}>
+        <p style={{ fontFamily: 'var(--cria-font-family)', color: 'var(--cria-text-secondary)', marginBottom: spacing[4], fontSize: '14px' }}>
           Passe o mouse sobre os botões para ver os efeitos de hover
         </p>
         <div style={{ display: 'flex', gap: spacing[3], flexWrap: 'wrap' }}>
@@ -133,7 +133,7 @@ export const ButtonDemo: React.FC = () => {
             Indisponível
           </Button>
         </div>
-        <p id="help-text" style={{ fontSize: '14px', color: colors.text.secondary, marginTop: spacing[2] }}>
+        <p id="help-text" style={{ fontSize: '14px', color: 'var(--cria-text-secondary)', marginTop: spacing[2] }}>
           Este botão fornece informações de ajuda adicionais.
         </p>
       </section>

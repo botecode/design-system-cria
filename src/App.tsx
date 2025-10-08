@@ -246,13 +246,13 @@ const App: React.FC = () => {
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px' }}>
-              <div style={{ padding: '20px', backgroundColor: 'var(--cria-white)', borderRadius: 'var(--cria-radius-md)', border: '1px solid var(--cria-gray-200)' }}>
+              <div style={{ padding: '20px', backgroundColor: 'var(--cria-surface-primary)', borderRadius: 'var(--cria-radius-md)', border: '1px solid var(--cria-border-primary)' }}>
                 <div style={{ marginBottom: '8px' }}>
                   <CriaTextTitle1>
                     🎨 Design Tokens
                   </CriaTextTitle1>
                 </div>
-                <div style={{ marginBottom: '12px', fontSize: '14px' }}>
+                <div style={{ marginBottom: '12px' }}>
                   <CriaTextBody1>
                     Consistent colors, typography, spacing, and elevation.
                   </CriaTextBody1>
@@ -262,13 +262,13 @@ const App: React.FC = () => {
                 </div>
               </div>
 
-              <div style={{ padding: '20px', backgroundColor: 'var(--cria-white)', borderRadius: 'var(--cria-radius-md)', border: '1px solid var(--cria-gray-200)' }}>
+              <div style={{ padding: '20px', backgroundColor: 'var(--cria-surface-primary)', borderRadius: 'var(--cria-radius-md)', border: '1px solid var(--cria-border-primary)' }}>
                 <div style={{ marginBottom: '8px' }}>
                   <CriaTextTitle1>
                     🧩 Components
                   </CriaTextTitle1>
                 </div>
-                <div style={{ marginBottom: '12px', fontSize: '14px' }}>
+                <div style={{ marginBottom: '12px' }}>
                   <CriaTextBody1>
                     Production-ready React components.
                   </CriaTextBody1>
@@ -279,13 +279,13 @@ const App: React.FC = () => {
                 </div>
               </div>
 
-              <div style={{ padding: '20px', backgroundColor: 'var(--cria-white)', borderRadius: 'var(--cria-radius-md)', border: '1px solid var(--cria-gray-200)' }}>
+              <div style={{ padding: '20px', backgroundColor: 'var(--cria-surface-primary)', borderRadius: 'var(--cria-radius-md)', border: '1px solid var(--cria-border-primary)' }}>
                 <div style={{ marginBottom: '8px' }}>
                   <CriaTextTitle1>
                     ♿ Accessible
                   </CriaTextTitle1>
                 </div>
-                <div style={{ marginBottom: '12px', fontSize: '14px' }}>
+                <div style={{ marginBottom: '12px' }}>
                   <CriaTextBody1>
                     Built with accessibility in mind.
                   </CriaTextBody1>
@@ -295,13 +295,13 @@ const App: React.FC = () => {
                 </div>
               </div>
 
-              <div style={{ padding: '20px', backgroundColor: 'var(--cria-white)', borderRadius: 'var(--cria-radius-md)', border: '1px solid var(--cria-gray-200)' }}>
+              <div style={{ padding: '20px', backgroundColor: 'var(--cria-surface-primary)', borderRadius: 'var(--cria-radius-md)', border: '1px solid var(--cria-border-primary)' }}>
                 <div style={{ marginBottom: '8px' }}>
                   <CriaTextTitle1>
                     📐 Layout
                   </CriaTextTitle1>
                 </div>
-                <div style={{ marginBottom: '12px', fontSize: '14px' }}>
+                <div style={{ marginBottom: '12px' }}>
                   <CriaTextBody1>
                     Structural components for organizing and presenting content.
                   </CriaTextBody1>
@@ -337,7 +337,7 @@ const App: React.FC = () => {
                     📝 Changelog
                   </CriaTextHeadline1>
                 </div>
-                <div style={{ color: '#666' }}>
+                <div>
                   <CriaTextBody1>
                     Stay updated with the latest changes and improvements to CRIA_UI
                   </CriaTextBody1>

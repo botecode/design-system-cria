@@ -129,7 +129,8 @@
 }
 
 .cria-button--danger:hover:not(.cria-button--disabled):not(.cria-button--loading) {
-  background-color: #B91C1C; /* Darker red for hover */
+  background-color: var(--cria-error);
+  filter: brightness(0.8);
   box-shadow: var(--cria-shadow-md);
   transform: translateY(-1px);
 }
