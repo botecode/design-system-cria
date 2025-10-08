@@ -160,8 +160,8 @@ export const CriaCardError: React.FC<CriaCardErrorProps> = ({
                 src={image} 
                 alt={`${errorCode} error`}
                 style={{
-                  width: '200px',
-                  height: '200px',
+                  width: '320px',
+                  height: '320px',
                   objectFit: 'contain'
                 }}
               />

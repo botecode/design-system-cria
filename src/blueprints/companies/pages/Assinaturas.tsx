@@ -4,7 +4,7 @@ import { Card, CardContent } from '../../../components/Card';
 import { Button } from '../../../components/Button';
 import { Input } from '../../../components/Input';
 import { Dropdown } from '../../../components/Dropdown';
-import { CreditCard, Plus, PencilSimple, X, Check } from 'phosphor-react';
+import { CreditCard, Plus } from 'phosphor-react';
 
 interface Subscription {
   id: string;
@@ -19,7 +19,6 @@ interface Subscription {
 
 const Assinaturas: React.FC = () => {
   const [isCreating, setIsCreating] = useState(false);
-  const [editingId, setEditingId] = useState<string | null>(null);
   const [newSubscription, setNewSubscription] = useState({
     planName: '',
     subscriptionType: 'monthly' as const,
@@ -143,18 +142,6 @@ const Assinaturas: React.FC = () => {
     setIsCreating(false);
   };
 
-  const handleEditSubscription = (id: string) => {
-    setEditingId(id);
-  };
-
-  const handleCancelEdit = () => {
-    setEditingId(null);
-  };
-
-  const handleUpdateSubscription = (id: string) => {
-    // Mock update logic
-    setEditingId(null);
-  };
 
   return (
     <section data-testid="assinaturas-page" style={{ padding: '24px', paddingBottom: '40px' }}>
@@ -313,176 +300,44 @@ const Assinaturas: React.FC = () => {
         {subscriptions.map((subscription) => (
           <Card key={subscription.id} style={{ backgroundColor: 'var(--cria-surface-secondary)' }}>
             <CardContent>
-              {editingId === subscription.id ? (
-                // Edit Mode
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1.2fr 1fr 1fr 1fr 0.8fr auto',
-                  gap: '12px',
-                  alignItems: 'center',
-                  backgroundColor: 'var(--cria-bg-secondary)',
-                  border: '1px solid var(--cria-border-primary)',
-                  borderRadius: '12px',
-                  padding: '12px 16px'
-                }}>
-                  <div>
-                    <label style={{
-                      display: 'block',
-                      color: 'var(--cria-text-secondary)',
-                      fontSize: '12px',
-                      marginBottom: '6px'
-                    }}>
-                      Nome do Plano
-                    </label>
-                    <Input
-                      value={subscription.planName}
-                      onChange={(e) => {
-                        // Mock update logic
-                      }}
-                      style={{ width: '100%' }}
-                    />
-                  </div>
-                  <div>
-                    <label style={{
-                      display: 'block',
-                      color: 'var(--cria-text-secondary)',
-                      fontSize: '12px',
-                      marginBottom: '6px'
-                    }}>
-                      Tipo de Assinatura
-                    </label>
-                    <Dropdown
-                      options={subscriptionTypeOptions}
-                      value={subscription.subscriptionType}
-                      onSelect={() => {}}
-                      style={{ width: '100%' }}
-                    />
-                  </div>
-                  <div>
-                    <label style={{
-                      display: 'block',
-                      color: 'var(--cria-text-secondary)',
-                      fontSize: '12px',
-                      marginBottom: '6px'
-                    }}>
-                      Escopo
-                    </label>
-                    <Dropdown
-                      options={subscriptionTierOptions}
-                      value={subscription.subscriptionTier}
-                      onSelect={() => {}}
-                      style={{ width: '100%' }}
-                    />
-                  </div>
-                  <div>
-                    <label style={{
-                      display: 'block',
-                      color: 'var(--cria-text-secondary)',
-                      fontSize: '12px',
-                      marginBottom: '6px'
-                    }}>
-                      Data de Início
-                    </label>
-                    <Input
-                      type="datetime-local"
-                      value={subscription.startsAt}
-                      onChange={() => {}}
-                      style={{ width: '100%' }}
-                    />
-                  </div>
-                  <div>
-                    <label style={{
-                      display: 'block',
-                      color: 'var(--cria-text-secondary)',
-                      fontSize: '12px',
-                      marginBottom: '6px'
-                    }}>
-                      Assentos
-                    </label>
-                    <Input
-                      type="number"
-                      min="1"
-                      value={subscription.seats}
-                      onChange={() => {}}
-                      style={{ width: '100%' }}
-                    />
-                  </div>
-                  <div>
-                    <label style={{
-                      display: 'block',
-                      color: 'var(--cria-text-secondary)',
-                      fontSize: '12px',
-                      marginBottom: '6px',
-                      visibility: 'hidden'
-                    }}>
-                      Ações
-                    </label>
-                    <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-                      <Button
-                        variant="ghost"
-                        onClick={handleCancelEdit}
-                        style={{ height: '42px', padding: '0 16px' }}
-                      >
-                        Cancelar
-                      </Button>
-                      <Button
-                        variant="primary"
-                        onClick={() => handleUpdateSubscription(subscription.id)}
-                        style={{ height: '42px', padding: '0 16px' }}
-                      >
-                        Atualizar
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                // View Mode
+              {/* View Mode Only */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                backgroundColor: 'var(--cria-bg-primary)',
+                border: '1px solid var(--cria-border-primary)',
+                borderRadius: '12px',
+                padding: '12px 16px'
+              }}>
                 <div style={{
                   display: 'flex',
+                  gap: '16px',
+                  color: 'var(--cria-text-primary)',
                   alignItems: 'center',
-                  justifyContent: 'space-between',
-                  backgroundColor: 'var(--cria-bg-primary)',
-                  border: '1px solid var(--cria-border-primary)',
-                  borderRadius: '12px',
-                  padding: '12px 16px'
+                  flexWrap: 'wrap'
                 }}>
-                  <div style={{
-                    display: 'flex',
-                    gap: '16px',
-                    color: 'var(--cria-text-primary)',
-                    alignItems: 'center',
-                    flexWrap: 'wrap'
-                  }}>
-                    <strong>{subscription.planName}</strong>
-                    <span style={{ color: 'var(--cria-text-secondary)' }}>
-                      • {getTypeLabel(subscription.subscriptionType)}
-                    </span>
-                    <span style={getTierBadgeStyle(subscription.subscriptionTier)}>
-                      {subscription.subscriptionTier}
-                    </span>
-                    <span style={{ color: 'var(--cria-text-secondary)' }}>
-                      • Início: {formatDate(subscription.startsAt)}
-                    </span>
-                    <span style={{ color: 'var(--cria-text-secondary)' }}>
-                      • Fim: {formatDate(subscription.endsAt)}
-                    </span>
-                    <span style={{ color: 'var(--cria-text-secondary)' }}>
-                      • Assentos: {subscription.seats}
-                    </span>
-                    <span style={{ color: 'var(--cria-text-secondary)' }}>
-                      • Assentos livres: {subscription.availableSeats}
-                    </span>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    onClick={() => handleEditSubscription(subscription.id)}
-                    icon={<PencilSimple size={16} />}
-                    style={{ color: 'var(--cria-primary)' }}
-                  >
-                    Editar
-                  </Button>
+                  <strong>{subscription.planName}</strong>
+                  <span style={{ color: 'var(--cria-text-secondary)' }}>
+                    • {getTypeLabel(subscription.subscriptionType)}
+                  </span>
+                  <span style={getTierBadgeStyle(subscription.subscriptionTier)}>
+                    {subscription.subscriptionTier}
+                  </span>
+                  <span style={{ color: 'var(--cria-text-secondary)' }}>
+                    • Início: {formatDate(subscription.startsAt)}
+                  </span>
+                  <span style={{ color: 'var(--cria-text-secondary)' }}>
+                    • Fim: {formatDate(subscription.endsAt)}
+                  </span>
+                  <span style={{ color: 'var(--cria-text-secondary)' }}>
+                    • Assentos: {subscription.seats}
+                  </span>
+                  <span style={{ color: 'var(--cria-text-secondary)' }}>
+                    • Assentos livres: {subscription.availableSeats}
+                  </span>
                 </div>
-              )}
+              </div>
             </CardContent>
           </Card>
         ))}
