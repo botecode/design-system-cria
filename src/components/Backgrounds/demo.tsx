@@ -9,7 +9,7 @@ import {
   Palette, 
   Gradient, 
   GridFour, 
-  Texture, 
+  SquaresFour as Texture, 
   Play, 
   Pause,
   Download,
@@ -25,7 +25,7 @@ const BackgroundsDemo: React.FC = () => {
     <div style={{ padding: spacing[6], backgroundColor: colors.background, minHeight: '100vh' }}>
       <CriaTextHeadline1  style={{ marginBottom: spacing[8] }}>
         Backgrounds Component
-      </CriaTextBody1>
+      </CriaTextHeadline1>
       
       <CriaTextBody1 color="muted" style={{ marginBottom: spacing[8] }}>
         A versatile component for creating various background effects including gradients, patterns, and textures with modern design patterns and full customization options.
@@ -34,27 +34,27 @@ const BackgroundsDemo: React.FC = () => {
       {/* Plain Backgrounds */}
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: `1px solid ${colors.border}` }}>
-          <CriaTextTitle2 >Plain Backgrounds</CriaTextBody1>
-          <CriaTextBody1 color="muted" size="sm">
+          <CriaTextTitle2 >Plain Backgrounds</CriaTextTitle2>
+          <CriaTextBody2 color="muted">
             Simple solid color backgrounds with different color schemes
-          </CriaTextBody1>
+          </CriaTextBody2>
         </div>
         <div style={{ padding: spacing[4], display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: spacing[4] }}>
           <Backgrounds variant="plain" colorScheme="primary" size="sm">
             <div style={{ textAlign: 'center', padding: spacing[5] }}>
-              <CriaTextTitle2  color="white">Primary</CriaTextBody1>
+              <CriaTextTitle2  color="white">Primary</CriaTextTitle2>
             </div>
           </Backgrounds>
           
           <Backgrounds variant="plain" colorScheme="secondary" size="sm">
             <div style={{ textAlign: 'center', padding: spacing[5] }}>
-              <CriaTextTitle2  color="white">Secondary</CriaTextBody1>
+              <CriaTextTitle2  color="white">Secondary</CriaTextTitle2>
             </div>
           </Backgrounds>
           
           <Backgrounds variant="plain" colorScheme="neutral" size="sm">
             <div style={{ textAlign: 'center', padding: spacing[5] }}>
-              <CriaTextTitle2 >Neutral</CriaTextBody1>
+              <CriaTextTitle2 >Neutral</CriaTextTitle2>
             </div>
           </Backgrounds>
           
@@ -69,8 +69,8 @@ const BackgroundsDemo: React.FC = () => {
       {/* Gradient Backgrounds */}
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: `1px solid ${colors.border}` }}>
-          <CriaTextTitle2 >Gradient Backgrounds</CriaTextBody1>
-          <CriaTextBody1 color="muted" size="sm">
+          <CriaTextTitle2 >Gradient Backgrounds</CriaTextTitle2>
+          <CriaTextBody2 color="muted">
             Linear, radial, and conic gradients with various directions and color schemes
           </CriaTextBody1>
         </div>
@@ -84,7 +84,7 @@ const BackgroundsDemo: React.FC = () => {
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
               <CriaTextTitle2  color="white">Linear Gradient</CriaTextBody1>
-              <CriaTextBody1 color="white" size="sm">Left to Right</CriaTextBody1>
+              <CriaTextBody2 color="white">Left to Right</CriaTextBody1>
             </div>
           </Backgrounds>
           
@@ -97,7 +97,7 @@ const BackgroundsDemo: React.FC = () => {
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
               <CriaTextTitle2  color="white">Radial Gradient</CriaTextBody1>
-              <CriaTextBody1 color="white" size="sm">Center Out</CriaTextBody1>
+              <CriaTextBody2 color="white">Center Out</CriaTextBody1>
             </div>
           </Backgrounds>
           
@@ -110,7 +110,7 @@ const BackgroundsDemo: React.FC = () => {
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
               <CriaTextTitle2  color="white">Conic Gradient</CriaTextBody1>
-              <CriaTextBody1 color="white" size="sm">45 Degree</CriaTextBody1>
+              <CriaTextBody2 color="white">45 Degree</CriaTextBody1>
             </div>
           </Backgrounds>
           
@@ -123,7 +123,7 @@ const BackgroundsDemo: React.FC = () => {
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
               <CriaTextTitle2  color="white">Custom Colors</CriaTextBody1>
-              <CriaTextBody1 color="white" size="sm">Multi-color Gradient</CriaTextBody1>
+              <CriaTextBody2 color="white">Multi-color Gradient</CriaTextBody1>
             </div>
           </Backgrounds>
         </div>
@@ -132,8 +132,8 @@ const BackgroundsDemo: React.FC = () => {
       {/* Pattern Backgrounds */}
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: `1px solid ${colors.border}` }}>
-          <CriaTextTitle2 >Pattern Backgrounds</CriaTextBody1>
-          <CriaTextBody1 color="muted" size="sm">
+          <CriaTextTitle2 >Pattern Backgrounds</CriaTextTitle2>
+          <CriaTextBody2 color="muted">
             Various geometric patterns with customizable size, opacity, and colors
           </CriaTextBody1>
         </div>
@@ -147,8 +147,8 @@ const BackgroundsDemo: React.FC = () => {
             size="md"
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
-              <CriaTextTitle2 >Dots Pattern</CriaTextBody1>
-              <CriaTextBody1 size="sm">Circular dots</CriaTextBody1>
+              <CriaTextTitle2 >Dots Pattern</CriaTextTitle2>
+              <CriaTextBody2>Circular dots</CriaTextBody1>
             </div>
           </Backgrounds>
           
@@ -161,8 +161,8 @@ const BackgroundsDemo: React.FC = () => {
             size="md"
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
-              <CriaTextTitle2 >Grid Pattern</CriaTextBody1>
-              <CriaTextBody1 size="sm">Intersecting lines</CriaTextBody1>
+              <CriaTextTitle2 >Grid Pattern</CriaTextTitle2>
+              <CriaTextBody2>Intersecting lines</CriaTextBody1>
             </div>
           </Backgrounds>
           
@@ -175,8 +175,8 @@ const BackgroundsDemo: React.FC = () => {
             size="md"
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
-              <CriaTextTitle2 >Lines Pattern</CriaTextBody1>
-              <CriaTextBody1 size="sm">Diagonal stripes</CriaTextBody1>
+              <CriaTextTitle2 >Lines Pattern</CriaTextTitle2>
+              <CriaTextBody2>Diagonal stripes</CriaTextBody1>
             </div>
           </Backgrounds>
           
@@ -189,8 +189,8 @@ const BackgroundsDemo: React.FC = () => {
             size="md"
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
-              <CriaTextTitle2 >Waves Pattern</CriaTextBody1>
-              <CriaTextBody1 size="sm">Radial waves</CriaTextBody1>
+              <CriaTextTitle2 >Waves Pattern</CriaTextTitle2>
+              <CriaTextBody2>Radial waves</CriaTextBody1>
             </div>
           </Backgrounds>
           
@@ -203,8 +203,8 @@ const BackgroundsDemo: React.FC = () => {
             size="md"
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
-              <CriaTextTitle2 >Geometric Pattern</CriaTextBody1>
-              <CriaTextBody1 size="sm">Conic sections</CriaTextBody1>
+              <CriaTextTitle2 >Geometric Pattern</CriaTextTitle2>
+              <CriaTextBody2>Conic sections</CriaTextBody1>
             </div>
           </Backgrounds>
         </div>
@@ -213,8 +213,8 @@ const BackgroundsDemo: React.FC = () => {
       {/* Texture Backgrounds */}
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: `1px solid ${colors.border}` }}>
-          <CriaTextTitle2 >Texture Backgrounds</CriaTextBody1>
-          <CriaTextBody1 color="muted" size="sm">
+          <CriaTextTitle2 >Texture Backgrounds</CriaTextTitle2>
+          <CriaTextBody2 color="muted">
             Realistic material textures with adjustable intensity and scale
           </CriaTextBody1>
         </div>
@@ -227,8 +227,8 @@ const BackgroundsDemo: React.FC = () => {
             size="md"
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
-              <CriaTextTitle2 >Paper Texture</CriaTextBody1>
-              <CriaTextBody1 size="sm">Subtle paper grain</CriaTextBody1>
+              <CriaTextTitle2 >Paper Texture</CriaTextTitle2>
+              <CriaTextBody2>Subtle paper grain</CriaTextBody1>
             </div>
           </Backgrounds>
           
@@ -240,8 +240,8 @@ const BackgroundsDemo: React.FC = () => {
             size="md"
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
-              <CriaTextTitle2 >Fabric Texture</CriaTextBody1>
-              <CriaTextBody1 size="sm">Woven fabric pattern</CriaTextBody1>
+              <CriaTextTitle2 >Fabric Texture</CriaTextTitle2>
+              <CriaTextBody2>Woven fabric pattern</CriaTextBody1>
             </div>
           </Backgrounds>
           
@@ -253,8 +253,8 @@ const BackgroundsDemo: React.FC = () => {
             size="md"
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
-              <CriaTextTitle2 >Metal Texture</CriaTextBody1>
-              <CriaTextBody1 size="sm">Brushed metal finish</CriaTextBody1>
+              <CriaTextTitle2 >Metal Texture</CriaTextTitle2>
+              <CriaTextBody2>Brushed metal finish</CriaTextBody1>
             </div>
           </Backgrounds>
           
@@ -266,8 +266,8 @@ const BackgroundsDemo: React.FC = () => {
             size="md"
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
-              <CriaTextTitle2 >Wood Texture</CriaTextBody1>
-              <CriaTextBody1 size="sm">Natural wood grain</CriaTextBody1>
+              <CriaTextTitle2 >Wood Texture</CriaTextTitle2>
+              <CriaTextBody2>Natural wood grain</CriaTextBody1>
             </div>
           </Backgrounds>
         </div>
@@ -276,8 +276,8 @@ const BackgroundsDemo: React.FC = () => {
       {/* Intensity Variations */}
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: `1px solid ${colors.border}` }}>
-          <CriaTextTitle2 >Intensity Variations</CriaTextBody1>
-          <CriaTextBody1 color="muted" size="sm">
+          <CriaTextTitle2 >Intensity Variations</CriaTextTitle2>
+          <CriaTextBody2 color="muted">
             Different intensity levels for patterns and textures
           </CriaTextBody1>
         </div>
@@ -290,7 +290,7 @@ const BackgroundsDemo: React.FC = () => {
             size="sm"
           >
             <div style={{ textAlign: 'center', padding: spacing[5] }}>
-              <CriaTextTitle2 >Subtle</CriaTextBody1>
+              <CriaTextTitle2 >Subtle</CriaTextTitle2>
             </div>
           </Backgrounds>
           
@@ -302,7 +302,7 @@ const BackgroundsDemo: React.FC = () => {
             size="sm"
           >
             <div style={{ textAlign: 'center', padding: spacing[5] }}>
-              <CriaTextTitle2 >Medium</CriaTextBody1>
+              <CriaTextTitle2 >Medium</CriaTextTitle2>
             </div>
           </Backgrounds>
           
@@ -314,7 +314,7 @@ const BackgroundsDemo: React.FC = () => {
             size="sm"
           >
             <div style={{ textAlign: 'center', padding: spacing[5] }}>
-              <CriaTextTitle2 >Bold</CriaTextBody1>
+              <CriaTextTitle2 >Bold</CriaTextTitle2>
             </div>
           </Backgrounds>
         </div>
@@ -323,8 +323,8 @@ const BackgroundsDemo: React.FC = () => {
       {/* Size Variations */}
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: `1px solid ${colors.border}` }}>
-          <CriaTextTitle2 >Size Variations</CriaTextBody1>
-          <CriaTextBody1 color="muted" size="sm">
+          <CriaTextTitle2 >Size Variations</CriaTextTitle2>
+          <CriaTextBody2 color="muted">
             Different background sizes for various use cases
           </CriaTextBody1>
         </div>
@@ -360,7 +360,7 @@ const BackgroundsDemo: React.FC = () => {
             colorScheme="accent" 
             size="lg"
           >
-            <div style={{ textAlign: 'center', padding: spacing[15] }}>
+            <div style={{ textAlign: 'center', padding: spacing[12] }}>
               <CriaTextTitle2  color="white">Large (300px)</CriaTextBody1>
             </div>
           </Backgrounds>
@@ -372,8 +372,8 @@ const BackgroundsDemo: React.FC = () => {
         <div style={{ padding: spacing[4], borderBottom: `1px solid ${colors.border}` }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
-              <CriaTextTitle2 >Animated Backgrounds</CriaTextBody1>
-              <CriaTextBody1 color="muted" size="sm">
+              <CriaTextTitle2 >Animated Backgrounds</CriaTextTitle2>
+              <CriaTextBody2 color="muted">
                 Backgrounds with smooth animations and transitions
               </CriaTextBody1>
             </div>
@@ -399,7 +399,7 @@ const BackgroundsDemo: React.FC = () => {
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
               <CriaTextTitle2  color="white">Animated Gradient</CriaTextBody1>
-              <CriaTextBody1 color="white" size="sm">4 second cycle</CriaTextBody1>
+              <CriaTextBody2 color="white">4 second cycle</CriaTextBody1>
             </div>
           </Backgrounds>
           
@@ -413,7 +413,7 @@ const BackgroundsDemo: React.FC = () => {
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
               <CriaTextTitle2  color="white">Animated Pattern</CriaTextBody1>
-              <CriaTextBody1 color="white" size="sm">6 second cycle</CriaTextBody1>
+              <CriaTextBody2 color="white">6 second cycle</CriaTextBody1>
             </div>
           </Backgrounds>
         </div>
@@ -422,8 +422,8 @@ const BackgroundsDemo: React.FC = () => {
       {/* Overlay Examples */}
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: `1px solid ${colors.border}` }}>
-          <CriaTextTitle2 >Overlay Examples</CriaTextBody1>
-          <CriaTextBody1 color="muted" size="sm">
+          <CriaTextTitle2 >Overlay Examples</CriaTextTitle2>
+          <CriaTextBody2 color="muted">
             Backgrounds with overlay effects for better text readability
           </CriaTextBody1>
         </div>
@@ -440,7 +440,7 @@ const BackgroundsDemo: React.FC = () => {
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
               <CriaTextTitle2  color="white">With Overlay</CriaTextBody1>
-              <CriaTextBody1 color="white" size="sm">Better text contrast</CriaTextBody1>
+              <CriaTextBody2 color="white">Better text contrast</CriaTextBody1>
             </div>
           </Backgrounds>
           
@@ -454,7 +454,7 @@ const BackgroundsDemo: React.FC = () => {
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
               <CriaTextTitle2  color="white">Without Overlay</CriaTextBody1>
-              <CriaTextBody1 color="white" size="sm">Direct background</CriaTextBody1>
+              <CriaTextBody2 color="white">Direct background</CriaTextBody1>
             </div>
           </Backgrounds>
         </div>
@@ -463,8 +463,8 @@ const BackgroundsDemo: React.FC = () => {
       {/* Modern Backgrounds */}
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: `1px solid ${colors.border}` }}>
-          <CriaTextTitle2 >Modern Backgrounds</CriaTextBody1>
-          <CriaTextBody1 color="muted" size="sm">
+          <CriaTextTitle2 >Modern Backgrounds</CriaTextTitle2>
+          <CriaTextBody2 color="muted">
             Contemporary background patterns inspired by modern design trends
           </CriaTextBody1>
         </div>
@@ -477,7 +477,7 @@ const BackgroundsDemo: React.FC = () => {
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
               <CriaTextTitle2  color="white">Radial Glow</CriaTextBody1>
-              <CriaTextBody1 color="white" size="sm">Soft radial gradient</CriaTextBody1>
+              <CriaTextBody2 color="white">Soft radial gradient</CriaTextBody1>
             </div>
           </Backgrounds>
           
@@ -489,7 +489,7 @@ const BackgroundsDemo: React.FC = () => {
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
               <CriaTextTitle2  color="white">Grid Dots</CriaTextBody1>
-              <CriaTextBody1 color="white" size="sm">Grid with radial glow</CriaTextBody1>
+              <CriaTextBody2 color="white">Grid with radial glow</CriaTextBody1>
             </div>
           </Backgrounds>
           
@@ -501,7 +501,7 @@ const BackgroundsDemo: React.FC = () => {
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
               <CriaTextTitle2  color="white">Mesh Gradient</CriaTextBody1>
-              <CriaTextBody1 color="white" size="sm">Modern mesh effect</CriaTextBody1>
+              <CriaTextBody2 color="white">Modern mesh effect</CriaTextBody1>
             </div>
           </Backgrounds>
           
@@ -513,7 +513,7 @@ const BackgroundsDemo: React.FC = () => {
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
               <CriaTextTitle2  color="white">Noise Texture</CriaTextBody1>
-              <CriaTextBody1 color="white" size="sm">Subtle noise pattern</CriaTextBody1>
+              <CriaTextBody2 color="white">Subtle noise pattern</CriaTextBody1>
             </div>
           </Backgrounds>
           
@@ -525,7 +525,7 @@ const BackgroundsDemo: React.FC = () => {
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
               <CriaTextTitle2  color="white">Aurora Effect</CriaTextBody1>
-              <CriaTextBody1 color="white" size="sm">Northern lights style</CriaTextBody1>
+              <CriaTextBody2 color="white">Northern lights style</CriaTextBody1>
             </div>
           </Backgrounds>
           
@@ -536,8 +536,8 @@ const BackgroundsDemo: React.FC = () => {
             size="md"
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
-              <CriaTextTitle2  color="white">Wave Pattern</CriaTextBody1>
-              <CriaTextBody1 color="white" size="sm">Flowing wave effect</CriaTextBody1>
+              <CriaTextTitle2  color="white">Wave Pattern</CriaTextTitle2>
+              <CriaTextBody2 color="white">Flowing wave effect</CriaTextBody1>
             </div>
           </Backgrounds>
         </div>
@@ -546,8 +546,8 @@ const BackgroundsDemo: React.FC = () => {
       {/* Real-world Examples */}
       <Card style={{ marginBottom: spacing[8], padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: `1px solid ${colors.border}` }}>
-          <CriaTextTitle2 >Real-world Examples</CriaTextBody1>
-          <CriaTextBody1 color="muted" size="sm">
+          <CriaTextTitle2 >Real-world Examples</CriaTextTitle2>
+          <CriaTextBody2 color="muted">
             Practical examples showing how backgrounds can be used in applications
           </CriaTextBody1>
         </div>
@@ -596,7 +596,7 @@ const BackgroundsDemo: React.FC = () => {
                   </div>
                   <CriaTextTitle2  style={{ marginBottom: '8px' }}>
                     Beautiful Design
-                  </CriaTextBody1>
+                  </CriaTextTitle2>
                   <CriaTextBody1 color="muted">
                     Create stunning interfaces with our comprehensive design system
                   </CriaTextBody1>
@@ -634,7 +634,7 @@ const BackgroundsDemo: React.FC = () => {
             >
               <Card style={{ margin: '0', backgroundColor: 'transparent', border: 'none' }}>
                 <div style={{ textAlign: 'center', padding: spacing[5] }}>
-                  <div style={{ width: '60px', height: '60px', backgroundColor: colors.accent[500], borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
+                  <div style={{ width: '60px', height: '60px', backgroundColor: colors.secondary[500], borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
                     <GridFour size={24} color="white" />
                   </div>
                   <CriaTextTitle2  style={{ marginBottom: '8px' }}>
@@ -684,7 +684,7 @@ const BackgroundsDemo: React.FC = () => {
       <Card style={{ padding: '0' }}>
         <div style={{ padding: spacing[4], borderBottom: `1px solid ${colors.border}` }}>
           <CriaTextTitle2 >Customization Examples</CriaTextBody1>
-          <CriaTextBody1 color="muted" size="sm">
+          <CriaTextBody2 color="muted">
             Advanced customization with custom colors, sizes, and effects
           </CriaTextBody1>
         </div>
@@ -700,7 +700,7 @@ const BackgroundsDemo: React.FC = () => {
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
               <CriaTextTitle2  color="white">Rainbow Conic</CriaTextBody1>
-              <CriaTextBody1 color="white" size="sm">Custom colors</CriaTextBody1>
+              <CriaTextBody2 color="white">Custom colors</CriaTextBody1>
             </div>
           </Backgrounds>
           
@@ -713,8 +713,8 @@ const BackgroundsDemo: React.FC = () => {
             size="md"
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
-              <CriaTextTitle2 >Custom Pattern</CriaTextBody1>
-              <CriaTextBody1 size="sm">Large geometric shapes</CriaTextBody1>
+              <CriaTextTitle2 >Custom Pattern</CriaTextTitle2>
+              <CriaTextBody2>Large geometric shapes</CriaTextBody1>
             </div>
           </Backgrounds>
           
@@ -726,8 +726,8 @@ const BackgroundsDemo: React.FC = () => {
             size="md"
           >
             <div style={{ textAlign: 'center', padding: spacing[10] }}>
-              <CriaTextTitle2 >Intense Metal</CriaTextBody1>
-              <CriaTextBody1 size="sm">High intensity texture</CriaTextBody1>
+              <CriaTextTitle2 >Intense Metal</CriaTextTitle2>
+              <CriaTextBody2>High intensity texture</CriaTextBody1>
             </div>
           </Backgrounds>
         </div>
