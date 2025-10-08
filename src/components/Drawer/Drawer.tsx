@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useCallback, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Typography } from '../Typography';
+import { CriaTextTitle1 } from '../TextTokens';
 import { Button } from '../Button';
 import { X, Spinner } from 'phosphor-react';
+import { colors, spacing, radii, shadows } from '../../tokens';
 
 export interface DrawerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   /**
@@ -345,14 +346,12 @@ export const Drawer: React.FC<DrawerProps> = ({
                     {titleIcon && (
                       <span className="drawer__title-icon" aria-hidden="true">{titleIcon}</span>
                     )}
-                    <Typography 
+                    <CriaTextTitle1 
                       id="drawer-title"
-                      variant="h3" 
-                      weight="semibold" 
                       className="drawer__title"
                     >
                       {title}
-                    </Typography>
+                    </CriaTextTitle1>
                   </div>
                 )}
                 {showCloseButton && (

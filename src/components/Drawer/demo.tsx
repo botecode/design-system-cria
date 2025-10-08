@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Drawer } from './Drawer';
 import { Button } from '../Button';
-import { Typography } from '../Typography';
+import { CriaTextHeadline1, CriaTextHeadline2, CriaTextTitle1, CriaTextBody1, CriaTextBody2 } from '../TextTokens';
+import { colors, spacing, radii } from '../../tokens';
 import { Card } from '../Card';
 import { Input } from '../Input';
 import { Textarea } from '../Textarea';
@@ -14,8 +15,8 @@ import {
   ShoppingCart, 
   Heart, 
   Bell,
-  Search,
-  Filter,
+  MagnifyingGlass as Search,
+  Funnel as Filter,
   Download,
   Upload,
   Share,
@@ -54,24 +55,24 @@ const DrawerDemo: React.FC = () => {
   };
 
   return (
-    <div style={{ padding: '24px', backgroundColor: 'var(--color-background)', minHeight: '100vh' }}>
-      <Typography variant="h1" weight="bold" style={{ marginBottom: '32px' }}>
+    <div style={{ padding: spacing[6], backgroundColor: colors.background, minHeight: '100vh' }}>
+      <CriaTextHeadline1 style={{ marginBottom: spacing[8] }}>
         Drawer Component
-      </Typography>
+      </CriaTextHeadline1>
       
-      <Typography variant="body" color="muted" style={{ marginBottom: '32px' }}>
+      <CriaTextBody1 style={{ marginBottom: spacing[8], color: colors.text.secondary }}>
         A slide-out panel component for mobile navigation, settings panels, or contextual content with customizable positions, sizes, and animations.
-      </Typography>
+      </CriaTextBody1>
 
       {/* Basic Drawer */}
-      <Card style={{ marginBottom: '32px', padding: '0' }}>
-        <div style={{ padding: '16px', borderBottom: '1px solid var(--color-border)' }}>
-          <Typography variant="h3" weight="semibold">Basic Drawer</Typography>
-          <Typography variant="body" color="muted" size="sm">
+      <Card style={{ marginBottom: spacing[8], padding: '0' }}>
+        <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
+          <CriaTextTitle1>Basic Drawer</CriaTextTitle1>
+          <CriaTextBody2 style={{ color: colors.text.secondary }} >
             Simple drawer with title and content
-          </Typography>
+          </CriaTextBody2>
         </div>
-        <div style={{ padding: '16px' }}>
+        <div style={{ padding: spacing[4] }}>
           <Button onClick={() => openDrawer('basic')}>
             Open Basic Drawer
           </Button>
@@ -84,9 +85,9 @@ const DrawerDemo: React.FC = () => {
             size="md"
           >
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <Typography variant="body">
+              <CriaTextBody1>
                 This is a basic drawer with some content. You can add any content here.
-              </Typography>
+              </CriaTextBody1>
               <Button variant="primary">Action Button</Button>
               <Button variant="ghost">Secondary Action</Button>
             </div>
@@ -95,14 +96,14 @@ const DrawerDemo: React.FC = () => {
       </Card>
 
       {/* Positions */}
-      <Card style={{ marginBottom: '32px', padding: '0' }}>
-        <div style={{ padding: '16px', borderBottom: '1px solid var(--color-border)' }}>
-          <Typography variant="h3" weight="semibold">Positions</Typography>
-          <Typography variant="body" color="muted" size="sm">
+      <Card style={{ marginBottom: spacing[8], padding: '0' }}>
+        <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
+          <CriaTextTitle1>Positions</CriaTextTitle1>
+          <CriaTextBody2 style={{ color: colors.text.secondary }} >
             Drawers can slide in from different directions
-          </Typography>
+          </CriaTextBody2>
         </div>
-        <div style={{ padding: '16px', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+        <div style={{ padding: spacing[4], display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           <Button onClick={() => openDrawer('left')}>
             <List size={16} />
             Left Drawer
@@ -152,14 +153,14 @@ const DrawerDemo: React.FC = () => {
           size="md"
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <Typography variant="body">
+            <CriaTextBody1>
               This drawer slides in from the right side.
-            </Typography>
+            </CriaTextBody1>
             <Card>
-              <Typography variant="h4" weight="medium">Quick Actions</Typography>
+              <CriaTextTitle1>Quick Actions</CriaTextTitle1>
               <div style={{ display: 'flex', gap: '8px', marginTop: '12px' }}>
-                <Button size="sm">Edit</Button>
-                <Button size="sm" variant="secondary">Share</Button>
+                <Button >Edit</Button>
+                <Button  variant="secondary">Share</Button>
               </div>
             </Card>
           </div>
@@ -173,9 +174,9 @@ const DrawerDemo: React.FC = () => {
           size="md"
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <Typography variant="body">
+            <CriaTextBody1>
               This drawer slides down from the top.
-            </Typography>
+            </CriaTextBody1>
             <div style={{ display: 'flex', gap: '8px' }}>
               <Badge variant="primary">New</Badge>
               <Badge variant="secondary">Updated</Badge>
@@ -192,9 +193,9 @@ const DrawerDemo: React.FC = () => {
           size="md"
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <Typography variant="body">
+            <CriaTextBody1>
               This drawer slides up from the bottom.
-            </Typography>
+            </CriaTextBody1>
             <div style={{ display: 'flex', gap: '12px', justifyContent: 'center' }}>
               <Button variant="primary">Confirm</Button>
               <Button variant="ghost">Cancel</Button>
@@ -204,15 +205,15 @@ const DrawerDemo: React.FC = () => {
       </Card>
 
       {/* Sizes */}
-      <Card style={{ marginBottom: '32px', padding: '0' }}>
-        <div style={{ padding: '16px', borderBottom: '1px solid var(--color-border)' }}>
-          <Typography variant="h3" weight="semibold">Sizes</Typography>
-          <Typography variant="body" color="muted" size="sm">
+      <Card style={{ marginBottom: spacing[8], padding: '0' }}>
+        <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
+          <CriaTextTitle1>Sizes</CriaTextTitle1>
+          <CriaTextBody2 style={{ color: colors.text.secondary }} >
             Different size configurations for various use cases
-          </Typography>
+          </CriaTextBody2>
         </div>
-        <div style={{ padding: '16px', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-          <Button onClick={() => openDrawer('size-sm')} size="sm">Small</Button>
+        <div style={{ padding: spacing[4], display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+          <Button onClick={() => openDrawer('size-sm')} >Small</Button>
           <Button onClick={() => openDrawer('size-md')}>Medium</Button>
           <Button onClick={() => openDrawer('size-lg')} size="lg">Large</Button>
           <Button onClick={() => openDrawer('size-xl')}>Extra Large</Button>
@@ -224,9 +225,8 @@ const DrawerDemo: React.FC = () => {
           onClose={() => closeDrawer('size-sm')}
           title="Small Drawer"
           position="right"
-          size="sm"
         >
-          <Typography variant="body">This is a small drawer.</Typography>
+          <CriaTextBody1>This is a small drawer.</CriaTextBody1>
         </Drawer>
 
         <Drawer
@@ -236,7 +236,7 @@ const DrawerDemo: React.FC = () => {
           position="right"
           size="md"
         >
-          <Typography variant="body">This is a medium-sized drawer with more content.</Typography>
+          <CriaTextBody1>This is a medium-sized drawer with more content.</CriaTextBody1>
         </Drawer>
 
         <Drawer
@@ -247,12 +247,12 @@ const DrawerDemo: React.FC = () => {
           size="lg"
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-            <Typography variant="body">This is a large drawer with plenty of space for content.</Typography>
+            <CriaTextBody1>This is a large drawer with plenty of space for content.</CriaTextBody1>
             <Card>
-              <Typography variant="h4" weight="medium">Content Section</Typography>
-              <Typography variant="body" color="muted">
+              <CriaTextTitle1>Content Section</CriaTextTitle1>
+              <CriaTextBody2 style={{ color: colors.text.secondary }}>
                 You can add multiple sections and complex layouts here.
-              </Typography>
+              </CriaTextBody2>
             </Card>
           </div>
         </Drawer>
@@ -265,15 +265,15 @@ const DrawerDemo: React.FC = () => {
           size="xl"
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            <Typography variant="body">This is an extra large drawer for complex interfaces.</Typography>
+            <CriaTextBody1>This is an extra large drawer for complex interfaces.</CriaTextBody1>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
               <Card>
-                <Typography variant="h4" weight="medium">Section 1</Typography>
-                <Typography variant="body" color="muted">Content here</Typography>
+                <CriaTextTitle1>Section 1</CriaTextTitle1>
+                <CriaTextBody2 style={{ color: colors.text.secondary }}>Content here</CriaTextBody2>
               </Card>
               <Card>
-                <Typography variant="h4" weight="medium">Section 2</Typography>
-                <Typography variant="body" color="muted">More content</Typography>
+                <CriaTextTitle1>Section 2</CriaTextTitle1>
+                <CriaTextBody2 style={{ color: colors.text.secondary }}>More content</CriaTextBody2>
               </Card>
             </div>
           </div>
@@ -287,15 +287,15 @@ const DrawerDemo: React.FC = () => {
           size="full"
         >
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            <Typography variant="h2" weight="bold">Full Screen Experience</Typography>
-            <Typography variant="body">
+            <CriaTextHeadline2>Full Screen Experience</CriaTextHeadline2>
+            <CriaTextBody1>
               This drawer takes up the entire screen, perfect for complex workflows or detailed views.
-            </Typography>
+            </CriaTextBody1>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '16px' }}>
               {[1, 2, 3, 4, 5, 6].map(i => (
                 <Card key={i}>
-                  <Typography variant="h4" weight="medium">Card {i}</Typography>
-                  <Typography variant="body" color="muted">Content for card {i}</Typography>
+                  <CriaTextTitle1>Card {i}</CriaTextTitle1>
+                  <CriaTextBody2 style={{ color: colors.text.secondary }}>Content for card {i}</CriaTextBody2>
                 </Card>
               ))}
             </div>
@@ -304,14 +304,14 @@ const DrawerDemo: React.FC = () => {
       </Card>
 
       {/* Variants */}
-      <Card style={{ marginBottom: '32px', padding: '0' }}>
-        <div style={{ padding: '16px', borderBottom: '1px solid var(--color-border)' }}>
-          <Typography variant="h3" weight="semibold">Variants</Typography>
-          <Typography variant="body" color="muted" size="sm">
+      <Card style={{ marginBottom: spacing[8], padding: '0' }}>
+        <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
+          <CriaTextTitle1>Variants</CriaTextTitle1>
+          <CriaTextBody2 style={{ color: colors.text.secondary }} >
             Different visual styles for various contexts
-          </Typography>
+          </CriaTextBody2>
         </div>
-        <div style={{ padding: '16px', display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+        <div style={{ padding: spacing[4], display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
           <Button onClick={() => openDrawer('variant-default')}>Default</Button>
           <Button onClick={() => openDrawer('variant-primary')} variant="primary">Primary</Button>
           <Button onClick={() => openDrawer('variant-secondary')} variant="secondary">Secondary</Button>
@@ -325,7 +325,7 @@ const DrawerDemo: React.FC = () => {
           size="md"
           variant="default"
         >
-          <Typography variant="body">This is the default variant with standard styling.</Typography>
+          <CriaTextBody1>This is the default variant with standard styling.</CriaTextBody1>
         </Drawer>
 
         <Drawer
@@ -336,9 +336,9 @@ const DrawerDemo: React.FC = () => {
           size="md"
           variant="primary"
         >
-          <Typography variant="body" color="white">
+          <CriaTextBody1 style={{ color: colors.white }}>
             This is the primary variant with primary color styling.
-          </Typography>
+          </CriaTextBody1>
         </Drawer>
 
         <Drawer
@@ -349,21 +349,21 @@ const DrawerDemo: React.FC = () => {
           size="md"
           variant="secondary"
         >
-          <Typography variant="body" color="white">
+          <CriaTextBody1 style={{ color: colors.white }}>
             This is the secondary variant with secondary color styling.
-          </Typography>
+          </CriaTextBody1>
         </Drawer>
       </Card>
 
       {/* Form Example */}
-      <Card style={{ marginBottom: '32px', padding: '0' }}>
-        <div style={{ padding: '16px', borderBottom: '1px solid var(--color-border)' }}>
-          <Typography variant="h3" weight="semibold">Form Example</Typography>
-          <Typography variant="body" color="muted" size="sm">
+      <Card style={{ marginBottom: spacing[8], padding: '0' }}>
+        <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
+          <CriaTextTitle1>Form Example</CriaTextTitle1>
+          <CriaTextBody2 style={{ color: colors.text.secondary }} >
             Drawer with form content and custom footer
-          </Typography>
+          </CriaTextBody2>
         </div>
-        <div style={{ padding: '16px' }}>
+        <div style={{ padding: spacing[4] }}>
           <Button onClick={() => openDrawer('form')}>
             <Pencil size={16} />
             Open Form Drawer
@@ -389,9 +389,9 @@ const DrawerDemo: React.FC = () => {
           >
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               <div>
-                <Typography variant="label" weight="medium" style={{ marginBottom: '8px', display: 'block' }}>
+                <CriaTextBody1 style={{ marginBottom: spacing[2], display: 'block' }}>
                   Name
-                </Typography>
+                </CriaTextBody1>
                 <Input
                   value={formData.name}
                   onChange={(e) => handleFormChange('name', e.target.value)}
@@ -400,9 +400,9 @@ const DrawerDemo: React.FC = () => {
               </div>
               
               <div>
-                <Typography variant="label" weight="medium" style={{ marginBottom: '8px', display: 'block' }}>
+                <CriaTextBody1 style={{ marginBottom: spacing[2], display: 'block' }}>
                   Email
-                </Typography>
+                </CriaTextBody1>
                 <Input
                   type="email"
                   value={formData.email}
@@ -412,9 +412,9 @@ const DrawerDemo: React.FC = () => {
               </div>
               
               <div>
-                <Typography variant="label" weight="medium" style={{ marginBottom: '8px', display: 'block' }}>
+                <CriaTextBody1 style={{ marginBottom: spacing[2], display: 'block' }}>
                   Message
-                </Typography>
+                </CriaTextBody1>
                 <Textarea
                   value={formData.message}
                   onChange={(e) => handleFormChange('message', e.target.value)}
@@ -428,7 +428,7 @@ const DrawerDemo: React.FC = () => {
                   checked={formData.notifications}
                   onChange={(checked) => handleFormChange('notifications', checked)}
                 />
-                <Typography variant="body">Enable notifications</Typography>
+                <CriaTextBody1>Enable notifications</CriaTextBody1>
               </div>
             </form>
           </Drawer>
@@ -436,14 +436,14 @@ const DrawerDemo: React.FC = () => {
       </Card>
 
       {/* Shopping Cart Example */}
-      <Card style={{ marginBottom: '32px', padding: '0' }}>
-        <div style={{ padding: '16px', borderBottom: '1px solid var(--color-border)' }}>
-          <Typography variant="h3" weight="semibold">Shopping Cart Example</Typography>
-          <Typography variant="body" color="muted" size="sm">
+      <Card style={{ marginBottom: spacing[8], padding: '0' }}>
+        <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
+          <CriaTextTitle1>Shopping Cart Example</CriaTextTitle1>
+          <CriaTextBody2 style={{ color: colors.text.secondary }} >
             Real-world example with cart items and checkout
-          </Typography>
+          </CriaTextBody2>
         </div>
-        <div style={{ padding: '16px' }}>
+        <div style={{ padding: spacing[4] }}>
           <Button onClick={() => openDrawer('cart')}>
             <ShoppingCart size={16} />
             View Cart (3)
@@ -458,8 +458,8 @@ const DrawerDemo: React.FC = () => {
             footer={
               <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <Typography variant="h4" weight="semibold">Total</Typography>
-                  <Typography variant="h4" weight="bold">$127.50</Typography>
+                  <CriaTextTitle1>Total</CriaTextTitle1>
+                  <CriaTextTitle1>$127.50</CriaTextTitle1>
                 </div>
                 <Button variant="primary" size="lg" style={{ width: '100%' }}>
                   Proceed to Checkout
@@ -476,11 +476,11 @@ const DrawerDemo: React.FC = () => {
                 <div key={index} style={{ display: 'flex', gap: '12px', padding: '12px', border: '1px solid var(--color-border)', borderRadius: 'var(--radius-sm)' }}>
                   <div style={{ width: '60px', height: '60px', backgroundColor: 'var(--color-background-subtle)', borderRadius: 'var(--radius-sm)' }} />
                   <div style={{ flex: 1 }}>
-                    <Typography variant="body" weight="medium">{item.name}</Typography>
-                    <Typography variant="body" color="muted" size="sm">Qty: {item.quantity}</Typography>
-                    <Typography variant="body" weight="semibold">${item.price}</Typography>
+                    <CriaTextBody1>{item.name}</CriaTextBody1>
+                    <CriaTextBody2 style={{ color: colors.text.secondary }}>Qty: {item.quantity}</CriaTextBody2>
+                    <CriaTextBody1>${item.price}</CriaTextBody1>
                   </div>
-                  <Button variant="ghost" size="sm">
+                  <Button variant="ghost" >
                     <Trash size={16} />
                   </Button>
                 </div>
@@ -491,14 +491,14 @@ const DrawerDemo: React.FC = () => {
       </Card>
 
       {/* Settings Panel Example */}
-      <Card style={{ marginBottom: '32px', padding: '0' }}>
-        <div style={{ padding: '16px', borderBottom: '1px solid var(--color-border)' }}>
-          <Typography variant="h3" weight="semibold">Settings Panel Example</Typography>
-          <Typography variant="body" color="muted" size="sm">
+      <Card style={{ marginBottom: spacing[8], padding: '0' }}>
+        <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
+          <CriaTextTitle1>Settings Panel Example</CriaTextTitle1>
+          <CriaTextBody2 style={{ color: colors.text.secondary }} >
             Complex settings interface with multiple sections
-          </Typography>
+          </CriaTextBody2>
         </div>
-        <div style={{ padding: '16px' }}>
+        <div style={{ padding: spacing[4] }}>
           <Button onClick={() => openDrawer('settings')}>
             <Gear size={16} />
             Open Settings
@@ -513,49 +513,49 @@ const DrawerDemo: React.FC = () => {
           >
             <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
               <div>
-                <Typography variant="h4" weight="semibold" style={{ marginBottom: '12px' }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Account Settings
-                </Typography>
+                </CriaTextTitle1>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <Typography variant="body">Email Notifications</Typography>
-                    <Switch defaultChecked />
+                    <CriaTextBody1>Email Notifications</CriaTextBody1>
+                    <Switch checked={true} />
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <Typography variant="body">SMS Notifications</Typography>
+                    <CriaTextBody1>SMS Notifications</CriaTextBody1>
                     <Switch />
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <Typography variant="body">Push Notifications</Typography>
-                    <Switch defaultChecked />
+                    <CriaTextBody1>Push Notifications</CriaTextBody1>
+                    <Switch checked={true} />
                   </div>
                 </div>
               </div>
               
               <div>
-                <Typography variant="h4" weight="semibold" style={{ marginBottom: '12px' }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Privacy Settings
-                </Typography>
+                </CriaTextTitle1>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <Typography variant="body">Profile Visibility</Typography>
-                    <Switch defaultChecked />
+                    <CriaTextBody1>Profile Visibility</CriaTextBody1>
+                    <Switch checked={true} />
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <Typography variant="body">Data Collection</Typography>
+                    <CriaTextBody1>Data Collection</CriaTextBody1>
                     <Switch />
                   </div>
                 </div>
               </div>
               
               <div>
-                <Typography variant="h4" weight="semibold" style={{ marginBottom: '12px' }}>
+                <CriaTextTitle1 style={{ marginBottom: spacing[3] }}>
                   Appearance
-                </Typography>
+                </CriaTextTitle1>
                 <div style={{ display: 'flex', gap: '8px' }}>
-                  <Button size="sm" variant="primary">Light</Button>
-                  <Button size="sm" variant="ghost">Dark</Button>
-                  <Button size="sm" variant="ghost">Auto</Button>
+                  <Button  variant="primary">Light</Button>
+                  <Button  variant="ghost">Dark</Button>
+                  <Button  variant="ghost">Auto</Button>
                 </div>
               </div>
             </div>
@@ -564,14 +564,14 @@ const DrawerDemo: React.FC = () => {
       </Card>
 
       {/* Loading State */}
-      <Card style={{ marginBottom: '32px', padding: '0' }}>
-        <div style={{ padding: '16px', borderBottom: '1px solid var(--color-border)' }}>
-          <Typography variant="h3" weight="semibold">Loading State</Typography>
-          <Typography variant="body" color="muted" size="sm">
+      <Card style={{ marginBottom: spacing[8], padding: '0' }}>
+        <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
+          <CriaTextTitle1>Loading State</CriaTextTitle1>
+          <CriaTextBody2 style={{ color: colors.text.secondary }} >
             Drawer with loading spinner
-          </Typography>
+          </CriaTextBody2>
         </div>
-        <div style={{ padding: '16px' }}>
+        <div style={{ padding: spacing[4] }}>
           <Button onClick={() => openDrawer('loading')}>
             Open Loading Drawer
           </Button>
@@ -584,20 +584,20 @@ const DrawerDemo: React.FC = () => {
             size="md"
             loading={true}
           >
-            <Typography variant="body">This content is loading...</Typography>
+            <CriaTextBody1>This content is loading...</CriaTextBody1>
           </Drawer>
         </div>
       </Card>
 
       {/* Custom Header and Footer */}
       <Card style={{ padding: '0' }}>
-        <div style={{ padding: '16px', borderBottom: '1px solid var(--color-border)' }}>
-          <Typography variant="h3" weight="semibold">Custom Header and Footer</Typography>
-          <Typography variant="body" color="muted" size="sm">
+        <div style={{ padding: spacing[4], borderBottom: '1px solid var(--color-border)' }}>
+          <CriaTextTitle1>Custom Header and Footer</CriaTextTitle1>
+          <CriaTextBody2 style={{ color: colors.text.secondary }} >
             Drawer with custom header and footer content
-          </Typography>
+          </CriaTextBody2>
         </div>
-        <div style={{ padding: '16px' }}>
+        <div style={{ padding: spacing[4] }}>
           <Button onClick={() => openDrawer('custom')}>
             Open Custom Drawer
           </Button>
@@ -613,26 +613,26 @@ const DrawerDemo: React.FC = () => {
                   <User size={20} color="white" />
                 </div>
                 <div style={{ flex: 1 }}>
-                  <Typography variant="h4" weight="semibold">John Doe</Typography>
-                  <Typography variant="body" color="muted" size="sm">Online</Typography>
+                  <CriaTextTitle1>John Doe</CriaTextTitle1>
+                  <CriaTextBody2 style={{ color: colors.text.secondary }}>Online</CriaTextBody2>
                 </div>
-                <Button variant="ghost" size="sm" onClick={() => closeDrawer('custom')}>
+                <Button variant="ghost"  onClick={() => closeDrawer('custom')}>
                   <X size={16} />
                 </Button>
               </div>
             }
             footer={
               <div style={{ display: 'flex', gap: '8px' }}>
-                <Button variant="ghost" size="sm">
+                <Button variant="ghost" >
                   <Heart size={16} />
                 </Button>
-                <Button variant="ghost" size="sm">
+                <Button variant="ghost" >
                   <Share size={16} />
                 </Button>
-                <Button variant="ghost" size="sm">
+                <Button variant="ghost" >
                   <Download size={16} />
                 </Button>
-                <Button variant="primary" size="sm" style={{ marginLeft: 'auto' }}>
+                <Button variant="primary"  style={{ marginLeft: 'auto' }}>
                   <Plus size={16} />
                   Add
                 </Button>
@@ -640,15 +640,15 @@ const DrawerDemo: React.FC = () => {
             }
           >
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-              <Typography variant="body">
+              <CriaTextBody1>
                 This drawer has a custom header with user information and a custom footer with action buttons.
-              </Typography>
+              </CriaTextBody1>
               <Card>
-                <Typography variant="h4" weight="medium">Recent Activity</Typography>
+                <CriaTextTitle1>Recent Activity</CriaTextTitle1>
                 <div style={{ marginTop: '12px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                  <Typography variant="body" size="sm">• Updated profile picture</Typography>
-                  <Typography variant="body" size="sm">• Changed password</Typography>
-                  <Typography variant="body" size="sm">• Added new contact</Typography>
+                  <CriaTextBody2>• Updated profile picture</CriaTextBody2>
+                  <CriaTextBody2>• Changed password</CriaTextBody2>
+                  <CriaTextBody2>• Added new contact</CriaTextBody2>
                 </div>
               </Card>
             </div>
