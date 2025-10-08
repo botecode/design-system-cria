@@ -29,8 +29,8 @@ const Insights: React.FC = () => {
       }));
   };
 
-  const convertToBarData = (data: [string, number][]) => {
-    return data.map(([name, value]) => ({ name, value }));
+  const convertToBarData = (data: (string | number)[][]) => {
+    return data.map(([name, value]) => ({ name: String(name), value: Number(value) }));
   };
 
   // Chart data
@@ -108,12 +108,13 @@ const Insights: React.FC = () => {
 
       {/* Overview Cards */}
       <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+        display: 'flex', 
+        flexDirection: 'row',
         gap: '16px', 
-        marginBottom: '32px' 
+        marginBottom: '32px',
+        flexWrap: 'wrap'
       }}>
-        <Card>
+        <Card style={{ flex: '1', minWidth: '200px' }}>
           <CardContent>
             <CriaTextTitle1 style={{ fontSize: '24px', color: 'var(--cria-primary)', marginBottom: '8px' }}>
               {totalUsers}
@@ -123,7 +124,7 @@ const Insights: React.FC = () => {
             </CriaTextBody1>
           </CardContent>
         </Card>
-        <Card>
+        <Card style={{ flex: '1', minWidth: '200px' }}>
           <CardContent>
             <CriaTextTitle1 style={{ fontSize: '24px', color: 'var(--cria-success)', marginBottom: '8px' }}>
               {completedOnboarding}
@@ -133,7 +134,7 @@ const Insights: React.FC = () => {
             </CriaTextBody1>
           </CardContent>
         </Card>
-        <Card>
+        <Card style={{ flex: '1', minWidth: '200px' }}>
           <CardContent>
             <CriaTextTitle1 style={{ fontSize: '24px', color: 'var(--cria-warning)', marginBottom: '8px' }}>
               {Math.round((completedOnboarding / totalUsers) * 100)}%
@@ -143,7 +144,7 @@ const Insights: React.FC = () => {
             </CriaTextBody1>
           </CardContent>
         </Card>
-        <Card>
+        <Card style={{ flex: '1', minWidth: '200px' }}>
           <CardContent>
             <CriaTextTitle1 style={{ fontSize: '24px', color: 'var(--cria-info)', marginBottom: '8px' }}>
               {Object.keys(workAreasSummary).length}
