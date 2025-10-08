@@ -41,13 +41,14 @@ const Dashboard: React.FC = () => {
 
       {/* Stats Grid */}
       <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', 
+        display: 'flex', 
+        flexDirection: 'row',
         gap: '16px', 
-        marginBottom: '32px' 
+        marginBottom: '32px',
+        flexWrap: 'wrap'
       }}>
         {/* Total Users */}
-        <Card style={{ backgroundColor: 'var(--cria-surface-secondary)' }}>
+        <Card style={{ backgroundColor: 'var(--cria-surface-secondary)', flex: '1', minWidth: '180px' }}>
           <CardContent>
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <div style={{ 
@@ -83,7 +84,7 @@ const Dashboard: React.FC = () => {
         </Card>
 
         {/* Active Subscriptions */}
-        <Card style={{ backgroundColor: 'var(--cria-surface-secondary)' }}>
+        <Card style={{ backgroundColor: 'var(--cria-surface-secondary)', flex: '1', minWidth: '180px' }}>
           <CardContent>
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <div style={{ 
@@ -119,7 +120,7 @@ const Dashboard: React.FC = () => {
         </Card>
 
         {/* Company Status */}
-        <Card style={{ backgroundColor: 'var(--cria-surface-secondary)' }}>
+        <Card style={{ backgroundColor: 'var(--cria-surface-secondary)', flex: '1', minWidth: '180px' }}>
           <CardContent>
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <div style={{ 
@@ -160,7 +161,7 @@ const Dashboard: React.FC = () => {
         </Card>
 
         {/* Last Activity */}
-        <Card style={{ backgroundColor: 'var(--cria-surface-secondary)' }}>
+        <Card style={{ backgroundColor: 'var(--cria-surface-secondary)', flex: '1', minWidth: '180px' }}>
           <CardContent>
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <div style={{ 
