@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
 import { CriaTextHeadline1, CriaTextTitle1, CriaTextBody1 } from '../../../components/TextTokens';
 import { Card, CardContent } from '../../../components/Card';
-import { Button } from '../../../components/Button';
-import { Input } from '../../../components/Input';
-import { Dropdown } from '../../../components/Dropdown';
-import { CreditCard, Plus } from 'phosphor-react';
+import { CreditCard } from 'phosphor-react';
 
 interface Subscription {
   id: string;
@@ -18,14 +15,6 @@ interface Subscription {
 }
 
 const Assinaturas: React.FC = () => {
-  const [isCreating, setIsCreating] = useState(false);
-  const [newSubscription, setNewSubscription] = useState({
-    planName: '',
-    subscriptionType: 'monthly' as const,
-    subscriptionTierId: '',
-    startsAt: new Date().toISOString().slice(0, 16),
-    seats: 1
-  });
 
   // Mock data for subscriptions
   const [subscriptions, setSubscriptions] = useState<Subscription[]>([
@@ -51,19 +40,6 @@ const Assinaturas: React.FC = () => {
     }
   ]);
 
-  const subscriptionTypeOptions = [
-    { value: 'monthly', label: 'Mensal' },
-    { value: 'quarterly', label: 'Trimestral' },
-    { value: 'semiannual', label: 'Semestral' },
-    { value: 'annual', label: 'Anual' },
-    { value: 'unlimited', label: 'Vitalícia' }
-  ];
-
-  const subscriptionTierOptions = [
-    { value: '1', label: 'Basic' },
-    { value: '2', label: 'Premium' },
-    { value: '3', label: 'Enterprise' }
-  ];
 
   const getTypeLabel = (type: string) => {
     const labels: Record<string, string> = {
@@ -117,30 +93,6 @@ const Assinaturas: React.FC = () => {
     return new Date(dateString).toLocaleDateString('pt-BR');
   };
 
-  const handleCreateSubscription = () => {
-    if (!newSubscription.planName || !newSubscription.subscriptionTierId) return;
-    
-    const newSub: Subscription = {
-      id: Date.now().toString(),
-      planName: newSubscription.planName,
-      subscriptionType: newSubscription.subscriptionType,
-      subscriptionTier: subscriptionTierOptions.find(t => t.value === newSubscription.subscriptionTierId)?.label.toLowerCase() || 'basic',
-      startsAt: newSubscription.startsAt,
-      endsAt: new Date(new Date(newSubscription.startsAt).getTime() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // Mock end date
-      seats: newSubscription.seats,
-      availableSeats: newSubscription.seats
-    };
-
-    setSubscriptions([newSub, ...subscriptions]);
-    setNewSubscription({
-      planName: '',
-      subscriptionType: 'monthly',
-      subscriptionTierId: '',
-      startsAt: new Date().toISOString().slice(0, 16),
-      seats: 1
-    });
-    setIsCreating(false);
-  };
 
 
   return (
@@ -160,140 +112,6 @@ const Assinaturas: React.FC = () => {
         </CriaTextBody1>
       </div>
 
-      {/* Create New Subscription */}
-      <div style={{ marginBottom: '32px' }}>
-        <Card style={{ backgroundColor: 'var(--cria-surface-secondary)' }}>
-          <CardContent>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
-              <CriaTextTitle1 style={{ color: 'var(--cria-text-primary)' }}>
-                Criar Nova Assinatura
-              </CriaTextTitle1>
-              <Button
-                variant="primary"
-                onClick={() => setIsCreating(!isCreating)}
-                icon={<Plus size={16} />}
-              >
-                {isCreating ? 'Cancelar' : 'Nova Assinatura'}
-              </Button>
-            </div>
-
-            {isCreating && (
-              <div style={{
-                display: 'grid',
-                gridTemplateColumns: '1.2fr 1fr 1fr 1fr 0.8fr auto',
-                gap: '12px',
-                alignItems: 'center',
-                backgroundColor: 'var(--cria-bg-secondary)',
-                border: '1px solid var(--cria-border-primary)',
-                borderRadius: '12px',
-                padding: '12px 16px'
-              }}>
-                <div>
-                  <label style={{
-                    display: 'block',
-                    color: 'var(--cria-text-secondary)',
-                    fontSize: '12px',
-                    marginBottom: '6px'
-                  }}>
-                    Nome do Plano
-                  </label>
-                  <Input
-                    placeholder="Ex: Plano Pi"
-                    value={newSubscription.planName}
-                    onChange={(e) => setNewSubscription({ ...newSubscription, planName: e.target.value })}
-                    style={{ width: '100%' }}
-                  />
-                </div>
-                <div>
-                  <label style={{
-                    display: 'block',
-                    color: 'var(--cria-text-secondary)',
-                    fontSize: '12px',
-                    marginBottom: '6px'
-                  }}>
-                    Tipo de Assinatura
-                  </label>
-                  <Dropdown
-                    options={subscriptionTypeOptions}
-                    value={newSubscription.subscriptionType}
-                    onSelect={(value) => setNewSubscription({ ...newSubscription, subscriptionType: value as any })}
-                    placeholder="Selecione"
-                    style={{ width: '100%' }}
-                  />
-                </div>
-                <div>
-                  <label style={{
-                    display: 'block',
-                    color: 'var(--cria-text-secondary)',
-                    fontSize: '12px',
-                    marginBottom: '6px'
-                  }}>
-                    Escopo
-                  </label>
-                  <Dropdown
-                    options={subscriptionTierOptions}
-                    value={newSubscription.subscriptionTierId}
-                    onSelect={(value) => setNewSubscription({ ...newSubscription, subscriptionTierId: value })}
-                    placeholder="Selecione"
-                    style={{ width: '100%' }}
-                  />
-                </div>
-                <div>
-                  <label style={{
-                    display: 'block',
-                    color: 'var(--cria-text-secondary)',
-                    fontSize: '12px',
-                    marginBottom: '6px'
-                  }}>
-                    Data de Início
-                  </label>
-                  <Input
-                    type="datetime-local"
-                    value={newSubscription.startsAt}
-                    onChange={(e) => setNewSubscription({ ...newSubscription, startsAt: e.target.value })}
-                    style={{ width: '100%' }}
-                  />
-                </div>
-                <div>
-                  <label style={{
-                    display: 'block',
-                    color: 'var(--cria-text-secondary)',
-                    fontSize: '12px',
-                    marginBottom: '6px'
-                  }}>
-                    Assentos
-                  </label>
-                  <Input
-                    type="number"
-                    min="1"
-                    value={newSubscription.seats}
-                    onChange={(e) => setNewSubscription({ ...newSubscription, seats: parseInt(e.target.value) || 1 })}
-                    style={{ width: '100%' }}
-                  />
-                </div>
-                <div>
-                  <label style={{
-                    display: 'block',
-                    color: 'var(--cria-text-secondary)',
-                    fontSize: '12px',
-                    marginBottom: '6px',
-                    visibility: 'hidden'
-                  }}>
-                    Criar
-                  </label>
-                  <Button
-                    variant="primary"
-                    onClick={handleCreateSubscription}
-                    style={{ height: '42px', padding: '0 16px' }}
-                  >
-                    Criar
-                  </Button>
-                </div>
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      </div>
 
       {/* Existing Subscriptions */}
       <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
