@@ -11,6 +11,8 @@
   ],
   "scripts": {
     "build": "tsup src/index.ts --dts --format cjs,esm --out-dir dist",
+    "build:web": "vite build --config vite.config.web.ts",
+    "start:web": "vite preview --config vite.config.web.ts --port 10000 --host 0.0.0.0",
     "dev": "vite --port 3003 --strictPort",
     "dev:force": "lsof -ti:3003 | xargs kill -9 2>/dev/null || true && vite --port 3003 --strictPort",
     "dev:clean": "./scripts/dev.sh",
