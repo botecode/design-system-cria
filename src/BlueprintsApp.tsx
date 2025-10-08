@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Typography, Button, ThemeProvider, ThemeToggle, Dropdown } from './index.ts';
 import { CriaTextHeadline1, CriaTextTitle1, CriaTextBody1 } from './components/TextTokens';
-import { ArrowLeft, Monitor, Robot, CaretDown, DeviceMobile, DeviceTablet, Desktop, Laptop, Building } from 'phosphor-react';
+import { ArrowLeft, Monitor, Robot, CaretDown, DeviceMobile, DeviceTablet, Desktop, Laptop, Buildings } from 'phosphor-react';
 import Error500 from './pages/Error500';
 import Error404 from './pages/Error404';
 import Companies from './blueprints/companies/Companies';
@@ -32,7 +32,7 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
 
   const pageOptions = [
     { value: 'welcome', label: 'Welcome', icon: <Monitor size={16} /> },
-    { value: 'companies', label: 'Companies Dashboard', icon: <Building size={16} /> },
+    { value: 'companies', label: 'Companies Dashboard', icon: <Buildings size={16} /> },
     { value: 'error-500', label: 'Error 500', icon: <CaretDown size={16} /> },
     { value: 'error-404', label: 'Error 404', icon: <CaretDown size={16} /> }
   ];
