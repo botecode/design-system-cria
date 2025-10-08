@@ -13,7 +13,7 @@ const Error500: React.FC = () => {
       errorCode="500"
       title="Erro interno do servidor"
       message="Ops! Algo deu errado por aqui. Estamos trabalhando para resolver o problema. Tente novamente em alguns instantes."
-      image="/src/assets/error/500.png"
+      image="https://uploads-ssl.webflow.com/655b905d99360c01ec912345/659da4fff83368ab6b700270_typewriter.png"
       errorType="error"
       buttons={[
         {

@@ -13,7 +13,7 @@ const Error404: React.FC = () => {
       errorCode="404"
       title="Página não encontrada"
       message="Desculpe, não conseguimos encontrar a página que você procurava. Ela pode ter sido movida, excluída ou o endereço digitado pode estar incorreto."
-      image="/src/assets/error/404.png"
+      image="https://uploads-ssl.webflow.com/655b905d99360c01ec912345/659da4ffbe77cd70b99ce090_tv.png"
       errorType="warning"
       buttons={[
         {
