@@ -7,6 +7,48 @@ import { spacing } from '../../tokens';
 
 const sampleChangelogEntries: ChangelogEntry[] = [
   {
+    id: '0',
+    version: 'v0.50',
+    date: '2024-12-19',
+    type: 'major',
+    author: 'Fernando Feitosa',
+    branch: 'main',
+    title: 'Comprehensive Dark Mode Implementation',
+    description: 'Major dark mode improvements across all components with enhanced contrast, readability, and theme consistency.',
+    changes: [
+      {
+        type: 'added',
+        items: [
+          'Complete dark mode support for Overview page',
+          'Enhanced Design Tokens page with theme-aware components',
+          'New ColorSwatchCard reusable components',
+          'Improved Navigation component with better text contrast',
+          'Comprehensive dark mode testing documentation'
+        ]
+      },
+      {
+        type: 'changed',
+        items: [
+          'Enhanced text contrast in dark mode (--cria-text-primary: #F3F4F6)',
+          'Improved Navigation CSS with better font weights',
+          'Updated all hardcoded colors to use CSS variables',
+          'Refactored Colors page with reusable components',
+          'Enhanced Button component hover states'
+        ]
+      },
+      {
+        type: 'fixed',
+        items: [
+          'Fixed hardcoded white backgrounds in Overview cards',
+          'Resolved hardcoded text colors in Button demo',
+          'Fixed Badge demo hardcoded colors',
+          'Improved Navigation text readability in dark mode',
+          'Fixed danger button hover color to use theme variables'
+        ]
+      }
+    ]
+  },
+  {
     id: '1',
     version: 'v0.4.001',
     date: '2024-01-15',
@@ -248,7 +290,7 @@ export const ChangelogDemo: React.FC = () => {
             Changelog Component
           </CriaTextHeadline1>
         </div>
-        <div style={{ color: '#666', marginBottom: spacing[6] }}>
+        <div style={{ color: 'var(--cria-text-secondary)', marginBottom: spacing[6] }}>
           <CriaTextBody1>
             A comprehensive changelog component with pagination, version tracking, and categorized changes.
           </CriaTextBody1>
