@@ -81,7 +81,7 @@ const CompaniesMainLayout: React.FC<CompaniesMainLayoutProps> = ({
       {/* Main Content */}
       <main style={{
         flex: 1,
-        marginLeft: '160px',
+        marginLeft: '120px',
         backgroundColor: 'var(--cria-bg-primary)',
         minHeight: 'calc(100vh - 60px)' // Account for topbar
       }}>

@@ -23,7 +23,7 @@ const Dashboard: React.FC = () => {
   ];
 
   return (
-    <section data-testid="dashboard-page" style={{ padding: '24px', paddingBottom: '40px' }}>
+    <section data-testid="dashboard-page" style={{ padding: '16px', paddingBottom: '40px' }}>
       {/* Page Header */}
       <div style={{ marginBottom: '32px' }}>
         <CriaTextHeadline1 style={{ 
@@ -42,8 +42,8 @@ const Dashboard: React.FC = () => {
       {/* Stats Grid */}
       <div style={{ 
         display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-        gap: '20px', 
+        gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+        gap: '16px', 
         marginBottom: '32px' 
       }}>
         {/* Total Users */}
@@ -292,8 +292,8 @@ const Dashboard: React.FC = () => {
           
           <div style={{ 
             display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-            gap: '16px' 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
+            gap: '12px' 
           }}>
             {/* Gerenciar Usuários */}
             <Button 
