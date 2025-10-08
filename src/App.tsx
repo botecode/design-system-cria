@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Typography, Button, Navigation, ThemeProvider, ThemeToggle } from './index.ts';
 import { CriaTextHeadline1, CriaTextTitle1, CriaTextBody1 } from './components/TextTokens';
-import { House, TextAa, Mouse, PencilSimple, CheckSquare, ToggleLeft, Bell, ChatCircle, Info, Square, Tag, Tabs, List, CaretDown, Article, Layout, User, Robot } from 'phosphor-react';
+import { House, TextAa, Mouse, PencilSimple, CheckSquare, ToggleLeft, Bell, ChatCircle, Info, Square, Tag, Tabs, List, CaretDown, Article, Layout, User, Robot, Monitor } from 'phosphor-react';
 import TypographyDemo from './components/Typography/demo';
 import ButtonDemo from './components/Button/demo';
 import CardDemo from './components/Card/demo';
@@ -585,6 +585,28 @@ const App: React.FC = () => {
                   showLabel={false}
                 />
               </div>
+
+              {/* Monitor Button */}
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  // Add your monitor functionality here
+                  console.log('Monitor button clicked');
+                }}
+                style={{
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '50%',
+                  backgroundColor: 'var(--cria-surface-primary)',
+                  color: 'var(--cria-text-primary)',
+                  border: '1px solid var(--cria-border-primary)',
+                  boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
+                }}
+                aria-label="Monitor"
+              >
+                <Monitor size={20} />
+              </Button>
 
               {/* Robot Icon */}
               <Button
