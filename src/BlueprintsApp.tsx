@@ -12,7 +12,7 @@ interface BlueprintsAppProps {
 }
 
 type BlueprintPage = 'welcome' | 'error-500' | 'error-404' | 'companies';
-type DeviceType = 'desktop-xl' | 'desktop' | 'laptop' | 'tablet' | 'mobile';
+type DeviceType = 'desktop' | 'laptop' | 'tablet' | 'mobile';
 
 const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -38,19 +38,18 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
   ];
 
   const deviceOptions = [
-    { value: 'desktop-xl', label: 'Desktop XL', icon: <Desktop size={16} /> },
     { value: 'desktop', label: 'Desktop', icon: <Desktop size={16} /> },
     { value: 'laptop', label: 'Laptop', icon: <Laptop size={16} /> },
     { value: 'tablet', label: 'Tablet', icon: <DeviceTablet size={16} /> },
     { value: 'mobile', label: 'Mobile', icon: <DeviceMobile size={16} /> }
   ];
 
-  const handlePageChange = (value: string) => {
-    setCurrentPage(value as BlueprintPage);
+  const handlePageChange = (value: string | string[]) => {
+    setCurrentPage((Array.isArray(value) ? value[0] : value) as BlueprintPage);
   };
 
-  const handleDeviceChange = (value: string) => {
-    setDeviceType(value as DeviceType);
+  const handleDeviceChange = (value: string | string[]) => {
+    setDeviceType((Array.isArray(value) ? value[0] : value) as DeviceType);
   };
 
   const getDeviceStyles = () => {
@@ -83,15 +82,6 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
           borderRadius: '8px'
         };
       case 'desktop':
-        return {
-          maxWidth: '1440px',
-          margin: '0 auto',
-          minHeight: '100vh',
-          backgroundColor: 'var(--cria-bg-primary)',
-          boxShadow: '0 0 20px rgba(0, 0, 0, 0.1)',
-          borderRadius: '8px'
-        };
-      case 'desktop-xl':
       default:
         return {
           maxWidth: '100%',
@@ -388,12 +378,12 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'flex-start',
-          padding: deviceType === 'desktop-xl' ? '0' : '20px',
-          backgroundColor: deviceType === 'desktop-xl' ? 'transparent' : 'var(--cria-bg-secondary)',
+          padding: deviceType === 'desktop' ? '0' : '20px',
+          backgroundColor: deviceType === 'desktop' ? 'transparent' : 'var(--cria-bg-secondary)',
           position: 'relative'
         }}>
           {/* Device Preview Background Overlay */}
-          {deviceType !== 'desktop-xl' && (
+          {deviceType !== 'desktop' && (
             <div style={{
               position: 'fixed',
               top: '64px',
