@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import { Typography, Button, ThemeProvider, ThemeToggle, Dropdown } from './index.ts';
 import { CriaTextHeadline1, CriaTextTitle1, CriaTextBody1 } from './components/TextTokens';
-import { ArrowLeft, Robot, CaretDown, DeviceMobile, DeviceTablet, Desktop, Laptop, Buildings } from 'phosphor-react';
+import { ArrowLeft, Robot, CaretDown, DeviceMobile, DeviceTablet, Desktop, Laptop, Buildings, Flask } from 'phosphor-react';
 import Error500 from './pages/Error500';
 import Error404 from './pages/Error404';
 import Companies from './blueprints/companies/Companies';
+import Lab from './blueprints/lab/Lab';
 import './fonts.css';
 
 interface BlueprintsAppProps {
   onBackToDesignSystem?: () => void;
 }
 
-type BlueprintPage = 'error-500' | 'error-404' | 'companies';
+type BlueprintPage = 'error-500' | 'error-404' | 'companies' | 'lab';
 type DeviceType = 'desktop' | 'laptop' | 'tablet' | 'mobile';
 type SidebarTheme = 'default' | 'primary' | 'secondary';
 
@@ -35,7 +36,8 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
   const pageOptions = [
     { value: 'error-500', label: 'Error 500', icon: <CaretDown size={16} /> },
     { value: 'error-404', label: 'Error 404', icon: <CaretDown size={16} /> },
-    { value: 'companies', label: 'Companies Dashboard', icon: <Buildings size={16} /> }
+    { value: 'companies', label: 'Companies Dashboard', icon: <Buildings size={16} /> },
+    { value: 'lab', label: 'Lab', icon: <Flask size={16} /> }
   ];
 
   const deviceOptions = [
@@ -114,6 +116,8 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
         return <Error404 />;
       case 'companies':
         return <Companies sidebarTheme={sidebarTheme} />;
+      case 'lab':
+        return <Lab sidebarTheme={sidebarTheme} />;
       default:
         return <Error500 />;
     }
@@ -191,7 +195,7 @@ const BlueprintsApp: React.FC<BlueprintsAppProps> = ({ onBackToDesignSystem }) =
               variant="outlined"
               style={{ minWidth: '140px' }}
             />
-            {currentPage === 'companies' && (
+            {(currentPage === 'companies' || currentPage === 'lab') && (
               <Dropdown
                 options={sidebarThemeOptions}
                 value={sidebarTheme}
